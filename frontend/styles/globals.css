@@ -1,0 +1,39 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Oranienbaum&family=Montserrat:wght@300;400;500;600;700&family=Comfortaa:wght@300;400;500;600;700&family=Cormorant:wght@300;400;500;600;700&family=DM+Sans:wght@300;400;500;600;700&display=swap');
+
+/* Global reset for CCG dark theme */
+html, body {
+  margin: 0;
+  padding: 0;
+  background: #050505;
+  color: #FAFAFA;
+  font-family: 'Comfortaa', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* Sharp corners throughout — brand rule */
+button, input, textarea, select {
+  border-radius: 0 !important;
+}
+
+/* Scrollbar styling for dark theme */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #0A0A0A;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.12);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255,255,255,0.2);
+}
