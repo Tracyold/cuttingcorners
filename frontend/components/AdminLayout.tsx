@@ -56,15 +56,15 @@ export const adminCss = `
 .empty-tx{font-size:10px;letter-spacing:.22em;text-transform:uppercase}
 .tbl{width:100%;border-collapse:collapse}
 .tbl thead tr{border-bottom:1px solid var(--ln)}
-.tbl th{font-size:10px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--d2);padding:16px 0 12px;text-align:left}
+.tbl th{font-size:11px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--d2);padding:16px 0 12px;text-align:left}
 .tbl th:last-child{text-align:right}
 .tbl tbody tr{border-bottom:1px solid var(--ln);transition:background .1s;cursor:pointer}
 .tbl tbody tr:hover{background:var(--k2)}
 .tbl td{padding:16px 0;font-size:13px;color:var(--tx);vertical-align:middle}
 .tbl td:last-child{text-align:right}
-.td-name{font-family:var(--serif);font-size:16px;font-weight:400;color:var(--wh)}
-.td-sub{font-size:11px;color:var(--d1);letter-spacing:.07em;margin-top:2px}
-.td-price{font-family:var(--serif);font-size:16px;color:var(--gl)}
+.td-name{font-family:var(--serif);font-size:17px;font-weight:400;color:var(--wh)}
+.td-sub{font-size:13px;color:var(--d1);letter-spacing:.07em;margin-top:2px}
+.td-price{font-family:var(--serif);font-size:17px;color:var(--gl)}
 .pill{display:inline-block;font-size:9px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;padding:4px 9px}
 .pill-A{background:rgba(207,176,64,.09);color:var(--gl)}
 .pill-D{background:rgba(255,255,255,.04);color:var(--d1)}
