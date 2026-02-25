@@ -62,6 +62,12 @@ export default function AccountPage() {
   const [chatSending, setChatSending] = useState(false);
   const [chatOpen, setChatOpen] = useState(false);
   const chatEndRef = useRef<HTMLDivElement>(null);
+  const chatFileRef = useRef<HTMLInputElement>(null);
+  const [chatUploading, setChatUploading] = useState(false);
+
+  // Work order detail modal
+  const [selectedWO, setSelectedWO] = useState<any>(null);
+  const [adminInfo, setAdminInfo] = useState<any>(null);
 
   // Auth
   useEffect(() => {
