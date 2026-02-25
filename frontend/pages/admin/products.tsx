@@ -60,7 +60,7 @@ function GIASection({ value, onChange }: { value: string; onChange: (f: string, 
       ) : (
         <input type="text" placeholder={mode === 'url' ? 'https://www.gia.edu/report-check/...' : 'https://... photo URL'}
           value={value} onChange={e => onChange('gia_report_pdf_url', e.target.value)}
-          style={{ background: 'var(--k1)', border: '1px solid var(--ln)', color: 'var(--tx)', padding: '8px 10px', fontFamily: 'var(--sans)', fontSize: '12px', width: '100%', outline: 'none' }}
+          style={{ background: 'var(--k1)', border: '.5px solid var(--ln)', color: 'var(--tx)', padding: '8px 10px', fontFamily: 'var(--sans)', fontSize: '18px', width: '100%', outline: 'none' }}
         />
       )}
     </div>
@@ -98,7 +98,7 @@ function ProductForm({ queue, currentIndex, onCurrentChange, onClose, onAddToQue
       </div>
       <div className="fp">
         <div className="fh">
-          <div className="fh-title">{current.title || 'New Product'}<span style={{ fontSize: 12, color: 'var(--d1)', fontWeight: 300, marginLeft: 10 }}>{currentIndex + 1} / {queue.length}</span></div>
+          <div className="fh-title">{current.title || 'New Product'}<span style={{ fontSize: 18, color: 'var(--d1)', fontWeight: 300, marginLeft: 10 }}>{currentIndex + 1} / {queue.length}</span></div>
           <div className="fhr"><span className={`sf ${flash ? 'on' : ''}`}>✓ Saved</span><button className="xb" onClick={onClose}>×</button></div>
         </div>
         <div className="fb">
@@ -109,14 +109,14 @@ function ProductForm({ queue, currentIndex, onCurrentChange, onClose, onAddToQue
           </div>
           <div className="fr fr1"><div className="fg"><label>Title</label><input placeholder="e.g. Burmese Pigeon Blood Ruby" value={current.title} onChange={e => upd('title', e.target.value)} /></div></div>
           <div className="fr fr3">
-            <div className="fg"><label>Gem Type</label><input placeholder="Ruby" value={current.gem_type} onChange={e => upd('gem_type', e.target.value)} /></div>
-            <div className="fg"><label>Color</label><input placeholder="Vivid Red" value={current.color} onChange={e => upd('color', e.target.value)} /></div>
-            <div className="fg"><label>Shape</label><input placeholder="Oval" value={current.shape} onChange={e => upd('shape', e.target.value)} /></div>
+            <div className="fg"><input placeholder="GemType" value={current.gem_type} onChange={e => upd('gem_type', e.target.value)} /></div>
+            <div className="fg"><input placeholder="Color" value={current.color} onChange={e => upd('color', e.target.value)} /></div>
+            <div className="fg"><input placeholder="Shape" value={current.shape} onChange={e => upd('shape', e.target.value)} /></div>
           </div>
           <div className="fr fr3">
-            <div className="fg"><label>Weight (ct)</label><input placeholder="3.42" value={current.weight || ''} onChange={e => upd('weight', e.target.value)} /></div>
-            <div className="fg"><label>Origin</label><input placeholder="Burma" value={current.origin} onChange={e => upd('origin', e.target.value)} /></div>
-            <div className="fg"><label>Treatment</label><input placeholder="Heat / No Heat" value={current.treatment} onChange={e => upd('treatment', e.target.value)} /></div>
+            <div className="fg"><input placeholder="weight" value={current.weight || ''} onChange={e => upd('weight', e.target.value)} /></div>
+            <div className="fg"><input placeholder="origin" value={current.origin} onChange={e => upd('origin', e.target.value)} /></div>
+            <div className="fg"><input placeholder="treatment" value={current.treatment} onChange={e => upd('treatment', e.target.value)} /></div>
           </div>
           <div className="fr fr2">
             <div className="fg"><label>GIA Report Number</label><input placeholder="2211234567" value={current.gia_report_number} onChange={e => upd('gia_report_number', e.target.value)} /></div>
