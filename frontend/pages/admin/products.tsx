@@ -11,7 +11,7 @@ const EMPTY_FORM: Record<string, string> = {
   price_per_carat: '', total_price: '', description: '', photo_url: '',
 };
 
-function genId() { return 'CCG-' + Date.now().toString(36).toUpperCase(); }
+function genId() { return crypto.randomUUID(); }
 
 async function upsertProduct(p: any, state: string) {
   return supabase.from('products').upsert({
