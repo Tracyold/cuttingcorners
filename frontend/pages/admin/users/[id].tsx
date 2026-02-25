@@ -33,6 +33,11 @@ export default function AdminUserDetail() {
   const [chatSending, setChatSending] = useState(false);
   const [chatExpanded, setChatExpanded] = useState(false);
   const chatEndRef = useRef<HTMLDivElement>(null);
+  const chatFileRef = useRef<HTMLInputElement>(null);
+  const [chatUploading, setChatUploading] = useState(false);
+
+  // Work order detail modal
+  const [selectedWO, setSelectedWO] = useState<any>(null);
 
   // Work order form
   const [showAddWO, setShowAddWO] = useState(false);
