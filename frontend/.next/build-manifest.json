@@ -32,6 +32,11 @@
       "static/chunks/main.js",
       "static/chunks/pages/admin/login.js"
     ],
+    "/admin/portfolio": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/admin/portfolio.js"
+    ],
     "/admin/products": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
