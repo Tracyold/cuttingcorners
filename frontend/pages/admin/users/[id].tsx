@@ -279,9 +279,9 @@ export default function AdminUserDetail() {
                     { label: 'Business', val: user.business_name || '—' },
                     { label: 'Member Since', val: fmtDate(user.created_at) },
                   ].map(f => (
-                    <div key={f.label} style={{ marginBottom: '10px' }}>
-                      <div style={{ fontSize: '8.5px', fontWeight: 500, letterSpacing: '.2em', textTransform: 'uppercase', color: 'var(--d1)', marginBottom: '3px' }}>{f.label}</div>
-                      <div style={{ fontSize: '13px', color: 'var(--tx)' }}>{f.val}</div>
+                    <div key={f.label} style={{ marginBottom: '14px' }}>
+                      <div style={{ fontSize: '12px', fontWeight: 500, letterSpacing: '.2em', textTransform: 'uppercase', color: 'var(--d1)', marginBottom: '4px' }}>{f.label}</div>
+                      <div style={{ fontSize: '16px', color: 'var(--tx)' }}>{f.val}</div>
                     </div>
                   ))}
                   <div style={{ marginTop: '8px' }}>
