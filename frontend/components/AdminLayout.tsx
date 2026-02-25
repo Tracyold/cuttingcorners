@@ -32,7 +32,7 @@ export const adminCss = `
 .ni-ic{font-size:12px;opacity:.55}.ni.on .ni-ic{opacity:1}
 .ni-bell{position:relative;margin-left:auto}
 .ni-badge{position:absolute;top:-6px;right:-8px;background:var(--gl);color:#000;font-size:7.5px;font-weight:700;min-width:14px;height:14px;border-radius:50%;display:flex;align-items:center;justify-content:center;padding:0 3px}
-.sb-foot{padding:14px 20px;border-top:1px solid var(--ln);font-size:8.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--d2);cursor:pointer;transition:color .15s}
+.sb-foot{padding:16px 24px;border-top:1px solid var(--ln);font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--d2);cursor:pointer;transition:color .15s}
 .sb-foot:hover{color:var(--er)}
 .main{flex:1;display:flex;flex-direction:column;overflow:hidden;background:var(--k0)}
 .ph{display:flex;align-items:center;justify-content:space-between;padding:22px 32px;border-bottom:1px solid var(--ln);flex-shrink:0}
