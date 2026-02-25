@@ -78,9 +78,6 @@ export default function AdminLoginPage() {
           maxWidth: '480px',
           width: '100%',
           animation: 'adminGlow 4s ease-in-out infinite',
-          opacity: 0,
-          transform: 'translateY(12px)',
-          animationFillMode: 'forwards',
         }}
       >
         <style dangerouslySetInnerHTML={{ __html: `
