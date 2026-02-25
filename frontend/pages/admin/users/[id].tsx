@@ -516,6 +516,90 @@ export default function AdminUserDetail() {
           </div>
         </div>
       )}
+
+      {/* Work Order Detail Modal */}
+      {selectedWO && (
+        <div className="ov" onClick={e => { if (e.target === e.currentTarget) setSelectedWO(null); }}>
+          <div style={{ margin: 'auto', background: 'var(--k1)', border: '1px solid var(--ln)', padding: '32px', maxWidth: '560px', width: '90%', maxHeight: '90vh', overflowY: 'auto' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '24px' }}>
+              <div>
+                <div style={{ fontSize: '10px', letterSpacing: '.2em', textTransform: 'uppercase', color: 'var(--d2)', marginBottom: '4px' }}>Work Order</div>
+                <div style={{ fontFamily: 'var(--serif)', fontSize: '22px', color: 'var(--wh)' }}>{selectedWO.title}</div>
+              </div>
+              <span style={{ fontSize: '9px', fontWeight: 500, letterSpacing: '.2em', textTransform: 'uppercase', padding: '4px 9px', background: STATUS_COLORS[selectedWO.status]?.bg, color: STATUS_COLORS[selectedWO.status]?.color }}>{selectedWO.status}</span>
+            </div>
+
+            {/* Admin business info */}
+            {adminInfo && (
+              <div style={{ marginBottom: '20px', padding: '16px', background: 'var(--k0)', border: '1px solid var(--ln)' }}>
+                <div style={{ fontSize: '9px', letterSpacing: '.2em', textTransform: 'uppercase', color: 'var(--d2)', marginBottom: '8px' }}>From</div>
+                <div style={{ fontSize: '13px', color: 'var(--tx)', lineHeight: 1.8 }}>
+                  <div style={{ color: 'var(--gl)', fontWeight: 600 }}>{adminInfo.business_name}</div>
+                  <div>{adminInfo.full_name}</div>
+                  <div>{adminInfo.address}</div>
+                  <div>{adminInfo.contact_email}</div>
+                  <div>{adminInfo.phone}</div>
+                </div>
+              </div>
+            )}
+
+            {/* Client info */}
+            {user && (
+              <div style={{ marginBottom: '20px', padding: '16px', background: 'var(--k0)', border: '1px solid var(--ln)' }}>
+                <div style={{ fontSize: '9px', letterSpacing: '.2em', textTransform: 'uppercase', color: 'var(--d2)', marginBottom: '8px' }}>Client</div>
+                <div style={{ fontSize: '13px', color: 'var(--tx)', lineHeight: 1.8 }}>
+                  <div style={{ color: 'rgba(255,255,255,0.8)' }}>{user.name}</div>
+                  <div>{user.email}</div>
+                  {user.phone && <div>{user.phone}</div>}
+                  {user.shipping_address && <div>{user.shipping_address}</div>}
+                </div>
+              </div>
+            )}
+
+            <div style={{ height: '1px', background: 'var(--ln)', margin: '16px 0' }} />
+
+            {/* WO details */}
+            {[
+              { label: 'Service Type', val: selectedWO.service_type },
+              { label: 'Gem Type', val: selectedWO.gem_type },
+              { label: 'Created', val: fmtDate(selectedWO.created_at) + ' · ' + fmtTime(selectedWO.created_at) },
+              { label: 'Accepted', val: selectedWO.accepted_at ? fmtDate(selectedWO.accepted_at) + ' · ' + fmtTime(selectedWO.accepted_at) : null },
+              { label: 'Completed', val: selectedWO.completed_at ? fmtDate(selectedWO.completed_at) + ' · ' + fmtTime(selectedWO.completed_at) : null },
+              { label: 'Cancelled', val: selectedWO.cancelled_at ? fmtDate(selectedWO.cancelled_at) : null },
+            ].filter(r => r.val).map(r => (
+              <div key={r.label} style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}>
+                <span style={{ fontSize: '10px', letterSpacing: '.18em', textTransform: 'uppercase', color: 'var(--d2)' }}>{r.label}</span>
+                <span style={{ fontSize: '13px', color: 'var(--tx)' }}>{r.val}</span>
+              </div>
+            ))}
+
+            <div style={{ marginTop: '16px' }}>
+              <div style={{ fontSize: '10px', letterSpacing: '.18em', textTransform: 'uppercase', color: 'var(--d2)', marginBottom: '6px' }}>Description</div>
+              <p style={{ fontSize: '14px', color: 'var(--tx)', lineHeight: 1.7 }}>{selectedWO.description}</p>
+            </div>
+
+            {selectedWO.notes && (
+              <div style={{ marginTop: '16px' }}>
+                <div style={{ fontSize: '10px', letterSpacing: '.18em', textTransform: 'uppercase', color: 'var(--d2)', marginBottom: '6px' }}>Notes</div>
+                <p style={{ fontSize: '13px', color: 'var(--d1)', lineHeight: 1.7 }}>{selectedWO.notes}</p>
+              </div>
+            )}
+
+            {selectedWO.estimated_price && (
+              <div style={{ marginTop: '20px', display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', padding: '16px', background: 'var(--k0)', border: '1px solid var(--ln)' }}>
+                <span style={{ fontSize: '10px', letterSpacing: '.18em', textTransform: 'uppercase', color: 'var(--d2)' }}>Quoted Price</span>
+                <span style={{ fontFamily: "'Courier New', monospace", fontSize: '22px', color: 'rgba(45,212,191,1)' }}>{formatMoney(selectedWO.estimated_price)}</span>
+              </div>
+            )}
+
+            <div style={{ display: 'flex', gap: '8px', marginTop: '24px' }}>
+              {selectedWO.status === 'ACCEPTED' && <button className="bp" onClick={() => { completeWO(selectedWO); setSelectedWO(null); }}>Mark Complete</button>}
+              {(selectedWO.status === 'CREATED' || selectedWO.status === 'ACCEPTED') && <button className="bg arc" onClick={() => { cancelWO(selectedWO); setSelectedWO(null); }}>Cancel Order</button>}
+              <button className="bg" onClick={() => setSelectedWO(null)} style={{ marginLeft: 'auto' }}>Close</button>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 }
