@@ -41,6 +41,11 @@
       "static/chunks/webpack.js",
       "static/chunks/main.js",
       "static/chunks/pages/admin/products.js"
+    ],
+    "/admin/users": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/admin/users.js"
     ]
   },
   "ampFirstPages": []
