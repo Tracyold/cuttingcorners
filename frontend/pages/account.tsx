@@ -711,12 +711,12 @@ export default function AccountPage() {
 
 const accountCss = `
 .acc-shell { display: flex; height: 100vh; background: #050505; overflow: hidden; }
-.acc-left { flex: 1; display: flex; overflow: hidden; }
-.acc-nav { width: 180px; flex-shrink: 0; background: #0A0A0A; border-right: 1px solid rgba(255,255,255,0.06); display: flex; flex-direction: column; padding: 20px 0; }
+.acc-left { flex: 1; display: flex; min-height: 0; min-width: 0; }
+.acc-nav { width: 180px; flex-shrink: 0; background: #0A0A0A; border-right: 1px solid rgba(255,255,255,0.06); display: flex; flex-direction: column; padding: 20px 0; overflow-y: auto; }
 .acc-nav-item { display: block; width: 100%; text-align: left; padding: 10px 20px; font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 400; letter-spacing: 0.20em; text-transform: uppercase; color: rgba(255,255,255,0.45); background: none; border: none; border-left: 2px solid transparent; cursor: pointer; transition: color 0.15s; }
 .acc-nav-item.on { color: #d4af37; border-left-color: #d4af37; }
 .acc-nav-item:hover:not(.on) { color: rgba(255,255,255,0.75); }
-.acc-content { flex: 1; overflow-y: auto; }
+.acc-content { flex: 1; overflow-y: auto; min-height: 0; min-width: 0; }
 .acc-right { width: 35%; min-width: 300px; max-width: 420px; border-left: 1px solid rgba(255,255,255,0.08); display: flex; flex-direction: column; background: #0A0A0A; }
 .acc-chat-header { padding: 16px 20px; border-bottom: 1px solid rgba(255,255,255,0.06); }
 .acc-chat-messages { flex: 1; overflow-y: auto; padding: 16px 20px; }
