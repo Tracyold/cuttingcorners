@@ -564,15 +564,11 @@ export default function Home() {
         {/* ── Mobile Industry Section ── */}
         <section
           id="mobile-industry-section"
-          className="md:hidden text-center px-4"
+          className="md:hidden text-center px-4 flex flex-col items-center justify-center"
           style={{
             background: '#050505',
             borderTop: '1px solid rgba(255,255,255,0.10)',
             minHeight: '100svh',
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'center',
             paddingTop: '40px',
             paddingBottom: '40px',
           }}
