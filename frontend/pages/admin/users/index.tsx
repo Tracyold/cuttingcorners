@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
-import AdminLayout from '../../components/AdminLayout';
-import { supabase } from '../../lib/supabase';
-import { fmtDate, fmtTime } from '../../lib/utils';
+import AdminLayout from '../../../components/AdminLayout';
+import { supabase } from '../../../lib/supabase';
+import { fmtDate, fmtTime } from '../../../lib/utils';
 
 export default function AdminUsersPage() {
   const router = useRouter();
