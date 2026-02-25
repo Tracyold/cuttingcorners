@@ -21,12 +21,12 @@ export const adminCss = `
   --serif:'Cormorant',Georgia,serif;--sans:'DM Sans',system-ui,sans-serif;
 }
 .shell{display:flex;height:100vh;background:var(--k0);font-family:var(--sans);color:var(--tx);overflow:hidden}
-.sb{width:196px;flex-shrink:0;background:var(--k1);border-right:1px solid var(--ln);display:flex;flex-direction:column}
-.sb-brand{padding:26px 20px 22px;border-bottom:1px solid var(--ln)}
-.sb-name{font-family:var(--serif);font-size:14px;font-weight:400;color:var(--wh);letter-spacing:.07em;line-height:1.3}
-.sb-role{font-size:8.5px;letter-spacing:.28em;text-transform:uppercase;color:var(--d2);margin-top:4px}
-.sb-nav{flex:1;padding:10px 0}
-.ni{display:flex;align-items:center;gap:10px;padding:10px 20px;font-size:10.5px;font-weight:400;letter-spacing:.14em;text-transform:uppercase;color:var(--d1);cursor:pointer;border:none;background:none;width:100%;text-align:left;transition:color .15s;position:relative;font-family:var(--sans)}
+.sb{width:220px;flex-shrink:0;background:var(--k1);border-right:1px solid var(--ln);display:flex;flex-direction:column}
+.sb-brand{padding:30px 24px 26px;border-bottom:1px solid var(--ln)}
+.sb-name{font-family:var(--serif);font-size:18px;font-weight:400;color:var(--wh);letter-spacing:.07em;line-height:1.3}
+.sb-role{font-size:9px;letter-spacing:.28em;text-transform:uppercase;color:var(--d2);margin-top:6px}
+.sb-nav{flex:1;padding:12px 0}
+.ni{display:flex;align-items:center;gap:12px;padding:14px 24px;font-size:11px;font-weight:400;letter-spacing:.14em;text-transform:uppercase;color:var(--d1);cursor:pointer;border:none;background:none;width:100%;text-align:left;transition:color .15s;position:relative;font-family:var(--sans)}
 .ni::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--gl);opacity:0;transition:opacity .15s}
 .ni.on{color:var(--wh)}.ni.on::before{opacity:1}.ni:hover:not(.on){color:#aaa}
 .ni-ic{font-size:12px;opacity:.55}.ni.on .ni-ic{opacity:1}
