@@ -56,11 +56,11 @@ export const adminCss = `
 .empty-tx{font-size:10px;letter-spacing:.22em;text-transform:uppercase}
 .tbl{width:100%;border-collapse:collapse}
 .tbl thead tr{border-bottom:1px solid var(--ln)}
-.tbl th{font-size:8.5px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--d2);padding:14px 0 10px;text-align:left}
+.tbl th{font-size:10px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--d2);padding:16px 0 12px;text-align:left}
 .tbl th:last-child{text-align:right}
 .tbl tbody tr{border-bottom:1px solid var(--ln);transition:background .1s;cursor:pointer}
 .tbl tbody tr:hover{background:var(--k2)}
-.tbl td{padding:13px 0;font-size:12px;color:var(--tx);vertical-align:middle}
+.tbl td{padding:16px 0;font-size:13px;color:var(--tx);vertical-align:middle}
 .tbl td:last-child{text-align:right}
 .td-name{font-family:var(--serif);font-size:15px;font-weight:400;color:var(--wh)}
 .td-sub{font-size:10px;color:var(--d1);letter-spacing:.07em;margin-top:1px}
