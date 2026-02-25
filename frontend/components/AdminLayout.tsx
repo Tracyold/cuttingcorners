@@ -26,10 +26,10 @@ export const adminCss = `
 .sb-name{font-family:var(--serif);font-size:18px;font-weight:400;color:var(--wh);letter-spacing:.07em;line-height:1.3}
 .sb-role{font-size:9px;letter-spacing:.28em;text-transform:uppercase;color:var(--d2);margin-top:6px}
 .sb-nav{flex:1;padding:12px 0}
-.ni{display:flex;align-items:center;gap:12px;padding:14px 24px;font-size:11px;font-weight:400;letter-spacing:.14em;text-transform:uppercase;color:var(--d1);cursor:pointer;border:none;background:none;width:100%;text-align:left;transition:color .15s;position:relative;font-family:var(--sans)}
+.ni{display:flex;align-items:center;gap:12px;padding:14px 24px;font-size:13px;font-weight:400;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,0.45);cursor:pointer;border:none;background:none;width:100%;text-align:left;transition:color .15s;position:relative;font-family:var(--sans)}
 .ni::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--gl);opacity:0;transition:opacity .15s}
-.ni.on{color:var(--wh)}.ni.on::before{opacity:1}.ni:hover:not(.on){color:#aaa}
-.ni-ic{font-size:12px;opacity:.55}.ni.on .ni-ic{opacity:1}
+.ni.on{color:#d4af37}.ni.on::before{opacity:1}.ni:hover:not(.on){color:#aaa}
+.ni-ic{display:none}
 .ni-bell{position:relative;margin-left:auto}
 .ni-badge{position:absolute;top:-6px;right:-8px;background:var(--gl);color:#000;font-size:7.5px;font-weight:700;min-width:14px;height:14px;border-radius:50%;display:flex;align-items:center;justify-content:center;padding:0 3px}
 .sb-foot{padding:16px 24px;border-top:1px solid var(--ln);font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--d2);cursor:pointer;transition:color .15s}
