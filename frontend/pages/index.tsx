@@ -756,14 +756,11 @@ export default function Home() {
 
             {/* Mobile scroll carousel */}
             <div
-              className="md:hidden"
+              className="md:hidden flex flex-col relative"
               style={{
                 height: 'calc(100vh - 90px)',
                 marginTop: '8px',
                 overflow: 'hidden',
-                display: 'flex',
-                flexDirection: 'column',
-                position: 'relative',
               }}
             >
               <div
