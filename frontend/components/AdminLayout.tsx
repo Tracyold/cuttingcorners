@@ -247,6 +247,9 @@ export const adminCss = `
   /* Table: horizontal scroll */
   .tbl{display:block;overflow-x:auto}
   .ra{opacity:1}
+
+  /* Dashboard: stack columns */
+  .dash-grid{grid-template-columns:1fr!important}
 }
 `;
 
