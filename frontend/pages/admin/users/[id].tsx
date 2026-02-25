@@ -367,15 +367,15 @@ export default function AdminUserDetail() {
                 </div>
                 {workOrders.length === 0 ? <div className="empty"><div className="empty-tx">No work orders</div></div> :
                 workOrders.map(wo => (
-                  <div key={wo.work_order_id} style={{ background: 'var(--k1)', border: '1px solid var(--ln)', padding: '11px', marginBottom: '9px' }}>
+                  <div key={wo.work_order_id} style={{ background: 'var(--k1)', border: '1px solid var(--ln)', padding: '11px', marginBottom: '9px', cursor: 'pointer' }} onClick={() => setSelectedWO(wo)}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '7px' }}>
-                      <span style={{ fontFamily: 'comfortaa', fontSize: '21px', color: 'var(--wh)' }}>{wo.title}</span>
-                      <span style={{ fontSize: '17px', fontWeight: 500, letterSpacing: '.3em', textTransform: 'uppercase', padding: '9px 11px', background: STATUS_COLORS[wo.status]?.bg, color: STATUS_COLORS[wo.status]?.color }}>{wo.status}</span>
+                      <span style={{ fontFamily: 'var(--serif)', fontSize: '17px', color: 'var(--wh)' }}>{wo.title}</span>
+                      <span style={{ fontSize: '9px', fontWeight: 500, letterSpacing: '.2em', textTransform: 'uppercase', padding: '4px 9px', background: STATUS_COLORS[wo.status]?.bg, color: STATUS_COLORS[wo.status]?.color }}>{wo.status}</span>
                     </div>
-                    <p style={{ fontSize: '19px', color: 'var(--d1)', marginBottom: '11px' }}>{wo.description}</p>
-                    {wo.estimated_price && <div style={{ fontSize: '19px', color: 'rgba(45,212,191,1)', fontFamily: 'courier new' }}>{formatMoney(wo.estimated_price)}</div>}
-                    <div style={{ fontSize: '15px', color: 'var(--d2)', marginTop: '11px' }}>{fmtDate(wo.created_at)}</div>
-                    <div style={{ display: 'flex', gap: '9px', marginTop: '11px' }}>
+                    <p style={{ fontSize: '13px', color: 'var(--d1)', marginBottom: '6px' }}>{wo.description}</p>
+                    {wo.estimated_price && <div style={{ fontSize: '15px', color: 'rgba(45,212,191,1)', fontFamily: "'Courier New', monospace" }}>{formatMoney(wo.estimated_price)}</div>}
+                    <div style={{ fontSize: '12px', color: 'var(--d2)', marginTop: '8px' }}>{fmtDate(wo.created_at)}</div>
+                    <div style={{ display: 'flex', gap: '9px', marginTop: '11px' }} onClick={e => e.stopPropagation()}>
                       {wo.status === 'ACCEPTED' && <button className="ab pub" onClick={() => completeWO(wo)}>Complete</button>}
                       {(wo.status === 'CREATED' || wo.status === 'ACCEPTED') && <button className="ab rem" onClick={() => cancelWO(wo)}>Cancel</button>}
                     </div>
