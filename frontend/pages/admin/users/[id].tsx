@@ -432,11 +432,13 @@ export default function AdminUserDetail() {
                     <div ref={chatEndRef} />
                   </div>
                   <div style={{ display: 'flex', gap: '9px', padding: '13px 21px', borderTop: '.5px solid var(--ln)', flexShrink: 0 }}>
+                    <input type="file" ref={chatFileRef} accept=".jpg,.jpeg,.png,.tiff,.tif,.dng,.heic,.pdf" style={{ display: 'none' }} onChange={handleChatFile} />
+                    <button onClick={() => chatFileRef.current?.click()} disabled={chatUploading} style={{ background: 'none', border: '1px solid var(--ln)', color: 'var(--d1)', padding: '10px', cursor: 'pointer', fontSize: '14px', flexShrink: 0 }} title="Attach file">{chatUploading ? '...' : '📎'}</button>
                     <input value={chatInput} onChange={e => setChatInput(e.target.value)} placeholder="Type a message..."
-                      style={{ flex: 1, background: 'var(--k2)', border: '1px solid var(--ln)', padding: '11px 13px', color: 'var(--tx)', fontFamily: 'var(--sans)', fontSize: '21px', outline: 'none', height: '47px' }}
+                      style={{ flex: 1, background: 'var(--k2)', border: '1px solid var(--ln)', padding: '11px 13px', color: 'var(--tx)', fontFamily: 'var(--sans)', fontSize: '15px', outline: 'none', height: '44px' }}
                       onKeyDown={e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendChat(); } }} />
                     <button onClick={sendChat} disabled={chatSending || !chatInput.trim()}
-                      style={{ background: 'var(--gl)', border: 'none', color: '#000', padding: '11px 17px', cursor: 'pointer', fontWeight: 700, fontSize: '19px' }}>→</button>
+                      style={{ background: 'var(--gl)', border: 'none', color: '#000', padding: '11px 17px', cursor: 'pointer', fontWeight: 700, fontSize: '16px' }}>→</button>
                   </div>
                 </div>
               )}
