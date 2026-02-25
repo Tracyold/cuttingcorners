@@ -144,7 +144,7 @@ export default function AdminDashboard() {
                 ) : (
                   <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                     <span style={{ fontSize: '13px', color: 'var(--tx)' }}>{adminInfo[f.key] || '\u2014'}</span>
-                    <button onClick={() => startEdit(f.key)} style={{ background: 'none', border: 'none', color: 'var(--d2)', cursor: 'pointer', fontSize: '12px' }} title="Edit">\u270E</button>
+                    <button onClick={() => startEdit(f.key)} style={{ background: 'none', border: 'none', color: 'var(--d2)', cursor: 'pointer', fontSize: '12px' }} title="Edit">✎</button>
                   </div>
                 )}
               </div>
