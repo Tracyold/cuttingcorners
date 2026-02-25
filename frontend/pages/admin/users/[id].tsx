@@ -147,7 +147,8 @@ export default function AdminUserDetail() {
 
   // Complete work order
   const completeWO = async (wo: any) => {
-    await supabase.from('work_orders').update({ status: 'COMPLETED', completed_at: new Date().toISOString() }).eq('work_order_id', wo.work_order_id);
+    const { error } = await supabase.from('work_orders').update({ status: 'COMPLETED', completed_at: new Date().toISOString() }).eq('work_order_id', wo.work_order_id);
+    if (error) { console.error('Complete WO error:', error.message); return; }
     setWO(prev => prev.map(w => w.work_order_id === wo.work_order_id ? { ...w, status: 'COMPLETED', completed_at: new Date().toISOString() } : w));
   };
 
@@ -155,7 +156,8 @@ export default function AdminUserDetail() {
   const cancelWO = async (wo: any) => {
     const reason = prompt('Cancel reason:');
     if (!reason) return;
-    await supabase.from('work_orders').update({ status: 'CANCELLED', cancelled_at: new Date().toISOString(), cancel_reason: reason }).eq('work_order_id', wo.work_order_id);
+    const { error } = await supabase.from('work_orders').update({ status: 'CANCELLED', cancelled_at: new Date().toISOString(), cancel_reason: reason }).eq('work_order_id', wo.work_order_id);
+    if (error) { console.error('Cancel WO error:', error.message); return; }
     setWO(prev => prev.map(w => w.work_order_id === wo.work_order_id ? { ...w, status: 'CANCELLED' } : w));
   };
 
