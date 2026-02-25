@@ -1,17 +1,73 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { useRouter } from 'next/router';
 import { supabase } from '../lib/supabase';
+import { formatMoney, fmtDate, fmtTime } from '../lib/utils';
+
+const SERVICE_TYPES = [
+  'Custom Rough Cut',
+  'Re-Cut & Re-Polish — Starting Price: $249',
+  'Table Re-Polish — Starting Price: $119',
+  'Crown Re-Polish — Starting Price: $149',
+  'Pavilion Re-Polish — Starting Price: $149',
+  'Gemstone Material Cut Design — Starting Price: $99',
+  'Virtual Consultation — Free 30 Minute Minimum Consultation',
+];
+
+const STATUS_COLORS: Record<string, { bg: string; color: string }> = {
+  CREATED: { bg: 'rgba(212,175,55,0.12)', color: '#d4af37' },
+  ACCEPTED: { bg: 'rgba(45,212,191,0.12)', color: 'rgba(45,212,191,1)' },
+  COMPLETED: { bg: 'rgba(255,255,255,0.06)', color: 'rgba(255,255,255,0.45)' },
+  CANCELLED: { bg: 'rgba(181,64,64,0.1)', color: '#c07070' },
+};
 
 export default function AccountPage() {
   const router = useRouter();
   const [session, setSession] = useState<any>(null);
   const [loading, setLoading] = useState(true);
+  const [activeTab, setActiveTab] = useState('home');
 
+  // Profile
+  const [profile, setProfile] = useState<any>(null);
+  const [editProfile, setEditProfile] = useState<any>(null);
+  const [profileSaving, setProfileSaving] = useState(false);
+  const [profileFlash, setProfileFlash] = useState(false);
+
+  // SMS prefs
+  const [smsPrefs, setSmsPrefs] = useState<any>(null);
+
+  // Purchase stats
+  const [invoiceCount, setInvoiceCount] = useState(0);
+  const [invoiceTotal, setInvoiceTotal] = useState(0);
+
+  // Work orders
+  const [workOrders, setWorkOrders] = useState<any[]>([]);
+
+  // Inquiries
+  const [inquiries, setInquiries] = useState<any[]>([]);
+  const [serviceRequests, setServiceRequests] = useState<any[]>([]);
+  const [inquiryTab, setInquiryTab] = useState<'inquiries' | 'service'>('inquiries');
+  const [showSRForm, setShowSRForm] = useState(false);
+  const [srType, setSrType] = useState('');
+  const [srDesc, setSrDesc] = useState('');
+  const [srSubmitting, setSrSubmitting] = useState(false);
+  const [srGateMsg, setSrGateMsg] = useState('');
+
+  // Invoices
+  const [invoices, setInvoices] = useState<any[]>([]);
+
+  // Chat
+  const [chatThread, setChatThread] = useState<any>(null);
+  const [messages, setMessages] = useState<any[]>([]);
+  const [chatInput, setChatInput] = useState('');
+  const [chatSending, setChatSending] = useState(false);
+  const [chatOpen, setChatOpen] = useState(false);
+  const chatEndRef = useRef<HTMLDivElement>(null);
+
+  // Auth
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session: s } }) => {
       if (!s) { router.replace('/login'); return; }
       setSession(s);
-      setLoading(false);
     });
     const { data: { subscription } } = supabase.auth.onAuthStateChange((_e, s) => {
       if (!s) router.replace('/login');
@@ -20,24 +76,490 @@ export default function AccountPage() {
     return () => subscription.unsubscribe();
   }, [router]);
 
+  // Load all data
+  useEffect(() => {
+    if (!session) return;
+    const uid = session.user.id;
+    async function loadAll() {
+      // Profile
+      const { data: p } = await supabase.from('account_users').select('*').eq('account_user_id', uid).single();
+      setProfile(p); setEditProfile(p ? { ...p } : null);
+
+      // SMS prefs
+      const { data: prefs } = await supabase.from('user_sms_preferences').select('*').eq('user_id', uid).single();
+      setSmsPrefs(prefs);
+
+      // Purchase stats
+      const { data: invs } = await supabase.from('invoices').select('invoice_id, total_amount').eq('account_user_id', uid);
+      if (invs) { setInvoiceCount(invs.length); setInvoiceTotal(invs.reduce((s, i) => s + Number(i.total_amount || 0), 0)); }
+
+      // Work orders
+      const { data: wo } = await supabase.from('work_orders').select('*').eq('account_user_id', uid).order('created_at', { ascending: false });
+      setWorkOrders(wo || []);
+
+      // Inquiries
+      const { data: inq } = await supabase.from('account_inquiries').select('*').eq('account_user_id', uid).order('created_at', { ascending: false });
+      setInquiries(inq || []);
+
+      // Service requests
+      const { data: sr } = await supabase.from('service_requests').select('*').eq('account_user_id', uid).order('created_at', { ascending: false });
+      setServiceRequests(sr || []);
+
+      // Invoices
+      const { data: inv } = await supabase.from('invoices').select('*').eq('account_user_id', uid).order('paid_at', { ascending: false });
+      setInvoices(inv || []);
+
+      // Chat thread
+      const { data: thread } = await supabase.from('chat_threads').select('*').eq('account_user_id', uid).single();
+      setChatThread(thread);
+      if (thread) {
+        const { data: msgs } = await supabase.from('chat_messages').select('*').eq('chat_thread_id', thread.chat_thread_id).order('created_at', { ascending: true });
+        setMessages(msgs || []);
+        // Mark as read on desktop
+        if (typeof window !== 'undefined' && window.innerWidth >= 768) {
+          await supabase.from('chat_threads').update({ account_has_unread: false }).eq('chat_thread_id', thread.chat_thread_id);
+        }
+        // Realtime
+        supabase.channel('user-chat-' + thread.chat_thread_id)
+          .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'chat_messages', filter: `chat_thread_id=eq.${thread.chat_thread_id}` },
+            (payload) => { setMessages(prev => [...prev, payload.new as any]); })
+          .subscribe();
+      }
+
+      setLoading(false);
+    }
+    loadAll();
+  }, [session]);
+
+  // Scroll chat to bottom
+  useEffect(() => { chatEndRef.current?.scrollIntoView({ behavior: 'smooth' }); }, [messages, chatOpen]);
+
+  // Profile save
+  const saveProfile = async () => {
+    if (!editProfile || !session) return;
+    setProfileSaving(true);
+    const updates: any = {};
+    if (editProfile.name !== profile.name) updates.name = editProfile.name;
+    if (editProfile.email !== profile.email) updates.email = editProfile.email;
+    if (editProfile.phone !== profile.phone) updates.phone = editProfile.phone;
+    if (editProfile.shipping_address !== profile.shipping_address) updates.shipping_address = editProfile.shipping_address;
+    if (editProfile.business_name !== profile.business_name) updates.business_name = editProfile.business_name;
+
+    await supabase.from('account_users').update(updates).eq('account_user_id', session.user.id);
+
+    // Phone sync: update user_sms_preferences too
+    if (updates.phone) {
+      await supabase.from('user_sms_preferences').update({ phone: updates.phone }).eq('user_id', session.user.id);
+    }
+
+    setProfile({ ...profile, ...updates });
+    setProfileSaving(false);
+    setProfileFlash(true);
+    setTimeout(() => setProfileFlash(false), 2000);
+  };
+
+  const hasProfileChanges = editProfile && profile && (
+    editProfile.name !== profile.name || editProfile.email !== profile.email ||
+    editProfile.phone !== profile.phone || editProfile.shipping_address !== profile.shipping_address ||
+    editProfile.business_name !== profile.business_name
+  );
+
+  // SMS toggle
+  const toggleSms = async (col: string, val: boolean) => {
+    if (!session) return;
+    await supabase.from('user_sms_preferences').upsert({
+      user_id: session.user.id, phone: profile?.phone || '', [col]: val,
+    }, { onConflict: 'user_id' });
+    setSmsPrefs((prev: any) => ({ ...prev, [col]: val }));
+  };
+
+  // Accept work order
+  const acceptWO = async (wo: any) => {
+    await supabase.from('work_orders').update({ status: 'ACCEPTED', accepted_at: new Date().toISOString() })
+      .eq('work_order_id', wo.work_order_id).eq('account_user_id', session.user.id);
+    await supabase.functions.invoke('send-admin-notification', {
+      body: { event_type: 'work_orders', work_order_id: wo.work_order_id },
+    });
+    setWorkOrders(prev => prev.map(w => w.work_order_id === wo.work_order_id ? { ...w, status: 'ACCEPTED', accepted_at: new Date().toISOString() } : w));
+  };
+
+  // Service request gate check
+  const openSRForm = async () => {
+    const { data: prefs } = await supabase.from('user_sms_preferences').select('opt_in_work_orders').eq('user_id', session.user.id).single();
+    const { data: p } = await supabase.from('account_users').select('phone').eq('account_user_id', session.user.id).single();
+    if (!p?.phone || !prefs?.opt_in_work_orders) {
+      setSrGateMsg('To submit a service request you must have a phone number on file and work order SMS notifications enabled. This keeps you informed every step of the way. Update your preferences in your profile.');
+      return;
+    }
+    setSrGateMsg('');
+    setShowSRForm(true);
+  };
+
+  // Submit service request
+  const submitSR = async () => {
+    if (!srType || !srDesc.trim()) return;
+    setSrSubmitting(true);
+    await supabase.from('service_requests').insert({
+      account_user_id: session.user.id,
+      service_type: srType,
+      description: srDesc,
+      photo_url: null,
+    });
+    await supabase.functions.invoke('send-admin-notification', {
+      body: { event_type: 'service_requests', user_id: session.user.id },
+    });
+    setSrSubmitting(false); setShowSRForm(false); setSrType(''); setSrDesc('');
+    // Reload
+    const { data: sr } = await supabase.from('service_requests').select('*').eq('account_user_id', session.user.id).order('created_at', { ascending: false });
+    setServiceRequests(sr || []);
+  };
+
+  // Send chat message
+  const sendChat = async () => {
+    if (!chatInput.trim() || !chatThread || !session) return;
+    setChatSending(true);
+    await supabase.from('chat_messages').insert({
+      chat_thread_id: chatThread.chat_thread_id,
+      actor: 'ACCOUNT',
+      actor_id: session.user.id,
+      body: chatInput,
+      attachment_url: null,
+      attachment_type: null,
+    });
+    await supabase.functions.invoke('send-admin-notification', {
+      body: { event_type: 'chat', thread_id: chatThread.chat_thread_id },
+    });
+    await supabase.from('chat_threads').update({ account_has_unread: false, admin_has_unread: true }).eq('chat_thread_id', chatThread.chat_thread_id);
+    setChatInput(''); setChatSending(false);
+  };
+
+  // Mark chat read on mobile drawer open
+  const openChatDrawer = async () => {
+    setChatOpen(true);
+    if (chatThread) {
+      await supabase.from('chat_threads').update({ account_has_unread: false }).eq('chat_thread_id', chatThread.chat_thread_id);
+    }
+  };
+
   if (loading) return <div style={{ background: '#050505', minHeight: '100vh' }} />;
 
+  const NAV = [
+    { id: 'home', label: 'Home' },
+    { id: 'workorders', label: 'Work Orders' },
+    { id: 'inquiries', label: 'Inquiries' },
+    { id: 'invoices', label: 'Invoices' },
+  ];
+
+  const smToggles = [
+    { label: 'Work Order Updates', col: 'opt_in_work_orders' },
+    { label: 'Tracking Updates', col: 'opt_in_tracking' },
+    { label: 'Chat Message Alerts', col: 'opt_in_chat' },
+    { label: 'Purchase Confirmations', col: 'opt_in_purchases' },
+    { label: 'New Gem Listings', col: 'opt_in_new_listings' },
+  ];
+
   return (
-    <div style={{ background: '#050505', minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-      <div style={{ textAlign: 'center' }}>
-        <h1 style={{ fontFamily: "'Oranienbaum', serif", fontSize: '36px', color: '#d4af37', marginBottom: '16px' }}>
-          Account Dashboard
-        </h1>
-        <p style={{ fontFamily: "'Comfortaa', sans-serif", fontSize: '14px', color: 'rgba(255,255,255,0.55)' }}>
-          Welcome back. Full dashboard coming soon.
-        </p>
-        <button
-          onClick={async () => { await supabase.auth.signOut(); router.push('/'); }}
-          style={{ marginTop: '24px', background: 'transparent', border: '1px solid rgba(214,180,70,0.5)', color: '#d4af37', fontFamily: "'Montserrat', sans-serif", fontSize: '10px', letterSpacing: '0.2em', textTransform: 'uppercase', padding: '10px 20px', cursor: 'pointer' }}
-        >
-          Sign Out
-        </button>
+    <>
+      <style dangerouslySetInnerHTML={{ __html: accountCss }} />
+      <div className="acc-shell">
+        {/* Left panel */}
+        <div className="acc-left">
+          {/* Nav */}
+          <div className="acc-nav">
+            {NAV.map(n => (
+              <button key={n.id} className={`acc-nav-item ${activeTab === n.id ? 'on' : ''}`} onClick={() => setActiveTab(n.id)}>
+                {n.label}
+              </button>
+            ))}
+            <button className="acc-nav-item" style={{ marginTop: 'auto', color: 'var(--er, #b54040)' }}
+              onClick={async () => { await supabase.auth.signOut(); router.push('/'); }}>
+              Sign Out
+            </button>
+          </div>
+
+          {/* Content */}
+          <div className="acc-content">
+            {/* HOME TAB */}
+            {activeTab === 'home' && (
+              <div style={{ padding: '28px' }}>
+                <h2 style={{ fontFamily: "'Oranienbaum', serif", fontSize: '24px', color: '#FAFAFA', marginBottom: '24px' }}>Profile</h2>
+                {editProfile && (
+                  <div style={{ display: 'grid', gap: '12px', maxWidth: '500px' }}>
+                    {[
+                      { label: 'Name', key: 'name', placeholder: 'Full name' },
+                      { label: 'Email', key: 'email', placeholder: 'Email' },
+                      { label: 'Phone', key: 'phone', placeholder: 'Phone' },
+                      { label: 'Shipping Address', key: 'shipping_address', placeholder: 'Address' },
+                      { label: 'Business Name', key: 'business_name', placeholder: 'Add business name' },
+                    ].map(f => (
+                      <div key={f.key}>
+                        <label className="acc-label">{f.label}</label>
+                        <input className="acc-input" value={editProfile[f.key] || ''} placeholder={f.placeholder}
+                          onChange={e => setEditProfile({ ...editProfile, [f.key]: e.target.value })} />
+                      </div>
+                    ))}
+                    {hasProfileChanges && (
+                      <div style={{ display: 'flex', gap: '8px', marginTop: '8px' }}>
+                        <button className="acc-btn-gold" onClick={saveProfile} disabled={profileSaving}>
+                          {profileSaving ? 'Saving...' : 'Save'}
+                        </button>
+                        <button className="acc-btn-ghost" onClick={() => setEditProfile({ ...profile })}>Cancel</button>
+                      </div>
+                    )}
+                    {profileFlash && <span style={{ color: '#d4af37', fontSize: '11px' }}>✓ Saved</span>}
+                  </div>
+                )}
+
+                {/* Purchase stats */}
+                <div style={{ marginTop: '32px', padding: '20px', background: '#0A0A0A', border: '1px solid rgba(255,255,255,0.06)' }}>
+                  <span style={{ fontFamily: "'Courier New', monospace", fontSize: '18px', color: 'rgba(45,212,191,1)' }}>{invoiceCount}</span>
+                  <span style={{ fontSize: '12px', color: 'rgba(255,255,255,0.55)', marginLeft: '8px' }}>items purchased</span>
+                  <span style={{ margin: '0 12px', color: 'rgba(255,255,255,0.15)' }}>|</span>
+                  <span style={{ fontFamily: "'Courier New', monospace", fontSize: '18px', color: 'rgba(45,212,191,1)' }}>{formatMoney(invoiceTotal)}</span>
+                  <span style={{ fontSize: '12px', color: 'rgba(255,255,255,0.55)', marginLeft: '8px' }}>total spent</span>
+                </div>
+
+                {/* SMS Preferences */}
+                <div style={{ marginTop: '32px' }}>
+                  <h3 style={{ fontFamily: "'Montserrat', sans-serif", fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.2em', color: 'rgba(255,255,255,0.55)', marginBottom: '16px' }}>Notification Preferences</h3>
+                  {smToggles.map(t => (
+                    <div key={t.col} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '10px 0', borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
+                      <span style={{ fontSize: '13px', color: 'rgba(255,255,255,0.65)' }}>{t.label}</span>
+                      <button
+                        onClick={() => toggleSms(t.col, !smsPrefs?.[t.col])}
+                        style={{
+                          width: '40px', height: '22px', borderRadius: '11px', border: 'none', cursor: 'pointer', position: 'relative',
+                          background: smsPrefs?.[t.col] ? '#d4af37' : 'rgba(255,255,255,0.12)', transition: 'background 200ms',
+                        }}
+                      >
+                        <div style={{
+                          width: '16px', height: '16px', borderRadius: '50%', background: '#fff', position: 'absolute', top: '3px',
+                          left: smsPrefs?.[t.col] ? '21px' : '3px', transition: 'left 200ms',
+                        }} />
+                      </button>
+                    </div>
+                  ))}
+                  <p style={{ fontSize: '11px', color: 'rgba(255,255,255,0.35)', marginTop: '12px', fontStyle: 'italic' }}>
+                    We'll send SMS alerts to your phone number on file
+                  </p>
+                </div>
+              </div>
+            )}
+
+            {/* WORK ORDERS TAB */}
+            {activeTab === 'workorders' && (
+              <div style={{ padding: '28px' }}>
+                <h2 style={{ fontFamily: "'Oranienbaum', serif", fontSize: '24px', color: '#FAFAFA', marginBottom: '24px' }}>Work Orders</h2>
+                {workOrders.length === 0 ? (
+                  <p style={{ fontSize: '12px', color: 'rgba(255,255,255,0.35)', textTransform: 'uppercase', letterSpacing: '0.2em' }}>No work orders</p>
+                ) : workOrders.map(wo => (
+                  <div key={wo.work_order_id} style={{ background: '#0A0A0A', border: '1px solid rgba(255,255,255,0.06)', padding: '16px', marginBottom: '12px' }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
+                      <span style={{ fontFamily: "'Oranienbaum', serif", fontSize: '16px', color: '#FAFAFA' }}>{wo.title}</span>
+                      <span style={{ fontSize: '8px', fontWeight: 500, letterSpacing: '0.2em', textTransform: 'uppercase', padding: '3px 7px',
+                        background: STATUS_COLORS[wo.status]?.bg, color: STATUS_COLORS[wo.status]?.color }}>{wo.status}</span>
+                    </div>
+                    {wo.service_type && <div style={{ fontSize: '11px', color: 'rgba(255,255,255,0.45)', marginBottom: '4px' }}>{wo.service_type}</div>}
+                    {wo.estimated_price && <div style={{ fontSize: '13px', color: 'rgba(45,212,191,1)', fontFamily: "'Courier New', monospace" }}>{formatMoney(wo.estimated_price)}</div>}
+                    <div style={{ fontSize: '10px', color: 'rgba(255,255,255,0.35)', marginTop: '8px' }}>{fmtDate(wo.created_at)}</div>
+                    {wo.status === 'CREATED' && (
+                      <button onClick={() => acceptWO(wo)} className="acc-btn-gold" style={{ marginTop: '12px', width: 'auto', padding: '8px 16px' }}>
+                        Accept Work Order
+                      </button>
+                    )}
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {/* INQUIRIES TAB */}
+            {activeTab === 'inquiries' && (
+              <div style={{ padding: '28px' }}>
+                <h2 style={{ fontFamily: "'Oranienbaum', serif", fontSize: '24px', color: '#FAFAFA', marginBottom: '16px' }}>Inquiries</h2>
+                <div style={{ display: 'flex', gap: '20px', marginBottom: '20px', borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
+                  <button className={`acc-tab ${inquiryTab === 'inquiries' ? 'on' : ''}`} onClick={() => setInquiryTab('inquiries')}>Product Inquiries</button>
+                  <button className={`acc-tab ${inquiryTab === 'service' ? 'on' : ''}`} onClick={() => setInquiryTab('service')}>Service Requests</button>
+                </div>
+
+                {inquiryTab === 'inquiries' ? (
+                  inquiries.length === 0 ? <p className="acc-empty">No product inquiries</p> :
+                  inquiries.map(inq => (
+                    <div key={inq.account_inquiry_id} style={{ background: '#0A0A0A', border: '1px solid rgba(255,255,255,0.06)', padding: '14px', marginBottom: '10px' }}>
+                      <p style={{ fontSize: '13px', color: 'rgba(255,255,255,0.65)', marginBottom: '6px' }}>{inq.description}</p>
+                      <span style={{ fontSize: '10px', color: 'rgba(255,255,255,0.35)' }}>{fmtDate(inq.created_at)}</span>
+                    </div>
+                  ))
+                ) : (
+                  <>
+                    <button className="acc-btn-gold" style={{ marginBottom: '16px', width: 'auto', padding: '10px 20px' }} onClick={openSRForm}>
+                      Submit Service Request
+                    </button>
+                    {srGateMsg && <p style={{ fontSize: '12px', color: 'rgba(255,255,255,0.55)', background: 'rgba(214,180,70,0.08)', padding: '12px', marginBottom: '16px', lineHeight: 1.6 }}>{srGateMsg}</p>}
+
+                    {showSRForm && (
+                      <div style={{ background: '#0A0A0A', border: '1px solid rgba(255,255,255,0.06)', padding: '20px', marginBottom: '16px' }}>
+                        <label className="acc-label">Service Type *</label>
+                        <select value={srType} onChange={e => setSrType(e.target.value)}
+                          style={{ width: '100%', background: '#0A0A0A', border: '1px solid rgba(255,255,255,0.10)', color: '#FAFAFA', padding: '10px', fontFamily: "'Comfortaa', sans-serif", fontSize: '13px', marginBottom: '12px' }}>
+                          <option value="">Select service type</option>
+                          {SERVICE_TYPES.map(st => <option key={st} value={st}>{st}</option>)}
+                        </select>
+                        <label className="acc-label">Description *</label>
+                        <textarea value={srDesc} onChange={e => setSrDesc(e.target.value)} placeholder="Describe your request..."
+                          style={{ width: '100%', background: '#0A0A0A', border: '1px solid rgba(255,255,255,0.10)', color: '#FAFAFA', padding: '10px', fontFamily: "'Comfortaa', sans-serif", fontSize: '13px', minHeight: '96px', resize: 'vertical', marginBottom: '12px' }} />
+                        <p style={{ fontFamily: "'Comfortaa', sans-serif", fontSize: '12px', color: 'rgba(255,255,255,0.45)', fontStyle: 'italic', marginBottom: '16px', lineHeight: 1.6 }}>
+                          All prices are estimated starting prices. Some gems may be less, some may be more. No work order prices are set in stone until I am able to inspect the piece and the customer accepts the work order through the website.
+                        </p>
+                        <div style={{ display: 'flex', gap: '8px' }}>
+                          <button className="acc-btn-gold" onClick={submitSR} disabled={srSubmitting || !srType || !srDesc.trim()} style={{ width: 'auto', padding: '10px 20px' }}>
+                            {srSubmitting ? 'Submitting...' : 'Submit'}
+                          </button>
+                          <button className="acc-btn-ghost" onClick={() => setShowSRForm(false)}>Cancel</button>
+                        </div>
+                      </div>
+                    )}
+
+                    {serviceRequests.length === 0 ? <p className="acc-empty">No service requests</p> :
+                    serviceRequests.map(sr => (
+                      <div key={sr.service_request_id} style={{ background: '#0A0A0A', border: '1px solid rgba(255,255,255,0.06)', padding: '14px', marginBottom: '10px' }}>
+                        <div style={{ fontSize: '11px', color: '#d4af37', marginBottom: '4px' }}>{sr.service_type}</div>
+                        <p style={{ fontSize: '13px', color: 'rgba(255,255,255,0.65)', marginBottom: '6px' }}>{sr.description}</p>
+                        <span style={{ fontSize: '10px', color: 'rgba(255,255,255,0.35)' }}>{fmtDate(sr.created_at)}</span>
+                      </div>
+                    ))}
+                  </>
+                )}
+              </div>
+            )}
+
+            {/* INVOICES TAB */}
+            {activeTab === 'invoices' && (
+              <div style={{ padding: '28px' }}>
+                <h2 style={{ fontFamily: "'Oranienbaum', serif", fontSize: '24px', color: '#FAFAFA', marginBottom: '24px' }}>Invoices</h2>
+                {invoices.length === 0 ? <p className="acc-empty">No invoices</p> :
+                invoices.map(inv => {
+                  const item = inv.line_items?.[0];
+                  return (
+                    <div key={inv.invoice_id} style={{ background: '#0A0A0A', border: '1px solid rgba(255,255,255,0.06)', padding: '16px', marginBottom: '12px' }}>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                        <div>
+                          <div style={{ fontFamily: "'Oranienbaum', serif", fontSize: '16px', color: '#FAFAFA' }}>{item?.title || 'Product'}</div>
+                          <div style={{ fontSize: '10px', color: 'rgba(255,255,255,0.35)', marginTop: '4px' }}>{fmtDate(inv.paid_at)}</div>
+                        </div>
+                        <div style={{ textAlign: 'right' }}>
+                          <div style={{ fontFamily: "'Courier New', monospace", fontSize: '16px', color: 'rgba(45,212,191,1)' }}>{formatMoney(inv.total_amount)}</div>
+                          <span style={{ fontSize: '8px', fontWeight: 500, letterSpacing: '0.2em', textTransform: 'uppercase', padding: '2px 6px', background: 'rgba(45,212,191,0.08)', color: 'rgba(45,212,191,0.8)' }}>PAID</span>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            )}
+          </div>
+        </div>
+
+        {/* Right panel — Chat (desktop) */}
+        <div className="acc-right">
+          <div className="acc-chat-header">
+            <span style={{ fontFamily: "'Montserrat', sans-serif", fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.2em', color: '#d4af37' }}>Chat</span>
+            <p style={{ fontFamily: "'Comfortaa', sans-serif", fontSize: '11px', color: 'rgba(255,255,255,0.45)', marginTop: '4px' }}>We're here to help — don't hesitate to reach out</p>
+          </div>
+          <div className="acc-chat-messages">
+            {messages.map(m => (
+              <div key={m.chat_message_id} style={{ display: 'flex', flexDirection: 'column', alignItems: m.actor === 'ACCOUNT' ? 'flex-end' : 'flex-start', marginBottom: '12px' }}>
+                <div style={{
+                  maxWidth: '80%', padding: '10px 14px', borderRadius: '12px',
+                  background: m.actor === 'ACCOUNT' ? 'rgba(45,212,191,1)' : '#d4af37',
+                  color: '#050505', fontFamily: "'Comfortaa', sans-serif", fontSize: '13px', lineHeight: 1.5,
+                }}>
+                  {m.body}
+                </div>
+                <span style={{ fontSize: '10px', color: 'rgba(255,255,255,0.38)', marginTop: '4px', fontFamily: "'Montserrat', sans-serif" }}>{fmtTime(m.created_at)}</span>
+              </div>
+            ))}
+            <div ref={chatEndRef} />
+          </div>
+          <div className="acc-chat-input-bar">
+            <input value={chatInput} onChange={e => setChatInput(e.target.value)}
+              placeholder="Type a message..." className="acc-chat-input"
+              onKeyDown={e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendChat(); } }} />
+            <button onClick={sendChat} disabled={chatSending || !chatInput.trim()} className="acc-chat-send">
+              {chatSending ? '...' : '→'}
+            </button>
+          </div>
+        </div>
+
+        {/* Mobile chat drawer */}
+        <div className={`acc-chat-mobile-bar ${chatOpen ? 'hidden' : ''}`} onClick={openChatDrawer}>
+          Chat with Admin
+        </div>
+        {chatOpen && (
+          <div className="acc-chat-mobile-drawer">
+            <div className="acc-chat-header" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+              <span style={{ fontFamily: "'Montserrat', sans-serif", fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.2em', color: '#d4af37' }}>Chat</span>
+              <button onClick={() => setChatOpen(false)} style={{ background: 'none', border: 'none', color: 'rgba(255,255,255,0.5)', cursor: 'pointer', fontSize: '18px' }}>↓</button>
+            </div>
+            <div className="acc-chat-messages" style={{ flex: 1 }}>
+              {messages.map(m => (
+                <div key={m.chat_message_id} style={{ display: 'flex', flexDirection: 'column', alignItems: m.actor === 'ACCOUNT' ? 'flex-end' : 'flex-start', marginBottom: '12px' }}>
+                  <div style={{
+                    maxWidth: '80%', padding: '10px 14px', borderRadius: '12px',
+                    background: m.actor === 'ACCOUNT' ? 'rgba(45,212,191,1)' : '#d4af37',
+                    color: '#050505', fontFamily: "'Comfortaa', sans-serif", fontSize: '13px',
+                  }}>{m.body}</div>
+                  <span style={{ fontSize: '10px', color: 'rgba(255,255,255,0.38)', marginTop: '4px' }}>{fmtTime(m.created_at)}</span>
+                </div>
+              ))}
+              <div ref={chatEndRef} />
+            </div>
+            <div className="acc-chat-input-bar">
+              <input value={chatInput} onChange={e => setChatInput(e.target.value)} placeholder="Type a message..." className="acc-chat-input"
+                onKeyDown={e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendChat(); } }} />
+              <button onClick={sendChat} disabled={chatSending || !chatInput.trim()} className="acc-chat-send">{chatSending ? '...' : '→'}</button>
+            </div>
+          </div>
+        )}
       </div>
-    </div>
+    </>
   );
 }
+
+const accountCss = `
+.acc-shell { display: flex; height: 100vh; background: #050505; overflow: hidden; }
+.acc-left { flex: 1; display: flex; overflow: hidden; }
+.acc-nav { width: 180px; flex-shrink: 0; background: #0A0A0A; border-right: 1px solid rgba(255,255,255,0.06); display: flex; flex-direction: column; padding: 20px 0; }
+.acc-nav-item { display: block; width: 100%; text-align: left; padding: 10px 20px; font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 400; letter-spacing: 0.20em; text-transform: uppercase; color: rgba(255,255,255,0.45); background: none; border: none; border-left: 2px solid transparent; cursor: pointer; transition: color 0.15s; }
+.acc-nav-item.on { color: #d4af37; border-left-color: #d4af37; }
+.acc-nav-item:hover:not(.on) { color: rgba(255,255,255,0.75); }
+.acc-content { flex: 1; overflow-y: auto; }
+.acc-right { width: 35%; min-width: 300px; max-width: 420px; border-left: 1px solid rgba(255,255,255,0.08); display: flex; flex-direction: column; background: #0A0A0A; }
+.acc-chat-header { padding: 16px 20px; border-bottom: 1px solid rgba(255,255,255,0.06); }
+.acc-chat-messages { flex: 1; overflow-y: auto; padding: 16px 20px; }
+.acc-chat-input-bar { display: flex; gap: 8px; padding: 12px 20px; border-top: 1px solid rgba(255,255,255,0.06); }
+.acc-chat-input { flex: 1; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.10); padding: 10px 12px; color: #FAFAFA; font-family: 'Comfortaa', sans-serif; font-size: 13px; outline: none; }
+.acc-chat-input:focus { border-color: rgba(214,180,70,0.55); }
+.acc-chat-send { background: #d4af37; border: none; color: #050505; padding: 10px 16px; font-size: 14px; cursor: pointer; font-weight: 700; }
+.acc-chat-send:disabled { opacity: 0.4; cursor: not-allowed; }
+.acc-label { font-family: 'Montserrat', sans-serif; font-size: 9px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.38); display: block; margin-bottom: 5px; }
+.acc-input { width: 100%; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.10); padding: 10px 12px; color: #FAFAFA; font-family: 'Comfortaa', sans-serif; font-size: 13px; outline: none; }
+.acc-input:focus { border-color: rgba(214,180,70,0.55); }
+.acc-btn-gold { background: #d4af37; color: #050505; border: none; padding: 12px 20px; font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; cursor: pointer; width: 100%; }
+.acc-btn-gold:disabled { opacity: 0.4; cursor: not-allowed; }
+.acc-btn-ghost { background: none; border: 1px solid rgba(255,255,255,0.10); color: rgba(255,255,255,0.45); padding: 10px 16px; font-family: 'Montserrat', sans-serif; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; cursor: pointer; }
+.acc-tab { padding: 10px 0; font-family: 'Montserrat', sans-serif; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.45); background: none; border: none; border-bottom: 1px solid transparent; cursor: pointer; }
+.acc-tab.on { color: #FAFAFA; border-bottom-color: #d4af37; }
+.acc-empty { font-size: 11px; color: rgba(255,255,255,0.35); text-transform: uppercase; letter-spacing: 0.2em; }
+.acc-chat-mobile-bar { display: none; position: fixed; bottom: 0; left: 0; right: 0; background: #d4af37; color: #050505; text-align: center; padding: 14px; font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; cursor: pointer; z-index: 50; }
+.acc-chat-mobile-bar.hidden { display: none !important; }
+.acc-chat-mobile-drawer { display: none; position: fixed; inset: 0; background: #050505; z-index: 100; flex-direction: column; }
+@media (max-width: 767px) {
+  .acc-right { display: none; }
+  .acc-chat-mobile-bar { display: block; }
+  .acc-chat-mobile-drawer { display: flex; }
+  .acc-nav { width: 100%; flex-direction: row; overflow-x: auto; padding: 0; border-right: none; border-bottom: 1px solid rgba(255,255,255,0.06); }
+  .acc-nav-item { border-left: none; border-bottom: 2px solid transparent; white-space: nowrap; padding: 12px 16px; }
+  .acc-nav-item.on { border-bottom-color: #d4af37; }
+  .acc-left { flex-direction: column; }
+}
+`;
