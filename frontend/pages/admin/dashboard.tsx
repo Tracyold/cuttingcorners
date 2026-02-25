@@ -188,7 +188,7 @@ export default function AdminDashboard() {
                 )}
               </div>
               {notifications.length > 0 && (
-                <button onClick={markAllRead} style={{ background: 'none', border: 'none', color: 'var(--d1)', fontSize: '9px', letterSpacing: '.12em', textTransform: 'uppercase', cursor: 'pointer' }}>Mark all read</button>
+                <button onClick={markAllRead} style={{ background: 'none', border: 'none', color: 'var(--d1)', fontSize: '10px', letterSpacing: '.12em', textTransform: 'uppercase', cursor: 'pointer' }}>Mark all read</button>
               )}
             </div>
 
