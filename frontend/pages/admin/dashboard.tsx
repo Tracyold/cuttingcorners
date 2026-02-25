@@ -133,7 +133,7 @@ export default function AdminDashboard() {
 
             {adminInfo && fields.map(f => (
               <div key={f.key} style={{ marginBottom: '20px' }}>
-                <div style={{ fontSize: '10px', fontWeight: 500, letterSpacing: '.2em', textTransform: 'uppercase', color: 'var(--d1)', marginBottom: '6px' }}>{f.label}</div>
+                <div style={{ fontSize: '12px', fontWeight: 500, letterSpacing: '.2em', textTransform: 'uppercase', color: 'var(--d1)', marginBottom: '6px' }}>{f.label}</div>
                 {editing[f.key] ? (
                   <input
                     value={editValues[f.key] || ''}
@@ -143,7 +143,7 @@ export default function AdminDashboard() {
                   />
                 ) : (
                   <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                    <span style={{ fontSize: '15px', color: 'var(--tx)' }}>{adminInfo[f.key] || '—'}</span>
+                    <span style={{ fontSize: '16px', color: 'var(--tx)' }}>{adminInfo[f.key] || '—'}</span>
                     <button onClick={() => startEdit(f.key)} style={{ background: 'none', border: 'none', color: 'var(--d2)', cursor: 'pointer', fontSize: '12px' }} title="Edit">✎</button>
                   </div>
                 )}
