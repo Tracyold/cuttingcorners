@@ -103,8 +103,8 @@ export const adminCss = `
 .fg input:focus,.fg textarea:focus{border-color:var(--g)}
 .fg input::placeholder,.fg textarea::placeholder{color:var(--d2)}
 .fg input[readonly]{opacity:.38;cursor:default;font-family:monospace;font-size:10px;letter-spacing:0}
-.fg textarea{resize:vertical;min-height:68px}
-.fr{display:grid;gap:12px;margin-bottom:12px}
+.fg textarea{resize:vertical;min-height:80px;height:auto}
+.fr{display:grid;gap:14px;margin-bottom:14px}
 .fr1{grid-template-columns:1fr}.fr2{grid-template-columns:1fr 1fr}.fr3{grid-template-columns:1fr 1fr 1fr}
 .gia-blk{background:var(--k2);border:1px solid var(--ln);padding:13px 15px;margin-bottom:12px}
 .gia-l{font-size:8.5px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--d1);margin-bottom:9px}
