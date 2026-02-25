@@ -62,9 +62,9 @@ export const adminCss = `
 .tbl tbody tr:hover{background:var(--k2)}
 .tbl td{padding:16px 0;font-size:13px;color:var(--tx);vertical-align:middle}
 .tbl td:last-child{text-align:right}
-.td-name{font-family:var(--serif);font-size:15px;font-weight:400;color:var(--wh)}
-.td-sub{font-size:10px;color:var(--d1);letter-spacing:.07em;margin-top:1px}
-.td-price{font-family:var(--serif);font-size:15px;color:var(--gl)}
+.td-name{font-family:var(--serif);font-size:16px;font-weight:400;color:var(--wh)}
+.td-sub{font-size:11px;color:var(--d1);letter-spacing:.07em;margin-top:2px}
+.td-price{font-family:var(--serif);font-size:16px;color:var(--gl)}
 .pill{display:inline-block;font-size:8px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;padding:3px 7px}
 .pill-A{background:rgba(207,176,64,.09);color:var(--gl)}
 .pill-D{background:rgba(255,255,255,.04);color:var(--d1)}
