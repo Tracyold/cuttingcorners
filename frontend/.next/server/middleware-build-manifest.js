@@ -24,10 +24,20 @@ self.__BUILD_MANIFEST = {
       "static/chunks/main.js",
       "static/chunks/pages/_error.js"
     ],
+    "/admin": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/admin.js"
+    ],
     "/admin/login": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
       "static/chunks/pages/admin/login.js"
+    ],
+    "/login": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/login.js"
     ],
     "/portfolio": [
       "static/chunks/webpack.js",

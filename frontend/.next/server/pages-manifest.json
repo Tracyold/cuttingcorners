@@ -5,5 +5,7 @@
   "/": "pages/index.js",
   "/shop": "pages/shop.js",
   "/admin/login": "pages/admin/login.js",
-  "/portfolio": "pages/portfolio.js"
+  "/admin": "pages/admin.js",
+  "/portfolio": "pages/portfolio.js",
+  "/login": "pages/login.js"
 }
