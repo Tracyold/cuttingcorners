@@ -94,7 +94,14 @@ export default function AdminUserDetail() {
         setMessages(msgs || []);
         supabase.channel('admin-chat-' + thread.chat_thread_id)
           .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'chat_messages', filter: `chat_thread_id=eq.${thread.chat_thread_id}` },
-            (payload) => { setMessages(prev => [...prev, payload.new as any]); })
+            (payload) => {
+              const newMsg = payload.new as any;
+              setMessages(prev => {
+                const filtered = prev.filter(m => !m.chat_message_id.startsWith('opt-') || m.body !== newMsg.body);
+                if (filtered.some(m => m.chat_message_id === newMsg.chat_message_id)) return filtered;
+                return [...filtered, newMsg];
+              });
+            })
           .subscribe();
       }
     }
@@ -165,21 +172,46 @@ export default function AdminUserDetail() {
   // Send chat (admin)
   const sendChat = async () => {
     if (!chatInput.trim() || !chatThread || !session) return;
+    const msgText = chatInput;
+    setChatInput('');
     setChatSending(true);
-    await supabase.from('chat_messages').insert({
+
+    // Optimistic update
+    const optimisticMsg = {
+      chat_message_id: 'opt-' + Date.now(),
       chat_thread_id: chatThread.chat_thread_id,
       actor: 'ADMIN',
       actor_id: session.user.id,
-      body: chatInput,
+      body: msgText,
+      attachment_url: null,
+      attachment_type: null,
+      created_at: new Date().toISOString(),
+    };
+    setMessages(prev => [...prev, optimisticMsg]);
+
+    const { error } = await supabase.from('chat_messages').insert({
+      chat_thread_id: chatThread.chat_thread_id,
+      actor: 'ADMIN',
+      actor_id: session.user.id,
+      body: msgText,
       attachment_url: null,
       attachment_type: null,
     });
+
+    if (error) {
+      console.error('Chat insert failed:', error.message);
+      setMessages(prev => prev.filter(m => m.chat_message_id !== optimisticMsg.chat_message_id));
+      setChatInput(msgText);
+      setChatSending(false);
+      return;
+    }
+
     // This is the ONLY place send-user-notification is called manually
     await supabase.functions.invoke('send-user-notification', {
       body: { event_type: 'chat', user_id: id as string },
-    });
+    }).catch(() => {});
     await supabase.from('chat_threads').update({ admin_has_unread: false, account_has_unread: true }).eq('chat_thread_id', chatThread.chat_thread_id);
-    setChatInput(''); setChatSending(false);
+    setChatSending(false);
   };
 
   // Mark chat read on expand
