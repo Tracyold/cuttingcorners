@@ -180,9 +180,9 @@ export default function AdminDashboard() {
             </div>
 
             {/* Notifications */}
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '12px' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <span style={{ fontFamily: 'var(--serif)', fontSize: '16px', color: 'var(--wh)' }}>Notifications</span>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '16px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                <span style={{ fontFamily: 'var(--serif)', fontSize: '20px', color: 'var(--wh)' }}>Notifications</span>
                 {notifications.length > 0 && (
                   <span style={{ background: 'var(--gl)', color: '#000', fontSize: '8px', fontWeight: 700, padding: '2px 6px', borderRadius: '8px' }}>{notifications.length}</span>
                 )}
