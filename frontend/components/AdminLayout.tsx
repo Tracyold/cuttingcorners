@@ -91,8 +91,8 @@ export const adminCss = `
 .qadd{margin:7px;padding:8px;border:1px dashed var(--ln2);background:none;color:var(--d1);font-size:9.5px;font-family:var(--sans);letter-spacing:.12em;cursor:pointer;transition:all .15s;width:calc(100% - 14px)}
 .qadd:hover:not(:disabled){border-color:var(--g);color:var(--gl)}.qadd:disabled{opacity:.22;cursor:not-allowed}
 .fp{flex:1;display:flex;flex-direction:column;background:var(--k1);overflow:hidden}
-.fh{display:flex;align-items:center;justify-content:space-between;padding:16px 26px;border-bottom:1px solid var(--ln);flex-shrink:0}
-.fh-title{font-family:var(--serif);font-size:19px;font-weight:300;color:var(--wh)}
+.fh{display:flex;align-items:center;justify-content:space-between;padding:20px 30px;border-bottom:1px solid var(--ln);flex-shrink:0}
+.fh-title{font-family:var(--serif);font-size:22px;font-weight:300;color:var(--wh)}
 .fhr{display:flex;align-items:center;gap:13px}
 .sf{font-size:8.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--g);opacity:0;transition:opacity .4s}.sf.on{opacity:1}
 .xb{width:28px;height:28px;border:1px solid var(--ln2);background:none;color:var(--d1);font-size:15px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15s}.xb:hover{border-color:#c07070;color:#c07070}
