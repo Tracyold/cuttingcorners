@@ -254,7 +254,7 @@ export default function AdminUserDetail() {
             <div style={{ display: 'flex', gap: '16px', marginLeft: '24px' }}>
               {TABS.map(t => (
                 <button key={t.id} onClick={() => setActiveTab(t.id)}
-                  style={{ padding: '8px 0', fontFamily: 'var(--sans)', fontSize: '9.5px', letterSpacing: '.15em', textTransform: 'uppercase', background: 'none', border: 'none', borderBottom: activeTab === t.id ? '1px solid var(--gl)' : '1px solid transparent', color: activeTab === t.id ? 'var(--wh)' : 'var(--d1)', cursor: 'pointer', position: 'relative' }}>
+                  style={{ padding: '14px 20px', fontFamily: 'var(--sans)', fontSize: '14px', letterSpacing: '.15em', textTransform: 'uppercase', background: 'none', border: 'none', borderBottom: activeTab === t.id ? '1px solid var(--gl)' : '1px solid transparent', color: activeTab === t.id ? 'var(--wh)' : 'var(--d1)', cursor: 'pointer', position: 'relative' }}>
                   {t.label}
                   {t.dot && <span style={{ position: 'absolute', top: '4px', right: '-6px', width: '5px', height: '5px', borderRadius: '50%', background: 'var(--er)' }} />}
                 </button>
