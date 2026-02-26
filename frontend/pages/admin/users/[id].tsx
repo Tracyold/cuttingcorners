@@ -298,7 +298,7 @@ export default function AdminUserDetail() {
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '45px' }}>
                 <div>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '19px' }}>
-                    <span style={{ fontFamily: 'var(--serif)', fontSize: '25px', color: 'var(--wh)' }}>Account Info</span>
+                    <span style={{ fontFamily: 'var(--serif)', fontSize: '25px', color: 'rgb(224, 187, 50)' }}>Account Info</span>
                     <button className="ab" onClick={() => { setEditUser({ ...user }); setShowEditUser(true); }}>Edit</button>
                   </div>
                   {[
@@ -311,7 +311,7 @@ export default function AdminUserDetail() {
                   ].map(f => (
                     <div key={f.label} style={{ marginBottom: '15px' }}>
                       <div style={{ fontSize: '13px', fontWeight: 500, letterSpacing: '.2em', textTransform: 'uppercase', color: 'var(--d1)', marginBottom: '7px' }}>{f.label}</div>
-                      <div style={{ fontSize: '17px', color: 'var(--tx)' }}>{f.val}</div>
+                      <div style={{ fontSize: '17px', color: f.label === 'Phone' ? '#377da2' : 'var(--tx)' }}>{f.val}</div>
                     </div>
                   ))}
                   <div style={{ marginTop: '9px' }}>
@@ -423,13 +423,13 @@ export default function AdminUserDetail() {
                   <div style={{ flex: 1, overflowY: 'auto', padding: '13px 21px' }}>
                     {messages.map(m => (
                       <div key={m.chat_message_id} style={{ display: 'flex', flexDirection: 'column', alignItems: m.actor === 'ADMIN' ? 'flex-end' : 'flex-start', marginBottom: '11px' }}>
-                        <div style={{ maxWidth: '70%', padding: '11px 15px', borderRadius: '13px', background: m.actor === 'ADMIN' ? '#d4af37' : 'rgba(45,212,191,1)', color: '#050505', fontFamily: "'Comfortaa', sans-serif", fontSize: '15px' }}>
+                        <div style={{ maxWidth: '70%', padding: '11px 15px', borderRadius: '11px', background: m.actor === 'ADMIN' ? '#d4af37' : 'rgba(45,212,191,1)', color: '#050505', fontFamily: "'Comfortaa', sans-serif", fontSize: '15px' }}>
                           {m.body && <div>{m.body}</div>}
                           {m.attachment_url && m.attachment_type?.startsWith('image/') && (
                             <img src={m.attachment_url.startsWith('http') ? m.attachment_url : supabase.storage.from('ChatUploads').getPublicUrl(m.attachment_url).data.publicUrl} alt="attachment" style={{ maxWidth: '200px', maxHeight: '200px', objectFit: 'cover', marginTop: m.body ? '6px' : '0', borderRadius: '6px' }} />
                           )}
                           {m.attachment_url && m.attachment_type === 'application/pdf' && (
-                            <div style={{ marginTop: m.body ? '6px' : '0', fontSize: '12px' }}>📄 <a href={m.attachment_url.startsWith('http') ? m.attachment_url : supabase.storage.from('ChatUploads').getPublicUrl(m.attachment_url).data.publicUrl} target="_blank" rel="noopener noreferrer" style={{ color: '#050505', textDecoration: 'underline' }}>Download PDF</a></div>
+                            <div style={{ marginTop: m.body ? '7px' : '0', fontSize: '17px' }}>📄 <a href={m.attachment_url.startsWith('http') ? m.attachment_url : supabase.storage.from('ChatUploads').getPublicUrl(m.attachment_url).data.publicUrl} target="_blank" rel="noopener noreferrer" style={{ color: '#050505', textDecoration: 'underline' }}>Download PDF</a></div>
                           )}
                         </div>
                         <span style={{ fontSize: '10px', color: 'var(--d2)', marginTop: '5px' }}>{fmtTime(m.created_at)}</span>
@@ -498,11 +498,11 @@ export default function AdminUserDetail() {
               </div>
             ))}
             <div style={{ marginBottom: '13px' }}>
-              <label style={{ fontSize: '15px', fontWeight: 500, letterSpacing: '.2em', textTransform: 'uppercase', color: 'var(--d1)', display: 'block', marginBottom: '5px' }}>Shipping Address</label>
+              <label style={{ fontSize: '15px', fontWeight: 500, letterSpacing: '.3em', textTransform: 'uppercase', color: 'var(--d1)', display: 'block', marginBottom: '5px' }}>Shipping Address</label>
               <textarea value={editUser.shipping_address || ''} onChange={e => setEditUser({ ...editUser, shipping_address: e.target.value })} style={{ ...inputStyle, minHeight: '60px', resize: 'vertical' }} />
             </div>
             <div style={{ marginBottom: '17px' }}>
-              <label style={{ fontSize: '15px', fontWeight: 500, letterSpacing: '.2em', textTransform: 'uppercase', color: 'var(--d1)', display: 'block', marginBottom: '5px' }}>Status</label>
+              <label style={{ fontSize: '15px', fontWeight: 500, letterSpacing: '.3em', textTransform: 'uppercase', color: 'var(--d1)', display: 'block', marginBottom: '5px' }}>Status</label>
               <select value={editUser.status || 'ACTIVE'} onChange={e => setEditUser({ ...editUser, status: e.target.value })}
                 style={{ ...inputStyle, cursor: 'pointer' }}>
                 <option value="ACTIVE">ACTIVE</option>
@@ -520,19 +520,19 @@ export default function AdminUserDetail() {
       {/* Work Order Detail Modal */}
       {selectedWO && (
         <div className="ov" onClick={e => { if (e.target === e.currentTarget) setSelectedWO(null); }}>
-          <div style={{ margin: 'auto', background: 'var(--k1)', border: '1px solid var(--ln)', padding: '32px', maxWidth: '560px', width: '90%', maxHeight: '90vh', overflowY: 'auto' }}>
+          <div style={{ margin: 'auto', background: 'var(--k1)', border: '.5px solid var(--ln)', padding: '32px', maxWidth: '560px', width: '90%', maxHeight: '90vh', overflowY: 'auto' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '24px' }}>
               <div>
-                <div style={{ fontSize: '10px', letterSpacing: '.2em', textTransform: 'uppercase', color: 'var(--d2)', marginBottom: '4px' }}>Work Order</div>
+                <div style={{ fontSize: '10px', letterSpacing: '.3em', textTransform: 'uppercase', color: 'var(--d2)', marginBottom: '4px' }}>Work Order</div>
                 <div style={{ fontFamily: 'var(--serif)', fontSize: '22px', color: 'var(--wh)' }}>{selectedWO.title}</div>
               </div>
-              <span style={{ fontSize: '9px', fontWeight: 500, letterSpacing: '.2em', textTransform: 'uppercase', padding: '4px 9px', background: STATUS_COLORS[selectedWO.status]?.bg, color: STATUS_COLORS[selectedWO.status]?.color }}>{selectedWO.status}</span>
+              <span style={{ fontSize: '9px', fontWeight: 500, letterSpacing: '.17em', textTransform: 'uppercase', padding: '4px 9px', background: STATUS_COLORS[selectedWO.status]?.bg, color: STATUS_COLORS[selectedWO.status]?.color }}>{selectedWO.status}</span>
             </div>
 
             {/* Admin business info */}
             {adminInfo && (
-              <div style={{ marginBottom: '20px', padding: '16px', background: 'var(--k0)', border: '1px solid var(--ln)' }}>
-                <div style={{ fontSize: '9px', letterSpacing: '.2em', textTransform: 'uppercase', color: 'var(--d2)', marginBottom: '8px' }}>From</div>
+              <div style={{ marginBottom: '19px', padding: '15px', background: 'var(--k0)', border: '.5px solid var(--ln)' }}>
+                <div style={{ fontSize: '11px', letterSpacing: '.2em', textTransform: 'uppercase', color: 'var(--d2)', marginBottom: '8.6px' }}>From</div>
                 <div style={{ fontSize: '13px', color: 'var(--tx)', lineHeight: 1.8 }}>
                   <div style={{ color: 'var(--gl)', fontWeight: 600 }}>{adminInfo.business_name}</div>
                   <div>{adminInfo.full_name}</div>
@@ -545,10 +545,10 @@ export default function AdminUserDetail() {
 
             {/* Client info */}
             {user && (
-              <div style={{ marginBottom: '20px', padding: '16px', background: 'var(--k0)', border: '1px solid var(--ln)' }}>
-                <div style={{ fontSize: '9px', letterSpacing: '.2em', textTransform: 'uppercase', color: 'var(--d2)', marginBottom: '8px' }}>Client</div>
-                <div style={{ fontSize: '13px', color: 'var(--tx)', lineHeight: 1.8 }}>
-                  <div style={{ color: 'rgba(255,255,255,0.8)' }}>{user.name}</div>
+              <div style={{ marginBottom: '21px', padding: '17px', background: 'var(--k0)', border: '1px solid var(--ln)' }}>
+                <div style={{ fontSize: '11px', letterSpacing: '.2em', textTransform: 'uppercase', color: 'var(--d2)', marginBottom: '8.6px' }}>Client</div>
+                <div style={{ fontSize: '15px', color: 'var(--tx)', lineHeight: 1.7 }}>
+                  <div style={{ fontfamily: 'Montserrat, sans-serif', color: 'rgba(66, 200, 194, 0.8)' }}>{user.name}</div>
                   <div>{user.email}</div>
                   {user.phone && <div>{user.phone}</div>}
                   {user.shipping_address && <div>{user.shipping_address}</div>}
@@ -556,7 +556,7 @@ export default function AdminUserDetail() {
               </div>
             )}
 
-            <div style={{ height: '1px', background: 'var(--ln)', margin: '16px 0' }} />
+            <div style={{ height: '1px', background: 'var(--ln)', margin: '14px 0' }} />
 
             {/* WO details */}
             {[
@@ -567,15 +567,15 @@ export default function AdminUserDetail() {
               { label: 'Completed', val: selectedWO.completed_at ? fmtDate(selectedWO.completed_at) + ' · ' + fmtTime(selectedWO.completed_at) : null },
               { label: 'Cancelled', val: selectedWO.cancelled_at ? fmtDate(selectedWO.cancelled_at) : null },
             ].filter(r => r.val).map(r => (
-              <div key={r.label} style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}>
-                <span style={{ fontSize: '10px', letterSpacing: '.18em', textTransform: 'uppercase', color: 'var(--d2)' }}>{r.label}</span>
+              <div key={r.label} style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '9px' }}>
+                <span style={{ fontSize: '11px', letterSpacing: '.17em', textTransform: 'uppercase', color: 'var(--d2)' }}>{r.label}</span>
                 <span style={{ fontSize: '13px', color: 'var(--tx)' }}>{r.val}</span>
               </div>
             ))}
 
             <div style={{ marginTop: '16px' }}>
-              <div style={{ fontSize: '10px', letterSpacing: '.18em', textTransform: 'uppercase', color: 'var(--d2)', marginBottom: '6px' }}>Description</div>
-              <p style={{ fontSize: '14px', color: 'var(--tx)', lineHeight: 1.7 }}>{selectedWO.description}</p>
+              <div style={{ fontSize: '11px', letterSpacing: '.1em', textTransform: 'uppercase', color: 'var(--d2)', marginBottom: '5px' }}>Notes</div>
+              <p style={{ fontSize: '15px', color: 'var(--tx)', lineHeight: 1.7 }}>{selectedWO.description}</p>
             </div>
 
             {selectedWO.notes && (
@@ -586,13 +586,13 @@ export default function AdminUserDetail() {
             )}
 
             {selectedWO.estimated_price && (
-              <div style={{ marginTop: '20px', display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', padding: '16px', background: 'var(--k0)', border: '1px solid var(--ln)' }}>
-                <span style={{ fontSize: '10px', letterSpacing: '.18em', textTransform: 'uppercase', color: 'var(--d2)' }}>Quoted Price</span>
-                <span style={{ fontFamily: "'Courier New', monospace", fontSize: '22px', color: 'rgba(45,212,191,1)' }}>{formatMoney(selectedWO.estimated_price)}</span>
+              <div style={{ marginTop: '19px', display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', padding: '14px', background: 'var(--k0)', border: '1px solid var(--ln)' }}>
+                <span style={{ fontSize: '11px', letterSpacing: '.18em', textTransform: 'uppercase', color: 'var(--d2)' }}>Quoted Price</span>
+                <span style={{ fontFamily: "'Courier New', monospace", fontSize: '22px', color: 'rgb(34, 158, 114)' }}>{formatMoney(selectedWO.estimated_price)}</span>
               </div>
             )}
 
-            <div style={{ display: 'flex', gap: '8px', marginTop: '24px' }}>
+            <div style={{ display: 'flex', gap: '7px', marginTop: '25px' }}>
               {selectedWO.status === 'ACCEPTED' && <button className="bp" onClick={() => { completeWO(selectedWO); setSelectedWO(null); }}>Mark Complete</button>}
               {(selectedWO.status === 'CREATED' || selectedWO.status === 'ACCEPTED') && <button className="bg arc" onClick={() => { cancelWO(selectedWO); setSelectedWO(null); }}>Cancel Order</button>}
               <button className="bg" onClick={() => setSelectedWO(null)} style={{ marginLeft: 'auto' }}>Close</button>

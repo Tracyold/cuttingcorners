@@ -71,12 +71,13 @@ export default function AccountPage() {
 
   // Auth
   useEffect(() => {
+    const guestId = process.env.NEXT_PUBLIC_GUEST_ACCOUNT_USER_ID;
     supabase.auth.getSession().then(({ data: { session: s } }) => {
-      if (!s) { router.replace('/login'); return; }
+      if (!s || s.user.id === guestId) { router.replace('/login'); return; }
       setSession(s);
     });
     const { data: { subscription } } = supabase.auth.onAuthStateChange((_e, s) => {
-      if (!s) router.replace('/login');
+      if (!s || s.user.id === guestId) router.replace('/login');
       else setSession(s);
     });
     return () => subscription.unsubscribe();
@@ -324,7 +325,7 @@ export default function AccountPage() {
   // Open WO detail
   const openWODetail = (wo: any) => { setSelectedWO(wo); };
 
-  if (loading) return <div style={{ background: '#050505', minHeight: '100vh' }} />;
+  if (loading) return <div style={{ background: '#1a1919', minHeight: '100vh' }} />;
 
   const NAV = [
     { id: 'home', label: 'Home' },
@@ -354,7 +355,13 @@ export default function AccountPage() {
                 {n.label}
               </button>
             ))}
-            <button className="acc-nav-item" style={{ marginTop: 'auto', color: 'var(--er, #b54040)' }}
+            <a href="/shop" className="acc-nav-item" style={{ textDecoration: 'none', marginTop: 'auto' }}>
+              Browse Shop
+            </a>
+            <a href="/portfolio" className="acc-nav-item" style={{ textDecoration: 'none' }}>
+              See Portfolio
+            </a>
+            <button className="acc-nav-item" style={{ color: 'var(--er, #b54040)' }}
               onClick={async () => { await supabase.auth.signOut(); router.push('/'); }}>
               Sign Out
             </button>
@@ -365,7 +372,7 @@ export default function AccountPage() {
             {/* HOME TAB */}
             {activeTab === 'home' && (
               <div style={{ padding: '28px' }}>
-                <h2 style={{ fontFamily: "'Oranienbaum', serif", fontSize: '24px', color: '#FAFAFA', marginBottom: '24px' }}>Profile</h2>
+                <h2 style={{ fontFamily: "'comfortaa', serif", fontSize: '24px', color: '#FAFAFA', marginBottom: '24px' }}>Profile</h2>
                 {editProfile && (
                   <div style={{ display: 'grid', gap: '12px', maxWidth: '500px' }}>
                     {[
@@ -395,10 +402,10 @@ export default function AccountPage() {
 
                 {/* Purchase stats */}
                 <div style={{ marginTop: '32px', padding: '20px', background: '#0A0A0A', border: '1px solid rgba(255,255,255,0.06)' }}>
-                  <span style={{ fontFamily: "'Courier New', monospace", fontSize: '18px', color: 'rgba(45,212,191,1)' }}>{invoiceCount}</span>
-                  <span style={{ fontSize: '12px', color: 'rgba(255,255,255,0.55)', marginLeft: '8px' }}>items purchased</span>
+                  <span style={{ fontFamily: "'Courier New', monospace", fontSize: '19px', color: 'rgb(48, 177, 98)' }}>{invoiceCount}</span>
+                  <span style={{ fontSize: '17px', color: 'rgba(255,255,255,0.55)', marginLeft: '8px' }}>items purchased</span>
                   <span style={{ margin: '0 12px', color: 'rgba(255,255,255,0.15)' }}>|</span>
-                  <span style={{ fontFamily: "'Courier New', monospace", fontSize: '18px', color: 'rgba(45,212,191,1)' }}>{formatMoney(invoiceTotal)}</span>
+                  <span style={{ fontFamily: "'Courier New', monospace", fontSize: '18px', color: 'rgb(48, 177, 98)' }}>{formatMoney(invoiceTotal)}</span>
                   <span style={{ fontSize: '12px', color: 'rgba(255,255,255,0.55)', marginLeft: '8px' }}>total spent</span>
                 </div>
 
@@ -438,12 +445,12 @@ export default function AccountPage() {
                 ) : workOrders.map(wo => (
                   <div key={wo.work_order_id} style={{ background: '#0A0A0A', border: '1px solid rgba(255,255,255,0.06)', padding: '16px', marginBottom: '12px', cursor: 'pointer' }} onClick={() => openWODetail(wo)}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
-                      <span style={{ fontFamily: "'Oranienbaum', serif", fontSize: '16px', color: '#FAFAFA' }}>{wo.title}</span>
+                      <span style={{ fontFamily: "'Montserrat', sans-serif", fontSize: '16px', color: '#FAFAFA' }}>{wo.title}</span>
                       <span style={{ fontSize: '8px', fontWeight: 500, letterSpacing: '0.2em', textTransform: 'uppercase', padding: '3px 7px',
                         background: STATUS_COLORS[wo.status]?.bg, color: STATUS_COLORS[wo.status]?.color }}>{wo.status}</span>
                     </div>
                     {wo.service_type && <div style={{ fontSize: '11px', color: 'rgba(255,255,255,0.45)', marginBottom: '4px' }}>{wo.service_type}</div>}
-                    {wo.estimated_price && <div style={{ fontSize: '13px', color: 'rgba(45,212,191,1)', fontFamily: "'Courier New', monospace" }}>{formatMoney(wo.estimated_price)}</div>}
+                    {wo.estimated_price && <div style={{ fontSize: '19px', color: 'rgb(48, 177, 98)', fontFamily: "'Courier New', monospace" }}>{formatMoney(wo.estimated_price)}</div>}
                     <div style={{ fontSize: '10px', color: 'rgba(255,255,255,0.35)', marginTop: '8px' }}>{fmtDate(wo.created_at)}</div>
                     {wo.status === 'CREATED' && (
                       <button onClick={() => acceptWO(wo)} className="acc-btn-gold" style={{ marginTop: '12px', width: 'auto', padding: '8px 16px' }}>
@@ -458,7 +465,7 @@ export default function AccountPage() {
             {/* INQUIRIES TAB */}
             {activeTab === 'inquiries' && (
               <div style={{ padding: '28px' }}>
-                <h2 style={{ fontFamily: "'Oranienbaum', serif", fontSize: '24px', color: '#FAFAFA', marginBottom: '16px' }}>Inquiries</h2>
+                <h2 style={{ fontFamily: "'Montserrat', sans-serif", fontSize: '24px', color: '#FAFAFA', marginBottom: '16px' }}>Inquiries</h2>
                 <div style={{ display: 'flex', gap: '20px', marginBottom: '20px', borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
                   <button className={`acc-tab ${inquiryTab === 'inquiries' ? 'on' : ''}`} onClick={() => setInquiryTab('inquiries')}>Product Inquiries</button>
                   <button className={`acc-tab ${inquiryTab === 'service' ? 'on' : ''}`} onClick={() => setInquiryTab('service')}>Service Requests</button>
@@ -518,7 +525,7 @@ export default function AccountPage() {
             {/* INVOICES TAB */}
             {activeTab === 'invoices' && (
               <div style={{ padding: '28px' }}>
-                <h2 style={{ fontFamily: "'Oranienbaum', serif", fontSize: '24px', color: '#FAFAFA', marginBottom: '24px' }}>Invoices</h2>
+                <h2 style={{ fontFamily: "'Montserrat', sans-serif", fontSize: '24px', color: '#FAFAFA', marginBottom: '24px' }}>Invoices</h2>
                 {invoices.length === 0 ? <p className="acc-empty">No invoices</p> :
                 invoices.map(inv => {
                   const item = inv.line_items?.[0];
@@ -526,11 +533,11 @@ export default function AccountPage() {
                     <div key={inv.invoice_id} style={{ background: '#0A0A0A', border: '1px solid rgba(255,255,255,0.06)', padding: '16px', marginBottom: '12px' }}>
                       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                         <div>
-                          <div style={{ fontFamily: "'Oranienbaum', serif", fontSize: '16px', color: '#FAFAFA' }}>{item?.title || 'Product'}</div>
+                          <div style={{ fontFamily: "'Montserrat', sans-serif", fontSize: '16px', color: '#FAFAFA' }}>{item?.title || 'Product'}</div>
                           <div style={{ fontSize: '10px', color: 'rgba(255,255,255,0.35)', marginTop: '4px' }}>{fmtDate(inv.paid_at)}</div>
                         </div>
                         <div style={{ textAlign: 'right' }}>
-                          <div style={{ fontFamily: "'Courier New', monospace", fontSize: '16px', color: 'rgba(45,212,191,1)' }}>{formatMoney(inv.total_amount)}</div>
+                          <div style={{ fontFamily: "'Courier New', monospace", fontSize: '17px', color: 'rgb(48, 177, 98)' }}>{formatMoney(inv.total_amount)}</div>
                           <span style={{ fontSize: '8px', fontWeight: 500, letterSpacing: '0.2em', textTransform: 'uppercase', padding: '2px 6px', background: 'rgba(45,212,191,0.08)', color: 'rgba(45,212,191,0.8)' }}>PAID</span>
                         </div>
                       </div>
@@ -545,33 +552,33 @@ export default function AccountPage() {
         {/* Right panel — Chat (desktop) */}
         <div className="acc-right">
           <div className="acc-chat-header">
-            <span style={{ fontFamily: "'Montserrat', sans-serif", fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.2em', color: '#d4af37' }}>Chat</span>
-            <p style={{ fontFamily: "'Comfortaa', sans-serif", fontSize: '11px', color: 'rgba(255,255,255,0.45)', marginTop: '4px' }}>We're here to help — don't hesitate to reach out</p>
+            <span style={{ fontFamily: "'Montserrat', sans-serif", fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.1em', color: '#d4af37' }}>Chat</span>
+            <p style={{ fontFamily: "'Comfortaa', sans-serif", fontSize: '13px', color: 'rgba(255,255,255,0.45)', marginTop: '5px' }}>We're here to help — don't hesitate to reach out</p>
           </div>
           <div className="acc-chat-messages">
             {messages.map(m => (
-              <div key={m.chat_message_id} style={{ display: 'flex', flexDirection: 'column', alignItems: m.actor === 'ACCOUNT' ? 'flex-end' : 'flex-start', marginBottom: '12px' }}>
+              <div key={m.chat_message_id} style={{ display: 'flex', flexDirection: 'column', alignItems: m.actor === 'ACCOUNT' ? 'flex-end' : 'flex-start', marginBottom: '13px' }}>
                 <div style={{
-                  maxWidth: '80%', padding: '10px 14px', borderRadius: '12px',
+                  maxWidth: '80%', padding: '11px 15px', borderRadius: '14px',
                   background: m.actor === 'ACCOUNT' ? 'rgba(45,212,191,1)' : '#d4af37',
-                  color: '#050505', fontFamily: "'Comfortaa', sans-serif", fontSize: '13px', lineHeight: 1.5,
+                  color: '#050505', fontFamily: "'Comfortaa', sans-serif", fontSize: '15.9px', lineHeight: 1.7,
                 }}>
                   {m.body && <div>{m.body}</div>}
                   {m.attachment_url && m.attachment_type?.startsWith('image/') && (
                     <img src={m.attachment_url.startsWith('http') ? m.attachment_url : supabase.storage.from('ChatUploads').getPublicUrl(m.attachment_url).data.publicUrl} alt="attachment" style={{ maxWidth: '180px', maxHeight: '180px', objectFit: 'cover', marginTop: m.body ? '6px' : '0', borderRadius: '6px' }} />
                   )}
                   {m.attachment_url && m.attachment_type === 'application/pdf' && (
-                    <div style={{ marginTop: m.body ? '6px' : '0', fontSize: '12px' }}>📄 <a href={m.attachment_url.startsWith('http') ? m.attachment_url : supabase.storage.from('ChatUploads').getPublicUrl(m.attachment_url).data.publicUrl} target="_blank" rel="noopener noreferrer" style={{ color: '#050505', textDecoration: 'underline' }}>Download PDF</a></div>
+                    <div style={{ marginTop: m.body ? '7px' : '0', fontSize: '15.9px' }}>📄 <a href={m.attachment_url.startsWith('http') ? m.attachment_url : supabase.storage.from('ChatUploads').getPublicUrl(m.attachment_url).data.publicUrl} target="_blank" rel="noopener noreferrer" style={{ color: '#050505', textDecoration: 'underline' }}>Download PDF</a></div>
                   )}
                 </div>
-                <span style={{ fontSize: '10px', color: 'rgba(255,255,255,0.38)', marginTop: '4px', fontFamily: "'Montserrat', sans-serif" }}>{fmtTime(m.created_at)}</span>
+                <span style={{ fontSize: '13px', color: 'rgba(255,255,255,0.38)', marginTop: '3px', fontFamily: "'Montserrat', sans-serif" }}>{fmtTime(m.created_at)}</span>
               </div>
             ))}
             <div ref={chatEndRef} />
           </div>
           <div className="acc-chat-input-bar">
             <input type="file" ref={chatFileRef} accept=".jpg,.jpeg,.png,.tiff,.tif,.dng,.heic,.pdf" style={{ display: 'none' }} onChange={handleChatFile} />
-            <button onClick={() => chatFileRef.current?.click()} disabled={chatUploading} style={{ background: 'none', border: '1px solid rgba(255,255,255,0.10)', color: 'rgba(255,255,255,0.45)', padding: '10px', cursor: 'pointer', fontSize: '14px', flexShrink: 0 }} title="Attach file">{chatUploading ? '...' : '📎'}</button>
+            <button onClick={() => chatFileRef.current?.click()} disabled={chatUploading} style={{ background: 'none', border: '1px solid rgba(255,255,255,0.10)', color: 'rgba(255,255,255,0.45)', padding: '11px', cursor: 'pointer', fontSize: '17px', flexShrink: 0 }} title="Attach file">{chatUploading ? '...' : '📎'}</button>
             <input value={chatInput} onChange={e => setChatInput(e.target.value)}
               placeholder="Type a message..." className="acc-chat-input"
               onKeyDown={e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendChat(); } }} />
@@ -588,16 +595,16 @@ export default function AccountPage() {
         {chatOpen && (
           <div className="acc-chat-mobile-drawer">
             <div className="acc-chat-header" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-              <span style={{ fontFamily: "'Montserrat', sans-serif", fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.2em', color: '#d4af37' }}>Chat</span>
-              <button onClick={() => setChatOpen(false)} style={{ background: 'none', border: 'none', color: 'rgba(255,255,255,0.5)', cursor: 'pointer', fontSize: '18px' }}>↓</button>
+              <span style={{ fontFamily: "'Montserrat', sans-serif", fontSize: '13px', textTransform: 'uppercase', letterSpacing: '0.3em', color: '#d4af37' }}>Chat</span>
+              <button onClick={() => setChatOpen(false)} style={{ background: 'none', border: 'none', color: 'rgba(255,255,255,0.5)', cursor: 'pointer', fontSize: '19px' }}>↓</button>
             </div>
             <div className="acc-chat-messages" style={{ flex: 1 }}>
               {messages.map(m => (
-                <div key={m.chat_message_id} style={{ display: 'flex', flexDirection: 'column', alignItems: m.actor === 'ACCOUNT' ? 'flex-end' : 'flex-start', marginBottom: '12px' }}>
+                <div key={m.chat_message_id} style={{ display: 'flex', flexDirection: 'column', alignItems: m.actor === 'ACCOUNT' ? 'flex-end' : 'flex-start', marginBottom: '13px' }}>
                   <div style={{
-                    maxWidth: '80%', padding: '10px 14px', borderRadius: '12px',
+                    maxWidth: '80%', padding: '11px 15px', borderRadius: '1.7px',
                     background: m.actor === 'ACCOUNT' ? 'rgba(45,212,191,1)' : '#d4af37',
-                    color: '#050505', fontFamily: "'Comfortaa', sans-serif", fontSize: '13px',
+                    color: '#050505', fontFamily: "'Comfortaa', sans-serif", fontSize: '17px',
                   }}>
                     {m.body && <div>{m.body}</div>}
                     {m.attachment_url && m.attachment_type?.startsWith('image/') && (
@@ -626,18 +633,18 @@ export default function AccountPage() {
       {selectedWO && (
         <div style={{ position: 'fixed', inset: 0, zIndex: 200, background: 'rgba(0,0,0,0.85)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px' }}
           onClick={e => { if (e.target === e.currentTarget) setSelectedWO(null); }}>
-          <div style={{ background: '#0A0A0A', border: '1px solid rgba(255,255,255,0.10)', padding: '32px', maxWidth: '560px', width: '100%', maxHeight: '90vh', overflowY: 'auto', borderRadius: '16px' }}>
+          <div style={{ background: '#0A0A0A', border: '1px solid rgba(255,255,255,0.10)', padding: '31px', maxWidth: '560px', width: '100%', maxHeight: '90vh', overflowY: 'auto', borderRadius: '1.7px' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '24px' }}>
               <div>
                 <div style={{ fontFamily: "'Montserrat', sans-serif", fontSize: '10px', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.35)', marginBottom: '4px' }}>Work Order</div>
-                <div style={{ fontFamily: "'Oranienbaum', serif", fontSize: '22px', color: '#FAFAFA' }}>{selectedWO.title}</div>
+                <div style={{ fontFamily: "'Oranienbaum', serif", fontSize: '23px', color: '#FAFAFA' }}>{selectedWO.title}</div>
               </div>
               <span style={{ fontSize: '9px', fontWeight: 500, letterSpacing: '0.2em', textTransform: 'uppercase', padding: '4px 9px', background: STATUS_COLORS[selectedWO.status]?.bg, color: STATUS_COLORS[selectedWO.status]?.color }}>{selectedWO.status}</span>
             </div>
 
             {adminInfo && (
-              <div style={{ marginBottom: '20px', padding: '16px', background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.06)' }}>
-                <div style={{ fontFamily: "'Montserrat', sans-serif", fontSize: '9px', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.35)', marginBottom: '8px' }}>From</div>
+              <div style={{ marginBottom: '20px', padding: '17px', background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.06)' }}>
+                <div style={{ fontFamily: "'Montserrat', sans-serif", fontSize: '11px', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.35)', marginBottom: '8px' }}>From</div>
                 <div style={{ fontFamily: "'Comfortaa', sans-serif", fontSize: '13px', color: 'rgba(255,255,255,0.55)', lineHeight: 1.8 }}>
                   <div style={{ color: '#d4af37', fontWeight: 600 }}>{adminInfo.business_name}</div>
                   <div>{adminInfo.full_name}</div>
@@ -649,8 +656,8 @@ export default function AccountPage() {
             )}
 
             {profile && (
-              <div style={{ marginBottom: '20px', padding: '16px', background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.06)' }}>
-                <div style={{ fontFamily: "'Montserrat', sans-serif", fontSize: '9px', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.35)', marginBottom: '8px' }}>Client</div>
+              <div style={{ marginBottom: '21px', padding: '17px', background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.06)' }}>
+                <div style={{ fontFamily: "'Montserrat', sans-serif", fontSize: '13px', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.35)', marginBottom: '8px' }}>Client</div>
                 <div style={{ fontFamily: "'Comfortaa', sans-serif", fontSize: '13px', color: 'rgba(255,255,255,0.55)', lineHeight: 1.8 }}>
                   <div style={{ color: 'rgba(255,255,255,0.8)' }}>{profile.name}</div>
                   <div>{profile.email}</div>

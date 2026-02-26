@@ -187,31 +187,32 @@ export default function TopNav() {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  // Auth detection — check Supabase session
-  useEffect(() => {
-    let subscription: any;
-    async function checkAuth() {
-      try {
-        const { createClient } = await import('@supabase/supabase-js');
-        const supabase = createClient(
-          process.env.NEXT_PUBLIC_SUPABASE_URL!,
-          process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-        );
-        const { data: { session } } = await supabase.auth.getSession();
-        setAuthed(!!session);
+ // Auth detection — check Supabase session
+useEffect(() => {
+  let subscription: any;
+  async function checkAuth() {
+    try {
+      const { createClient } = await import('@supabase/supabase-js');
+      const supabase = createClient(
+        process.env.NEXT_PUBLIC_SUPABASE_URL!,
+        process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+      );
+      const guestId = process.env.NEXT_PUBLIC_GUEST_ACCOUNT_USER_ID;
+      const { data: { session } } = await supabase.auth.getSession();
+      setAuthed(!!session && session.user.id !== guestId);
 
-        // Listen for auth changes
-        const { data: { subscription: sub } } = supabase.auth.onAuthStateChange((_e, s) => {
-          setAuthed(!!s);
-        });
-        subscription = sub;
-      } catch {
-        setAuthed(false);
-      }
+      const { data: { subscription: sub } } = supabase.auth.onAuthStateChange((_e, s) => {
+        setAuthed(!!s && s.user.id !== guestId);
+      });
+      subscription = sub;
+    } catch {
+      setAuthed(false);
     }
-    checkAuth();
-    return () => { if (subscription) subscription.unsubscribe(); };
-  }, []);
+  }
+  checkAuth();
+  return () => { if (subscription) subscription.unsubscribe(); };
+}, []);
+
 
   // Close drawer on outside click
   useEffect(() => {
@@ -224,8 +225,21 @@ export default function TopNav() {
     return () => document.removeEventListener('click', close);
   }, [drawerOpen]);
 
-  const authHref = authed ? '/account' : '/login';
+    const authHref = authed ? '/account' : '/login';
   const authLabel = authed ? 'Account' : 'Login';
+
+  const handleAuthClick = async (e: React.MouseEvent) => {
+    if (!authed) {
+      e.preventDefault();
+      const { createClient } = await import('@supabase/supabase-js');
+      const supabase = createClient(
+        process.env.NEXT_PUBLIC_SUPABASE_URL!,
+        process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+      );
+      await supabase.auth.signOut();
+      window.location.href = '/login';
+    }
+  };
 
   return (
     <>
@@ -240,7 +254,8 @@ export default function TopNav() {
           {NAV_LINKS.map(l => (
             <a key={l.href} href={l.href} className="tnav-link">{l.label}</a>
           ))}
-          <a href={authHref} className="tnav-auth tnav-auth-desktop">{authLabel}</a>
+                    <a href={authHref} className="tnav-auth tnav-auth-desktop" onClick={handleAuthClick}>{authLabel}</a>
+
         </div>
 
         {/* Mobile burger */}
@@ -270,7 +285,7 @@ export default function TopNav() {
         <a
           href={authHref}
           className="tnav-drawer-auth"
-          onClick={() => setDrawerOpen(false)}
+          onClick={(e) => { setDrawerOpen(false); handleAuthClick(e); }}
         >
           {authLabel}
         </a>
