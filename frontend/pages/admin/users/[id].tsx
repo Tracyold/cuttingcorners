@@ -1,8 +1,9 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { supabase } from '../../../lib/supabase';
 import { adminCss } from '../../../components/admin/AdminLayout';
 import { formatMoney, fmtDate, fmtTime } from '../../../lib/utils';
+import ChatWidget from '../../../components/admin/users/ChatWidget';
 
 const STATUS_COLORS: Record<string, { bg: string; color: string }> = {
   CREATED: { bg: 'rgba(184,154,42,0.08)', color: '#cfb040' },
@@ -30,12 +31,6 @@ export default function AdminUserDetail() {
   // Chat
   const [chatThread, setChatThread] = useState<any>(null);
   const [messages, setMessages] = useState<any[]>([]);
-  const [chatInput, setChatInput] = useState('');
-  const [chatSending, setChatSending] = useState(false);
-  const [chatExpanded, setChatExpanded] = useState(false);
-  const chatEndRef = useRef<HTMLDivElement>(null);
-  const chatFileRef = useRef<HTMLInputElement>(null);
-  const [chatUploading, setChatUploading] = useState(false);
 
   // Work order detail modal
   const [selectedWO, setSelectedWO] = useState<any>(null);
@@ -127,7 +122,6 @@ export default function AdminUserDetail() {
     loadAll();
   }, [id, session]);
 
-  useEffect(() => { chatEndRef.current?.scrollIntoView({ behavior: 'smooth' }); }, [messages, chatExpanded]);
 
   // Mark inquiry read
   const openInquiry = async (item: any) => {
@@ -224,82 +218,6 @@ export default function AdminUserDetail() {
       shipping_address: editUser.shipping_address, business_name: editUser.business_name, status: editUser.status,
     }).eq('account_user_id', id);
     setUser({ ...editUser }); setShowEditUser(false);
-  };
-
-  // Send chat (admin)
-  const sendChat = async () => {
-    if (!chatInput.trim() || !chatThread || !session) return;
-    const msgText = chatInput;
-    setChatInput('');
-    setChatSending(true);
-
-    // Optimistic update
-    const optimisticMsg = {
-      chat_message_id: 'opt-' + Date.now(),
-      chat_thread_id: chatThread.chat_thread_id,
-      actor: 'ADMIN',
-      actor_id: session.user.id,
-      body: msgText,
-      attachment_url: null,
-      attachment_type: null,
-      created_at: new Date().toISOString(),
-    };
-    setMessages(prev => [...prev, optimisticMsg]);
-
-    const { error } = await supabase.from('chat_messages').insert({
-      chat_thread_id: chatThread.chat_thread_id,
-      actor: 'ADMIN',
-      actor_id: session.user.id,
-      body: msgText,
-      attachment_url: null,
-      attachment_type: null,
-    });
-
-    if (error) {
-      console.error('Chat insert failed:', error.message);
-      setMessages(prev => prev.filter(m => m.chat_message_id !== optimisticMsg.chat_message_id));
-      setChatInput(msgText);
-      setChatSending(false);
-      return;
-    }
-
-    // This is the ONLY place send-user-notification is called manually
-    await supabase.functions.invoke('send-user-notification', {
-      body: { event_type: 'chat', user_id: id as string },
-    }).catch(() => {});
-    await supabase.from('chat_threads').update({ admin_has_unread: false, account_has_unread: true }).eq('chat_thread_id', chatThread.chat_thread_id);
-    setChatSending(false);
-  };
-
-  // Mark chat read on expand
-  const expandChat = async () => {
-    setChatExpanded(true);
-    if (chatThread) {
-      await supabase.from('chat_threads').update({ admin_has_unread: false }).eq('chat_thread_id', chatThread.chat_thread_id);
-    }
-  };
-
-  // Chat file upload (admin)
-  const handleChatFile = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (!file || !chatThread || !session) return;
-    setChatUploading(true);
-    const path = `admin/${Date.now()}_${file.name}`;
-    const { data: uploadData, error: uploadErr } = await supabase.storage.from('ChatUploads').upload(path, file, { contentType: file.type });
-    if (uploadErr) { console.error('Upload error:', uploadErr.message); setChatUploading(false); return; }
-    const uploadedUrl = uploadData?.path || path;
-    const uploadedType = file.type;
-    await supabase.from('chat_messages').insert({
-      chat_thread_id: chatThread.chat_thread_id,
-      actor: 'ADMIN', actor_id: session.user.id,
-      body: null, attachment_url: uploadedUrl, attachment_type: uploadedType,
-    });
-    await supabase.functions.invoke('send-user-notification', {
-      body: { event_type: 'chat', user_id: id as string },
-    }).catch(() => {});
-    await supabase.from('chat_threads').update({ admin_has_unread: false, account_has_unread: true }).eq('chat_thread_id', chatThread.chat_thread_id);
-    setChatUploading(false);
-    if (chatFileRef.current) chatFileRef.current.value = '';
   };
 
   if (checking) return <div style={{ background: '#060606', height: '100vh' }} />;
@@ -486,47 +404,7 @@ export default function AdminUserDetail() {
 
           {/* Chat widget — fixed bottom bar */}
           {chatThread && !isGuest && (
-            <div style={{ position: 'fixed', bottom: 0, left: '50%', transform: 'translateX(-50%)', width: '479px', zIndex: 100 }}>
-              {!chatExpanded ? (
-                <div onClick={expandChat} style={{ height: '79px', background: 'var(--k1)', borderTop: '1px solid var(--ln)', border: '1px solid var(--ln)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 21px', cursor: 'pointer' }}>
-                  <span style={{ fontFamily: 'var(--sans)', fontSize: '15px', letterSpacing: '.15em', textTransform: 'uppercase', color: 'var(--gl)' }}>Chat · {user?.name || 'User'}</span>
-                  <span style={{ color: 'var(--d1)', fontSize: '17px' }}>↑</span>
-                </div>
-              ) : (
-                <div style={{ height: '799px', background: 'var(--k1)', borderTop: '1px solid var(--ln)', border: '1px solid var(--ln)', display: 'flex', flexDirection: 'column' }}>
-                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '13px 21px', borderBottom: '1px solid var(--ln)', flexShrink: 0 }}>
-                    <span style={{ fontFamily: 'var(--sans)', fontSize: '17px', letterSpacing: '.15em', textTransform: 'uppercase', color: 'var(--gl)' }}>Chat · {user?.name || 'User'}</span>
-                    <button onClick={() => setChatExpanded(false)} style={{ background: 'none', border: 'none', color: 'var(--d1)', cursor: 'pointer', fontSize: '19px' }}>↓</button>
-                  </div>
-                  <div style={{ flex: 1, overflowY: 'auto', padding: '13px 21px' }}>
-                    {messages.map(m => (
-                      <div key={m.chat_message_id} style={{ display: 'flex', flexDirection: 'column', alignItems: m.actor === 'ADMIN' ? 'flex-end' : 'flex-start', marginBottom: '11px' }}>
-                        <div style={{ maxWidth: '70%', padding: '11px 15px', borderRadius: '11px', background: m.actor === 'ADMIN' ? '#d4af37' : 'rgba(45,212,191,1)', color: '#050505', fontFamily: "'Comfortaa', sans-serif", fontSize: '15px' }}>
-                          {m.body && <div>{m.body}</div>}
-                          {m.attachment_url && m.attachment_type?.startsWith('image/') && (
-                            <img src={m.attachment_url.startsWith('http') ? m.attachment_url : supabase.storage.from('ChatUploads').getPublicUrl(m.attachment_url).data.publicUrl} alt="attachment" style={{ maxWidth: '200px', maxHeight: '200px', objectFit: 'cover', marginTop: m.body ? '6px' : '0', borderRadius: '6px' }} />
-                          )}
-                          {m.attachment_url && m.attachment_type === 'application/pdf' && (
-                            <div style={{ marginTop: m.body ? '7px' : '0', fontSize: '17px' }}>📄 <a href={m.attachment_url.startsWith('http') ? m.attachment_url : supabase.storage.from('ChatUploads').getPublicUrl(m.attachment_url).data.publicUrl} target="_blank" rel="noopener noreferrer" style={{ color: '#050505', textDecoration: 'underline' }}>Download PDF</a></div>
-                          )}
-                        </div>
-                        <span style={{ fontSize: '10px', color: 'var(--d2)', marginTop: '5px' }}>{fmtTime(m.created_at)}</span>
-                      </div>
-                    ))}
-                    <div ref={chatEndRef} />
-                  </div>
-                  <div style={{ display: 'flex', gap: '9px', padding: '13px 21px', borderTop: '.5px solid var(--ln)', flexShrink: 0 }}>
-                    <input type="file" ref={chatFileRef} accept=".jpg,.jpeg,.png,.tiff,.tif,.dng,.heic,.pdf" style={{ display: 'none' }} onChange={handleChatFile} />
-                    <button onClick={() => chatFileRef.current?.click()} disabled={chatUploading} style={{ background: 'none', border: '1px solid var(--ln)', color: 'var(--d1)', padding: '10px', cursor: 'pointer', fontSize: '14px', flexShrink: 0 }} title="Attach file">{chatUploading ? '...' : '📎'}</button>
-                    <input value={chatInput} onChange={e => setChatInput(e.target.value)} placeholder="Type a message..."
-                      style={{ flex: 1, background: 'var(--k2)', border: '1px solid var(--ln)', padding: '11px 13px', color: 'var(--tx)', fontFamily: 'var(--sans)', fontSize: '15px', outline: 'none', height: '44px' }}
-                      onKeyDown={e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendChat(); } }} />
-                    <button onClick={sendChat} disabled={chatSending || !chatInput.trim()}
-                      style={{ background: 'var(--gl)', border: 'none', color: '#000', padding: '11px 17px', cursor: 'pointer', fontWeight: 700, fontSize: '16px' }}>→</button>
-                  </div>
-                </div>
-              )}
-            </div>
+            <ChatWidget chatThread={chatThread} messages={messages} setMessages={setMessages} user={user} id={id as string} session={session} />
           )}
         </div>
       </div>
