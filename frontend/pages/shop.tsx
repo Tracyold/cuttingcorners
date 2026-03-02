@@ -4,6 +4,10 @@ import TopNav from '../components/shared/TopNav';
 import Footer from '../components/shared/Footer';
 import { supabase } from '../lib/supabase';
 import { formatMoney } from '../lib/utils';
+import GuestInfoPopup, { GuestInfo } from '../components/shop/GuestInfoPopup';
+import InvoicePreviewPopup from '../components/shop/InvoicePreviewPopup';
+import InquiryContactForm from '../components/shop/InquiryContactForm';
+import InquiryDescForm from '../components/shop/InquiryDescForm';
 
 interface Product {
   product_id: string;
@@ -23,20 +27,6 @@ interface Product {
   product_state: string;
 }
 
-interface GuestInfo {
-  name: string;
-  email: string;
-  phone: string;
-  address: string;
-}
-
-interface AdminInfo {
-  business_name: string | null;
-  full_name: string | null;
-  address: string | null;
-  phone: string | null;
-  contact_email: string | null;
-}
 
 // ── Shared Styles ────────────────────────────────────────────
 const popupOverlayStyle: React.CSSProperties = {
@@ -93,190 +83,8 @@ const ghostBtnStyle: React.CSSProperties = {
   padding: '10px 0', marginTop: '8px',
 };
 
-// ── Guest Info Popup ────────────────────────────────────────
-function GuestInfoPopup({ onSubmit, onClose }: { onSubmit: (info: GuestInfo) => void; onClose: () => void }) {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [phone, setPhone] = useState('');
-  const [address, setAddress] = useState('');
-  const [err, setErr] = useState('');
 
-  function handleSubmit() {
-    if (!name.trim() || !email.trim() || !phone.trim() || !address.trim()) {
-      setErr('All fields are required.');
-      return;
-    }
-    onSubmit({ name: name.trim(), email: email.trim(), phone: phone.trim(), address: address.trim() });
-  }
 
-  return (
-    <div style={popupOverlayStyle}>
-      <div style={popupBoxStyle}>
-        <p style={{ fontFamily: "'Montserrat', sans-serif", fontSize: '10px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.20em', color: 'rgba(255,255,255,0.52)', marginBottom: '6px' }}>
-          Your Information
-        </p>
-        <p style={{ fontFamily: "'Comfortaa', sans-serif", fontSize: '12px', color: 'rgba(255,255,255,0.45)', marginBottom: '20px', lineHeight: 1.6 }}>
-          Please enter your details before continuing.
-        </p>
-
-        <label style={labelStyle}>Full Name *</label>
-        <input style={inputStyle} placeholder="Jane Smith" value={name} onChange={e => setName(e.target.value)} />
-
-        <label style={labelStyle}>Email Address *</label>
-        <input style={inputStyle} type="email" placeholder="jane@email.com" value={email} onChange={e => setEmail(e.target.value)} />
-
-        <label style={labelStyle}>Phone Number *</label>
-        <input style={inputStyle} type="tel" placeholder="+1 (555) 000-0000" value={phone} onChange={e => setPhone(e.target.value)} />
-
-        <label style={labelStyle}>Shipping Address *</label>
-        <input style={inputStyle} placeholder="123 Main St, City, State, ZIP" value={address} onChange={e => setAddress(e.target.value)} />
-
-        {err && <p style={{ fontFamily: "'Comfortaa', sans-serif", fontSize: '11px', color: '#c07070', marginBottom: '10px' }}>{err}</p>}
-
-        <button style={goldBtnStyle} onClick={handleSubmit}>Continue</button>
-        <button style={ghostBtnStyle} onClick={onClose}>Cancel</button>
-      </div>
-    </div>
-  );
-}
-
-// ── Invoice Preview Popup ───────────────────────────────────
-function InvoicePreviewPopup({
-  product, adminInfo, buyerInfo, onContinue, onCancel, loading
-}: {
-  product: Product;
-  adminInfo: AdminInfo | null;
-  buyerInfo: { name: string; email: string; phone: string; shippingAddress: string; businessName?: string | null };
-  onContinue: () => void;
-  onCancel: () => void;
-  loading: boolean;
-}) {
-  const specRows = [
-    { label: 'Title', value: product.title },
-    { label: 'Gem Type', value: product.gem_type },
-    { label: 'Shape', value: product.shape },
-    { label: 'Weight', value: product.weight ? `${product.weight} ct` : null },
-    { label: 'Color', value: product.color },
-    ...(product.origin ? [{ label: 'Origin', value: product.origin }] : []),
-    ...(product.treatment ? [{ label: 'Treatment', value: product.treatment }] : []),
-    ...(product.gia_report_number ? [{ label: 'GIA Report #', value: product.gia_report_number }] : []),
-    ...(product.price_per_carat ? [{ label: 'Price / ct', value: formatMoney(product.price_per_carat) }] : []),
-  ].filter(r => r.value);
-
-  const sectionLabel: React.CSSProperties = { fontFamily: "'Montserrat', sans-serif", fontSize: '9px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.20em', color: 'rgba(255,255,255,0.30)', marginBottom: '10px', marginTop: '18px' };
-  const divider: React.CSSProperties = { height: '1px', backgroundColor: 'rgba(255,255,255,0.06)', margin: '16px 0' };
-
-  return (
-    <div style={popupOverlayStyle}>
-      <div style={{ ...popupBoxStyle, maxWidth: '520px' }}>
-        <p style={{ fontFamily: "'Montserrat', sans-serif", fontSize: '10px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.20em', color: 'rgba(255,255,255,0.52)', marginBottom: '18px' }}>
-          Invoice Preview
-        </p>
-
-        <p style={sectionLabel}>From</p>
-        {adminInfo && (
-          <div style={{ fontFamily: "'Comfortaa', sans-serif", fontSize: '12px', color: 'rgba(255,255,255,0.55)', lineHeight: 1.8 }}>
-            <div style={{ color: '#d4af37', fontWeight: 700 }}>{adminInfo.business_name}</div>
-            <div>{adminInfo.full_name}</div>
-            <div>{adminInfo.address}</div>
-            <div>{adminInfo.contact_email}</div>
-            <div>{adminInfo.phone}</div>
-          </div>
-        )}
-
-        <div style={divider} />
-
-        <p style={sectionLabel}>Bill To</p>
-        <div style={{ fontFamily: "'Comfortaa', sans-serif", fontSize: '12px', color: 'rgba(255,255,255,0.55)', lineHeight: 1.8 }}>
-          <div style={{ color: 'rgba(255,255,255,0.80)' }}>{buyerInfo.name}</div>
-          <div>{buyerInfo.email}</div>
-          <div>{buyerInfo.phone}</div>
-          <div>{buyerInfo.shippingAddress}</div>
-          {buyerInfo.businessName && <div>{buyerInfo.businessName}</div>}
-        </div>
-
-        <div style={divider} />
-
-        <p style={sectionLabel}>Product</p>
-        {specRows.map(({ label, value }) => (
-          <div key={label} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', gap: '12px', marginBottom: '8px' }}>
-            <span style={{ fontFamily: "'Montserrat', sans-serif", fontSize: '9px', textTransform: 'uppercase', letterSpacing: '0.18em', color: 'rgba(255,255,255,0.38)', flexShrink: 0 }}>{label}</span>
-            <span style={{ fontFamily: "'Comfortaa', sans-serif", fontSize: '12px', color: 'rgba(255,255,255,0.70)', textAlign: 'right' }}>{value}</span>
-          </div>
-        ))}
-
-        <div style={divider} />
-
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '4px' }}>
-          <span style={{ fontFamily: "'Montserrat', sans-serif", fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.18em', color: 'rgba(255,255,255,0.38)' }}>Total</span>
-          <span style={{ fontFamily: "'Courier New', monospace", fontSize: '20px', color: 'rgba(45,212,191,1)' }}>{formatMoney(product.total_price)}</span>
-        </div>
-        <p style={{ fontFamily: "'Comfortaa', sans-serif", fontSize: '11px', color: 'rgba(255,255,255,0.25)', marginBottom: '24px' }}>
-          Payment method: Card via Stripe
-        </p>
-
-        <button style={goldBtnStyle} onClick={onContinue} disabled={loading}>
-          {loading ? 'Redirecting...' : 'Continue to Payment'}
-        </button>
-        <button style={ghostBtnStyle} onClick={onCancel}>Cancel</button>
-      </div>
-    </div>
-  );
-}
-
-// ── Inquiry Sub-Forms ───────────────────────────────────────
-function InquiryContactForm({ onSubmit, onClose }: { onSubmit: (info: any) => void; onClose: () => void }) {
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [phone, setPhone] = useState('');
-  const [email, setEmail] = useState('');
-  const [err, setErr] = useState('');
-  return (
-    <>
-      <div style={{ display: 'flex', gap: '10px' }}>
-        <div style={{ flex: 1 }}>
-          <label style={labelStyle}>First Name *</label>
-          <input style={inputStyle} placeholder="Jane" value={firstName} onChange={e => setFirstName(e.target.value)} />
-        </div>
-        <div style={{ flex: 1 }}>
-          <label style={labelStyle}>Last Name *</label>
-          <input style={inputStyle} placeholder="Smith" value={lastName} onChange={e => setLastName(e.target.value)} />
-        </div>
-      </div>
-      <label style={labelStyle}>Phone Number *</label>
-      <input style={inputStyle} type="tel" placeholder="+1 (555) 000-0000" value={phone} onChange={e => setPhone(e.target.value)} />
-      <label style={labelStyle}>Email Address *</label>
-      <input style={inputStyle} type="email" placeholder="jane@email.com" value={email} onChange={e => setEmail(e.target.value)} />
-      {err && <p style={{ fontSize: '11px', color: '#c07070', marginBottom: '10px' }}>{err}</p>}
-      <button style={goldBtnStyle} onClick={() => {
-        if (!firstName.trim() || !lastName.trim() || !phone.trim() || !email.trim()) { setErr('All fields are required.'); return; }
-        onSubmit({ firstName: firstName.trim(), lastName: lastName.trim(), email: email.trim(), phone: phone.trim() });
-      }}>Continue</button>
-      <button style={ghostBtnStyle} onClick={onClose}>Cancel</button>
-    </>
-  );
-}
-
-function InquiryDescForm({ onSubmit, onClose, submitting }: { onSubmit: (desc: string) => void; onClose: () => void; submitting: boolean }) {
-  const [desc, setDesc] = useState('');
-  return (
-    <>
-      <label style={labelStyle}>Your Message *</label>
-      <textarea
-        style={{ ...inputStyle, minHeight: '100px', resize: 'vertical' }}
-        placeholder="Tell us about your interest in this gem..."
-        value={desc}
-        onChange={e => setDesc(e.target.value)}
-      />
-      <button style={{ ...goldBtnStyle, opacity: submitting || !desc.trim() ? 0.5 : 1 }}
-        onClick={() => { if (desc.trim()) onSubmit(desc.trim()); }}
-        disabled={submitting || !desc.trim()}>
-        {submitting ? 'Sending...' : 'Submit Inquiry'}
-      </button>
-      <button style={ghostBtnStyle} onClick={onClose}>Cancel</button>
-    </>
-  );
-}
 
 // ── Main Page ───────────────────────────────────────────────
 export default function ShopPage() {
