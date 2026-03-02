@@ -506,10 +506,11 @@ export default function Home() {
             className="absolute inset-0 bg-cover bg-center"
             style={{
               backgroundImage: 'url(/assets/Studio.jpeg)',
-              opacity: 0.2,
+              opacity: 0.55,
             }}
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-[#050505]/50" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/70 to-[#050505]/80" />
+          <div className="absolute inset-0 bg-black/60" />
 
           <div className="container-custom relative z-10 text-center">
             <p
@@ -815,7 +816,7 @@ export default function Home() {
                       display: 'flex',
                       flexDirection: 'column',
                       justifyContent: 'flex-start',
-                      opacity: 0.2,
+                      opacity: 0.55,
                       filter: 'blur(3px)',
                       transform: 'scale(0.98)',
                       willChange: 'opacity, filter, transform',
