@@ -119,7 +119,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .gem-card {
-  background-color: #0A0A0A;
+  background-color: #101010;
   border: 1px solid rgba(255, 255, 255, 0.05);
   transition: all 0.5s ease;
   overflow: hidden;
@@ -506,7 +506,7 @@ export default function Home() {
             className="absolute inset-0 bg-cover bg-center"
             style={{
               backgroundImage: 'url(/assets/Studio.jpeg)',
-              opacity: 0.55,
+              opacity: 0.90,
             }}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/70 to-[#050505]/80" />
@@ -515,7 +515,7 @@ export default function Home() {
           <div className="container-custom relative z-10 text-center">
             <p
               className="uppercase text-gray-400 mb-6 opacity-0 animate-fade-in transition-all duration-700"
-              style={{ fontSize: '14px', letterSpacing: '0.30em' }}
+              style={{ fontSize: '14px', letterSpacing: '0.37em' }}
               data-scroll-reveal
             >
               Tempe, Arizona
@@ -528,7 +528,7 @@ export default function Home() {
 
             <p
               className="text-gray-400 max-w-3xl mx-auto mb-10 opacity-0 animate-fade-in delay-200"
-              style={{ fontSize: '18px', lineHeight: 1.6 }}
+              style={{ fontSize: 'px', lineHeight: 1.6 }}
             >
               Professional gemstone cutter focused on color, yield, and stone potential for jewelry
               professionals nationwide.

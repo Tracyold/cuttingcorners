@@ -76,6 +76,21 @@ export default function ShopPage() {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [modalProduct, setModalProduct] = useState<Product | null>(null);
+  const [tappedProduct, setTappedProduct] = useState<string | null>(null);
+
+  const handleCardClick = (product: Product) => {
+    const isMobile = window.innerWidth < 768;
+    if (!isMobile) {
+      setModalProduct(product);
+      return;
+    }
+    if (tappedProduct === product.product_id) {
+      setModalProduct(product);
+      setTappedProduct(null);
+    } else {
+      setTappedProduct(product.product_id);
+    }
+  };
 
   // Guest info
   const [guestInfo, setGuestInfo] = useState<GuestInfo | null>(null);
@@ -357,8 +372,8 @@ export default function ShopPage() {
               {products.map((product) => (
                 <div
                   key={product.product_id}
-                  className="shop-card"
-                  onClick={() => setModalProduct(product)}
+                  className={`shop-card${tappedProduct === product.product_id ? " tapped" : ""}`}
+                  onClick={() => handleCardClick(product)}
                   data-testid={`product-${product.product_id}`}
                 >
                   <div className="shop-card-img">
@@ -379,6 +394,9 @@ export default function ShopPage() {
                     <h3 style={{ fontFamily: "'Montserrat', sans-serif", fontSize: '23px', color: '#060606', margin: '0 0 4px', fontWeight: 700 }}>
                       {product.title}
                     </h3>
+                    <div className="shop-card-mobile-title" style={{ display: 'none' }}>
+                      {product.title.split(' ')[0]}
+                    </div>
                     <div style={{ display: 'flex', gap: '13px', flexWrap: 'wrap', marginBottom: '9px' }}>
                       {product.gem_type && <span className="shop-tag">{product.gem_type}</span>}
                       {product.shape && <span className="shop-tag">{product.shape}</span>}
@@ -450,41 +468,31 @@ const shopCss = `
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 24px;
 }
-@media (max-width: 220px) {
-  .shop-grid {
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
-  }
-  main > div { padding: 16px 16px 60px !important; }
-}
-@media (max-width: 220px) {
-  .shop-grid { grid-template-columns: 1fr; }
-}
 .shop-card {
   cursor: pointer;
-  transition: transform 220ms ease-out;
+  transition: transform 400ms ease-out;
 }
 .shop-card:hover {
   transform: translateY(0px);
 }
 .shop-card:hover .shop-card-img {
-  border-color: rgba(255,255,255,0.16);
+  border-color: rgba(0, 0, 0, 0.16);
   box-shadow: 0 18px 48px rgba(0,0,0,0.65);
 }
 .shop-card-img {
   position: relative;
   aspect-ratio: 1 / 1;
-  background: #0A0A0A;
+  background: #ffffff20;
   border-radius: 1.7px;
-  border: 1px solid rgba(20, 16, 16, 0.98);
+  border: 1.7px solid rgba(20, 16, 16, 0.98);
   overflow: hidden;
-  box-shadow: 0 0px 30px rgba(0,0,0,0.55);
-  transition: border-color 40ms ease-out, box-shadow 50ms ease-out;
+  box-shadow: 0 0px 1px rgba(0,0,0,0.35);
+  transition: border-color 10ms ease-out, box-shadow 50ms ease-in;
 }
 .shop-card-vignette {
   position: absolute;
-  inset: 5;
-  box-shadow: inset 4 0 26px 12px rgba(0,0,0,0.50);
+  inset: 10px;
+  box-shadow: inset 8 0 30px 12px rgba(0, 0, 0, 0.12);
   pointer-events: none;
   z-index: 2;
 }
@@ -492,26 +500,39 @@ const shopCss = `
   font-family: 'Montserrat', sans-serif;
   font-size: 15px;
   text-transform: uppercase;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.13em;
   color: rgba(228, 182, 44, 0.82);
   background: rgba(34, 32, 32, 0.84);
   border: 1px solid rgba(255,255,255,0.06);
   padding: 0px 8px;
 }
 .shop-card-img img {
-  filter: grayscale(100%) invert(100%) contrast(1.0) brightness(.90);
-  transition: filter 14ms cubic-bezier(1, .03, .09, 1);
-}
-.shop-grid:has(.shop-card:hover) .shop-card:not(:hover) {
-  opacity: 0.25;
-  transition: opacity 1200ms ease;
+  filter: grayscale(100%) invert(90%) contrast(1.3) brightness(0.90);
+  transition: filter 200ms cubic-bezier(0.05, 0.9, 0.1, 1);
 }
 .shop-grid .shop-card {
-  transition: transform 10000ms ease-out, opacity 30000ms ease;
+  opacity: 2;
+  transition: transform 100ms ease-out, opacity 10ms ease;
+}
+.shop-grid:has(.shop-card:hover) .shop-card:not(:hover) {
+  opacity: 0.20;
 }
 .shop-card:hover .shop-card-img img {
   filter: grayscale(0%) invert(0%) contrast(1.1) brightness(1.0);
   transition: filter 40ms ease-in;
+}
+.shop-card-img::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  pointer-events: none;
+  z-index: 3;
+  transition: background 2800ms cubic-bezier(0.05, 0.9, 0.1, 1);
+}
+.shop-card:hover .shop-card-img::before {
+  background: rgba(0, 0, 0, 0.0);
+  transition: background 40ms ease-in;
 }
 .shop-card-img::after {
   content: '';
@@ -519,11 +540,49 @@ const shopCss = `
   inset: 0;
   background: rgba(255, 240, 180, 0.0);
   pointer-events: none;
-  z-index: 1.5;
-  transition: background 500ms cubic-bezier(0.05, 0.9, 0.1, 1);
+  z-index: 4;
+  transition: background 2800ms cubic-bezier(0.05, 0.9, 0.1, 1);
 }
 .shop-card:hover .shop-card-img::after {
-  background: rgba(0, 0, 0, 0.18);
-  transition: background 10ms ease-in;
+  background: rgba(255, 240, 180, 0.08);
+  transition: background 40ms ease-in;
+}
+@media (max-width: 767px) {
+  .shop-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    padding: 15px 15px;
+  }
+  .shop-card-img {
+    border-radius: 8px;
+  }
+  .shop-card-title {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: #d4af37;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 8px 0 0;
+  }
+  .shop-card .shop-tag { display: none; }
+  .shop-card h3 { display: none; }
+  .shop-card p { display: none; }
+  .shop-card-mobile-title { display: block; }
+  .shop-card-img img {
+    transition: filter 80ms ease-in;
+  }
+  .shop-card.tapped .shop-card-img img {
+    filter: grayscale(0%) invert(0%) contrast(1.0) brightness(1.0);
+  }
+  .shop-card.tapped .shop-card-img::before {
+    background: rgba(0, 0, 0, 0.0);
+  }
+  .shop-card.tapped .shop-card-img::after {
+    background: rgba(255, 240, 180, 0.08);
+  }
 }
 `;
