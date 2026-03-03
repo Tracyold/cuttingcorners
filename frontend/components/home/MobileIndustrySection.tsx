@@ -1,0 +1,71 @@
+import { useEffect } from 'react';
+
+export default function MobileIndustrySection() {
+  useEffect(() => {
+    const yearsEl = document.getElementById('mobile-years');
+    const sevenEl = document.getElementById('mobile-seven');
+    const industrySection = document.getElementById('mobile-industry-section');
+    if (!yearsEl || !sevenEl || !industrySection) return;
+    let glowTriggered = false;
+    const glowObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !glowTriggered) {
+            glowTriggered = true;
+            yearsEl.style.transition = 'color 700ms ease-out, text-shadow 700ms ease-out';
+            yearsEl.style.color = '#d4af37';
+            yearsEl.style.textShadow =
+              '0 0 10px rgba(212,175,55,0.55), 0 0 22px rgba(212,175,55,0.28), 0 0 44px rgba(212,175,55,0.14)';
+            setTimeout(() => {
+              sevenEl.style.transition = 'color 700ms ease-out, text-shadow 700ms ease-out';
+              sevenEl.style.color = '#d4af37';
+              sevenEl.style.textShadow =
+                '0 0 10px rgba(212,175,55,0.55), 0 0 22px rgba(212,175,55,0.28), 0 0 44px rgba(212,175,55,0.14)';
+            }, 250);
+          }
+        });
+      },
+      { threshold: 0.65 }
+    );
+    glowObserver.observe(industrySection);
+    return () => glowObserver.disconnect();
+  }, []);
+
+  return (
+    <section
+      id="mobile-industry-section"
+      className="md:hidden text-center px-4 flex flex-col items-center justify-center"
+      style={{
+        background: '#050505',
+        borderTop: '1px solid rgba(255,255,255,0.10)',
+        minHeight: '100svh',
+        paddingTop: '40px',
+        paddingBottom: '40px',
+      }}
+    >
+      <p
+        className="uppercase mb-2"
+        style={{
+          fontSize: '11px',
+          letterSpacing: '0.29em',
+          color: 'rgba(255,255,255,0.52)',
+        }}
+      >
+        Industry for
+      </p>
+      <p
+        id="mobile-years"
+        style={{
+          fontSize: '24px',
+          fontWeight: 600,
+          color: 'rgba(255,255,255,0.75)',
+        }}
+      >
+        13 Years
+      </p>
+      <p style={{ fontSize: '12px', color: 'rgba(255,255,255,0.52)', marginTop: '4px' }}>
+        Cutting for <span id="mobile-seven">Seven</span>
+      </p>
+    </section>
+  );
+}
