@@ -331,7 +331,7 @@ export default function ShopPage() {
             Gems for Sale
           </p>
           <h1 style={{
-            fontFamily: "'Oranienbaum', serif",
+            fontFamily: "'Montserrat', sans-serif",
             fontSize: 'clamp(30px, 6vw, 60px)',
             fontWeight: 400,
             color: '#FAFAFA',
@@ -366,28 +366,26 @@ export default function ShopPage() {
                       <img
                         src={getPhotoUrl(product.photo_url)!}
                         alt={product.title}
-                        style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                        style={{ width: '100%', height: '100%', objectFit: 'cover', transform: 'scale(0.985)', transformOrigin: 'center' }}
                       />
                     ) : (
                       <div style={{ width: '100%', height: '100%', background: '#111', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                        <span style={{ color: 'rgba(255,255,255,0.2)', fontFamily: "'Montserrat', sans-serif", fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.2em' }}>No Photo</span>
+                        <span style={{ color: 'rgba(255,255,255,0.2)', fontFamily: "'Montserrat', sans-serif", fontSize: '15px', textTransform: 'uppercase', letterSpacing: '0.2em' }}>No Photo</span>
                       </div>
                     )}
                     <div className="shop-card-vignette" />
                   </div>
-                  <div style={{ padding: '14px 4px 0' }}>
-                    <h3 style={{ fontFamily: "'Oranienbaum', serif", fontSize: '18px', color: '#FAFAFA', margin: '0 0 4px', fontWeight: 400 }}>
+                  <div style={{ padding: '0px 0px 0' }}>
+                    <h3 style={{ fontFamily: "'Montserrat', sans-serif", fontSize: '23px', color: '#060606', margin: '0 0 4px', fontWeight: 700 }}>
                       {product.title}
                     </h3>
-                    <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', marginBottom: '6px' }}>
+                    <div style={{ display: 'flex', gap: '13px', flexWrap: 'wrap', marginBottom: '9px' }}>
                       {product.gem_type && <span className="shop-tag">{product.gem_type}</span>}
                       {product.shape && <span className="shop-tag">{product.shape}</span>}
                       {product.weight && <span className="shop-tag">{product.weight} ct</span>}
                       {product.color && <span className="shop-tag">{product.color}</span>}
                     </div>
-                    <p style={{ fontFamily: "'Courier New', monospace", fontSize: '16px', color: 'rgba(45,212,191,1)', margin: 0 }}>
-                      {formatMoney(product.total_price)}
-                    </p>
+                   
                   </div>
                 </div>
               ))}
@@ -449,17 +447,17 @@ export default function ShopPage() {
 const shopCss = `
 .shop-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
   gap: 24px;
 }
-@media (max-width: 767px) {
+@media (max-width: 220px) {
   .shop-grid {
     grid-template-columns: 1fr 1fr;
     gap: 16px;
   }
   main > div { padding: 16px 16px 60px !important; }
 }
-@media (max-width: 480px) {
+@media (max-width: 220px) {
   .shop-grid { grid-template-columns: 1fr; }
 }
 .shop-card {
@@ -467,7 +465,7 @@ const shopCss = `
   transition: transform 220ms ease-out;
 }
 .shop-card:hover {
-  transform: translateY(-4px);
+  transform: translateY(0px);
 }
 .shop-card:hover .shop-card-img {
   border-color: rgba(255,255,255,0.16);
@@ -477,42 +475,55 @@ const shopCss = `
   position: relative;
   aspect-ratio: 1 / 1;
   background: #0A0A0A;
-  border-radius: 14px;
-  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 1.7px;
+  border: 1px solid rgba(20, 16, 16, 0.98);
   overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.55);
-  transition: border-color 220ms ease-out, box-shadow 220ms ease-out;
+  box-shadow: 0 0px 30px rgba(0,0,0,0.55);
+  transition: border-color 40ms ease-out, box-shadow 50ms ease-out;
 }
 .shop-card-vignette {
   position: absolute;
-  inset: 0;
-  box-shadow: inset 0 0 26px 12px rgba(0,0,0,0.50);
+  inset: 5;
+  box-shadow: inset 4 0 26px 12px rgba(0,0,0,0.50);
   pointer-events: none;
   z-index: 2;
 }
 .shop-tag {
   font-family: 'Montserrat', sans-serif;
-  font-size: 9px;
+  font-size: 15px;
   text-transform: uppercase;
   letter-spacing: 0.12em;
-  color: rgba(255,255,255,0.45);
-  background: rgba(255,255,255,0.04);
+  color: rgba(228, 182, 44, 0.82);
+  background: rgba(34, 32, 32, 0.84);
   border: 1px solid rgba(255,255,255,0.06);
-  padding: 3px 8px;
+  padding: 0px 8px;
 }
 .shop-card-img img {
-  filter: grayscale(100%) contrast(1.8) brightness(0.79);
-  transition: filter 550ms ease;
+  filter: grayscale(100%) invert(30%) contrast(4.0) brightness(0.30);
+  transition: filter 2800ms cubic-bezier(0.05, 0.9, 0.1, 1);
 }
 .shop-grid:has(.shop-card:hover) .shop-card:not(:hover) {
-  opacity: 0.45;
-  transition: opacity 401ms ease;
+  opacity: 0.25;
+  transition: opacity 1200ms ease;
 }
 .shop-grid .shop-card {
-  transition: transform 220ms ease-out, opacity 401ms ease;
+  transition: transform 10000ms ease-out, opacity 300000ms ease;
 }
 .shop-card:hover .shop-card-img img {
-  filter: grayscale(0%) contrast(0.9) brightness(1.0);
+  filter: grayscale(0%) invert(0%) contrast(1.1) brightness(1.4);
+  transition: filter 40ms ease-in;
 }
-
+.shop-card-img::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 240, 180, 0.0);
+  pointer-events: none;
+  z-index: 3;
+  transition: background 5000ms cubic-bezier(0.05, 0.9, 0.1, 1);
+}
+.shop-card:hover .shop-card-img::after {
+  background: rgba(255, 240, 180, 0.18);
+  transition: background 60ms ease-in;
+}
 `;
