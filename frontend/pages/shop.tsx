@@ -399,7 +399,6 @@ export default function ShopPage() {
                     </div>
                     <div style={{ display: 'flex', gap: '13px', flexWrap: 'wrap', marginBottom: '9px' }}>
                       {product.gem_type && <span className="shop-tag">{product.gem_type}</span>}
-                      {product.shape && <span className="shop-tag">{product.shape}</span>}
                       {product.weight && <span className="shop-tag">{product.weight} ct</span>}
                       {product.color && <span className="shop-tag">{product.color}</span>}
                     </div>

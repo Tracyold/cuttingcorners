@@ -1,13 +1,9 @@
-import React, { useEffect, useRef } from 'react';
-import {
-  ArrowRight,
-  Gem,
-  RefreshCw,
-  Briefcase,
-  ShoppingBag,
-  Package,
-  Layers,
-} from 'lucide-react';
+import React, { useEffect } from 'react';
+import { ArrowRight } from 'lucide-react';
+import { services } from '../components/home/homeData';
+import MobileIndustrySection from '../components/home/MobileIndustrySection';
+import MobileServicesCarousel from '../components/home/MobileServicesCarousel';
+import DesktopServicesGrid from '../components/home/DesktopServicesGrid';
 import TopNav from '../components/shared/TopNav';
 import Footer from '../components/shared/Footer';
 
@@ -217,7 +213,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .animate-fade-in {
-  animation: fade-in 0.6s ease-out forwards;
+  animation: fade-in 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 @keyframes scrollPulse {
@@ -230,258 +226,45 @@ h1, h2, h3, h4, h5, h6 {
   );
 }
 
-function computeSectionTopBottom(section: HTMLElement) {
-  const top = section.getBoundingClientRect().top + window.scrollY;
-  const bottom = top + section.offsetHeight;
-  return { top, bottom };
-}
 
 export default function Home() {
-  const services = [
-    {
-      title: 'Custom Cutting',
-      description:
-        "Receive a tailored cutting experience designed to reveal each gemstone's highest potential.",
-      Icon: Gem,
-    },
-    {
-      title: 'Re-Polish & Re-Cut',
-      description:
-        'Breathe new life into existing gemstones through restoration focused on above-industry-standard weight retention.',
-      Icon: RefreshCw,
-    },
-    {
-      title: 'Jeweler Services',
-      description:
-        'Working directly with jewelers in the industry to deliver quick turn arounds and shorter lead times.',
-      Icon: Briefcase,
-    },
-    {
-      title: 'Sell Gemstones',
-      description:
-        'An online shop with custom and flexible purchasing features, including pay now, pay later, inquiries and negotiations directly through the site.',
-      Icon: ShoppingBag,
-    },
-    {
-      title: 'Buy Rough',
-      description: 'Source quality rough gemstones for your cutting projects.',
-      Icon: Package,
-    },
-    {
-      title: 'Buy Gems In Bulk',
-      description: 'Wholesale purchasing from jewelers and dealers.',
-      Icon: Layers,
-    },
-  ];
-
-  const lockedRef = useRef(false);
-  const unlockCooldownRef = useRef(false);
-  const currentFocusIndexRef = useRef(-1);
 
   useEffect(() => {
-    const elements = document.querySelectorAll('[data-scroll-reveal]');
-    elements.forEach((el) => {
-      const h = el as HTMLElement;
-      h.style.opacity = '0';
-      h.style.transform = 'translateY(30px)';
+    const groups = document.querySelectorAll('[data-reveal-group]');
+    groups.forEach((group) => {
+      const elements = group.querySelectorAll('[data-scroll-reveal]');
+      elements.forEach((el, i) => {
+        const h = el as HTMLElement;
+        h.style.opacity = '0';
+        h.style.transform = 'translateY(80px)';
+        h.dataset.revealIndex = String(i);
+      });
     });
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             const el = entry.target as HTMLElement;
-            el.style.opacity = '1';
-            el.style.transform = 'translateY(0)';
+            const index = parseInt(el.dataset.revealIndex || '0');
+            const delay = index * 100;
+            setTimeout(() => {
+              el.style.transition = 'opacity 1100ms cubic-bezier(0.16, 1, 0.3, 1), transform 1100ms cubic-bezier(0.16, 1, 0.3, 1)';
+              el.style.opacity = '1';
+              el.style.transform = 'translateY(0)';
+            }, delay);
             observer.unobserve(el);
           }
         });
       },
-      { threshold: 0.3 }
+      { threshold: 0.1, rootMargin: '0px 0px -120px 0px' }
     );
-    elements.forEach((el) => observer.observe(el));
+
+    document.querySelectorAll('[data-scroll-reveal]').forEach((el) => observer.observe(el));
     return () => observer.disconnect();
   }, []);
 
-  useEffect(() => {
-    const yearsEl = document.getElementById('mobile-years');
-    const sevenEl = document.getElementById('mobile-seven');
-    const industrySection = document.getElementById('mobile-industry-section');
-    if (!yearsEl || !sevenEl || !industrySection) return;
-    let glowTriggered = false;
-    const glowObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting && !glowTriggered) {
-            glowTriggered = true;
-            yearsEl.style.transition = 'color 700ms ease-out, text-shadow 700ms ease-out';
-            yearsEl.style.color = '#d4af37';
-            yearsEl.style.textShadow =
-              '0 0 10px rgba(212,175,55,0.55), 0 0 22px rgba(212,175,55,0.28), 0 0 44px rgba(212,175,55,0.14)';
-            setTimeout(() => {
-              sevenEl.style.transition = 'color 700ms ease-out, text-shadow 700ms ease-out';
-              sevenEl.style.color = '#d4af37';
-              sevenEl.style.textShadow =
-                '0 0 10px rgba(212,175,55,0.55), 0 0 22px rgba(212,175,55,0.28), 0 0 44px rgba(212,175,55,0.14)';
-            }, 250);
-          }
-        });
-      },
-      { threshold: 0.65 }
-    );
-    glowObserver.observe(industrySection);
-    return () => glowObserver.disconnect();
-  }, []);
 
-  useEffect(() => {
-    if (typeof window === 'undefined' || window.innerWidth >= 768) return;
-
-    const section = document.getElementById('services-section') as HTMLElement | null;
-    const scroller = document.getElementById('mobile-services-scroll') as HTMLElement | null;
-    const cards = document.querySelectorAll('[data-service-card-mobile]');
-    const arrowEl = document.getElementById('mobile-scroll-arrow') as HTMLElement | null;
-
-    if (!section || !scroller || cards.length === 0) return;
-
-    const defocus = (card: Element) => {
-      const el = card as HTMLElement;
-      el.style.transition = 'opacity 400ms ease-out, filter 400ms ease-out, transform 400ms ease-out';
-      el.style.opacity = '0.20';
-      el.style.filter = 'blur(3px)';
-      el.style.transform = 'scale(0.98)';
-      el.style.pointerEvents = 'none';
-      const icon = el.querySelector('[data-service-icon]') as HTMLElement | null;
-      if (icon) {
-        icon.style.transition = 'transform 520ms ease-out, filter 520ms ease-out, opacity 520ms ease-out';
-        icon.style.transitionDelay = '60ms';
-        icon.style.opacity = '0.75';
-        icon.style.transform = 'scale(0.96) translateY(2px)';
-        icon.style.filter = 'drop-shadow(0 0 0 rgba(212,175,55,0))';
-      }
-    };
-
-    const focus = (card: Element) => {
-      const el = card as HTMLElement;
-      el.style.transition = 'opacity 500ms ease-out, filter 500ms ease-out, transform 500ms ease-out';
-      el.style.opacity = '1';
-      el.style.filter = 'blur(0px)';
-      el.style.transform = 'scale(1)';
-      el.style.pointerEvents = 'auto';
-      const icon = el.querySelector('[data-service-icon]') as HTMLElement | null;
-      if (icon) {
-        icon.style.transition = 'transform 640ms ease-out, filter 640ms ease-out, opacity 640ms ease-out';
-        icon.style.transitionDelay = '110ms';
-        icon.style.opacity = '1';
-        icon.style.transform = 'scale(1.02) translateY(0px)';
-        icon.style.filter = 'drop-shadow(0 0 10px rgba(212,175,55,0.18)) drop-shadow(0 0 22px rgba(212,175,55,0.10))';
-      }
-    };
-
-    cards.forEach(defocus);
-
-    const handleFocus = () => {
-      const headerEl = document.getElementById('services-sticky-header');
-      const headerH = headerEl ? headerEl.getBoundingClientRect().height : 0;
-      const viewportMidpoint = headerH + (scroller.clientHeight - headerH) / 2;
-      let closestIndex = -1;
-      let closestDistance = Infinity;
-      cards.forEach((card, i) => {
-        const rect = (card as HTMLElement).getBoundingClientRect();
-        const scrollerRect = scroller.getBoundingClientRect();
-        const cardCenter = rect.top - scrollerRect.top + rect.height / 2;
-        const distance = Math.abs(cardCenter - viewportMidpoint);
-        if (distance < closestDistance) {
-          closestDistance = distance;
-          closestIndex = i;
-        }
-      });
-      if (closestIndex !== currentFocusIndexRef.current) {
-        cards.forEach((card, i) => {
-          if (i === closestIndex) focus(card);
-          else defocus(card);
-        });
-        currentFocusIndexRef.current = closestIndex;
-      }
-      if (arrowEl) {
-        const isLast = closestIndex === cards.length - 1;
-        arrowEl.style.opacity = isLast ? '0' : '1';
-        arrowEl.style.pointerEvents = 'none';
-      }
-    };
-
-    const inSection = () => {
-      const r = section.getBoundingClientRect();
-      return r.top <= 8 && r.bottom >= window.innerHeight * 0.65;
-    };
-
-    const lock = () => {
-      if (lockedRef.current || unlockCooldownRef.current) return;
-      lockedRef.current = true;
-      document.body.style.overflow = 'hidden';
-      const { top } = computeSectionTopBottom(section);
-      window.scrollTo({ top, behavior: 'auto' });
-      scroller.style.scrollSnapType = 'none';
-      scroller.scrollTop = 0;
-      requestAnimationFrame(() => {
-        scroller.style.scrollSnapType = 'y mandatory';
-        scroller.dispatchEvent(new Event('scroll'));
-      });
-    };
-
-    const unlock = (direction: 'down' | 'up') => {
-      if (!lockedRef.current) return;
-      lockedRef.current = false;
-      unlockCooldownRef.current = true;
-      document.body.style.overflow = '';
-      const { top, bottom } = computeSectionTopBottom(section);
-      const target = direction === 'down' ? bottom + 1 : top - 1;
-      window.scrollTo({ top: target, behavior: 'auto' });
-      window.setTimeout(() => { unlockCooldownRef.current = false; }, 250);
-    };
-
-    const atTop = () => scroller.scrollTop <= 2;
-    const atBottom = () => scroller.scrollTop + scroller.clientHeight >= scroller.scrollHeight - 1;
-
-    const handleWindowScroll = () => { if (inSection()) lock(); };
-
-    const onWheel = (e: WheelEvent) => {
-      if (!lockedRef.current) return;
-      const dy = e.deltaY;
-      if (dy > 0 && atBottom()) { e.preventDefault(); unlock('down'); return; }
-      if (dy < 0 && atTop()) { e.preventDefault(); unlock('up'); return; }
-    };
-
-    let lastTouchY: number | null = null;
-    const onTouchStart = (e: TouchEvent) => {
-      if (!lockedRef.current) return;
-      lastTouchY = e.touches[0]?.clientY ?? null;
-    };
-    const onTouchMove = (e: TouchEvent) => {
-      if (!lockedRef.current) return;
-      if (lastTouchY == null) return;
-      const y = e.touches[0]?.clientY ?? lastTouchY;
-      const dy = lastTouchY - y;
-      if (dy > 0 && atBottom()) { e.preventDefault(); unlock('down'); lastTouchY = null; return; }
-      if (dy < 0) { e.preventDefault(); unlock('up'); lastTouchY = null; return; }
-      lastTouchY = y;
-    };
-
-    window.addEventListener('scroll', handleWindowScroll, { passive: true });
-    scroller.addEventListener('scroll', handleFocus, { passive: true });
-    scroller.addEventListener('wheel', onWheel, { passive: false });
-    scroller.addEventListener('touchstart', onTouchStart, { passive: true });
-    scroller.addEventListener('touchmove', onTouchMove, { passive: false });
-    handleFocus();
-    handleWindowScroll();
-
-    return () => {
-      window.removeEventListener('scroll', handleWindowScroll);
-      scroller.removeEventListener('scroll', handleFocus as any);
-      scroller.removeEventListener('wheel', onWheel as any);
-      scroller.removeEventListener('touchstart', onTouchStart as any);
-      scroller.removeEventListener('touchmove', onTouchMove as any);
-      document.body.style.overflow = '';
-    };
-  }, []);
 
   return (
     <>
@@ -503,14 +286,15 @@ export default function Home() {
         >
           <div className="absolute inset-0 hero-glow" />
           <div
-            className="absolute inset-0 bg-cover bg-center"
+            className="absolute inset-0 bg-cover"
             style={{
-              backgroundImage: 'url(/assets/Studio.jpeg)', backgroundAttachment: 'fixed',
-              opacity: 0.90,
+              backgroundImage: 'url(/assets/Studio.jpeg)',
+              backgroundPosition: '62% 55%',
+              opacity: 0.45,
             }}
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/70 to-[#050505]/80" />
-          <div className="absolute inset-0 bg-black/60" />
+          <div className="absolute inset-0" style={{ background: 'radial-gradient(ellipse at 62% 55%, transparent 0%, rgba(5,5,5,0.55) 45%, rgba(5,5,5,0.85) 72%, rgba(5,5,5,0.98) 100%)' }} />
+          <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, rgba(5,5,5,0.75) 0%, rgba(5,5,5,0.20) 30%, rgba(5,5,5,0.20) 65%, rgba(5,5,5,0.98) 100%)' }} />
 
           <div className="container-custom relative z-10 text-center">
             <p
@@ -521,14 +305,14 @@ export default function Home() {
               Tempe, Arizona
             </p>
 
-            <h1 className="hero-title title-xl tracking-tight mb-6 opacity-0 animate-fade-in delay-100">
+            <h1 className="hero-title title-xl tracking-tight mb-6 opacity-0 animate-fade-in delay-300">
               <span style={{ color: '#d4af37' }}>Cutting</span> Corners -- Not the{' '}
               <span style={{ color: '#d4af37' }}>Quality</span>
             </h1>
 
             <p
-              className="text-gray-400 max-w-3xl mx-auto mb-10 opacity-0 animate-fade-in delay-200"
-              style={{ fontSize: 'px', lineHeight: 1.6 }}
+              className="text-gray-400 max-w-3xl mx-auto mb-10 opacity-0 animate-drop-in"
+              style={{ fontSize: '23px', lineHeight: 1.6 }}
             >
               Professional gemstone cutter focused on color, yield, and stone potential for jewelry
               professionals nationwide.
@@ -563,44 +347,10 @@ export default function Home() {
         </section>
 
         {/* ── Mobile Industry Section ── */}
-        <section
-          id="mobile-industry-section"
-          className="md:hidden text-center px-4 flex flex-col items-center justify-center"
-          style={{
-            background: '#050505',
-            borderTop: '1px solid rgba(255,255,255,0.10)',
-            minHeight: '100svh',
-            paddingTop: '40px',
-            paddingBottom: '40px',
-          }}
-        >
-          <p
-            className="uppercase mb-2"
-            style={{
-              fontSize: '11px',
-              letterSpacing: '0.29em',
-              color: 'rgba(255,255,255,0.52)',
-            }}
-          >
-            Industry for
-          </p>
-          <p
-            id="mobile-years"
-            style={{
-              fontSize: '24px',
-              fontWeight: 600,
-              color: 'rgba(255,255,255,0.75)',
-            }}
-          >
-            13 Years
-          </p>
-          <p style={{ fontSize: '12px', color: 'rgba(255,255,255,0.52)', marginTop: '4px' }}>
-            Cutting for <span id="mobile-seven">Seven</span>
-          </p>
-        </section>
+        <MobileIndustrySection />
 
         {/* ── Philosophy Section ── */}
-        <section id="philosophy-section" className="section-spacing">
+        <section id="philosophy-section" className="section-spacing" data-reveal-group>
           <div className="container-custom">
             <p
               className="uppercase text-gray-500 mb-4"
@@ -658,7 +408,7 @@ export default function Home() {
         </section>
 
         {/* ── Services Section ── */}
-        <section id="services-section" className="section-spacing">
+        <section id="services-section" className="section-spacing" data-reveal-group>
           <div className="container-custom">
             <div
               id="services-sticky-header"
@@ -694,217 +444,16 @@ export default function Home() {
               </h2>
             </div>
 
-            {/* Desktop 3-col grid */}
-            <div className="hidden md:grid grid-cols-3 gap-12" style={{ marginTop: '-8px' }}>
-              {services.map((service, i) => (
-                <div
-                  key={service.title}
-                  className="gem-card hover-lift opacity-0 transition-all duration-700"
-                  data-scroll-reveal
-                  style={{
-                    padding: '56px',
-                    borderRadius: '14px',
-                    minHeight: '320px',
-                    animationDelay: `${(i + 1) * 100}ms`,
-                    border: 'none',
-                    boxShadow: '0 10px 30px rgba(0,0,0,0.55)',
-                  }}
-                >
-                  <div
-                    style={{
-                      marginBottom: '32px',
-                      transition: 'transform 250ms ease-out, filter 520ms ease-out',
-                      transitionDelay: `${40 + i * 14}ms`,
-                      filter: 'drop-shadow(0 0 0 rgba(212,175,55,0))',
-                    }}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.transform = 'scale(1.05)';
-                      (e.currentTarget as HTMLElement).style.filter =
-                        'drop-shadow(0 0 10px rgba(212,175,55,0.18)) drop-shadow(0 0 22px rgba(212,175,55,0.10))';
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.transform = 'scale(1)';
-                      (e.currentTarget as HTMLElement).style.filter =
-                        'drop-shadow(0 0 0 rgba(212,175,55,0))';
-                    }}
-                  >
-                    <service.Icon size={48} color="#d4af37" strokeWidth={1.5} />
-                  </div>
-                  <h3
-                    className="title-sm text-white mb-5"
-                    style={{
-                      fontFamily: 'var(--font-display)',
-                      fontSize: '28px',
-                      fontWeight: 400,
-                    }}
-                  >
-                    {service.title}
-                  </h3>
-                  <p
-                    style={{
-                      fontFamily: 'var(--font-body)',
-                      fontSize: '16px',
-                      lineHeight: 1.75,
-                      color: 'rgba(255,255,255,0.65)',
-                      maxWidth: '90%',
-                    }}
-                  >
-                    {service.description}
-                  </p>
-                </div>
-              ))}
-            </div>
+            {/* Desktop services grid */}
+            <DesktopServicesGrid />
 
             {/* Mobile scroll carousel */}
-            <div
-              className="md:hidden flex flex-col relative"
-              style={{
-                height: 'calc(100vh - 90px)',
-                marginTop: '8px',
-                overflow: 'hidden',
-              }}
-            >
-              <div
-                className="pointer-events-none"
-                style={{
-                  height: '80px',
-                  background: 'linear-gradient(to bottom, rgba(5,5,5,1) 0%, rgba(5,5,5,0) 100%)',
-                  position: 'absolute',
-                  left: 0, right: 0,
-                  zIndex: 10,
-                }}
-              />
-              <div
-                className="pointer-events-none"
-                style={{
-                  height: '80px',
-                  background: 'linear-gradient(to top, rgba(5,5,5,1) 0%, rgba(5,5,5,0) 100%)',
-                  position: 'absolute',
-                  left: 0, right: 0, bottom: 0,
-                  zIndex: 10,
-                }}
-              />
-
-              <div
-                id="mobile-services-scroll"
-                className="flex flex-col"
-                style={{
-                  gap: '32px',
-                  flex: 1,
-                  overflowY: 'auto',
-                  scrollSnapType: 'y mandatory',
-                  WebkitOverflowScrolling: 'touch',
-                  paddingTop: '8px',
-                  paddingBottom: '120px',
-                  scrollbarWidth: 'none',
-                  scrollPaddingTop: '0px',
-                }}
-              >
-                {services.map((service, i) => (
-                  <div
-                    key={service.title}
-                    data-service-card-mobile
-                    style={{
-                      scrollSnapAlign: 'center',
-                      scrollSnapStop: 'always',
-                      minHeight: 'calc(100vh - 110px)',
-                      padding: '32px',
-                      paddingTop: '48px',
-                      borderRadius: '16px',
-                      backgroundColor: '#0A0A0A',
-                      border: 'none',
-                      display: 'flex',
-                      flexDirection: 'column',
-                      justifyContent: 'flex-start',
-                      opacity: 0.55,
-                      filter: 'blur(3px)',
-                      transform: 'scale(0.98)',
-                      willChange: 'opacity, filter, transform',
-                    }}
-                  >
-                    <div
-                      data-service-icon
-                      style={{
-                        marginBottom: '24px',
-                        transition: 'transform 520ms ease-out, filter 520ms ease-out, opacity 520ms ease-out',
-                        transitionDelay: `${35 + i * 18}ms`,
-                        transform: 'scale(0.98)',
-                        opacity: 0.9,
-                        filter: 'drop-shadow(0 0 0 rgba(212,175,55,0))',
-                      }}
-                    >
-                      <service.Icon size={36} color="#d4af37" strokeWidth={1.5} />
-                    </div>
-                    <h3
-                      style={{
-                        fontFamily: 'var(--font-display)',
-                        fontSize: 'clamp(22px, 6vw, 26px)',
-                        fontWeight: 400,
-                        color: '#FAFAFA',
-                        marginBottom: '16px',
-                        textAlign: 'left',
-                      }}
-                    >
-                      {service.title}
-                    </h3>
-                    <p
-                      style={{
-                        fontFamily: 'var(--font-body)',
-                        fontSize: '16px',
-                        lineHeight: 1.7,
-                        color: 'rgba(255,255,255,0.70)',
-                        textAlign: 'left',
-                      }}
-                    >
-                      {service.description}
-                    </p>
-                  </div>
-                ))}
-              </div>
-
-              <div
-                id="mobile-scroll-arrow"
-                style={{
-                  position: 'absolute',
-                  bottom: '20px',
-                  left: '50%',
-                  transform: 'translateX(-50%)',
-                  zIndex: 30,
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                  gap: '6px',
-                  opacity: 1,
-                  transition: 'opacity 400ms ease',
-                  pointerEvents: 'none',
-                }}
-              >
-                <span
-                  style={{
-                    fontFamily: 'var(--font-ui)',
-                    fontSize: '10px',
-                    letterSpacing: '0.18em',
-                    textTransform: 'uppercase',
-                    color: 'rgba(255,255,255,0.35)',
-                  }}
-                >
-                  Scroll
-                </span>
-                <div
-                  style={{
-                    width: '1px',
-                    height: '32px',
-                    background: 'linear-gradient(to bottom, rgba(212,175,55,0.6), rgba(212,175,55,0))',
-                    animation: 'scrollPulse 1.6s ease-in-out infinite',
-                  }}
-                />
-              </div>
-            </div>
+            <MobileServicesCarousel />
           </div>
         </section>
 
         {/* ── About Section ("The Cutter") ── */}
-        <section className="section-spacing">
+        <section className="section-spacing" data-reveal-group>
           <div className="container-custom">
             <p
               className="uppercase text-gray-500 mb-4"
@@ -1034,7 +583,7 @@ export default function Home() {
               data-scroll-reveal
               style={{
                 fontFamily: 'var(--font-body)',
-                fontSize: '18px',
+                fontSize: '23px',
                 lineHeight: 1.75,
                 color: 'rgba(255,255,255,0.70)',
                 maxWidth: '600px',
