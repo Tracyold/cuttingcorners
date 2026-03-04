@@ -10,17 +10,17 @@ export interface Service {
 export const services: Service[] = [
   {
     title: 'Custom Cutting',
-    description: "Receive a tailored cutting experience designed to reveal each gemstone's highest potential.",
+    description: "Receive a tailored cutting experience designed to reveal a gemstone's highest potential.",
     Icon: Gem,
   },
   {
     title: 'Re-Polish & Re-Cut',
-    description: 'Breathe new life into existing gemstones through restoration focused on above-industry-standard weight retention.',
+    description: 'Breathe new life into existing cut stones and restore their beauty without compromising weight.',
     Icon: RefreshCw,
   },
   {
     title: 'Jeweler Services',
-    description: 'Working directly with jewelers in the industry to deliver quick turn arounds and shorter lead times.',
+    description: 'Online service requests and work orders  for industry professionals for quick turn arounds and shorter lead times.',
     Icon: Briefcase,
   },
   {

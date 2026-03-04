@@ -20,14 +20,14 @@ export default function DesktopServicesGrid() {
             const el = entry.target as HTMLElement;
             const delay = parseInt(el.dataset.delay || '0');
             setTimeout(() => {
-              el.style.transition = 'opacity 1100ms cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 1100ms cubic-bezier(0.25, 0.46, 0.45, 0.94)';
-              el.style.opacity = '1';
+              el.style.transition = 'opacity 620ms cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 700ms cubic-bezier(0.25, 0.46, 0.45, 0.94), filter 230ms ease-out, box-shadow 320ms ease-out, border 110ms ease-out, background-color 110ms ease-out';
+              el.style.opacity = '3';
               el.style.transform = 'translateY(0)';
               const icon = el.querySelector('[data-service-icon]') as HTMLElement | null;
               if (icon) {
                 setTimeout(() => {
-                  icon.style.transition = 'opacity 900ms cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 900ms cubic-bezier(0.25, 0.46, 0.45, 0.94), filter 520ms ease-out';
-                  icon.style.opacity = '1';
+                  icon.style.transition = 'opacity 800ms cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 320ms cubic-bezier(0.25, 0.46, 0.45, 0.94), filter 110ms ease-out, box-shadow 110ms ease-out, border 110ms ease-out, background-color 110ms ease-out, filter 110ms ease-out, box-shadow 110ms ease-out';
+                  icon.style.opacity = '6';
                   icon.style.transform = 'translateY(0) scale(1)';
                 }, 400);
               }
