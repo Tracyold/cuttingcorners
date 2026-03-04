@@ -118,7 +118,6 @@ export default function StudioSection() {
         backgroundSize: 'cover', backgroundPosition: 'center',
         opacity: 0.04, filter: 'blur(12px) contrast(1.08)',
         transform: 'scale(1.12)', transformOrigin: 'center center',
-        boxShadow: 'inset 0 0 0 8px #050505',
         willChange: 'opacity, filter, transform',
         transition: 'opacity 220ms ease-out, filter 220ms ease-out, transform 700ms ease-out',
       }} />
@@ -148,6 +147,12 @@ export default function StudioSection() {
         position: 'absolute', bottom: 0, left: 0, right: 0,
         height: '120px', zIndex: 4, pointerEvents: 'none',
         background: 'linear-gradient(to top, #050505 0%, transparent 100%)',
+      }} />
+
+      {/* Edge border overlay */}
+      <div style={{
+        position: 'absolute', inset: 0, zIndex: 5, pointerEvents: 'none',
+        boxShadow: 'inset 0 0 0 10px #050505',
       }} />
 
       <div style={{
