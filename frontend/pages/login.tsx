@@ -30,7 +30,7 @@ export default function LoginPage() {
   const router = useRouter();
   const [mode, setMode] = useState<'login' | 'signup'>('login');
   const [step, setStep] = useState<'form' | 'otp'>('form');
-  const [phone, setPhone] = useState('');
+  const [phone, setPhone] = useState('+1 ');
   const [otp, setOtp] = useState('');
   // Signup fields
   const [name, setName] = useState('');
@@ -127,7 +127,7 @@ export default function LoginPage() {
               </>
             )}
             <label style={labelStyle}>PHONE NUMBER</label>
-            <input type="tel" value={phone} onChange={e => setPhone(e.target.value)} placeholder="+1 (555) 000-0000" style={inputStyle}
+            <input type="tel" value={phone} onChange={e => setPhone(e.target.value)} placeholder="+1 (555) 000-0000" style={inputStyle} onFocus={e => { if (!e.target.value) setPhone('+1 '); }}
               onFocus={e => { e.target.style.borderColor = 'rgba(214,180,70,0.55)'; e.target.style.boxShadow = '0 0 10px rgba(214,180,70,0.15)'; }}
               onBlur={e => { e.target.style.borderColor = 'rgba(255,255,255,0.10)'; e.target.style.boxShadow = 'none'; }} />
             {mode === 'signup' && (
