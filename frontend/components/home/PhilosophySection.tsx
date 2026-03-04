@@ -17,7 +17,7 @@ export default function PhilosophySection() {
         entries.forEach((entry) => {
           const el = entry.target as HTMLElement;
           if (entry.isIntersecting) {
-            el.style.color = '#d4af37';
+            el.style.color = 'rgb(100, 140, 255)';
           } else {
             el.style.color = '#FAFAFA';
           }
