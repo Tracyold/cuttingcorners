@@ -20,25 +20,20 @@ export default function StudioSection() {
     let snapUsed = false;
     let isPressed = false;
 
-    const onPointerDown = () => { isPressed = true; };
-    const onPointerUp = () => { isPressed = false; };
-
-    const unlockScroll = () => {
-      if (!snapLocked) return;
-      document.body.style.overflow = '';
-      snapLocked = false;
+    const onPointerDown = () => {
+      isPressed = true;
+      if (snapLocked) {
+        document.body.style.overflow = '';
+        snapLocked = false;
+      }
     };
+    const onPointerUp = () => { isPressed = false; };
 
     const lockScroll = () => {
       if (snapLocked || snapUsed || isPressed) return;
       snapLocked = true;
       snapUsed = true;
       document.body.style.overflow = 'hidden';
-      setTimeout(() => {
-        window.addEventListener('wheel', unlockScroll, { once: true, passive: true });
-        window.addEventListener('touchmove', unlockScroll, { once: true, passive: true });
-        window.addEventListener('keydown', unlockScroll, { once: true });
-      }, 400);
     };
 
     const onScrollReset = () => {
