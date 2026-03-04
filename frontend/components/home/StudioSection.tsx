@@ -66,7 +66,16 @@ export default function StudioSection() {
         const b = Math.round(255 * (1 - colorProgress));
         title.style.color = `rgb(${r}, ${g}, ${b})`;
         title.style.textShadow = colorProgress > 0.2
-          ? `0 0 ${colorProgress * 40}px rgba(212,175,55,${colorProgress * 0.7}), 0 0 ${colorProgress * 80}px rgba(212,175,55,${colorProgress * 0.35})`
+          ? [
+              `0 0 ${colorProgress * 8}px rgba(255,220,100,${colorProgress * 0.95})`,
+              `0 0 ${colorProgress * 20}px rgba(212,175,55,${colorProgress * 0.85})`,
+              `0 0 ${colorProgress * 45}px rgba(212,175,55,${colorProgress * 0.6})`,
+              `0 0 ${colorProgress * 90}px rgba(180,140,30,${colorProgress * 0.35})`,
+              `0 0 ${colorProgress * 140}px rgba(150,110,10,${colorProgress * 0.15})`,
+            ].join(', ')
+          : 'none';
+        title.style.filter = colorProgress > 0.2
+          ? `drop-shadow(0 0 ${colorProgress * 30}px rgba(212,175,55,${colorProgress * 0.4}))`
           : 'none';
 
         title.style.opacity = '1';
