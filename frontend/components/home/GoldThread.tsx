@@ -112,9 +112,9 @@ export default function GoldThread() {
           target = clamp(viewportCenteredness(el) * 1.1);
         }
 
-        item.t  = lerp(item.t,  target,    0.055);
-        item.t2 = lerp(item.t2, item.t,   0.038); // white layer — lags behind
-        item.t3 = lerp(item.t3, item.t2,  0.028); // yellow overlay — lags behind white
+        item.t  = lerp(item.t,  target,    0.09);
+        item.t2 = lerp(item.t2, item.t,   0.07);
+        item.t3 = lerp(item.t3, item.t2,  0.055);
         applyGold(item, easeInOut(clamp(item.t)), easeInOut(clamp(item.t2)), easeInOut(clamp(item.t3)));
       });
       rafId = requestAnimationFrame(tick);
