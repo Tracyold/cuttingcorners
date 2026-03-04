@@ -51,11 +51,7 @@ function applyGold({ el, type }: GoldItem, t: number) {
     ].join(', ') : 'none';
   }
 
-  if (type === 'service-card') {
-    el.style.background = t > 0.03
-      ? `linear-gradient(135deg, rgba(212,175,55,${t*0.07}) 0%, rgba(10,10,10,1) 55%)`
-      : '';
-  }
+
 
   if (type === 'name') {
     el.style.color = t > 0.05
@@ -102,9 +98,7 @@ export default function GoldThread() {
         if (type === 'philo-title' || type === 'section-title') {
           target = clamp(viewportCenteredness(el) * 1.3);
         }
-        if (type === 'service-card') {
-          target = clamp(viewportCenteredness(el) * 1.2);
-        }
+
         if (type === 'name') {
           target = clamp(viewportCenteredness(el) * 1.1);
         }
@@ -124,7 +118,7 @@ export default function GoldThread() {
       items.forEach(({ el, type }) => {
         el.style.textShadow = '';
         if (type === 'hero-card') { el.style.borderColor = ''; el.style.boxShadow = ''; }
-        if (type === 'service-card') el.style.background = '';
+
         if (type === 'name') el.style.color = '';
       });
     };
