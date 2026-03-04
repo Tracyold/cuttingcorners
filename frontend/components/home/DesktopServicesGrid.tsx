@@ -50,7 +50,7 @@ export default function DesktopServicesGrid() {
               icon.style.transition = `opacity 700ms ease-out ${base + 150}ms, transform 700ms cubic-bezier(0.22, 1, 0.36, 1) ${base + 150}ms, filter 1200ms ease-out ${base + 300}ms`;
               icon.style.opacity = '1';
               icon.style.transform = 'translateY(0)';
-              icon.style.filter = 'drop-shadow(0 0 8px rgba(212,175,55,0.6)) drop-shadow(0 0 20px rgba(212,175,55,0.3)) drop-shadow(0 0 50px rgba(180,140,30,0.15))';
+              icon.style.filter = 'sepia(1) saturate(2) brightness(1.1) drop-shadow(0 0 8px rgba(212,175,55,0.6)) drop-shadow(0 0 20px rgba(212,175,55,0.3)) drop-shadow(0 0 50px rgba(180,140,30,0.15))';
             }
 
             // Title fades in softly after icon
@@ -124,7 +124,7 @@ export default function DesktopServicesGrid() {
                 'drop-shadow(0 0 0 rgba(212,175,55,0))';
             }}
           >
-            <service.Icon size={48} color="#d4af37" strokeWidth={1.5} />
+            <service.Icon size={48} color="#FAFAFA" strokeWidth={1.5} />
           </div>
           <h3
             data-gold="section-title"
