@@ -63,6 +63,13 @@ export default function StudioSection() {
 
 
         title.style.opacity = '1';
+        const r = Math.round(250 + (212 - 250) * eased);
+        const g = Math.round(250 + (175 - 250) * eased);
+        const b = Math.round(250 + (55  - 250) * eased);
+        title.style.color = `rgb(${r},${g},${b})`;
+        title.style.filter = eased > 0.05
+          ? `brightness(${1 + eased * 0.2}) drop-shadow(0 0 ${eased * 8}px rgba(212,175,55,${eased * 0.5})) drop-shadow(0 0 ${eased * 22}px rgba(255,255,255,${eased * 0.15}))`
+          : 'none';
         label.style.opacity = '1';
         desc.style.opacity = '1';
       });
