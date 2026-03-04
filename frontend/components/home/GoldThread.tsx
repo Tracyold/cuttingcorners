@@ -20,12 +20,9 @@ interface GoldItem { el: HTMLElement; type: string; t: number; }
 
 function applyGold({ el, type }: GoldItem, t: number) {
   if (type === 'hero-word') {
-    el.style.textShadow = t > 0.02 ? [
-      `0 0 ${t*6}px rgba(255,230,120,${t*0.9})`,
-      `0 0 ${t*18}px rgba(212,175,55,${t*0.7})`,
-      `0 0 ${t*45}px rgba(212,175,55,${t*0.4})`,
-      `0 0 ${t*100}px rgba(180,140,30,${t*0.18})`,
-    ].join(', ') : 'none';
+    el.style.filter = t > 0.02
+      ? `brightness(${1 + t*0.4}) drop-shadow(0 0 ${t*6}px rgba(255,220,100,${t*0.95})) drop-shadow(0 0 ${t*18}px rgba(212,175,55,${t*0.7})) drop-shadow(0 0 ${t*45}px rgba(212,175,55,${t*0.35}))`
+      : 'none';
   }
 
   if (type === 'hero-card') {
@@ -37,32 +34,24 @@ function applyGold({ el, type }: GoldItem, t: number) {
   }
 
   if (type === 'philo-title') {
-    el.style.textShadow = t > 0.05 ? [
-      `0 0 ${t*14}px rgba(212,175,55,${t*0.35})`,
-      `0 0 ${t*40}px rgba(212,175,55,${t*0.12})`,
-    ].join(', ') : 'none';
+    el.style.filter = t > 0.05
+      ? `brightness(${1 + t*0.3}) drop-shadow(0 0 ${t*8}px rgba(212,175,55,${t*0.8})) drop-shadow(0 0 ${t*25}px rgba(212,175,55,${t*0.45})) drop-shadow(0 0 ${t*60}px rgba(180,140,30,${t*0.2}))`
+      : 'none';
   }
 
   if (type === 'section-title') {
-    el.style.textShadow = t > 0.05 ? [
-      `0 0 ${t*16}px rgba(212,175,55,${t*0.4})`,
-      `0 0 ${t*50}px rgba(212,175,55,${t*0.15})`,
-      `0 0 ${t*100}px rgba(180,140,30,${t*0.07})`,
-    ].join(', ') : 'none';
+    el.style.filter = t > 0.05
+      ? `brightness(${1 + t*0.3}) drop-shadow(0 0 ${t*8}px rgba(212,175,55,${t*0.8})) drop-shadow(0 0 ${t*20}px rgba(212,175,55,${t*0.5})) drop-shadow(0 0 ${t*50}px rgba(180,140,30,${t*0.25}))`
+      : 'none';
   }
-
-
 
   if (type === 'name') {
     el.style.color = t > 0.05
       ? `rgb(${Math.round(lerp(250,212,t))},${Math.round(lerp(250,175,t))},${Math.round(lerp(250,55,t))})`
       : '';
-    el.style.textShadow = t > 0.08 ? [
-      `0 0 ${t*6}px rgba(255,230,120,${t*0.9})`,
-      `0 0 ${t*25}px rgba(212,175,55,${t*0.7})`,
-      `0 0 ${t*70}px rgba(212,175,55,${t*0.35})`,
-      `0 0 ${t*140}px rgba(180,140,30,${t*0.15})`,
-    ].join(', ') : 'none';
+    el.style.filter = t > 0.08
+      ? `brightness(${1 + t*0.35}) drop-shadow(0 0 ${t*8}px rgba(255,220,100,${t*0.9})) drop-shadow(0 0 ${t*25}px rgba(212,175,55,${t*0.6})) drop-shadow(0 0 ${t*70}px rgba(180,140,30,${t*0.25}))`
+      : 'none';
   }
 }
 

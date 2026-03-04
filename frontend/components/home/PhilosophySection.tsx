@@ -16,12 +16,7 @@ export default function PhilosophySection() {
       (entries) => {
         entries.forEach((entry) => {
           const el = entry.target as HTMLElement;
-          if (entry.isIntersecting) {
-            el.style.color = 'rgb(212, 175, 55)';
-          } else {
-            el.style.color = '#FAFAFA';
-            el.style.textShadow = 'none';
-          }
+
         });
       },
       { threshold: 0.8, rootMargin: '0px 0px -20% 0px' }
@@ -62,10 +57,10 @@ export default function PhilosophySection() {
               }}
             >
               <span
+                data-gold="hero-word"
                 data-gold-word
                 style={{
-                  color: '#FAFAFA',
-                  transition: 'color 1400ms cubic-bezier(0.25, 0.1, 0.25, 1), text-shadow 1400ms cubic-bezier(0.25, 0.1, 0.25, 1), filter 1400ms cubic-bezier(0.25, 0.1, 0.25, 1)',
+                  transition: 'filter 1400ms cubic-bezier(0.25, 0.1, 0.25, 1)',
                   whiteSpace: 'nowrap',
                 }}
               >
