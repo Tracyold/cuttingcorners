@@ -39,7 +39,7 @@ export default function PhilosophySection() {
         padding: '6rem 0',
       }}
     >
-      <div className="container-custom" style={{ maxWidth: '720px' }}>
+      <div className="container-custom" style={{ maxWidth: '1400px', width: '100%' }}>
         <p
           className="uppercase text-gray-500 mb-4 text-center"
           style={{ fontSize: '12px', letterSpacing: '0.20em' }}
@@ -54,7 +54,7 @@ export default function PhilosophySection() {
               key={gold}
               style={{
                 fontFamily: 'var(--font-display)',
-                fontSize: 'clamp(1.875rem, 4vw, 2.5rem)',
+                fontSize: 'clamp(1.875rem, 6vw, 5.5rem)',
                 fontWeight: 400,
                 lineHeight: 1.25,
                 color: '#FAFAFA',
