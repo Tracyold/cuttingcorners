@@ -4,7 +4,7 @@ import { inputStyle, labelStyle, goldBtnStyle, ghostBtnStyle } from './shopTypes
 export function InquiryContactForm({ onSubmit, onClose }: { onSubmit: (info: any) => void; onClose: () => void }) {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
-  const [phone, setPhone] = useState('');
+  const [phone, setPhone] = useState('+1 ');
   const [email, setEmail] = useState('');
   const [err, setErr] = useState('');
   return (
