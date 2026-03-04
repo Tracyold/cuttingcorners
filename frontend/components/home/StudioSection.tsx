@@ -60,23 +60,7 @@ export default function StudioSection() {
         photo.style.filter = `blur(${(1 - eased) * 12}px) contrast(1.08)`;
         photo.style.transform = `scale(${1.12 - eased * 0.06})`;
 
-        const colorProgress = eased;
-        const r = Math.round(250 * (1 - colorProgress * 0.02));
-        const g = Math.round(250 * (1 - colorProgress * 0.31));
-        const b = Math.round(255 * (1 - colorProgress));
-        title.style.color = `rgb(${r}, ${g}, ${b})`;
-        title.style.textShadow = colorProgress > 0.2
-          ? [
-              `0 0 ${colorProgress * 8}px rgba(255,220,100,${colorProgress * 0.95})`,
-              `0 0 ${colorProgress * 20}px rgba(212,175,55,${colorProgress * 0.85})`,
-              `0 0 ${colorProgress * 45}px rgba(212,175,55,${colorProgress * 0.6})`,
-              `0 0 ${colorProgress * 90}px rgba(180,140,30,${colorProgress * 0.35})`,
-              `0 0 ${colorProgress * 140}px rgba(150,110,10,${colorProgress * 0.15})`,
-            ].join(', ')
-          : 'none';
-        title.style.filter = colorProgress > 0.2
-          ? `drop-shadow(0 0 ${colorProgress * 30}px rgba(212,175,55,${colorProgress * 0.4}))`
-          : 'none';
+
 
         title.style.opacity = '1';
         label.style.opacity = '1';
@@ -185,8 +169,8 @@ export default function StudioSection() {
           style={{ fontSize: '12px', letterSpacing: '0.25em', marginBottom: '16px' }}>
           Where It Happens
         </p>
-        <h2 ref={titleRef} className="title-xl"
-          style={{ marginBottom: '20px', color: '#FAFAFA' }}>
+        <h2 ref={titleRef} data-gold="section-title" className="title-xl"
+          style={{ marginBottom: '20px' }}>
           The Studio
         </h2>
         <p ref={descRef} style={{
