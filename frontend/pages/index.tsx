@@ -311,8 +311,8 @@ export default function Home() {
             </p>
 
             <h1 className="hero-title title-xl tracking-tight mb-9 opacity-10 animate-fade-in delay-1000 duration-2000" data-scroll-reveal style={{ animationDelay: '92000ms' }} >
-              <span data-gold="hero-word" style={{ color: '#d4af37', transition: 'text-shadow 600ms ease' }}>Cutting</span> Corners -- Not the{' '}
-              <span data-gold="hero-word" style={{ color: '#d4af37', transition: 'text-shadow 600ms ease' }}>Quality</span>
+              <span data-gold="hero-word" style={{ color: '#FAFAFA', transition: 'color 800ms ease, filter 800ms ease' }}>Cutting</span> Corners -- Not the{' '}
+              <span data-gold="hero-word" style={{ color: '#FAFAFA', transition: 'color 800ms ease, filter 800ms ease' }}>Quality</span>
             </h1>
 
             <p

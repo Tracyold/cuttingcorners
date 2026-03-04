@@ -20,7 +20,11 @@ interface GoldItem { el: HTMLElement; type: string; t: number; t2: number; t3: n
 
 function applyGold({ el, type }: GoldItem, t: number, t2: number, t3: number) {
   if (type === 'hero-word') {
-    el.style.filter = t > 0.02
+    const r = Math.round(250 + (212 - 250) * t);
+    const g = Math.round(250 + (175 - 250) * t);
+    const b = Math.round(250 + (55  - 250) * t);
+    el.style.color = `rgb(${r},${g},${b})`;
+    el.style.filter = t > 0.05
       ? `brightness(${1 + t*0.2}) drop-shadow(0 0 ${t*8}px rgba(212,175,55,${t*0.5})) drop-shadow(0 0 ${t2*20}px rgba(255,255,255,${t2*0.15}))`
       : 'none';
   }
