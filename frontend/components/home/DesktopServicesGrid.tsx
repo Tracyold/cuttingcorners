@@ -47,9 +47,10 @@ export default function DesktopServicesGrid() {
             // Icon flies in from further below with more drama
             const icon = card.querySelector('[data-service-icon]') as HTMLElement | null;
             if (icon) {
-              icon.style.transition = `opacity 700ms ease-out ${base + 150}ms, transform 700ms cubic-bezier(0.22, 1, 0.36, 1) ${base + 150}ms`;
+              icon.style.transition = `opacity 700ms ease-out ${base + 150}ms, transform 700ms cubic-bezier(0.22, 1, 0.36, 1) ${base + 150}ms, filter 1200ms ease-out ${base + 300}ms`;
               icon.style.opacity = '1';
               icon.style.transform = 'translateY(0)';
+              icon.style.filter = 'drop-shadow(0 0 8px rgba(212,175,55,0.6)) drop-shadow(0 0 20px rgba(212,175,55,0.3)) drop-shadow(0 0 50px rgba(180,140,30,0.15))';
             }
 
             // Title fades in softly after icon
