@@ -55,7 +55,7 @@ export default function PhilosophySection() {
         >
           Philosophy
         </p>
-        <h2 className="title-xl tracking-tight mb-16 text-center">My Four C&apos;s</h2>
+        <h2 data-gold="philo-title" className="title-xl tracking-tight mb-16 text-center">My Four C&apos;s</h2>
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: '2.5rem' }}>
           {lines.map(({ gold, rest }) => (
