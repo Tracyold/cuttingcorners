@@ -57,6 +57,15 @@ export const inputStyle: React.CSSProperties = {
   outline: 'none',
   marginBottom: '10px',
 };
+export const inputFocus = (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  e.target.style.borderColor = 'rgba(214,180,70,0.55)';
+  e.target.style.boxShadow = '0 0 10px rgba(214,180,70,0.15)';
+};
+export const inputBlur = (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  e.target.style.borderColor = 'rgba(255,255,255,0.10)';
+  e.target.style.boxShadow = 'none';
+};
+
 export const labelStyle: React.CSSProperties = {
   fontFamily: "'Montserrat', sans-serif",
   fontSize: '9px', fontWeight: 600,
@@ -70,10 +79,14 @@ export const goldBtnStyle: React.CSSProperties = {
   fontFamily: "'Montserrat', sans-serif",
   fontSize: '11px', fontWeight: 600,
   textTransform: 'uppercase',
-  letterSpacing: '0.20em',
-  backgroundColor: '#d4af37', color: '#050505',
-  border: 'none', padding: '14px 24px',
+  letterSpacing: '0.3em',
+  background: 'transparent',
+  color: '#d4af37',
+  border: '1px solid rgba(214,180,70,0.9)',
+  padding: '14px 24px',
+  marginTop: '16px',
   cursor: 'pointer',
+  boxShadow: '0 0 14px rgba(214,180,70,0.35)',
 };
 export const ghostBtnStyle: React.CSSProperties = {
   width: '100%', textAlign: 'center',
@@ -84,5 +97,5 @@ export const ghostBtnStyle: React.CSSProperties = {
   backgroundColor: 'transparent',
   color: 'rgba(255,255,255,0.38)',
   border: 'none', cursor: 'pointer',
-  padding: '10px 0', marginTop: '8px',
+  padding: '12px 0', marginTop: '12px',
 };
