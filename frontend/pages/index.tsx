@@ -393,6 +393,7 @@ export default function Home() {
                   fontSize: 'clamp(28px, 3.5vw, 56px)',
                   letterSpacing: '-0.01em',
                   marginBottom: '0px',
+                  color: 'rgba(255,255,255,0.35)',
                 }}
               >
                 Services
@@ -416,7 +417,7 @@ export default function Home() {
             >
               About
             </p>
-            <h2 data-gold="section-title" className="title-xl tracking-tight mb-16 text-center">The Cutter</h2>
+            <h2 data-gold="section-title" className="title-xl tracking-tight mb-16 text-center" style={{ color: 'rgba(255,255,255,0.35)' }}>The Cutter</h2>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
               <div
