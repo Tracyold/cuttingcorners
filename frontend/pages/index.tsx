@@ -310,8 +310,8 @@ export default function Home() {
             </p>
 
             <h1 className="hero-title title-xl tracking-tight mb-9 opacity-10 animate-fade-in delay-1000 duration-2000" data-scroll-reveal style={{ animationDelay: '92000ms' }} >
-              <span data-gold="hero-word" style={{ color: '#d4af37' }}>Cutting</span> Corners -- Not the{' '}
-              <span data-gold="hero-word" style={{ color: '#d4af37' }}>Quality</span>
+              <span data-gold="hero-word" style={{ color: '#d4af37', transition: 'text-shadow 600ms ease' }}>Cutting</span> Corners -- Not the{' '}
+              <span data-gold="hero-word" style={{ color: '#d4af37', transition: 'text-shadow 600ms ease' }}>Quality</span>
             </h1>
 
             <p
@@ -526,6 +526,7 @@ export default function Home() {
 
           <div className="container-custom relative z-10 text-center" style={{ maxWidth: '880px' }}>
             <h2
+              data-gold="section-title"
               className="page-title title-xl mb-8 opacity-0 transition-all duration-700"
               data-scroll-reveal
               style={{ animationDelay: '30ms' }}
