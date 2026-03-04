@@ -4,6 +4,7 @@ import { services } from '../components/home/homeData';
 import MobileIndustrySection from '../components/home/MobileIndustrySection';
 import MobileServicesCarousel from '../components/home/MobileServicesCarousel';
 import DesktopServicesGrid from '../components/home/DesktopServicesGrid';
+import PhilosophySection from '../components/home/PhilosophySection';
 import TopNav from '../components/shared/TopNav';
 import Footer from '../components/shared/Footer';
 
@@ -288,7 +289,7 @@ export default function Home() {
           <div
             className="absolute inset-1 bg-cover"
             style={{
-              backgroundImage: 'url(/assets/Studio.jpeg); opacity: 0.9',
+              backgroundImage: 'url(/assets/Chair.jpeg)',
               backgroundPosition: '62% 40%',
               opacity: '0.4',
             }}
@@ -350,62 +351,7 @@ export default function Home() {
         <MobileIndustrySection />
 
         {/* ── Philosophy Section ── */}
-        <section id="philosophy-section" className="section-spacing" data-reveal-group>
-          <div className="container-custom">
-            <p
-              className="uppercase text-gray-500 mb-4 text-center"
-              style={{ fontSize: '12px', letterSpacing: '0.20em' }}
-            >
-              Philosophy
-            </p>
-            <h2 className="title-xl tracking-tight mb-12 text-center">My Four C&apos;s</h2>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-              <div className="space-y-6">
-                {[
-                  { gold: 'Color', rest: ' is the goal.', delay: '100ms' },
-                  { gold: 'Conscious', rest: ' of the weight.', delay: '200ms' },
-                  { gold: 'Careful', rest: ' with my approach.', delay: '300ms' },
-                  { gold: 'Cutting', rest: ' is my craft.', delay: '400ms' },
-                ].map(({ gold, rest, delay }) => (
-                  <p
-                    key={gold}
-                    className="opacity-0 transition-all duration-700"
-                    style={{
-                      fontFamily: 'var(--font-display)',
-                      fontSize: 'clamp(1.875rem, 4vw, 2.5rem)',
-                      fontWeight: 400,
-                      lineHeight: 1.25,
-                      animationDelay: delay,
-                    }}
-                    data-scroll-reveal
-                  >
-                    <span style={{ color: '#d4af37', whiteSpace: 'nowrap' }}>{gold}</span>
-                    {rest}
-                  </p>
-                ))}
-              </div>
-
-              <div className="relative group overflow-hidden rounded" data-scroll-reveal>
-                <div className="absolute inset-0 bg-black/60 group-hover:bg-black/0 transition-all duration-500 z-10" />
-                <div
-                  className="absolute inset-0 z-20 pointer-events-none"
-                  style={{ boxShadow: 'inset 0 0 60px 20px rgba(0,0,0,0.8)' }}
-                />
-                <div className="absolute inset-0 z-30 flex items-center justify-center transition-all duration-500 group-hover:opacity-0">
-                  <span className="title-sm text-white" style={{ fontSize: '0.875rem' }}>
-                    Studio
-                  </span>
-                </div>
-                <img
-                  src="/assets/Chair.jpeg"
-                  alt="Workshop"
-                  className="w-full object-cover"
-                />
-              </div>
-            </div>
-          </div>
-        </section>
+        <PhilosophySection />
 
         {/* ── Services Section ── */}
         <section id="services-section" className="section-spacing" data-reveal-group>
@@ -419,13 +365,13 @@ export default function Home() {
                 zIndex: 20,
                 background: '#050505',
                 paddingTop: '28px',
-                paddingBottom: '0px',
+                paddingBottom: '3px',
               }}
             >
               <p
                 className="uppercase mb-3 text-center"
                 style={{
-                  fontSize: '12px',
+                  fontSize: '13px',
                   letterSpacing: '0.20em',
                   color: 'rgba(255,255,255,0.52)',
                 }}
@@ -538,7 +484,7 @@ export default function Home() {
                     color: 'rgba(255,255,255,0.68)',
                     maxWidth: '520px',
                     marginBottom: '32px',
-                    animationDelay: '300ms',
+                    animationDelay: '231ms',
                   }}
                 >
                   I work closely with jewelers across the industry, specializing in natural colored
@@ -573,7 +519,7 @@ export default function Home() {
             <h2
               className="page-title title-xl mb-8 opacity-0 transition-all duration-700"
               data-scroll-reveal
-              style={{ animationDelay: '100ms' }}
+              style={{ animationDelay: '30ms' }}
             >
               Ready to Start?
             </h2>
