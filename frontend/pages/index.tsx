@@ -351,11 +351,11 @@ export default function Home() {
         {/* ── Mobile Industry Section ── */}
         <MobileIndustrySection />
 
-        {/* ── Studio Section ── */}
-        <StudioSection />
-
         {/* ── Philosophy Section ── */}
         <PhilosophySection />
+
+        {/* ── Studio Section ── */}
+        <StudioSection />
 
         {/* ── Services Section ── */}
         <section id="services-section" data-reveal-group style={{ minHeight: "100svh", display: "flex", alignItems: "center", paddingTop: "6rem", paddingBottom: "6rem" }}>
