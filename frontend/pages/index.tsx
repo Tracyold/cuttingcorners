@@ -6,6 +6,7 @@ import MobileServicesCarousel from '../components/home/MobileServicesCarousel';
 import DesktopServicesGrid from '../components/home/DesktopServicesGrid';
 import PhilosophySection from '../components/home/PhilosophySection';
 import StudioSection from '../components/home/StudioSection';
+import GoldThread from '../components/home/GoldThread';
 import TopNav from '../components/shared/TopNav';
 import Footer from '../components/shared/Footer';
 
@@ -273,6 +274,7 @@ export default function Home() {
       <GlobalStyles />
       <main>
         <TopNav />
+        <GoldThread />
 
         {/* ── Hero Section ── */}
         <section
@@ -308,8 +310,8 @@ export default function Home() {
             </p>
 
             <h1 className="hero-title title-xl tracking-tight mb-9 opacity-10 animate-fade-in delay-1000 duration-2000" data-scroll-reveal style={{ animationDelay: '92000ms' }} >
-              <span style={{ color: '#d4af37' }}>Cutting</span> Corners -- Not the{' '}
-              <span style={{ color: '#d4af37' }}>Quality</span>
+              <span data-gold="hero-word" style={{ color: '#d4af37' }}>Cutting</span> Corners -- Not the{' '}
+              <span data-gold="hero-word" style={{ color: '#d4af37' }}>Quality</span>
             </h1>
 
             <p
@@ -327,6 +329,7 @@ export default function Home() {
 
           {/* Desktop stat card */}
           <div
+            data-gold="hero-card"
             className="absolute bottom-8 right-8 hidden md:flex flex-col justify-center"
             style={{
               width: '12rem',
@@ -383,6 +386,7 @@ export default function Home() {
                 What I Do
               </p>
               <h2
+                data-gold="section-title"
                 className="title-xl text-center"
                 style={{
                   fontSize: 'clamp(28px, 3.5vw, 56px)',
@@ -411,7 +415,7 @@ export default function Home() {
             >
               About
             </p>
-            <h2 className="title-xl tracking-tight mb-16 text-center">The Cutter</h2>
+            <h2 data-gold="section-title" className="title-xl tracking-tight mb-16 text-center">The Cutter</h2>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
               <div
@@ -453,6 +457,7 @@ export default function Home() {
 
               <div>
                 <h2
+                  data-gold="name"
                   className="page-title title-xl name-title mb-6 opacity-0 transition-all duration-700"
                   data-scroll-reveal
                   style={{ animationDelay: '100ms' }}

@@ -91,6 +91,7 @@ export default function DesktopServicesGrid() {
       {services.map((service, i) => (
         <div
           key={service.title}
+          data-gold="service-card"
           data-service-card
           data-index={`${i}`}
           className="gem-card"
