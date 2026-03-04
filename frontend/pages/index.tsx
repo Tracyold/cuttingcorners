@@ -303,8 +303,8 @@ export default function Home() {
 
           <div className="container-custom relative z-10 text-center">
             <p
-              className="uppercase mb-6 opacity-0 animate-fade-in transition-all duration-1000 delay-500" style={{ color: 'rgba(255,255,255,0.25)' }}
-              style={{ fontSize: '14px', letterSpacing: '0.37em' }}
+              className="uppercase mb-6 opacity-0 animate-fade-in transition-all duration-1000 delay-500"
+              style={{ color: 'rgba(255,255,255,0.25)', fontSize: '14px', letterSpacing: '0.37em' }}
               data-scroll-reveal
             >
               Tempe, Arizona
