@@ -103,44 +103,50 @@ export default function StudioSection() {
       overflow: 'hidden', display: 'flex',
       alignItems: 'center', justifyContent: 'flex-start',
     }}>
+      {/* Photo — no negative inset, scale handles the edge bleed */}
       <div ref={photoRef} style={{
-        position: 'absolute', inset: '-3%',
+        position: 'absolute', inset: 0,
         backgroundImage: 'url(/assets/Studio.jpeg)',
         backgroundSize: 'cover', backgroundPosition: 'center',
         opacity: 0.04, filter: 'blur(12px) contrast(1.08)',
         transform: 'scale(1.12)', transformOrigin: 'center center',
-        boxShadow: 'inset 0 0 0 8px #050505',
         willChange: 'opacity, filter, transform',
         transition: 'opacity 220ms ease-out, filter 220ms ease-out, transform 700ms ease-out',
       }} />
 
+      {/* Left dark panel */}
       <div style={{
         position: 'absolute', inset: 0, zIndex: 1,
         background: 'linear-gradient(to right, rgba(5,5,5,0.97) 0%, rgba(5,5,5,0.92) 22%, rgba(5,5,5,0.70) 38%, rgba(5,5,5,0.0) 55%)',
       }} />
 
+      {/* Top and bottom fade — fully black at edges */}
       <div style={{
         position: 'absolute', inset: 0, zIndex: 1,
         background: 'linear-gradient(to bottom, #050505 0%, rgba(5,5,5,0.0) 20%, rgba(5,5,5,0.0) 80%, #050505 100%)',
       }} />
 
+      {/* Radial vignette */}
       <div style={{
         position: 'absolute', inset: 0, zIndex: 2, pointerEvents: 'none',
         background: 'radial-gradient(ellipse at center, transparent 20%, rgba(5,5,5,0.4) 50%, rgba(5,5,5,0.88) 75%, rgba(5,5,5,1) 90%)',
       }} />
 
+      {/* Top edge cover */}
       <div style={{
         position: 'absolute', top: 0, left: 0, right: 0,
         height: '120px', zIndex: 4, pointerEvents: 'none',
         background: 'linear-gradient(to bottom, #050505 0%, transparent 100%)',
       }} />
 
+      {/* Bottom edge cover */}
       <div style={{
         position: 'absolute', bottom: 0, left: 0, right: 0,
         height: '120px', zIndex: 4, pointerEvents: 'none',
         background: 'linear-gradient(to top, #050505 0%, transparent 100%)',
       }} />
 
+      {/* Film grain */}
       <div style={{
         position: 'absolute', inset: 0, zIndex: 3, pointerEvents: 'none',
         backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.08'/%3E%3C/svg%3E")`,
@@ -148,6 +154,7 @@ export default function StudioSection() {
         opacity: 0.35, mixBlendMode: 'overlay',
       }} />
 
+      {/* Text */}
       <div className="container-custom" style={{
         position: 'relative', zIndex: 10,
         maxWidth: '380px', marginLeft: '4vw', marginRight: 'auto',
