@@ -18,8 +18,18 @@ export default function PhilosophySection() {
           const el = entry.target as HTMLElement;
           if (entry.isIntersecting) {
             el.style.color = 'rgb(100, 140, 255)';
+            el.style.textShadow = [
+              '0 0 8px rgba(120,160,255,0.95)',
+              '0 0 20px rgba(100,140,255,0.85)',
+              '0 0 45px rgba(100,140,255,0.6)',
+              '0 0 90px rgba(80,120,255,0.35)',
+              '0 0 140px rgba(60,100,255,0.15)',
+            ].join(', ');
+            el.style.filter = 'drop-shadow(0 0 30px rgba(100,140,255,0.4))';
           } else {
             el.style.color = '#FAFAFA';
+            el.style.textShadow = 'none';
+            el.style.filter = 'none';
           }
         });
       },
