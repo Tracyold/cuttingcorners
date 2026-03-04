@@ -442,7 +442,7 @@ export default function Home() {
                       objectPosition: 'center top',
                       transform: 'scale(1.1)',
                       display: 'block',
-                      filter: 'grayscale(1) sepia(0.4) hue-rotate(180deg) brightness(0.85)',
+                      filter: 'grayscale(1) sepia(0.4) hue-rotate(180deg) brightness(0.65)',
                     }}
                   />
                   <div
