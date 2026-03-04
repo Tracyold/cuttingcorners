@@ -17,7 +17,7 @@ export default function PhilosophySection() {
         entries.forEach((entry) => {
           const el = entry.target as HTMLElement;
           if (entry.isIntersecting) {
-            el.style.color = 'rgb(60, 100, 220)';
+            el.style.color = 'rgb(30, 60, 180)';
             el.style.textShadow = [
               '0 0 40px rgba(40,80,200,0.25)',
               '0 0 80px rgba(30,60,180,0.18)',
@@ -73,7 +73,7 @@ export default function PhilosophySection() {
                 data-gold-word
                 style={{
                   color: '#FAFAFA',
-                  transition: 'color 800ms ease, text-shadow 800ms ease, filter 800ms ease',
+                  transition: 'color 1400ms cubic-bezier(0.25, 0.1, 0.25, 1), text-shadow 1400ms cubic-bezier(0.25, 0.1, 0.25, 1), filter 1400ms cubic-bezier(0.25, 0.1, 0.25, 1)',
                   whiteSpace: 'nowrap',
                 }}
               >
