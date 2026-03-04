@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { GuestInfo, popupOverlayStyle, popupBoxStyle, inputStyle, labelStyle, goldBtnStyle, ghostBtnStyle } from './shopTypes';
+import { GuestInfo, popupOverlayStyle, popupBoxStyle, inputStyle, labelStyle, goldBtnStyle, ghostBtnStyle , inputFocus, inputBlur } from './shopTypes';
 
 export function GuestInfoPopup({ onSubmit, onClose }: { onSubmit: (info: GuestInfo) => void; onClose: () => void }) {
   const [name, setName] = useState('');
@@ -27,16 +27,16 @@ export function GuestInfoPopup({ onSubmit, onClose }: { onSubmit: (info: GuestIn
         </p>
 
         <label style={labelStyle}>Full Name *</label>
-        <input style={inputStyle} placeholder="Jane Smith" value={name} onChange={e => setName(e.target.value)} />
+        <input style={inputStyle} placeholder="Jane Smith" value={name} onChange={e => setName(e.target.value)} onFocus={inputFocus} onBlur={inputBlur} />
 
         <label style={labelStyle}>Email Address *</label>
-        <input style={inputStyle} type="email" placeholder="jane@email.com" value={email} onChange={e => setEmail(e.target.value)} />
+        <input style={inputStyle} type="email" placeholder="jane@email.com" value={email} onChange={e => setEmail(e.target.value)} onFocus={inputFocus} onBlur={inputBlur} />
 
         <label style={labelStyle}>Phone Number *</label>
-        <input style={inputStyle} type="tel" placeholder="+1 (555) 000-0000" value={phone} onChange={e => setPhone(e.target.value)} />
+        <input style={inputStyle} type="tel" placeholder="+1 (555) 000-0000" value={phone} onChange={e => setPhone(e.target.value)} onFocus={inputFocus} onBlur={inputBlur} />
 
         <label style={labelStyle}>Shipping Address *</label>
-        <input style={inputStyle} placeholder="123 Main St, City, State, ZIP" value={address} onChange={e => setAddress(e.target.value)} />
+        <input style={inputStyle} placeholder="123 Main St, City, State, ZIP" value={address} onChange={e => setAddress(e.target.value)} onFocus={inputFocus} onBlur={inputBlur} />
 
         {err && <p style={{ fontFamily: "'Comfortaa', sans-serif", fontSize: '11px', color: '#c07070', marginBottom: '10px' }}>{err}</p>}
 

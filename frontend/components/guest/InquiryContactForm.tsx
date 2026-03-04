@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { inputStyle, labelStyle, goldBtnStyle, ghostBtnStyle } from './shopTypes';
+import { inputStyle, labelStyle, goldBtnStyle, ghostBtnStyle, inputFocus, inputBlur } from './shopTypes';
 
 export function InquiryContactForm({ onSubmit, onClose }: { onSubmit: (info: any) => void; onClose: () => void }) {
   const [firstName, setFirstName] = useState('');
@@ -18,28 +18,28 @@ export function InquiryContactForm({ onSubmit, onClose }: { onSubmit: (info: any
       <div style={{ display: 'flex', gap: '10px' }}>
         <div style={{ flex: 1 }}>
           <label style={labelStyle}>First Name *</label>
-          <input style={inputStyle} placeholder="Jane" value={firstName} onChange={e => setFirstName(e.target.value)} />
+          <input style={inputStyle} placeholder="Jane" value={firstName} onChange={e => setFirstName(e.target.value)} onFocus={inputFocus} onBlur={inputBlur} />
         </div>
         <div style={{ flex: 1 }}>
           <label style={labelStyle}>Last Name *</label>
-          <input style={inputStyle} placeholder="Smith" value={lastName} onChange={e => setLastName(e.target.value)} />
+          <input style={inputStyle} placeholder="Smith" value={lastName} onChange={e => setLastName(e.target.value)} onFocus={inputFocus} onBlur={inputBlur} />
         </div>
       </div>
       <label style={labelStyle}>Phone Number *</label>
-      <input style={inputStyle} type="tel" placeholder="+1 (555) 000-0000" value={phone} onChange={e => setPhone(e.target.value)} />
+      <input style={inputStyle} type="tel" placeholder="+1 (555) 000-0000" value={phone} onChange={e => setPhone(e.target.value)} onFocus={inputFocus} onBlur={inputBlur} />
       <label style={labelStyle}>Email Address *</label>
-      <input style={inputStyle} type="email" placeholder="jane@email.com" value={email} onChange={e => setEmail(e.target.value)} />
+      <input style={inputStyle} type="email" placeholder="jane@email.com" value={email} onChange={e => setEmail(e.target.value)} onFocus={inputFocus} onBlur={inputBlur} />
       <label style={labelStyle}>Shipping Address</label>
       <div style={{ display: 'flex', gap: '8px', marginBottom: '8px' }}>
-        <input style={{ ...inputStyle, flex: 2, marginBottom: 0 }} placeholder="Address Line 1" value={addr1} onChange={e => setAddr1(e.target.value)} />
+        <input style={{ ...inputStyle, flex: 2, marginBottom: 0 }} placeholder="Address Line 1" value={addr1} onChange={e => setAddr1(e.target.value)} onFocus={inputFocus} onBlur={inputBlur} />
         <input style={{ ...inputStyle, flex: 1, marginBottom: 0 }} placeholder="Apt / Suite" value={addr2} onChange={e => setAddr2(e.target.value)} />
       </div>
       <div style={{ display: 'flex', gap: '8px', marginBottom: '8px' }}>
-        <input style={{ ...inputStyle, flex: 2, marginBottom: 0 }} placeholder="City" value={city} onChange={e => setCity(e.target.value)} />
-        <input style={{ ...inputStyle, flex: 1, marginBottom: 0 }} placeholder="State" value={addrState} onChange={e => setAddrState(e.target.value)} />
+        <input style={{ ...inputStyle, flex: 2, marginBottom: 0 }} placeholder="City" value={city} onChange={e => setCity(e.target.value)} onFocus={inputFocus} onBlur={inputBlur} />
+        <input style={{ ...inputStyle, flex: 1, marginBottom: 0 }} placeholder="State" value={addrState} onChange={e => setAddrState(e.target.value)} onFocus={inputFocus} onBlur={inputBlur} />
       </div>
       <div style={{ display: 'flex', gap: '8px' }}>
-        <select style={{...inputStyle, flex: 2, marginBottom: 0}} value={country} onChange={e => setCountry(e.target.value)}>
+        <select style={{...inputStyle, flex: 2, marginBottom: 0}} value={country} onChange={e => setCountry(e.target.value)} onFocus={inputFocus} onBlur={inputBlur}>
               <option value="">Country</option>
               <option value="Afghanistan">Afghanistan</option>
               <option value="Albania">Albania</option>
@@ -156,7 +156,7 @@ export function InquiryContactForm({ onSubmit, onClose }: { onSubmit: (info: any
               <option value="Yemen">Yemen</option>
               <option value="Zimbabwe">Zimbabwe</option>
             </select>
-        <input style={{ ...inputStyle, flex: 1, marginBottom: 0 }} placeholder="ZIP" value={zip} onChange={e => setZip(e.target.value)} />
+        <input style={{ ...inputStyle, flex: 1, marginBottom: 0 }} placeholder="ZIP" value={zip} onChange={e => setZip(e.target.value)} onFocus={inputFocus} onBlur={inputBlur} />
       </div>
       {err && <p style={{ fontSize: '11px', color: '#c07070', marginBottom: '10px' }}>{err}</p>}
       <button style={goldBtnStyle} onClick={() => {
@@ -179,6 +179,7 @@ export function InquiryDescForm({ onSubmit, onClose, submitting }: { onSubmit: (
         placeholder="Tell us about your interest in this gem..."
         value={desc}
         onChange={e => setDesc(e.target.value)}
+        onFocus={inputFocus} onBlur={inputBlur}
       />
       <button style={{ ...goldBtnStyle, opacity: submitting || !desc.trim() ? 0.5 : 1 }}
         onClick={() => { if (desc.trim()) onSubmit(desc.trim()); }}
