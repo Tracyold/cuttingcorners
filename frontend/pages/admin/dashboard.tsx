@@ -40,14 +40,7 @@ export default function AdminDashboard() {
     setSmsConfig((prev: any) => ({ ...prev, [field]: value }));
   }
 
-  async function saveSmsPhone() {
-    if (!smsConfig) return;
-    setSmsSaving(true);
-    await supabase.from('admin_notification_config').update({ admin_phone: smsPhone }).eq('id', smsConfig.id);
-    setSmsSaving(false);
-    setSmsFlash(true);
-    setTimeout(() => setSmsFlash(false), 2000);
-  }
+
 
   async function addPhone() {
     if (!newPhone.trim()) return;
