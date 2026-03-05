@@ -38,7 +38,7 @@ export default function AdminDashboard() {
   async function saveSmsPhone() {
     if (!smsConfig) return;
     setSmsSaving(true);
-    await supabase.from('admin_notification_config').update({ phone: smsPhone }).eq('id', smsConfig.id);
+    await supabase.from('admin_notification_config').update({ admin_phone: smsPhone }).eq('id', smsConfig.id);
     setSmsSaving(false);
     setSmsFlash(true);
     setTimeout(() => setSmsFlash(false), 2000);
@@ -78,7 +78,7 @@ export default function AdminDashboard() {
       .select('*')
       .limit(1)
       .single();
-    if (smsData) { setSmsConfig(smsData); setSmsPhone(smsData.phone || ''); }
+    if (smsData) { setSmsConfig(smsData); setSmsPhone(smsData.admin_phone || ''); }
 
     // Realtime subscription
     supabase.channel('admin-notifs-dash')
