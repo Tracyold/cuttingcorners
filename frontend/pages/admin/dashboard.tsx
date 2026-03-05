@@ -21,9 +21,14 @@ export default function AdminDashboard() {
 
   // SMS config
   const [smsConfig, setSmsConfig] = useState<any>(null);
-  const [smsPhone, setSmsPhone] = useState('');
   const [smsSaving, setSmsSaving] = useState(false);
   const [smsFlash, setSmsFlash] = useState(false);
+
+  // Admin phones
+  const [adminPhones, setAdminPhones] = useState<any[]>([]);
+  const [newPhone, setNewPhone] = useState('');
+  const [newLabel, setNewLabel] = useState('');
+  const [phoneAdding, setPhoneAdding] = useState(false);
 
   useEffect(() => {
     loadAll();
@@ -42,6 +47,29 @@ export default function AdminDashboard() {
     setSmsSaving(false);
     setSmsFlash(true);
     setTimeout(() => setSmsFlash(false), 2000);
+  }
+
+  async function addPhone() {
+    if (!newPhone.trim()) return;
+    setPhoneAdding(true);
+    const { data } = await supabase.from('admin_phones').insert({
+      phone: newPhone.trim(),
+      label: newLabel.trim() || null,
+      active: true,
+    }).select().single();
+    if (data) setAdminPhones(prev => [...prev, data]);
+    setNewPhone(''); setNewLabel('');
+    setPhoneAdding(false);
+  }
+
+  async function togglePhone(id: string, active: boolean) {
+    await supabase.from('admin_phones').update({ active }).eq('id', id);
+    setAdminPhones(prev => prev.map(p => p.id === id ? { ...p, active } : p));
+  }
+
+  async function deletePhone(id: string) {
+    await supabase.from('admin_phones').delete().eq('id', id);
+    setAdminPhones(prev => prev.filter(p => p.id !== id));
   }
 
   async function loadAll() {
@@ -78,7 +106,14 @@ export default function AdminDashboard() {
       .select('*')
       .limit(1)
       .single();
-    if (smsData) { setSmsConfig(smsData); setSmsPhone(smsData.admin_phone || ''); }
+    if (smsData) { setSmsConfig(smsData); }
+
+    // Admin phones
+    const { data: phonesData } = await supabase
+      .from('admin_phones')
+      .select('*')
+      .order('created_at', { ascending: true });
+    setAdminPhones(phonesData || []);
 
     // Realtime subscription
     supabase.channel('admin-notifs-dash')
@@ -245,17 +280,42 @@ export default function AdminDashboard() {
             <div style={{ fontFamily: 'var(--serif)', fontSize: '20px', color: 'var(--wh)', marginBottom: '4px' }}>SMS Notifications</div>
             <div style={{ fontSize: '12px', color: 'var(--d1)', marginBottom: '24px' }}>Receive text alerts when events occur</div>
 
-            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '24px' }}>
+            {/* Phone number list */}
+            <div style={{ marginBottom: '20px' }}>
+              {adminPhones.map(p => (
+                <div key={p.id} style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '8px', padding: '10px 14px', background: 'var(--c2)', border: '1px solid rgba(255,255,255,0.06)', borderRadius: '8px' }}>
+                  <div onClick={() => togglePhone(p.id, !p.active)} style={{
+                    width: '32px', height: '18px', borderRadius: '9px', position: 'relative', flexShrink: 0, cursor: 'pointer',
+                    background: p.active ? 'var(--gl)' : 'rgba(255,255,255,0.12)', transition: 'background 300ms',
+                  }}>
+                    <div style={{ position: 'absolute', top: '2px', left: p.active ? '16px' : '2px', width: '14px', height: '14px', borderRadius: '50%', background: '#fff', transition: 'left 300ms' }} />
+                  </div>
+                  <div style={{ flex: 1 }}>
+                    <div style={{ fontSize: '13px', color: 'var(--wh)' }}>{p.phone}</div>
+                    {p.label && <div style={{ fontSize: '10px', color: 'var(--d1)', letterSpacing: '.1em' }}>{p.label}</div>}
+                  </div>
+                  <button onClick={() => deletePhone(p.id)} style={{ background: 'none', border: 'none', color: 'rgba(255,80,80,0.6)', cursor: 'pointer', fontSize: '14px', padding: '2px 6px' }}>✕</button>
+                </div>
+              ))}
+            </div>
+
+            {/* Add new phone */}
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '24px' }}>
               <input
-                value={smsPhone}
-                onChange={e => setSmsPhone(e.target.value)}
+                value={newPhone}
+                onChange={e => setNewPhone(e.target.value)}
                 placeholder="+1 480 000 0000"
-                style={{ background: 'var(--c2)', border: '1px solid rgba(255,255,255,0.1)', color: 'var(--wh)', padding: '8px 12px', fontSize: '13px', borderRadius: '6px', width: '220px' }}
+                style={{ background: 'var(--c2)', border: '1px solid rgba(255,255,255,0.1)', color: 'var(--wh)', padding: '8px 12px', fontSize: '13px', borderRadius: '6px', width: '180px' }}
               />
-              <button onClick={saveSmsPhone} style={{ background: 'var(--gl)', color: '#000', border: 'none', padding: '8px 16px', fontSize: '11px', letterSpacing: '.12em', textTransform: 'uppercase', cursor: 'pointer', borderRadius: '4px' }}>
-                {smsSaving ? 'Saving...' : 'Save'}
+              <input
+                value={newLabel}
+                onChange={e => setNewLabel(e.target.value)}
+                placeholder="Label (optional)"
+                style={{ background: 'var(--c2)', border: '1px solid rgba(255,255,255,0.1)', color: 'var(--wh)', padding: '8px 12px', fontSize: '13px', borderRadius: '6px', width: '150px' }}
+              />
+              <button onClick={addPhone} style={{ background: 'var(--gl)', color: '#000', border: 'none', padding: '8px 16px', fontSize: '11px', letterSpacing: '.12em', textTransform: 'uppercase', cursor: 'pointer', borderRadius: '4px' }}>
+                {phoneAdding ? '...' : '+ Add'}
               </button>
-              {smsFlash && <span style={{ fontSize: '11px', color: 'var(--gl)' }}>✓ Saved</span>}
             </div>
 
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: '12px' }}>
