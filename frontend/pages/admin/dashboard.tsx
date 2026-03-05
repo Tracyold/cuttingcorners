@@ -284,7 +284,13 @@ export default function AdminDashboard() {
                     <div style={{ position: 'absolute', top: '2px', left: p.active ? '16px' : '2px', width: '14px', height: '14px', borderRadius: '50%', background: '#fff', transition: 'left 300ms' }} />
                   </div>
                   <div style={{ flex: 1 }}>
-                    <div style={{ fontSize: '13px', color: 'var(--wh)' }}>{p.phone}</div>
+                    <div style={{ fontSize: '13px', color: 'var(--wh)', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                      <span>{p.revealed ? p.phone : p.phone.slice(0, 3) + '•••••' + p.phone.slice(-4)}</span>
+                      <button onClick={() => setAdminPhones(prev => prev.map(x => x.id === p.id ? { ...x, revealed: !x.revealed } : x))}
+                        style={{ background: 'none', border: 'none', color: 'var(--d1)', cursor: 'pointer', fontSize: '10px', letterSpacing: '.1em', textTransform: 'uppercase' }}>
+                        {p.revealed ? 'hide' : 'show'}
+                      </button>
+                    </div>
                     {p.label && <div style={{ fontSize: '10px', color: 'var(--d1)', letterSpacing: '.1em' }}>{p.label}</div>}
                   </div>
                   <button onClick={() => deletePhone(p.id)} style={{ background: 'none', border: 'none', color: 'rgba(255,80,80,0.6)', cursor: 'pointer', fontSize: '14px', padding: '2px 6px' }}>✕</button>
