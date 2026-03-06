@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { X } from 'lucide-react';
 import TopNav from '../components/shared/TopNav';
 import Footer from '../components/shared/Footer';
@@ -13,10 +13,66 @@ interface PortfolioPhoto {
   sort_order: number;
 }
 
+function PortfolioGrid({ photos, onPhotoClick }: { photos: PortfolioPhoto[]; onPhotoClick: (p: PortfolioPhoto) => void }) {
+  // Split photos into rows of 3
+  const rows: PortfolioPhoto[][] = [];
+  for (let i = 0; i < photos.length; i += 3) rows.push(photos.slice(i, i + 3));
+
+  // IntersectionObserver — adds 'row-in-view' when row is in viewport
+  const rowRefs = useRef<(HTMLDivElement | null)[]>([]);
+  useEffect(() => {
+    const obs = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('row-in-view');
+          } else {
+            entry.target.classList.remove('row-in-view');
+          }
+        });
+      },
+      { threshold: 0.25 }
+    );
+    rowRefs.current.forEach((el) => { if (el) obs.observe(el); });
+    return () => obs.disconnect();
+  }, [photos]);
+
+  return (
+    <div className="portfolio-rows">
+      {rows.map((row, ri) => (
+        <div
+          key={ri}
+          ref={(el) => { rowRefs.current[ri] = el; }}
+          className="portfolio-row"
+        >
+          {row.map((photo) => (
+            <div
+              key={photo.portfolio_photo_id}
+              onClick={() => onPhotoClick(photo)}
+              className="portfolio-card"
+              style={{ cursor: 'pointer' }}
+            >
+              <div className="portfolio-thumb">
+                <img
+                  src={photo.photo_url}
+                  alt={photo.caption || 'Portfolio photo'}
+                  style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center' }}
+                />
+              </div>
+              <div className="portfolio-card-meta">
+                {photo.year && <p className="portfolio-card-year">{photo.year}</p>}
+              </div>
+            </div>
+          ))}
+        </div>
+      ))}
+    </div>
+  );
+}
+
 export default function PortfolioPage() {
   const [photos, setPhotos] = useState<PortfolioPhoto[]>([]);
   const [loading, setLoading] = useState(true);
-  const [focusedId, setFocusedId] = useState<string | null>(null);
   const [modalPhoto, setModalPhoto] = useState<PortfolioPhoto | null>(null);
 
   useEffect(() => {
@@ -33,34 +89,7 @@ export default function PortfolioPage() {
     load();
   }, []);
 
-  // Handle tap behavior for mobile
-  const handleCardClick = useCallback((photo: PortfolioPhoto) => {
-    const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
-    if (isMobile) {
-      if (focusedId === photo.portfolio_photo_id) {
-        // Second tap on same focused tile → open modal
-        setModalPhoto(photo);
-      } else {
-        // First tap → focus this tile
-        setFocusedId(photo.portfolio_photo_id);
-      }
-    } else {
-      // Desktop → click opens modal
-      setModalPhoto(photo);
-    }
-  }, [focusedId]);
 
-  // Clear focus on outside click
-  useEffect(() => {
-    const handleOutsideClick = (e: MouseEvent) => {
-      const target = e.target as HTMLElement;
-      if (!target.closest('[data-portfolio-card]')) {
-        setFocusedId(null);
-      }
-    };
-    document.addEventListener('click', handleOutsideClick);
-    return () => document.removeEventListener('click', handleOutsideClick);
-  }, []);
 
   // Lock body scroll when modal open + Escape to close
   useEffect(() => {
@@ -117,53 +146,7 @@ export default function PortfolioPage() {
               </p>
             </div>
           ) : (
-            <div className="portfolio-grid">
-              {photos.map((photo) => {
-                const isFocused = focusedId === photo.portfolio_photo_id;
-                return (
-                  <div
-                    key={photo.portfolio_photo_id}
-                    data-portfolio-card
-                    onClick={() => handleCardClick(photo)}
-                    className={`portfolio-card${isFocused ? ' focused' : ''}`}
-                    style={{ cursor: 'pointer' }}
-                  >
-                    <div className="portfolio-thumb">
-                      <img
-                        src={photo.photo_url}
-                        alt={photo.caption || 'Portfolio photo'}
-                        style={{
-                          width: '100%',
-                          height: '100%',
-                          objectFit: 'cover',
-                          objectPosition: 'center',
-                        }}
-                      />
-                      {/* Permanent vignette */}
-                      <div className="portfolio-vignette" />
-                      {/* Hover/focus caption overlay */}
-                      <div className={`portfolio-caption-overlay${isFocused ? ' visible' : ''}`}>
-                        {photo.caption && (
-                          <span style={{
-                            fontFamily: "'Comfortaa', sans-serif",
-                            fontSize: '12px',
-                            color: 'rgba(45, 212, 191, 1)',
-                          }}>
-                            {photo.caption}
-                          </span>
-                        )}
-                      </div>
-                    </div>
-                    {/* Labels below thumbnail — desktop: year only */}
-                    <div className="portfolio-card-meta">
-                      {photo.year && (
-                        <p className="portfolio-card-year">{photo.year}</p>
-                      )}
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
+            <PortfolioGrid photos={photos} onPhotoClick={setModalPhoto} />
           )}
         </div>
         <Footer />
@@ -234,103 +217,78 @@ export default function PortfolioPage() {
 }
 
 const portfolioCss = `
-/* ── Desktop: 3-column grid ── */
-@media (min-width: 768px) {
-  .portfolio-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-  }
+/* ── Row-based scroll layout ── */
+.portfolio-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
-/* ── Mobile: 2-column grid ── */
+.portfolio-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  /* Out of view: subtle blur + dim */
+  filter: blur(1.8px) brightness(0.6);
+  opacity: 0.5;
+  transform: translateY(6px);
+  transition:
+    filter 600ms ease,
+    opacity 600ms ease,
+    transform 600ms ease;
+}
+.portfolio-row.row-in-view {
+  filter: blur(0px) brightness(1);
+  opacity: 1;
+  transform: translateY(0px);
+}
+
+/* ── Mobile ── */
 @media (max-width: 767px) {
-  .portfolio-grid {
-    display: grid;
+  .portfolio-row {
     grid-template-columns: 1fr 1fr;
-    gap: 14px;
   }
   main > div { padding: 16px 16px 60px !important; }
 }
 
 /* ── Card ── */
 .portfolio-card {
-  transition: transform 320ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: transform 300ms ease;
+}
+.portfolio-card:hover {
+  transform: translateY(-2px);
 }
 
 /* ── Thumbnail container ── */
 .portfolio-thumb {
   position: relative;
   aspect-ratio: 1 / 1;
-  background: #0A0A0A;
-  border-radius: 1.7px;
-  border: 1px solid rgba(255,255,255,0.06);
   overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.55);
-  transition: border-color 380ms ease, box-shadow 380ms ease;
+  border-radius: 1.7px;
 }
 
-/* ── Image: starts blurred, focuses on hover (camera lens effect) ── */
 .portfolio-thumb img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: center;
-  filter: blur(2.5px) brightness(0.72);
-  transform: scale(1.04);
-  transition:
-    filter 480ms cubic-bezier(0.25, 0.46, 0.45, 0.94),
-    transform 480ms cubic-bezier(0.25, 0.46, 0.45, 0.94),
-    brightness 480ms ease;
-}
-.portfolio-card:hover .portfolio-thumb img,
-.portfolio-card.focused .portfolio-thumb img {
-  filter: blur(0px) brightness(1.08) contrast(1.04);
-  transform: scale(1.09);
-}
-
-/* ── Hover border + shadow lift ── */
-.portfolio-card:hover .portfolio-thumb,
-.portfolio-card.focused .portfolio-thumb {
-  border-color: rgba(212, 175, 55, 0.22);
-  box-shadow: 0 20px 52px rgba(0,0,0,0.70);
 }
 
 /* ── Caption overlay ── */
-.portfolio-card:hover .portfolio-caption-overlay,
-.portfolio-card.focused .portfolio-caption-overlay {
-  opacity: 1;
-}
+
 .portfolio-vignette {
-  position: absolute;
-  inset: 0;
-  box-shadow: inset 0 0 26px 12px rgba(0,0,0,0.60);
-  pointer-events: none;
-  z-index: 2;
+  display: none;
 }
-.portfolio-caption-overlay {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 16px;
-  background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
-  opacity: 0;
-  transition: opacity 220ms ease-out;
-  z-index: 3;
-}
-.portfolio-caption-overlay.visible {
-  opacity: 1;
-}
+
 .portfolio-card-meta {
   padding: 8px 2px 0;
 }
 .portfolio-card-year {
   font-family: 'Montserrat', sans-serif;
-  font-weight: 900;
-  font-size: 11px;
+  font-weight: 600;
+  font-size: 18px;
   text-transform: uppercase;
   letter-spacing: 0.10em;
-  color: #d4af37;
+  color: #fac825;
   margin: 0;
   text-align: left;
 }
