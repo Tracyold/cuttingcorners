@@ -1,0 +1,8 @@
+{
+  "/": "pages/index.js",
+  "/_app": "pages/_app.js",
+  "/_document": "pages/_document.js",
+  "/legal": "pages/legal.js",
+  "/legal/privacy-policy": "pages/legal/privacy-policy.js",
+  "/legal/sms-terms": "pages/legal/sms-terms.js"
+}

@@ -9,7 +9,6 @@
 /coverage
 
 # production
-/build
 
 # misc
 .DS_Store
@@ -22,8 +21,7 @@ yarn-debug.log*
 yarn-error.log*
 
 # Next.js build output
-.next/
+
 
 # Environment files
-.env
-.env.local
+

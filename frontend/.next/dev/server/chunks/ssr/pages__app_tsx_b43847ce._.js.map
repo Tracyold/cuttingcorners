@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 4, "column": 0}, "map": {"version":3,"sources":["file:///workspaces/ccg123/frontend/pages/_app.tsx"],"sourcesContent":["import { useEffect } from 'react';\nimport { supabase } from '../lib/supabase';\nimport type { AppProps } from 'next/app';\nimport '../styles/globals.css';\n\nexport default function App({ Component, pageProps }: AppProps) {\n\n\n\n  return <Component {...pageProps} />;\n}\n"],"names":[],"mappings":";;;;;;;AAKe,SAAS,IAAI,EAAE,SAAS,EAAE,SAAS,EAAY;IAI5D,qBAAO,qKAAC;QAAW,GAAG,SAAS;;;;;;AACjC"}}]
+}

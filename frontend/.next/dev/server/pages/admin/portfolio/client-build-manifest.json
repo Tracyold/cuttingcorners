@@ -1,0 +1,5 @@
+{
+  "/admin/portfolio": [
+    "static/chunks/pages/admin/portfolio.js"
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 6, "column": 0}, "map": {"version":3,"sources":["file:///workspaces/ccg123/frontend/pages/_app.tsx"],"sourcesContent":["import { useEffect } from 'react';\nimport Lenis from 'lenis';\nimport { supabase } from '../lib/supabase';\nimport type { AppProps } from 'next/app';\nimport '../styles/globals.css';\n\nexport default function App({ Component, pageProps }: AppProps) {\n\n  useEffect(() => {\n    if (typeof window === 'undefined' || window.innerWidth < 768) return;\n\n    const lenis = new Lenis({\n      duration: 0.8,\n      easing: (t: number) => 1 - Math.pow(1 - t, 3),\n      smoothWheel: true,\n    });\n\n    function raf(time: number) {\n      lenis.raf(time);\n      requestAnimationFrame(raf);\n    }\n\n    requestAnimationFrame(raf);\n\n    return () => lenis.destroy();\n  }, []);\n\n  return <Component {...pageProps} />;\n}\n"],"names":[],"mappings":";;;;;AAAA;AACA;;;;;;;;;AAKe,SAAS,IAAI,EAAE,SAAS,EAAE,SAAS,EAAY;IAE5D,IAAA,gHAAS,EAAC;QACR,IAAI,kDAAkB,eAAe,OAAO,UAAU,GAAG,KAAK;;;QAE9D,MAAM;QAMN,SAAS,IAAI,IAAY;YACvB,MAAM,GAAG,CAAC;YACV,sBAAsB;QACxB;IAKF,GAAG,EAAE;IAEL,qBAAO,qKAAC;QAAW,GAAG,SAAS;;;;;;AACjC"}}]
+}

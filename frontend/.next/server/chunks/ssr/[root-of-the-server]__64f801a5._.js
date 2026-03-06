@@ -1,0 +1,3 @@
+module.exports=[16928,a=>a.a(async(b,c)=>{try{let b=await a.y("@supabase/supabase-js-13bdb2f0966edf07");a.n(b),c()}catch(a){c(a)}},!0),76165,a=>a.a(async(b,c)=>{try{var d=a.i(16928),e=b([d]);[d]=e.then?(await e)():e;let f=(0,d.createClient)("https://jvbkcihypbjlnffsbohd.supabase.co","eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp2YmtjaWh5cGJqbG5mZnNib2hkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE3MjkwMDMsImV4cCI6MjA4NzMwNTAwM30.ks3k6udociWxERV6LuDkZB_MOUbXyCxHyek2qtUHpfM");a.s(["supabase",0,f]),c()}catch(a){c(a)}},!1)];
+
+//# sourceMappingURL=%5Broot-of-the-server%5D__64f801a5._.js.map

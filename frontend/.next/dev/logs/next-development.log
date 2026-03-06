@@ -1,0 +1,31 @@
+[00:00:02.894] Server  LOG     ✓ Ready in 2.6s
+[00:01:02.978] Browser ERROR   In HTML, %s cannot be a descendant of <%s>.
+This will cause a hydration error.%s <p> p 
+
+  ...
+    <PathnameContextProviderAdapter router={{sdc:{},sbc:{}, ...}} isAutoExport={true}>
+      <App pageProps={{}} Component={function SmsTerms} err={undefined} router={{sdc:{},sbc:{}, ...}}>
+        <SmsTerms>
+          <Head>
+          <div style={{...}}>
+            <div>
+            <div style={{maxWidth:"...", ...}}>
+              <p>
+              <h1>
+              <p>
+              <p>
+              <div>
+              <Block>
+              <Block>
+              <Block title="New Gemsto...">
+                <div style={{...}}>
+                  <h2>
+                  <P>
+>                   <p style={{fontSize:"14px",lineHeight:1.85,color:"rgba(255,2...",marginBottom:"16px"}}>
+>                     <p style={{fontSize:"17px"}}>
+                  ...
+              ...
+      ...
+
+[00:01:02.978] Browser ERROR   <%s> cannot contain a nested %s.
+See this log for the ancestor stack trace. p <p>
