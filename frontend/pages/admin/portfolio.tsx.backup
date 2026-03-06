@@ -199,36 +199,26 @@ export default function AdminPortfolioPage() {
 
   async function saveDrafts() {
     for (const q of queue) {
-      const isNew = !q.portfolio_photo_id || q.portfolio_photo_id.startsWith('PPH-');
-      const payload = {
+      await supabase.from('portfolio_photos').upsert({
+        portfolio_photo_id: q.portfolio_photo_id,
         photo_url: q.photo_url || '',
         year: q.year || null, caption: q.caption || null, description: q.description || null,
         sort_order: q.sort_order ? parseInt(q.sort_order) : 0,
         published: false, archived: false,
-      };
-      if (isNew) {
-        await supabase.from('portfolio_photos').insert(payload);
-      } else {
-        await supabase.from('portfolio_photos').update(payload).eq('portfolio_photo_id', q.portfolio_photo_id);
-      }
+      }, { onConflict: 'portfolio_photo_id' });
     }
     await loadPhotos(); setShowForm(false);
   }
 
   async function publishAll() {
     for (const q of queue) {
-      const isNew = !q.portfolio_photo_id || q.portfolio_photo_id.startsWith('PPH-');
-      const payload = {
+      await supabase.from('portfolio_photos').upsert({
+        portfolio_photo_id: q.portfolio_photo_id,
         photo_url: q.photo_url || '',
         year: q.year || null, caption: q.caption || null, description: q.description || null,
         sort_order: q.sort_order ? parseInt(q.sort_order) : 0,
         published: true, archived: false,
-      };
-      if (isNew) {
-        await supabase.from('portfolio_photos').insert(payload);
-      } else {
-        await supabase.from('portfolio_photos').update(payload).eq('portfolio_photo_id', q.portfolio_photo_id);
-      }
+      }, { onConflict: 'portfolio_photo_id' });
     }
     await loadPhotos(); setShowForm(false); setTab('published');
   }
