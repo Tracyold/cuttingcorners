@@ -52,13 +52,13 @@ export default function FeasibilityDesktop() {
 
           <p style={SL}>Gemstone Overview</p>
           <div className="fd-gem-grid">
-            {[['Species', precut.gem.species], ['Variety', precut.gem.variety], ['Origin', precut.gem.origin], ['Weight', precut.gem.weight], ['Measurements', precut.gem.measurements], ['Color', precut.gem.color], ['Transparency', precut.gem.transparency], ['Current Cut', precut.gem.currentCut]].map(([l, v]) => (
+            {[['Current Weight', precut.stone.currentWeight], ['Measurements', precut.stone.measurements], ['Current Shape / Style', precut.stone.currentShapeStyle]].map(([l, v]) => (
               <div key={l}><p style={FL}>{l}</p><p style={FV}>{v}</p></div>
             ))}
           </div>
 
           <p style={SL}>Current Condition Summary</p>
-          <p style={{ fontFamily: 'Montserrat, sans-serif', fontSize: '15px', color: 'rgba(255,255,255,0.9)', lineHeight: 1.75, marginBottom: '8px' }}>{precut.condition}</p>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0 24px', marginBottom: '12px' }}><div><p style={FL}>Surface Condition</p><p style={FV}>{precut.condition.surfaceCondition}</p></div><div><p style={FL}>Structural Stability</p><p style={FV}>{precut.condition.structuralStability}</p></div></div><p style={FL}>Intake Notes</p><p style={{ fontFamily: 'Montserrat, sans-serif', fontSize: '15px', color: 'rgba(255,255,255,0.9)', lineHeight: 1.75, marginTop: '6px' }}>{precut.condition.intakeNotes}</p>
 
           <p style={SL}>Symbol Legend</p>
           <div className="fd-sym-grid">
@@ -139,7 +139,7 @@ export default function FeasibilityDesktop() {
           ))}
 
           <p style={SL}>Summary Evaluation</p>
-          <p style={{ fontFamily: 'Montserrat, sans-serif', fontSize: '15px', color: 'rgba(255,255,255,0.9)', lineHeight: 1.75 }}>{precut.summary}</p>
+          <p style={FL}>Overall Assessment</p><p style={{ fontFamily: 'Montserrat, sans-serif', fontSize: '15px', color: 'rgba(255,255,255,0.9)', lineHeight: 1.75, marginTop: '6px', marginBottom: '16px' }}>{precut.summary.assessment}</p><p style={FL}>Recommended Direction</p><p style={{ fontFamily: 'Montserrat, sans-serif', fontSize: '15px', color: 'rgba(255,255,255,0.9)', lineHeight: 1.75, marginTop: '6px' }}>{precut.summary.recommendation}</p>
           <div className="fd-disclaimer">This report is an analytical evaluation only and does not constitute a price quote, guarantee of outcome, or appraisal. All observations are based on visual and optical examination under standard conditions. CCG Cut Feasibility Reports are the proprietary product of Cutting Corners Gems.</div>
         </div>
 
@@ -161,24 +161,24 @@ export default function FeasibilityDesktop() {
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2px', marginBottom: '8px' }}>
             <div style={{ padding: '17px', background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.05)' }}>
               <p style={{ fontFamily: 'Montserrat, sans-serif', fontSize: '8px', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.2)', marginBottom: '10px' }}>Before</p>
-              {[['Weight', postcut.before.weight], ['Measurements', postcut.before.measurements], ['Cut', postcut.before.cut]].map(([l, v]) => <div key={l}><p style={FL}>{l}</p><p style={FV}>{v}</p></div>)}
+              {[['Weight', postcut.overview.originalWeight], ['Measurements', postcut.overview.originalMeasurements], ['Cut', postcut.overview.originalShapeStyle]].map(([l, v]) => <div key={l}><p style={FL}>{l}</p><p style={FV}>{v}</p></div>)}
             </div>
             <div style={{ padding: '17px', background: 'rgba(212,175,55,0.03)', border: '1px solid rgba(212,175,55,0.12)' }}>
               <p style={{ fontFamily: 'Montserrat, sans-serif', fontSize: '8px', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(212,175,55,0.5)', marginBottom: '10px' }}>After</p>
-              {[['Weight', postcut.after.weight], ['Measurements', postcut.after.measurements], ['Cut', postcut.after.cut]].map(([l, v]) => <div key={l}><p style={FL}>{l}</p><p style={FV}>{v}</p></div>)}
+              {[['Weight', postcut.overview.finalWeight], ['Measurements', postcut.overview.finalMeasurements], ['Cut', postcut.overview.finalShapeStyle]].map(([l, v]) => <div key={l}><p style={FL}>{l}</p><p style={FV}>{v}</p></div>)}
             </div>
           </div>
 
           <div style={{ padding: '16px 20px', background: 'rgba(100,200,120,0.05)', border: '1px solid rgba(100,200,120,0.15)', marginBottom: '8px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
             <div>
               <p style={{ ...FL, marginBottom: '4px' }}>Final Yield</p>
-              <p style={{ fontFamily: 'Oranienbaum, serif', fontSize: '28px', color: 'rgba(100,200,120,0.9)', lineHeight: 1 }}>{postcut.yield.value}%</p>
+              <p style={{ fontFamily: 'Oranienbaum, serif', fontSize: '28px', color: 'rgba(100,200,120,0.9)', lineHeight: 1 }}>{postcut.weightChange.yieldPercent}</p>
             </div>
-            <span style={{ fontFamily: 'Montserrat, sans-serif', fontSize: '9px', letterSpacing: '0.15em', textTransform: 'uppercase', color: 'rgba(100,200,120,0.7)', padding: '4px 10px', border: '1px solid rgba(100,200,120,0.2)' }}>{postcut.yield.category}</span>
+            <span style={{ fontFamily: 'Montserrat, sans-serif', fontSize: '9px', letterSpacing: '0.15em', textTransform: 'uppercase', color: 'rgba(100,200,120,0.7)', padding: '4px 10px', border: '1px solid rgba(100,200,120,0.2)' }}>{postcut.weightChange.category}</span>
           </div>
 
           <p style={SL}>Primary Cutting Objectives</p>
-          {postcut.objectives.map((o, i) => (
+          {postcut.beforeAfter.objectives.map((o, i) => (
             <div key={i} style={{ display: 'flex', gap: '10px', marginBottom: '8px' }}>
               <span style={{ color: 'rgba(212,175,55,0.9)', fontSize: '15px', marginTop: '2px', flexShrink: 0 }}>—</span>
               <p style={{ fontFamily: 'Montserrat, sans-serif', fontSize: '15px', color: 'rgba(255,255,255,0.9)', lineHeight: 1.65 }}>{o}</p>
@@ -225,10 +225,10 @@ export default function FeasibilityDesktop() {
           </table>
 
           <p style={SL}>Documentation Record</p>
-          {postcut.documentation.map((d, i) => (
-            <div key={i} style={{ display: 'flex', gap: '10px', marginBottom: '8px' }}>
-              <span style={{ color: 'rgba(100,200,120,0.5)', fontSize: '10px', marginTop: '2px', flexShrink: 0 }}>✓</span>
-              <p style={{ fontFamily: 'Montserrat, sans-serif', fontSize: '10px', color: 'rgba(255,255,255,0.5)', lineHeight: 1.65 }}>{d}</p>
+          {[['Before Photos', postcut.documentation.beforePhotos], ['After Photos', postcut.documentation.afterPhotos], ['Plot Maps', postcut.documentation.plotMaps], ['Client Approval', postcut.documentation.clientApproval]].map(([l, v]) => (
+            <div key={l} style={{ display: 'flex', justifyContent: 'space-between', padding: '9px 0', borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
+              <p style={{ fontFamily: 'Montserrat, sans-serif', fontSize: '13px', color: 'rgba(100,160,220,0.9)' }}>{l}</p>
+              <p style={{ fontFamily: 'Montserrat, sans-serif', fontSize: '13px', fontWeight: 600, color: v === 'Yes' ? 'rgba(100,200,120,0.9)' : 'rgba(220,80,80,0.9)' }}>{v}</p>
             </div>
           ))}
           <div className="fd-disclaimer">This report documents the completed cutting service and is issued as a permanent record. Observations reflect conditions at time of completion. CCG Cut Feasibility Reports are the proprietary product of Cutting Corners Gems.</div>

@@ -56,13 +56,12 @@ export default function FeasibilityMobile() {
           {/* 1. Gemstone Overview */}
           <p style={SL}>1 — Gemstone Overview</p>
           {[
-            ['Species', precut.gem.species], ['Variety', precut.gem.variety],
-            ['Current Weight', precut.gem.weight], ['Measurements', precut.gem.measurements],
-            ['Shape / Style', precut.gem.shapeStyle], ['Color', precut.gem.color],
-            ['Transparency', precut.gem.transparency], ['Known Treatments', precut.gem.knownTreatments],
+            ['Current Weight', precut.stone.currentWeight],
+            ['Measurements', precut.stone.measurements],
+            ['Current Shape / Style', precut.stone.currentShapeStyle],
           ].map(([l, v]) => <div key={l}><p style={FL}>{l}</p><p style={FV}>{v}</p></div>)}
           <p style={FL}>Orientation Reference</p>
-          <p style={{ ...FV, marginBottom: '0' }}>{precut.gem.orientationReference}</p>
+          <p style={{ ...FV, marginBottom: '0' }}>{precut.stone.orientationReference}</p>
 
           {/* 2. Condition */}
           <p style={SL}>2 — Current Condition Summary</p>
@@ -214,13 +213,12 @@ export default function FeasibilityMobile() {
           {/* 1. Final Overview */}
           <p style={SL}>1 — Final Gemstone Overview</p>
           {[
-            ['Species', postcut.overview.species], ['Variety', postcut.overview.variety],
-            ['Original Weight', postcut.overview.originalWeight], ['Final Weight', postcut.overview.finalWeight],
-            ['Weight Loss', postcut.overview.weightLoss], ['Yield', postcut.overview.yieldPercent],
+            ['Original Weight', postcut.overview.originalWeight],
+            ['Final Weight', postcut.overview.finalWeight],
+            ['Weight Loss', postcut.overview.weightLoss],
+            ['Yield', postcut.overview.yieldPercent],
             ['Original Shape / Style', postcut.overview.originalShapeStyle],
             ['Final Shape / Style', postcut.overview.finalShapeStyle],
-            ['Color (Post-Cut)', postcut.overview.colorPostCut],
-            ['Transparency', postcut.overview.transparency],
           ].map(([l, v]) => <div key={l}><p style={FL}>{l}</p><p style={FV}>{v}</p></div>)}
 
           {/* 2. Before/After Summary */}
