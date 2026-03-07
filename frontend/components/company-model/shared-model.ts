@@ -45,6 +45,7 @@ export const chapters = [
     ],
     stat: { value: '4', label: 'Estimate paths available' },
     link: { label: 'Estimate Types', href: '/estimates' },
+    link2: { label: 'CCG Cut Feasibility Report', href: '/feasibility-report' },
   },
   {
     id: 'why',

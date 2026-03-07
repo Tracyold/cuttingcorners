@@ -197,6 +197,11 @@ export default function DesktopCompanyModel() {
                   {(ch as any).link.label} →
                 </a>
               )}
+              {(ch as any).link2 && (
+                <a href={(ch as any).link2.href} className="dtop-link" style={{ marginLeft: '16px' }}>
+                  {(ch as any).link2.label} →
+                </a>
+              )}
               {ch.stat && (
                 <div className="dtop-stat">
                   <div className="dtop-stat-value">{ch.stat.value}</div>
