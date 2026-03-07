@@ -117,7 +117,7 @@ export default function MobileCompanyModel() {
           text-decoration: none;
           transition: background 200ms;
         }
-        .mob-cta-btn:hover { background: rgba(212,175,55,0.08); }
+        .mob-cta-btn:hover { background: rgba(80,200,120,0.08); }
       `}</style>
 
       <div>
@@ -136,11 +136,11 @@ export default function MobileCompanyModel() {
                 {(ch as any).link && (
                   <a href={(ch as any).link.href} style={{
                     display: 'inline-flex', alignItems: 'center', gap: '8px',
-                    padding: '14px 22px',
-                    border: '1px solid rgba(212,175,55,0.8)',
-                    color: 'rgba(212,175,55,1)',
+                    padding: '16px 28px',
+                    border: '1px solid rgba(80,200,120,0.7)',
+                    color: 'rgba(80,200,120,1)',
                     fontFamily: 'Montserrat, sans-serif',
-                    fontSize: '11px', letterSpacing: '0.15em', textTransform: 'uppercase',
+                    fontSize: '14px', letterSpacing: '0.12em', textTransform: 'uppercase',
                     textDecoration: 'none',
                   }}>
                     {(ch as any).link.label} →
@@ -149,11 +149,11 @@ export default function MobileCompanyModel() {
                 {(ch as any).link2 && (
                   <a href={(ch as any).link2.href} style={{
                     display: 'inline-flex', alignItems: 'center', gap: '8px',
-                    padding: '14px 22px',
-                    border: '1px solid rgba(212,175,55,0.8)',
-                    color: 'rgba(212,175,55,1)',
+                    padding: '16px 28px',
+                    border: '1px solid rgba(80,200,120,0.7)',
+                    color: 'rgba(80,200,120,1)',
                     fontFamily: 'Montserrat, sans-serif',
-                    fontSize: '11px', letterSpacing: '0.15em', textTransform: 'uppercase',
+                    fontSize: '14px', letterSpacing: '0.12em', textTransform: 'uppercase',
                     textDecoration: 'none',
                   }}>
                     {(ch as any).link2.label} →
