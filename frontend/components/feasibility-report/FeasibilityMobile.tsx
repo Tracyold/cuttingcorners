@@ -14,7 +14,7 @@ function ResultBadge({ result }: { result: string }) {
 
 const SL = { fontFamily: 'Montserrat, sans-serif', fontSize: '13px', letterSpacing: '0.3em', textTransform: 'uppercase' as const, color: 'rgba(212,175,55,0.9)', marginBottom: '12px', marginTop: '28px', paddingBottom: '8px', borderBottom: '1px solid rgba(255,255,255,0.05)' };
 const FL = { fontFamily: 'Montserrat, sans-serif', fontSize: '13px', letterSpacing: '0.15em', textTransform: 'uppercase' as const, color: 'rgba(100,160,220,0.9)', marginBottom: '3px' };
-const FV = { fontFamily: 'Montserrat, sans-serif', fontSize: '16px', color: 'rgba(255,255,255,0.95)', marginBottom: '16px' };
+const FV = { fontFamily: 'Montserrat, sans-serif', fontSize: '17px', color: 'rgba(255,255,255,0.95)', marginBottom: '17px' };
 const TH = { fontFamily: 'Montserrat, sans-serif', fontSize: '13px', letterSpacing: '0.1em', textTransform: 'uppercase' as const, color: 'rgba(100,160,220,0.9)', padding: '8px 8px', borderBottom: '1px solid rgba(255,255,255,0.06)', textAlign: 'left' as const };
 const TC = { fontFamily: 'Montserrat, sans-serif', fontSize: '14px', color: 'rgba(255,255,255,0.85)', padding: '8px', borderBottom: '1px solid rgba(255,255,255,0.04)', verticalAlign: 'top' as const };
 
@@ -48,9 +48,9 @@ export default function FeasibilityMobile() {
       {activeTab === 'precut' && (
         <div className="fm-card">
           <p style={{ fontFamily: 'Montserrat, sans-serif', fontSize: '13px', letterSpacing: '0.25em', textTransform: 'uppercase', color: 'rgba(212,175,55,0.9)', marginBottom: '6px' }}>CCG Cut Feasibility Report</p>
-          <p style={{ fontFamily: 'Oranienbaum, serif', fontSize: 'clamp(24px, 6vw, 32px)', color: '#FAFAFA', lineHeight: 1.1, marginBottom: '4px' }}>Pre-Cut Evaluation</p>
+          <p style={{ fontFamily: 'Oranienbaum, serif', fontSize: 'clamp(23px, 6vw, 32px)', color: '#FAFAFA', lineHeight: 1.1, marginBottom: '4px' }}>Pre-Cut Evaluation</p>
           <p style={{ fontFamily: 'Montserrat, sans-serif', fontSize: '14px', color: 'rgba(255,255,255,0.75)', marginBottom: '4px' }}>Report #{precut.id}</p>
-          <p style={{ fontFamily: 'Montserrat, sans-serif', fontSize: '15px', color: 'rgba(255,255,255,0.75)', marginBottom: '24px' }}>{precut.date} — {precut.analyst}</p>
+          <p style={{ fontFamily: 'Montserrat, sans-serif', fontSize: '15px', color: 'rgba(255,255,255,0.75)', marginBottom: '23px' }}>{precut.date} — {precut.analyst}</p>
 
           <p style={SL}>Gemstone Overview</p>
           {[['Species', precut.gem.species], ['Variety', precut.gem.variety], ['Origin', precut.gem.origin], ['Weight', precut.gem.weight], ['Measurements', precut.gem.measurements], ['Color', precut.gem.color], ['Transparency', precut.gem.transparency], ['Current Cut', precut.gem.currentCut]].map(([l, v]) => (
@@ -63,7 +63,7 @@ export default function FeasibilityMobile() {
           <p style={SL}>Symbol Legend</p>
           {precut.symbolLegend.map(s => (
             <div key={s.symbol} style={{ display: 'flex', gap: '10px', alignItems: 'flex-start', marginBottom: '8px' }}>
-              <span style={{ fontFamily: 'monospace', fontSize: '14px', color: 'rgba(212,175,55,0.7)', minWidth: '18px' }}>{s.symbol}</span>
+              <span style={{ fontFamily: 'monospace', fontSize: '14px', color: 'rgba(212,175,55,0.7)', minWidth: '17px' }}>{s.symbol}</span>
               <p style={{ fontFamily: 'Montserrat, sans-serif', fontSize: '14px', color: 'rgba(255,255,255,0.85)' }}><span style={{ color: 'rgba(255,255,255,0.75)', marginRight: '6px', fontSize: '11px', letterSpacing: '0.1em', textTransform: 'uppercase' }}>{s.type}</span>{s.desc}</p>
             </div>
           ))}
@@ -139,9 +139,9 @@ export default function FeasibilityMobile() {
       {activeTab === 'postcut' && (
         <div className="fm-card">
           <p style={{ fontFamily: 'Montserrat, sans-serif', fontSize: '13px', letterSpacing: '0.25em', textTransform: 'uppercase', color: 'rgba(212,175,55,0.9)', marginBottom: '6px' }}>CCG Cut Feasibility Report</p>
-          <p style={{ fontFamily: 'Oranienbaum, serif', fontSize: 'clamp(24px, 6vw, 32px)', color: '#FAFAFA', lineHeight: 1.1, marginBottom: '4px' }}>Post-Cut Change Report</p>
+          <p style={{ fontFamily: 'Oranienbaum, serif', fontSize: 'clamp(23px, 6vw, 32px)', color: '#FAFAFA', lineHeight: 1.1, marginBottom: '4px' }}>Post-Cut Change Report</p>
           <p style={{ fontFamily: 'Montserrat, sans-serif', fontSize: '14px', color: 'rgba(255,255,255,0.75)', marginBottom: '4px' }}>Report #{postcut.id}</p>
-          <p style={{ fontFamily: 'Montserrat, sans-serif', fontSize: '15px', color: 'rgba(255,255,255,0.75)', marginBottom: '24px' }}>{postcut.date} — {postcut.analyst}</p>
+          <p style={{ fontFamily: 'Montserrat, sans-serif', fontSize: '15px', color: 'rgba(255,255,255,0.75)', marginBottom: '23px' }}>{postcut.date} — {postcut.analyst}</p>
 
           <p style={SL}>Before & After</p>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2px', marginBottom: '8px' }}>
@@ -178,7 +178,7 @@ export default function FeasibilityMobile() {
           <p style={SL}>Documentation Record</p>
           {postcut.documentation.map((d, i) => (
             <div key={i} style={{ display: 'flex', gap: '10px', marginBottom: '8px' }}>
-              <span style={{ color: 'rgba(100,200,120,0.9)', fontSize: '16px', flexShrink: 0 }}>✓</span>
+              <span style={{ color: 'rgba(100,200,120,0.9)', fontSize: '17px', flexShrink: 0 }}>✓</span>
               <p style={{ fontFamily: 'Montserrat, sans-serif', fontSize: '14px', color: 'rgba(255,255,255,0.82)', lineHeight: 1.65 }}>{d}</p>
             </div>
           ))}

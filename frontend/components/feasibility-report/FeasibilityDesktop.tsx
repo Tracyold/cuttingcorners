@@ -13,7 +13,7 @@ function ResultBadge({ result }: { result: string }) {
 
 const SL = { fontFamily: 'Montserrat, sans-serif', fontSize: '13px', letterSpacing: '0.25em', textTransform: 'uppercase' as const, color: 'rgba(212,175,55,0.9)', marginBottom: '12px', marginTop: '32px', paddingBottom: '8px', borderBottom: '1px solid rgba(255,255,255,0.05)' };
 const FL = { fontFamily: 'Montserrat, sans-serif', fontSize: '13px', letterSpacing: '0.15em', textTransform: 'uppercase' as const, color: 'rgba(100,160,220,0.9)', marginBottom: '4px' };
-const FV = { fontFamily: 'Montserrat, sans-serif', fontSize: '15px', color: 'rgba(255,255,255,0.95)', marginBottom: '16px' };
+const FV = { fontFamily: 'Montserrat, sans-serif', fontSize: '15px', color: 'rgba(255,255,255,0.95)', marginBottom: '17px' };
 const TH = { fontFamily: 'Montserrat, sans-serif', fontSize: '13px', letterSpacing: '0.12em', textTransform: 'uppercase' as const, color: 'rgba(100,160,220,0.9)', padding: '8px 10px', borderBottom: '1px solid rgba(255,255,255,0.06)', textAlign: 'left' as const };
 const TC = { fontFamily: 'Montserrat, sans-serif', fontSize: '15px', color: 'rgba(255,255,255,0.9)', padding: '10px', borderBottom: '1px solid rgba(255,255,255,0.04)', verticalAlign: 'top' as const };
 
@@ -43,7 +43,7 @@ export default function FeasibilityDesktop() {
           <div className="fd-header">
             <div>
               <p style={{ fontFamily: 'Montserrat, sans-serif', fontSize: '13px', letterSpacing: '0.25em', textTransform: 'uppercase', color: 'rgba(212,175,55,0.9)', marginBottom: '6px' }}>CCG Cut Feasibility Report</p>
-              <p style={{ fontFamily: 'Oranienbaum, serif', fontSize: '22px', color: '#FAFAFA', lineHeight: 1.1, marginBottom: '4px' }}>Pre-Cut Evaluation</p>
+              <p style={{ fontFamily: 'Oranienbaum, serif', fontSize: '21px', color: '#FAFAFA', lineHeight: 1.1, marginBottom: '4px' }}>Pre-Cut Evaluation</p>
               <p style={{ fontFamily: 'Montserrat, sans-serif', fontSize: '14px', color: 'rgba(255,255,255,0.7)' }}>Report #{precut.id}</p>
             </div>
             <div style={{ textAlign: 'right' }}>
@@ -66,7 +66,7 @@ export default function FeasibilityDesktop() {
           <div className="fd-sym-grid">
             {precut.symbolLegend.map(s => (
               <div key={s.symbol} style={{ display: 'flex', gap: '8px', alignItems: 'flex-start', marginBottom: '6px' }}>
-                <span style={{ fontFamily: 'monospace', fontSize: '14px', color: 'rgba(212,175,55,0.7)', minWidth: '16px' }}>{s.symbol}</span>
+                <span style={{ fontFamily: 'monospace', fontSize: '14px', color: 'rgba(212,175,55,0.7)', minWidth: '17px' }}>{s.symbol}</span>
                 <div>
                   <p style={{ fontFamily: 'Montserrat, sans-serif', fontSize: '13px', letterSpacing: '0.1em', textTransform: 'uppercase', color: 'rgba(100,160,220,0.9)', marginBottom: '1px' }}>{s.type}</p>
                   <p style={{ fontFamily: 'Montserrat, sans-serif', fontSize: '15px', color: 'rgba(255,255,255,0.9)' }}>{s.desc}</p>
@@ -130,8 +130,8 @@ export default function FeasibilityDesktop() {
             <div className="fd-recovery-fill" style={{ left: `${precut.recovery.low}%`, width: `${precut.recovery.high - precut.recovery.low}%` }} />
           </div>
           <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '10px' }}>
-            <span style={{ fontFamily: 'Montserrat, sans-serif', fontSize: '16px', color: 'rgba(212,175,55,0.95)', fontWeight: 600 }}>{precut.recovery.low}%</span>
-            <span style={{ fontFamily: 'Montserrat, sans-serif', fontSize: '16px', color: 'rgba(212,175,55,0.95)', fontWeight: 600 }}>{precut.recovery.high}%</span>
+            <span style={{ fontFamily: 'Montserrat, sans-serif', fontSize: '17px', color: 'rgba(212,175,55,0.95)', fontWeight: 600 }}>{precut.recovery.low}%</span>
+            <span style={{ fontFamily: 'Montserrat, sans-serif', fontSize: '17px', color: 'rgba(212,175,55,0.95)', fontWeight: 600 }}>{precut.recovery.high}%</span>
           </div>
           <p style={{ fontFamily: 'Montserrat, sans-serif', fontSize: '14px', color: 'rgba(255,255,255,0.8)', lineHeight: 1.65 }}>{precut.recovery.basis}</p>
 
@@ -164,7 +164,7 @@ export default function FeasibilityDesktop() {
           <div className="fd-header">
             <div>
               <p style={{ fontFamily: 'Montserrat, sans-serif', fontSize: '13px', letterSpacing: '0.25em', textTransform: 'uppercase', color: 'rgba(212,175,55,0.9)', marginBottom: '6px' }}>CCG Cut Feasibility Report</p>
-              <p style={{ fontFamily: 'Oranienbaum, serif', fontSize: '22px', color: '#FAFAFA', lineHeight: 1.1, marginBottom: '4px' }}>Post-Cut Change Report</p>
+              <p style={{ fontFamily: 'Oranienbaum, serif', fontSize: '21px', color: '#FAFAFA', lineHeight: 1.1, marginBottom: '4px' }}>Post-Cut Change Report</p>
               <p style={{ fontFamily: 'Montserrat, sans-serif', fontSize: '14px', color: 'rgba(255,255,255,0.7)' }}>Report #{postcut.id}</p>
             </div>
             <div style={{ textAlign: 'right' }}>
@@ -175,11 +175,11 @@ export default function FeasibilityDesktop() {
 
           <p style={SL}>Before & After</p>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2px', marginBottom: '8px' }}>
-            <div style={{ padding: '16px', background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.05)' }}>
+            <div style={{ padding: '17px', background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.05)' }}>
               <p style={{ fontFamily: 'Montserrat, sans-serif', fontSize: '8px', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.2)', marginBottom: '10px' }}>Before</p>
               {[['Weight', postcut.before.weight], ['Measurements', postcut.before.measurements], ['Cut', postcut.before.cut]].map(([l, v]) => <div key={l}><p style={FL}>{l}</p><p style={FV}>{v}</p></div>)}
             </div>
-            <div style={{ padding: '16px', background: 'rgba(212,175,55,0.03)', border: '1px solid rgba(212,175,55,0.12)' }}>
+            <div style={{ padding: '17px', background: 'rgba(212,175,55,0.03)', border: '1px solid rgba(212,175,55,0.12)' }}>
               <p style={{ fontFamily: 'Montserrat, sans-serif', fontSize: '8px', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(212,175,55,0.5)', marginBottom: '10px' }}>After</p>
               {[['Weight', postcut.after.weight], ['Measurements', postcut.after.measurements], ['Cut', postcut.after.cut]].map(([l, v]) => <div key={l}><p style={FL}>{l}</p><p style={FV}>{v}</p></div>)}
             </div>
