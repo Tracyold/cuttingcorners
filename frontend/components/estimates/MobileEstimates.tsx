@@ -110,38 +110,6 @@ export default function MobileEstimates() {
           transition: background 200ms;
           margin-bottom: 0;
         }
-        .mest-scroll-btn {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          width: 60px;
-          height: 60px;
-          border-radius: 50%;
-          border: 1px solid rgba(100,160,220,0.4);
-          background: transparent;
-          cursor: pointer;
-          transition: background 200ms, border-color 200ms;
-          animation: mest-pulse 2s ease-in-out infinite;
-          position: absolute;
-          bottom: 40px;
-          left: 0;
-          flex-shrink: 0;
-        }
-        .mest-scroll-btn:hover {
-          background: rgba(100,160,220,0.1);
-          border-color: rgba(100,160,220,0.8);
-          animation: none;
-        }
-        .mest-scroll-arrow {
-          width: 0;
-          height: 0;
-          border-left: 8px solid transparent;
-          border-right: 8px solid transparent;
-          border-top: 12px solid rgba(212,175,55,0.85);
-          margin-top: 2px;
-        }
-        @keyframes mest-pulse {
-          0%, 100% { box-shadow: 0 0 0 0 rgba(100,160,220,0.3); }
           50% { box-shadow: 0 0 0 10px rgba(100,160,220,0); }
         }
         .mest-footer {
@@ -175,13 +143,6 @@ export default function MobileEstimates() {
               {p.details.map((d, i) => <li key={i}>{d}</li>)}
             </ul>
             <a href={p.cta.href} className="mest-cta-btn">{p.cta.label} →</a>
-            <button
-              className="mest-scroll-btn"
-              onClick={() => scrollToNext(p.n)}
-              aria-label="Scroll to next"
-            >
-              <div className="mest-scroll-arrow" />
-            </button>
           </div>
         ))}
 
