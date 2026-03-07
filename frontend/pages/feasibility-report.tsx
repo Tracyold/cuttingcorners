@@ -9,6 +9,36 @@ export default function FeasibilityReportPage() {
     <>
       <TopNav />
       <main>
+        <style>{`
+          @media (max-width: 860px) {
+            .fr-card-grid {
+              display: flex !important;
+              flex-direction: column !important;
+              gap: 16px !important;
+            }
+            .fr-card {
+              width: 100% !important;
+              min-height: 280px !important;
+              padding: 40px 28px !important;
+            }
+            .fr-card-num {
+              font-size: 100px !important;
+            }
+            .fr-card-title {
+              font-size: 22px !important;
+            }
+            .fr-card-body {
+              font-size: 17px !important;
+              line-height: 1.85 !important;
+            }
+            .fr-section-eyebrow {
+              font-size: 13px !important;
+            }
+            .fr-section-heading {
+              font-size: clamp(28px, 8vw, 38px) !important;
+            }
+          }
+        `}</style>
         {/* Hero */}
         <section style={{ padding: '140px 0 80px', background: '#050505' }}>
           <div className="container-custom" style={{ maxWidth: '1160px', width: '100%', margin: '0 auto' }}>
@@ -21,12 +51,12 @@ export default function FeasibilityReportPage() {
             <p style={{ fontFamily: 'Comfortaa, sans-serif', fontSize: 'clamp(16px, 1.8vw, 19px)', color: 'rgba(255,255,255,0.8)', textAlign: 'center', maxWidth: '620px', margin: '0 auto 64px', lineHeight: 1.85 }}>
               A professional structural evaluation of your gemstone before a single facet is touched — and a complete change record after. Objective, documented, and yours to keep.
             </p>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '2px' }}>
+            <div className="fr-card-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '2px' }}>
               {valueProps.map(v => (
-                <div key={v.n} style={{ padding: '36px 32px', background: '#0A0A0A', border: '1px solid rgba(255,255,255,0.05)' }}>
-                  <p style={{ fontFamily: 'Oranienbaum, serif', fontSize: 'clamp(80px, 14vw, 140px)', letterSpacing: '0', color: 'rgba(212,175,55,0.2)', marginBottom: '0', lineHeight: '1' }}>{v.n}</p>
-                  <h3 style={{ fontFamily: 'Oranienbaum, serif', fontSize: '17px', color: '#FAFAFA', marginBottom: '14px', lineHeight: 1.3 }}>{v.title}</h3>
-                  <p style={{ fontFamily: 'Comfortaa, sans-serif', fontSize: '15px', color: 'rgba(255,255,255,0.85)', lineHeight: 1.85 }}>{v.body}</p>
+                <div key={v.n} className="fr-card" style={{ padding: '36px 32px', background: '#0A0A0A', border: '1px solid rgba(255,255,255,0.05)' }}>
+                  <p className="fr-card-num" style={{ fontFamily: 'Oranienbaum, serif', fontSize: 'clamp(80px, 14vw, 140px)', letterSpacing: '0', color: 'rgba(212,175,55,0.2)', marginBottom: '0', lineHeight: '1' }}>{v.n}</p>
+                  <h3 className="fr-card-title" style={{ fontFamily: 'Oranienbaum, serif', fontSize: 'clamp(22px, 2.5vw, 28px)', color: 'rgba(212,175,55,0.95)', marginBottom: '14px', lineHeight: 1.3 }}>{v.title}</h3>
+                  <p className="fr-card-body" style={{ fontFamily: 'Comfortaa, sans-serif', fontSize: '15px', color: 'rgba(255,255,255,0.85)', lineHeight: 1.85 }}>{v.body}</p>
                 </div>
               ))}
             </div>
@@ -38,11 +68,11 @@ export default function FeasibilityReportPage() {
           <div className="container-custom" style={{ maxWidth: '1160px', width: '100%', margin: '0 auto' }}>
             <p style={{ fontFamily: 'Montserrat, sans-serif', fontSize: '15px', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.6)', marginBottom: '12px', textAlign: 'center' }}>Who Uses These Reports</p>
             <h2 style={{ fontFamily: 'Oranienbaum, serif', fontSize: 'clamp(24px, 3vw, 38px)', color: 'rgba(255,255,255,0.85)', textAlign: 'center', marginBottom: '48px' }}>Built for Different Situations</h2>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '2px' }}>
+            <div className="fr-card-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '2px' }}>
               {useCases.map(u => (
-                <div key={u.title} style={{ padding: '36px 32px', background: '#0A0A0A', border: '1px solid rgba(255,255,255,0.05)' }}>
-                  <h3 style={{ fontFamily: 'Oranienbaum, serif', fontSize: '17px', color: '#FAFAFA', marginBottom: '14px', lineHeight: 1.3 }}>{u.title}</h3>
-                  <p style={{ fontFamily: 'Comfortaa, sans-serif', fontSize: '15px', color: 'rgba(255,255,255,0.85)', lineHeight: 1.85 }}>{u.body}</p>
+                <div key={u.title} className="fr-card" style={{ padding: '36px 32px', background: '#0A0A0A', border: '1px solid rgba(255,255,255,0.05)' }}>
+                  <h3 className="fr-card-title" style={{ fontFamily: 'Oranienbaum, serif', fontSize: 'clamp(22px, 2.5vw, 28px)', color: 'rgba(212,175,55,0.95)', marginBottom: '14px', lineHeight: 1.3 }}>{u.title}</h3>
+                  <p className="fr-card-body" style={{ fontFamily: 'Comfortaa, sans-serif', fontSize: '15px', color: 'rgba(255,255,255,0.85)', lineHeight: 1.85 }}>{u.body}</p>
                 </div>
               ))}
             </div>
