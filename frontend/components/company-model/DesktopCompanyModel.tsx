@@ -192,15 +192,41 @@ export default function DesktopCompanyModel() {
               <div className="dtop-chapter-body">
                 {ch.body.map((para, i) => <p key={i}>{para}</p>)}
               </div>
-              {(ch as any).link && (
-                <a href={(ch as any).link.href} className="dtop-link">
-                  {(ch as any).link.label} →
-                </a>
-              )}
-              {(ch as any).link2 && (
-                <a href={(ch as any).link2.href} className="dtop-link" style={{ marginLeft: '16px' }}>
-                  {(ch as any).link2.label} →
-                </a>
+              {((ch as any).link || (ch as any).link2) && (
+                <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', padding: '20px 0' }}>
+                  {(ch as any).link && (
+                    <a href={(ch as any).link.href} style={{
+                      display: 'inline-flex', alignItems: 'center', gap: '8px',
+                      padding: '10px 20px',
+                      border: '1px solid rgba(100,160,220,0.35)',
+                      color: 'rgba(100,160,220,0.85)',
+                      fontFamily: 'Montserrat, sans-serif',
+                      fontSize: '10px', letterSpacing: '0.15em', textTransform: 'uppercase',
+                      textDecoration: 'none',
+                      transition: 'background 200ms',
+                    }}
+                    onMouseEnter={e => (e.currentTarget.style.background = 'rgba(100,160,220,0.08)')}
+                    onMouseLeave={e => (e.currentTarget.style.background = 'transparent')}>
+                      {(ch as any).link.label} →
+                    </a>
+                  )}
+                  {(ch as any).link2 && (
+                    <a href={(ch as any).link2.href} style={{
+                      display: 'inline-flex', alignItems: 'center', gap: '8px',
+                      padding: '10px 20px',
+                      border: '1px solid rgba(100,160,220,0.35)',
+                      color: 'rgba(100,160,220,0.85)',
+                      fontFamily: 'Montserrat, sans-serif',
+                      fontSize: '10px', letterSpacing: '0.15em', textTransform: 'uppercase',
+                      textDecoration: 'none',
+                      transition: 'background 200ms',
+                    }}
+                    onMouseEnter={e => (e.currentTarget.style.background = 'rgba(100,160,220,0.08)')}
+                    onMouseLeave={e => (e.currentTarget.style.background = 'transparent')}>
+                      {(ch as any).link2.label} →
+                    </a>
+                  )}
+                </div>
               )}
               {ch.stat && (
                 <div className="dtop-stat">

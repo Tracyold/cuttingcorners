@@ -159,10 +159,35 @@ export default function MobileCompanyModel() {
             <div className="mob-chapter-body">
               {ch.body.map((para, i) => <p key={i}>{para}</p>)}
             </div>
-            {(ch as any).link && (
-              <a href={(ch as any).link.href} className="mob-link">
-                {(ch as any).link.label} →
-              </a>
+            {((ch as any).link || (ch as any).link2) && (
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', padding: '20px 0' }}>
+                {(ch as any).link && (
+                  <a href={(ch as any).link.href} style={{
+                    display: 'inline-flex', alignItems: 'center', gap: '8px',
+                    padding: '12px 20px',
+                    border: '1px solid rgba(100,160,220,0.35)',
+                    color: 'rgba(100,160,220,0.85)',
+                    fontFamily: 'Montserrat, sans-serif',
+                    fontSize: '10px', letterSpacing: '0.15em', textTransform: 'uppercase',
+                    textDecoration: 'none',
+                  }}>
+                    {(ch as any).link.label} →
+                  </a>
+                )}
+                {(ch as any).link2 && (
+                  <a href={(ch as any).link2.href} style={{
+                    display: 'inline-flex', alignItems: 'center', gap: '8px',
+                    padding: '12px 20px',
+                    border: '1px solid rgba(100,160,220,0.35)',
+                    color: 'rgba(100,160,220,0.85)',
+                    fontFamily: 'Montserrat, sans-serif',
+                    fontSize: '10px', letterSpacing: '0.15em', textTransform: 'uppercase',
+                    textDecoration: 'none',
+                  }}>
+                    {(ch as any).link2.label} →
+                  </a>
+                )}
+              </div>
             )}
             {ch.stat && (
               <div className="mob-stat">
