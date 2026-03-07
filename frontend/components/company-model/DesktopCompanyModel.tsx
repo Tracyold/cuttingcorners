@@ -198,8 +198,8 @@ export default function DesktopCompanyModel() {
                     <a href={(ch as any).link.href} style={{
                       display: 'inline-flex', alignItems: 'center', gap: '8px',
                       padding: '10px 20px',
-                      border: '1px solid rgba(212,175,55,0.35)',
-                      color: 'rgba(212,175,55,0.85)',
+                      border: '1px solid rgba(212,175,55,0.8)',
+                      color: 'rgba(212,175,55,1)',
                       fontFamily: 'Montserrat, sans-serif',
                       fontSize: '10px', letterSpacing: '0.15em', textTransform: 'uppercase',
                       textDecoration: 'none',
@@ -214,8 +214,8 @@ export default function DesktopCompanyModel() {
                     <a href={(ch as any).link2.href} style={{
                       display: 'inline-flex', alignItems: 'center', gap: '8px',
                       padding: '10px 20px',
-                      border: '1px solid rgba(212,175,55,0.35)',
-                      color: 'rgba(212,175,55,0.85)',
+                      border: '1px solid rgba(212,175,55,0.8)',
+                      color: 'rgba(212,175,55,1)',
                       fontFamily: 'Montserrat, sans-serif',
                       fontSize: '10px', letterSpacing: '0.15em', textTransform: 'uppercase',
                       textDecoration: 'none',

@@ -74,40 +74,6 @@ export default function MobileCompanyModel() {
           text-transform: uppercase;
           color: rgba(255,255,255,0.75);
         }
-        .mob-scroll-btn {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          width: 60px;
-          height: 60px;
-          border-radius: 50%;
-          border: 1px solid rgba(100,160,220,0.4);
-          background: transparent;
-          cursor: pointer;
-          margin-top: auto;
-          padding-top: 32px;
-          transition: background 200ms, border-color 200ms;
-          animation: mob-pulse 2s ease-in-out infinite;
-          flex-shrink: 0;
-          position: absolute;
-          bottom: 40px;
-          left: 0;
-        }
-        .mob-scroll-btn:hover {
-          background: rgba(100,160,220,0.1);
-          border-color: rgba(100,160,220,0.8);
-          animation: none;
-        }
-        .mob-scroll-arrow {
-          width: 0;
-          height: 0;
-          border-left: 8px solid transparent;
-          border-right: 8px solid transparent;
-          border-top: 12px solid rgba(212,175,55,0.85);
-          margin-top: 2px;
-        }
-        @keyframes mob-pulse {
-          0%, 100% { box-shadow: 0 0 0 0 rgba(100,160,220,0.3); }
           50% { box-shadow: 0 0 0 10px rgba(100,160,220,0); }
         }
         .mob-cta {
@@ -171,8 +137,8 @@ export default function MobileCompanyModel() {
                   <a href={(ch as any).link.href} style={{
                     display: 'inline-flex', alignItems: 'center', gap: '8px',
                     padding: '14px 22px',
-                    border: '1px solid rgba(212,175,55,0.35)',
-                    color: 'rgba(212,175,55,0.85)',
+                    border: '1px solid rgba(212,175,55,0.8)',
+                    color: 'rgba(212,175,55,1)',
                     fontFamily: 'Montserrat, sans-serif',
                     fontSize: '11px', letterSpacing: '0.15em', textTransform: 'uppercase',
                     textDecoration: 'none',
@@ -184,8 +150,8 @@ export default function MobileCompanyModel() {
                   <a href={(ch as any).link2.href} style={{
                     display: 'inline-flex', alignItems: 'center', gap: '8px',
                     padding: '14px 22px',
-                    border: '1px solid rgba(212,175,55,0.35)',
-                    color: 'rgba(212,175,55,0.85)',
+                    border: '1px solid rgba(212,175,55,0.8)',
+                    color: 'rgba(212,175,55,1)',
                     fontFamily: 'Montserrat, sans-serif',
                     fontSize: '11px', letterSpacing: '0.15em', textTransform: 'uppercase',
                     textDecoration: 'none',
@@ -202,14 +168,6 @@ export default function MobileCompanyModel() {
                 <div className="mob-stat-label">{ch.stat.label}</div>
               </div>
             )}
-
-            <button
-              className="mob-scroll-btn"
-              onClick={() => scrollToNext(ch.id)}
-              aria-label="Scroll to next section"
-            >
-              <div className="mob-scroll-arrow" />
-            </button>
 
           </div>
         ))}
