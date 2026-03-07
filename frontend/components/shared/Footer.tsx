@@ -2,7 +2,7 @@ import { useRouter } from 'next/router';
 
 const footerCss = `
 .ccg-footer {
-  background: #000000;
+  background: hsla(0, 0%, 0%, 0.69);
   border-top: 1px solid rgba(255,255,255,0.08);
   padding: 40px 48px;
 }
@@ -11,7 +11,7 @@ const footerCss = `
   font-size: 11px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.55);
+  color: rgba(255, 255, 255, 0.86);
   margin-bottom: 28px;
 }
 .ccg-footer-content {
@@ -49,9 +49,9 @@ const footerCss = `
 }
 .ccg-footer-contact-link {
   font-family: 'Montserrat', sans-serif;
-  font-size: 12px;
+  font-size: 15px;
   letter-spacing: 0.04em;
-  color: rgba(255,255,255,0.40);
+  color: rgba(255, 255, 255, 0.81);
   text-decoration: none;
   line-height: 2.0;
   transition: color 180ms ease, font-size 150ms ease;
@@ -63,7 +63,7 @@ const footerCss = `
 .ccg-footer-welcome {
   font-family: 'Comfortaa', sans-serif;
   font-size: 11px;
-  color: rgba(255,255,255,0.40);
+  color: rgba(255, 255, 255, 0.67);
   font-style: italic;
   line-height: 2.0;
 }
@@ -96,9 +96,9 @@ export default function Footer() {
         </div>
         <div className="ccg-footer-content">
           <div className="ccg-footer-links">
-            <a href="legal/index" className="ccg-footer-link">legal</a>
-            <a href="legal/sms-terms" className="ccg-footer-link">sms disclosure</a>
-            <a href="legal/privacy-policy" className="ccg-footer-link">privacy policy</a>
+            <a href="/legal" className="ccg-footer-link">legal</a>
+            <a href="/company-model" className="ccg-footer-link">Our Story</a>
+            <a href="/legal/privacy-policy" className="ccg-footer-link">privacy policy</a>
             <a href="/shop" className="ccg-footer-link">shop</a>
             <a href="/portfolio" className="ccg-footer-link">portfolio</a>
             <a href="/login" className="ccg-footer-link">sign in / sign up</a>
