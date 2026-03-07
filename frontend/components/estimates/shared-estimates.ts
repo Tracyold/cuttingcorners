@@ -1,0 +1,65 @@
+export const paths = [
+  {
+    n: '01',
+    title: 'Instant Estimate',
+    tag: null,
+    warning: 'Instant estimates are based solely on information you provide and are always higher than personal estimates. For a more accurate number, we recommend an Online or In-Person estimate.',
+    body: 'Answer a short series of questions about your gemstone and receive an estimate immediately. Questions are presented one at a time for easy navigation. No account required.',
+    cta: { label: 'Get an Instant Estimate', href: '/estimate/instant' },
+    details: [
+      'Based on submitted information only',
+      'No physical examination',
+      'Results are immediate',
+      'Best for: curious owners, quick ballpark figures',
+    ],
+  },
+  {
+    n: '02',
+    title: 'Online Estimate',
+    tag: null,
+    warning: null,
+    body: 'Submit photos of your gemstone and receive a personalized estimate within 24 hours. Questions are presented individually in a guided modal before submission.',
+    cta: { label: 'Request an Online Estimate', href: '/estimate/online' },
+    details: [
+      'Photo-based evaluation',
+      'Response within 24 hours',
+      'More accurate than an instant estimate',
+      'Best for: owners who want a real number without shipping',
+    ],
+  },
+  {
+    n: '03',
+    title: 'In-Person Estimate',
+    tag: 'Recommended',
+    warning: null,
+    body: 'The most accurate estimate available. Send your gemstone to us for a physical examination. A work order is opened and an estimate is provided within 24–48 hours of receipt. In-person estimates are free.',
+    cta: { label: 'Open a Work Order', href: '/account' },
+    details: [
+      'Physical examination of your stone',
+      'Estimate within 24–48 hours of receipt',
+      'Client covers shipping and provides tracking number',
+      'SMS notifications required',
+      'Free of charge',
+      'Best for: anyone serious about cutting or recutting',
+    ],
+  },
+  {
+    n: '04',
+    title: 'CCG Cut Feasibility Report',
+    tag: null,
+    warning: null,
+    body: 'A professional structural evaluation of your gemstone — objective, documented, and detailed. Reports never include an estimate, but once complete, an estimate will be provided separately on the work order. Available as a standalone product or bundled with any cutting service.',
+    cta: { label: 'Learn About the Report', href: '/feasibility-report' },
+    details: [
+      'Pre-cut structural and inclusion analysis',
+      'Crown, pavilion, and profile plots',
+      'Recovery range and cutting approach options',
+      'Can be used for resale documentation',
+      'Available to cutting houses for second opinions',
+      'Standalone or bundled with service',
+      'Best for: serious collectors, dealers, trade professionals',
+    ],
+  },
+];
+
+export type EstimatePath = typeof paths[0];

@@ -59,3 +59,10 @@ button, input, textarea, select {
   animation: dropIn 1000ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
   animation-delay: 900ms;
 }
+
+.hidden-mobile { display: block; }
+.hidden-desktop { display: none; }
+@media (max-width: 860px) {
+  .hidden-mobile { display: none !important; }
+  .hidden-desktop { display: block !important; }
+}
