@@ -24,7 +24,7 @@ export default function FeasibilityReportPage() {
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '2px' }}>
               {valueProps.map(v => (
                 <div key={v.n} style={{ padding: '36px 32px', background: '#0A0A0A', border: '1px solid rgba(255,255,255,0.05)' }}>
-                  <p style={{ fontFamily: 'Montserrat, sans-serif', fontSize: 'clamp(80px, 14vw, 140px)', letterSpacing: '0', color: 'rgba(212,175,55,0.2)', marginBottom: '0', fontFamily: 'Oranienbaum, serif', lineHeight: '1' }}>{v.n}</p>
+                  <p style={{ fontFamily: 'Oranienbaum, serif', fontSize: 'clamp(80px, 14vw, 140px)', letterSpacing: '0', color: 'rgba(212,175,55,0.2)', marginBottom: '0', lineHeight: '1' }}>{v.n}</p>
                   <h3 style={{ fontFamily: 'Oranienbaum, serif', fontSize: '17px', color: '#FAFAFA', marginBottom: '14px', lineHeight: 1.3 }}>{v.title}</h3>
                   <p style={{ fontFamily: 'Comfortaa, sans-serif', fontSize: '15px', color: 'rgba(255,255,255,0.85)', lineHeight: 1.85 }}>{v.body}</p>
                 </div>
