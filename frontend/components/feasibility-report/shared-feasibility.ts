@@ -41,8 +41,8 @@ export const precut = {
   sideProfile: 'Crown height low relative to overall depth. Girdle thickness uneven — slightly thicker at 3–9 axis. No depth-threatening structural features from profile. Pavilion depth workable for corrective recut.',
 
   recovery: {
-    low: 72,
-    high: 84,
+    low: 38,
+    high: 49,
     basis: 'Minor corrective recut',
     notes: 'Weight loss driven by surface damage removal and girdle re-establishment. Needle inclusions below cutting risk threshold and not expected to affect yield.',
   },
