@@ -63,7 +63,7 @@ export default function DesktopEstimates() {
           background: rgba(212,175,55,0.12);
           border: 1px solid #d4af37;
           font-family: 'Comfortaa', sans-serif;
-          font-size: 15px;
+          font-size: 17px;
           letter-spacing: 0.2em;
           text-transform: uppercase;
           color: rgba(212,175,55,0.9);
@@ -82,14 +82,14 @@ export default function DesktopEstimates() {
           border-left: 2px solid #d4af37;
           font-family: 'Comfortaa', sans-serif;
           font-size: 17px;
-          color: rgba(255,220,100,0.8);
+          color: rgba(255,220,100,0.95);
           line-height: 1.7;
           margin-bottom: 20px;
         }
         .dest-body {
           font-family: 'Comfortaa', sans-serif;
-          font-size: 17px;
-          color: rgba(255,255,255,0.55);
+          font-size: 19px;
+          color: #e8dcc8;
           line-height: 1.85;
           margin-bottom: 28px;
         }
@@ -107,7 +107,7 @@ export default function DesktopEstimates() {
           align-items: flex-start;
           font-family: 'Comfortaa', sans-serif;
           font-size: 17px;
-          color: rgba(255,255,255,0.45);
+          color: #d4c9b0;
           line-height: 1.6;
         }
         .dest-details li::before {
@@ -128,7 +128,7 @@ export default function DesktopEstimates() {
           background: transparent;
           color: rgba(212,175,55,0.85);
           font-family: 'Comfortaa', sans-serif;
-          font-size: 15px;
+          font-size: 17px;
           letter-spacing: 0.15em;
           text-transform: uppercase;
           text-decoration: none;
