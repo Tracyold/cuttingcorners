@@ -23,7 +23,7 @@ export default function EstimatesPage() {
             <div className="hidden-mobile">
               <DesktopEstimates />
             </div>
-            <div className="hidden-desktop">
+            <div className="hidden-desktop" style={{ position: 'fixed', inset: 0, zIndex: 10, overflowY: 'hidden' }}>
               <MobileEstimates />
             </div>
 
