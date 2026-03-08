@@ -463,13 +463,22 @@ export default function InstantEstimate() {
               <h1 className="eq-q" style={{ marginBottom: 32 }}>{headline}</h1>
 
               {/* Trigger tally */}
-              {totalTriggers > 0 && (
+              {(totalTriggers > 0 || st.flags.length > 0) && (
                 <div style={{ marginBottom: 28, padding: '16px 20px', border: '1px solid rgba(255,255,255,0.08)', background: 'rgba(255,255,255,0.02)' }}>
-                  <p style={{ fontFamily: 'Montserrat, sans-serif', fontSize: 15, color: 'rgba(255,255,255,0.65)', lineHeight: 1.8 }}>
-                    {totalTriggers === 1
-                      ? '1 of your answers pointed toward a different path.'
-                      : `${totalTriggers} of your answers pointed toward a different path.`}
-                  </p>
+                  {totalTriggers > 0 && (
+                    <p style={{ fontFamily: 'Montserrat, sans-serif', fontSize: 17, color: 'rgba(255,255,255,0.65)', lineHeight: 1.8 }}>
+                      {totalTriggers === 1
+                        ? '1 of your answers pointed toward a different path.'
+                        : `${totalTriggers} of your answers pointed toward a different path.`}
+                    </p>
+                  )}
+                  {st.flags.length > 0 && (
+                    <p style={{ fontFamily: 'Montserrat, sans-serif', fontSize: 17, color: 'rgba(220,80,80,0.9)', lineHeight: 1.8, marginTop: totalTriggers > 0 ? 8 : 0 }}>
+                      {st.flags.length === 1
+                        ? '1 of your answers raised a structural concern.'
+                        : `${st.flags.length} of your answers raised structural concerns.`}
+                    </p>
+                  )}
                 </div>
               )}
 
