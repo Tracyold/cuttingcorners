@@ -81,13 +81,13 @@ const css = `
   text-transform: uppercase;
   color: #d4af37;
   text-decoration: none;
-  border: 0.5px solid rgba(212,175,55,0.45);
+  border: 0.5px solid #d4af37;
   padding: 6px 14px;
   transition: all 200ms ease;
 }
 .tnav-auth:hover {
   background: rgba(212,175,55,0.08);
-  border-color: rgba(212,175,55,0.8);
+  border-color: #d4af37;
   color: #e5c84a;
 }
 .tnav-burger {
@@ -103,7 +103,7 @@ const css = `
   padding: 8px;
   transition: border-color 200ms ease;
 }
-.tnav-burger:hover { border-color: rgba(212,175,55,0.5); }
+.tnav-burger:hover { border-color: #d4af37; }
 .tnav-burger .bar {
   width: 100%;
   height: 1px;

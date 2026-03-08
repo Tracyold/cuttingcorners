@@ -9,13 +9,13 @@ const Li = ({ children }: { children: React.ReactNode }) => (
 );
 const Block = ({ title, children }: { title: string; children: React.ReactNode }) => (
   <div style={{ marginBottom: '40px' }}>
-    <h2 style={{ fontFamily: "'Comfortaa', sans-serif", fontSize: 'clamp(29x, 17vw, 24px)', color: '#FAFAFA', marginBottom: '16px', paddingBottom: '10px', borderBottom: '1px solid rgba(212,175,55,0.15)' }}>{title}</h2>
+    <h2 style={{ fontFamily: "'Comfortaa', sans-serif", fontSize: 'clamp(29x, 17vw, 24px)', color: '#FAFAFA', marginBottom: '16px', paddingBottom: '10px', borderBottom: '1px solid #d4af37' }}>{title}</h2>
     {children}
   </div>
 );
 const SampleMsg = ({ label, msg }: { label: string; msg: string }) => (
   <div style={{ padding: '12px 16px', background: '#0A0A0A', border: '1px solid rgba(255,255,255,0.06)', borderRadius: '6px', marginBottom: '10px' }}>
-    <p style={{ fontSize: '19px', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(212,175,55,0.6)', margin: '0 0 6px 0' }}>{label}</p>
+    <p style={{ fontSize: '19px', letterSpacing: '0.2em', textTransform: 'uppercase', color: '#d4af37', margin: '0 0 6px 0' }}>{label}</p>
     <p style={{ fontSize: '17px', color: 'rgba(255,255,255,0.75)', margin: 0, fontFamily: "'Courier New', monospace", lineHeight: 1.6 }}>{msg}</p>
   </div>
 );
@@ -37,13 +37,13 @@ export default function SmsTerms() {
 
         <div style={{ maxWidth: '1300px', margin: '0 auto', padding: '64px 40px' }}>
 
-          <p style={{ fontFamily: "'Montserrat', sans-serif", fontSize: '15px', letterSpacing: '0.3em', textTransform: 'uppercase', color: 'rgba(212,175,55,0.7)', marginBottom: '12px' }}>Cutting Corners Gems</p>
+          <p style={{ fontFamily: "'Montserrat', sans-serif", fontSize: '15px', letterSpacing: '0.3em', textTransform: 'uppercase', color: '#d4af37', marginBottom: '12px' }}>Cutting Corners Gems</p>
           <h1 style={{ fontFamily: "'Oranienbaum', serif", fontSize: 'clamp(32px, 5vw, 52px)', color: '#FAFAFA', marginBottom: '16px', lineHeight: 1.15 }}>SMS Notification Terms & Disclosure</h1>
           <p style={{ fontSize: '15px', color: 'rgba(255,255,255,0.35)', marginBottom: '8px' }}>Effective Date: March 4, 2026</p>
           <p style={{ fontSize: '15px', color: 'rgba(255,255,255,0.35)', marginBottom: '48px' }}>Program Name: Cutting Corners Gems — User Opt-In/Out Account Notifications</p>
 
           {/* Intro */}
-          <div style={{ background: 'rgba(212,175,55,0.06)', border: '1px solid rgba(212,175,55,0.2)', padding: '20px 24px', marginBottom: '48px' }}>
+          <div style={{ background: '#d4af37', border: '1px solid #d4af37', padding: '20px 24px', marginBottom: '48px' }}>
             <P>By providing a mobile phone number and enabling SMS notification toggles within your account dashboard, you consent to receive transactional SMS notifications related to your account activity. Notifications are optional and can be enabled or disabled individually at any time from your Account Dashboard.</P>
             <p style={{ fontSize: '17px', color: 'rgba(255,220,100,0.8)', margin: 0 }}>Cutting Corners Gems does not send unsolicited marketing or promotional SMS messages. All messages are operational in nature and correspond to account activity you have chosen to track.</p>
           </div>
@@ -88,7 +88,7 @@ export default function SmsTerms() {
             <SampleMsg label="Work Order Complete" msg="Cutting Corners Gems: Your workorder [work_order_id] for [work_order_gem_type] [work_order_service_type]  is complete! Please click the link to review your invoice, notes, photos and payment options." />
             <SampleMsg label="Work Order Payment Completed" msg="Cutting Corners Gems: Workorder [work_order_id] for [work_order_gem_type] [work_order_service_type] payment is complete. Your item will be shipped to the address on the your workorder within 24 horus." />
             <SampleMsg label="Your item Is On the Way" msg="Cutting Corners Gems: Your gemsone for workorder [work_order_id] for [work_order_gem_type] [work_order_service_type] has been shipped! Please click the link to view tracking information [link]. Please opt in to shipping notifications in your account dashboard to recieve shipping updates" />  
-                        <div style={{ background: 'rgba(212,175,55,0.06)', border: '1px solid rgba(212,175,55,0.2)', padding: '16px 20px', marginTop: '16px' }}>
+                        <div style={{ background: '#d4af37', border: '1px solid #d4af37', padding: '16px 20px', marginTop: '16px' }}>
               <p style={{ fontSize: '17px', color: 'rgba(255,220,100,0.85)', lineHeight: 1.75, margin: 0 }}>
                 <strong>Active Work Order Requirement:</strong> Work order notifications cannot be disabled while you have an open work order. Because your gemstone is in our possession during this time, we require the ability to reach you with status updates and required confirmations. This toggle becomes available to turn off once your work order is complete and your item has been returned.
               </p>
@@ -148,12 +148,12 @@ export default function SmsTerms() {
           <Block title="Data Use and Privacy">
             <P><p style={{ fontSize: '17px' }}> Mobile phone numbers are used solely to deliver the notification types you choose to enable. Cutting Corners Gems does not sell, rent, or distribute phone numbers to third parties for any purpose.</p></P>
             <P><p style={{ fontSize: '17px' }}>SMS communications are strictly limited to operational notifications and opted-in marketing related to account activity and gemstone listings. No unsolicited messages are sent.</p></P>
-            <P><p style={{ fontSize: '17px' }}>For additional information about how personal data is handled, please refer to the <button onClick={() => router.push('/legal/privacy-policy')} style={{ background: 'none', border: 'none', color: 'rgba(212,175,55,0.8)', cursor: 'pointer', fontSize: '17px', textDecoration: 'underline', padding: 0 }}>Privacy Policy</button>.</p></P>
+            <P><p style={{ fontSize: '17px' }}>For additional information about how personal data is handled, please refer to the <button onClick={() => router.push('/legal/privacy-policy')} style={{ background: 'none', border: 'none', color: '#d4af37', cursor: 'pointer', fontSize: '17px', textDecoration: 'underline', padding: 0 }}>Privacy Policy</button>.</p></P>
           </Block>
 
           {/* Contact */}
-          <div style={{ marginTop: '32px', padding: '24px', border: '1px solid rgba(212,175,55,0.15)', background: 'rgba(212,175,55,0.04)' }}>
-            <p style={{ fontFamily: "'Montserrat', sans-serif", fontSize: '15px', letterSpacing: '0.25em', textTransform: 'uppercase', color: 'rgba(212,175,55,0.6)', marginBottom: '12px' }}>Contact</p>
+          <div style={{ marginTop: '32px', padding: '24px', border: '1px solid #d4af37', background: '#d4af37' }}>
+            <p style={{ fontFamily: "'Montserrat', sans-serif", fontSize: '15px', letterSpacing: '0.25em', textTransform: 'uppercase', color: '#d4af37', marginBottom: '12px' }}>Contact</p>
             <p style={{ fontSize: '15px', color: 'rgba(255,255,255,0.6)', lineHeight: 2, margin: 0 }}>
               Cutting Corners Gems<br />
               850 S River Dr #2117, Tempe, Arizona 85281<br />
@@ -163,9 +163,9 @@ export default function SmsTerms() {
           </div>
 
           <div style={{ marginTop: '48px', display: 'flex', gap: '24px', justifyContent: 'center' }}>
-            <button onClick={() => router.push('/legal')} style={{ background: 'none', border: 'none', color: 'rgba(212,175,55,0.6)', fontSize: '11px', letterSpacing: '0.15em', textTransform: 'uppercase', cursor: 'pointer' }}>Legal</button>
+            <button onClick={() => router.push('/legal')} style={{ background: 'none', border: 'none', color: '#d4af37', fontSize: '11px', letterSpacing: '0.15em', textTransform: 'uppercase', cursor: 'pointer' }}>Legal</button>
             <span style={{ color: 'rgba(255,255,255,0.15)' }}>|</span>
-            <button onClick={() => router.push('/legal/privacy-policy')} style={{ background: 'none', border: 'none', color: 'rgba(212,175,55,0.6)', fontSize: '11px', letterSpacing: '0.15em', textTransform: 'uppercase', cursor: 'pointer' }}>Privacy Policy</button>
+            <button onClick={() => router.push('/legal/privacy-policy')} style={{ background: 'none', border: 'none', color: '#d4af37', fontSize: '11px', letterSpacing: '0.15em', textTransform: 'uppercase', cursor: 'pointer' }}>Privacy Policy</button>
           </div>
 
         </div>

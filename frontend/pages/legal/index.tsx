@@ -26,7 +26,7 @@ const SectionHeading = ({ id, children }: { id?: string; children: React.ReactNo
   <h3 id={id} style={{ fontFamily: "'Oranienbaum', serif", fontSize: 'clamp(18px, 2.5vw, 24px)', color: '#FAFAFA', marginBottom: '18px', marginTop: '40px', scrollMarginTop: '120px' }}>{children}</h3>
 );
 const GoldNote = ({ children }: { children: React.ReactNode }) => (
-  <div style={{ background: 'rgba(212,175,55,0.06)', border: '1px solid rgba(212,175,55,0.2)', padding: '16px 20px', marginBottom: '20px', borderRadius: '2px' }}>
+  <div style={{ background: 'rgba(212,175,55,0.06)', border: '1px solid #d4af37', padding: '16px 20px', marginBottom: '20px', borderRadius: '2px' }}>
     <p style={{ fontSize: '13px', color: 'rgba(255,230,130,1)', lineHeight: 1.8, margin: 0 }}>{children}</p>
   </div>
 );
@@ -34,7 +34,7 @@ const GoldDivider = () => (
   <div style={{ margin: '72px 0 64px', display: 'flex', alignItems: 'center', gap: '20px' }}>
     <div style={{ flex: 1, height: '1px', background: 'linear-gradient(to right, transparent, rgba(212,175,55,0.35), transparent)' }} />
     <div style={{ width: '5px', height: '5px', borderRadius: '50%', background: '#d4af37', opacity: 0.5, flexShrink: 0 }} />
-    <div style={{ flex: 1, height: '1px', background: 'linear-gradient(to left, transparent, rgba(212,175,55,0.35), transparent)' }} />
+    <div style={{ flex: 1, height: '1px', background: 'linear-gradient(to left, transparent, #d4af37, transparent)' }} />
   </div>
 );
 
@@ -445,8 +445,8 @@ export default function LegalUnified() {
             </div>
 
             {/* ── Contact block ── */}
-            <div style={{ marginTop: '64px', padding: '28px', border: '1px solid rgba(212,175,55,0.15)', background: 'rgba(212,175,55,0.04)', borderRadius: '2px' }}>
-              <p style={{ fontFamily: "'Montserrat', sans-serif", fontSize: '9px', letterSpacing: '0.3em', textTransform: 'uppercase', color: 'rgba(212,175,55,0.55)', marginBottom: '14px' }}>Contact</p>
+            <div style={{ marginTop: '64px', padding: '28px', border: '1px solid #d4af37', background: '#d4af37', borderRadius: '2px' }}>
+              <p style={{ fontFamily: "'Montserrat', sans-serif", fontSize: '9px', letterSpacing: '0.3em', textTransform: 'uppercase', color: '#d4af37', marginBottom: '14px' }}>Contact</p>
               <p style={{ fontSize: '13px', color: 'rgba(255,255,255,0.85)', lineHeight: 2.1, margin: 0 }}>
                 Cutting Corners Gems<br />
                 850 S River Dr #2117, Tempe, Arizona 85281<br />

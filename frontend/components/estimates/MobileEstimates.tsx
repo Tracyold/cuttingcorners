@@ -36,7 +36,7 @@ export default function MobileEstimates() {
           display: inline-block;
           padding: 5px 14px;
           background: rgba(212,175,55,0.12);
-          border: 1px solid rgba(212,175,55,0.3);
+          border: 1px solid #d4af37;
           font-family: 'Comfortaa', sans-serif;
           font-size: 13px;
           letter-spacing: 0.2em;
@@ -54,7 +54,7 @@ export default function MobileEstimates() {
         .mest-warning {
           padding: 16px 18px;
           background: rgba(212,175,55,0.06);
-          border-left: 2px solid rgba(212,175,55,0.4);
+          border-left: 2px solid #d4af37;
           font-family: 'Comfortaa', sans-serif;
           font-size: clamp(15px, 4vw, 17px);
           color: rgba(255,220,100,0.95);
@@ -99,7 +99,7 @@ export default function MobileEstimates() {
           align-items: center;
           gap: 8px;
           padding: 14px 26px;
-          border: 1px solid rgba(212,175,55,0.35);
+          border: 1px solid #d4af37;
           background: transparent;
           color: rgba(212,175,55,0.85);
           font-family: 'Comfortaa', sans-serif;

@@ -17,21 +17,21 @@ const FV = { fontFamily: 'Comfortaa, sans-serif', fontSize: '15px', color: 'rgba
 const TH = { fontFamily: 'Montserrat, sans-serif', fontSize: '13px', letterSpacing: '0.12em', textTransform: 'uppercase' as const, color: 'rgba(100,160,220,0.9)', padding: '8px 10px', borderBottom: '1px solid rgba(255,255,255,0.06)', textAlign: 'left' as const };
 const TC = { fontFamily: 'Comfortaa, sans-serif', fontSize: '15px', color: 'rgba(255,255,255,0.9)', padding: '10px', borderBottom: '1px solid rgba(255,255,255,0.04)', verticalAlign: 'top' as const };
 
-const CARD: React.CSSProperties = { background: '#0D0D0D', border: '1px solid rgba(212,175,55,0.15)', padding: '48px', width: '100%' };
+const CARD: React.CSSProperties = { background: '#0D0D0D', border: '1px solid #d4af37', padding: '48px', width: '100%' };
 
 export default function FeasibilityDesktop() {
   return (
     <>
       <style>{`
         .fd-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: flex-start; }
-        .fd-header { display: flex; justify-content: space-between; align-items: flex-start; padding-bottom: 24px; border-bottom: 1px solid rgba(212,175,55,0.2); margin-bottom: 8px; }
+        .fd-header { display: flex; justify-content: space-between; align-items: flex-start; padding-bottom: 24px; border-bottom: 1px solid #d4af37; margin-bottom: 8px; }
         .fd-gem-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 24px; }
         .fd-sym-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
         .fd-plot { background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.06); padding: 20px; position: relative; min-height: 140px; }
         .fd-plot-label { font-family: 'Montserrat', sans-serif; font-size: 13px; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(100,160,220,0.85); position: absolute; top: 10px; left: 12px; }
         .fd-plot-shape { display: flex; align-items: center; justify-content: center; height: 100px; }
         .fd-option { padding: 16px; border: 1px solid rgba(255,255,255,0.05); margin-bottom: 8px; background: rgba(255,255,255,0.02); }
-        .fd-option.rec { border-color: rgba(212,175,55,0.25); background: rgba(212,175,55,0.04); }
+        .fd-option.rec { border-color: #d4af37; background: rgba(212,175,55,0.04); }
         .fd-disclaimer { margin-top: 32px; padding: 16px; border: 1px solid rgba(255,255,255,0.04); background: rgba(255,255,255,0.02); font-family: 'Comfortaa', sans-serif; font-size: 13px; color: rgba(255,255,255,0.55); line-height: 1.7; }
       `}</style>
 
@@ -122,7 +122,7 @@ export default function FeasibilityDesktop() {
           <p style={SL}>Conditional Factors</p>
           {precut.conditionals.map((c, i) => (
             <div key={i} style={{ display: 'flex', gap: '10px', marginBottom: '10px' }}>
-              <span style={{ color: 'rgba(212,175,55,0.9)', fontSize: '15px', marginTop: '2px', flexShrink: 0 }}>—</span>
+              <span style={{ color: '#d4af37', fontSize: '15px', marginTop: '2px', flexShrink: 0 }}>—</span>
               <p style={{ fontFamily: 'Comfortaa, sans-serif', fontSize: '15px', color: 'rgba(255,255,255,0.9)', lineHeight: 1.7 }}>{c}</p>
             </div>
           ))}
@@ -131,8 +131,8 @@ export default function FeasibilityDesktop() {
           {precut.options.map((o, i) => (
             <div key={i} className={`fd-option${i === 1 ? ' rec' : ''}`}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
-                <p style={{ fontFamily: 'Montserrat, sans-serif', fontSize: '15px', fontWeight: 600, color: 'rgba(212,175,55,0.95)', letterSpacing: '0.1em' }}>{o.label}</p>
-                {i === 1 && <span style={{ fontFamily: 'Montserrat, sans-serif', fontSize: '13px', letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(212,175,55,0.95)' }}>Recommended</span>}
+                <p style={{ fontFamily: 'Montserrat, sans-serif', fontSize: '15px', fontWeight: 600, color: '#d4af37', letterSpacing: '0.1em' }}>{o.label}</p>
+                {i === 1 && <span style={{ fontFamily: 'Montserrat, sans-serif', fontSize: '13px', letterSpacing: '0.12em', textTransform: 'uppercase', color: '#d4af37' }}>Recommended</span>}
               </div>
               <p style={{ fontFamily: 'Comfortaa, sans-serif', fontSize: '15px', color: 'rgba(255,255,255,0.9)', lineHeight: 1.7 }}>{o.desc}</p>
             </div>
@@ -147,7 +147,7 @@ export default function FeasibilityDesktop() {
         <div style={CARD}>
           <div className="fd-header">
             <div>
-              <p style={{ fontFamily: 'Montserrat, sans-serif', fontSize: '13px', letterSpacing: '0.25em', textTransform: 'uppercase', color: 'rgba(212,175,55,0.9)', marginBottom: '6px' }}>CCG Cut Feasibility Report</p>
+              <p style={{ fontFamily: 'Montserrat, sans-serif', fontSize: '13px', letterSpacing: '0.25em', textTransform: 'uppercase', color: '#d4af37', marginBottom: '6px' }}>CCG Cut Feasibility Report</p>
               <p style={{ fontFamily: 'Oranienbaum, serif', fontSize: '21px', color: '#FAFAFA', lineHeight: 1.1, marginBottom: '4px' }}>Post-Cut Change Report</p>
               <p style={{ fontFamily: 'Comfortaa, sans-serif', fontSize: '14px', color: 'rgba(255,255,255,0.7)' }}>Report #{postcut.id}</p>
             </div>
@@ -163,8 +163,8 @@ export default function FeasibilityDesktop() {
               <p style={{ fontFamily: 'Montserrat, sans-serif', fontSize: '8px', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.2)', marginBottom: '10px' }}>Before</p>
               {[['Weight', postcut.overview.originalWeight], ['Measurements', postcut.overview.originalMeasurements], ['Cut', postcut.overview.originalShapeStyle]].map(([l, v]) => <div key={l}><p style={FL}>{l}</p><p style={FV}>{v}</p></div>)}
             </div>
-            <div style={{ padding: '17px', background: 'rgba(212,175,55,0.03)', border: '1px solid rgba(212,175,55,0.12)' }}>
-              <p style={{ fontFamily: 'Montserrat, sans-serif', fontSize: '8px', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(212,175,55,0.5)', marginBottom: '10px' }}>After</p>
+            <div style={{ padding: '17px', background: '#d4af37', border: '1px solid #d4af37' }}>
+              <p style={{ fontFamily: 'Montserrat, sans-serif', fontSize: '8px', letterSpacing: '0.2em', textTransform: 'uppercase', color: '#d4af37', marginBottom: '10px' }}>After</p>
               {[['Weight', postcut.overview.finalWeight], ['Measurements', postcut.overview.finalMeasurements], ['Cut', postcut.overview.finalShapeStyle]].map(([l, v]) => <div key={l}><p style={FL}>{l}</p><p style={FV}>{v}</p></div>)}
             </div>
           </div>
@@ -180,7 +180,7 @@ export default function FeasibilityDesktop() {
           <p style={SL}>Primary Cutting Objectives</p>
           {postcut.beforeAfter.objectives.map((o, i) => (
             <div key={i} style={{ display: 'flex', gap: '10px', marginBottom: '8px' }}>
-              <span style={{ color: 'rgba(212,175,55,0.9)', fontSize: '15px', marginTop: '2px', flexShrink: 0 }}>—</span>
+              <span style={{ color: '#d4af37', fontSize: '15px', marginTop: '2px', flexShrink: 0 }}>—</span>
               <p style={{ fontFamily: 'Comfortaa, sans-serif', fontSize: '15px', color: 'rgba(255,255,255,0.9)', lineHeight: 1.65 }}>{o}</p>
             </div>
           ))}
@@ -200,9 +200,9 @@ export default function FeasibilityDesktop() {
                   <ellipse cx="50" cy="50" rx="44" ry="36" fill="none" stroke="rgba(255,255,255,0.15)" strokeWidth="1" strokeDasharray="3,2" />
                   <ellipse cx="50" cy="50" rx="20" ry="14" fill="none" stroke="rgba(255,255,255,0.08)" strokeWidth="0.5" strokeDasharray="2,2" />
                   <text x="72" y="28" fontSize="7" fill="rgba(100,160,220,0.5)" fontFamily="monospace">○</text>
-                  <text x="18" y="55" fontSize="7" fill="rgba(212,175,55,0.5)" fontFamily="monospace">~</text>
-                  <text x="50" y="90" fontSize="7" fill="rgba(212,175,55,0.5)" fontFamily="monospace">△</text>
-                  <text x="50" y="18" fontSize="7" fill="rgba(212,175,55,0.5)" fontFamily="monospace">~</text>
+                  <text x="18" y="55" fontSize="7" fill="#d4af37" fontFamily="monospace">~</text>
+                  <text x="50" y="90" fontSize="7" fill="#d4af37" fontFamily="monospace">△</text>
+                  <text x="50" y="18" fontSize="7" fill="#d4af37" fontFamily="monospace">~</text>
                 </svg>
               </div>
             </div>
@@ -210,8 +210,8 @@ export default function FeasibilityDesktop() {
               <span className="fd-plot-label">After — Crown</span>
               <div className="fd-plot-shape">
                 <svg viewBox="0 0 100 100" width="90" height="90">
-                  <ellipse cx="50" cy="50" rx="44" ry="36" fill="none" stroke="rgba(212,175,55,0.4)" strokeWidth="1" />
-                  <ellipse cx="50" cy="50" rx="20" ry="14" fill="none" stroke="rgba(212,175,55,0.2)" strokeWidth="0.5" />
+                  <ellipse cx="50" cy="50" rx="44" ry="36" fill="none" stroke="#d4af37" strokeWidth="1" />
+                  <ellipse cx="50" cy="50" rx="20" ry="14" fill="none" stroke="#d4af37" strokeWidth="0.5" />
                   <text x="72" y="28" fontSize="7" fill="rgba(100,160,220,0.5)" fontFamily="monospace">○</text>
                 </svg>
               </div>
@@ -221,7 +221,7 @@ export default function FeasibilityDesktop() {
           <p style={SL}>Optical Performance Observation</p>
           <table style={{ width: '100%', borderCollapse: 'collapse', marginBottom: '8px' }}>
             <thead><tr>{['Aspect', 'Rating', 'Note'].map(h => <th key={h} style={TH}>{h}</th>)}</tr></thead>
-            <tbody>{postcut.optical.map((r, i) => <tr key={i}><td style={TC}>{r.aspect}</td><td style={TC}><span style={{ fontFamily: 'Comfortaa, sans-serif', fontSize: '10px', color: 'rgba(212,175,55,0.8)', fontWeight: 600 }}>{r.rating}</span></td><td style={TC}>{r.note}</td></tr>)}</tbody>
+            <tbody>{postcut.optical.map((r, i) => <tr key={i}><td style={TC}>{r.aspect}</td><td style={TC}><span style={{ fontFamily: 'Comfortaa, sans-serif', fontSize: '10px', color: '#d4af37', fontWeight: 600 }}>{r.rating}</span></td><td style={TC}>{r.note}</td></tr>)}</tbody>
           </table>
 
           <p style={SL}>Documentation Record</p>

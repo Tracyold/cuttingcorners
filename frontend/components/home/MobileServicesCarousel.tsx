@@ -301,7 +301,7 @@ export default function MobileServicesCarousel() {
           style={{
             width: '1px',
             height: '32px',
-            background: 'linear-gradient(to bottom, rgba(212,175,55,0.6), rgba(212,175,55,0))',
+            background: 'linear-gradient(to bottom, #d4af37, rgba(212,175,55,0))',
             animation: 'scrollPulse 1.6s ease-in-out infinite',
           }}
         />
