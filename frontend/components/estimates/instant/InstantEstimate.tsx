@@ -509,17 +509,6 @@ export default function InstantEstimate() {
                 </div>
               )}
 
-              {/* In-person evaluation */}
-              {!hasOnline && hasInPerson && (
-                <div style={{ padding: '20px 24px', border: '1px solid rgba(220,80,80,0.2)', background: 'rgba(220,80,80,0.03)', marginBottom: 28 }}>
-                  <p style={{ fontFamily: 'Montserrat, sans-serif', fontSize: 15, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(220,80,80,0.9)', marginBottom: 8 }}>Recommended Next Step</p>
-                  <p style={{ fontFamily: 'Oranienbaum, serif', fontSize: 27, color: '#d4af37', marginBottom: 12 }}>Feasibility Report — $30</p>
-                  <p style={{ fontFamily: 'Montserrat, sans-serif', fontSize: 15, color: 'rgba(255,255,255,0.85)', lineHeight: 1.85 }}>
-                    Your stone has characteristics that require hands-on evaluation before any estimate can be made. The $10 fee is credited toward any service you proceed with.
-                  </p>
-                </div>
-              )}
-
               {/* Feasibility report + in-person alternative */}
               {!hasOnline && (hasFeasibility || hasInPerson) && (
                 <>
@@ -540,8 +529,8 @@ export default function InstantEstimate() {
                 </>
               )}
 
-              {/* Price estimate — always show unless 2+ structural flags */}
-              {!hasInPerson && (
+              {/* Price estimate — always show */}
+              {(
                 <div className="price-box">
                   <p style={{ fontFamily: 'Montserrat, sans-serif', fontSize: 15, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(212,175,55,0.9)', marginBottom: 8 }}>Estimate Range</p>
                   <p style={{ fontFamily: 'Oranienbaum, serif', fontSize: 56, color: '#d4af37', lineHeight: 1 }}>${totalLow} – ${totalHigh}</p>
