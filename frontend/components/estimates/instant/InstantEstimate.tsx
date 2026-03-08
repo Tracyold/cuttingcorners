@@ -255,24 +255,24 @@ export default function InstantEstimate() {
         .eq-inner { width: 100%; max-width: 600px; }
         .eq-bar { width: 100%; height: 1px; background: rgba(255,255,255,0.06); margin-bottom: 48px; position: relative; }
         .eq-fill { position: absolute; top: 0; left: 0; height: 100%; background: rgba(212,175,55,0.6); transition: width 300ms ease; }
-        .eq-step { font-family: 'Montserrat', sans-serif; font-size: 11px; letter-spacing: 0.25em; text-transform: uppercase; color: rgba(212,175,55,0.7); margin-bottom: 20px; }
+        .eq-step { font-family: 'Montserrat', sans-serif; font-size: 15px; letter-spacing: 0.25em; text-transform: uppercase; color: rgba(212,175,55,0.9); margin-bottom: 20px; }
         .eq-q { font-family: 'Oranienbaum', serif; font-size: clamp(27px, 4.5vw, 40px); color: #FAFAFA; line-height: 1.2; margin-bottom: 40px; }
-        .eq-sub { font-family: 'Montserrat', sans-serif; font-size: 13px; color: rgba(255,255,255,0.35); margin-bottom: 20px; letter-spacing: 0.05em; }
+        .eq-sub { font-family: 'Montserrat', sans-serif; font-size: 15px; color: rgba(255,255,255,0.75); margin-bottom: 20px; letter-spacing: 0.05em; }
         .eq-opts { display: flex; flex-direction: column; gap: 8px; margin-bottom: 40px; }
-        .eq-opt { padding: 17px 22px; border: 1px solid rgba(255,255,255,0.08); background: transparent; color: rgba(255,255,255,0.7); font-family: 'Montserrat', sans-serif; font-size: 15px; text-align: left; cursor: pointer; transition: all 150ms; letter-spacing: 0.02em; width: 100%; }
+        .eq-opt { padding: 17px 22px; border: 1px solid rgba(255,255,255,0.15); background: transparent; color: rgba(255,255,255,0.85); font-family: 'Montserrat', sans-serif; font-size: 15px; text-align: left; cursor: pointer; transition: all 150ms; letter-spacing: 0.02em; width: 100%; }
         .eq-opt:hover { border-color: rgba(212,175,55,0.4); color: #FAFAFA; background: rgba(212,175,55,0.04); }
         .eq-opt.sel { border-color: rgba(212,175,55,0.9); color: #FAFAFA; background: rgba(212,175,55,0.08); }
         .eq-acts { display: flex; gap: 12px; }
-        .eq-next { padding: 15px 36px; background: #d4af37; border: none; color: #050505; font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; cursor: pointer; }
+        .eq-next { padding: 15px 36px; background: #d4af37; border: none; color: #050505; font-family: 'Montserrat', sans-serif; font-size: 15px; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; cursor: pointer; }
         .eq-next:disabled { opacity: 0.25; cursor: not-allowed; }
-        .eq-back { padding: 15px 22px; background: none; border: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.4); font-family: 'Montserrat', sans-serif; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; cursor: pointer; }
+        .eq-back { padding: 15px 22px; background: none; border: 1px solid rgba(255,255,255,0.25); color: rgba(255,255,255,0.75); font-family: 'Montserrat', sans-serif; font-size: 15px; letter-spacing: 0.2em; text-transform: uppercase; cursor: pointer; }
         .res-row { display: flex; justify-content: space-between; align-items: baseline; padding: 13px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
-        .res-lbl { font-family: 'Montserrat', sans-serif; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.3); }
-        .res-val { font-family: 'Montserrat', sans-serif; font-size: 15px; color: rgba(255,255,255,0.8); }
-        .flag-item { padding: 12px 16px; border-left: 2px solid rgba(220,80,80,0.5); margin-bottom: 8px; background: rgba(220,80,80,0.04); font-family: 'Montserrat', sans-serif; font-size: 13px; color: rgba(220,80,80,0.8); line-height: 1.6; }
-        .online-item { padding: 12px 16px; border-left: 2px solid rgba(100,160,220,0.5); margin-bottom: 8px; background: rgba(100,160,220,0.04); font-family: 'Montserrat', sans-serif; font-size: 13px; color: rgba(100,160,220,0.8); line-height: 1.6; }
+        .res-lbl { font-family: 'Montserrat', sans-serif; font-size: 15px; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.65); }
+        .res-val { font-family: 'Montserrat', sans-serif; font-size: 17px; color: rgba(255,255,255,0.95); }
+        .flag-item { padding: 12px 16px; border-left: 2px solid rgba(220,80,80,0.7); margin-bottom: 8px; background: rgba(220,80,80,0.06); font-family: 'Montserrat', sans-serif; font-size: 15px; color: rgba(220,80,80,0.95); line-height: 1.6; }
+        .online-item { padding: 12px 16px; border-left: 2px solid rgba(100,160,220,0.7); margin-bottom: 8px; background: rgba(100,160,220,0.06); font-family: 'Montserrat', sans-serif; font-size: 15px; color: rgba(100,160,220,0.95); line-height: 1.6; }
         .price-box { padding: 28px; border: 1px solid rgba(212,175,55,0.2); background: rgba(212,175,55,0.03); margin-bottom: 24px; }
-        .price-note { font-family: 'Montserrat', sans-serif; font-size: 11px; color: rgba(255,255,255,0.3); line-height: 1.75; margin-top: 12px; }
+        .price-note { font-family: 'Montserrat', sans-serif; font-size: 15px; color: rgba(255,255,255,0.75); line-height: 1.85; margin-top: 12px; }
         .feas-box { padding: 20px 24px; border: 1px solid rgba(212,175,55,0.2); background: rgba(212,175,55,0.03); margin-bottom: 24px; }
       `}</style>
 
@@ -479,17 +479,17 @@ export default function InstantEstimate() {
             {/* Force online */}
             {st.forceOnline && (
               <div style={{ padding: '20px 24px', border: '1px solid rgba(100,160,220,0.25)', background: 'rgba(100,160,220,0.04)', marginBottom: 28 }}>
-                <p style={{ fontFamily: 'Montserrat, sans-serif', fontSize: 13, color: 'rgba(100,160,220,0.85)', lineHeight: 1.8 }}>{st.forceOnlineMsg}</p>
-                <a href="/estimates" style={{ display: 'inline-block', marginTop: 16, padding: '11px 24px', background: 'rgba(100,160,220,0.1)', border: '1px solid rgba(100,160,220,0.3)', color: 'rgba(100,160,220,0.9)', fontFamily: 'Montserrat, sans-serif', fontSize: 11, letterSpacing: '0.2em', textTransform: 'uppercase', textDecoration: 'none' }}>View Online Estimate Options →</a>
+                <p style={{ fontFamily: 'Montserrat, sans-serif', fontSize: 15, color: 'rgba(100,160,220,0.95)', lineHeight: 1.8 }}>{st.forceOnlineMsg}</p>
+                <a href="/estimates" style={{ display: 'inline-block', marginTop: 16, padding: '11px 24px', background: 'rgba(100,160,220,0.1)', border: '1px solid rgba(100,160,220,0.3)', color: 'rgba(100,160,220,0.95)', fontFamily: 'Montserrat, sans-serif', fontSize: 15, letterSpacing: '0.2em', textTransform: 'uppercase', textDecoration: 'none' }}>View Online Estimate Options →</a>
               </div>
             )}
 
             {/* Force feasibility */}
             {!st.forceOnline && st.forceFeasibility && (
               <div className="feas-box">
-                <p style={{ fontFamily: 'Montserrat, sans-serif', fontSize: 11, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(212,175,55,0.6)', marginBottom: 8 }}>Recommended Next Step</p>
+                <p style={{ fontFamily: 'Montserrat, sans-serif', fontSize: 15, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(212,175,55,0.9)', marginBottom: 8 }}>Recommended Next Step</p>
                 <p style={{ fontFamily: 'Oranienbaum, serif', fontSize: 27, color: '#d4af37', marginBottom: 12 }}>Feasibility Report — $30</p>
-                <p style={{ fontFamily: 'Montserrat, sans-serif', fontSize: 13, color: 'rgba(255,255,255,0.45)', lineHeight: 1.8 }}>
+                <p style={{ fontFamily: 'Montserrat, sans-serif', fontSize: 15, color: 'rgba(255,255,255,0.85)', lineHeight: 1.85 }}>
                   A feasibility report will determine what is possible for your stone before any service is quoted. If services are rendered after the report, the $30 fee is waived and the report is included when your gemstone is returned.
                 </p>
               </div>
@@ -498,10 +498,10 @@ export default function InstantEstimate() {
             {/* Flags */}
             {!st.forceOnline && st.flags.length > 0 && (
               <div style={{ marginBottom: 28 }}>
-                <p style={{ fontFamily: 'Montserrat, sans-serif', fontSize: 11, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(220,80,80,0.6)', marginBottom: 12 }}>Structural Concerns</p>
+                <p style={{ fontFamily: 'Montserrat, sans-serif', fontSize: 15, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(220,80,80,0.9)', marginBottom: 12 }}>Structural Concerns</p>
                 {st.flags.map((f, i) => <div key={i} className="flag-item">{f}</div>)}
                 <div style={{ marginTop: 16, padding: '20px 24px', border: '1px solid rgba(220,80,80,0.15)', background: 'rgba(220,80,80,0.03)' }}>
-                  <p style={{ fontFamily: 'Montserrat, sans-serif', fontSize: 13, color: 'rgba(255,255,255,0.6)', lineHeight: 1.8, marginBottom: 12 }}>
+                  <p style={{ fontFamily: 'Montserrat, sans-serif', fontSize: 15, color: 'rgba(255,255,255,0.85)', lineHeight: 1.85, marginBottom: 12 }}>
                     {st.flags.length >= 2
                       ? 'Multiple structural concerns were identified. An in-person evaluation is needed before any estimate can be provided.'
                       : 'One structural concern was identified. A feasibility report is recommended before proceeding with any service.'}
@@ -510,7 +510,7 @@ export default function InstantEstimate() {
                     {st.flags.length >= 2 ? 'In-Person Evaluation — $10' : 'Feasibility Report — $30'}
                   </p>
                   {st.flags.length === 1 && (
-                    <p style={{ fontFamily: 'Montserrat, sans-serif', fontSize: 13, color: 'rgba(255,255,255,0.35)', marginTop: 12, lineHeight: 1.7 }}>
+                    <p style={{ fontFamily: 'Montserrat, sans-serif', fontSize: 15, color: 'rgba(255,255,255,0.75)', marginTop: 12, lineHeight: 1.85 }}>
                       If services are rendered after the report, the $30 fee is waived. The report is included with your returned gemstone.
                     </p>
                   )}
@@ -521,7 +521,7 @@ export default function InstantEstimate() {
             {/* Online recommendations */}
             {!st.forceOnline && st.onlineRecs.length > 0 && (
               <div style={{ marginBottom: 28 }}>
-                <p style={{ fontFamily: 'Montserrat, sans-serif', fontSize: 11, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(100,160,220,0.6)', marginBottom: 12 }}>Recommendations</p>
+                <p style={{ fontFamily: 'Montserrat, sans-serif', fontSize: 15, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(100,160,220,0.9)', marginBottom: 12 }}>Recommendations</p>
                 {st.onlineRecs.map((r, i) => <div key={i} className="online-item">{r}</div>)}
               </div>
             )}
@@ -529,19 +529,19 @@ export default function InstantEstimate() {
             {/* Price estimate — no flags, no force */}
             {!st.forceOnline && !st.forceFeasibility && st.flags.length === 0 && (
               <div className="price-box">
-                <p style={{ fontFamily: 'Montserrat, sans-serif', fontSize: 11, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(212,175,55,0.6)', marginBottom: 8 }}>Estimated High</p>
+                <p style={{ fontFamily: 'Montserrat, sans-serif', fontSize: 15, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(212,175,55,0.9)', marginBottom: 8 }}>Estimate Range</p>
                 <p style={{ fontFamily: 'Oranienbaum, serif', fontSize: 56, color: '#d4af37', lineHeight: 1 }}>${totalHigh}</p>
-                <p className="price-note">This is a rough high estimate only. It is not a quote and does not reflect final service prices. A formal quote is provided after online or in-person evaluation.</p>
+                <p className="price-note">This is an estimate — not a quote. An estimate is an informed guess based on your answers and is not binding. A quote is a firm price offered by the cutter after personally reviewing your stone. All prices shown here are subject to change once your gemstone is examined.</p>
                 {st.svcRecs.length > 0 && (
                   <div style={{ marginTop: 20, paddingTop: 16, borderTop: '1px solid rgba(255,255,255,0.06)' }}>
-                    <p style={{ fontFamily: 'Montserrat, sans-serif', fontSize: 11, letterSpacing: '0.15em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.25)', marginBottom: 8 }}>Recommended Service</p>
-                    {st.svcRecs.map((r, i) => <p key={i} style={{ fontFamily: 'Montserrat, sans-serif', fontSize: 15, color: 'rgba(255,255,255,0.75)', marginBottom: 4 }}>{r}</p>)}
+                    <p style={{ fontFamily: 'Montserrat, sans-serif', fontSize: 15, letterSpacing: '0.15em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.75)', marginBottom: 8 }}>Recommended Service</p>
+                    {st.svcRecs.map((r, i) => <p key={i} style={{ fontFamily: 'Montserrat, sans-serif', fontSize: 17, color: 'rgba(255,255,255,0.95)', marginBottom: 4 }}>{r}</p>)}
                   </div>
                 )}
                 {st.svcCmp && st.svcCmp !== 'Not sure' && st.svcRecs.length > 0 && !st.svcRecs.includes(st.svcCmp) && (
                   <div style={{ marginTop: 16, paddingTop: 16, borderTop: '1px solid rgba(255,255,255,0.06)' }}>
-                    <p style={{ fontFamily: 'Montserrat, sans-serif', fontSize: 13, color: 'rgba(255,255,255,0.4)', lineHeight: 1.75 }}>
-                      You were hoping for <strong style={{ color: 'rgba(255,255,255,0.65)' }}>{st.svcCmp}</strong>. Based on your answers, <strong style={{ color: 'rgba(212,175,55,0.8)' }}>{st.svcRecs[0]}</strong> may be more appropriate.
+                    <p style={{ fontFamily: 'Montserrat, sans-serif', fontSize: 15, color: 'rgba(255,255,255,0.85)', lineHeight: 1.85 }}>
+                      You were hoping for <strong style={{ color: 'rgba(255,255,255,0.95)' }}>{st.svcCmp}</strong>. Based on your answers, <strong style={{ color: 'rgba(212,175,55,0.95)' }}>{st.svcRecs[0]}</strong> may be more appropriate.
                     </p>
                   </div>
                 )}
@@ -550,7 +550,7 @@ export default function InstantEstimate() {
 
             <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
               <button className="eq-next" onClick={() => { setSt(INIT); setSel(''); setMulti([]); }}>Start Over</button>
-              <a href="/estimates" style={{ display: 'flex', alignItems: 'center', padding: '15px 22px', background: 'none', border: '1px solid rgba(255,255,255,0.1)', color: 'rgba(255,255,255,0.4)', fontFamily: 'Montserrat, sans-serif', fontSize: 11, letterSpacing: '0.2em', textTransform: 'uppercase', textDecoration: 'none' }}>All Estimates</a>
+              <a href="/estimates" style={{ display: 'flex', alignItems: 'center', padding: '15px 22px', background: 'none', border: '1px solid rgba(255,255,255,0.1)', color: 'rgba(255,255,255,0.75)', fontFamily: 'Montserrat, sans-serif', fontSize: 15, letterSpacing: '0.2em', textTransform: 'uppercase', textDecoration: 'none' }}>All Estimates</a>
             </div>
           </>)}
 
