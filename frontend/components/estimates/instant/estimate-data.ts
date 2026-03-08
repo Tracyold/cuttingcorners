@@ -143,7 +143,7 @@ export const DAMAGE_TREES: Record<string, Record<string, DNode>> = {
     ]},
     g_worried: { q: 'Are you worried about the crack?', opts: [
       { label: 'Yes', fx: [{ t: 'flag', msg: 'Client concerned about girdle crack' }], next: null },
-      { label: 'No',  fx: [{ t: 'price', n: 50 }, { t: 'condFlag', msg: 'Isolated girdle crack — in-person recommended if only damage present' }], next: null },
+      { label: 'No',  fx: [{ t: 'price', n: 50 }, { t: 'condFlag', msg: 'Isolated girdle crack — feasibility report recommended if only damage present' }], next: null },
     ]},
     // PAVILION
     p_loc: { q: 'Where on the pavilion does the crack begin?', opts: [
@@ -153,7 +153,7 @@ export const DAMAGE_TREES: Record<string, Record<string, DNode>> = {
     ]},
     p_culet: { q: 'Can you see the damage when you look through the crown?', opts: [
       { label: 'Yes', fx: [{ t: 'flag', msg: 'Pavilion culet crack visible through crown' }], next: null },
-      { label: 'No',  fx: [{ t: 'price', n: 60 }, { t: 'condFlag', msg: 'Pavilion culet crack — in-person recommended if only damage' }], next: null },
+      { label: 'No',  fx: [{ t: 'price', n: 60 }, { t: 'condFlag', msg: 'Pavilion culet crack — feasibility report recommended if only damage' }], next: null },
     ]},
     p_mid: { q: 'Does the crack reach the edge of the stone?', opts: [
       { label: 'Yes', fx: [{ t: 'flag', msg: 'Mid-pavilion crack reaches edge — structural' }], next: null },
@@ -223,7 +223,7 @@ export const DAMAGE_TREES: Record<string, Record<string, DNode>> = {
     ]},
     p_vis: { q: 'Can you see the gash when you look through the table?', opts: [
       { label: 'Yes', fx: [{ t: 'flag', msg: 'Pavilion gash visible through table' }], next: null },
-      { label: 'No',  fx: [{ t: 'price', n: 50 }, { t: 'recommend', svc: 'Pavilion recut & repolish' }, { t: 'online', msg: 'Online or in-person estimate recommended for pavilion gash' }], next: null },
+      { label: 'No',  fx: [{ t: 'price', n: 50 }, { t: 'recommend', svc: 'Pavilion recut & repolish' }, { t: 'online', msg: 'Online estimate or feasibility report recommended for pavilion gash' }], next: null },
     ]},
   },
 
@@ -282,7 +282,7 @@ export const DAMAGE_TREES: Record<string, Record<string, DNode>> = {
     ]},
     c_edges: { q: 'Do the abrasions follow along the facet edges?', opts: [
       { label: 'Yes', fx: [], next: 'c_gird' },
-      { label: 'No',  fx: [{ t: 'flag', msg: 'Crown abrasions not on facet edges — in-person evaluation needed' }], next: null },
+      { label: 'No',  fx: [{ t: 'flag', msg: 'Crown abrasions not on facet edges — feasibility report needed' }], next: null },
     ]},
     c_gird: { q: 'Do the abrasions reach the girdle?', opts: [
       { label: 'Yes', fx: [{ t: 'online', msg: 'Crown abrasions reach girdle — online estimate required, likely crown recut' }], next: null },
@@ -290,7 +290,7 @@ export const DAMAGE_TREES: Record<string, Record<string, DNode>> = {
     ]},
     p_culet: { q: 'Do the abrasions follow along the culet and travel up the facet edges?', opts: [
       { label: 'Yes', fx: [], next: 'p_gird' },
-      { label: 'No',  fx: [{ t: 'flag', msg: 'Pavilion abrasions not on culet or facet edges — in-person needed' }], next: null },
+      { label: 'No',  fx: [{ t: 'flag', msg: 'Pavilion abrasions not on culet or facet edges — feasibility report needed' }], next: null },
     ]},
     p_gird: { q: 'Do the abrasions reach the girdle?', opts: [
       { label: 'Yes', fx: [{ t: 'flag', msg: 'Pavilion abrasions reach girdle — full approach required' }], next: null },
