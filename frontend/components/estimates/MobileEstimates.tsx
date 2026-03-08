@@ -40,7 +40,7 @@ export default function MobileEstimates() {
           background: rgba(212,175,55,0.12);
           border: 1px solid #d4af37;
           font-family: 'Comfortaa', sans-serif;
-          font-size: 13px;
+          font-size: 17px;
           letter-spacing: 0.2em;
           text-transform: uppercase;
           color: rgba(212,175,55,0.9);
@@ -58,14 +58,14 @@ export default function MobileEstimates() {
           background: rgba(212,175,55,0.06);
           border-left: 2px solid #d4af37;
           font-family: 'Comfortaa', sans-serif;
-          font-size: clamp(15px, 4vw, 17px);
+          font-size: clamp(17px, 4vw, 19px);
           color: rgba(255,220,100,0.95);
           line-height: 1.75;
           margin-bottom: 20px;
         }
         .mest-body {
           font-family: 'Comfortaa', sans-serif;
-          font-size: clamp(16px, 4.5vw, 19px);
+          font-size: clamp(17px, 4.5vw, 19px);
           color: rgba(255,255,255,0.85);
           line-height: 1.9;
           margin-bottom: 24px;
@@ -83,7 +83,7 @@ export default function MobileEstimates() {
           gap: 12px;
           align-items: flex-start;
           font-family: 'Comfortaa', sans-serif;
-          font-size: clamp(15px, 4vw, 17px);
+          font-size: clamp(17px, 4vw, 19px);
           color: rgba(255,255,255,0.8);
           line-height: 1.65;
         }
@@ -105,7 +105,7 @@ export default function MobileEstimates() {
           background: transparent;
           color: rgba(212,175,55,0.85);
           font-family: 'Comfortaa', sans-serif;
-          font-size: 15px;
+          font-size: 17px;
           letter-spacing: 0.15em;
           text-transform: uppercase;
           text-decoration: none;
@@ -125,7 +125,7 @@ export default function MobileEstimates() {
         }
         .mest-footer-text {
           font-family: 'Comfortaa', sans-serif;
-          font-size: clamp(15px, 4vw, 17px);
+          font-size: clamp(17px, 4vw, 19px);
           color: rgba(255,255,255,0.75);
           line-height: 1.9;
           text-align: center;
