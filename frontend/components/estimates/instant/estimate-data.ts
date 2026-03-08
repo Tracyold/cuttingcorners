@@ -18,9 +18,9 @@ export interface DNode {
 export const BASE_PRICE: Record<string, number> = {
   'Crown repolish': 50,
   'Pavilion repolish': 50,
-  'Crown recut & repolish': 100,
-  'Pavilion recut & repolish': 100,
-  'Full recut & repolish': 150,
+  'Crown recut & repolish': 50,
+  'Pavilion recut & repolish': 50,
+  'Full recut & repolish': 100,
   'Rough Cut Transformation': 250,
 };
 
