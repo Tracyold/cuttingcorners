@@ -106,11 +106,7 @@ export default function InstantEstimate() {
   }
 
   function handleIntentSpecies(v: string) {
-    if (v === 'Other') {
-      go({ species: v, onlineTriggerCount: st.onlineTriggerCount + 1, phase: 'intent_color' });
-    } else {
-      go({ species: v, phase: 'intent_color' });
-    }
+    go({ species: v, phase: 'intent_color' });
   }
 
   function handleIntentColor(v: string) {
@@ -161,11 +157,7 @@ export default function InstantEstimate() {
 
   function handleSpecies(v: string) {
     const nextPhase = st.condition === 'rough' || st.intent === 'measurement' ? 'service' : 'transparency';
-    if (v === 'Other') {
-      go({ species: v, onlineTriggerCount: st.onlineTriggerCount + 1, phase: nextPhase });
-    } else {
-      go({ species: v, phase: nextPhase });
-    }
+    go({ species: v, phase: nextPhase });
   }
 
   function handleTransparency(v: string) {
