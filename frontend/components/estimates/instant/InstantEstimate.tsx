@@ -263,9 +263,12 @@ export default function InstantEstimate() {
         .online-item { padding: 12px 16px; border-left: 2px solid rgba(100,160,220,0.7); margin-bottom: 8px; background: rgba(100,160,220,0.06); font-family: 'Comfortaa', sans-serif; font-size: 15px; color: rgba(100,160,220,0.95); line-height: 1.6; }
         .price-box { padding: 28px; border: 1px solid #d4af37; background: rgba(212,175,55,0.03); margin-bottom: 24px; }
         .price-note { font-family: 'Montserrat', sans-serif; font-size: 15px; color: rgba(255,255,255,0.75); line-height: 1.85; margin-top: 12px; }
+        .eq-close { position: fixed; top: 18px; right: 18px; width: 40px; height: 40px; background: none; border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.6); font-size: 19px; cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 100; transition: border-color 150ms, color 150ms; }
+        .eq-close:hover { border-color: #d4af37; color: #d4af37; }
         .feas-box { padding: 20px 24px; border: 1px solid #d4af37; background: rgba(212,175,55,0.03); margin-bottom: 24px; }
       `}</style>
 
+      <button className="eq-close" onClick={() => router.push('/estimates')} aria-label="Close">✕</button>
       <div className="eq-wrap">
         <div className="eq-inner">
           <div className="eq-bar"><div className="eq-fill" style={{ width: `${progress}%` }} /></div>

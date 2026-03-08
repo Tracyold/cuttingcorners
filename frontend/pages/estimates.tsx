@@ -1,5 +1,4 @@
 import TopNav from '../components/shared/TopNav';
-import Footer from '../components/shared/Footer';
 import DesktopEstimates from '../components/estimates/DesktopEstimates';
 import MobileEstimates from '../components/estimates/MobileEstimates';
 
@@ -49,7 +48,6 @@ export default function EstimatesPage() {
           </div>
         </section>
       </main>
-      <Footer />
     </>
   );
 }
