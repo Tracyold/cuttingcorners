@@ -7,10 +7,11 @@ export const paths = [
     body: 'Answer a short series of questions about your gemstone and receive an estimate immediately. Questions are presented one at a time for easy navigation. No account required.',
     cta: { label: 'Get an Instant Estimate', href: '/estimate/instant' },
     details: [
-      'Based on submitted information only',
+      'Based on your multiple choice answers',
       'No physical examination',
       'Results are immediate',
       'Best for: curious owners, quick ballpark figures',
+      'When you need a service recommendation',
     ],
   },
   {
@@ -18,13 +19,14 @@ export const paths = [
     title: 'Online Estimate',
     tag: null,
     warning: null,
-    body: 'Submit photos of your gemstone and receive a personalized estimate within 24 hours. Questions are presented individually in a guided modal before submission.',
+    body: 'An extension of the instant estimate. Add photos and a description for our team to review!',
     cta: { label: 'Request an Online Estimate', href: '/estimate/online' },
     details: [
-      'Photo-based evaluation',
-      'Response within 24 hours',
+      'Sign up for s CCG Account for free.'
+      'Add Photos to your instant estimate results.',
+      'Check out and recieve an answer in 24 hours.',
       'More accurate than an instant estimate',
-      'Best for: owners who want a real number without shipping',
+      'Best for: owners who want more accurate numbers without shipping',
     ],
   },
   {
