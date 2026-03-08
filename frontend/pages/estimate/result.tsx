@@ -1,0 +1,34 @@
+import { useRouter } from 'next/router';
+import TopNav from '../../components/shared/TopNav';
+
+export default function EstimateResult() {
+  const router = useRouter();
+  const { weight, color, shape, damage, species, transparency, service } = router.query;
+
+  return (
+    <>
+      <TopNav />
+      <div style={{ minHeight: '100svh', background: '#050505', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '120px 24px 60px' }}>
+        <div style={{ maxWidth: '580px', width: '100%' }}>
+          <p style={{ fontFamily: 'Montserrat, sans-serif', fontSize: '11px', letterSpacing: '0.25em', textTransform: 'uppercase', color: 'rgba(212,175,55,0.7)', marginBottom: '20px' }}>Your Estimate</p>
+          <h1 style={{ fontFamily: 'Oranienbaum, serif', fontSize: 'clamp(27px, 5vw, 42px)', color: '#FAFAFA', lineHeight: 1.2, marginBottom: '40px' }}>We have what we need.</h1>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', marginBottom: '48px' }}>
+            {[['Weight', weight], ['Color', color], ['Shape', shape], ['Damage', damage], ['Species', species], ['Transparency', transparency], ['Service', service]].map(([l, v]) => v ? (
+              <div key={l as string} style={{ display: 'flex', justifyContent: 'space-between', padding: '13px 0', borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
+                <p style={{ fontFamily: 'Montserrat, sans-serif', fontSize: '13px', letterSpacing: '0.15em', textTransform: 'uppercase', color: 'rgba(100,160,220,0.9)' }}>{l}</p>
+                <p style={{ fontFamily: 'Montserrat, sans-serif', fontSize: '15px', color: 'rgba(255,255,255,0.9)' }}>{v}</p>
+              </div>
+            ) : null)}
+          </div>
+          <p style={{ fontFamily: 'Montserrat, sans-serif', fontSize: '13px', color: 'rgba(255,255,255,0.5)', lineHeight: 1.8, marginBottom: '32px' }}>
+            This is a preliminary estimate summary. A formal estimate will be prepared once we review your stone in person or via submitted photos.
+          </p>
+          <button onClick={() => router.push('/account')}
+            style={{ padding: '15px 36px', background: '#d4af37', border: 'none', color: '#050505', fontFamily: 'Montserrat, sans-serif', fontSize: '11px', fontWeight: 700, letterSpacing: '0.25em', textTransform: 'uppercase', cursor: 'pointer' }}>
+            Continue to Account
+          </button>
+        </div>
+      </div>
+    </>
+  );
+}
