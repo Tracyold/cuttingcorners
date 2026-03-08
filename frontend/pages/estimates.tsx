@@ -32,6 +32,20 @@ export default function EstimatesPage() {
                 Not sure which path is right for you? All estimates are non-binding. We recommend starting with an Online Estimate if you have photos, or an In-Person Estimate if you are ready to move forward.
               </p>
             </div>
+
+            <div style={{ marginTop: '80px', padding: '64px 24px', borderTop: '1px solid rgba(255,255,255,0.06)', textAlign: 'center' }}>
+              <p style={{ fontFamily: 'Montserrat, sans-serif', fontSize: '11px', letterSpacing: '0.25em', textTransform: 'uppercase', color: 'rgba(212,175,55,0.7)', marginBottom: '20px' }}>Ready to start?</p>
+              <h2 style={{ fontFamily: 'Oranienbaum, serif', fontSize: 'clamp(27px, 5vw, 48px)', color: '#FAFAFA', lineHeight: 1.2, marginBottom: '24px' }}>Get an instant estimate now.</h2>
+              <p style={{ fontFamily: 'Montserrat, sans-serif', fontSize: '13px', color: 'rgba(255,255,255,0.45)', lineHeight: 1.8, maxWidth: '480px', margin: '0 auto 40px' }}>
+                Answer seven quick questions about your stone and the service you need. No account required.
+              </p>
+              <a href="/estimate/instant"
+                style={{ display: 'inline-block', padding: '19px 56px', background: '#d4af37', color: '#050505', fontFamily: 'Montserrat, sans-serif', fontSize: '11px', fontWeight: 700, letterSpacing: '0.28em', textTransform: 'uppercase', textDecoration: 'none', transition: 'opacity 150ms' }}
+                onMouseEnter={e => (e.currentTarget.style.opacity = '0.85')}
+                onMouseLeave={e => (e.currentTarget.style.opacity = '1')}>
+                Start Instant Estimate
+              </a>
+            </div>
           </div>
         </section>
       </main>
