@@ -22,9 +22,9 @@ export const paths = [
     body: 'An extension of the instant estimate. Add photos and a description for our team to review!',
     cta: { label: 'Request an Online Estimate', href: '/estimate/online' },
     details: [
-      'Sign up for s CCG Account for free.'
-      'Add Photos to your instant estimate results.',
-      'Check out and recieve an answer in 24 hours.',
+      'Sign up for s CCG Account for free.',
+      'Add Photos to your Instant Results',
+      'Check out and recieve an answer in 24 hours',
       'More accurate than an instant estimate',
       'Best for: owners who want more accurate numbers without shipping',
     ],
