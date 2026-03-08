@@ -21,7 +21,6 @@ export const BASE_PRICE: Record<string, number> = {
   'Crown recut & repolish': 50,
   'Pavilion recut & repolish': 50,
   'Full recut & repolish': 100,
-  'Rough Cut Transformation': 250,
 };
 
 // ─── Estimate Tier Prices ────────────────────────────────────────
@@ -143,7 +142,7 @@ export const DAMAGE_TREES: Record<string, Record<string, DNode>> = {
     ]},
     g_worried: { q: 'Are you worried about the crack?', opts: [
       { label: 'Yes', fx: [{ t: 'flag', msg: 'Client concerned about girdle crack' }], next: null },
-      { label: 'No',  fx: [{ t: 'price', n: 50 }, { t: 'condFlag', msg: 'Isolated girdle crack — feasibility report recommended if only damage present' }], next: null },
+      { label: 'No',  fx: [{ t: 'price', n: 15 }, { t: 'condFlag', msg: 'Isolated girdle crack — feasibility report recommended if only damage present' }], next: null },
     ]},
     // PAVILION
     p_loc: { q: 'Where on the pavilion does the crack begin?', opts: [
@@ -153,7 +152,7 @@ export const DAMAGE_TREES: Record<string, Record<string, DNode>> = {
     ]},
     p_culet: { q: 'Can you see the damage when you look through the crown?', opts: [
       { label: 'Yes', fx: [{ t: 'flag', msg: 'Pavilion culet crack visible through crown' }], next: null },
-      { label: 'No',  fx: [{ t: 'price', n: 60 }, { t: 'condFlag', msg: 'Pavilion culet crack — feasibility report recommended if only damage' }], next: null },
+      { label: 'No',  fx: [{ t: 'price', n: 30 }, { t: 'condFlag', msg: 'Pavilion culet crack — feasibility report recommended if only damage' }], next: null },
     ]},
     p_mid: { q: 'Does the crack reach the edge of the stone?', opts: [
       { label: 'Yes', fx: [{ t: 'flag', msg: 'Mid-pavilion crack reaches edge — structural' }], next: null },
@@ -175,7 +174,7 @@ export const DAMAGE_TREES: Record<string, Record<string, DNode>> = {
     ]},
     c_ctr_app: { q: 'Is the crack clearly apparent (visibly obvious)?', opts: [
       { label: 'Yes', fx: [{ t: 'flag', msg: 'Apparent crown center crack' }], next: null },
-      { label: 'No',  fx: [{ t: 'price', n: 50 }], next: null },
+      { label: 'No',  fx: [{ t: 'price', n: 15 }], next: null },
     ]},
     c_btw_edge: { q: 'Does the crack reach the edge?', opts: [
       { label: 'Yes', fx: [{ t: 'flag', msg: 'Crown crack reaches edge' }], next: null },
@@ -191,7 +190,7 @@ export const DAMAGE_TREES: Record<string, Record<string, DNode>> = {
     ]},
     c_btw_reason: { q: 'Is the crack the main reason you are seeking gem services?', opts: [
       { label: 'Yes', fx: [{ t: 'flag', msg: 'Crack is the primary service reason' }], next: null },
-      { label: 'No',  fx: [{ t: 'price', n: 60 }], next: null },
+      { label: 'No',  fx: [{ t: 'price', n: 30 }], next: null },
     ]},
   },
 
@@ -211,7 +210,7 @@ export const DAMAGE_TREES: Record<string, Record<string, DNode>> = {
     ]},
     c_reason: { q: 'Is the gash the main reason you are seeking gem services?', opts: [
       { label: 'Yes', fx: [{ t: 'flag', msg: 'Crown gash is the primary service reason' }], next: null },
-      { label: 'No',  fx: [{ t: 'price', n: 50 }, { t: 'recommend', svc: 'Crown recut & repolish' }], next: null },
+      { label: 'No',  fx: [{ t: 'price', n: 15 }, { t: 'recommend', svc: 'Crown recut & repolish' }], next: null },
     ]},
     p_dirt: { q: 'Can dirt become trapped inside the gash?', opts: [
       { label: 'Yes', fx: [{ t: 'flag', msg: 'Deep pavilion gash traps debris' }], next: null },
@@ -223,7 +222,7 @@ export const DAMAGE_TREES: Record<string, Record<string, DNode>> = {
     ]},
     p_vis: { q: 'Can you see the gash when you look through the table?', opts: [
       { label: 'Yes', fx: [{ t: 'flag', msg: 'Pavilion gash visible through table' }], next: null },
-      { label: 'No',  fx: [{ t: 'price', n: 50 }, { t: 'recommend', svc: 'Pavilion recut & repolish' }], next: null },
+      { label: 'No',  fx: [{ t: 'price', n: 15 }, { t: 'recommend', svc: 'Pavilion recut & repolish' }], next: null },
     ]},
   },
 
@@ -253,7 +252,7 @@ export const DAMAGE_TREES: Record<string, Record<string, DNode>> = {
       { label: 'No',  fx: [], next: 'c_see' },
     ]},
     c_see: { q: 'Can you see through the cloudiness?', opts: [
-      { label: 'Yes', fx: [{ t: 'price', n: 60 }], next: null },
+      { label: 'Yes', fx: [{ t: 'price', n: 30 }], next: null },
       { label: 'No',  fx: [], next: null },
     ]},
     p_wipe: { q: 'Does the cloudiness wipe away with a damp cloth?', opts: [
@@ -269,7 +268,7 @@ export const DAMAGE_TREES: Record<string, Record<string, DNode>> = {
       { label: 'No',  fx: [], next: 'p_see' },
     ]},
     p_see: { q: 'Can you see through the cloudiness?', opts: [
-      { label: 'Yes', fx: [{ t: 'price', n: 60 }], next: null },
+      { label: 'Yes', fx: [{ t: 'price', n: 30 }], next: null },
       { label: 'No',  fx: [], next: null },
     ]},
   },
@@ -286,7 +285,7 @@ export const DAMAGE_TREES: Record<string, Record<string, DNode>> = {
     ]},
     c_gird: { q: 'Do the abrasions reach the girdle?', opts: [
       { label: 'Yes', fx: [], next: null },
-      { label: 'No',  fx: [{ t: 'price', n: 50 }, { t: 'recommend', svc: 'Crown recut & repolish' }], next: null },
+      { label: 'No',  fx: [{ t: 'price', n: 15 }, { t: 'recommend', svc: 'Crown recut & repolish' }], next: null },
     ]},
     p_culet: { q: 'Do the abrasions follow along the culet and travel up the facet edges?', opts: [
       { label: 'Yes', fx: [], next: 'p_gird' },
@@ -298,7 +297,7 @@ export const DAMAGE_TREES: Record<string, Record<string, DNode>> = {
     ]},
     p_vis: { q: 'Can you see the abrasions when looking through the table?', opts: [
       { label: 'Yes', fx: [{ t: 'flag', msg: 'Pavilion abrasions visible through table' }], next: null },
-      { label: 'No',  fx: [{ t: 'price', n: 50 }, { t: 'recommend', svc: 'Pavilion recut & repolish' }], next: null },
+      { label: 'No',  fx: [{ t: 'price', n: 15 }, { t: 'recommend', svc: 'Pavilion recut & repolish' }], next: null },
     ]},
   },
 };
