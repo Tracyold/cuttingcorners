@@ -2,7 +2,7 @@ import { useRouter } from 'next/router';
 
 const footerCss = `
 .ccg-footer {
-  background: #d4af37;
+  background: hsla(0, 0%, 0%, 0.69);
   border-top: 1px solid rgba(255,255,255,0.08);
   padding: 40px 48px;
 }
