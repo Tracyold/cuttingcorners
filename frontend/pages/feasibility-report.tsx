@@ -40,7 +40,7 @@ export default function FeasibilityReportPage() {
           }
         `}</style>
         {/* Hero */}
-        <section style={{ padding: '140px 0 80px', background: '#050505' }}>
+        <section style={{ padding: '140px 0 80px', background: 'transparent' }}>
           <div className="container-custom" style={{ maxWidth: '1160px', width: '100%', margin: '0 auto' }}>
             <p style={{ fontFamily: 'Montserrat, sans-serif', fontSize: '15px', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.7)', marginBottom: '17px', textAlign: 'center' }}>
               Documentation
@@ -64,7 +64,7 @@ export default function FeasibilityReportPage() {
         </section>
 
         {/* Use Cases */}
-        <section style={{ padding: '80px 0', background: '#050505', borderTop: '1px solid rgba(255,255,255,0.04)' }}>
+        <section style={{ padding: '80px 0', background: 'transparent', borderTop: '1px solid rgba(255,255,255,0.04)' }}>
           <div className="container-custom" style={{ maxWidth: '1160px', width: '100%', margin: '0 auto' }}>
             <p style={{ fontFamily: 'Montserrat, sans-serif', fontSize: '15px', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.6)', marginBottom: '12px', textAlign: 'center' }}>Who Uses These Reports</p>
             <h2 style={{ fontFamily: 'Oranienbaum, serif', fontSize: 'clamp(23px, 3vw, 38px)', color: 'rgba(255,255,255,0.85)', textAlign: 'center', marginBottom: '48px' }}>Built for Different Situations</h2>

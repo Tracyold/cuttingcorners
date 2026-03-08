@@ -15,7 +15,7 @@ export default function GlobalStyles() {
 
 html, body, #__next {
   font-family: var(--font-body);
-  background-color: #050505;
+  background-color: transparent;
   color: #FAFAFA;
   margin: 0;
   padding: 0;

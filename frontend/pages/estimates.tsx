@@ -8,7 +8,7 @@ export default function EstimatesPage() {
     <>
       <TopNav />
       <main>
-        <section style={{ padding: '140px 0 80px', background: '#050505' }}>
+        <section style={{ padding: '140px 0 80px', background: 'transparent' }}>
           <div className="container-custom" style={{ maxWidth: '1160px', width: '100%', margin: '0 auto' }}>
             <p style={{ fontFamily: 'Montserrat, sans-serif', fontSize: '11px', letterSpacing: '0.25em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.75)', marginBottom: '16px', textAlign: 'center' }}>
               Get Started

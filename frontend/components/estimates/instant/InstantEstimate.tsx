@@ -241,7 +241,7 @@ export default function InstantEstimate() {
     <>
       <style>{`
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        .eq-wrap { min-height: 100svh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 120px 24px 60px; background: #050505; }
+        .eq-wrap { min-height: 100svh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 120px 24px 60px; background: transparent; }
         .eq-inner { width: 100%; max-width: 600px; }
         .eq-bar { width: 100%; height: 1px; background: rgba(255,255,255,0.06); margin-bottom: 48px; position: relative; }
         .eq-fill { position: absolute; top: 0; left: 0; height: 100%; background: rgba(212,175,55,0.6); transition: width 300ms ease; }

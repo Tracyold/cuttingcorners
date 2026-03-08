@@ -502,7 +502,7 @@ export default function AccountPage() {
 }
 
 const accountCss = `
-.acc-shell { display: flex; height: 100vh; background: #050505; overflow: hidden; }
+.acc-shell { display: flex; height: 100vh; background: transparent; overflow: hidden; }
 .acc-left { flex: 1; display: flex; min-height: 0; min-width: 0; }
 .acc-nav { width: 180px; flex-shrink: 0; background: #0A0A0A; border-right: 1px solid rgba(255,255,255,0.06); display: flex; flex-direction: column; padding: 20px 0; overflow-y: auto; }
 .acc-nav-item { display: block; width: 100%; text-align: left; padding: 10px 20px; font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 400; letter-spacing: 0.20em; text-transform: uppercase; color: rgba(255,255,255,0.45); background: none; border: none; border-left: 2px solid transparent; cursor: pointer; transition: color 0.15s; }
@@ -528,7 +528,7 @@ const accountCss = `
 .acc-empty { font-size: 11px; color: rgba(255,255,255,0.35); text-transform: uppercase; letter-spacing: 0.2em; }
 .acc-chat-mobile-bar { display: none; position: fixed; bottom: 0; left: 0; right: 0; background: #d4af37; color: #050505; text-align: center; padding: 14px; font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; cursor: pointer; z-index: 50; }
 .acc-chat-mobile-bar.hidden { display: none !important; }
-.acc-chat-mobile-drawer { display: none; position: fixed; inset: 0; background: #050505; z-index: 100; flex-direction: column; }
+.acc-chat-mobile-drawer { display: none; position: fixed; inset: 0; background: transparent; z-index: 100; flex-direction: column; }
 @media (max-width: 767px) {
   .acc-right { display: none; }
   .acc-chat-mobile-bar { display: block; }

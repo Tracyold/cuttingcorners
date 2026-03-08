@@ -36,7 +36,7 @@ export default function MobileIndustrySection() {
       id="mobile-industry-section"
       className="md:hidden text-center px-4 flex flex-col items-center justify-center"
       style={{
-        background: '#050505',
+        background: 'transparent',
         borderTop: '1px solid rgba(255,255,255,0.10)',
         minHeight: '100svh',
         paddingTop: '40px',
