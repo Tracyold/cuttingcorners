@@ -208,7 +208,7 @@ export default function WorkOrderDetailModal({
                   <span style={{ fontFamily: "'Montserrat', sans-serif", fontSize: '10px', fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase', padding: '2px 6px', background: entry.by === 'admin' ? 'rgba(212,175,55,0.12)' : 'rgba(45,212,191,0.1)', color: entry.by === 'admin' ? '#d4af37' : 'rgba(45,212,191,0.9)' }}>{entry.by}</span>
                   <span style={{ fontFamily: "'Comfortaa', sans-serif", fontSize: '13px', color: 'rgba(255,255,255,0.65)' }}>{entry.action}</span>
                 </div>
-                <span style={{ fontFamily: "'Montserrat', sans-serif", fontSize: '10px', color: 'rgba(255,255,255,0.3)', whiteSpace: 'nowrap', flexShrink: 0 }}>{fmtDate(entry.at)} · {fmtTime(entry.at)}</span>
+                <span style={{ fontFamily: "'Comfortaa', sans-serif", fontSize: '10px', color: 'rgba(255,255,255,0.3)', whiteSpace: 'nowrap', flexShrink: 0 }}>{fmtDate(entry.at)} · {fmtTime(entry.at)}</span>
               </div>
             ))}
           </div>

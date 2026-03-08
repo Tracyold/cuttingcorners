@@ -53,7 +53,7 @@ const css = `
   gap: 32px;
 }
 .tnav-link {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Comfortaa', sans-serif;
   font-size: 10px;
   font-weight: 500;
   letter-spacing: 0.22em;
@@ -74,7 +74,7 @@ const css = `
 .tnav-link:hover { color: #FAFAFA; }
 .tnav-link:hover::after { right: 0; }
 .tnav-auth {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Comfortaa', sans-serif;
   font-size: 10px;
   font-weight: 500;
   letter-spacing: 0.22em;
@@ -138,7 +138,7 @@ const css = `
   pointer-events: auto;
 }
 .tnav-drawer-link {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Comfortaa', sans-serif;
   font-size: 11px;
   font-weight: 500;
   letter-spacing: 0.24em;
@@ -152,7 +152,7 @@ const css = `
 .tnav-drawer-link:hover { color: #FAFAFA; }
 .tnav-drawer-link:last-child { border-bottom: none; }
 .tnav-drawer-auth {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Comfortaa', sans-serif;
   font-size: 11px;
   font-weight: 500;
   letter-spacing: 0.24em;

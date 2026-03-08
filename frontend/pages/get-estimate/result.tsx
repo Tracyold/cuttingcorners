@@ -16,11 +16,11 @@ export default function EstimateResult() {
             {[['Weight', weight], ['Color', color], ['Shape', shape], ['Damage', damage], ['Species', species], ['Transparency', transparency], ['Service', service]].map(([l, v]) => v ? (
               <div key={l as string} style={{ display: 'flex', justifyContent: 'space-between', padding: '13px 0', borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
                 <p style={{ fontFamily: 'Montserrat, sans-serif', fontSize: '13px', letterSpacing: '0.15em', textTransform: 'uppercase', color: 'rgba(100,160,220,0.9)' }}>{l}</p>
-                <p style={{ fontFamily: 'Montserrat, sans-serif', fontSize: '15px', color: 'rgba(255,255,255,0.9)' }}>{v}</p>
+                <p style={{ fontFamily: 'Comfortaa, sans-serif', fontSize: '15px', color: 'rgba(255,255,255,0.9)' }}>{v}</p>
               </div>
             ) : null)}
           </div>
-          <p style={{ fontFamily: 'Montserrat, sans-serif', fontSize: '13px', color: 'rgba(255,255,255,0.5)', lineHeight: 1.8, marginBottom: '32px' }}>
+          <p style={{ fontFamily: 'Comfortaa, sans-serif', fontSize: '13px', color: 'rgba(255,255,255,0.5)', lineHeight: 1.8, marginBottom: '32px' }}>
             This is a preliminary estimate summary. A formal estimate will be prepared once we review your stone in person or via submitted photos.
           </p>
           <button onClick={() => router.push('/account')}

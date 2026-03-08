@@ -37,7 +37,7 @@ export default function MobileEstimates() {
           padding: 5px 14px;
           background: rgba(212,175,55,0.12);
           border: 1px solid rgba(212,175,55,0.3);
-          font-family: 'Montserrat', sans-serif;
+          font-family: 'Comfortaa', sans-serif;
           font-size: 13px;
           letter-spacing: 0.2em;
           text-transform: uppercase;
@@ -55,7 +55,7 @@ export default function MobileEstimates() {
           padding: 16px 18px;
           background: rgba(212,175,55,0.06);
           border-left: 2px solid rgba(212,175,55,0.4);
-          font-family: 'Montserrat', sans-serif;
+          font-family: 'Comfortaa', sans-serif;
           font-size: clamp(15px, 4vw, 17px);
           color: rgba(255,220,100,0.95);
           line-height: 1.75;
@@ -102,7 +102,7 @@ export default function MobileEstimates() {
           border: 1px solid rgba(212,175,55,0.35);
           background: transparent;
           color: rgba(212,175,55,0.85);
-          font-family: 'Montserrat', sans-serif;
+          font-family: 'Comfortaa', sans-serif;
           font-size: 15px;
           letter-spacing: 0.15em;
           text-transform: uppercase;

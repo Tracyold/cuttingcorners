@@ -111,7 +111,7 @@ export default function PortfolioPage() {
         <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '48px 48px 80px' }}>
           <p
             style={{
-              fontFamily: "'Montserrat', sans-serif",
+              fontFamily: "'Comfortaa', sans-serif",
               fontSize: '11px',
               textTransform: 'uppercase',
               letterSpacing: '0.20em',
@@ -283,7 +283,7 @@ const portfolioCss = `
   padding: 8px 2px 0;
 }
 .portfolio-card-year {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Comfortaa', sans-serif;
   font-weight: 600;
   font-size: 18px;
   text-transform: uppercase;
