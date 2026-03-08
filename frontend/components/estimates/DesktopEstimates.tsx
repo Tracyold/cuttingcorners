@@ -43,8 +43,9 @@ export default function DesktopEstimates() {
         }
         .dest-card {
           padding: 64px 48px;
-          background: #0A0A0A;
-          border: 1px solid rgba(255,255,255,0.04);
+          background: #1a2438;
+          border: 1px solid rgba(255,255,255,0.08);
+          box-shadow: 0 8px 32px rgba(0,0,0,0.6), 0 2px 8px rgba(0,0,0,0.4);
           position: relative;
         }
         .dest-num {
