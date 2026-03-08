@@ -42,6 +42,10 @@ export default function AccountPage() {
   const [srDesc, setSrDesc] = useState('');
   const [srSubmitting, setSrSubmitting] = useState(false);
   const [srGateMsg, setSrGateMsg] = useState('');
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [deleteConfirmText, setDeleteConfirmText] = useState('');
+  const [deleteError, setDeleteError] = useState('');
+  const [deleting, setDeleting] = useState(false);
 
   // Invoices
   const [invoices, setInvoices] = useState<any[]>([]);
@@ -164,6 +168,24 @@ export default function AccountPage() {
   useEffect(() => { chatEndRef.current?.scrollIntoView({ behavior: 'smooth' }); }, [messages, chatOpen]);
 
   // Profile save
+  const deleteAccount = async () => {
+    if (deleteConfirmText !== 'DELETE') {
+      setDeleteError('Type DELETE to confirm.');
+      return;
+    }
+    setDeleting(true);
+    setDeleteError('');
+    try {
+      const { error } = await supabase.rpc('delete_account', { user_id: session.user.id });
+      if (error) throw error;
+      await supabase.auth.signOut();
+      router.push('/');
+    } catch (err: any) {
+      setDeleteError(err.message || 'Something went wrong. Contact support if this continues.');
+      setDeleting(false);
+    }
+  };
+
   const saveProfile = async () => {
     if (!editProfile || !session) return;
     setProfileSaving(true);
@@ -357,6 +379,10 @@ export default function AccountPage() {
               onClick={async () => { await supabase.auth.signOut(); router.push('/'); }}>
               Sign Out
             </button>
+            <button className="acc-nav-item" style={{ color: 'rgba(180,60,60,0.6)', fontSize: '11px', marginTop: '4px' }}
+              onClick={() => { setShowDeleteModal(true); setDeleteConfirmText(''); setDeleteError(''); }}>
+              Delete Account
+            </button>
           </div>
 
           {/* Content */}
@@ -440,6 +466,37 @@ export default function AccountPage() {
         acceptWO={acceptWO}
       />
 
+
+      {showDeleteModal && (
+        <div style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.85)', zIndex: 200, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '24px' }}>
+          <div style={{ background: '#0D0D0D', border: '1px solid rgba(180,60,60,0.4)', padding: '40px', maxWidth: '440px', width: '100%' }}>
+            <p style={{ fontFamily: 'Montserrat, sans-serif', fontSize: '11px', letterSpacing: '0.25em', textTransform: 'uppercase', color: 'rgba(180,60,60,0.8)', marginBottom: '16px' }}>Permanent Action</p>
+            <p style={{ fontFamily: 'Oranienbaum, serif', fontSize: '24px', color: '#FAFAFA', marginBottom: '16px', lineHeight: 1.2 }}>Delete Account</p>
+            <p style={{ fontFamily: 'Montserrat, sans-serif', fontSize: '13px', color: 'rgba(255,255,255,0.65)', lineHeight: 1.75, marginBottom: '28px' }}>
+              This will permanently delete your account. Any open work orders or invoices will remain on file. This cannot be undone.
+            </p>
+            <p style={{ fontFamily: 'Montserrat, sans-serif', fontSize: '11px', letterSpacing: '0.15em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.4)', marginBottom: '8px' }}>Type DELETE to confirm</p>
+            <input
+              type="text"
+              value={deleteConfirmText}
+              onChange={e => setDeleteConfirmText(e.target.value)}
+              placeholder="DELETE"
+              style={{ width: '100%', background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(180,60,60,0.3)', color: '#FAFAFA', fontFamily: 'Montserrat, sans-serif', fontSize: '13px', padding: '12px 14px', marginBottom: '12px', boxSizing: 'border-box', outline: 'none' }}
+            />
+            {deleteError && <p style={{ fontFamily: 'Montserrat, sans-serif', fontSize: '12px', color: 'rgba(220,80,80,0.9)', marginBottom: '12px' }}>{deleteError}</p>}
+            <div style={{ display: 'flex', gap: '8px' }}>
+              <button onClick={deleteAccount} disabled={deleting}
+                style={{ flex: 1, background: 'rgba(180,60,60,0.8)', border: 'none', color: '#FAFAFA', fontFamily: 'Montserrat, sans-serif', fontSize: '11px', fontWeight: 600, letterSpacing: '0.2em', textTransform: 'uppercase', padding: '13px', cursor: deleting ? 'not-allowed' : 'pointer', opacity: deleting ? 0.5 : 1 }}>
+                {deleting ? 'Deleting...' : 'Delete My Account'}
+              </button>
+              <button onClick={() => setShowDeleteModal(false)}
+                style={{ flex: 1, background: 'none', border: '1px solid rgba(255,255,255,0.1)', color: 'rgba(255,255,255,0.5)', fontFamily: 'Montserrat, sans-serif', fontSize: '11px', letterSpacing: '0.2em', textTransform: 'uppercase', padding: '13px', cursor: 'pointer' }}>
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 }
