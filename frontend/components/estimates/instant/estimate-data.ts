@@ -38,10 +38,10 @@ export const WEIGHT_OPTS = [
   { label: '1 – 4.99ct',    mk: 30,  online: false },
   { label: '5 – 7.99ct',    mk: 45,  online: false },
   { label: '8 – 9.99ct',    mk: 50,  online: false },
-  { label: '10 – 14.99ct',  mk: 0,   online: true  },
-  { label: '15 – 19.99ct',  mk: 0,   online: true  },
-  { label: '20ct and up',   mk: 0,   online: true  },
-  { label: "I don't know",  mk: 0,   online: true  },
+  { label: '10 – 14.99ct',  mk: 50,  online: true  },
+  { label: '15 – 19.99ct',  mk: 100, online: true  },
+  { label: '20ct and up',   mk: 150, online: true  },
+  { label: "I don't know",  mk: 100, online: true  },
 ];
 
 // ─── Species Options ────────────────────────────────────────────
