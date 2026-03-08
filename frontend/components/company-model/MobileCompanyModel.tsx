@@ -25,7 +25,7 @@ export default function MobileCompanyModel() {
           position: relative;
         }
         .mob-chapter-label {
-          font-family: 'Montserrat', sans-serif;
+          font-family: 'Comfortaa', sans-serif;
           font-size: 13px;
           letter-spacing: 0.3em;
           text-transform: uppercase;
@@ -47,7 +47,7 @@ export default function MobileCompanyModel() {
           margin-bottom: 20px;
         }
         .mob-chapter-body p:first-child {
-          font-family: 'Montserrat', sans-serif;
+          font-family: 'Comfortaa', sans-serif;
           font-weight: 600;
           font-size: clamp(16px, 4.5vw, 18px);
           color: rgba(100,160,220,0.9);
@@ -68,7 +68,7 @@ export default function MobileCompanyModel() {
           margin-bottom: 6px;
         }
         .mob-stat-label {
-          font-family: 'Montserrat', sans-serif;
+          font-family: 'Comfortaa', sans-serif;
           font-size: 13px;
           letter-spacing: 0.2em;
           text-transform: uppercase;
@@ -110,7 +110,7 @@ export default function MobileCompanyModel() {
           border: 1px solid rgba(212,175,55,0.4);
           background: transparent;
           color: rgba(212,175,55,0.9);
-          font-family: 'Montserrat', sans-serif;
+          font-family: 'Comfortaa', sans-serif;
           font-size: 15px;
           letter-spacing: 0.15em;
           text-transform: uppercase;
@@ -139,7 +139,7 @@ export default function MobileCompanyModel() {
                     padding: '16px 28px',
                     border: '1px solid rgba(80,200,120,0.7)',
                     color: 'rgba(80,200,120,1)',
-                    fontFamily: 'Montserrat, sans-serif',
+                    fontFamily: 'Comfortaa, sans-serif',
                     fontSize: '14px', letterSpacing: '0.12em', textTransform: 'uppercase',
                     textDecoration: 'none',
                   }}>
@@ -152,7 +152,7 @@ export default function MobileCompanyModel() {
                     padding: '16px 28px',
                     border: '1px solid rgba(80,200,120,0.7)',
                     color: 'rgba(80,200,120,1)',
-                    fontFamily: 'Montserrat, sans-serif',
+                    fontFamily: 'Comfortaa, sans-serif',
                     fontSize: '14px', letterSpacing: '0.12em', textTransform: 'uppercase',
                     textDecoration: 'none',
                   }}>

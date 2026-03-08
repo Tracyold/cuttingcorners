@@ -13,7 +13,7 @@ const labelStyle: React.CSSProperties = {
 };
 const btnStyle: React.CSSProperties = {
   width: '100%', background: 'transparent', border: '1px solid rgba(214,180,70,0.9)',
-  color: '#d4af37', fontFamily: "'Montserrat', sans-serif", fontSize: '11px',
+  color: '#d4af37', fontFamily: "'Comfortaa', sans-serif", fontSize: '11px',
   letterSpacing: '0.3em', textTransform: 'uppercase', padding: '14px', cursor: 'pointer',
   boxShadow: '0 0 14px rgba(214,180,70,0.35)',
 };

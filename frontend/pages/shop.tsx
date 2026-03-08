@@ -38,7 +38,7 @@ const inputStyle: React.CSSProperties = {
   marginBottom: '10px',
 };
 const labelStyle: React.CSSProperties = {
-  fontFamily: "'Montserrat', sans-serif",
+  fontFamily: "'Comfortaa', sans-serif",
   fontSize: '9px', fontWeight: 600,
   textTransform: 'uppercase',
   letterSpacing: '0.18em',
@@ -47,7 +47,7 @@ const labelStyle: React.CSSProperties = {
 };
 const goldBtnStyle: React.CSSProperties = {
   width: '100%', textAlign: 'center',
-  fontFamily: "'Montserrat', sans-serif",
+  fontFamily: "'Comfortaa', sans-serif",
   fontSize: '11px', fontWeight: 600,
   textTransform: 'uppercase',
   letterSpacing: '0.20em',
@@ -57,7 +57,7 @@ const goldBtnStyle: React.CSSProperties = {
 };
 const ghostBtnStyle: React.CSSProperties = {
   width: '100%', textAlign: 'center',
-  fontFamily: "'Montserrat', sans-serif",
+  fontFamily: "'Comfortaa', sans-serif",
   fontSize: '10px', fontWeight: 500,
   textTransform: 'uppercase',
   letterSpacing: '0.18em',
@@ -337,7 +337,7 @@ export default function ShopPage() {
       <main style={{ background: '#050505', minHeight: '100vh', paddingTop: '56px' }}>
         <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '48px 48px 80px' }}>
           <p style={{
-            fontFamily: "'Montserrat', sans-serif",
+            fontFamily: "'Comfortaa', sans-serif",
             fontSize: '11px', textTransform: 'uppercase',
             letterSpacing: '0.20em',
             color: 'rgba(255,255,255,0.52)',
@@ -346,7 +346,7 @@ export default function ShopPage() {
             Gems for Sale
           </p>
           <h1 style={{
-            fontFamily: "'Montserrat', sans-serif",
+            fontFamily: "'Comfortaa', sans-serif",
             fontSize: 'clamp(30px, 6vw, 60px)',
             fontWeight: 400,
             color: '#FAFAFA',
@@ -496,7 +496,7 @@ const shopCss = `
   z-index: 2;
 }
 .shop-tag {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Comfortaa', sans-serif;
   font-size: 15px;
   text-transform: uppercase;
   letter-spacing: 0.13em;
@@ -556,7 +556,7 @@ const shopCss = `
     border-radius: 8px;
   }
   .shop-card-title {
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Comfortaa', sans-serif;
     font-weight: 600;
     font-size: 11px;
     text-transform: uppercase;

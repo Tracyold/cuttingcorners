@@ -7,7 +7,7 @@ const footerCss = `
   padding: 40px 48px;
 }
 .ccg-footer-tagline {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Comfortaa', sans-serif;
   font-size: 11px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
@@ -24,7 +24,7 @@ const footerCss = `
   flex-direction: column;
 }
 .ccg-footer-link {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Comfortaa', sans-serif;
   font-size: 12px;
   letter-spacing: 0.04em;
   color: rgba(255,255,255,0.40);
@@ -41,14 +41,14 @@ const footerCss = `
   flex-direction: column;
 }
 .ccg-footer-contact-name {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Comfortaa', sans-serif;
   font-size: 12px;
   letter-spacing: 0.04em;
   color: rgba(255,255,255,0.55);
   line-height: 2.0;
 }
 .ccg-footer-contact-link {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Comfortaa', sans-serif;
   font-size: 15px;
   letter-spacing: 0.04em;
   color: rgba(255, 255, 255, 0.81);

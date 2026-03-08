@@ -43,7 +43,7 @@ export default function DesktopCompanyModel() {
           border: none;
           border-left: 2px solid transparent;
           padding: 10px 16px;
-          font-family: 'Montserrat', sans-serif;
+          font-family: 'Comfortaa', sans-serif;
           font-size: 11px;
           letter-spacing: 0.12em;
           text-transform: uppercase;
@@ -64,7 +64,7 @@ export default function DesktopCompanyModel() {
         }
         .dtop-chapter:last-of-type { border-bottom: none; }
         .dtop-chapter-label {
-          font-family: 'Montserrat', sans-serif;
+          font-family: 'Comfortaa', sans-serif;
           font-size: 10px;
           letter-spacing: 0.3em;
           text-transform: uppercase;
@@ -88,7 +88,7 @@ export default function DesktopCompanyModel() {
         .dtop-chapter-body p:first-child {
           font-size: clamp(14px, 1.4vw, 16px);
           color: rgba(100,160,220,0.9);
-          font-family: 'Montserrat', sans-serif;
+          font-family: 'Comfortaa', sans-serif;
           font-weight: 600;
           line-height: 1.75;
         }
@@ -107,7 +107,7 @@ export default function DesktopCompanyModel() {
           margin-bottom: 6px;
         }
         .dtop-stat-label {
-          font-family: 'Montserrat', sans-serif;
+          font-family: 'Comfortaa', sans-serif;
           font-size: 10px;
           letter-spacing: 0.2em;
           text-transform: uppercase;
@@ -118,7 +118,7 @@ export default function DesktopCompanyModel() {
           align-items: center;
           gap: 8px;
           margin-top: 20px;
-          font-family: 'Montserrat', sans-serif;
+          font-family: 'Comfortaa', sans-serif;
           font-size: 11px;
           letter-spacing: 0.15em;
           text-transform: uppercase;
@@ -154,7 +154,7 @@ export default function DesktopCompanyModel() {
           border: 1px solid rgba(212,175,55,0.4);
           background: transparent;
           color: rgba(212,175,55,0.9);
-          font-family: 'Montserrat', sans-serif;
+          font-family: 'Comfortaa', sans-serif;
           font-size: 12px;
           letter-spacing: 0.18em;
           text-transform: uppercase;
@@ -200,7 +200,7 @@ export default function DesktopCompanyModel() {
                       padding: '16px 28px',
                       border: '1px solid rgba(80,200,120,0.7)',
                       color: 'rgba(80,200,120,1)',
-                      fontFamily: 'Montserrat, sans-serif',
+                      fontFamily: 'Comfortaa, sans-serif',
                       fontSize: '14px', letterSpacing: '0.12em', textTransform: 'uppercase',
                       textDecoration: 'none',
                       transition: 'background 200ms',
@@ -216,7 +216,7 @@ export default function DesktopCompanyModel() {
                       padding: '16px 28px',
                       border: '1px solid rgba(80,200,120,0.7)',
                       color: 'rgba(80,200,120,1)',
-                      fontFamily: 'Montserrat, sans-serif',
+                      fontFamily: 'Comfortaa, sans-serif',
                       fontSize: '14px', letterSpacing: '0.12em', textTransform: 'uppercase',
                       textDecoration: 'none',
                       transition: 'background 200ms',

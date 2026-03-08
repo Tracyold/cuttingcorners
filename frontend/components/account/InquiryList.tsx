@@ -34,7 +34,7 @@ export default function InquiryList({
 }: Props) {
   return (
     <div style={{ padding: '28px' }}>
-      <h2 style={{ fontFamily: "'Montserrat', sans-serif", fontSize: '24px', color: '#FAFAFA', marginBottom: '16px' }}>Inquiries</h2>
+      <h2 style={{ fontFamily: "'Comfortaa', sans-serif", fontSize: '24px', color: '#FAFAFA', marginBottom: '16px' }}>Inquiries</h2>
       <div style={{ display: 'flex', gap: '20px', marginBottom: '20px', borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
         <button className={`acc-tab ${inquiryTab === 'inquiries' ? 'on' : ''}`} onClick={() => setInquiryTab('inquiries')}>Product Inquiries</button>
         <button className={`acc-tab ${inquiryTab === 'service' ? 'on' : ''}`} onClick={() => setInquiryTab('service')}>Service Requests</button>

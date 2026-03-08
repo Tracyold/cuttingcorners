@@ -155,7 +155,7 @@ export default function LegalUnified() {
           display: block; width: 100%; text-align: left;
           padding: 7px 14px; border: none; border-radius: 3px;
           background: none; cursor: pointer;
-          font-family: 'Montserrat', sans-serif;
+          font-family: 'Comfortaa', sans-serif;
           font-size: 12px; letter-spacing: 0.05em;
           text-transform: uppercase;
           color: rgba(255,255,255,0.75);
@@ -165,7 +165,7 @@ export default function LegalUnified() {
         .toc-btn:hover { color: rgba(255,255,255,0.65); background: rgba(255,255,255,0.03); }
         .toc-btn.active { color: #6fa3d8; background: rgba(59,130,200,0.1); border-left-color: #4a8ec2; padding-left: 12px; }
         .toc-group-label {
-          font-family: 'Montserrat', sans-serif;
+          font-family: 'Comfortaa', sans-serif;
           font-size: 9px; letter-spacing: 0.3em;
           text-transform: uppercase;
           color: rgba(100,160,220,0.5);
@@ -174,7 +174,7 @@ export default function LegalUnified() {
         .mobile-tab {
           flex-shrink: 0; padding: 11px 14px;
           background: none; border: none; border-bottom: 2px solid transparent;
-          font-family: 'Montserrat', sans-serif;
+          font-family: 'Comfortaa', sans-serif;
           font-size: 10px; letter-spacing: 0.1em;
           text-transform: uppercase; white-space: nowrap;
           cursor: pointer; color: rgba(255,255,255,0.75);
@@ -242,7 +242,7 @@ export default function LegalUnified() {
               <button key={t.id} className={`toc-btn${activeId === t.id ? ' active' : ''}`} onClick={() => scrollTo(t.id)}>{t.label}</button>
             ))}
             <div style={{ margin: '32px 14px 0', paddingTop: '20px', borderTop: '1px solid rgba(255,255,255,0.05)' }}>
-              <p style={{ fontFamily: "'Montserrat', sans-serif", fontSize: '9px', color: 'rgba(255,255,255,0.55)', lineHeight: 1.9 }}>
+              <p style={{ fontFamily: "'Comfortaa', sans-serif", fontSize: '9px', color: 'rgba(255,255,255,0.55)', lineHeight: 1.9 }}>
                 Effective<br />March 4, 2026
               </p>
             </div>

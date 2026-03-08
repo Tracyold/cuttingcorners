@@ -60,7 +60,7 @@ export default function DesktopEstimates() {
           padding: 4px 12px;
           background: rgba(212,175,55,0.12);
           border: 1px solid rgba(212,175,55,0.3);
-          font-family: 'Montserrat', sans-serif;
+          font-family: 'Comfortaa', sans-serif;
           font-size: 9px;
           letter-spacing: 0.2em;
           text-transform: uppercase;
@@ -78,7 +78,7 @@ export default function DesktopEstimates() {
           padding: 14px 18px;
           background: rgba(212,175,55,0.06);
           border-left: 2px solid rgba(212,175,55,0.4);
-          font-family: 'Montserrat', sans-serif;
+          font-family: 'Comfortaa', sans-serif;
           font-size: 12px;
           color: rgba(255,220,100,0.8);
           line-height: 1.7;
@@ -125,7 +125,7 @@ export default function DesktopEstimates() {
           border: 1px solid rgba(212,175,55,0.35);
           background: transparent;
           color: rgba(212,175,55,0.85);
-          font-family: 'Montserrat', sans-serif;
+          font-family: 'Comfortaa', sans-serif;
           font-size: 11px;
           letter-spacing: 0.15em;
           text-transform: uppercase;
