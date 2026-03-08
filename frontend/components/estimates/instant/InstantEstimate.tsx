@@ -259,7 +259,7 @@ export default function InstantEstimate() {
         .eq-q { font-family: 'Oranienbaum', serif; font-size: clamp(27px, 4.5vw, 40px); color: #FAFAFA; line-height: 1.2; margin-bottom: 40px; }
         .eq-sub { font-family: 'Montserrat', sans-serif; font-size: 15px; color: rgba(255,255,255,0.75); margin-bottom: 20px; letter-spacing: 0.05em; }
         .eq-opts { display: flex; flex-direction: column; gap: 8px; margin-bottom: 40px; }
-        .eq-opt { padding: 17px 22px; border: 1px solid rgba(255,255,255,0.15); background: transparent; color: rgba(255,255,255,0.85); font-family: 'Montserrat', sans-serif; font-size: 15px; text-align: left; cursor: pointer; transition: all 150ms; letter-spacing: 0.02em; width: 100%; }
+        .eq-opt { padding: 17px 22px; border: 1px solid rgba(255,255,255,0.15); background: transparent; color: rgba(255,255,255,0.85); font-family: 'Montserrat', sans-serif; font-size: 19px; text-align: left; cursor: pointer; transition: all 150ms; letter-spacing: 0.02em; width: 100%; }
         .eq-opt:hover { border-color: rgba(212,175,55,0.4); color: #FAFAFA; background: rgba(212,175,55,0.04); }
         .eq-opt.sel { border-color: rgba(212,175,55,0.9); color: #FAFAFA; background: rgba(212,175,55,0.08); }
         .eq-acts { display: flex; gap: 12px; }
