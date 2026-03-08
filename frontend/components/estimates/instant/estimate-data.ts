@@ -211,19 +211,19 @@ export const DAMAGE_TREES: Record<string, Record<string, DNode>> = {
     ]},
     c_reason: { q: 'Is the gash the main reason you are seeking gem services?', opts: [
       { label: 'Yes', fx: [{ t: 'flag', msg: 'Crown gash is the primary service reason' }], next: null },
-      { label: 'No',  fx: [{ t: 'price', n: 50 }, { t: 'recommend', svc: 'Crown recut & repolish' }, { t: 'online', msg: 'Online estimate recommended for crown gash before sending' }], next: null },
+      { label: 'No',  fx: [{ t: 'price', n: 50 }, { t: 'recommend', svc: 'Crown recut & repolish' }], next: null },
     ]},
     p_dirt: { q: 'Can dirt become trapped inside the gash?', opts: [
       { label: 'Yes', fx: [{ t: 'flag', msg: 'Deep pavilion gash traps debris' }], next: null },
       { label: 'No',  fx: [], next: 'p_feel' },
     ]},
     p_feel: { q: 'Can you feel the gash with your fingernail?', opts: [
-      { label: 'Yes', fx: [{ t: 'flag', msg: 'Pavilion gash has depth' }, { t: 'online', msg: 'Online estimate also recommended for pavilion gash' }], next: null },
+      { label: 'Yes', fx: [{ t: 'flag', msg: 'Pavilion gash has depth' }], next: null },
       { label: 'No',  fx: [], next: 'p_vis' },
     ]},
     p_vis: { q: 'Can you see the gash when you look through the table?', opts: [
       { label: 'Yes', fx: [{ t: 'flag', msg: 'Pavilion gash visible through table' }], next: null },
-      { label: 'No',  fx: [{ t: 'price', n: 50 }, { t: 'recommend', svc: 'Pavilion recut & repolish' }, { t: 'online', msg: 'Online estimate or feasibility report recommended for pavilion gash' }], next: null },
+      { label: 'No',  fx: [{ t: 'price', n: 50 }, { t: 'recommend', svc: 'Pavilion recut & repolish' }], next: null },
     ]},
   },
 
@@ -254,7 +254,7 @@ export const DAMAGE_TREES: Record<string, Record<string, DNode>> = {
     ]},
     c_see: { q: 'Can you see through the cloudiness?', opts: [
       { label: 'Yes', fx: [{ t: 'price', n: 60 }], next: null },
-      { label: 'No',  fx: [{ t: 'online', msg: 'Crown cloudiness — online estimate with photos required' }], next: null },
+      { label: 'No',  fx: [], next: null },
     ]},
     p_wipe: { q: 'Does the cloudiness wipe away with a damp cloth?', opts: [
       { label: 'Yes', fx: [{ t: 'price', n: 40 }], next: 'p_white' },
@@ -270,7 +270,7 @@ export const DAMAGE_TREES: Record<string, Record<string, DNode>> = {
     ]},
     p_see: { q: 'Can you see through the cloudiness?', opts: [
       { label: 'Yes', fx: [{ t: 'price', n: 60 }], next: null },
-      { label: 'No',  fx: [{ t: 'online', msg: 'Pavilion cloudiness — online estimate with photos required' }], next: null },
+      { label: 'No',  fx: [], next: null },
     ]},
   },
 
@@ -285,8 +285,8 @@ export const DAMAGE_TREES: Record<string, Record<string, DNode>> = {
       { label: 'No',  fx: [{ t: 'flag', msg: 'Crown abrasions not on facet edges — feasibility report needed' }], next: null },
     ]},
     c_gird: { q: 'Do the abrasions reach the girdle?', opts: [
-      { label: 'Yes', fx: [{ t: 'online', msg: 'Crown abrasions reach girdle — online estimate required, likely crown recut' }], next: null },
-      { label: 'No',  fx: [{ t: 'price', n: 50 }, { t: 'recommend', svc: 'Crown recut & repolish' }, { t: 'online', msg: 'Online estimate recommended before sending' }], next: null },
+      { label: 'Yes', fx: [], next: null },
+      { label: 'No',  fx: [{ t: 'price', n: 50 }, { t: 'recommend', svc: 'Crown recut & repolish' }], next: null },
     ]},
     p_culet: { q: 'Do the abrasions follow along the culet and travel up the facet edges?', opts: [
       { label: 'Yes', fx: [], next: 'p_gird' },
@@ -298,7 +298,7 @@ export const DAMAGE_TREES: Record<string, Record<string, DNode>> = {
     ]},
     p_vis: { q: 'Can you see the abrasions when looking through the table?', opts: [
       { label: 'Yes', fx: [{ t: 'flag', msg: 'Pavilion abrasions visible through table' }], next: null },
-      { label: 'No',  fx: [{ t: 'price', n: 50 }, { t: 'recommend', svc: 'Pavilion recut & repolish' }, { t: 'online', msg: 'Online estimate recommended before sending' }], next: null },
+      { label: 'No',  fx: [{ t: 'price', n: 50 }, { t: 'recommend', svc: 'Pavilion recut & repolish' }], next: null },
     ]},
   },
 };
