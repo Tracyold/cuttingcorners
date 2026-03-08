@@ -95,7 +95,7 @@ export default function DesktopCompanyModel() {
         .dtop-stat {
           margin-top: 40px;
           padding: 24px 28px;
-          border: 1px solid rgba(212,175,55,0.15);
+          border: 1px solid #d4af37;
           background: rgba(212,175,55,0.04);
           display: inline-block;
         }
@@ -151,7 +151,7 @@ export default function DesktopCompanyModel() {
           align-items: center;
           gap: 10px;
           padding: 15px 36px;
-          border: 1px solid rgba(212,175,55,0.4);
+          border: 1px solid #d4af37;
           background: transparent;
           color: rgba(212,175,55,0.9);
           font-family: 'Comfortaa', sans-serif;

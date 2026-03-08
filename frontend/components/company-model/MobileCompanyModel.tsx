@@ -56,7 +56,7 @@ export default function MobileCompanyModel() {
         .mob-stat {
           display: inline-block;
           padding: 24px 28px;
-          border: 1px solid rgba(212,175,55,0.15);
+          border: 1px solid #d4af37;
           background: rgba(212,175,55,0.04);
           margin: 12px 0 36px;
         }
@@ -107,7 +107,7 @@ export default function MobileCompanyModel() {
           align-items: center;
           gap: 8px;
           padding: 16px 32px;
-          border: 1px solid rgba(212,175,55,0.4);
+          border: 1px solid #d4af37;
           background: transparent;
           color: rgba(212,175,55,0.9);
           font-family: 'Comfortaa', sans-serif;

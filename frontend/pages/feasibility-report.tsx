@@ -54,8 +54,8 @@ export default function FeasibilityReportPage() {
             <div className="fr-card-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '2px' }}>
               {valueProps.map(v => (
                 <div key={v.n} className="fr-card" style={{ padding: '36px 32px', background: '#0A0A0A', border: '1px solid rgba(255,255,255,0.05)' }}>
-                  <p className="fr-card-num" style={{ fontFamily: 'Oranienbaum, serif', fontSize: 'clamp(80px, 14vw, 140px)', letterSpacing: '0', color: 'rgba(212,175,55,0.2)', marginBottom: '0', lineHeight: '1' }}>{v.n}</p>
-                  <h3 className="fr-card-title" style={{ fontFamily: 'Oranienbaum, serif', fontSize: 'clamp(21px, 2.5vw, 28px)', color: 'rgba(212,175,55,0.95)', marginBottom: '14px', lineHeight: 1.3 }}>{v.title}</h3>
+                  <p className="fr-card-num" style={{ fontFamily: 'Oranienbaum, serif', fontSize: 'clamp(80px, 14vw, 140px)', letterSpacing: '0', color: '#d4af37', marginBottom: '0', lineHeight: '1' }}>{v.n}</p>
+                  <h3 className="fr-card-title" style={{ fontFamily: 'Oranienbaum, serif', fontSize: 'clamp(21px, 2.5vw, 28px)', color: '#d4af37', marginBottom: '14px', lineHeight: 1.3 }}>{v.title}</h3>
                   <p className="fr-card-body" style={{ fontFamily: 'Comfortaa, sans-serif', fontSize: '15px', color: 'rgba(255,255,255,0.85)', lineHeight: 1.85 }}>{v.body}</p>
                 </div>
               ))}
@@ -71,7 +71,7 @@ export default function FeasibilityReportPage() {
             <div className="fr-card-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '2px' }}>
               {useCases.map(u => (
                 <div key={u.title} className="fr-card" style={{ padding: '36px 32px', background: '#0A0A0A', border: '1px solid rgba(255,255,255,0.05)' }}>
-                  <h3 className="fr-card-title" style={{ fontFamily: 'Oranienbaum, serif', fontSize: 'clamp(21px, 2.5vw, 28px)', color: 'rgba(212,175,55,0.95)', marginBottom: '14px', lineHeight: 1.3 }}>{u.title}</h3>
+                  <h3 className="fr-card-title" style={{ fontFamily: 'Oranienbaum, serif', fontSize: 'clamp(21px, 2.5vw, 28px)', color: '#d4af37', marginBottom: '14px', lineHeight: 1.3 }}>{u.title}</h3>
                   <p className="fr-card-body" style={{ fontFamily: 'Comfortaa, sans-serif', fontSize: '15px', color: 'rgba(255,255,255,0.85)', lineHeight: 1.85 }}>{u.body}</p>
                 </div>
               ))}

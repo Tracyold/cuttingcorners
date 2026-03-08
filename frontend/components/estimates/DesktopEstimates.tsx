@@ -59,7 +59,7 @@ export default function DesktopEstimates() {
           display: inline-block;
           padding: 4px 12px;
           background: rgba(212,175,55,0.12);
-          border: 1px solid rgba(212,175,55,0.3);
+          border: 1px solid #d4af37;
           font-family: 'Comfortaa', sans-serif;
           font-size: 9px;
           letter-spacing: 0.2em;
@@ -77,7 +77,7 @@ export default function DesktopEstimates() {
         .dest-warning {
           padding: 14px 18px;
           background: rgba(212,175,55,0.06);
-          border-left: 2px solid rgba(212,175,55,0.4);
+          border-left: 2px solid #d4af37;
           font-family: 'Comfortaa', sans-serif;
           font-size: 12px;
           color: rgba(255,220,100,0.8);
@@ -122,7 +122,7 @@ export default function DesktopEstimates() {
           align-items: center;
           gap: 8px;
           padding: 12px 24px;
-          border: 1px solid rgba(212,175,55,0.35);
+          border: 1px solid #d4af37;
           background: transparent;
           color: rgba(212,175,55,0.85);
           font-family: 'Comfortaa', sans-serif;

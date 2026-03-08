@@ -251,7 +251,7 @@ export default function WorkOrderDetailModal({ selectedWO, setSelectedWO, user, 
             {[...selectedWO.edit_history].reverse().map((entry: any, i: number) => (
               <div key={i} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', padding: '8px 0', borderBottom: '1px solid rgba(255,255,255,0.04)', gap: '12px' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
-                  <span style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '.15em', textTransform: 'uppercase', padding: '2px 6px', background: entry.by === 'admin' ? 'rgba(212,175,55,0.12)' : 'rgba(45,212,191,0.1)', color: entry.by === 'admin' ? '#cfb040' : 'rgba(45,212,191,0.9)' }}>{entry.by}</span>
+                  <span style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '.15em', textTransform: 'uppercase', padding: '2px 6px', background: entry.by === 'admin' ? '#d4af37' : 'rgba(45,212,191,0.1)', color: entry.by === 'admin' ? '#cfb040' : 'rgba(45,212,191,0.9)' }}>{entry.by}</span>
                   <span style={{ fontSize: '13px', color: 'var(--tx)' }}>{entry.action}</span>
                 </div>
                 <span style={{ fontSize: '10px', color: 'var(--d2)', whiteSpace: 'nowrap', flexShrink: 0 }}>{fmtDate(entry.at)} · {fmtTime(entry.at)}</span>

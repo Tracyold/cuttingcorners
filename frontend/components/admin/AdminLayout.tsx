@@ -189,7 +189,7 @@ export const adminCss = `
     width:28px;height:28px;background:none;cursor:pointer;padding:5px;
     border:0.5px solid rgba(255,255,255,0.15);transition:border-color .2s
   }
-  .mob-burger:hover{border-color:rgba(212,175,55,0.5)}
+  .mob-burger:hover{border-color:#d4af37}
   .mob-burger .mb{width:100%;height:1px;background:rgba(255,255,255,0.7);transition:all .25s ease;transform-origin:center}
   .mob-burger.open .mb:nth-child(1){transform:translateY(6px) rotate(45deg)}
   .mob-burger.open .mb:nth-child(2){opacity:0;transform:scaleX(0)}

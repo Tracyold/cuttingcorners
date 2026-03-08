@@ -27,13 +27,13 @@ export default function FeasibilityMobile() {
       <style>{`
         .fm-tabs { display: flex; gap: 2px; margin-bottom: 28px; }
         .fm-tab { flex: 1; padding: 15px 0; text-align: center; font-family: 'Montserrat', sans-serif; font-size: 15px; letter-spacing: 0.15em; text-transform: uppercase; border: 1px solid rgba(30,60,120,0.7); background: transparent; color: rgba(255,255,255,0.75); cursor: pointer; transition: all 200ms; }
-        .fm-tab.active { border-color: rgba(212,175,55,0.8); color: rgba(212,175,55,0.9); background: rgba(212,175,55,0.04); }
+        .fm-tab.active { border-color: #d4af37; color: rgba(212,175,55,0.9); background: rgba(212,175,55,0.04); }
         .fm-card { background: #0D0D0D; border: 1px solid rgba(30,60,120,0.8); padding: 28px 22px; }
         .fm-plot { background: rgba(0,0,0,0.4); border: 1px solid rgba(30,60,120,0.8); padding: 18px; position: relative; min-height: 160px; margin-bottom: 8px; }
         .fm-plot-label { font-family: 'Montserrat', sans-serif; font-size: 13px; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(100,160,220,0.85); margin-bottom: 10px; display: block; }
         .fm-plot-shape { display: flex; align-items: center; justify-content: center; }
         .fm-option { padding: 15px; border: 1px solid rgba(30,60,120,0.7); margin-bottom: 9px; background: rgba(255,255,255,0.02); }
-        .fm-option.rec { border-color: rgba(212,175,55,0.6); background: rgba(212,175,55,0.04); }
+        .fm-option.rec { border-color: #d4af37; background: rgba(212,175,55,0.04); }
         .fm-disclaimer { margin-top: 25px; padding: 15px; border: 1px solid rgba(30,60,120,0.6); background: rgba(255,255,255,0.02); font-family: 'Comfortaa', sans-serif; font-size: 13px; color: rgba(255,255,255,0.55); line-height: 1.75; }
       `}</style>
 
@@ -167,7 +167,7 @@ export default function FeasibilityMobile() {
           <p style={{ ...BODY, marginBottom: '13px', color: 'rgba(255,255,255,0.6)' }}>High yield outcomes are more probable IF:</p>
           {precut.conditionals.map((c, i) => (
             <div key={i} style={{ display: 'flex', gap: '11px', marginBottom: '11px' }}>
-              <span style={{ color: 'rgba(212,175,55,0.8)', fontSize: '15px', flexShrink: 0 }}>—</span>
+              <span style={{ color: '#d4af37', fontSize: '15px', flexShrink: 0 }}>—</span>
               <p style={BODY}>{c}</p>
             </div>
           ))}
@@ -177,8 +177,8 @@ export default function FeasibilityMobile() {
           {precut.options.map((o, i) => (
             <div key={i} className={`fm-option${i === 1 ? ' rec' : ''}`}>
               <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '7px' }}>
-                <p style={{ fontFamily: 'Comfortaa, sans-serif', fontSize: '15px', fontWeight: 600, color: 'rgba(212,175,55,0.95)' }}>{o.label}</p>
-                {i === 1 && <span style={{ fontFamily: 'Comfortaa, sans-serif', fontSize: '13px', color: 'rgba(212,175,55,0.95)' }}>Recommended</span>}
+                <p style={{ fontFamily: 'Comfortaa, sans-serif', fontSize: '15px', fontWeight: 600, color: '#d4af37' }}>{o.label}</p>
+                {i === 1 && <span style={{ fontFamily: 'Comfortaa, sans-serif', fontSize: '13px', color: '#d4af37' }}>Recommended</span>}
               </div>
               <p style={BODY}>{o.desc}</p>
             </div>
@@ -202,7 +202,7 @@ export default function FeasibilityMobile() {
       {activeTab === 'postcut' && (
         <div className="fm-card">
           {/* Header */}
-          <p style={{ fontFamily: 'Montserrat, sans-serif', fontSize: '13px', letterSpacing: '0.3em', textTransform: 'uppercase', color: 'rgba(212,175,55,0.9)', marginBottom: '6px' }}>CCG Cut Feasibility Report</p>
+          <p style={{ fontFamily: 'Montserrat, sans-serif', fontSize: '13px', letterSpacing: '0.3em', textTransform: 'uppercase', color: '#d4af37', marginBottom: '6px' }}>CCG Cut Feasibility Report</p>
           <p style={{ fontFamily: 'Oranienbaum, serif', fontSize: 'clamp(21px, 6vw, 27px)', color: '#FAFAFA', lineHeight: 1.1, marginBottom: '6px' }}>Post-Cut Change Report</p>
           <p style={{ fontFamily: 'Comfortaa, sans-serif', fontSize: '13px', color: 'rgba(255,255,255,0.6)', marginBottom: '20px' }}>Report #{postcut.id} · {postcut.date} · {postcut.analyst}</p>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0 16px', marginBottom: '8px' }}>
@@ -226,7 +226,7 @@ export default function FeasibilityMobile() {
           <p style={FL}>Primary Objectives</p>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', margin: '9px 0 17px' }}>
             {postcut.beforeAfter.objectives.map((o, i) => (
-              <span key={i} style={{ padding: '6px 13px', border: '1px solid rgba(212,175,55,0.3)', background: 'rgba(212,175,55,0.06)', fontFamily: 'Montserrat, sans-serif', fontSize: '13px', letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(212,175,55,0.9)', display: 'inline-block' }}>{o}</span>
+              <span key={i} style={{ padding: '6px 13px', border: '1px solid #d4af37', background: '#d4af37', fontFamily: 'Montserrat, sans-serif', fontSize: '13px', letterSpacing: '0.12em', textTransform: 'uppercase', color: '#d4af37', display: 'inline-block' }}>{o}</span>
             ))}
           </div>
           <p style={FL}>Summary Notes</p>
@@ -254,8 +254,8 @@ export default function FeasibilityMobile() {
                 <ellipse cx="50" cy="50" rx="44" ry="36" fill="none" stroke="rgba(255,255,255,0.2)" strokeWidth="1" strokeDasharray="3,2" />
                 <ellipse cx="50" cy="50" rx="20" ry="14" fill="none" stroke="rgba(255,255,255,0.1)" strokeWidth="0.5" strokeDasharray="2,2" />
                 <text x="72" y="28" fontSize="9" fill="rgba(100,160,220,0.7)" fontFamily="monospace">○</text>
-                <text x="18" y="55" fontSize="9" fill="rgba(212,175,55,0.7)" fontFamily="monospace">~</text>
-                <text x="50" y="90" fontSize="9" fill="rgba(212,175,55,0.7)" fontFamily="monospace">△</text>
+                <text x="18" y="55" fontSize="9" fill="#d4af37" fontFamily="monospace">~</text>
+                <text x="50" y="90" fontSize="9" fill="#d4af37" fontFamily="monospace">△</text>
                 <text x="47" y="9" fontSize="6" fill="rgba(255,255,255,0.3)" fontFamily="monospace">12</text>
                 <text x="87" y="52" fontSize="6" fill="rgba(255,255,255,0.3)" fontFamily="monospace">3</text>
                 <text x="47" y="98" fontSize="6" fill="rgba(255,255,255,0.3)" fontFamily="monospace">6</text>
@@ -270,8 +270,8 @@ export default function FeasibilityMobile() {
             <span className="fm-plot-label">After — Crown</span>
             <div className="fm-plot-shape">
               <svg viewBox="0 0 100 100" width="100%" height="180">
-                <ellipse cx="50" cy="50" rx="44" ry="36" fill="none" stroke="rgba(212,175,55,0.7)" strokeWidth="1.5" />
-                <ellipse cx="50" cy="50" rx="20" ry="14" fill="none" stroke="rgba(212,175,55,0.35)" strokeWidth="1" />
+                <ellipse cx="50" cy="50" rx="44" ry="36" fill="none" stroke="#d4af37" strokeWidth="1.5" />
+                <ellipse cx="50" cy="50" rx="20" ry="14" fill="none" stroke="#d4af37" strokeWidth="1" />
                 <text x="72" y="28" fontSize="9" fill="rgba(100,160,220,0.6)" fontFamily="monospace">○</text>
                 <text x="47" y="9" fontSize="6" fill="rgba(255,255,255,0.4)" fontFamily="monospace">12</text>
                 <text x="87" y="52" fontSize="6" fill="rgba(255,255,255,0.4)" fontFamily="monospace">3</text>
@@ -299,7 +299,7 @@ export default function FeasibilityMobile() {
             <tbody>{postcut.optical.map((r, i) => (
               <tr key={i}>
                 <td style={TC}>{r.aspect}<br /><span style={{ color: 'rgba(100,160,220,0.85)', fontSize: '13px' }}>{r.note}</span></td>
-                <td style={TC}><span style={{ fontFamily: 'Comfortaa, sans-serif', fontSize: '13px', color: 'rgba(212,175,55,0.95)', fontWeight: 600 }}>{r.rating}</span></td>
+                <td style={TC}><span style={{ fontFamily: 'Comfortaa, sans-serif', fontSize: '13px', color: '#d4af37', fontWeight: 600 }}>{r.rating}</span></td>
               </tr>
             ))}</tbody>
           </table>
