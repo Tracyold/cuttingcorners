@@ -31,22 +31,22 @@ const css = `
   border-bottom: 0.5px solid transparent;
 }
 .tnav.scrolled {
-  background: rgba(5,5,5,0.92);
+  background: rgba(41, 40, 40, 0.92);
   backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-bottom-color: rgba(255,255,255,0.07);
+  -webkit-backdrop-filter: blur(19px);
+  border-bottom-color: rgba(255, 255, 255, 0.73);
 }
 .tnav-brand {
-  font-family: 'Oranienbaum', Georgia, serif;
-  font-size: 17px;
-  font-weight: 400;
-  color: #FAFAFA;
+  font-family: 'Comfortaa', Georgia, serif;
+  font-size: 27px;
+  font-weight: 650;
+  color: #fafafaeb;
   text-decoration: none;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.05em;
   white-space: nowrap;
   transition: color 200ms ease;
 }
-.tnav-brand:hover { color: #d4af37; }
+.tnav-brand:hover { color: #f7c728; }
 .tnav-links {
   display: flex;
   align-items: center;
@@ -103,12 +103,12 @@ const css = `
   padding: 8px;
   transition: border-color 200ms ease;
 }
-.tnav-burger:hover { border-color: #d4af37; }
+.tnav-burger:hover { border-color: #ffcd27; }
 .tnav-burger .bar {
   width: 100%;
   height: 1px;
   background: rgba(255,255,255,0.75);
-  border-radius: 1px;
+  border-radius: 1.7px;
   transition: all 280ms ease;
   transform-origin: center;
 }
@@ -118,7 +118,7 @@ const css = `
 .tnav-drawer {
   position: fixed;
   top: 56px; left: 0; right: 0;
-  background: rgba(5,5,5,0.97);
+  background: rgba(55, 58, 57, 0.94);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border-bottom: 0.5px solid rgba(255,255,255,0.07);
@@ -126,7 +126,7 @@ const css = `
   display: flex;
   flex-direction: column;
   padding: 20px 28px 28px;
-  gap: 0;
+  gap: 1;
   transform: translateY(-8px);
   opacity: 0;
   pointer-events: none;
@@ -139,25 +139,25 @@ const css = `
 }
 .tnav-drawer-link {
   font-family: 'Comfortaa', sans-serif;
-  font-size: 11px;
+  font-size: 25px;
   font-weight: 500;
   letter-spacing: 0.24em;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.55);
+  color: rgba(255, 255, 255, 0.85);
   text-decoration: none;
-  padding: 16px 0;
+  padding: 17px 0;
   border-bottom: 0.5px solid rgba(255,255,255,0.06);
   transition: color 180ms ease;
 }
-.tnav-drawer-link:hover { color: #FAFAFA; }
+.tnav-drawer-link:hover { color: #f8e42f; }
 .tnav-drawer-link:last-child { border-bottom: none; }
 .tnav-drawer-auth {
   font-family: 'Comfortaa', sans-serif;
-  font-size: 11px;
+  font-size: 27px;
   font-weight: 500;
   letter-spacing: 0.24em;
   text-transform: uppercase;
-  color: #d4af37;
+  color: #ffe48c;
   text-decoration: none;
   padding: 18px 0 4px;
   margin-top: 4px;
