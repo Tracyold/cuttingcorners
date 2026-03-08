@@ -1,5 +1,4 @@
 import TopNav from '../components/shared/TopNav';
-import Footer from '../components/shared/Footer';
 import FeasibilityDesktop from '../components/feasibility-report/FeasibilityDesktop';
 import FeasibilityMobile from '../components/feasibility-report/FeasibilityMobile';
 import { valueProps, useCases } from '../components/feasibility-report/shared-feasibility';
@@ -92,7 +91,6 @@ export default function FeasibilityReportPage() {
           </div>
         </section>
       </main>
-      <Footer />
     </>
   );
 }
