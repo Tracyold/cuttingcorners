@@ -19,7 +19,9 @@ export default function MobileEstimates() {
           flex-direction: column;
           justify-content: center;
           padding: 100px 0 100px;
-          border-bottom: 1px solid rgba(255,255,255,0.05);
+          background: #1a2438;
+          border-bottom: 1px solid rgba(255,255,255,0.08);
+          box-shadow: 0 8px 32px rgba(0,0,0,0.6), 0 2px 8px rgba(0,0,0,0.4);
           scroll-margin-top: 0;
           overflow: hidden;
           position: relative;
