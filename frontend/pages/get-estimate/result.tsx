@@ -8,7 +8,7 @@ export default function EstimateResult() {
   return (
     <>
       <TopNav />
-      <div style={{ minHeight: '100svh', background: '#050505', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '120px 24px 60px' }}>
+      <div style={{ minHeight: '100svh', background: 'transparent', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '120px 24px 60px' }}>
         <div style={{ maxWidth: '580px', width: '100%' }}>
           <p style={{ fontFamily: 'Montserrat, sans-serif', fontSize: '11px', letterSpacing: '0.25em', textTransform: 'uppercase', color: 'rgba(212,175,55,0.7)', marginBottom: '20px' }}>Your Estimate</p>
           <h1 style={{ fontFamily: 'Oranienbaum, serif', fontSize: 'clamp(27px, 5vw, 42px)', color: '#FAFAFA', lineHeight: 1.2, marginBottom: '40px' }}>We have what we need.</h1>

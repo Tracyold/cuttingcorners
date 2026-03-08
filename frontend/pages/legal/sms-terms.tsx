@@ -25,7 +25,7 @@ export default function SmsTerms() {
   return (
     <>
       <Head><title>SMS Disclosure — Cutting Corners Gems</title></Head>
-      <div style={{ background: '#050505', minHeight: '100vh', color: '#FAFAFA' }}>
+      <div style={{ background: 'transparent', minHeight: '100vh', color: '#FAFAFA' }}>
 
         <div style={{ borderBottom: '1px solid rgba(255,255,255,0.06)', padding: '20px 40px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '12px' }}>
           <button onClick={() => router.push('/')} style={{ background: 'none', border: 'none', color: 'rgba(255,255,255,0.4)', fontSize: '11px', letterSpacing: '0.25em', textTransform: 'uppercase', cursor: 'pointer' }}>← Cutting Corners Gems</button>

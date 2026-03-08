@@ -4,5 +4,5 @@ import { useRouter } from 'next/router';
 export default function AdminIndex() {
   const router = useRouter();
   useEffect(() => { router.replace('/admin/login'); }, [router]);
-  return <div style={{ background: '#050505', minHeight: '100vh' }} />;
+  return <div style={{ background: 'transparent', minHeight: '100vh' }} />;
 }

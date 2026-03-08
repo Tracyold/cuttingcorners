@@ -65,11 +65,11 @@ export default function AdminLoginPage() {
   };
 
   if (checkingSession) {
-    return <div style={{ background: '#050505', minHeight: '100vh' }} />;
+    return <div style={{ background: 'transparent', minHeight: '100vh' }} />;
   }
 
   return (
-    <div style={{ background: '#050505', minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '24px' }}>
+    <div style={{ background: 'transparent', minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '24px' }}>
       <div
         style={{
           background: '#111111',

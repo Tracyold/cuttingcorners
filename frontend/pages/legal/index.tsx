@@ -187,7 +187,7 @@ export default function LegalUnified() {
         @media (max-width: 900px) { .desktop-sidebar { display: none !important; } }
       `}</style>
 
-      <div style={{ background: '#050505', minHeight: '100vh', color: '#FAFAFA' }}>
+      <div style={{ background: 'transparent', minHeight: '100vh', color: '#FAFAFA' }}>
 
         {/* ── Top nav ── */}
         <div style={{

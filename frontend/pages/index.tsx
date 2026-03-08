@@ -27,7 +27,7 @@ function GlobalStyles() {
 
 html, body, #__next {
   font-family: var(--font-body);
-  background-color: #050505;
+  background-color: transparent;
   color: #FAFAFA;
   margin: 0;
   padding: 0;
@@ -371,7 +371,7 @@ export default function Home() {
                 position: 'sticky',
                 top: 0,
                 zIndex: 20,
-                background: '#050505',
+                background: 'transparent',
                 paddingTop: '28px',
                 paddingBottom: '3px',
               }}

@@ -107,7 +107,7 @@ export default function PortfolioPage() {
     <>
       <style dangerouslySetInnerHTML={{ __html: portfolioCss }} />
       <TopNav />
-      <main style={{ background: '#050505', minHeight: '100vh', paddingTop: '56px' }}>
+      <main style={{ background: 'transparent', minHeight: '100vh', paddingTop: '56px' }}>
         <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '48px 48px 80px' }}>
           <p
             style={{
