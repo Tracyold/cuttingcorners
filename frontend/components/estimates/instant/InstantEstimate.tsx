@@ -527,7 +527,7 @@ export default function InstantEstimate() {
                 <div className="price-box">
                   <p style={{ fontFamily: 'Montserrat, sans-serif', fontSize: 15, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(212,175,55,0.9)', marginBottom: 8 }}>Estimate Range</p>
                   <p style={{ fontFamily: 'Oranienbaum, serif', fontSize: 56, color: '#d4af37', lineHeight: 1 }}>${totalLow} – ${totalHigh}</p>
-                  <p className="price-note">This is an estimate — not a quote. An estimate is an informed guess based on your answers and is not binding. A quote is a firm price offered by the cutter after personally reviewing your stone. All prices shown here are subject to change once your gemstone is examined.</p>
+                  <p className="price-note">{st.flags.length > 0 ? 'This estimate assumes the structural concerns identified do not compromise the stone. If the feasibility report reveals deeper damage, this number will change — potentially significantly. This is an estimate only, not a quote.' : 'This is an estimate — not a quote. An estimate is an informed guess based on your answers and is not binding. A quote is a firm price offered by the cutter after personally reviewing your stone. All prices shown here are subject to change once your gemstone is examined.'}</p>
                   {st.svcRecs.length > 0 && (
                     <div style={{ marginTop: 20, paddingTop: 16, borderTop: '1px solid rgba(255,255,255,0.06)' }}>
                       <p style={{ fontFamily: 'Montserrat, sans-serif', fontSize: 15, letterSpacing: '0.15em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.75)', marginBottom: 8 }}>Recommended Service</p>
