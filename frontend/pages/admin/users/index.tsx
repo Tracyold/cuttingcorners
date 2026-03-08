@@ -13,6 +13,10 @@ export default function AdminUsersPage() {
   const [sortField, setSortField] = useState('created_at');
   const [sortDir, setSortDir] = useState<'asc'|'desc'>('desc');
   const [unreadCounts, setUnreadCounts] = useState<Record<string, number>>({});
+  const [archivedUsers, setArchivedUsers] = useState<any[]>([]);
+  const [activeTab, setActiveTab] = useState<'active' | 'archived'>('active');
+  const [restoring, setRestoring] = useState<string | null>(null);
+  const [restoreMsg, setRestoreMsg] = useState('');
 
   useEffect(() => {
     async function load() {
@@ -22,8 +26,12 @@ export default function AdminUsersPage() {
         setGuestUser(g);
       }
       const { data } = await supabase.from('account_users').select('*')
-        .neq('account_user_id', guestId || '').order('created_at', { ascending: false });
+        .neq('account_user_id', guestId || '').is('deleted_at', null).order('created_at', { ascending: false });
       setUsers(data || []);
+
+      const { data: archived } = await supabase.from('account_users').select('*')
+        .neq('account_user_id', guestId || '').not('deleted_at', 'is', null).order('deleted_at', { ascending: false });
+      setArchivedUsers(archived || []);
 
       // Notification bubbles
       const { data: notifs } = await supabase.from('admin_notifications').select('user_id').eq('read', false);
@@ -47,6 +55,23 @@ export default function AdminUsersPage() {
     load();
   }, []);
 
+  async function restoreAccount(userId: string) {
+    setRestoring(userId);
+    setRestoreMsg('');
+    const { error } = await supabase.rpc('restore_account', { user_id: userId });
+    if (error) {
+      setRestoreMsg('Restore failed: ' + error.message);
+    } else {
+      setRestoreMsg('Account restored successfully.');
+      const guestId = process.env.NEXT_PUBLIC_GUEST_ACCOUNT_USER_ID || '';
+      const { data: active } = await supabase.from('account_users').select('*').neq('account_user_id', guestId).is('deleted_at', null).order('created_at', { ascending: false });
+      setUsers(active || []);
+      const { data: archived } = await supabase.from('account_users').select('*').neq('account_user_id', guestId).not('deleted_at', 'is', null).order('deleted_at', { ascending: false });
+      setArchivedUsers(archived || []);
+    }
+    setRestoring(null);
+  }
+
   function handleSort(field: string) {
     if (sortField === field) {
       if (sortDir === 'asc') setSortDir('desc');
@@ -54,7 +79,8 @@ export default function AdminUsersPage() {
     } else { setSortField(field); setSortDir('asc'); }
   }
 
-  const filtered = users.filter(u => {
+  const sourceList = activeTab === 'active' ? users : archivedUsers;
+  const filtered = sourceList.filter(u => {
     if (!search) return true;
     const q = search.toLowerCase();
     return (u.name || '').toLowerCase().includes(q) || (u.email || '').toLowerCase().includes(q) || (u.phone || '').toLowerCase().includes(q);
@@ -73,8 +99,21 @@ export default function AdminUsersPage() {
     <AdminLayout activeNav="users">
       <div className="ph">
         <div className="ph-title">User List</div>
-        <div style={{ fontSize: '17px', color: 'var(--d1)' }}>{users.length} accounts</div>
+        <div style={{ fontSize: '17px', color: 'var(--d1)' }}>{users.length} active · {archivedUsers.length} archived</div>
       </div>
+      <div style={{ display: 'flex', gap: '2px', padding: '0 32px', borderBottom: '1px solid var(--ln)' }}>
+        {(['active', 'archived'] as const).map(t => (
+          <button key={t} onClick={() => setActiveTab(t)}
+            style={{ padding: '12px 20px', background: 'none', border: 'none', borderBottom: `2px solid ${activeTab === t ? 'var(--g)' : 'transparent'}`, color: activeTab === t ? 'var(--wh)' : 'var(--d2)', fontFamily: 'var(--sans)', fontSize: '11px', letterSpacing: '0.2em', textTransform: 'uppercase', cursor: 'pointer' }}>
+            {t === 'active' ? `Active (${users.length})` : `Archived (${archivedUsers.length})`}
+          </button>
+        ))}
+      </div>
+      {restoreMsg && (
+        <div style={{ padding: '10px 32px', background: 'rgba(100,200,120,0.08)', borderBottom: '1px solid rgba(100,200,120,0.2)', fontFamily: 'var(--sans)', fontSize: '13px', color: 'rgba(100,200,120,0.9)' }}>
+          {restoreMsg}
+        </div>
+      )}
       <div style={{ padding: '12px 32px', borderBottom: '1px solid var(--ln)' }}>
         <input value={search} onChange={e => setSearch(e.target.value)}
           placeholder="Search by name, email, or phone..."
@@ -105,7 +144,7 @@ export default function AdminUsersPage() {
           <div className="loading">Loading users...</div>
         ) : sorted.length === 0 ? (
           <div className="empty"><div className="empty-ic">○</div><div className="empty-tx">{search ? `No results for '${search}'` : 'No accounts yet'}</div></div>
-        ) : (
+        ) : activeTab === 'active' ? (
           <table className="tbl">
             <thead><tr>
               <th onClick={() => handleSort('name')} style={{ cursor: 'pointer' }}>Name {sortField === 'name' ? (sortDir === 'asc' ? '↑' : '↓') : ''}</th>
@@ -139,6 +178,32 @@ export default function AdminUsersPage() {
                   </tr>
                 );
               })}
+            </tbody>
+          </table>
+        ) : (
+          <table className="tbl">
+            <thead><tr>
+              <th>Name</th><th>Email</th><th>Phone</th><th>Deleted On</th><th>Reason</th><th></th>
+            </tr></thead>
+            <tbody>
+              {sorted.map(u => (
+                <tr key={u.account_user_id}>
+                  <td><div className="td-name" style={{ opacity: 0.6 }}>{u.name || '—'}</div></td>
+                  <td style={{ fontSize: 17, color: 'var(--d1)' }}>{u.email || '—'}</td>
+                  <td style={{ fontSize: 15 }}>{u.phone || '—'}</td>
+                  <td style={{ fontSize: 13, color: 'rgba(220,80,80,0.7)' }}>{fmtDate(u.deleted_at)} {fmtTime(u.deleted_at)}</td>
+                  <td style={{ fontSize: 13, color: 'var(--d1)' }}>{u.deleted_reason || '—'}</td>
+                  <td>
+                    <div className="ra">
+                      <button className="ab" disabled={restoring === u.account_user_id}
+                        onClick={e => { e.stopPropagation(); restoreAccount(u.account_user_id); }}
+                        style={{ background: 'rgba(100,200,120,0.15)', color: 'rgba(100,200,120,0.9)', borderColor: 'rgba(100,200,120,0.3)' }}>
+                        {restoring === u.account_user_id ? 'Restoring...' : 'Restore'}
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              ))}
             </tbody>
           </table>
         )}
