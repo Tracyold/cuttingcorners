@@ -72,16 +72,16 @@ export default function InstantEstimate() {
     if (v === 'rough') {
       go({ condition: v, onlineTriggerCount: st.onlineTriggerCount + 1, priceMk: st.priceMk + 250, svcRecs: [...st.svcRecs, 'Rough Cut Transformation'], phase: 'weight' });
     } else if (v === 'cut') {
-      go({ condition: v, phase: 'intent' });
+      go({ condition: v, priceMk: st.priceMk + 100, phase: 'intent' });
     } else {
       // cut_damaged — go straight to weight
-      go({ condition: v, phase: 'weight' });
+      go({ condition: v, priceMk: st.priceMk + 100, phase: 'weight' });
     }
   }
 
   function handleIntent(v: string) {
     if (v === 'measurement') {
-      go({ intent: v, feasibilityTriggerCount: st.feasibilityTriggerCount + 1, phase: 'weight' });
+      go({ intent: v, feasibilityTriggerCount: st.feasibilityTriggerCount + 1, priceMk: st.priceMk + 50, phase: 'weight' });
     } else if (v === 'brighten') {
       go({ intent: v, phase: 'darkness' });
     } else if (v === 'surface_clean') {
@@ -99,7 +99,7 @@ export default function InstantEstimate() {
   function handleIntentWeight(v: string) {
     const w = WEIGHT_OPTS.find(x => x.label === v)!;
     if (w.online) {
-      go({ weight: v, wMk: 0, onlineTriggerCount: st.onlineTriggerCount + 1, phase: 'intent_species' });
+      go({ weight: v, wMk: w.mk, onlineTriggerCount: st.onlineTriggerCount + 1, phase: 'intent_species' });
     } else {
       go({ weight: v, wMk: w.mk, phase: 'intent_species' });
     }
@@ -119,13 +119,13 @@ export default function InstantEstimate() {
       // Use shape already captured in intentShape, skip shape step, go to damage
       go({ intentWhy: v, shape: st.intentShape, phase: 'damage_select' });
     } else if (v === 'jewelry_fit') {
-      go({ intentWhy: v, feasibilityTriggerCount: st.feasibilityTriggerCount + 1, shape: st.intentShape, phase: 'damage_select' });
+      go({ intentWhy: v, feasibilityTriggerCount: st.feasibilityTriggerCount + 1, shape: st.intentShape, phase: 'service' });
     } else {
       // no_reason or dont_like — add $50
       go({
         intentWhy: v,
         priceMk: st.priceMk + 50,
-        feasibilityTriggerCount: !isRecut ? st.feasibilityTriggerCount + 1 : st.feasibilityTriggerCount,
+        feasibilityTriggerCount: st.feasibilityTriggerCount + 1,
         phase: 'service',
       });
     }
@@ -149,7 +149,7 @@ export default function InstantEstimate() {
   function handleWeight(v: string) {
     const w = WEIGHT_OPTS.find(x => x.label === v)!;
     if (w.online) {
-      go({ weight: v, wMk: 0, onlineTriggerCount: st.onlineTriggerCount + 1, phase: 'species' });
+      go({ weight: v, wMk: w.mk, onlineTriggerCount: st.onlineTriggerCount + 1, phase: 'species' });
     } else {
       go({ weight: v, wMk: w.mk, phase: 'species' });
     }
