@@ -244,7 +244,7 @@ export default function InstantEstimate() {
         .eq-wrap { min-height: 100svh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 120px 24px 60px; background: transparent; }
         .eq-inner { width: 100%; max-width: 600px; }
         .eq-bar { width: 100%; height: 1px; background: var(--border); margin-bottom: 48px; position: relative; }
-        .eq-fill { position: absolute; top: 0; left: 0; height: 100%; background: rgba(212,175,55,0.6); transition: width 300ms ease; }
+        .eq-fill { position: absolute; top: 0; left: 0; height: 100%; background: var(--accent); transition: width 300ms ease; }
         .eq-step { font-family: var(--font-ui); font-size: 15px; letter-spacing: 0.25em; text-transform: uppercase; color: rgba(212,175,55,0.9); margin-bottom: 20px; }
         .eq-q { font-family: 'Oranienbaum', serif; font-size: clamp(27px, 4.5vw, 40px); color: var(--text); line-height: 1.2; margin-bottom: 40px; }
         .eq-sub { font-family: var(--font-ui); font-size: 15px; color: var(--text); margin-bottom: 20px; letter-spacing: 0.05em; }
