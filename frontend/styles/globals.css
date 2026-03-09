@@ -318,20 +318,18 @@ button, input, textarea, select { border-radius: 0 !important; }
 }
 .machine-light {
   opacity: 0.4;
-  transition: opacity 80ms ease 150ms;
+  transition: none;
 }
 .machine-dark {
   opacity: 0;
-  transition: opacity 80ms ease 0ms;
+  transition: none;
   filter: brightness(1.05) contrast(1.05);
 }
 :root[data-theme="dark"] .machine-light {
   opacity: 0;
-  transition: opacity 80ms ease 0ms;
 }
 :root[data-theme="dark"] .machine-dark {
   opacity: 0.55;
-  transition: opacity 120ms ease 80ms;
   animation: bulbPulse 4s ease-in-out infinite;
 }
 @keyframes bulbPulse {
