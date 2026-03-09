@@ -296,7 +296,7 @@ useEffect(() => {
 
         {/* Mobile burger */}
         <button className="tnav-theme" onClick={toggleTheme} aria-label="Toggle theme">
-          {theme === 'dark' ? '● Dark' : '○ Light'}
+          {theme === 'dark' ? '● Dark' : '○ Light'} [{typeof document !== 'undefined' ? document.documentElement.getAttribute('data-theme') : '?'}]
         </button>
         <button
           className={`tnav-burger${drawerOpen ? ' open' : ''}`}
