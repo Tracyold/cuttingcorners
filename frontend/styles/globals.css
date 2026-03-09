@@ -1,10 +1,26 @@
+:root {
+  --bg:           #222831;
+  --bg-card:      #393E46;
+  --bg-deep:      #1a1f27;
+  --accent:       #FFD369;
+  --text:         #EEEEEE;
+  --text-muted:   #aaaaaa;
+  --border:       #393E46;
+  --gold:         #d4af37;
+  --font-display: 'Oranienbaum', Georgia, serif;
+  --font-ui:      'Montserrat', sans-serif;
+  --font-body:    'Comfortaa', sans-serif;
+  --font-mono:    'Courier New', monospace;
+  --bg-gradient:  linear-gradient(135deg, #222831 0%, #272c33 35%, #2e3239 60%, #222831 100%);
+}
+
 @import url('https://fonts.googleapis.com/css2?family=Oranienbaum&family=Montserrat:wght@300;400;500;600;700&family=Comfortaa:wght@300;400;500;600;700&family=DM+Sans:wght@300;400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-:root {
+:root[data-theme="dark"] {
   --bg:           #14171d;
   --bg-card:      #393E46;
   --bg-deep:      #1a1f27;
@@ -29,7 +45,11 @@
   --text-muted:   #555555;
   --border:       #cccccc;
   --gold:         #eecf1d;
-  --bg-gradient:  linear-gradient(135deg, #e8e4dc 0%, #EEEEEE 35%, #f0ede8 60%, #2c2d2f 100%);
+  --font-display: 'Oranienbaum', Georgia, serif;
+  --font-ui:      'Montserrat', sans-serif;
+  --font-body:    'Comfortaa', sans-serif;
+  --font-mono:    'Courier New', monospace;
+  --bg-gradient:  linear-gradient(135deg, #e8e4dc 0%, #EEEEEE 35%, #f0ede8 60%, #e8e4dc 100%);
 }
 
 html, body {
