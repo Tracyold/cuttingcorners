@@ -31,7 +31,7 @@ const css = `
   border-bottom: 0.5px solid transparent;
 }
 .tnav.scrolled {
-  background: var(--bg);
+  background: var(--bg-deep);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(19px);
   border-bottom-color: var(--border);
@@ -118,7 +118,7 @@ const css = `
 .tnav-drawer {
   position: fixed;
   top: 56px; left: 0; right: 0;
-  background: var(--bg);
+  background: var(--bg-deep);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border-bottom: 0.5px solid var(--border);
