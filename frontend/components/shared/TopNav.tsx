@@ -31,10 +31,10 @@ const css = `
   border-bottom: 0.5px solid transparent;
 }
 .tnav.scrolled {
-  background: rgba(34,40,49,0.92);
+  background: var(--bg);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(19px);
-  border-bottom-color: rgba(255, 255, 255, 0.73);
+  border-bottom-color: var(--border);
 }
 .tnav-brand {
   font-family: 'Comfortaa', Georgia, serif;
@@ -118,10 +118,10 @@ const css = `
 .tnav-drawer {
   position: fixed;
   top: 56px; left: 0; right: 0;
-  background: rgba(34,40,49,0.94);
+  background: var(--bg);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border-bottom: 0.5px solid rgba(255,255,255,0.07);
+  border-bottom: 0.5px solid var(--border);
   z-index: 99;
   display: flex;
   flex-direction: column;
@@ -143,7 +143,7 @@ const css = `
   font-weight: 500;
   letter-spacing: 0.24em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.85);
+  color: var(--text);
   text-decoration: none;
   padding: 17px 0;
   border-bottom: 0.5px solid var(--border);
