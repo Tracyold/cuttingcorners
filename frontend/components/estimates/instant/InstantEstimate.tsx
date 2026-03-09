@@ -245,24 +245,24 @@ export default function InstantEstimate() {
         .eq-inner { width: 100%; max-width: 600px; }
         .eq-bar { width: 100%; height: 1px; background: var(--border); margin-bottom: 48px; position: relative; }
         .eq-fill { position: absolute; top: 0; left: 0; height: 100%; background: rgba(212,175,55,0.6); transition: width 300ms ease; }
-        .eq-step { font-family: 'Montserrat', sans-serif; font-size: 15px; letter-spacing: 0.25em; text-transform: uppercase; color: rgba(212,175,55,0.9); margin-bottom: 20px; }
+        .eq-step { font-family: var(--font-ui); font-size: 15px; letter-spacing: 0.25em; text-transform: uppercase; color: rgba(212,175,55,0.9); margin-bottom: 20px; }
         .eq-q { font-family: 'Oranienbaum', serif; font-size: clamp(27px, 4.5vw, 40px); color: var(--text); line-height: 1.2; margin-bottom: 40px; }
-        .eq-sub { font-family: 'Montserrat', sans-serif; font-size: 15px; color: rgba(255,255,255,0.75); margin-bottom: 20px; letter-spacing: 0.05em; }
+        .eq-sub { font-family: var(--font-ui); font-size: 15px; color: var(--text); margin-bottom: 20px; letter-spacing: 0.05em; }
         .eq-opts { display: flex; flex-direction: column; gap: 8px; margin-bottom: 40px; }
-        .eq-opt { padding: 17px 22px; border: 1px solid var(--border); background: transparent; color: rgba(var(--text-rgb, 238,238,238),0.85); font-family: 'Montserrat', sans-serif; font-size: 19px; text-align: left; cursor: pointer; transition: all 150ms; letter-spacing: 0.02em; width: 100%; }
+        .eq-opt { padding: 17px 22px; border: 1px solid var(--border); background: transparent; color: rgba(var(--text-rgb, 238,238,238),0.85); font-family: var(--font-ui); font-size: 19px; text-align: left; cursor: pointer; transition: all 150ms; letter-spacing: 0.02em; width: 100%; }
         .eq-opt:hover { border-color: #d4af37; color: var(--text); background: rgba(212,175,55,0.04); }
         .eq-opt.sel { border-color: #d4af37; color: var(--text); background: rgba(212,175,55,0.08); }
         .eq-acts { display: flex; gap: 12px; }
-        .eq-next { padding: 15px 36px; background: #d4af37; border: none; color: #050505; font-family: 'Montserrat', sans-serif; font-size: 15px; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; cursor: pointer; }
+        .eq-next { padding: 15px 36px; background: #d4af37; border: none; color: #050505; font-family: var(--font-ui); font-size: 15px; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; cursor: pointer; }
         .eq-next:disabled { opacity: 0.25; cursor: not-allowed; }
-        .eq-back { padding: 15px 22px; background: none; border: 1px solid rgba(255,255,255,0.25); color: rgba(255,255,255,0.75); font-family: 'Montserrat', sans-serif; font-size: 15px; letter-spacing: 0.2em; text-transform: uppercase; cursor: pointer; }
+        .eq-back { padding: 15px 22px; background: none; border: 1px solid rgba(255,255,255,0.25); color: var(--text); font-family: var(--font-ui); font-size: 15px; letter-spacing: 0.2em; text-transform: uppercase; cursor: pointer; }
         .res-row { display: flex; justify-content: space-between; align-items: baseline; padding: 13px 0; border-bottom: 1px solid var(--border); }
-        .res-lbl { font-family: 'Montserrat', sans-serif; font-size: 15px; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.65); }
-        .res-val { font-family: 'Comfortaa', sans-serif; font-size: 17px; color: var(--text); }
-        .flag-item { padding: 12px 16px; border-left: 2px solid rgba(220,80,80,0.7); margin-bottom: 8px; background: rgba(220,80,80,0.06); font-family: 'Comfortaa', sans-serif; font-size: 15px; color: rgba(220,80,80,0.95); line-height: 1.6; }
-        .online-item { padding: 12px 16px; border-left: 2px solid rgba(100,160,220,0.7); margin-bottom: 8px; background: rgba(100,160,220,0.06); font-family: 'Comfortaa', sans-serif; font-size: 15px; color: rgba(100,160,220,0.95); line-height: 1.6; }
+        .res-lbl { font-family: var(--font-ui); font-size: 15px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-muted); }
+        .res-val { font-family: var(--font-body); font-size: 17px; color: var(--text); }
+        .flag-item { padding: 12px 16px; border-left: 2px solid rgba(220,80,80,0.7); margin-bottom: 8px; background: rgba(220,80,80,0.06); font-family: var(--font-body); font-size: 15px; color: rgba(220,80,80,0.95); line-height: 1.6; }
+        .online-item { padding: 12px 16px; border-left: 2px solid var(--accent); margin-bottom: 8px; background: rgba(255,211,105,0.05); font-family: var(--font-body); font-size: 15px; color: var(--accent); line-height: 1.6; }
         .price-box { padding: 28px; border: 1px solid #d4af37; background: rgba(212,175,55,0.03); margin-bottom: 24px; }
-        .price-note { font-family: 'Montserrat', sans-serif; font-size: 15px; color: rgba(255,255,255,0.75); line-height: 1.85; margin-top: 12px; }
+        .price-note { font-family: var(--font-ui); font-size: 15px; color: var(--text); line-height: 1.85; margin-top: 12px; }
         .eq-close { position: fixed; top: 18px; right: 18px; width: 40px; height: 40px; background: none; border: 1px solid var(--border); color: var(--text-muted); font-size: 19px; cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 100; transition: border-color 150ms, color 150ms; }
         .eq-close:hover { border-color: #d4af37; color: #d4af37; }
         .feas-box { padding: 20px 24px; border: 1px solid #d4af37; background: rgba(212,175,55,0.03); margin-bottom: 24px; }
@@ -507,7 +507,7 @@ export default function InstantEstimate() {
 
               {/* Online estimate recommendation */}
               {hasOnline && (
-                <div style={{ padding: '20px 24px', border: '1px solid rgba(100,160,220,0.25)', background: 'rgba(100,160,220,0.04)', marginBottom: 28 }}>
+                <div style={{ padding: '20px 24px', border: '1px solid var(--border)', background: 'var(--bg-card)', marginBottom: 28 }}>
                   <p style={{ fontFamily: 'var(--font-ui)', fontSize: 15, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(100,160,220,0.9)', marginBottom: 8 }}>Recommended Next Step</p>
                   <p style={{ fontFamily: 'var(--font-display)', fontSize: 27, color: 'rgba(100,160,220,0.95)', marginBottom: 12 }}>Online Estimate — $3</p>
                   <p style={{ fontFamily: 'var(--font-body)', fontSize: 15, color: 'rgba(var(--text-rgb, 238,238,238),0.85)', lineHeight: 1.85, marginBottom: 16 }}>
