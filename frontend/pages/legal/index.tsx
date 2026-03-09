@@ -197,10 +197,10 @@ export default function LegalUnified() {
           padding: '16px 32px',
           display: 'flex', alignItems: 'center', justifyContent: 'space-between',
         }}>
-          <button onClick={() => router.push('/')} style={{ background: 'none', border: 'none', color: 'rgba(255,255,255,0.75)', fontSize: '11px', letterSpacing: '0.25em', textTransform: 'uppercase', cursor: 'pointer' }}>
+          <button onClick={() => router.push('/')} style={{ background: 'none', border: 'none', color: 'var(--text)', fontSize: '11px', letterSpacing: '0.25em', textTransform: 'uppercase', cursor: 'pointer' }}>
             ← Cutting Corners Gems
           </button>
-          <span style={{ fontFamily: "'Montserrat', sans-serif", fontSize: '10px', letterSpacing: '0.25em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.55)' }}>
+          <span style={{ fontFamily: "'Montserrat', sans-serif", fontSize: '10px', letterSpacing: '0.25em', textTransform: 'uppercase', color: 'var(--text-muted)' }}>
             Legal &amp; Disclosures
           </span>
         </div>
@@ -242,7 +242,7 @@ export default function LegalUnified() {
               <button key={t.id} className={`toc-btn${activeId === t.id ? ' active' : ''}`} onClick={() => scrollTo(t.id)}>{t.label}</button>
             ))}
             <div style={{ margin: '32px 14px 0', paddingTop: '20px', borderTop: '1px solid rgba(255,255,255,0.05)' }}>
-              <p style={{ fontFamily: "'Comfortaa', sans-serif", fontSize: '9px', color: 'rgba(255,255,255,0.55)', lineHeight: 1.9 }}>
+              <p style={{ fontFamily: "'Comfortaa', sans-serif", fontSize: '9px', color: 'var(--text-muted)', lineHeight: 1.9 }}>
                 Effective<br />March 4, 2026
               </p>
             </div>
@@ -401,7 +401,7 @@ export default function LegalUnified() {
                 { label: 'New Listing Alerts', desc: 'Optional marketing notifications sent when new gemstones are listed in the online shop. Frequency varies by inventory.' },
                 { label: 'Chat Message Alerts', desc: 'Two-way conversational notifications when new messages are sent or received through the account chat system.' },
               ].map(p => (
-                <div key={p.label} style={{ padding: '14px 18px', background: 'var(--bg)', border: '1px solid rgba(255,255,255,0.06)', borderRadius: '4px', display: 'flex', gap: '14px', alignItems: 'flex-start' }}>
+                <div key={p.label} style={{ padding: '14px 18px', background: 'var(--bg)', border: '1px solid var(--border)', borderRadius: '4px', display: 'flex', gap: '14px', alignItems: 'flex-start' }}>
                   <div style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#d4af37', flexShrink: 0, marginTop: '5px', opacity: 0.7 }} />
                   <div>
                     <p style={{ fontSize: '13px', fontWeight: 600, color: '#FFFFFF', margin: '0 0 4px 0', letterSpacing: '0.05em' }}>{p.label}</p>
@@ -446,7 +446,7 @@ export default function LegalUnified() {
 
             {/* ── Contact block ── */}
             <div style={{ marginTop: '64px', padding: '28px', border: '1px solid #d4af37', background: '#d4af37', borderRadius: '2px' }}>
-              <p style={{ fontFamily: "'Montserrat', sans-serif", fontSize: '9px', letterSpacing: '0.3em', textTransform: 'uppercase', color: '#d4af37', marginBottom: '14px' }}>Contact</p>
+              <p style={{ fontFamily: "'Montserrat', sans-serif", fontSize: '9px', letterSpacing: '0.3em', textTransform: 'uppercase', color: 'var(--gold)', marginBottom: '14px' }}>Contact</p>
               <p style={{ fontSize: '13px', color: 'rgba(var(--text-rgb, 238,238,238),0.85)', lineHeight: 2.1, margin: 0 }}>
                 Cutting Corners Gems<br />
                 850 S River Dr #2117, Tempe, Arizona 85281<br />

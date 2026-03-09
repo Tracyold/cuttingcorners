@@ -2,10 +2,10 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 
 const P = ({ children }: { children: React.ReactNode }) => (
-  <p style={{ fontSize: '14px', lineHeight: 1.85, color: 'rgba(255,255,255,0.65)', marginBottom: '16px' }}>{children}</p>
+  <p style={{ fontSize: '14px', lineHeight: 1.85, color: 'var(--text-muted)', marginBottom: '16px' }}>{children}</p>
 );
 const Li = ({ children }: { children: React.ReactNode }) => (
-  <li style={{ fontSize: '14px', lineHeight: 1.85, color: 'rgba(255,255,255,0.65)', marginBottom: '8px' }}>{children}</li>
+  <li style={{ fontSize: '14px', lineHeight: 1.85, color: 'var(--text-muted)', marginBottom: '8px' }}>{children}</li>
 );
 const Block = ({ title, children }: { title: string; children: React.ReactNode }) => (
   <div style={{ marginBottom: '40px' }}>
@@ -14,9 +14,9 @@ const Block = ({ title, children }: { title: string; children: React.ReactNode }
   </div>
 );
 const SampleMsg = ({ label, msg }: { label: string; msg: string }) => (
-  <div style={{ padding: '12px 16px', background: 'var(--bg)', border: '1px solid rgba(255,255,255,0.06)', borderRadius: '6px', marginBottom: '10px' }}>
-    <p style={{ fontSize: '19px', letterSpacing: '0.2em', textTransform: 'uppercase', color: '#d4af37', margin: '0 0 6px 0' }}>{label}</p>
-    <p style={{ fontSize: '17px', color: 'rgba(255,255,255,0.75)', margin: 0, fontFamily: "'Courier New', monospace", lineHeight: 1.6 }}>{msg}</p>
+  <div style={{ padding: '12px 16px', background: 'var(--bg)', border: '1px solid var(--border)', borderRadius: '6px', marginBottom: '10px' }}>
+    <p style={{ fontSize: '19px', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--gold)', margin: '0 0 6px 0' }}>{label}</p>
+    <p style={{ fontSize: '17px', color: 'var(--text)', margin: 0, fontFamily: "'Courier New', monospace", lineHeight: 1.6 }}>{msg}</p>
   </div>
 );
 
@@ -30,17 +30,17 @@ export default function SmsTerms() {
         <div style={{ borderBottom: '1px solid rgba(255,255,255,0.06)', padding: '20px 40px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '12px' }}>
           <button onClick={() => router.push('/')} style={{ background: 'none', border: 'none', color: 'rgba(255,255,255,0.4)', fontSize: '11px', letterSpacing: '0.25em', textTransform: 'uppercase', cursor: 'pointer' }}>← Cutting Corners Gems</button>
           <div style={{ display: 'flex', gap: '24px' }}>
-            <button onClick={() => router.push('/legal')} style={{ background: 'none', border: 'none', color: 'rgba(255,255,255,0.35)', fontSize: '11px', letterSpacing: '0.15em', textTransform: 'uppercase', cursor: 'pointer' }}>Legal</button>
-            <button onClick={() => router.push('/legal/privacy-policy')} style={{ background: 'none', border: 'none', color: 'rgba(255,255,255,0.35)', fontSize: '11px', letterSpacing: '0.15em', textTransform: 'uppercase', cursor: 'pointer' }}>Privacy Policy</button>
+            <button onClick={() => router.push('/legal')} style={{ background: 'none', border: 'none', color: 'var(--text-muted)', fontSize: '11px', letterSpacing: '0.15em', textTransform: 'uppercase', cursor: 'pointer' }}>Legal</button>
+            <button onClick={() => router.push('/legal/privacy-policy')} style={{ background: 'none', border: 'none', color: 'var(--text-muted)', fontSize: '11px', letterSpacing: '0.15em', textTransform: 'uppercase', cursor: 'pointer' }}>Privacy Policy</button>
           </div>
         </div>
 
         <div style={{ maxWidth: '1300px', margin: '0 auto', padding: '64px 40px' }}>
 
-          <p style={{ fontFamily: "'Montserrat', sans-serif", fontSize: '15px', letterSpacing: '0.3em', textTransform: 'uppercase', color: '#d4af37', marginBottom: '12px' }}>Cutting Corners Gems</p>
+          <p style={{ fontFamily: "'Montserrat', sans-serif", fontSize: '15px', letterSpacing: '0.3em', textTransform: 'uppercase', color: 'var(--gold)', marginBottom: '12px' }}>Cutting Corners Gems</p>
           <h1 style={{ fontFamily: "'Oranienbaum', serif", fontSize: 'clamp(32px, 5vw, 52px)', color: 'var(--text)', marginBottom: '16px', lineHeight: 1.15 }}>SMS Notification Terms & Disclosure</h1>
-          <p style={{ fontSize: '15px', color: 'rgba(255,255,255,0.35)', marginBottom: '8px' }}>Effective Date: March 4, 2026</p>
-          <p style={{ fontSize: '15px', color: 'rgba(255,255,255,0.35)', marginBottom: '48px' }}>Program Name: Cutting Corners Gems — User Opt-In/Out Account Notifications</p>
+          <p style={{ fontSize: '15px', color: 'var(--text-muted)', marginBottom: '8px' }}>Effective Date: March 4, 2026</p>
+          <p style={{ fontSize: '15px', color: 'var(--text-muted)', marginBottom: '48px' }}>Program Name: Cutting Corners Gems — User Opt-In/Out Account Notifications</p>
 
           {/* Intro */}
           <div style={{ background: '#d4af37', border: '1px solid #d4af37', padding: '20px 24px', marginBottom: '48px' }}>
@@ -57,11 +57,11 @@ export default function SmsTerms() {
                 { label: 'New Listing Alerts', desc: 'Optional marketing notifications sent when new gemstones are listed for sale, in the online shop. Frequency varies by inventory.' },
                 { label: 'Chat Message Alerts', desc: 'Two-way conversational notifications when new messages are sent or received through the account chat system.' },
               ].map(p => (
-                <div key={p.label} style={{ padding: '14px 18px', background: 'var(--bg)', border: '1px solid rgba(255,255,255,0.06)', borderRadius: '6px', display: 'flex', gap: '14px', alignItems: 'flex-start' }}>
+                <div key={p.label} style={{ padding: '14px 18px', background: 'var(--bg)', border: '1px solid var(--border)', borderRadius: '6px', display: 'flex', gap: '14px', alignItems: 'flex-start' }}>
                   <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#d4af37', flexShrink: 0, marginTop: '5px' }} />
                   <div>
                     <p style={{ fontSize: '17px', fontWeight: 600, color: 'var(--text)', margin: '0 0 4px 0', letterSpacing: '0.05em' }}>{p.label}</p>
-                    <p style={{ fontSize: '15px', color: 'rgba(255,255,255,0.55)', margin: 0, lineHeight: 1.65 }}>{p.desc}</p>
+                    <p style={{ fontSize: '15px', color: 'var(--text-muted)', margin: 0, lineHeight: 1.65 }}>{p.desc}</p>
                   </div>
                 </div>
               ))}
@@ -148,12 +148,12 @@ export default function SmsTerms() {
           <Block title="Data Use and Privacy">
             <P><p style={{ fontSize: '17px' }}> Mobile phone numbers are used solely to deliver the notification types you choose to enable. Cutting Corners Gems does not sell, rent, or distribute phone numbers to third parties for any purpose.</p></P>
             <P><p style={{ fontSize: '17px' }}>SMS communications are strictly limited to operational notifications and opted-in marketing related to account activity and gemstone listings. No unsolicited messages are sent.</p></P>
-            <P><p style={{ fontSize: '17px' }}>For additional information about how personal data is handled, please refer to the <button onClick={() => router.push('/legal/privacy-policy')} style={{ background: 'none', border: 'none', color: '#d4af37', cursor: 'pointer', fontSize: '17px', textDecoration: 'underline', padding: 0 }}>Privacy Policy</button>.</p></P>
+            <P><p style={{ fontSize: '17px' }}>For additional information about how personal data is handled, please refer to the <button onClick={() => router.push('/legal/privacy-policy')} style={{ background: 'none', border: 'none', color: 'var(--gold)', cursor: 'pointer', fontSize: '17px', textDecoration: 'underline', padding: 0 }}>Privacy Policy</button>.</p></P>
           </Block>
 
           {/* Contact */}
           <div style={{ marginTop: '32px', padding: '24px', border: '1px solid #d4af37', background: '#d4af37' }}>
-            <p style={{ fontFamily: "'Montserrat', sans-serif", fontSize: '15px', letterSpacing: '0.25em', textTransform: 'uppercase', color: '#d4af37', marginBottom: '12px' }}>Contact</p>
+            <p style={{ fontFamily: "'Montserrat', sans-serif", fontSize: '15px', letterSpacing: '0.25em', textTransform: 'uppercase', color: 'var(--gold)', marginBottom: '12px' }}>Contact</p>
             <p style={{ fontSize: '15px', color: 'rgba(255,255,255,0.6)', lineHeight: 2, margin: 0 }}>
               Cutting Corners Gems<br />
               850 S River Dr #2117, Tempe, Arizona 85281<br />
@@ -163,9 +163,9 @@ export default function SmsTerms() {
           </div>
 
           <div style={{ marginTop: '48px', display: 'flex', gap: '24px', justifyContent: 'center' }}>
-            <button onClick={() => router.push('/legal')} style={{ background: 'none', border: 'none', color: '#d4af37', fontSize: '11px', letterSpacing: '0.15em', textTransform: 'uppercase', cursor: 'pointer' }}>Legal</button>
+            <button onClick={() => router.push('/legal')} style={{ background: 'none', border: 'none', color: 'var(--gold)', fontSize: '11px', letterSpacing: '0.15em', textTransform: 'uppercase', cursor: 'pointer' }}>Legal</button>
             <span style={{ color: 'rgba(255,255,255,0.15)' }}>|</span>
-            <button onClick={() => router.push('/legal/privacy-policy')} style={{ background: 'none', border: 'none', color: '#d4af37', fontSize: '11px', letterSpacing: '0.15em', textTransform: 'uppercase', cursor: 'pointer' }}>Privacy Policy</button>
+            <button onClick={() => router.push('/legal/privacy-policy')} style={{ background: 'none', border: 'none', color: 'var(--gold)', fontSize: '11px', letterSpacing: '0.15em', textTransform: 'uppercase', cursor: 'pointer' }}>Privacy Policy</button>
           </div>
 
         </div>

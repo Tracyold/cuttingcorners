@@ -12,11 +12,11 @@ export default function InvoiceList({ invoices }: Props) {
       invoices.map(inv => {
         const item = inv.line_items?.[0];
         return (
-          <div key={inv.invoice_id} style={{ background: 'var(--bg)', border: '1px solid rgba(255,255,255,0.06)', padding: '16px', marginBottom: '12px' }}>
+          <div key={inv.invoice_id} style={{ background: 'var(--bg)', border: '1px solid var(--border)', padding: '16px', marginBottom: '12px' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
               <div>
                 <div style={{ fontFamily: "'Comfortaa', sans-serif", fontSize: '16px', color: 'var(--text)' }}>{item?.title || 'Product'}</div>
-                <div style={{ fontSize: '10px', color: 'rgba(255,255,255,0.35)', marginTop: '4px' }}>{fmtDate(inv.paid_at)}</div>
+                <div style={{ fontSize: '10px', color: 'var(--text-muted)', marginTop: '4px' }}>{fmtDate(inv.paid_at)}</div>
               </div>
               <div style={{ textAlign: 'right' }}>
                 <div style={{ fontFamily: "'Courier New', monospace", fontSize: '17px', color: 'rgb(48, 177, 98)' }}>{formatMoney(inv.total_amount)}</div>

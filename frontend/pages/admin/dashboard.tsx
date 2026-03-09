@@ -221,7 +221,7 @@ export default function AdminDashboard() {
               </div>
             )}
 
-            <p style={{ fontSize: '10.5px', color: 'rgba(255,255,255,0.35)', fontStyle: 'italic', marginTop: '24px' }}>
+            <p style={{ fontSize: '10.5px', color: 'var(--text-muted)', fontStyle: 'italic', marginTop: '24px' }}>
               This information appears on all work order and invoice PDFs generated for customers.
             </p>
           </div>
@@ -241,7 +241,7 @@ export default function AdminDashboard() {
               <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                 <span style={{ fontFamily: 'var(--serif)', fontSize: '20px', color: 'var(--wh)' }}>Notifications</span>
                 {notifications.length > 0 && (
-                  <span style={{ background: 'var(--gl)', color: '#000', fontSize: '8px', fontWeight: 700, padding: '2px 6px', borderRadius: '8px' }}>{notifications.length}</span>
+                  <span style={{ background: 'var(--gl)', color: 'var(--bg)', fontSize: '8px', fontWeight: 700, padding: '2px 6px', borderRadius: '8px' }}>{notifications.length}</span>
                 )}
               </div>
               {notifications.length > 0 && (
@@ -276,7 +276,7 @@ export default function AdminDashboard() {
             {/* Phone number list */}
             <div style={{ marginBottom: '20px' }}>
               {adminPhones.map(p => (
-                <div key={p.id} style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '8px', padding: '10px 14px', background: 'var(--c2)', border: '1px solid rgba(255,255,255,0.06)', borderRadius: '8px' }}>
+                <div key={p.id} style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '8px', padding: '10px 14px', background: 'var(--c2)', border: '1px solid var(--border)', borderRadius: '8px' }}>
                   <div onClick={() => togglePhone(p.id, !p.active)} style={{
                     width: '32px', height: '18px', borderRadius: '9px', position: 'relative', flexShrink: 0, cursor: 'pointer',
                     background: p.active ? 'var(--gl)' : 'rgba(255,255,255,0.12)', transition: 'background 300ms',
@@ -312,7 +312,7 @@ export default function AdminDashboard() {
                 placeholder="Label (optional)"
                 style={{ background: 'var(--c2)', border: '1px solid rgba(255,255,255,0.1)', color: 'var(--wh)', padding: '8px 12px', fontSize: '13px', borderRadius: '6px', width: '150px' }}
               />
-              <button onClick={addPhone} style={{ background: 'var(--gl)', color: '#000', border: 'none', padding: '8px 16px', fontSize: '11px', letterSpacing: '.12em', textTransform: 'uppercase', cursor: 'pointer', borderRadius: '4px' }}>
+              <button onClick={addPhone} style={{ background: 'var(--gl)', color: 'var(--bg)', border: 'none', padding: '8px 16px', fontSize: '11px', letterSpacing: '.12em', textTransform: 'uppercase', cursor: 'pointer', borderRadius: '4px' }}>
                 {phoneAdding ? '...' : '+ Add'}
               </button>
             </div>
@@ -326,7 +326,7 @@ export default function AdminDashboard() {
                 { key: 'notify_service_request', label: 'Service Request' },
               ].map(({ key, label }) => (
                 <div key={key} onClick={() => saveSmsToggle(key, !smsConfig[key])}
-                  style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '12px 16px', background: 'var(--c2)', border: '1px solid rgba(255,255,255,0.06)', borderRadius: '8px', cursor: 'pointer' }}>
+                  style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '12px 16px', background: 'var(--c2)', border: '1px solid var(--border)', borderRadius: '8px', cursor: 'pointer' }}>
                   <span style={{ fontSize: '12px', color: 'var(--wh)', letterSpacing: '.05em' }}>{label}</span>
                   <div style={{
                     width: '36px', height: '20px', borderRadius: '10px', position: 'relative',

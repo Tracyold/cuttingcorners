@@ -46,7 +46,7 @@ export default function SmsConsentModal({ toggle, onConfirm, onCancel, hasOpenWo
       padding: '24px',
     }}>
       <div style={{
-        background: '#111',
+        background: 'var(--bg-deep)',
         border: '1px solid rgba(224,176,20,0.3)',
         maxWidth: '681px', width: '100%',
         padding: '32px',
@@ -58,7 +58,7 @@ export default function SmsConsentModal({ toggle, onConfirm, onCancel, hasOpenWo
           {copy.title}
         </h2>
 
-        <p style={{ fontSize: '13px', lineHeight: 1.75, color: 'rgba(255,255,255,0.65)', marginBottom: '16px' }}>
+        <p style={{ fontSize: '13px', lineHeight: 1.75, color: 'var(--text-muted)', marginBottom: '16px' }}>
           {copy.body}
         </p>
 
@@ -70,7 +70,7 @@ export default function SmsConsentModal({ toggle, onConfirm, onCancel, hasOpenWo
           </div>
         )}
 
-        <p style={{ fontSize: '15px', lineHeight: 1.65, color: 'rgba(255,255,255,0.35)', marginBottom: '21px' }}>
+        <p style={{ fontSize: '15px', lineHeight: 1.65, color: 'var(--text-muted)', marginBottom: '21px' }}>
           Cutting Corners Gems will never sell or share your phone number. You can manage your notification preferences at any time from your account dashboard. For help reply HELP. To stop all messages reply STOP.
         </p>
 
@@ -90,7 +90,7 @@ export default function SmsConsentModal({ toggle, onConfirm, onCancel, hasOpenWo
         </div>
 
         <div style={{ display: 'flex', gap: '17px' }}>
-          <button onClick={onCancel} style={{ flex: 1, padding: '17px', background: 'transparent', border: '1px solid rgba(255,255,255,0.15)', color: 'rgba(255,255,255,0.5)', fontSize: '15px', letterSpacing: '0.15em', textTransform: 'uppercase', cursor: 'pointer' }}>
+          <button onClick={onCancel} style={{ flex: 1, padding: '17px', background: 'transparent', border: '1px solid rgba(255,255,255,0.15)', color: 'var(--text-muted)', fontSize: '15px', letterSpacing: '0.15em', textTransform: 'uppercase', cursor: 'pointer' }}>
             Cancel
           </button>
           <button

@@ -4,20 +4,20 @@ import { precut, postcut } from './shared-feasibility';
 function SeverityBadge({ level }: { level: string }) {
   const colors: Record<string, string> = { Minor: 'rgba(100,200,120,0.15)', Moderate: 'rgba(220,160,60,0.15)', Significant: 'rgba(220,100,60,0.15)', Critical: 'rgba(220,80,80,0.15)' };
   const text: Record<string, string> = { Minor: 'rgba(100,200,120,0.9)', Moderate: 'rgba(220,160,60,0.9)', Significant: 'rgba(220,100,60,0.9)', Critical: 'rgba(220,80,80,0.9)' };
-  return <span style={{ display: 'inline-block', padding: '3px 10px', background: colors[level] || 'rgba(255,255,255,0.05)', color: text[level] || 'rgba(255,255,255,0.5)', fontFamily: 'Montserrat, sans-serif', fontSize: '13px', letterSpacing: '0.12em', textTransform: 'uppercase', borderRadius: '2px' }}>{level}</span>;
+  return <span style={{ display: 'inline-block', padding: '3px 10px', background: colors[level] || 'rgba(255,255,255,0.05)', color: text[level] || 'rgba(255,255,255,0.5)', fontFamily: 'var(--font-ui)', fontSize: '13px', letterSpacing: '0.12em', textTransform: 'uppercase', borderRadius: '2px' }}>{level}</span>;
 }
 
 function ResultBadge({ result }: { result: string }) {
   const isGood = ['Resolved', 'Improved', 'Left Intact'].includes(result);
-  return <span style={{ display: 'inline-block', padding: '3px 10px', background: isGood ? 'rgba(100,200,120,0.1)' : 'rgba(180,180,180,0.08)', color: isGood ? 'rgba(100,200,120,0.9)' : 'rgba(180,180,180,0.75)', fontFamily: 'Montserrat, sans-serif', fontSize: '13px', letterSpacing: '0.12em', textTransform: 'uppercase', borderRadius: '2px' }}>{result}</span>;
+  return <span style={{ display: 'inline-block', padding: '3px 10px', background: isGood ? 'rgba(100,200,120,0.1)' : 'rgba(180,180,180,0.08)', color: isGood ? 'rgba(100,200,120,0.9)' : 'rgba(180,180,180,0.75)', fontFamily: 'var(--font-ui)', fontSize: '13px', letterSpacing: '0.12em', textTransform: 'uppercase', borderRadius: '2px' }}>{result}</span>;
 }
 
-const SL = { fontFamily: 'Montserrat, sans-serif', fontSize: '13px', letterSpacing: '0.25em', textTransform: 'uppercase' as const, color: 'rgba(212,175,55,0.9)', marginBottom: '14px', marginTop: '28px', paddingBottom: '8px', borderBottom: '1px solid rgba(255,255,255,0.07)' };
-const FL = { fontFamily: 'Montserrat, sans-serif', fontSize: '13px', letterSpacing: '0.15em', textTransform: 'uppercase' as const, color: 'rgba(100,160,220,0.9)', marginBottom: '4px' };
-const FV = { fontFamily: 'Comfortaa, sans-serif', fontSize: '17px', color: 'var(--text)', marginBottom: '17px' };
-const TH = { fontFamily: 'Montserrat, sans-serif', fontSize: '13px', letterSpacing: '0.1em', textTransform: 'uppercase' as const, color: 'rgba(100,160,220,0.9)', padding: '9px 8px', borderBottom: '1px solid rgba(255,255,255,0.07)', textAlign: 'left' as const };
-const TC = { fontFamily: 'Comfortaa, sans-serif', fontSize: '15px', color: 'var(--text)', padding: '9px 8px', borderBottom: '1px solid rgba(30,60,120,0.4)', verticalAlign: 'top' as const };
-const BODY = { fontFamily: 'Comfortaa, sans-serif', fontSize: '15px', color: 'var(--text)', lineHeight: 1.8 };
+const SL = { fontFamily: 'var(--font-ui)', fontSize: '13px', letterSpacing: '0.25em', textTransform: 'uppercase' as const, color: 'rgba(212,175,55,0.9)', marginBottom: '14px', marginTop: '28px', paddingBottom: '8px', borderBottom: '1px solid rgba(255,255,255,0.07)' };
+const FL = { fontFamily: 'var(--font-ui)', fontSize: '13px', letterSpacing: '0.15em', textTransform: 'uppercase' as const, color: 'rgba(100,160,220,0.9)', marginBottom: '4px' };
+const FV = { fontFamily: 'var(--font-body)', fontSize: '17px', color: 'var(--text)', marginBottom: '17px' };
+const TH = { fontFamily: 'var(--font-ui)', fontSize: '13px', letterSpacing: '0.1em', textTransform: 'uppercase' as const, color: 'rgba(100,160,220,0.9)', padding: '9px 8px', borderBottom: '1px solid rgba(255,255,255,0.07)', textAlign: 'left' as const };
+const TC = { fontFamily: 'var(--font-body)', fontSize: '15px', color: 'var(--text)', padding: '9px 8px', borderBottom: '1px solid rgba(30,60,120,0.4)', verticalAlign: 'top' as const };
+const BODY = { fontFamily: 'var(--font-body)', fontSize: '15px', color: 'var(--text)', lineHeight: 1.8 };
 
 export default function FeasibilityMobile() {
   const [activeTab, setActiveTab] = useState<'precut' | 'postcut'>('precut');
@@ -45,9 +45,9 @@ export default function FeasibilityMobile() {
       {activeTab === 'precut' && (
         <div className="fm-card">
           {/* Header */}
-          <p style={{ fontFamily: 'Montserrat, sans-serif', fontSize: '13px', letterSpacing: '0.3em', textTransform: 'uppercase', color: 'rgba(212,175,55,0.9)', marginBottom: '6px' }}>CCG Cut Feasibility Report</p>
-          <p style={{ fontFamily: 'Oranienbaum, serif', fontSize: 'clamp(21px, 6vw, 27px)', color: 'var(--text)', lineHeight: 1.1, marginBottom: '6px' }}>Pre-Cut Evaluation</p>
-          <p style={{ fontFamily: 'Comfortaa, sans-serif', fontSize: '13px', color: 'rgba(255,255,255,0.6)', marginBottom: '20px' }}>Report #{precut.id} · {precut.date} · {precut.analyst}</p>
+          <p style={{ fontFamily: 'var(--font-ui)', fontSize: '13px', letterSpacing: '0.3em', textTransform: 'uppercase', color: 'rgba(212,175,55,0.9)', marginBottom: '6px' }}>CCG Cut Feasibility Report</p>
+          <p style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(21px, 6vw, 27px)', color: 'var(--text)', lineHeight: 1.1, marginBottom: '6px' }}>Pre-Cut Evaluation</p>
+          <p style={{ fontFamily: 'var(--font-body)', fontSize: '13px', color: 'rgba(255,255,255,0.6)', marginBottom: '20px' }}>Report #{precut.id} · {precut.date} · {precut.analyst}</p>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0 16px', marginBottom: '8px' }}>
             <div><p style={FL}>Client</p><p style={FV}>{precut.clientName}</p></div>
             <div><p style={FL}>Stone ID</p><p style={FV}>{precut.stoneId}</p></div>
@@ -77,7 +77,7 @@ export default function FeasibilityMobile() {
           {precut.symbolLegend.map(s => (
             <div key={s.symbol} style={{ display: 'flex', gap: '12px', alignItems: 'flex-start', marginBottom: '10px' }}>
               <span style={{ fontFamily: 'monospace', fontSize: '17px', color: 'rgba(212,175,55,0.85)', minWidth: '21px' }}>{s.symbol}</span>
-              <p style={{ fontFamily: 'Comfortaa, sans-serif', fontSize: '15px', color: 'var(--text)' }}>
+              <p style={{ fontFamily: 'var(--font-body)', fontSize: '15px', color: 'var(--text)' }}>
                 <span style={{ color: 'rgba(100,160,220,0.9)', marginRight: '8px', fontSize: '13px', letterSpacing: '0.1em', textTransform: 'uppercase' }}>{s.type}</span>
                 {s.desc}
               </p>
@@ -167,7 +167,7 @@ export default function FeasibilityMobile() {
           <p style={{ ...BODY, marginBottom: '13px', color: 'rgba(255,255,255,0.6)' }}>High yield outcomes are more probable IF:</p>
           {precut.conditionals.map((c, i) => (
             <div key={i} style={{ display: 'flex', gap: '11px', marginBottom: '11px' }}>
-              <span style={{ color: '#d4af37', fontSize: '15px', flexShrink: 0 }}>—</span>
+              <span style={{ color: 'var(--gold)', fontSize: '15px', flexShrink: 0 }}>—</span>
               <p style={BODY}>{c}</p>
             </div>
           ))}
@@ -177,8 +177,8 @@ export default function FeasibilityMobile() {
           {precut.options.map((o, i) => (
             <div key={i} className={`fm-option${i === 1 ? ' rec' : ''}`}>
               <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '7px' }}>
-                <p style={{ fontFamily: 'Comfortaa, sans-serif', fontSize: '15px', fontWeight: 600, color: '#d4af37' }}>{o.label}</p>
-                {i === 1 && <span style={{ fontFamily: 'Comfortaa, sans-serif', fontSize: '13px', color: '#d4af37' }}>Recommended</span>}
+                <p style={{ fontFamily: 'var(--font-body)', fontSize: '15px', fontWeight: 600, color: 'var(--gold)' }}>{o.label}</p>
+                {i === 1 && <span style={{ fontFamily: 'var(--font-body)', fontSize: '13px', color: 'var(--gold)' }}>Recommended</span>}
               </div>
               <p style={BODY}>{o.desc}</p>
             </div>
@@ -202,9 +202,9 @@ export default function FeasibilityMobile() {
       {activeTab === 'postcut' && (
         <div className="fm-card">
           {/* Header */}
-          <p style={{ fontFamily: 'Montserrat, sans-serif', fontSize: '13px', letterSpacing: '0.3em', textTransform: 'uppercase', color: '#d4af37', marginBottom: '6px' }}>CCG Cut Feasibility Report</p>
-          <p style={{ fontFamily: 'Oranienbaum, serif', fontSize: 'clamp(21px, 6vw, 27px)', color: 'var(--text)', lineHeight: 1.1, marginBottom: '6px' }}>Post-Cut Change Report</p>
-          <p style={{ fontFamily: 'Comfortaa, sans-serif', fontSize: '13px', color: 'rgba(255,255,255,0.6)', marginBottom: '20px' }}>Report #{postcut.id} · {postcut.date} · {postcut.analyst}</p>
+          <p style={{ fontFamily: 'var(--font-ui)', fontSize: '13px', letterSpacing: '0.3em', textTransform: 'uppercase', color: 'var(--gold)', marginBottom: '6px' }}>CCG Cut Feasibility Report</p>
+          <p style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(21px, 6vw, 27px)', color: 'var(--text)', lineHeight: 1.1, marginBottom: '6px' }}>Post-Cut Change Report</p>
+          <p style={{ fontFamily: 'var(--font-body)', fontSize: '13px', color: 'rgba(255,255,255,0.6)', marginBottom: '20px' }}>Report #{postcut.id} · {postcut.date} · {postcut.analyst}</p>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0 16px', marginBottom: '8px' }}>
             <div><p style={FL}>Client</p><p style={FV}>{postcut.clientName}</p></div>
             <div><p style={FL}>Original Report</p><p style={FV}>#{postcut.originalReportId}</p></div>
@@ -226,7 +226,7 @@ export default function FeasibilityMobile() {
           <p style={FL}>Primary Objectives</p>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', margin: '9px 0 17px' }}>
             {postcut.beforeAfter.objectives.map((o, i) => (
-              <span key={i} style={{ padding: '6px 13px', border: '1px solid #d4af37', background: '#d4af37', fontFamily: 'Montserrat, sans-serif', fontSize: '13px', letterSpacing: '0.12em', textTransform: 'uppercase', color: '#d4af37', display: 'inline-block' }}>{o}</span>
+              <span key={i} style={{ padding: '6px 13px', border: '1px solid #d4af37', background: '#d4af37', fontFamily: 'var(--font-ui)', fontSize: '13px', letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--gold)', display: 'inline-block' }}>{o}</span>
             ))}
           </div>
           <p style={FL}>Summary Notes</p>
@@ -299,7 +299,7 @@ export default function FeasibilityMobile() {
             <tbody>{postcut.optical.map((r, i) => (
               <tr key={i}>
                 <td style={TC}>{r.aspect}<br /><span style={{ color: 'rgba(100,160,220,0.85)', fontSize: '13px' }}>{r.note}</span></td>
-                <td style={TC}><span style={{ fontFamily: 'Comfortaa, sans-serif', fontSize: '13px', color: '#d4af37', fontWeight: 600 }}>{r.rating}</span></td>
+                <td style={TC}><span style={{ fontFamily: 'var(--font-body)', fontSize: '13px', color: 'var(--gold)', fontWeight: 600 }}>{r.rating}</span></td>
               </tr>
             ))}</tbody>
           </table>
@@ -327,8 +327,8 @@ export default function FeasibilityMobile() {
             ['Client Approval Recorded', postcut.documentation.clientApproval],
           ].map(([l, v]) => (
             <div key={l} style={{ display: 'flex', justifyContent: 'space-between', padding: '11px 0', borderBottom: '1px solid rgba(30,60,120,0.4)' }}>
-              <p style={{ fontFamily: 'Comfortaa, sans-serif', fontSize: '15px', color: 'rgba(100,160,220,0.9)' }}>{l}</p>
-              <p style={{ fontFamily: 'Comfortaa, sans-serif', fontSize: '15px', fontWeight: 600, color: v === 'Yes' ? 'rgba(100,200,120,0.9)' : 'rgba(220,80,80,0.9)' }}>{v}</p>
+              <p style={{ fontFamily: 'var(--font-body)', fontSize: '15px', color: 'rgba(100,160,220,0.9)' }}>{l}</p>
+              <p style={{ fontFamily: 'var(--font-body)', fontSize: '15px', fontWeight: 600, color: v === 'Yes' ? 'rgba(100,200,120,0.9)' : 'rgba(220,80,80,0.9)' }}>{v}</p>
             </div>
           ))}
 

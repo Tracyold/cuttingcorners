@@ -26,8 +26,8 @@ export default function ChatPanel({
       {/* Right panel — Chat (desktop) */}
       <div className="acc-right">
         <div className="acc-chat-header">
-          <span style={{ fontFamily: "'Montserrat', sans-serif", fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.1em', color: '#d4af37' }}>Chat</span>
-          <p style={{ fontFamily: "'Comfortaa', sans-serif", fontSize: '13px', color: 'rgba(255,255,255,0.45)', marginTop: '5px' }}>We're here to help — don't hesitate to reach out</p>
+          <span style={{ fontFamily: "'Montserrat', sans-serif", fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--gold)' }}>Chat</span>
+          <p style={{ fontFamily: "'Comfortaa', sans-serif", fontSize: '13px', color: 'var(--text-muted)', marginTop: '5px' }}>We're here to help — don't hesitate to reach out</p>
         </div>
         <div className="acc-chat-messages">
           {messages.map(m => (
@@ -52,7 +52,7 @@ export default function ChatPanel({
         </div>
         <div className="acc-chat-input-bar">
           <input type="file" ref={chatFileRef} accept=".jpg,.jpeg,.png,.tiff,.tif,.dng,.heic,.pdf" style={{ display: 'none' }} onChange={handleChatFile} />
-          <button onClick={() => chatFileRef.current?.click()} disabled={chatUploading} style={{ background: 'none', border: '1px solid rgba(255,255,255,0.10)', color: 'rgba(255,255,255,0.45)', padding: '11px', cursor: 'pointer', fontSize: '17px', flexShrink: 0 }} title="Attach file">{chatUploading ? '...' : '📎'}</button>
+          <button onClick={() => chatFileRef.current?.click()} disabled={chatUploading} style={{ background: 'none', border: '1px solid var(--border)', color: 'var(--text-muted)', padding: '11px', cursor: 'pointer', fontSize: '17px', flexShrink: 0 }} title="Attach file">{chatUploading ? '...' : '📎'}</button>
           <input value={chatInput} onChange={e => setChatInput(e.target.value)}
             placeholder="Type a message..." className="acc-chat-input"
             onKeyDown={e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendChat(); } }} />
@@ -69,8 +69,8 @@ export default function ChatPanel({
       {chatOpen && (
         <div className="acc-chat-mobile-drawer">
           <div className="acc-chat-header" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-            <span style={{ fontFamily: "'Montserrat', sans-serif", fontSize: '13px', textTransform: 'uppercase', letterSpacing: '0.3em', color: '#d4af37' }}>Chat</span>
-            <button onClick={() => setChatOpen(false)} style={{ background: 'none', border: 'none', color: 'rgba(255,255,255,0.5)', cursor: 'pointer', fontSize: '19px' }}>↓</button>
+            <span style={{ fontFamily: "'Montserrat', sans-serif", fontSize: '13px', textTransform: 'uppercase', letterSpacing: '0.3em', color: 'var(--gold)' }}>Chat</span>
+            <button onClick={() => setChatOpen(false)} style={{ background: 'none', border: 'none', color: 'var(--text-muted)', cursor: 'pointer', fontSize: '19px' }}>↓</button>
           </div>
           <div className="acc-chat-messages" style={{ flex: 1 }}>
             {messages.map(m => (
@@ -94,7 +94,7 @@ export default function ChatPanel({
             <div ref={chatEndRef} />
           </div>
           <div className="acc-chat-input-bar">
-            <button onClick={() => chatFileRef.current?.click()} disabled={chatUploading} style={{ background: 'none', border: '1px solid rgba(255,255,255,0.10)', color: 'rgba(255,255,255,0.45)', padding: '10px', cursor: 'pointer', fontSize: '14px', flexShrink: 0 }}>{chatUploading ? '...' : '📎'}</button>
+            <button onClick={() => chatFileRef.current?.click()} disabled={chatUploading} style={{ background: 'none', border: '1px solid var(--border)', color: 'var(--text-muted)', padding: '10px', cursor: 'pointer', fontSize: '14px', flexShrink: 0 }}>{chatUploading ? '...' : '📎'}</button>
             <input value={chatInput} onChange={e => setChatInput(e.target.value)} placeholder="Type a message..." className="acc-chat-input"
               onKeyDown={e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendChat(); } }} />
             <button onClick={sendChat} disabled={chatSending || !chatInput.trim()} className="acc-chat-send">{chatSending ? '...' : '→'}</button>

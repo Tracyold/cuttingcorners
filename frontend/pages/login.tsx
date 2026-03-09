@@ -3,17 +3,17 @@ import { supabase } from '../lib/supabase';
 import { useRouter } from 'next/router';
 
 const inputStyle: React.CSSProperties = {
-  width: '100%', background: 'var(--bg)', border: '1px solid rgba(255,255,255,0.10)',
-  padding: '10px', color: '#d4af37', fontFamily: "'Comfortaa', sans-serif", fontSize: '14px',
+  width: '100%', background: 'var(--bg)', border: '1px solid var(--border)',
+  padding: '10px', color: 'var(--gold)', fontFamily: "'Comfortaa', sans-serif", fontSize: '14px',
   marginBottom: '12px', outline: 'none', transition: 'border 200ms ease, box-shadow 200ms ease',
 };
 const labelStyle: React.CSSProperties = {
   fontFamily: "'Montserrat', sans-serif", fontSize: '11px', letterSpacing: '0.2em',
-  textTransform: 'uppercase', color: 'rgba(255,255,255,0.45)', display: 'block', marginBottom: '6px',
+  textTransform: 'uppercase', color: 'var(--text-muted)', display: 'block', marginBottom: '6px',
 };
 const btnStyle: React.CSSProperties = {
   width: '100%', background: 'transparent', border: '1px solid rgba(214,180,70,0.9)',
-  color: '#d4af37', fontFamily: "'Comfortaa', sans-serif", fontSize: '11px',
+  color: 'var(--gold)', fontFamily: "'Comfortaa', sans-serif", fontSize: '11px',
   letterSpacing: '0.3em', textTransform: 'uppercase', padding: '14px', cursor: 'pointer',
   boxShadow: '0 0 14px rgba(214,180,70,0.35)',
 };
@@ -110,7 +110,7 @@ export default function LoginPage() {
     <div style={{ background: 'transparent', minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '24px' }}>
       <div style={{ background: '#111111', border: '0.5px solid rgba(214,180,70,0.55)', padding: '40px', maxWidth: '480px', width: '100%', position: 'relative' }}>
         <button onClick={() => router.push('/')} style={{ position: 'absolute', top: '16px', right: '16px', background: 'none', border: 'none', color: 'rgba(255,255,255,0.4)', fontSize: '20px', cursor: 'pointer', lineHeight: 1, padding: '4px' }}>✕</button>
-        <p style={{ fontFamily: "'Montserrat', sans-serif", fontSize: '11px', letterSpacing: '0.25em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.55)', marginBottom: '12px' }}>
+        <p style={{ fontFamily: "'Montserrat', sans-serif", fontSize: '11px', letterSpacing: '0.25em', textTransform: 'uppercase', color: 'var(--text-muted)', marginBottom: '12px' }}>
           CUTTING CORNERS GEMS
         </p>
         <h1 style={{ fontFamily: "'Oranienbaum', serif", fontSize: '28px', color: 'var(--text)', marginBottom: '24px' }}>
@@ -287,7 +287,7 @@ export default function LoginPage() {
           </>
         ) : (
           <>
-            <p style={{ fontFamily: "'Comfortaa', sans-serif", fontSize: '12px', color: 'rgba(255,255,255,0.55)', marginBottom: '16px' }}>
+            <p style={{ fontFamily: "'Comfortaa', sans-serif", fontSize: '12px', color: 'var(--text-muted)', marginBottom: '16px' }}>
               Enter the code sent to {phone}
             </p>
             <input type="text" value={otp} onChange={e => setOtp(e.target.value)} placeholder="000000"

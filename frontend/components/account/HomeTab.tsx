@@ -75,20 +75,20 @@ export default function HomeTab({
       )}
 
       {/* Purchase stats */}
-      <div style={{ marginTop: '32px', padding: '20px', background: 'var(--bg)', border: '1px solid rgba(255,255,255,0.06)' }}>
+      <div style={{ marginTop: '32px', padding: '20px', background: 'var(--bg)', border: '1px solid var(--border)' }}>
         <span style={{ fontFamily: "'Courier New', monospace", fontSize: '19px', color: 'rgb(48, 177, 98)' }}>{invoiceCount}</span>
-        <span style={{ fontSize: '17px', color: 'rgba(255,255,255,0.55)', marginLeft: '8px' }}>items purchased</span>
+        <span style={{ fontSize: '17px', color: 'var(--text-muted)', marginLeft: '8px' }}>items purchased</span>
         <span style={{ margin: '0 12px', color: 'rgba(255,255,255,0.15)' }}>|</span>
         <span style={{ fontFamily: "'Courier New', monospace", fontSize: '18px', color: 'rgb(48, 177, 98)' }}>{invoiceTotal}</span>
-        <span style={{ fontSize: '12px', color: 'rgba(255,255,255,0.55)', marginLeft: '8px' }}>total spent</span>
+        <span style={{ fontSize: '12px', color: 'var(--text-muted)', marginLeft: '8px' }}>total spent</span>
       </div>
 
       {/* SMS Preferences */}
       <div style={{ marginTop: '32px' }}>
-        <h3 style={{ fontFamily: "'Montserrat', sans-serif", fontSize: '17px', textTransform: 'uppercase', letterSpacing: '0.2em', color: 'rgba(255,255,255,0.55)', marginBottom: '16px' }}>Notification Preferences</h3>
+        <h3 style={{ fontFamily: "'Montserrat', sans-serif", fontSize: '17px', textTransform: 'uppercase', letterSpacing: '0.2em', color: 'var(--text-muted)', marginBottom: '16px' }}>Notification Preferences</h3>
         {smToggles.map(t => (
           <div key={t.col} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '10px 0', borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
-            <span style={{ fontSize: '13px', color: 'rgba(255,255,255,0.65)' }}>{t.label}</span>
+            <span style={{ fontSize: '13px', color: 'var(--text-muted)' }}>{t.label}</span>
             <button
               onClick={() => {
                 if (smsPrefs?.[t.col]) {
@@ -109,7 +109,7 @@ export default function HomeTab({
             </button>
           </div>
         ))}
-        <p style={{ fontSize: '11px', color: 'rgba(255,255,255,0.35)', marginTop: '12px', lineHeight: 1.65 }}>
+        <p style={{ fontSize: '11px', color: 'var(--text-muted)', marginTop: '12px', lineHeight: 1.65 }}>
           SMS alerts are sent to your phone number on file. Message & data rates may apply. Reply STOP to any message to opt out. For help reply HELP.
         </p>
       </div>

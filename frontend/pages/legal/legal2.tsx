@@ -100,7 +100,7 @@ export default function LegalPage() {
           fontFamily: "'Comfortaa', sans-serif",
           fontSize: '14px',
           lineHeight: 1.8,
-          color: 'rgba(255,255,255,0.60)',
+          color: 'var(--text-muted)',
           marginBottom: '32px',
           maxWidth: '720px',
         }}

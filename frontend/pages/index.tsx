@@ -292,21 +292,21 @@ export default function Home() {
           <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, var(--bg) 0%, transparent 30%, transparent 70%, var(--bg) 100%)' }} />
 
           <div style={{ position: 'relative', zIndex: 10, padding: '0 24px', maxWidth: '800px', margin: '0 auto' }}>
-            <p style={{ fontFamily: 'Montserrat, sans-serif', fontSize: '11px', letterSpacing: '0.35em', textTransform: 'uppercase', color: 'var(--accent)', marginBottom: '24px' }}>
+            <p style={{ fontFamily: 'var(--font-ui)', fontSize: '11px', letterSpacing: '0.35em', textTransform: 'uppercase', color: 'var(--accent)', marginBottom: '24px' }}>
               Tempe, Arizona
             </p>
-            <h1 style={{ fontFamily: 'Oranienbaum, serif', fontSize: 'clamp(48px, 12vw, 96px)', color: 'var(--text)', lineHeight: 1.05, marginBottom: '28px', fontWeight: 400 }}>
+            <h1 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(48px, 12vw, 96px)', color: 'var(--text)', lineHeight: 1.05, marginBottom: '28px', fontWeight: 400 }}>
               <span style={{ color: 'var(--accent)' }}>Cutting</span> Corners —{' '}
               Not the <span style={{ color: 'var(--accent)' }}>Quality</span>
             </h1>
-            <p style={{ fontFamily: 'Comfortaa, sans-serif', fontSize: 'clamp(17px, 2.5vw, 21px)', color: 'var(--text)', lineHeight: 1.7, marginBottom: '40px', maxWidth: '560px', margin: '0 auto 40px' }}>
+            <p style={{ fontFamily: 'var(--font-body)', fontSize: 'clamp(17px, 2.5vw, 21px)', color: 'var(--text)', lineHeight: 1.7, marginBottom: '40px', maxWidth: '560px', margin: '0 auto 40px' }}>
               Professional gemstone cutter focused on color, yield, and stone potential for jewelry professionals nationwide.
             </p>
             <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'wrap' }}>
-              <a href="/get-estimate/instant" style={{ display: 'inline-block', padding: '17px 40px', background: 'var(--accent)', color: 'var(--bg)', fontFamily: 'Montserrat, sans-serif', fontSize: '11px', fontWeight: 700, letterSpacing: '0.25em', textTransform: 'uppercase', textDecoration: 'none' }}>
+              <a href="/get-estimate/instant" style={{ display: 'inline-block', padding: '17px 40px', background: 'var(--accent)', color: 'var(--bg)', fontFamily: 'var(--font-ui)', fontSize: '11px', fontWeight: 700, letterSpacing: '0.25em', textTransform: 'uppercase', textDecoration: 'none' }}>
                 Get an Estimate
               </a>
-              <a href="/shop" style={{ display: 'inline-block', padding: '17px 40px', background: 'none', border: '1px solid rgba(255,255,255,0.4)', color: 'var(--text)', fontFamily: 'Montserrat, sans-serif', fontSize: '11px', letterSpacing: '0.25em', textTransform: 'uppercase', textDecoration: 'none' }}>
+              <a href="/shop" style={{ display: 'inline-block', padding: '17px 40px', background: 'none', border: '1px solid rgba(255,255,255,0.4)', color: 'var(--text)', fontFamily: 'var(--font-ui)', fontSize: '11px', letterSpacing: '0.25em', textTransform: 'uppercase', textDecoration: 'none' }}>
                 View Shop
               </a>
             </div>
@@ -314,9 +314,9 @@ export default function Home() {
 
           {/* Stat card — desktop only */}
           <div className="hidden md:flex" style={{ position: 'absolute', bottom: '32px', right: '32px', flexDirection: 'column', justifyContent: 'center', width: '11rem', height: '11rem', background: 'rgba(34,40,49,0.9)', border: '1px solid rgba(255,211,105,0.3)', padding: '1.5rem' }}>
-            <p style={{ fontFamily: 'Montserrat, sans-serif', fontSize: '11px', letterSpacing: '0.15em', textTransform: 'uppercase', color: 'var(--text-muted)', marginBottom: '8px' }}>Industry for</p>
-            <p style={{ fontFamily: 'Oranienbaum, serif', fontSize: '36px', color: 'var(--accent)', lineHeight: 1 }}>13 Yrs</p>
-            <p style={{ fontFamily: 'Montserrat, sans-serif', fontSize: '11px', color: 'var(--text-muted)', marginTop: '6px' }}>Cutting for Seven</p>
+            <p style={{ fontFamily: 'var(--font-ui)', fontSize: '11px', letterSpacing: '0.15em', textTransform: 'uppercase', color: 'var(--text-muted)', marginBottom: '8px' }}>Industry for</p>
+            <p style={{ fontFamily: 'var(--font-display)', fontSize: '36px', color: 'var(--accent)', lineHeight: 1 }}>13 Yrs</p>
+            <p style={{ fontFamily: 'var(--font-ui)', fontSize: '11px', color: 'var(--text-muted)', marginTop: '6px' }}>Cutting for Seven</p>
           </div>
 
           {/* Scroll indicator */}

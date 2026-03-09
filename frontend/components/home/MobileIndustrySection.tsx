@@ -48,7 +48,7 @@ export default function MobileIndustrySection() {
         style={{
           fontSize: '11px',
           letterSpacing: '0.29em',
-          color: 'rgba(255,255,255,0.52)',
+          color: 'var(--text-muted)',
         }}
       >
         Industry for
@@ -58,12 +58,12 @@ export default function MobileIndustrySection() {
         style={{
           fontSize: '24px',
           fontWeight: 600,
-          color: 'rgba(255,255,255,0.75)',
+          color: 'var(--text)',
         }}
       >
         13 Years
       </p>
-      <p style={{ fontSize: '12px', color: 'rgba(255,255,255,0.52)', marginTop: '4px' }}>
+      <p style={{ fontSize: '12px', color: 'var(--text-muted)', marginTop: '4px' }}>
         Cutting for <span id="mobile-seven">Seven</span>
       </p>
     </section>
