@@ -63,7 +63,7 @@ export default function SmsConsentModal({ toggle, onConfirm, onCancel, hasOpenWo
         </p>
 
         {copy.requirement && (
-          <div style={{ background: 'rgba(224, 176, 20, 0.08)', border: '1px solid rgba(224, 176, 20, 0.25)', padding: '15px 19px', marginBottom: '21px' }}>
+          <div style={{ background: 'rgba(255,211,105,0.08)', border: '1px solid rgba(255,211,105,0.25)', padding: '15px 19px', marginBottom: '21px' }}>
             <p style={{ fontSize: '12px', lineHeight: 1.75, color: 'var(--accent)', margin: 0 }}>
               {copy.requirement}
             </p>
@@ -97,7 +97,7 @@ export default function SmsConsentModal({ toggle, onConfirm, onCancel, hasOpenWo
             onClick={() => { if (checked) onConfirm(); }}
             style={{
               flex: 2, padding: '17px',
-              background: checked ? '#f8cd3f' : 'rgba(209, 164, 15, 0.2)',
+              background: checked ? 'var(--accent)' : 'rgba(255,211,105,0.2)',
               border: 'none', color: checked ? '#000000e9' : 'rgba(255, 210, 11, 0.3)',
               fontSize: '15px', letterSpacing: '0.15em', textTransform: 'uppercase',
               cursor: checked ? 'pointer' : 'not-allowed',
