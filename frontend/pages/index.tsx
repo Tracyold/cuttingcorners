@@ -118,13 +118,13 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .gem-card:hover {
-  border-color: rgba(255, 255, 255, 0.20);
+  border-color: var(--border);
   box-shadow: 0 0 30px rgba(255, 255, 255, 0.05);
 }
 
 @media (max-width: 767px) {
   .gem-card:active {
-    border-color: rgba(245, 158, 11, 0.5);
+    border-color: var(--accent);
   }
 }
 
@@ -175,7 +175,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .btn-secondary:hover {
-  border-color: rgba(255, 255, 255, 1);
+  border-color: var(--text);
   background-color: transparent;
 }
 
