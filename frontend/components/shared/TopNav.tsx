@@ -204,13 +204,13 @@ export default function TopNav() {
 
   useEffect(() => {
     const saved = localStorage.getItem('ccg-theme') as 'dark' | 'light' | null;
-    if (saved) { setTheme(saved); document.documentElement.setAttribute('data-theme', saved === 'light' ? 'light' : ''); }
+    const t = saved || 'dark'; setTheme(t as 'dark' | 'light'); document.documentElement.setAttribute('data-theme', t);
   }, []);
 
   const toggleTheme = () => {
     const next = theme === 'dark' ? 'light' : 'dark';
     setTheme(next);
-    document.documentElement.setAttribute('data-theme', next === 'light' ? 'light' : '');
+    document.documentElement.setAttribute('data-theme', next);
     localStorage.setItem('ccg-theme', next);
   };
 
