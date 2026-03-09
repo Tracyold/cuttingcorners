@@ -48,7 +48,7 @@ export default function SmsPreview({ examples }: Props) {
       {examples.map((example) => (
         <div key={example.title}>
           {/* label */}
-          <p style={{ fontFamily: "'Montserrat', sans-serif", fontSize: "10px", letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(212,175,55,0.6)", marginBottom: "12px" }}>{example.title}</p>
+          <p style={{ fontFamily: 'var(--font-ui)', fontSize: "10px", letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(212,175,55,0.6)", marginBottom: "12px" }}>{example.title}</p>
 
           {/* phone shell */}
           <div style={{

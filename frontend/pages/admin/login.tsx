@@ -91,27 +91,27 @@ export default function AdminLoginPage() {
           }
         `}} />
         <div style={{ animation: 'adminFadeIn 400ms ease-out forwards' }}>
-          <p style={{ fontFamily: "'Montserrat', sans-serif", fontSize: '11px', letterSpacing: '0.25em', textTransform: 'uppercase', color: 'var(--text-muted)', marginBottom: '12px' }}>
+          <p style={{ fontFamily: 'var(--font-ui)', fontSize: '11px', letterSpacing: '0.25em', textTransform: 'uppercase', color: 'var(--text-muted)', marginBottom: '12px' }}>
             CUTTING CORNERS GEMS
           </p>
-          <h1 style={{ fontFamily: "'Oranienbaum', serif", fontSize: '28px', color: 'var(--text)', marginBottom: '28px' }}>
+          <h1 style={{ fontFamily: 'var(--font-display)', fontSize: '28px', color: 'var(--text)', marginBottom: '28px' }}>
             Admin
           </h1>
 
-          <label style={{ fontFamily: "'Montserrat', sans-serif", fontSize: '11px', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--text-muted)', display: 'block', marginBottom: '6px' }}>
+          <label style={{ fontFamily: 'var(--font-ui)', fontSize: '11px', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--text-muted)', display: 'block', marginBottom: '6px' }}>
             EMAIL
           </label>
           <input
             type="email"
             value={email}
             onChange={e => setEmail(e.target.value)}
-            style={{ width: '100%', background: 'var(--bg)', border: '1px solid var(--border)', height: '40px', padding: '0 10px', color: 'var(--gold)', fontFamily: "'Comfortaa', sans-serif", fontSize: '14px', marginBottom: '16px', outline: 'none', transition: 'border 200ms ease, box-shadow 200ms ease' }}
+            style={{ width: '100%', background: 'var(--bg)', border: '1px solid var(--border)', height: '40px', padding: '0 10px', color: 'var(--gold)', fontFamily: 'var(--font-body)', fontSize: '14px', marginBottom: '16px', outline: 'none', transition: 'border 200ms ease, box-shadow 200ms ease' }}
             onFocus={e => { e.target.style.borderColor = 'rgba(214,180,70,0.55)'; e.target.style.boxShadow = '0 0 10px rgba(214,180,70,0.15)'; }}
             onBlur={e => { e.target.style.borderColor = 'rgba(255,255,255,0.10)'; e.target.style.boxShadow = 'none'; }}
             onKeyDown={e => { if (e.key === 'Enter') handleLogin(); }}
           />
 
-          <label style={{ fontFamily: "'Montserrat', sans-serif", fontSize: '11px', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--text-muted)', display: 'block', marginBottom: '6px' }}>
+          <label style={{ fontFamily: 'var(--font-ui)', fontSize: '11px', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--text-muted)', display: 'block', marginBottom: '6px' }}>
             PASSWORD
           </label>
           <div style={{ position: 'relative', marginBottom: '16px' }}>
@@ -119,7 +119,7 @@ export default function AdminLoginPage() {
               type={showPassword ? 'text' : 'password'}
               value={password}
               onChange={e => setPassword(e.target.value)}
-              style={{ width: '100%', background: 'var(--bg)', border: '1px solid var(--border)', height: '40px', padding: '0 40px 0 10px', color: 'var(--gold)', fontFamily: "'Comfortaa', sans-serif", fontSize: '14px', outline: 'none', transition: 'border 200ms ease, box-shadow 200ms ease' }}
+              style={{ width: '100%', background: 'var(--bg)', border: '1px solid var(--border)', height: '40px', padding: '0 40px 0 10px', color: 'var(--gold)', fontFamily: 'var(--font-body)', fontSize: '14px', outline: 'none', transition: 'border 200ms ease, box-shadow 200ms ease' }}
               onFocus={e => { e.target.style.borderColor = 'rgba(214,180,70,0.55)'; e.target.style.boxShadow = '0 0 10px rgba(214,180,70,0.15)'; }}
               onBlur={e => { e.target.style.borderColor = 'rgba(255,255,255,0.10)'; e.target.style.boxShadow = 'none'; }}
               onKeyDown={e => { if (e.key === 'Enter') handleLogin(); }}
@@ -133,12 +133,12 @@ export default function AdminLoginPage() {
             </button>
           </div>
 
-          {error && <p style={{ fontFamily: "'Comfortaa', sans-serif", fontSize: '12px', color: 'rgba(255,80,80,0.85)', marginBottom: '16px' }}>{error}</p>}
+          {error && <p style={{ fontFamily: 'var(--font-body)', fontSize: '12px', color: 'var(--text-muted)', marginBottom: '16px' }}>{error}</p>}
 
           <button
             onClick={handleLogin}
             disabled={loading}
-            style={{ width: '100%', background: 'transparent', border: '1px solid rgba(214,180,70,0.9)', color: 'var(--gold)', fontFamily: "'Montserrat', sans-serif", fontSize: '11px', letterSpacing: '0.3em', textTransform: 'uppercase', height: '44px', cursor: 'pointer', boxShadow: '0 0 14px rgba(214,180,70,0.35)', transition: 'all 200ms ease' }}
+            style={{ width: '100%', background: 'transparent', border: '1px solid rgba(214,180,70,0.9)', color: 'var(--gold)', fontFamily: 'var(--font-ui)', fontSize: '11px', letterSpacing: '0.3em', textTransform: 'uppercase', height: '44px', cursor: 'pointer', boxShadow: '0 0 14px rgba(214,180,70,0.35)', transition: 'all 200ms ease' }}
           >
             {loading ? '...' : 'SIGN IN'}
           </button>

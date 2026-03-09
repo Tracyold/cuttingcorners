@@ -111,7 +111,7 @@ export default function PortfolioPage() {
         <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '48px 48px 80px' }}>
           <p
             style={{
-              fontFamily: "'Comfortaa', sans-serif",
+              fontFamily: 'var(--font-body)',
               fontSize: '11px',
               textTransform: 'uppercase',
               letterSpacing: '0.20em',
@@ -123,7 +123,7 @@ export default function PortfolioPage() {
           </p>
           <h1
             style={{
-              fontFamily: "'Oranienbaum', serif",
+              fontFamily: 'var(--font-display)',
               fontSize: 'clamp(30px, 6vw, 60px)',
               fontWeight: 400,
               color: 'var(--text)',
@@ -135,13 +135,13 @@ export default function PortfolioPage() {
 
           {loading ? (
             <div style={{ textAlign: 'center', padding: '80px 0', color: 'var(--text-muted)' }}>
-              <p style={{ fontFamily: "'Montserrat', sans-serif", fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.2em' }}>
+              <p style={{ fontFamily: 'var(--font-ui)', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.2em' }}>
                 Loading...
               </p>
             </div>
           ) : photos.length === 0 ? (
             <div style={{ textAlign: 'center', padding: '80px 0', color: 'var(--text-muted)' }}>
-              <p style={{ fontFamily: "'Montserrat', sans-serif", fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.2em' }}>
+              <p style={{ fontFamily: 'var(--font-ui)', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.2em' }}>
                 No photos yet
               </p>
             </div>
@@ -179,7 +179,7 @@ export default function PortfolioPage() {
             <div style={{ padding: '24px' }}>
               {modalPhoto.year && (
                 <p style={{
-                  fontFamily: "'Cormorant', serif",
+                  fontFamily: 'var(--font-display)',
                   fontSize: '16px',
                   color: 'var(--gold)',
                   margin: '0 0 4px',
@@ -189,7 +189,7 @@ export default function PortfolioPage() {
               )}
               {modalPhoto.caption && (
                 <p style={{
-                  fontFamily: "'Comfortaa', sans-serif",
+                  fontFamily: 'var(--font-body)',
                   fontSize: '14px',
                   color: 'var(--gold)',
                   margin: '0 0 12px',
@@ -199,7 +199,7 @@ export default function PortfolioPage() {
               )}
               {modalPhoto.description && (
                 <p style={{
-                  fontFamily: "'Comfortaa', sans-serif",
+                  fontFamily: 'var(--font-body)',
                   fontSize: '13px',
                   lineHeight: 1.75,
                   color: 'var(--text-muted)',

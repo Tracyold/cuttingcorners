@@ -26,8 +26,8 @@ export default function ChatPanel({
       {/* Right panel — Chat (desktop) */}
       <div className="acc-right">
         <div className="acc-chat-header">
-          <span style={{ fontFamily: "'Montserrat', sans-serif", fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--gold)' }}>Chat</span>
-          <p style={{ fontFamily: "'Comfortaa', sans-serif", fontSize: '13px', color: 'var(--text-muted)', marginTop: '5px' }}>We're here to help — don't hesitate to reach out</p>
+          <span style={{ fontFamily: 'var(--font-ui)', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--gold)' }}>Chat</span>
+          <p style={{ fontFamily: 'var(--font-body)', fontSize: '13px', color: 'var(--text-muted)', marginTop: '5px' }}>We're here to help — don't hesitate to reach out</p>
         </div>
         <div className="acc-chat-messages">
           {messages.map(m => (
@@ -35,7 +35,7 @@ export default function ChatPanel({
               <div style={{
                 maxWidth: '80%', padding: '11px 15px', borderRadius: '14px',
                 background: m.actor === 'ACCOUNT' ? 'rgba(45,212,191,1)' : '#d4af37',
-                color: 'var(--bg)', fontFamily: "'Comfortaa', sans-serif", fontSize: '15.9px', lineHeight: 1.7,
+                color: 'var(--bg)', fontFamily: 'var(--font-body)', fontSize: '15.9px', lineHeight: 1.7,
               }}>
                 {m.body && <div>{m.body}</div>}
                 {m.attachment_url && m.attachment_type?.startsWith('image/') && (
@@ -45,7 +45,7 @@ export default function ChatPanel({
                   <div style={{ marginTop: m.body ? '7px' : '0', fontSize: '15.9px' }}>📄 <a href={m.attachment_url.startsWith('http') ? m.attachment_url : supabase.storage.from('ChatUploads').getPublicUrl(m.attachment_url).data.publicUrl} target="_blank" rel="noopener noreferrer" style={{ color: 'var(--bg)', textDecoration: 'underline' }}>Download PDF</a></div>
                 )}
               </div>
-              <span style={{ fontSize: '13px', color: 'rgba(255,255,255,0.38)', marginTop: '3px', fontFamily: "'Comfortaa', sans-serif" }}>{fmtTime(m.created_at)}</span>
+              <span style={{ fontSize: '13px', color: 'rgba(255,255,255,0.38)', marginTop: '3px', fontFamily: 'var(--font-body)' }}>{fmtTime(m.created_at)}</span>
             </div>
           ))}
           <div ref={chatEndRef} />
@@ -69,7 +69,7 @@ export default function ChatPanel({
       {chatOpen && (
         <div className="acc-chat-mobile-drawer">
           <div className="acc-chat-header" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-            <span style={{ fontFamily: "'Montserrat', sans-serif", fontSize: '13px', textTransform: 'uppercase', letterSpacing: '0.3em', color: 'var(--gold)' }}>Chat</span>
+            <span style={{ fontFamily: 'var(--font-ui)', fontSize: '13px', textTransform: 'uppercase', letterSpacing: '0.3em', color: 'var(--gold)' }}>Chat</span>
             <button onClick={() => setChatOpen(false)} style={{ background: 'none', border: 'none', color: 'var(--text-muted)', cursor: 'pointer', fontSize: '19px' }}>↓</button>
           </div>
           <div className="acc-chat-messages" style={{ flex: 1 }}>
@@ -78,7 +78,7 @@ export default function ChatPanel({
                 <div style={{
                   maxWidth: '80%', padding: '11px 15px', borderRadius: '1.7px',
                   background: m.actor === 'ACCOUNT' ? 'rgba(45,212,191,1)' : '#d4af37',
-                  color: 'var(--bg)', fontFamily: "'Comfortaa', sans-serif", fontSize: '17px',
+                  color: 'var(--bg)', fontFamily: 'var(--font-body)', fontSize: '17px',
                 }}>
                   {m.body && <div>{m.body}</div>}
                   {m.attachment_url && m.attachment_type?.startsWith('image/') && (

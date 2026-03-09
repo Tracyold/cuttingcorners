@@ -51,10 +51,10 @@ export default function SmsConsentModal({ toggle, onConfirm, onCancel, hasOpenWo
         maxWidth: '681px', width: '100%',
         padding: '32px',
       }}>
-        <p style={{ fontFamily: "'Montserrat', sans-serif", fontSize: '13px', letterSpacing: '0.25em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.4)', marginBottom: '8px' }}>
+        <p style={{ fontFamily: 'var(--font-ui)', fontSize: '13px', letterSpacing: '0.25em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.4)', marginBottom: '8px' }}>
           SMS Consent Required
         </p>
-        <h2 style={{ fontFamily: "'Oranienbaum', serif", fontSize: '25px', color: 'var(--text)', marginBottom: '22px' }}>
+        <h2 style={{ fontFamily: 'var(--font-display)', fontSize: '25px', color: 'var(--text)', marginBottom: '22px' }}>
           {copy.title}
         </h2>
 

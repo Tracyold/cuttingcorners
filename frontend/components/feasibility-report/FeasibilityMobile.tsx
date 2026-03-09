@@ -148,7 +148,7 @@ export default function FeasibilityMobile() {
             <tbody>{precut.structuralTable.map((r, i) => (
               <tr key={i}>
                 <td style={TC}>{i + 1}</td>
-                <td style={TC}>{r.feature}<br /><span style={{ color: 'rgba(100,160,220,0.85)', fontSize: '13px' }}>{r.location} · {r.view}</span></td>
+                <td style={TC}>{r.feature}<br /><span style={{ color: 'var(--accent)', fontSize: '13px' }}>{r.location} · {r.view}</span></td>
                 <td style={TC}><SeverityBadge level={r.severity} /></td>
               </tr>
             ))}</tbody>
@@ -239,7 +239,7 @@ export default function FeasibilityMobile() {
             <tbody>{postcut.changeTable.map((r, i) => (
               <tr key={i}>
                 <td style={TC}>{i + 1}</td>
-                <td style={TC}>{r.feature}<br /><span style={{ color: 'rgba(100,160,220,0.85)', fontSize: '13px' }}>{r.action}</span></td>
+                <td style={TC}>{r.feature}<br /><span style={{ color: 'var(--accent)', fontSize: '13px' }}>{r.action}</span></td>
                 <td style={TC}><ResultBadge result={r.result} /></td>
               </tr>
             ))}</tbody>
@@ -298,7 +298,7 @@ export default function FeasibilityMobile() {
             <thead><tr>{['Aspect', 'Rating'].map(h => <th key={h} style={TH}>{h}</th>)}</tr></thead>
             <tbody>{postcut.optical.map((r, i) => (
               <tr key={i}>
-                <td style={TC}>{r.aspect}<br /><span style={{ color: 'rgba(100,160,220,0.85)', fontSize: '13px' }}>{r.note}</span></td>
+                <td style={TC}>{r.aspect}<br /><span style={{ color: 'var(--accent)', fontSize: '13px' }}>{r.note}</span></td>
                 <td style={TC}><span style={{ fontFamily: 'var(--font-body)', fontSize: '13px', color: 'var(--gold)', fontWeight: 600 }}>{r.rating}</span></td>
               </tr>
             ))}</tbody>

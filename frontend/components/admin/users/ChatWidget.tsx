@@ -116,7 +116,7 @@ export default function ChatWidget({ chatThread, messages, setMessages, user, id
           <div style={{ flex: 1, overflowY: 'auto', padding: '13px 21px' }}>
             {messages.map(m => (
               <div key={m.chat_message_id} style={{ display: 'flex', flexDirection: 'column', alignItems: m.actor === 'ADMIN' ? 'flex-end' : 'flex-start', marginBottom: '11px' }}>
-                <div style={{ maxWidth: '70%', padding: '11px 15px', borderRadius: '11px', background: m.actor === 'ADMIN' ? '#d4af37' : 'rgba(45,212,191,1)', color: 'var(--bg)', fontFamily: "'Comfortaa', sans-serif", fontSize: '15px' }}>
+                <div style={{ maxWidth: '70%', padding: '11px 15px', borderRadius: '11px', background: m.actor === 'ADMIN' ? '#d4af37' : 'rgba(45,212,191,1)', color: 'var(--bg)', fontFamily: 'var(--font-body)', fontSize: '15px' }}>
                   {m.body && <div>{m.body}</div>}
                   {m.attachment_url && m.attachment_type?.startsWith('image/') && (
                     <img src={m.attachment_url.startsWith('http') ? m.attachment_url : supabase.storage.from('ChatUploads').getPublicUrl(m.attachment_url).data.publicUrl} alt="attachment" style={{ maxWidth: '200px', maxHeight: '200px', objectFit: 'cover', marginTop: m.body ? '6px' : '0', borderRadius: '6px' }} />

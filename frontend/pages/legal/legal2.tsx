@@ -85,7 +85,7 @@ export default function LegalPage() {
     <main style={{ maxWidth: '960px', margin: '0 auto', padding: '40px 20px' }}>
       <h1
         style={{
-          fontFamily: "'Oranienbaum', serif",
+          fontFamily: 'var(--font-display)',
           fontSize: '38px',
           fontWeight: 400,
           color: 'var(--text)',
@@ -97,7 +97,7 @@ export default function LegalPage() {
 
       <p
         style={{
-          fontFamily: "'Comfortaa', sans-serif",
+          fontFamily: 'var(--font-body)',
           fontSize: '14px',
           lineHeight: 1.8,
           color: 'var(--text-muted)',

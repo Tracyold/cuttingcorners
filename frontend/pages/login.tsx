@@ -4,26 +4,26 @@ import { useRouter } from 'next/router';
 
 const inputStyle: React.CSSProperties = {
   width: '100%', background: 'var(--bg)', border: '1px solid var(--border)',
-  padding: '10px', color: 'var(--gold)', fontFamily: "'Comfortaa', sans-serif", fontSize: '14px',
+  padding: '10px', color: 'var(--gold)', fontFamily: 'var(--font-body)', fontSize: '14px',
   marginBottom: '12px', outline: 'none', transition: 'border 200ms ease, box-shadow 200ms ease',
 };
 const labelStyle: React.CSSProperties = {
-  fontFamily: "'Montserrat', sans-serif", fontSize: '11px', letterSpacing: '0.2em',
+  fontFamily: 'var(--font-ui)', fontSize: '11px', letterSpacing: '0.2em',
   textTransform: 'uppercase', color: 'var(--text-muted)', display: 'block', marginBottom: '6px',
 };
 const btnStyle: React.CSSProperties = {
   width: '100%', background: 'transparent', border: '1px solid rgba(214,180,70,0.9)',
-  color: 'var(--gold)', fontFamily: "'Comfortaa', sans-serif", fontSize: '11px',
+  color: 'var(--gold)', fontFamily: 'var(--font-body)', fontSize: '11px',
   letterSpacing: '0.3em', textTransform: 'uppercase', padding: '14px', cursor: 'pointer',
   boxShadow: '0 0 14px rgba(214,180,70,0.35)',
 };
 const ghostBtn: React.CSSProperties = {
   width: '100%', background: 'none', border: 'none', color: 'rgba(255,255,255,0.38)',
-  fontFamily: "'Montserrat', sans-serif", fontSize: '10px', textTransform: 'uppercase',
+  fontFamily: 'var(--font-ui)', fontSize: '10px', textTransform: 'uppercase',
   letterSpacing: '0.18em', padding: '12px 0', marginTop: '8px', cursor: 'pointer',
 };
 const errStyle: React.CSSProperties = {
-  fontFamily: "'Comfortaa', sans-serif", fontSize: '12px', color: 'rgba(255,80,80,0.85)', marginBottom: '12px',
+  fontFamily: 'var(--font-body)', fontSize: '12px', color: 'var(--text-muted)', marginBottom: '12px',
 };
 
 export default function LoginPage() {
@@ -110,10 +110,10 @@ export default function LoginPage() {
     <div style={{ background: 'transparent', minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '24px' }}>
       <div style={{ background: '#111111', border: '0.5px solid rgba(214,180,70,0.55)', padding: '40px', maxWidth: '480px', width: '100%', position: 'relative' }}>
         <button onClick={() => router.push('/')} style={{ position: 'absolute', top: '16px', right: '16px', background: 'none', border: 'none', color: 'rgba(255,255,255,0.4)', fontSize: '20px', cursor: 'pointer', lineHeight: 1, padding: '4px' }}>✕</button>
-        <p style={{ fontFamily: "'Montserrat', sans-serif", fontSize: '11px', letterSpacing: '0.25em', textTransform: 'uppercase', color: 'var(--text-muted)', marginBottom: '12px' }}>
+        <p style={{ fontFamily: 'var(--font-ui)', fontSize: '11px', letterSpacing: '0.25em', textTransform: 'uppercase', color: 'var(--text-muted)', marginBottom: '12px' }}>
           CUTTING CORNERS GEMS
         </p>
-        <h1 style={{ fontFamily: "'Oranienbaum', serif", fontSize: '28px', color: 'var(--text)', marginBottom: '24px' }}>
+        <h1 style={{ fontFamily: 'var(--font-display)', fontSize: '28px', color: 'var(--text)', marginBottom: '24px' }}>
           {mode === 'signup' ? 'Create Account' : 'Sign In'}
         </h1>
 
@@ -287,7 +287,7 @@ export default function LoginPage() {
           </>
         ) : (
           <>
-            <p style={{ fontFamily: "'Comfortaa', sans-serif", fontSize: '12px', color: 'var(--text-muted)', marginBottom: '16px' }}>
+            <p style={{ fontFamily: 'var(--font-body)', fontSize: '12px', color: 'var(--text-muted)', marginBottom: '16px' }}>
               Enter the code sent to {phone}
             </p>
             <input type="text" value={otp} onChange={e => setOtp(e.target.value)} placeholder="000000"

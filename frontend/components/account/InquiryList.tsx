@@ -34,7 +34,7 @@ export default function InquiryList({
 }: Props) {
   return (
     <div style={{ padding: '28px' }}>
-      <h2 style={{ fontFamily: "'Comfortaa', sans-serif", fontSize: '24px', color: 'var(--text)', marginBottom: '16px' }}>Inquiries</h2>
+      <h2 style={{ fontFamily: 'var(--font-body)', fontSize: '24px', color: 'var(--text)', marginBottom: '16px' }}>Inquiries</h2>
       <div style={{ display: 'flex', gap: '20px', marginBottom: '20px', borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
         <button className={`acc-tab ${inquiryTab === 'inquiries' ? 'on' : ''}`} onClick={() => setInquiryTab('inquiries')}>Product Inquiries</button>
         <button className={`acc-tab ${inquiryTab === 'service' ? 'on' : ''}`} onClick={() => setInquiryTab('service')}>Service Requests</button>
@@ -59,14 +59,14 @@ export default function InquiryList({
             <div style={{ background: 'var(--bg)', border: '1px solid var(--border)', padding: '20px', marginBottom: '16px' }}>
               <label className="acc-label">Service Type *</label>
               <select value={srType} onChange={e => setSrType(e.target.value)}
-                style={{ width: '100%', background: 'var(--bg)', border: '1px solid var(--border)', color: 'var(--text)', padding: '10px', fontFamily: "'Comfortaa', sans-serif", fontSize: '13px', marginBottom: '12px' }}>
+                style={{ width: '100%', background: 'var(--bg)', border: '1px solid var(--border)', color: 'var(--text)', padding: '10px', fontFamily: 'var(--font-body)', fontSize: '13px', marginBottom: '12px' }}>
                 <option value="">Select service type</option>
                 {SERVICE_TYPES.map(st => <option key={st} value={st}>{st}</option>)}
               </select>
               <label className="acc-label">Description *</label>
               <textarea value={srDesc} onChange={e => setSrDesc(e.target.value)} placeholder="Describe your request..."
-                style={{ width: '100%', background: 'var(--bg)', border: '1px solid var(--border)', color: 'var(--text)', padding: '10px', fontFamily: "'Comfortaa', sans-serif", fontSize: '13px', minHeight: '96px', resize: 'vertical', marginBottom: '12px' }} />
-              <p style={{ fontFamily: "'Comfortaa', sans-serif", fontSize: '12px', color: 'var(--text-muted)', fontStyle: 'italic', marginBottom: '16px', lineHeight: 1.6 }}>
+                style={{ width: '100%', background: 'var(--bg)', border: '1px solid var(--border)', color: 'var(--text)', padding: '10px', fontFamily: 'var(--font-body)', fontSize: '13px', minHeight: '96px', resize: 'vertical', marginBottom: '12px' }} />
+              <p style={{ fontFamily: 'var(--font-body)', fontSize: '12px', color: 'var(--text-muted)', fontStyle: 'italic', marginBottom: '16px', lineHeight: 1.6 }}>
                 All prices are estimated starting prices. Some gems may be less, some may be more. No work order prices are set in stone until I am able to inspect the piece and the customer accepts the work order through the website.
               </p>
               <div style={{ display: 'flex', gap: '8px' }}>

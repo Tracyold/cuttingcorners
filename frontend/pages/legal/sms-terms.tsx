@@ -9,7 +9,7 @@ const Li = ({ children }: { children: React.ReactNode }) => (
 );
 const Block = ({ title, children }: { title: string; children: React.ReactNode }) => (
   <div style={{ marginBottom: '40px' }}>
-    <h2 style={{ fontFamily: "'Comfortaa', sans-serif", fontSize: 'clamp(29x, 17vw, 24px)', color: 'var(--text)', marginBottom: '16px', paddingBottom: '10px', borderBottom: '1px solid #d4af37' }}>{title}</h2>
+    <h2 style={{ fontFamily: 'var(--font-body)', fontSize: 'clamp(29x, 17vw, 24px)', color: 'var(--text)', marginBottom: '16px', paddingBottom: '10px', borderBottom: '1px solid #d4af37' }}>{title}</h2>
     {children}
   </div>
 );
@@ -37,8 +37,8 @@ export default function SmsTerms() {
 
         <div style={{ maxWidth: '1300px', margin: '0 auto', padding: '64px 40px' }}>
 
-          <p style={{ fontFamily: "'Montserrat', sans-serif", fontSize: '15px', letterSpacing: '0.3em', textTransform: 'uppercase', color: 'var(--gold)', marginBottom: '12px' }}>Cutting Corners Gems</p>
-          <h1 style={{ fontFamily: "'Oranienbaum', serif", fontSize: 'clamp(32px, 5vw, 52px)', color: 'var(--text)', marginBottom: '16px', lineHeight: 1.15 }}>SMS Notification Terms & Disclosure</h1>
+          <p style={{ fontFamily: 'var(--font-ui)', fontSize: '15px', letterSpacing: '0.3em', textTransform: 'uppercase', color: 'var(--gold)', marginBottom: '12px' }}>Cutting Corners Gems</p>
+          <h1 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(32px, 5vw, 52px)', color: 'var(--text)', marginBottom: '16px', lineHeight: 1.15 }}>SMS Notification Terms & Disclosure</h1>
           <p style={{ fontSize: '15px', color: 'var(--text-muted)', marginBottom: '8px' }}>Effective Date: March 4, 2026</p>
           <p style={{ fontSize: '15px', color: 'var(--text-muted)', marginBottom: '48px' }}>Program Name: Cutting Corners Gems — User Opt-In/Out Account Notifications</p>
 
@@ -153,7 +153,7 @@ export default function SmsTerms() {
 
           {/* Contact */}
           <div style={{ marginTop: '32px', padding: '24px', border: '1px solid #d4af37', background: '#d4af37' }}>
-            <p style={{ fontFamily: "'Montserrat', sans-serif", fontSize: '15px', letterSpacing: '0.25em', textTransform: 'uppercase', color: 'var(--gold)', marginBottom: '12px' }}>Contact</p>
+            <p style={{ fontFamily: 'var(--font-ui)', fontSize: '15px', letterSpacing: '0.25em', textTransform: 'uppercase', color: 'var(--gold)', marginBottom: '12px' }}>Contact</p>
             <p style={{ fontSize: '15px', color: 'rgba(255,255,255,0.6)', lineHeight: 2, margin: 0 }}>
               Cutting Corners Gems<br />
               850 S River Dr #2117, Tempe, Arizona 85281<br />
