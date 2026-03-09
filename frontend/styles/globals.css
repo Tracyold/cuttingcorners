@@ -319,6 +319,7 @@ button, input, textarea, select { border-radius: 0 !important; }
 .machine-light {
   opacity: 0.4;
   transition: none;
+  object-position: center 48%;
 }
 .machine-dark {
   opacity: 0;
