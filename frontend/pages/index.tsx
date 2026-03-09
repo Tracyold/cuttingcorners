@@ -159,7 +159,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .btn-secondary {
-  background: var(--bg-gradient);
+  background: transparent;
   color: var(--text);
   padding: 0.75rem 2rem;
   font-family: var(--font-ui);
