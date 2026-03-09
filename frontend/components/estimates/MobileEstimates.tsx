@@ -35,7 +35,7 @@ export default function MobileEstimates() {
         .mest-wrap { background: var(--bg-gradient); background-attachment: fixed; height: 100svh; overflow-y: scroll; scroll-snap-type: y mandatory; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
         .mest-wrap::-webkit-scrollbar { display: none; }
         .mest-card { height: 100svh; scroll-snap-align: start; scroll-snap-stop: always; display: flex; flex-direction: column; justify-content: center; padding: 80px 32px; position: relative; overflow: hidden; }
-        .mest-card::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 30% 50%, var(--border) 0%, transparent 70%); pointer-events: none; }
+        .mest-card::before { content: ''; position: absolute; inset: 0; pointer-events: none; }
         .mest-num { font-family: var(--font-display); font-size: clamp(96px, 25vw, 140px); line-height: 1; margin-bottom: 8px; display: block; opacity: 0.07; position: absolute; top: 24px; right: 24px; color: var(--text); }
         .mest-tag { display: inline-block; padding: 5px 14px; border: 1px solid var(--gold); font-family: var(--font-ui); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 20px; width: fit-content; }
         .mest-title { font-family: var(--font-display); font-size: clamp(33px, 9vw, 48px); color: var(--text); margin-bottom: 20px; line-height: 1.1; }
