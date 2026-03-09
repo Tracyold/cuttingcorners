@@ -211,6 +211,8 @@ export default function TopNav() {
     const next = theme === 'dark' ? 'light' : 'dark';
     setTheme(next);
     document.documentElement.setAttribute('data-theme', next);
+    document.body.style.background = '';
+    document.body.offsetHeight; // force repaint
     localStorage.setItem('ccg-theme', next);
   };
 
