@@ -344,6 +344,6 @@ const portfolioCss = `
 }
 .portfolio-modal-close:hover {
   background: rgba(0,0,0,0.8);
-  border-color: rgba(255,255,255,0.3);
+  border-color: var(--border);
 }
 `;
