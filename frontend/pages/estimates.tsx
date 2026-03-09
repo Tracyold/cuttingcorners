@@ -12,7 +12,7 @@ export default function EstimatesPage() {
             <p style={{ fontFamily: 'Montserrat, sans-serif', fontSize: '11px', letterSpacing: '0.25em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.75)', marginBottom: '16px', textAlign: 'center' }}>
               Get Started
             </p>
-            <h1 style={{ fontFamily: 'Oranienbaum, serif', fontSize: 'clamp(32px, 5vw, 64px)', color: 'rgba(255,255,255,0.9)', textAlign: 'center', marginBottom: '20px', lineHeight: 1.1 }}>
+            <h1 style={{ fontFamily: 'Oranienbaum, serif', fontSize: 'clamp(32px, 5vw, 64px)', color: 'var(--text)', textAlign: 'center', marginBottom: '20px', lineHeight: 1.1 }}>
               Choose Your Estimate Path
             </h1>
             <p style={{ fontFamily: 'Comfortaa, sans-serif', fontSize: 'clamp(14px, 1.5vw, 17px)', color: 'rgba(255,255,255,0.75)', textAlign: 'center', maxWidth: '560px', margin: '0 auto 64px', lineHeight: 1.8 }}>
@@ -34,12 +34,12 @@ export default function EstimatesPage() {
 
             <div style={{ marginTop: '80px', padding: '64px 24px', borderTop: '1px solid rgba(255,255,255,0.06)', textAlign: 'center' }}>
               <p style={{ fontFamily: 'Montserrat, sans-serif', fontSize: '11px', letterSpacing: '0.25em', textTransform: 'uppercase', color: '#d4af37', marginBottom: '20px' }}>Ready to start?</p>
-              <h2 style={{ fontFamily: 'Oranienbaum, serif', fontSize: 'clamp(27px, 5vw, 48px)', color: '#FAFAFA', lineHeight: 1.2, marginBottom: '24px' }}>Get an instant estimate now.</h2>
+              <h2 style={{ fontFamily: 'Oranienbaum, serif', fontSize: 'clamp(27px, 5vw, 48px)', color: 'var(--text)', lineHeight: 1.2, marginBottom: '24px' }}>Get an instant estimate now.</h2>
               <p style={{ fontFamily: 'Comfortaa, sans-serif', fontSize: '13px', color: 'rgba(255,255,255,0.75)', lineHeight: 1.8, maxWidth: '480px', margin: '0 auto 40px' }}>
                 Answer seven quick questions about your stone and the service you need. No account required.
               </p>
               <a href="/get-estimate/instant"
-                style={{ display: 'inline-block', padding: '19px 56px', background: '#d4af37', color: '#050505', fontFamily: 'Montserrat, sans-serif', fontSize: '11px', fontWeight: 700, letterSpacing: '0.28em', textTransform: 'uppercase', textDecoration: 'none', transition: 'opacity 150ms' }}
+                style={{ display: 'inline-block', padding: '19px 56px', background: '#d4af37', color: 'var(--bg)', fontFamily: 'Montserrat, sans-serif', fontSize: '11px', fontWeight: 700, letterSpacing: '0.28em', textTransform: 'uppercase', textDecoration: 'none', transition: 'opacity 150ms' }}
                 onMouseEnter={e => (e.currentTarget.style.opacity = '0.85')}
                 onMouseLeave={e => (e.currentTarget.style.opacity = '1')}>
                 Start Instant Estimate

@@ -5,10 +5,10 @@ import SmsPreview from '../../components/legal/smscomp';
 
 // ─── Shared text primitives ───────────────────────────────────────────────────
 const P = ({ children }: { children: React.ReactNode }) => (
-  <p style={{ fontSize: '16px', lineHeight: 1.9, color: 'rgba(255,255,255,0.85)', marginBottom: '16px' }}>{children}</p>
+  <p style={{ fontSize: '16px', lineHeight: 1.9, color: 'rgba(var(--text-rgb, 238,238,238),0.85)', marginBottom: '16px' }}>{children}</p>
 );
 const Li = ({ children }: { children: React.ReactNode }) => (
-  <li style={{ fontSize: '16px', lineHeight: 1.9, color: 'rgba(255,255,255,0.85)', marginBottom: '8px' }}>{children}</li>
+  <li style={{ fontSize: '16px', lineHeight: 1.9, color: 'rgba(var(--text-rgb, 238,238,238),0.85)', marginBottom: '8px' }}>{children}</li>
 );
 const Num = ({ n, title, children }: { n: string; title: string; children: React.ReactNode }) => (
   <div style={{ marginBottom: '28px' }}>
@@ -23,7 +23,7 @@ const PrivSec = ({ n, title, children }: { n: string; title: string; children: R
   </div>
 );
 const SectionHeading = ({ id, children }: { id?: string; children: React.ReactNode }) => (
-  <h3 id={id} style={{ fontFamily: "'Oranienbaum', serif", fontSize: 'clamp(18px, 2.5vw, 24px)', color: '#FAFAFA', marginBottom: '18px', marginTop: '40px', scrollMarginTop: '120px' }}>{children}</h3>
+  <h3 id={id} style={{ fontFamily: "'Oranienbaum', serif", fontSize: 'clamp(18px, 2.5vw, 24px)', color: 'var(--text)', marginBottom: '18px', marginTop: '40px', scrollMarginTop: '120px' }}>{children}</h3>
 );
 const GoldNote = ({ children }: { children: React.ReactNode }) => (
   <div style={{ background: 'rgba(212,175,55,0.06)', border: '1px solid #d4af37', padding: '16px 20px', marginBottom: '20px', borderRadius: '2px' }}>
@@ -187,7 +187,7 @@ export default function LegalUnified() {
         @media (max-width: 900px) { .desktop-sidebar { display: none !important; } }
       `}</style>
 
-      <div style={{ background: 'transparent', minHeight: '100vh', color: '#FAFAFA' }}>
+      <div style={{ background: 'transparent', minHeight: '100vh', color: 'var(--text)' }}>
 
         {/* ── Top nav ── */}
         <div style={{
@@ -253,7 +253,7 @@ export default function LegalUnified() {
 
             {/* Hero */}
             <p style={{ fontFamily: "'Montserrat', sans-serif", fontSize: '11px', letterSpacing: '0.3em', textTransform: 'uppercase', color: 'rgba(100,160,220,0.85)', marginBottom: '12px' }}>Cutting Corners Gems</p>
-            <h1 style={{ fontFamily: "'Oranienbaum', serif", fontSize: 'clamp(34px, 5vw, 56px)', color: '#FAFAFA', marginBottom: '20px', lineHeight: 1.1 }}>Legal, Privacy<br />&amp; SMS Disclosure</h1>
+            <h1 style={{ fontFamily: "'Oranienbaum', serif", fontSize: 'clamp(34px, 5vw, 56px)', color: 'var(--text)', marginBottom: '20px', lineHeight: 1.1 }}>Legal, Privacy<br />&amp; SMS Disclosure</h1>
             <p style={{ fontSize: '13px', color: 'rgba(255,255,255,0.7)', marginBottom: '64px' }}>
               Effective Date: March 4, 2026 · Program: Cutting Corners Gems — User Opt-In/Out Account Notifications
             </p>
@@ -262,7 +262,7 @@ export default function LegalUnified() {
                 SECTION 1 — LEGAL & POLICIES
             ════════════════════════════════════════════════════ */}
             <div id="legal-top" className="anchor">
-              <h2 style={{ fontFamily: "'Oranienbaum', serif", fontSize: 'clamp(24px, 3vw, 34px)', color: '#FAFAFA', marginBottom: '24px' }}>Legal &amp; Policies</h2>
+              <h2 style={{ fontFamily: "'Oranienbaum', serif", fontSize: 'clamp(24px, 3vw, 34px)', color: 'var(--text)', marginBottom: '24px' }}>Legal &amp; Policies</h2>
               <P>Cutting Corners Gems believes that clear communication builds trust. Because gemstone cutting involves natural materials, shipping, and specialized services, we provide written policies so customers know exactly how our services operate before sending in their gemstones.</P>
               <P>These policies are not written to avoid responsibility. They exist to ensure that customers understand how the process works, what risks naturally exist with gemstone materials, and what procedures we follow to protect both the customer and the gemstone. Our goal is simple: clarity, transparency, and fairness for everyone involved.</P>
             </div>
@@ -325,7 +325,7 @@ export default function LegalUnified() {
                 SECTION 2 — PRIVACY POLICY
             ════════════════════════════════════════════════════ */}
             <div id="privacy-top" className="anchor">
-              <h2 style={{ fontFamily: "'Oranienbaum', serif", fontSize: 'clamp(24px, 3vw, 34px)', color: '#FAFAFA', marginBottom: '24px' }}>Privacy Policy</h2>
+              <h2 style={{ fontFamily: "'Oranienbaum', serif", fontSize: 'clamp(24px, 3vw, 34px)', color: 'var(--text)', marginBottom: '24px' }}>Privacy Policy</h2>
               <P>Cutting Corners Gems respects your privacy and is committed to protecting the personal information you provide when using our website and services. By using this website or creating an account, you acknowledge and agree to the practices described below.</P>
             </div>
 
@@ -333,11 +333,11 @@ export default function LegalUnified() {
               <P>Within this Privacy Policy, "collect" refers to information you voluntarily provide while using the website. Cutting Corners Gems does not gather hidden personal information, purchase personal data, or obtain information from unrelated third-party data brokers. The information you provide allows the system to operate services including account creation, work orders, service requests, internal chat, invoices, payments, SMS notifications, shipping, and shop purchases.</P>
             </PrivSec>
             <PrivSec n="2" title="Information You May Provide">
-              <P><strong style={{ color: '#FAFAFA' }}>Account Information</strong> — Name, email address, phone number, login credentials, and notification settings.</P>
-              <P><strong style={{ color: '#FAFAFA' }}>Shipping Information</strong> — Shipping address for returning serviced gemstones or delivering purchases. Used solely for sending completed work orders or purchased items.</P>
-              <P><strong style={{ color: '#FAFAFA' }}>Service & Transaction Information</strong> — Work order submissions, service instructions, invoice records, payment status, and transaction references.</P>
-              <P><strong style={{ color: '#FAFAFA' }}>Communication Information</strong> — Messages sent through internal chat, customer service inquiries, and work order communications.</P>
-              <P><strong style={{ color: '#FAFAFA' }}>Technical & Usage Information</strong> — Limited data such as IP address, device type, browser information, and access timestamps used for system security and functionality.</P>
+              <P><strong style={{ color: 'var(--text)' }}>Account Information</strong> — Name, email address, phone number, login credentials, and notification settings.</P>
+              <P><strong style={{ color: 'var(--text)' }}>Shipping Information</strong> — Shipping address for returning serviced gemstones or delivering purchases. Used solely for sending completed work orders or purchased items.</P>
+              <P><strong style={{ color: 'var(--text)' }}>Service & Transaction Information</strong> — Work order submissions, service instructions, invoice records, payment status, and transaction references.</P>
+              <P><strong style={{ color: 'var(--text)' }}>Communication Information</strong> — Messages sent through internal chat, customer service inquiries, and work order communications.</P>
+              <P><strong style={{ color: 'var(--text)' }}>Technical & Usage Information</strong> — Limited data such as IP address, device type, browser information, and access timestamps used for system security and functionality.</P>
             </PrivSec>
             <PrivSec n="3" title="How Your Information Is Used">
               <P>Information may be used to create and maintain your account, process service requests, generate and track work orders, issue invoices, ship gemstones, deliver SMS notifications for enabled events, operate the internal messaging system, maintain transaction records, improve system reliability, and comply with applicable legal requirements. Cutting Corners Gems does not use personal information for unsolicited marketing communications.</P>
@@ -386,7 +386,7 @@ export default function LegalUnified() {
                 SECTION 3 — SMS DISCLOSURE
             ════════════════════════════════════════════════════ */}
             <div id="sms-top" className="anchor">
-              <h2 style={{ fontFamily: "'Oranienbaum', serif", fontSize: 'clamp(24px, 3vw, 34px)', color: '#FAFAFA', marginBottom: '24px' }}>SMS Notification Terms &amp; Disclosure</h2>
+              <h2 style={{ fontFamily: "'Oranienbaum', serif", fontSize: 'clamp(24px, 3vw, 34px)', color: 'var(--text)', marginBottom: '24px' }}>SMS Notification Terms &amp; Disclosure</h2>
               <p style={{ fontSize: '12px', color: 'rgba(255,255,255,0.7)', marginBottom: '28px' }}>Program Name: Cutting Corners Gems — User Opt-In/Out Account Notifications</p>
               <GoldNote>
                 By providing a mobile phone number and enabling SMS notification toggles within your account dashboard, you consent to receive transactional SMS notifications related to your account activity. Notifications are optional and can be enabled or disabled individually at any time from your Account Dashboard. Cutting Corners Gems does not send unsolicited marketing or promotional SMS messages.
@@ -401,11 +401,11 @@ export default function LegalUnified() {
                 { label: 'New Listing Alerts', desc: 'Optional marketing notifications sent when new gemstones are listed in the online shop. Frequency varies by inventory.' },
                 { label: 'Chat Message Alerts', desc: 'Two-way conversational notifications when new messages are sent or received through the account chat system.' },
               ].map(p => (
-                <div key={p.label} style={{ padding: '14px 18px', background: '#0A0A0A', border: '1px solid rgba(255,255,255,0.06)', borderRadius: '4px', display: 'flex', gap: '14px', alignItems: 'flex-start' }}>
+                <div key={p.label} style={{ padding: '14px 18px', background: 'var(--bg)', border: '1px solid rgba(255,255,255,0.06)', borderRadius: '4px', display: 'flex', gap: '14px', alignItems: 'flex-start' }}>
                   <div style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#d4af37', flexShrink: 0, marginTop: '5px', opacity: 0.7 }} />
                   <div>
                     <p style={{ fontSize: '13px', fontWeight: 600, color: '#FFFFFF', margin: '0 0 4px 0', letterSpacing: '0.05em' }}>{p.label}</p>
-                    <p style={{ fontSize: '13px', color: '#FAFAFA', margin: 0, lineHeight: 1.65 }}>{p.desc}</p>
+                    <p style={{ fontSize: '13px', color: 'var(--text)', margin: 0, lineHeight: 1.65 }}>{p.desc}</p>
                   </div>
                 </div>
               ))}
@@ -416,7 +416,7 @@ export default function LegalUnified() {
             <GoldNote>
               <strong>Active Work Order Requirement:</strong> Work order notifications cannot be disabled while you have an open work order. Because your gemstone is in our possession during this time, we require the ability to reach you with status updates and required confirmations. This toggle becomes available to turn off once your work order is complete and your item has been returned.
             </GoldNote>
-            <p style={{ marginTop: '8px', fontSize: '14px', color: 'rgba(255,255,255,0.85)' }}>Sample messages:</p>
+            <p style={{ marginTop: '8px', fontSize: '14px', color: 'rgba(var(--text-rgb, 238,238,238),0.85)' }}>Sample messages:</p>
             <SmsPreview examples={acctNotificationExamples} />
 
             <SectionHeading id="listing-alerts">New Gemstone Listing Alerts (Marketing)</SectionHeading>
@@ -435,7 +435,7 @@ export default function LegalUnified() {
               <Li>Confirm activation by checking the consent checkbox and clicking "Enable Notifications" in the confirmation modal that appears for each toggle.</Li>
             </ol>
             <P>Each notification category has a separate opt-in toggle and a separate consent modal. Enabling one category does not enable others.</P>
-            <P>You may disable any SMS notification category at any time by turning off the corresponding toggle in your Account Dashboard. You may also reply <strong style={{ color: '#FAFAFA' }}>STOP</strong> to any message to opt out. Reply <strong style={{ color: '#FAFAFA' }}>HELP</strong> to any message for assistance. Standard message and data rates may apply.</P>
+            <P>You may disable any SMS notification category at any time by turning off the corresponding toggle in your Account Dashboard. You may also reply <strong style={{ color: 'var(--text)' }}>STOP</strong> to any message to opt out. Reply <strong style={{ color: 'var(--text)' }}>HELP</strong> to any message for assistance. Standard message and data rates may apply.</P>
 
             <SectionHeading id="keywords">Standard Keyword Responses</SectionHeading>
             <SmsPreview examples={keywordExamples} />
@@ -447,7 +447,7 @@ export default function LegalUnified() {
             {/* ── Contact block ── */}
             <div style={{ marginTop: '64px', padding: '28px', border: '1px solid #d4af37', background: '#d4af37', borderRadius: '2px' }}>
               <p style={{ fontFamily: "'Montserrat', sans-serif", fontSize: '9px', letterSpacing: '0.3em', textTransform: 'uppercase', color: '#d4af37', marginBottom: '14px' }}>Contact</p>
-              <p style={{ fontSize: '13px', color: 'rgba(255,255,255,0.85)', lineHeight: 2.1, margin: 0 }}>
+              <p style={{ fontSize: '13px', color: 'rgba(var(--text-rgb, 238,238,238),0.85)', lineHeight: 2.1, margin: 0 }}>
                 Cutting Corners Gems<br />
                 850 S River Dr #2117, Tempe, Arizona 85281<br />
                 Website Admin: Tracy Young — admin@cuttingcornersgems.com<br />

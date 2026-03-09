@@ -74,7 +74,7 @@ export default function DesktopCompanyModel() {
         .dtop-chapter-heading {
           font-family: 'Oranienbaum', serif;
           font-size: clamp(28px, 3.5vw, 48px);
-          color: #FAFAFA;
+          color: var(--text);
           line-height: 1.15;
           margin-bottom: 32px;
         }
@@ -136,7 +136,7 @@ export default function DesktopCompanyModel() {
         .dtop-cta-heading {
           font-family: 'Oranienbaum', serif;
           font-size: clamp(22px, 3vw, 36px);
-          color: #FAFAFA;
+          color: var(--text);
           margin-bottom: 16px;
         }
         .dtop-cta-sub {

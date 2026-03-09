@@ -71,7 +71,7 @@ export default function PhilosophySection() {
                 fontSize: 'clamp(1.875rem, 6vw, 5.5rem)',
                 fontWeight: 400,
                 lineHeight: 1.25,
-                color: '#FAFAFA',
+                color: 'var(--text)',
               }}
             >
               <span

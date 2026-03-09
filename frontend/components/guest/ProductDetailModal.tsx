@@ -20,7 +20,7 @@ export default function ProductDetailModal({ product: modalProduct, onClose, onB
           <div style={{ ...popupBoxStyle, maxWidth: '560px' }}>
             <button
               onClick={() => { onClose(); }}
-              style={{ position: 'absolute', top: '12px', right: '12px', background: 'rgba(0,0,0,0.5)', border: '1px solid rgba(255,255,255,0.15)', borderRadius: '50%', width: '36px', height: '36px', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', color: '#FAFAFA', zIndex: 10 }}
+              style={{ position: 'absolute', top: '12px', right: '12px', background: 'rgba(0,0,0,0.5)', border: '1px solid rgba(255,255,255,0.15)', borderRadius: '50%', width: '36px', height: '36px', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', color: 'var(--text)', zIndex: 10 }}
             >
               <X size={18} />
             </button>
@@ -36,7 +36,7 @@ export default function ProductDetailModal({ product: modalProduct, onClose, onB
               </div>
             )}
 
-            <h2 style={{ fontFamily: "'Oranienbaum', serif", fontSize: '24px', fontWeight: 400, color: '#FAFAFA', marginBottom: '8px' }}>
+            <h2 style={{ fontFamily: "'Oranienbaum', serif", fontSize: '24px', fontWeight: 400, color: 'var(--text)', marginBottom: '8px' }}>
               {modalProduct.title}
             </h2>
 

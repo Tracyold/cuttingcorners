@@ -94,7 +94,7 @@ export default function WorkOrderDetailModal({ selectedWO, setSelectedWO, user, 
             <div style={{ fontSize: '15px', color: 'rgba(255,255,255,0.72)', lineHeight: 2 }}>
               <div style={{ color: 'var(--gl)', fontWeight: 600, fontSize: '16px' }}>{adminInfo.business_name}</div>
               <div>{adminInfo.full_name}</div>
-              <div style={{ fontWeight: 600, color: 'rgba(255,255,255,0.85)' }}>{adminInfo.address}</div>
+              <div style={{ fontWeight: 600, color: 'rgba(var(--text-rgb, 238,238,238),0.85)' }}>{adminInfo.address}</div>
               <div>{adminInfo.contact_email}</div>
               <div>{adminInfo.phone}</div>
             </div>
@@ -145,7 +145,7 @@ export default function WorkOrderDetailModal({ selectedWO, setSelectedWO, user, 
                 <div style={{ color: 'rgba(66,200,194,0.9)', fontSize: '16px' }}>{user.name}</div>
                 <div>{user.email}</div>
                 {user.phone && <div>{user.phone}</div>}
-                <div style={{ fontWeight: 600, color: 'rgba(255,255,255,0.85)' }}>{selectedWO.wo_shipping_address || user.shipping_address || 'No address on file'}</div>
+                <div style={{ fontWeight: 600, color: 'rgba(var(--text-rgb, 238,238,238),0.85)' }}>{selectedWO.wo_shipping_address || user.shipping_address || 'No address on file'}</div>
                 {selectedWO.wo_shipping_address && selectedWO.wo_shipping_address !== user.shipping_address && (
                   <div style={{ fontSize: '11px', color: '#ffd700', marginTop: '4px', fontStyle: 'italic' }}>* Custom address for this work order only</div>
                 )}

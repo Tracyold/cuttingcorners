@@ -9,12 +9,12 @@ const Li = ({ children }: { children: React.ReactNode }) => (
 );
 const Block = ({ title, children }: { title: string; children: React.ReactNode }) => (
   <div style={{ marginBottom: '40px' }}>
-    <h2 style={{ fontFamily: "'Comfortaa', sans-serif", fontSize: 'clamp(29x, 17vw, 24px)', color: '#FAFAFA', marginBottom: '16px', paddingBottom: '10px', borderBottom: '1px solid #d4af37' }}>{title}</h2>
+    <h2 style={{ fontFamily: "'Comfortaa', sans-serif", fontSize: 'clamp(29x, 17vw, 24px)', color: 'var(--text)', marginBottom: '16px', paddingBottom: '10px', borderBottom: '1px solid #d4af37' }}>{title}</h2>
     {children}
   </div>
 );
 const SampleMsg = ({ label, msg }: { label: string; msg: string }) => (
-  <div style={{ padding: '12px 16px', background: '#0A0A0A', border: '1px solid rgba(255,255,255,0.06)', borderRadius: '6px', marginBottom: '10px' }}>
+  <div style={{ padding: '12px 16px', background: 'var(--bg)', border: '1px solid rgba(255,255,255,0.06)', borderRadius: '6px', marginBottom: '10px' }}>
     <p style={{ fontSize: '19px', letterSpacing: '0.2em', textTransform: 'uppercase', color: '#d4af37', margin: '0 0 6px 0' }}>{label}</p>
     <p style={{ fontSize: '17px', color: 'rgba(255,255,255,0.75)', margin: 0, fontFamily: "'Courier New', monospace", lineHeight: 1.6 }}>{msg}</p>
   </div>
@@ -25,7 +25,7 @@ export default function SmsTerms() {
   return (
     <>
       <Head><title>SMS Disclosure — Cutting Corners Gems</title></Head>
-      <div style={{ background: 'transparent', minHeight: '100vh', color: '#FAFAFA' }}>
+      <div style={{ background: 'transparent', minHeight: '100vh', color: 'var(--text)' }}>
 
         <div style={{ borderBottom: '1px solid rgba(255,255,255,0.06)', padding: '20px 40px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '12px' }}>
           <button onClick={() => router.push('/')} style={{ background: 'none', border: 'none', color: 'rgba(255,255,255,0.4)', fontSize: '11px', letterSpacing: '0.25em', textTransform: 'uppercase', cursor: 'pointer' }}>← Cutting Corners Gems</button>
@@ -38,7 +38,7 @@ export default function SmsTerms() {
         <div style={{ maxWidth: '1300px', margin: '0 auto', padding: '64px 40px' }}>
 
           <p style={{ fontFamily: "'Montserrat', sans-serif", fontSize: '15px', letterSpacing: '0.3em', textTransform: 'uppercase', color: '#d4af37', marginBottom: '12px' }}>Cutting Corners Gems</p>
-          <h1 style={{ fontFamily: "'Oranienbaum', serif", fontSize: 'clamp(32px, 5vw, 52px)', color: '#FAFAFA', marginBottom: '16px', lineHeight: 1.15 }}>SMS Notification Terms & Disclosure</h1>
+          <h1 style={{ fontFamily: "'Oranienbaum', serif", fontSize: 'clamp(32px, 5vw, 52px)', color: 'var(--text)', marginBottom: '16px', lineHeight: 1.15 }}>SMS Notification Terms & Disclosure</h1>
           <p style={{ fontSize: '15px', color: 'rgba(255,255,255,0.35)', marginBottom: '8px' }}>Effective Date: March 4, 2026</p>
           <p style={{ fontSize: '15px', color: 'rgba(255,255,255,0.35)', marginBottom: '48px' }}>Program Name: Cutting Corners Gems — User Opt-In/Out Account Notifications</p>
 
@@ -57,10 +57,10 @@ export default function SmsTerms() {
                 { label: 'New Listing Alerts', desc: 'Optional marketing notifications sent when new gemstones are listed for sale, in the online shop. Frequency varies by inventory.' },
                 { label: 'Chat Message Alerts', desc: 'Two-way conversational notifications when new messages are sent or received through the account chat system.' },
               ].map(p => (
-                <div key={p.label} style={{ padding: '14px 18px', background: '#0A0A0A', border: '1px solid rgba(255,255,255,0.06)', borderRadius: '6px', display: 'flex', gap: '14px', alignItems: 'flex-start' }}>
+                <div key={p.label} style={{ padding: '14px 18px', background: 'var(--bg)', border: '1px solid rgba(255,255,255,0.06)', borderRadius: '6px', display: 'flex', gap: '14px', alignItems: 'flex-start' }}>
                   <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#d4af37', flexShrink: 0, marginTop: '5px' }} />
                   <div>
-                    <p style={{ fontSize: '17px', fontWeight: 600, color: '#FAFAFA', margin: '0 0 4px 0', letterSpacing: '0.05em' }}>{p.label}</p>
+                    <p style={{ fontSize: '17px', fontWeight: 600, color: 'var(--text)', margin: '0 0 4px 0', letterSpacing: '0.05em' }}>{p.label}</p>
                     <p style={{ fontSize: '15px', color: 'rgba(255,255,255,0.55)', margin: 0, lineHeight: 1.65 }}>{p.desc}</p>
                   </div>
                 </div>
@@ -128,8 +128,8 @@ export default function SmsTerms() {
           {/* Opt-out */}
           <Block title="Opt-Out Process">
             <P><p style={{ fontSize: '17px' }}>You may disable any SMS notification category at any time by turning off the corresponding toggle in your Account Dashboard → Notification Settings.</p></P>
-            <P><p style={{ fontSize: '17px' }}>You may also reply <strong style={{ color: '#FAFAFA' }}>STOP</strong> to any message to opt out. After opting out, messages from that program will no longer be sent unless you re-enable the toggle in your account dashboard.</p></P>
-            <P><p style={{ fontSize: '17px' }}>Reply <strong style={{ color: '#FAFAFA' }}>HELP</strong> to any message for assistance.</p></P>
+            <P><p style={{ fontSize: '17px' }}>You may also reply <strong style={{ color: 'var(--text)' }}>STOP</strong> to any message to opt out. After opting out, messages from that program will no longer be sent unless you re-enable the toggle in your account dashboard.</p></P>
+            <P><p style={{ fontSize: '17px' }}>Reply <strong style={{ color: 'var(--text)' }}>HELP</strong> to any message for assistance.</p></P>
             <P><p style={{ fontSize: '17px' }}>Standard message and data rates may apply depending on your mobile carrier.</p></P>
           </Block>
 

@@ -20,7 +20,7 @@ const popupOverlayStyle: React.CSSProperties = {
   padding: '20px',
 };
 const popupBoxStyle: React.CSSProperties = {
-  backgroundColor: '#0A0A0A',
+  backgroundColor: 'var(--bg)',
   border: '1px solid rgba(255,255,255,0.10)',
   borderRadius: '16px',
   width: '100%', maxWidth: '480px', maxHeight: '90vh',
@@ -31,7 +31,7 @@ const inputStyle: React.CSSProperties = {
   background: 'rgba(255,255,255,0.04)',
   border: '1px solid rgba(255,255,255,0.10)',
   padding: '10px 12px',
-  color: '#FAFAFA',
+  color: 'var(--text)',
   fontFamily: "'Comfortaa', sans-serif",
   fontSize: '13px',
   outline: 'none',
@@ -51,7 +51,7 @@ const goldBtnStyle: React.CSSProperties = {
   fontSize: '11px', fontWeight: 600,
   textTransform: 'uppercase',
   letterSpacing: '0.20em',
-  backgroundColor: '#d4af37', color: '#050505',
+  backgroundColor: '#d4af37', color: 'var(--bg)',
   border: 'none', padding: '14px 24px',
   cursor: 'pointer',
 };
@@ -349,7 +349,7 @@ export default function ShopPage() {
             fontFamily: "'Comfortaa', sans-serif",
             fontSize: 'clamp(30px, 6vw, 60px)',
             fontWeight: 400,
-            color: '#FAFAFA',
+            color: 'var(--text)',
             marginBottom: '48px',
           }}>
             Shop
@@ -391,7 +391,7 @@ export default function ShopPage() {
                     <div className="shop-card-vignette" />
                   </div>
                   <div style={{ padding: '0px 0px 0' }}>
-                    <h3 style={{ fontFamily: "'Montserrat', sans-serif", fontSize: '23px', color: '#060606', margin: '0 0 4px', fontWeight: 700 }}>
+                    <h3 style={{ fontFamily: "'Montserrat', sans-serif", fontSize: '23px', color: 'var(--bg)', margin: '0 0 4px', fontWeight: 700 }}>
                       {product.title}
                     </h3>
                     <div className="shop-card-mobile-title" style={{ display: 'none' }}>

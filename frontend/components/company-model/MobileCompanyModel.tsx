@@ -35,14 +35,14 @@ export default function MobileCompanyModel() {
         .mob-chapter-heading {
           font-family: 'Oranienbaum', serif;
           font-size: clamp(32px, 9vw, 48px);
-          color: #FAFAFA;
+          color: var(--text);
           line-height: 1.1;
           margin-bottom: 32px;
         }
         .mob-chapter-body p {
           font-family: 'Comfortaa', sans-serif;
           font-size: clamp(16px, 4.5vw, 19px);
-          color: rgba(255,255,255,0.85);
+          color: rgba(var(--text-rgb, 238,238,238),0.85);
           line-height: 1.9;
           margin-bottom: 20px;
         }
@@ -90,7 +90,7 @@ export default function MobileCompanyModel() {
         .mob-cta-heading {
           font-family: 'Oranienbaum', serif;
           font-size: clamp(26px, 7vw, 36px);
-          color: #FAFAFA;
+          color: var(--text);
           margin-bottom: 18px;
           line-height: 1.2;
         }

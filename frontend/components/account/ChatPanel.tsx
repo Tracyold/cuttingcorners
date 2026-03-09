@@ -35,14 +35,14 @@ export default function ChatPanel({
               <div style={{
                 maxWidth: '80%', padding: '11px 15px', borderRadius: '14px',
                 background: m.actor === 'ACCOUNT' ? 'rgba(45,212,191,1)' : '#d4af37',
-                color: '#050505', fontFamily: "'Comfortaa', sans-serif", fontSize: '15.9px', lineHeight: 1.7,
+                color: 'var(--bg)', fontFamily: "'Comfortaa', sans-serif", fontSize: '15.9px', lineHeight: 1.7,
               }}>
                 {m.body && <div>{m.body}</div>}
                 {m.attachment_url && m.attachment_type?.startsWith('image/') && (
                   <img src={m.attachment_url.startsWith('http') ? m.attachment_url : supabase.storage.from('ChatUploads').getPublicUrl(m.attachment_url).data.publicUrl} alt="attachment" style={{ maxWidth: '180px', maxHeight: '180px', objectFit: 'cover', marginTop: m.body ? '6px' : '0', borderRadius: '6px' }} />
                 )}
                 {m.attachment_url && m.attachment_type === 'application/pdf' && (
-                  <div style={{ marginTop: m.body ? '7px' : '0', fontSize: '15.9px' }}>📄 <a href={m.attachment_url.startsWith('http') ? m.attachment_url : supabase.storage.from('ChatUploads').getPublicUrl(m.attachment_url).data.publicUrl} target="_blank" rel="noopener noreferrer" style={{ color: '#050505', textDecoration: 'underline' }}>Download PDF</a></div>
+                  <div style={{ marginTop: m.body ? '7px' : '0', fontSize: '15.9px' }}>📄 <a href={m.attachment_url.startsWith('http') ? m.attachment_url : supabase.storage.from('ChatUploads').getPublicUrl(m.attachment_url).data.publicUrl} target="_blank" rel="noopener noreferrer" style={{ color: 'var(--bg)', textDecoration: 'underline' }}>Download PDF</a></div>
                 )}
               </div>
               <span style={{ fontSize: '13px', color: 'rgba(255,255,255,0.38)', marginTop: '3px', fontFamily: "'Comfortaa', sans-serif" }}>{fmtTime(m.created_at)}</span>
@@ -78,14 +78,14 @@ export default function ChatPanel({
                 <div style={{
                   maxWidth: '80%', padding: '11px 15px', borderRadius: '1.7px',
                   background: m.actor === 'ACCOUNT' ? 'rgba(45,212,191,1)' : '#d4af37',
-                  color: '#050505', fontFamily: "'Comfortaa', sans-serif", fontSize: '17px',
+                  color: 'var(--bg)', fontFamily: "'Comfortaa', sans-serif", fontSize: '17px',
                 }}>
                   {m.body && <div>{m.body}</div>}
                   {m.attachment_url && m.attachment_type?.startsWith('image/') && (
                     <img src={m.attachment_url.startsWith('http') ? m.attachment_url : supabase.storage.from('ChatUploads').getPublicUrl(m.attachment_url).data.publicUrl} alt="attachment" style={{ maxWidth: '180px', maxHeight: '180px', objectFit: 'cover', marginTop: m.body ? '6px' : '0', borderRadius: '6px' }} />
                   )}
                   {m.attachment_url && m.attachment_type === 'application/pdf' && (
-                    <div style={{ marginTop: m.body ? '6px' : '0', fontSize: '12px' }}>📄 <a href={m.attachment_url.startsWith('http') ? m.attachment_url : supabase.storage.from('ChatUploads').getPublicUrl(m.attachment_url).data.publicUrl} target="_blank" rel="noopener noreferrer" style={{ color: '#050505', textDecoration: 'underline' }}>Download PDF</a></div>
+                    <div style={{ marginTop: m.body ? '6px' : '0', fontSize: '12px' }}>📄 <a href={m.attachment_url.startsWith('http') ? m.attachment_url : supabase.storage.from('ChatUploads').getPublicUrl(m.attachment_url).data.publicUrl} target="_blank" rel="noopener noreferrer" style={{ color: 'var(--bg)', textDecoration: 'underline' }}>Download PDF</a></div>
                   )}
                 </div>
                 <span style={{ fontSize: '10px', color: 'rgba(255,255,255,0.38)', marginTop: '4px' }}>{fmtTime(m.created_at)}</span>

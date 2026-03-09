@@ -124,7 +124,7 @@ export default function DesktopServicesGrid() {
                 'sepia(1) saturate(2) brightness(1.1) drop-shadow(0 0 8px rgba(212,175,55,0.6)) drop-shadow(0 0 20px rgba(212,175,55,0.3)) drop-shadow(0 0 50px rgba(180,140,30,0.15))';
             }}
           >
-            <service.Icon size={48} color="#FAFAFA" strokeWidth={1.5} />
+            <service.Icon size={48} color="var(--text)" strokeWidth={1.5} />
           </div>
           <h3
             data-service-title

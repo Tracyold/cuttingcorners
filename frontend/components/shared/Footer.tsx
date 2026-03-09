@@ -33,7 +33,7 @@ const footerCss = `
   transition: color 180ms ease, font-size 150ms ease;
 }
 .ccg-footer-link:hover {
-  color: rgba(255,255,255,0.85);
+  color: rgba(var(--text-rgb, 238,238,238),0.85);
   font-size: 12.5px;
 }
 .ccg-footer-contact {
@@ -57,7 +57,7 @@ const footerCss = `
   transition: color 180ms ease, font-size 150ms ease;
 }
 .ccg-footer-contact-link:hover {
-  color: rgba(255,255,255,0.85);
+  color: rgba(var(--text-rgb, 238,238,238),0.85);
   font-size: 12.5px;
 }
 .ccg-footer-welcome {

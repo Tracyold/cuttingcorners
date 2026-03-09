@@ -3,7 +3,7 @@ import { supabase } from '../lib/supabase';
 import { useRouter } from 'next/router';
 
 const inputStyle: React.CSSProperties = {
-  width: '100%', background: '#0A0A0A', border: '1px solid rgba(255,255,255,0.10)',
+  width: '100%', background: 'var(--bg)', border: '1px solid rgba(255,255,255,0.10)',
   padding: '10px', color: '#d4af37', fontFamily: "'Comfortaa', sans-serif", fontSize: '14px',
   marginBottom: '12px', outline: 'none', transition: 'border 200ms ease, box-shadow 200ms ease',
 };
@@ -113,7 +113,7 @@ export default function LoginPage() {
         <p style={{ fontFamily: "'Montserrat', sans-serif", fontSize: '11px', letterSpacing: '0.25em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.55)', marginBottom: '12px' }}>
           CUTTING CORNERS GEMS
         </p>
-        <h1 style={{ fontFamily: "'Oranienbaum', serif", fontSize: '28px', color: '#FAFAFA', marginBottom: '24px' }}>
+        <h1 style={{ fontFamily: "'Oranienbaum', serif", fontSize: '28px', color: 'var(--text)', marginBottom: '24px' }}>
           {mode === 'signup' ? 'Create Account' : 'Sign In'}
         </h1>
 

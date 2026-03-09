@@ -126,7 +126,7 @@ export default function PortfolioPage() {
               fontFamily: "'Oranienbaum', serif",
               fontSize: 'clamp(30px, 6vw, 60px)',
               fontWeight: 400,
-              color: '#FAFAFA',
+              color: 'var(--text)',
               marginBottom: '48px',
             }}
           >
@@ -310,7 +310,7 @@ const portfolioCss = `
   to { opacity: 1; }
 }
 .portfolio-modal {
-  background: #0A0A0A;
+  background: var(--bg);
   border: 1px solid rgba(255,255,255,0.10);
   border-radius: 18px;
   box-shadow: 0 28px 90px rgba(0,0,0,0.70);
@@ -339,7 +339,7 @@ const portfolioCss = `
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  color: #FAFAFA;
+  color: var(--text);
   transition: all 200ms ease;
 }
 .portfolio-modal-close:hover {

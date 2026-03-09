@@ -218,7 +218,7 @@ export default function MobileServicesCarousel() {
               padding: '32px',
               paddingTop: '48px',
               borderRadius: '16px',
-              backgroundColor: '#0A0A0A',
+              backgroundColor: 'var(--bg)',
               border: 'none',
               display: 'flex',
               flexDirection: 'column',
@@ -247,7 +247,7 @@ export default function MobileServicesCarousel() {
                 fontFamily: 'var(--font-display)',
                 fontSize: 'clamp(22px, 6vw, 26px)',
                 fontWeight: 400,
-                color: '#FAFAFA',
+                color: 'var(--text)',
                 marginBottom: '16px',
                 textAlign: 'left',
               }}

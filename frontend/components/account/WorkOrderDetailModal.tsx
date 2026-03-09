@@ -35,7 +35,7 @@ export default function WorkOrderDetailModal({
   return (
     <div style={{ position: 'fixed', inset: 0, zIndex: 200, background: 'rgba(0,0,0,0.85)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px' }}
       onClick={e => { if (e.target === e.currentTarget) { setSelectedWO(null); setShowAddressEdit(false); setAddressConfirmed(false); } }}>
-      <div style={{ background: '#0A0A0A', border: '1px solid rgba(255,255,255,0.10)', padding: '40px', maxWidth: '680px', width: '100%', maxHeight: '92vh', overflowY: 'auto', borderRadius: '2px' }}>
+      <div style={{ background: 'var(--bg)', border: '1px solid rgba(255,255,255,0.10)', padding: '40px', maxWidth: '680px', width: '100%', maxHeight: '92vh', overflowY: 'auto', borderRadius: '2px' }}>
 
         {/* Header */}
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '24px' }}>
@@ -79,10 +79,10 @@ export default function WorkOrderDetailModal({
               </div>
             </div>
             <div style={{ fontFamily: "'Comfortaa', sans-serif", fontSize: '15px', color: 'rgba(255,255,255,0.65)', lineHeight: 2 }}>
-              <div style={{ color: 'rgba(255,255,255,0.85)', fontSize: '16px' }}>{profile.name}</div>
+              <div style={{ color: 'rgba(var(--text-rgb, 238,238,238),0.85)', fontSize: '16px' }}>{profile.name}</div>
               <div>{profile.email}</div>
               {profile.phone && <div>{profile.phone}</div>}
-              <div style={{ color: '#FAFAFA' }}>{selectedWO.wo_shipping_address || profile.shipping_address || 'No address on file'}</div>
+              <div style={{ color: 'var(--text)' }}>{selectedWO.wo_shipping_address || profile.shipping_address || 'No address on file'}</div>
               {selectedWO.wo_shipping_address && selectedWO.wo_shipping_address !== profile.shipping_address && (
                 <div style={{ fontSize: '10px', color: '#ffd700', marginTop: '4px', fontStyle: 'italic' }}>* Custom address for this work order only</div>
               )}
@@ -101,7 +101,7 @@ export default function WorkOrderDetailModal({
                 </p>
                 <input value={tempAddress} onChange={e => setTempAddress(e.target.value)}
                   placeholder="Enter address for this work order..."
-                  style={{ width: '100%', background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.10)', padding: '10px 12px', color: '#FAFAFA', fontFamily: "'Comfortaa', sans-serif", fontSize: '13px', outline: 'none', marginBottom: '10px' }} />
+                  style={{ width: '100%', background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.10)', padding: '10px 12px', color: 'var(--text)', fontFamily: "'Comfortaa', sans-serif", fontSize: '13px', outline: 'none', marginBottom: '10px' }} />
                 <div style={{ display: 'flex', gap: '8px' }}>
                   <button onClick={async () => {
                     if (!tempAddress.trim()) return;
@@ -111,7 +111,7 @@ export default function WorkOrderDetailModal({
                     setWorkOrders((prev: any[]) => prev.map(w => w.work_order_id === selectedWO.work_order_id ? { ...w, wo_shipping_address: tempAddress.trim(), edit_history: log } : w));
                     setAddressConfirmed(true);
                   }}
-                    style={{ fontFamily: "'Montserrat', sans-serif", fontSize: '10px', fontWeight: 600, letterSpacing: '0.15em', textTransform: 'uppercase', background: '#d4af37', color: '#050505', border: 'none', padding: '10px 16px', cursor: 'pointer' }}>
+                    style={{ fontFamily: "'Montserrat', sans-serif", fontSize: '10px', fontWeight: 600, letterSpacing: '0.15em', textTransform: 'uppercase', background: '#d4af37', color: 'var(--bg)', border: 'none', padding: '10px 16px', cursor: 'pointer' }}>
                     Confirm Address
                   </button>
                   <button onClick={() => setShowAddressEdit(false)}
@@ -168,7 +168,7 @@ export default function WorkOrderDetailModal({
           <div style={{ marginTop: '16px', padding: '16px', background: '#d4af37', border: '1px solid #d4af37' }}>
             <div style={{ fontFamily: "'Montserrat', sans-serif", fontSize: '10px', letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.35)', marginBottom: '10px' }}>Payment</div>
             <a href={selectedWO.stripe_payment_link} target="_blank" rel="noopener noreferrer"
-              style={{ fontFamily: "'Montserrat', sans-serif", fontSize: '11px', fontWeight: 600, letterSpacing: '0.15em', textTransform: 'uppercase', background: '#d4af37', color: '#050505', padding: '12px 20px', textDecoration: 'none', display: 'inline-block' }}>
+              style={{ fontFamily: "'Montserrat', sans-serif", fontSize: '11px', fontWeight: 600, letterSpacing: '0.15em', textTransform: 'uppercase', background: '#d4af37', color: 'var(--bg)', padding: '12px 20px', textDecoration: 'none', display: 'inline-block' }}>
               Pay Now
             </a>
           </div>
