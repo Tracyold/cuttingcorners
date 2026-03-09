@@ -246,19 +246,19 @@ export default function InstantEstimate() {
         .eq-bar { width: 100%; height: 1px; background: rgba(255,255,255,0.06); margin-bottom: 48px; position: relative; }
         .eq-fill { position: absolute; top: 0; left: 0; height: 100%; background: rgba(212,175,55,0.6); transition: width 300ms ease; }
         .eq-step { font-family: 'Montserrat', sans-serif; font-size: 15px; letter-spacing: 0.25em; text-transform: uppercase; color: rgba(212,175,55,0.9); margin-bottom: 20px; }
-        .eq-q { font-family: 'Oranienbaum', serif; font-size: clamp(27px, 4.5vw, 40px); color: #FAFAFA; line-height: 1.2; margin-bottom: 40px; }
+        .eq-q { font-family: 'Oranienbaum', serif; font-size: clamp(27px, 4.5vw, 40px); color: var(--text); line-height: 1.2; margin-bottom: 40px; }
         .eq-sub { font-family: 'Montserrat', sans-serif; font-size: 15px; color: rgba(255,255,255,0.75); margin-bottom: 20px; letter-spacing: 0.05em; }
         .eq-opts { display: flex; flex-direction: column; gap: 8px; margin-bottom: 40px; }
-        .eq-opt { padding: 17px 22px; border: 1px solid rgba(255,255,255,0.15); background: transparent; color: rgba(255,255,255,0.85); font-family: 'Montserrat', sans-serif; font-size: 19px; text-align: left; cursor: pointer; transition: all 150ms; letter-spacing: 0.02em; width: 100%; }
-        .eq-opt:hover { border-color: #d4af37; color: #FAFAFA; background: rgba(212,175,55,0.04); }
-        .eq-opt.sel { border-color: #d4af37; color: #FAFAFA; background: rgba(212,175,55,0.08); }
+        .eq-opt { padding: 17px 22px; border: 1px solid rgba(255,255,255,0.15); background: transparent; color: rgba(var(--text-rgb, 238,238,238),0.85); font-family: 'Montserrat', sans-serif; font-size: 19px; text-align: left; cursor: pointer; transition: all 150ms; letter-spacing: 0.02em; width: 100%; }
+        .eq-opt:hover { border-color: #d4af37; color: var(--text); background: rgba(212,175,55,0.04); }
+        .eq-opt.sel { border-color: #d4af37; color: var(--text); background: rgba(212,175,55,0.08); }
         .eq-acts { display: flex; gap: 12px; }
         .eq-next { padding: 15px 36px; background: #d4af37; border: none; color: #050505; font-family: 'Montserrat', sans-serif; font-size: 15px; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; cursor: pointer; }
         .eq-next:disabled { opacity: 0.25; cursor: not-allowed; }
         .eq-back { padding: 15px 22px; background: none; border: 1px solid rgba(255,255,255,0.25); color: rgba(255,255,255,0.75); font-family: 'Montserrat', sans-serif; font-size: 15px; letter-spacing: 0.2em; text-transform: uppercase; cursor: pointer; }
         .res-row { display: flex; justify-content: space-between; align-items: baseline; padding: 13px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
         .res-lbl { font-family: 'Montserrat', sans-serif; font-size: 15px; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.65); }
-        .res-val { font-family: 'Comfortaa', sans-serif; font-size: 17px; color: rgba(255,255,255,0.95); }
+        .res-val { font-family: 'Comfortaa', sans-serif; font-size: 17px; color: var(--text); }
         .flag-item { padding: 12px 16px; border-left: 2px solid rgba(220,80,80,0.7); margin-bottom: 8px; background: rgba(220,80,80,0.06); font-family: 'Comfortaa', sans-serif; font-size: 15px; color: rgba(220,80,80,0.95); line-height: 1.6; }
         .online-item { padding: 12px 16px; border-left: 2px solid rgba(100,160,220,0.7); margin-bottom: 8px; background: rgba(100,160,220,0.06); font-family: 'Comfortaa', sans-serif; font-size: 15px; color: rgba(100,160,220,0.95); line-height: 1.6; }
         .price-box { padding: 28px; border: 1px solid #d4af37; background: rgba(212,175,55,0.03); margin-bottom: 24px; }
@@ -510,7 +510,7 @@ export default function InstantEstimate() {
                 <div style={{ padding: '20px 24px', border: '1px solid rgba(100,160,220,0.25)', background: 'rgba(100,160,220,0.04)', marginBottom: 28 }}>
                   <p style={{ fontFamily: 'Montserrat, sans-serif', fontSize: 15, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(100,160,220,0.9)', marginBottom: 8 }}>Recommended Next Step</p>
                   <p style={{ fontFamily: 'Oranienbaum, serif', fontSize: 27, color: 'rgba(100,160,220,0.95)', marginBottom: 12 }}>Online Estimate — $3</p>
-                  <p style={{ fontFamily: 'Comfortaa, sans-serif', fontSize: 15, color: 'rgba(255,255,255,0.85)', lineHeight: 1.85, marginBottom: 16 }}>
+                  <p style={{ fontFamily: 'Comfortaa, sans-serif', fontSize: 15, color: 'rgba(var(--text-rgb, 238,238,238),0.85)', lineHeight: 1.85, marginBottom: 16 }}>
                     Based on your answers, we recommend starting with an online estimate. This lets our cutter review your stone through photos before committing to a service.
                   </p>
                   <a href="/estimates" style={{ display: 'inline-block', padding: '11px 24px', background: 'rgba(100,160,220,0.1)', border: '1px solid rgba(100,160,220,0.3)', color: 'rgba(100,160,220,0.95)', fontFamily: 'Montserrat, sans-serif', fontSize: 15, letterSpacing: '0.2em', textTransform: 'uppercase', textDecoration: 'none' }}>View Online Estimate Options →</a>
@@ -523,13 +523,13 @@ export default function InstantEstimate() {
                   <div className="feas-box" style={{ marginBottom: 16 }}>
                     <p style={{ fontFamily: 'Montserrat, sans-serif', fontSize: 15, letterSpacing: '0.2em', textTransform: 'uppercase', color: '#d4af37', marginBottom: 8 }}>Recommended Next Step</p>
                     <p style={{ fontFamily: 'Oranienbaum, serif', fontSize: 27, color: '#d4af37', marginBottom: 12 }}>Feasibility Report — $30</p>
-                    <p style={{ fontFamily: 'Comfortaa, sans-serif', fontSize: 15, color: 'rgba(255,255,255,0.85)', lineHeight: 1.85 }}>
+                    <p style={{ fontFamily: 'Comfortaa, sans-serif', fontSize: 15, color: 'rgba(var(--text-rgb, 238,238,238),0.85)', lineHeight: 1.85 }}>
                       A feasibility report will determine what is possible for your stone before any service is quoted. If services are rendered after the report, the $30 fee is waived and the report is included when your gemstone is returned.
                     </p>
                   </div>
                   <div style={{ padding: '20px 24px', border: '1px solid rgba(255,255,255,0.08)', background: 'rgba(255,255,255,0.02)', marginBottom: 28 }}>
                     <p style={{ fontFamily: 'Montserrat, sans-serif', fontSize: 15, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.6)', marginBottom: 8 }}>Alternative Option</p>
-                    <p style={{ fontFamily: 'Oranienbaum, serif', fontSize: 27, color: 'rgba(255,255,255,0.9)', marginBottom: 12 }}>In-Person Evaluation — $10</p>
+                    <p style={{ fontFamily: 'Oranienbaum, serif', fontSize: 27, color: 'var(--text)', marginBottom: 12 }}>In-Person Evaluation — $10</p>
                     <p style={{ fontFamily: 'Comfortaa, sans-serif', fontSize: 15, color: 'rgba(255,255,255,0.75)', lineHeight: 1.85 }}>
                       Your stone has characteristics that require hands-on evaluation before any estimate can be made. The $10 fee is credited toward any service you proceed with.
                     </p>
@@ -546,13 +546,13 @@ export default function InstantEstimate() {
                   {st.svcRecs.length > 0 && (
                     <div style={{ marginTop: 20, paddingTop: 16, borderTop: '1px solid rgba(255,255,255,0.06)' }}>
                       <p style={{ fontFamily: 'Montserrat, sans-serif', fontSize: 15, letterSpacing: '0.15em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.75)', marginBottom: 8 }}>Recommended Service</p>
-                      {st.svcRecs.map((r, i) => <p key={i} style={{ fontFamily: 'Comfortaa, sans-serif', fontSize: 17, color: 'rgba(255,255,255,0.95)', marginBottom: 4 }}>{r}</p>)}
+                      {st.svcRecs.map((r, i) => <p key={i} style={{ fontFamily: 'Comfortaa, sans-serif', fontSize: 17, color: 'var(--text)', marginBottom: 4 }}>{r}</p>)}
                     </div>
                   )}
                   {st.svcCmp && st.svcCmp !== 'Not sure' && st.svcRecs.length > 0 && !st.svcRecs.includes(st.svcCmp) && (
                     <div style={{ marginTop: 16, paddingTop: 16, borderTop: '1px solid rgba(255,255,255,0.06)' }}>
-                      <p style={{ fontFamily: 'Comfortaa, sans-serif', fontSize: 15, color: 'rgba(255,255,255,0.85)', lineHeight: 1.85 }}>
-                        You were hoping for <strong style={{ color: 'rgba(255,255,255,0.95)' }}>{st.svcCmp}</strong>. Based on your answers, <strong style={{ color: '#d4af37' }}>{st.svcRecs[0]}</strong> may be more appropriate.
+                      <p style={{ fontFamily: 'Comfortaa, sans-serif', fontSize: 15, color: 'rgba(var(--text-rgb, 238,238,238),0.85)', lineHeight: 1.85 }}>
+                        You were hoping for <strong style={{ color: 'var(--text)' }}>{st.svcCmp}</strong>. Based on your answers, <strong style={{ color: '#d4af37' }}>{st.svcRecs[0]}</strong> may be more appropriate.
                       </p>
                     </div>
                   )}

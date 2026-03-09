@@ -13,9 +13,9 @@ function ResultBadge({ result }: { result: string }) {
 
 const SL = { fontFamily: 'Montserrat, sans-serif', fontSize: '13px', letterSpacing: '0.25em', textTransform: 'uppercase' as const, color: 'rgba(212,175,55,0.9)', marginBottom: '12px', marginTop: '32px', paddingBottom: '8px', borderBottom: '1px solid rgba(255,255,255,0.05)' };
 const FL = { fontFamily: 'Montserrat, sans-serif', fontSize: '13px', letterSpacing: '0.15em', textTransform: 'uppercase' as const, color: 'rgba(100,160,220,0.9)', marginBottom: '4px' };
-const FV = { fontFamily: 'Comfortaa, sans-serif', fontSize: '15px', color: 'rgba(255,255,255,0.95)', marginBottom: '17px' };
+const FV = { fontFamily: 'Comfortaa, sans-serif', fontSize: '15px', color: 'var(--text)', marginBottom: '17px' };
 const TH = { fontFamily: 'Montserrat, sans-serif', fontSize: '13px', letterSpacing: '0.12em', textTransform: 'uppercase' as const, color: 'rgba(100,160,220,0.9)', padding: '8px 10px', borderBottom: '1px solid rgba(255,255,255,0.06)', textAlign: 'left' as const };
-const TC = { fontFamily: 'Comfortaa, sans-serif', fontSize: '15px', color: 'rgba(255,255,255,0.9)', padding: '10px', borderBottom: '1px solid rgba(255,255,255,0.04)', verticalAlign: 'top' as const };
+const TC = { fontFamily: 'Comfortaa, sans-serif', fontSize: '15px', color: 'var(--text)', padding: '10px', borderBottom: '1px solid rgba(255,255,255,0.04)', verticalAlign: 'top' as const };
 
 const CARD: React.CSSProperties = { background: '#0D0D0D', border: '1px solid #d4af37', padding: '48px', width: '100%' };
 
@@ -41,7 +41,7 @@ export default function FeasibilityDesktop() {
           <div className="fd-header">
             <div>
               <p style={{ fontFamily: 'Montserrat, sans-serif', fontSize: '13px', letterSpacing: '0.25em', textTransform: 'uppercase', color: 'rgba(212,175,55,0.9)', marginBottom: '6px' }}>CCG Cut Feasibility Report</p>
-              <p style={{ fontFamily: 'Oranienbaum, serif', fontSize: '21px', color: '#FAFAFA', lineHeight: 1.1, marginBottom: '4px' }}>Pre-Cut Evaluation</p>
+              <p style={{ fontFamily: 'Oranienbaum, serif', fontSize: '21px', color: 'var(--text)', lineHeight: 1.1, marginBottom: '4px' }}>Pre-Cut Evaluation</p>
               <p style={{ fontFamily: 'Comfortaa, sans-serif', fontSize: '14px', color: 'rgba(255,255,255,0.7)' }}>Report #{precut.id}</p>
             </div>
             <div style={{ textAlign: 'right' }}>
@@ -58,7 +58,7 @@ export default function FeasibilityDesktop() {
           </div>
 
           <p style={SL}>Current Condition Summary</p>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0 24px', marginBottom: '12px' }}><div><p style={FL}>Surface Condition</p><p style={FV}>{precut.condition.surfaceCondition}</p></div><div><p style={FL}>Structural Stability</p><p style={FV}>{precut.condition.structuralStability}</p></div></div><p style={FL}>Intake Notes</p><p style={{ fontFamily: 'Comfortaa, sans-serif', fontSize: '15px', color: 'rgba(255,255,255,0.9)', lineHeight: 1.75, marginTop: '6px' }}>{precut.condition.intakeNotes}</p>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0 24px', marginBottom: '12px' }}><div><p style={FL}>Surface Condition</p><p style={FV}>{precut.condition.surfaceCondition}</p></div><div><p style={FL}>Structural Stability</p><p style={FV}>{precut.condition.structuralStability}</p></div></div><p style={FL}>Intake Notes</p><p style={{ fontFamily: 'Comfortaa, sans-serif', fontSize: '15px', color: 'var(--text)', lineHeight: 1.75, marginTop: '6px' }}>{precut.condition.intakeNotes}</p>
 
           <p style={SL}>Symbol Legend</p>
           <div className="fd-sym-grid">
@@ -67,7 +67,7 @@ export default function FeasibilityDesktop() {
                 <span style={{ fontFamily: 'monospace', fontSize: '14px', color: 'rgba(212,175,55,0.7)', minWidth: '17px' }}>{s.symbol}</span>
                 <div>
                   <p style={{ fontFamily: 'Montserrat, sans-serif', fontSize: '13px', letterSpacing: '0.1em', textTransform: 'uppercase', color: 'rgba(100,160,220,0.9)', marginBottom: '1px' }}>{s.type}</p>
-                  <p style={{ fontFamily: 'Comfortaa, sans-serif', fontSize: '15px', color: 'rgba(255,255,255,0.9)' }}>{s.desc}</p>
+                  <p style={{ fontFamily: 'Comfortaa, sans-serif', fontSize: '15px', color: 'var(--text)' }}>{s.desc}</p>
                 </div>
               </div>
             ))}
@@ -123,7 +123,7 @@ export default function FeasibilityDesktop() {
           {precut.conditionals.map((c, i) => (
             <div key={i} style={{ display: 'flex', gap: '10px', marginBottom: '10px' }}>
               <span style={{ color: '#d4af37', fontSize: '15px', marginTop: '2px', flexShrink: 0 }}>—</span>
-              <p style={{ fontFamily: 'Comfortaa, sans-serif', fontSize: '15px', color: 'rgba(255,255,255,0.9)', lineHeight: 1.7 }}>{c}</p>
+              <p style={{ fontFamily: 'Comfortaa, sans-serif', fontSize: '15px', color: 'var(--text)', lineHeight: 1.7 }}>{c}</p>
             </div>
           ))}
 
@@ -134,12 +134,12 @@ export default function FeasibilityDesktop() {
                 <p style={{ fontFamily: 'Montserrat, sans-serif', fontSize: '15px', fontWeight: 600, color: '#d4af37', letterSpacing: '0.1em' }}>{o.label}</p>
                 {i === 1 && <span style={{ fontFamily: 'Montserrat, sans-serif', fontSize: '13px', letterSpacing: '0.12em', textTransform: 'uppercase', color: '#d4af37' }}>Recommended</span>}
               </div>
-              <p style={{ fontFamily: 'Comfortaa, sans-serif', fontSize: '15px', color: 'rgba(255,255,255,0.9)', lineHeight: 1.7 }}>{o.desc}</p>
+              <p style={{ fontFamily: 'Comfortaa, sans-serif', fontSize: '15px', color: 'var(--text)', lineHeight: 1.7 }}>{o.desc}</p>
             </div>
           ))}
 
           <p style={SL}>Summary Evaluation</p>
-          <p style={FL}>Overall Assessment</p><p style={{ fontFamily: 'Comfortaa, sans-serif', fontSize: '15px', color: 'rgba(255,255,255,0.9)', lineHeight: 1.75, marginTop: '6px', marginBottom: '16px' }}>{precut.summary.assessment}</p><p style={FL}>Recommended Direction</p><p style={{ fontFamily: 'Comfortaa, sans-serif', fontSize: '15px', color: 'rgba(255,255,255,0.9)', lineHeight: 1.75, marginTop: '6px' }}>{precut.summary.recommendation}</p>
+          <p style={FL}>Overall Assessment</p><p style={{ fontFamily: 'Comfortaa, sans-serif', fontSize: '15px', color: 'var(--text)', lineHeight: 1.75, marginTop: '6px', marginBottom: '16px' }}>{precut.summary.assessment}</p><p style={FL}>Recommended Direction</p><p style={{ fontFamily: 'Comfortaa, sans-serif', fontSize: '15px', color: 'var(--text)', lineHeight: 1.75, marginTop: '6px' }}>{precut.summary.recommendation}</p>
           <div className="fd-disclaimer">This report is an analytical evaluation only and does not constitute a price quote, guarantee of outcome, or appraisal. All observations are based on visual and optical examination under standard conditions. CCG Cut Feasibility Reports are the proprietary product of Cutting Corners Gems.</div>
         </div>
 
@@ -148,7 +148,7 @@ export default function FeasibilityDesktop() {
           <div className="fd-header">
             <div>
               <p style={{ fontFamily: 'Montserrat, sans-serif', fontSize: '13px', letterSpacing: '0.25em', textTransform: 'uppercase', color: '#d4af37', marginBottom: '6px' }}>CCG Cut Feasibility Report</p>
-              <p style={{ fontFamily: 'Oranienbaum, serif', fontSize: '21px', color: '#FAFAFA', lineHeight: 1.1, marginBottom: '4px' }}>Post-Cut Change Report</p>
+              <p style={{ fontFamily: 'Oranienbaum, serif', fontSize: '21px', color: 'var(--text)', lineHeight: 1.1, marginBottom: '4px' }}>Post-Cut Change Report</p>
               <p style={{ fontFamily: 'Comfortaa, sans-serif', fontSize: '14px', color: 'rgba(255,255,255,0.7)' }}>Report #{postcut.id}</p>
             </div>
             <div style={{ textAlign: 'right' }}>
@@ -181,7 +181,7 @@ export default function FeasibilityDesktop() {
           {postcut.beforeAfter.objectives.map((o, i) => (
             <div key={i} style={{ display: 'flex', gap: '10px', marginBottom: '8px' }}>
               <span style={{ color: '#d4af37', fontSize: '15px', marginTop: '2px', flexShrink: 0 }}>—</span>
-              <p style={{ fontFamily: 'Comfortaa, sans-serif', fontSize: '15px', color: 'rgba(255,255,255,0.9)', lineHeight: 1.65 }}>{o}</p>
+              <p style={{ fontFamily: 'Comfortaa, sans-serif', fontSize: '15px', color: 'var(--text)', lineHeight: 1.65 }}>{o}</p>
             </div>
           ))}
 

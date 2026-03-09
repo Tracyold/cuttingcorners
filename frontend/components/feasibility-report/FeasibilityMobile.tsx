@@ -14,10 +14,10 @@ function ResultBadge({ result }: { result: string }) {
 
 const SL = { fontFamily: 'Montserrat, sans-serif', fontSize: '13px', letterSpacing: '0.25em', textTransform: 'uppercase' as const, color: 'rgba(212,175,55,0.9)', marginBottom: '14px', marginTop: '28px', paddingBottom: '8px', borderBottom: '1px solid rgba(255,255,255,0.07)' };
 const FL = { fontFamily: 'Montserrat, sans-serif', fontSize: '13px', letterSpacing: '0.15em', textTransform: 'uppercase' as const, color: 'rgba(100,160,220,0.9)', marginBottom: '4px' };
-const FV = { fontFamily: 'Comfortaa, sans-serif', fontSize: '17px', color: 'rgba(255,255,255,0.95)', marginBottom: '17px' };
+const FV = { fontFamily: 'Comfortaa, sans-serif', fontSize: '17px', color: 'var(--text)', marginBottom: '17px' };
 const TH = { fontFamily: 'Montserrat, sans-serif', fontSize: '13px', letterSpacing: '0.1em', textTransform: 'uppercase' as const, color: 'rgba(100,160,220,0.9)', padding: '9px 8px', borderBottom: '1px solid rgba(255,255,255,0.07)', textAlign: 'left' as const };
-const TC = { fontFamily: 'Comfortaa, sans-serif', fontSize: '15px', color: 'rgba(255,255,255,0.9)', padding: '9px 8px', borderBottom: '1px solid rgba(30,60,120,0.4)', verticalAlign: 'top' as const };
-const BODY = { fontFamily: 'Comfortaa, sans-serif', fontSize: '15px', color: 'rgba(255,255,255,0.9)', lineHeight: 1.8 };
+const TC = { fontFamily: 'Comfortaa, sans-serif', fontSize: '15px', color: 'var(--text)', padding: '9px 8px', borderBottom: '1px solid rgba(30,60,120,0.4)', verticalAlign: 'top' as const };
+const BODY = { fontFamily: 'Comfortaa, sans-serif', fontSize: '15px', color: 'var(--text)', lineHeight: 1.8 };
 
 export default function FeasibilityMobile() {
   const [activeTab, setActiveTab] = useState<'precut' | 'postcut'>('precut');
@@ -46,7 +46,7 @@ export default function FeasibilityMobile() {
         <div className="fm-card">
           {/* Header */}
           <p style={{ fontFamily: 'Montserrat, sans-serif', fontSize: '13px', letterSpacing: '0.3em', textTransform: 'uppercase', color: 'rgba(212,175,55,0.9)', marginBottom: '6px' }}>CCG Cut Feasibility Report</p>
-          <p style={{ fontFamily: 'Oranienbaum, serif', fontSize: 'clamp(21px, 6vw, 27px)', color: '#FAFAFA', lineHeight: 1.1, marginBottom: '6px' }}>Pre-Cut Evaluation</p>
+          <p style={{ fontFamily: 'Oranienbaum, serif', fontSize: 'clamp(21px, 6vw, 27px)', color: 'var(--text)', lineHeight: 1.1, marginBottom: '6px' }}>Pre-Cut Evaluation</p>
           <p style={{ fontFamily: 'Comfortaa, sans-serif', fontSize: '13px', color: 'rgba(255,255,255,0.6)', marginBottom: '20px' }}>Report #{precut.id} · {precut.date} · {precut.analyst}</p>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0 16px', marginBottom: '8px' }}>
             <div><p style={FL}>Client</p><p style={FV}>{precut.clientName}</p></div>
@@ -77,7 +77,7 @@ export default function FeasibilityMobile() {
           {precut.symbolLegend.map(s => (
             <div key={s.symbol} style={{ display: 'flex', gap: '12px', alignItems: 'flex-start', marginBottom: '10px' }}>
               <span style={{ fontFamily: 'monospace', fontSize: '17px', color: 'rgba(212,175,55,0.85)', minWidth: '21px' }}>{s.symbol}</span>
-              <p style={{ fontFamily: 'Comfortaa, sans-serif', fontSize: '15px', color: 'rgba(255,255,255,0.9)' }}>
+              <p style={{ fontFamily: 'Comfortaa, sans-serif', fontSize: '15px', color: 'var(--text)' }}>
                 <span style={{ color: 'rgba(100,160,220,0.9)', marginRight: '8px', fontSize: '13px', letterSpacing: '0.1em', textTransform: 'uppercase' }}>{s.type}</span>
                 {s.desc}
               </p>
@@ -203,7 +203,7 @@ export default function FeasibilityMobile() {
         <div className="fm-card">
           {/* Header */}
           <p style={{ fontFamily: 'Montserrat, sans-serif', fontSize: '13px', letterSpacing: '0.3em', textTransform: 'uppercase', color: '#d4af37', marginBottom: '6px' }}>CCG Cut Feasibility Report</p>
-          <p style={{ fontFamily: 'Oranienbaum, serif', fontSize: 'clamp(21px, 6vw, 27px)', color: '#FAFAFA', lineHeight: 1.1, marginBottom: '6px' }}>Post-Cut Change Report</p>
+          <p style={{ fontFamily: 'Oranienbaum, serif', fontSize: 'clamp(21px, 6vw, 27px)', color: 'var(--text)', lineHeight: 1.1, marginBottom: '6px' }}>Post-Cut Change Report</p>
           <p style={{ fontFamily: 'Comfortaa, sans-serif', fontSize: '13px', color: 'rgba(255,255,255,0.6)', marginBottom: '20px' }}>Report #{postcut.id} · {postcut.date} · {postcut.analyst}</p>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0 16px', marginBottom: '8px' }}>
             <div><p style={FL}>Client</p><p style={FV}>{postcut.clientName}</p></div>

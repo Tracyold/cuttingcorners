@@ -72,7 +72,7 @@ export default function DesktopEstimates() {
         .dest-title {
           font-family: 'Oranienbaum', serif;
           font-size: clamp(22px, 2.5vw, 32px);
-          color: #FAFAFA;
+          color: var(--text);
           margin-bottom: 16px;
           line-height: 1.2;
         }

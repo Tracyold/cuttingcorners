@@ -88,7 +88,7 @@ export default function LegalPage() {
           fontFamily: "'Oranienbaum', serif",
           fontSize: '38px',
           fontWeight: 400,
-          color: '#FAFAFA',
+          color: 'var(--text)',
           marginBottom: '12px',
         }}
       >

@@ -17,7 +17,7 @@ export default function InquiryDetailModal({ selectedInq, setSelectedInq, select
   return (
     <div style={{ position: 'fixed', inset: 0, zIndex: 200, background: 'rgba(0,0,0,0.85)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px' }}
       onClick={e => { if (e.target === e.currentTarget) onClose(); }}>
-      <div style={{ background: '#0A0A0A', border: '1px solid rgba(255,255,255,0.10)', padding: '31px', maxWidth: '560px', width: '100%', maxHeight: '90vh', overflowY: 'auto', borderRadius: '2px' }}>
+      <div style={{ background: 'var(--bg)', border: '1px solid rgba(255,255,255,0.10)', padding: '31px', maxWidth: '560px', width: '100%', maxHeight: '90vh', overflowY: 'auto', borderRadius: '2px' }}>
 
         {/* Header */}
         <div style={{ marginBottom: '20px' }}>

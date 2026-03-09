@@ -40,7 +40,7 @@ const css = `
   font-family: 'Comfortaa', Georgia, serif;
   font-size: 27px;
   font-weight: 650;
-  color: #fafafaeb;
+  color: var(--text)eb;
   text-decoration: none;
   letter-spacing: 0.05em;
   white-space: nowrap;
@@ -71,7 +71,7 @@ const css = `
   background: #d4af37;
   transition: right 220ms ease;
 }
-.tnav-link:hover { color: #FAFAFA; }
+.tnav-link:hover { color: var(--text); }
 .tnav-link:hover::after { right: 0; }
 .tnav-auth {
   font-family: 'Comfortaa', sans-serif;

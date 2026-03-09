@@ -1,12 +1,8 @@
 import React, { useEffect } from 'react';
 import { ArrowRight } from 'lucide-react';
 import { services } from '../components/home/homeData';
-import MobileIndustrySection from '../components/home/MobileIndustrySection';
 import MobileServicesCarousel from '../components/home/MobileServicesCarousel';
 import DesktopServicesGrid from '../components/home/DesktopServicesGrid';
-import PhilosophySection from '../components/home/PhilosophySection';
-import StudioSection from '../components/home/StudioSection';
-import GoldThread from '../components/home/GoldThread';
 import TopNav from '../components/shared/TopNav';
 import Footer from '../components/shared/Footer';
 
@@ -28,7 +24,7 @@ function GlobalStyles() {
 html, body, #__next {
   font-family: var(--font-body);
   background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 35%, #141414 60%, #0d0d0d 100%);
-  color: #FAFAFA;
+  color: var(--text);
   margin: 0;
   padding: 0;
   -webkit-font-smoothing: antialiased;
@@ -118,7 +114,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .gem-card {
-  background-color: #101010;
+  background-color: var(--bg);
   border: 1px solid rgba(255, 255, 255, 0.05);
   transition: all 0.5s ease;
   overflow: hidden;
@@ -168,7 +164,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .btn-secondary {
   background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 35%, #141414 60%, #0d0d0d 100%);
-  color: #FAFAFA;
+  color: var(--text);
   padding: 0.75rem 2rem;
   font-family: var(--font-ui);
   text-transform: uppercase;
@@ -274,7 +270,6 @@ export default function Home() {
       <GlobalStyles />
       <main>
         <TopNav />
-        <GoldThread />
 
         {/* ── Hero Section ── */}
         <section
@@ -335,7 +330,7 @@ export default function Home() {
             style={{
               width: '12rem',
               height: '12rem',
-              backgroundColor: '#0A0A0A',
+              backgroundColor: 'var(--bg)',
               border: '1px solid rgba(255,255,255,0.10)',
               padding: '1.5rem',
             }}
@@ -353,13 +348,8 @@ export default function Home() {
         </section>
 
         {/* ── Mobile Industry Section ── */}
-        <MobileIndustrySection />
 
-        {/* ── Philosophy Section ── */}
-        <PhilosophySection />
 
-        {/* ── Studio Section ── */}
-        <StudioSection />
 
         {/* ── Services Section ── */}
         <section id="services-section" data-reveal-group style={{ minHeight: "100svh", display: "flex", alignItems: "center", paddingTop: "6rem", paddingBottom: "6rem" }}>
@@ -523,7 +513,7 @@ export default function Home() {
         {/* ── CTA Section ── */}
         <section
           className="section-spacing relative overflow-hidden"
-          style={{ backgroundColor: '#0A0A0A' }}
+          style={{ backgroundColor: 'var(--bg)' }}
         >
           <div className="absolute inset-0 hero-glow pointer-events-none" style={{ opacity: 0.5 }} />
 

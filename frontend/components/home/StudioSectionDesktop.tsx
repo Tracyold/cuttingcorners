@@ -168,7 +168,7 @@ export default function StudioSection() {
           Where It Happens
         </p>
         <h2 ref={titleRef} className="title-xl"
-          style={{ marginBottom: '20px', color: '#FAFAFA' }}>
+          style={{ marginBottom: '20px', color: 'var(--text)' }}>
           The Studio
         </h2>
         <p ref={descRef} style={{

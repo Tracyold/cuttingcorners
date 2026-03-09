@@ -94,7 +94,7 @@ export default function AdminLoginPage() {
           <p style={{ fontFamily: "'Montserrat', sans-serif", fontSize: '11px', letterSpacing: '0.25em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.55)', marginBottom: '12px' }}>
             CUTTING CORNERS GEMS
           </p>
-          <h1 style={{ fontFamily: "'Oranienbaum', serif", fontSize: '28px', color: '#FAFAFA', marginBottom: '28px' }}>
+          <h1 style={{ fontFamily: "'Oranienbaum', serif", fontSize: '28px', color: 'var(--text)', marginBottom: '28px' }}>
             Admin
           </h1>
 
@@ -105,7 +105,7 @@ export default function AdminLoginPage() {
             type="email"
             value={email}
             onChange={e => setEmail(e.target.value)}
-            style={{ width: '100%', background: '#0A0A0A', border: '1px solid rgba(255,255,255,0.10)', height: '40px', padding: '0 10px', color: '#d4af37', fontFamily: "'Comfortaa', sans-serif", fontSize: '14px', marginBottom: '16px', outline: 'none', transition: 'border 200ms ease, box-shadow 200ms ease' }}
+            style={{ width: '100%', background: 'var(--bg)', border: '1px solid rgba(255,255,255,0.10)', height: '40px', padding: '0 10px', color: '#d4af37', fontFamily: "'Comfortaa', sans-serif", fontSize: '14px', marginBottom: '16px', outline: 'none', transition: 'border 200ms ease, box-shadow 200ms ease' }}
             onFocus={e => { e.target.style.borderColor = 'rgba(214,180,70,0.55)'; e.target.style.boxShadow = '0 0 10px rgba(214,180,70,0.15)'; }}
             onBlur={e => { e.target.style.borderColor = 'rgba(255,255,255,0.10)'; e.target.style.boxShadow = 'none'; }}
             onKeyDown={e => { if (e.key === 'Enter') handleLogin(); }}
@@ -119,7 +119,7 @@ export default function AdminLoginPage() {
               type={showPassword ? 'text' : 'password'}
               value={password}
               onChange={e => setPassword(e.target.value)}
-              style={{ width: '100%', background: '#0A0A0A', border: '1px solid rgba(255,255,255,0.10)', height: '40px', padding: '0 40px 0 10px', color: '#d4af37', fontFamily: "'Comfortaa', sans-serif", fontSize: '14px', outline: 'none', transition: 'border 200ms ease, box-shadow 200ms ease' }}
+              style={{ width: '100%', background: 'var(--bg)', border: '1px solid rgba(255,255,255,0.10)', height: '40px', padding: '0 40px 0 10px', color: '#d4af37', fontFamily: "'Comfortaa', sans-serif", fontSize: '14px', outline: 'none', transition: 'border 200ms ease, box-shadow 200ms ease' }}
               onFocus={e => { e.target.style.borderColor = 'rgba(214,180,70,0.55)'; e.target.style.boxShadow = '0 0 10px rgba(214,180,70,0.15)'; }}
               onBlur={e => { e.target.style.borderColor = 'rgba(255,255,255,0.10)'; e.target.style.boxShadow = 'none'; }}
               onKeyDown={e => { if (e.key === 'Enter') handleLogin(); }}

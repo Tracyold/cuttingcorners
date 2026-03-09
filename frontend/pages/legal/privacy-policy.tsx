@@ -19,7 +19,7 @@ export default function PrivacyPolicy() {
   return (
     <>
       <Head><title>Privacy Policy — Cutting Corners Gems</title></Head>
-      <div style={{ background: 'transparent', minHeight: '100vh', color: '#FAFAFA' }}>
+      <div style={{ background: 'transparent', minHeight: '100vh', color: 'var(--text)' }}>
 
         <div style={{ borderBottom: '1px solid rgba(255,255,255,0.06)', padding: '20px 40px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
           <button onClick={() => router.push('/')} style={{ background: 'none', border: 'none', color: 'rgba(255,255,255,0.4)', fontSize: '11px', letterSpacing: '0.25em', textTransform: 'uppercase', cursor: 'pointer' }}>← Cutting Corners Gems</button>
@@ -32,7 +32,7 @@ export default function PrivacyPolicy() {
         <div style={{ maxWidth: '1300px', margin: '0 auto', padding: '64px 40px' }}>
 
           <p style={{ fontFamily: "'Montserrat', sans-serif", fontSize: '11px', letterSpacing: '0.3em', textTransform: 'uppercase', color: '#d4af37', marginBottom: '12px' }}>Cutting Corners Gems</p>
-          <h1 style={{ fontFamily: "'Oranienbaum', serif", fontSize: 'clamp(32px, 5vw, 52px)', color: '#FAFAFA', marginBottom: '16px', lineHeight: 1.15 }}>Privacy Policy</h1>
+          <h1 style={{ fontFamily: "'Oranienbaum', serif", fontSize: 'clamp(32px, 5vw, 52px)', color: 'var(--text)', marginBottom: '16px', lineHeight: 1.15 }}>Privacy Policy</h1>
           <p style={{ fontSize: '13px', color: 'rgba(255,255,255,0.35)', marginBottom: '64px' }}>Effective Date: March 4, 2026</p>
 
           <P>Cutting Corners Gems respects your privacy and is committed to protecting the personal information you provide when using our website and services. By using this website or creating an account, you acknowledge and agree to the practices described in this Privacy Policy.</P>

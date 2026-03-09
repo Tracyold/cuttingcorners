@@ -16,7 +16,7 @@ export default function GlobalStyles() {
 html, body, #__next {
   font-family: var(--font-body);
   background-color: transparent;
-  color: #FAFAFA;
+  color: var(--text);
   margin: 0;
   padding: 0;
   -webkit-font-smoothing: antialiased;
@@ -106,7 +106,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .gem-card {
-  background-color: #101010;
+  background-color: var(--bg);
   border: 1px solid rgba(255, 255, 255, 0.05);
   transition: all 0.5s ease;
   overflow: hidden;
@@ -156,7 +156,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .btn-secondary {
   background-color: transparent;
-  color: #FAFAFA;
+  color: var(--text);
   padding: 0.75rem 2rem;
   font-family: var(--font-ui);
   text-transform: uppercase;

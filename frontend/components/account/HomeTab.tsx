@@ -46,7 +46,7 @@ export default function HomeTab({
         />
       )}
 
-      <h2 style={{ fontFamily: "'comfortaa', serif", fontSize: '24px', color: '#FAFAFA', marginBottom: '24px' }}>Profile</h2>
+      <h2 style={{ fontFamily: "'comfortaa', serif", fontSize: '24px', color: 'var(--text)', marginBottom: '24px' }}>Profile</h2>
       {editProfile && (
         <div style={{ display: 'grid', gap: '12px', maxWidth: '500px' }}>
           {[
@@ -75,7 +75,7 @@ export default function HomeTab({
       )}
 
       {/* Purchase stats */}
-      <div style={{ marginTop: '32px', padding: '20px', background: '#0A0A0A', border: '1px solid rgba(255,255,255,0.06)' }}>
+      <div style={{ marginTop: '32px', padding: '20px', background: 'var(--bg)', border: '1px solid rgba(255,255,255,0.06)' }}>
         <span style={{ fontFamily: "'Courier New', monospace", fontSize: '19px', color: 'rgb(48, 177, 98)' }}>{invoiceCount}</span>
         <span style={{ fontSize: '17px', color: 'rgba(255,255,255,0.55)', marginLeft: '8px' }}>items purchased</span>
         <span style={{ margin: '0 12px', color: 'rgba(255,255,255,0.15)' }}>|</span>
