@@ -1,3 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Oranienbaum&family=Montserrat:wght@300;400;500;600;700&family=Comfortaa:wght@300;400;500;600;700&family=DM+Sans:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
   --bg:           #222831;
   --bg-card:      #393E46;
@@ -14,11 +20,6 @@
   --bg-gradient:  linear-gradient(135deg, #222831 0%, #272c33 35%, #2e3239 60%, #222831 100%);
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Oranienbaum&family=Montserrat:wght@300;400;500;600;700&family=Comfortaa:wght@300;400;500;600;700&family=DM+Sans:wght@300;400;500;600;700&display=swap');
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
 
 :root[data-theme="dark"] {
   --bg:           #14171d;
