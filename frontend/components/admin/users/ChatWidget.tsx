@@ -137,7 +137,7 @@ export default function ChatWidget({ chatThread, messages, setMessages, user, id
               style={{ flex: 1, background: 'var(--k2)', border: '1px solid var(--ln)', padding: '11px 13px', color: 'var(--tx)', fontFamily: 'var(--sans)', fontSize: '15px', outline: 'none', height: '44px' }}
               onKeyDown={e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendChat(); } }} />
             <button onClick={sendChat} disabled={chatSending || !chatInput.trim()}
-              style={{ background: 'var(--gl)', border: 'none', color: '#000', padding: '11px 17px', cursor: 'pointer', fontWeight: 700, fontSize: '16px' }}>→</button>
+              style={{ background: 'var(--gl)', border: 'none', color: 'var(--bg)', padding: '11px 17px', cursor: 'pointer', fontWeight: 700, fontSize: '16px' }}>→</button>
           </div>
         </div>
       )}

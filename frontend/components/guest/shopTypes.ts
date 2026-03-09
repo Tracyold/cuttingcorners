@@ -41,15 +41,15 @@ export const popupOverlayStyle: React.CSSProperties = {
 };
 export const popupBoxStyle: React.CSSProperties = {
   backgroundColor: '#0A0A0A',
-  border: '1px solid rgba(255,255,255,0.10)',
+  border: '1px solid var(--border)',
   borderRadius: '16px',
   width: '100%', maxWidth: '480px', maxHeight: '90vh',
   overflowY: 'auto', padding: '32px',
 };
 export const inputStyle: React.CSSProperties = {
   width: '100%',
-  background: 'rgba(255,255,255,0.04)',
-  border: '1px solid rgba(255,255,255,0.10)',
+  background: 'var(--bg-card)',
+  border: '1px solid var(--border)',
   padding: '10px 12px',
   color: '#FAFAFA',
   fontFamily: "'Comfortaa', sans-serif",
@@ -81,7 +81,7 @@ export const goldBtnStyle: React.CSSProperties = {
   textTransform: 'uppercase',
   letterSpacing: '0.3em',
   background: 'transparent',
-  color: '#d4af37',
+  color: 'var(--gold)',
   border: '1px solid rgba(214,180,70,0.9)',
   padding: '14px 24px',
   marginTop: '16px',

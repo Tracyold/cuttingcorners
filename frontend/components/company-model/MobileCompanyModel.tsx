@@ -139,7 +139,7 @@ export default function MobileCompanyModel() {
                     padding: '16px 28px',
                     border: '1px solid rgba(80,200,120,0.7)',
                     color: 'rgba(80,200,120,1)',
-                    fontFamily: 'Comfortaa, sans-serif',
+                    fontFamily: 'var(--font-body)',
                     fontSize: '14px', letterSpacing: '0.12em', textTransform: 'uppercase',
                     textDecoration: 'none',
                   }}>
@@ -152,7 +152,7 @@ export default function MobileCompanyModel() {
                     padding: '16px 28px',
                     border: '1px solid rgba(80,200,120,0.7)',
                     color: 'rgba(80,200,120,1)',
-                    fontFamily: 'Comfortaa, sans-serif',
+                    fontFamily: 'var(--font-body)',
                     fontSize: '14px', letterSpacing: '0.12em', textTransform: 'uppercase',
                     textDecoration: 'none',
                   }}>

@@ -19,10 +19,10 @@ export function GuestInfoPopup({ onSubmit, onClose }: { onSubmit: (info: GuestIn
   return (
     <div style={popupOverlayStyle}>
       <div style={popupBoxStyle}>
-        <p style={{ fontFamily: "'Montserrat', sans-serif", fontSize: '10px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.20em', color: 'rgba(255,255,255,0.52)', marginBottom: '6px' }}>
+        <p style={{ fontFamily: "'Montserrat', sans-serif", fontSize: '10px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.20em', color: 'var(--text-muted)', marginBottom: '6px' }}>
           Your Information
         </p>
-        <p style={{ fontFamily: "'Comfortaa', sans-serif", fontSize: '12px', color: 'rgba(255,255,255,0.45)', marginBottom: '20px', lineHeight: 1.6 }}>
+        <p style={{ fontFamily: "'Comfortaa', sans-serif", fontSize: '12px', color: 'var(--text-muted)', marginBottom: '20px', lineHeight: 1.6 }}>
           Please enter your details before continuing.
         </p>
 

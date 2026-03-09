@@ -2,10 +2,10 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 
 const P = ({ children }: { children: React.ReactNode }) => (
-  <p style={{ fontSize: '14px', lineHeight: 1.85, color: 'rgba(255,255,255,0.65)', marginBottom: '16px' }}>{children}</p>
+  <p style={{ fontSize: '14px', lineHeight: 1.85, color: 'var(--text-muted)', marginBottom: '16px' }}>{children}</p>
 );
 const Li = ({ children }: { children: React.ReactNode }) => (
-  <li style={{ fontSize: '14px', lineHeight: 1.85, color: 'rgba(255,255,255,0.65)', marginBottom: '6px' }}>{children}</li>
+  <li style={{ fontSize: '14px', lineHeight: 1.85, color: 'var(--text-muted)', marginBottom: '6px' }}>{children}</li>
 );
 const Sec = ({ n, title, children }: { n: string; title: string; children: React.ReactNode }) => (
   <div style={{ marginBottom: '40px' }}>
@@ -24,16 +24,16 @@ export default function PrivacyPolicy() {
         <div style={{ borderBottom: '1px solid rgba(255,255,255,0.06)', padding: '20px 40px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
           <button onClick={() => router.push('/')} style={{ background: 'none', border: 'none', color: 'rgba(255,255,255,0.4)', fontSize: '11px', letterSpacing: '0.25em', textTransform: 'uppercase', cursor: 'pointer' }}>← Cutting Corners Gems</button>
           <div style={{ display: 'flex', gap: '24px' }}>
-            <button onClick={() => router.push('/legal/index')} style={{ background: 'none', border: 'none', color: 'rgba(255,255,255,0.35)', fontSize: '11px', letterSpacing: '0.15em', textTransform: 'uppercase', cursor: 'pointer' }}>Legal</button>
-            <button onClick={() => router.push('/legal/sms-terms')} style={{ background: 'none', border: 'none', color: 'rgba(255,255,255,0.35)', fontSize: '11px', letterSpacing: '0.15em', textTransform: 'uppercase', cursor: 'pointer' }}>SMS Disclosure</button>
+            <button onClick={() => router.push('/legal/index')} style={{ background: 'none', border: 'none', color: 'var(--text-muted)', fontSize: '11px', letterSpacing: '0.15em', textTransform: 'uppercase', cursor: 'pointer' }}>Legal</button>
+            <button onClick={() => router.push('/legal/sms-terms')} style={{ background: 'none', border: 'none', color: 'var(--text-muted)', fontSize: '11px', letterSpacing: '0.15em', textTransform: 'uppercase', cursor: 'pointer' }}>SMS Disclosure</button>
           </div>
         </div>
 
         <div style={{ maxWidth: '1300px', margin: '0 auto', padding: '64px 40px' }}>
 
-          <p style={{ fontFamily: "'Montserrat', sans-serif", fontSize: '11px', letterSpacing: '0.3em', textTransform: 'uppercase', color: '#d4af37', marginBottom: '12px' }}>Cutting Corners Gems</p>
+          <p style={{ fontFamily: "'Montserrat', sans-serif", fontSize: '11px', letterSpacing: '0.3em', textTransform: 'uppercase', color: 'var(--gold)', marginBottom: '12px' }}>Cutting Corners Gems</p>
           <h1 style={{ fontFamily: "'Oranienbaum', serif", fontSize: 'clamp(32px, 5vw, 52px)', color: 'var(--text)', marginBottom: '16px', lineHeight: 1.15 }}>Privacy Policy</h1>
-          <p style={{ fontSize: '13px', color: 'rgba(255,255,255,0.35)', marginBottom: '64px' }}>Effective Date: March 4, 2026</p>
+          <p style={{ fontSize: '13px', color: 'var(--text-muted)', marginBottom: '64px' }}>Effective Date: March 4, 2026</p>
 
           <P>Cutting Corners Gems respects your privacy and is committed to protecting the personal information you provide when using our website and services. By using this website or creating an account, you acknowledge and agree to the practices described in this Privacy Policy.</P>
 
@@ -122,9 +122,9 @@ export default function PrivacyPolicy() {
           </Sec>
 
           <div style={{ marginTop: '48px', display: 'flex', gap: '24px', justifyContent: 'center' }}>
-            <button onClick={() => router.push('/legal/index')} style={{ background: 'none', border: 'none', color: '#d4af37', fontSize: '11px', letterSpacing: '0.15em', textTransform: 'uppercase', cursor: 'pointer' }}>Legal</button>
+            <button onClick={() => router.push('/legal/index')} style={{ background: 'none', border: 'none', color: 'var(--gold)', fontSize: '11px', letterSpacing: '0.15em', textTransform: 'uppercase', cursor: 'pointer' }}>Legal</button>
             <span style={{ color: 'rgba(255,255,255,0.15)' }}>|</span>
-            <button onClick={() => router.push('/legal/sms-terms')} style={{ background: 'none', border: 'none', color: '#d4af37', fontSize: '11px', letterSpacing: '0.15em', textTransform: 'uppercase', cursor: 'pointer' }}>SMS Disclosure</button>
+            <button onClick={() => router.push('/legal/sms-terms')} style={{ background: 'none', border: 'none', color: 'var(--gold)', fontSize: '11px', letterSpacing: '0.15em', textTransform: 'uppercase', cursor: 'pointer' }}>SMS Disclosure</button>
           </div>
 
         </div>

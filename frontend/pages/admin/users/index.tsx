@@ -129,11 +129,11 @@ export default function AdminUsersPage() {
             onMouseLeave={e => (e.currentTarget.style.background = 'var(--k1)')}>
             <div>
               <div style={{ fontSize: '13px', letterSpacing: '.2em', textTransform: 'uppercase', color: 'var(--d2)', marginBottom: '6px' }}>Guest Account</div>
-              <div style={{ fontFamily: 'Comfortaa', fontSize: '15px', color: 'var(--wh)' }}>{guestUser.name || 'Guest User'}</div>
+              <div style={{ fontFamily: 'var(--font-body)', fontSize: '15px', color: 'var(--wh)' }}>{guestUser.name || 'Guest User'}</div>
               <div style={{ fontSize: '9px', color: 'var(--d2)', fontStyle: 'italic', marginTop: '4px' }}>This account receives all non-logged-in inquiries and product invoices</div>
             </div>
             {guestUnread > 0 && (
-              <div style={{ background: '#cfb040', color: '#000', fontSize: '19px', fontWeight: 700, width: '18px', height: '18px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <div style={{ background: '#cfb040', color: 'var(--bg)', fontSize: '19px', fontWeight: 700, width: '18px', height: '18px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                 {guestUnread > 9 ? '9+' : guestUnread}
               </div>
             )}
@@ -169,7 +169,7 @@ export default function AdminUsersPage() {
                     <td><span className={`pill ${u.status === 'ACTIVE' ? 'pill-A' : 'pill-I'}`}>{u.status}</span></td>
                     <td>
                       {uCount > 0 && (
-                        <div style={{ background: '#cfb040', color: '#000', fontSize: '13px', fontWeight: 700, width: '18px', height: '18px', borderRadius: '50%', display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>
+                        <div style={{ background: '#cfb040', color: 'var(--bg)', fontSize: '13px', fontWeight: 700, width: '18px', height: '18px', borderRadius: '50%', display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>
                           {uCount > 9 ? '9+' : uCount}
                         </div>
                       )}

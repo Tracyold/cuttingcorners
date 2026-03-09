@@ -115,7 +115,7 @@ export default function PortfolioPage() {
               fontSize: '11px',
               textTransform: 'uppercase',
               letterSpacing: '0.20em',
-              color: 'rgba(255,255,255,0.52)',
+              color: 'var(--text-muted)',
               marginBottom: '8px',
             }}
           >
@@ -134,13 +134,13 @@ export default function PortfolioPage() {
           </h1>
 
           {loading ? (
-            <div style={{ textAlign: 'center', padding: '80px 0', color: 'rgba(255,255,255,0.45)' }}>
+            <div style={{ textAlign: 'center', padding: '80px 0', color: 'var(--text-muted)' }}>
               <p style={{ fontFamily: "'Montserrat', sans-serif", fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.2em' }}>
                 Loading...
               </p>
             </div>
           ) : photos.length === 0 ? (
-            <div style={{ textAlign: 'center', padding: '80px 0', color: 'rgba(255,255,255,0.45)' }}>
+            <div style={{ textAlign: 'center', padding: '80px 0', color: 'var(--text-muted)' }}>
               <p style={{ fontFamily: "'Montserrat', sans-serif", fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.2em' }}>
                 No photos yet
               </p>
@@ -181,7 +181,7 @@ export default function PortfolioPage() {
                 <p style={{
                   fontFamily: "'Cormorant', serif",
                   fontSize: '16px',
-                  color: '#d4af37',
+                  color: 'var(--gold)',
                   margin: '0 0 4px',
                 }}>
                   {modalPhoto.year}
@@ -191,7 +191,7 @@ export default function PortfolioPage() {
                 <p style={{
                   fontFamily: "'Comfortaa', sans-serif",
                   fontSize: '14px',
-                  color: '#d4af37',
+                  color: 'var(--gold)',
                   margin: '0 0 12px',
                 }}>
                   {modalPhoto.caption}
@@ -202,7 +202,7 @@ export default function PortfolioPage() {
                   fontFamily: "'Comfortaa', sans-serif",
                   fontSize: '13px',
                   lineHeight: 1.75,
-                  color: 'rgba(255,255,255,0.55)',
+                  color: 'var(--text-muted)',
                   margin: 0,
                 }}>
                   {modalPhoto.description}

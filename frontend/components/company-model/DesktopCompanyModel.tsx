@@ -170,7 +170,7 @@ export default function DesktopCompanyModel() {
 
       <div style={{ display: 'flex', gap: '80px', alignItems: 'flex-start' }}>
         <nav className="dtop-sidebar" aria-label="Section navigation">
-          <p style={{ fontFamily: 'Montserrat, sans-serif', fontSize: '9px', letterSpacing: '0.3em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.18)', marginBottom: '12px', paddingLeft: '16px' }}>
+          <p style={{ fontFamily: 'var(--font-ui)', fontSize: '9px', letterSpacing: '0.3em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.18)', marginBottom: '12px', paddingLeft: '16px' }}>
             In this section
           </p>
           {chapters.map(ch => (
@@ -200,7 +200,7 @@ export default function DesktopCompanyModel() {
                       padding: '16px 28px',
                       border: '1px solid rgba(80,200,120,0.7)',
                       color: 'rgba(80,200,120,1)',
-                      fontFamily: 'Comfortaa, sans-serif',
+                      fontFamily: 'var(--font-body)',
                       fontSize: '14px', letterSpacing: '0.12em', textTransform: 'uppercase',
                       textDecoration: 'none',
                       transition: 'background 200ms',
@@ -216,7 +216,7 @@ export default function DesktopCompanyModel() {
                       padding: '16px 28px',
                       border: '1px solid rgba(80,200,120,0.7)',
                       color: 'rgba(80,200,120,1)',
-                      fontFamily: 'Comfortaa, sans-serif',
+                      fontFamily: 'var(--font-body)',
                       fontSize: '14px', letterSpacing: '0.12em', textTransform: 'uppercase',
                       textDecoration: 'none',
                       transition: 'background 200ms',

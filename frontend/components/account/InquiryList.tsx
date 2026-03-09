@@ -43,9 +43,9 @@ export default function InquiryList({
       {inquiryTab === 'inquiries' ? (
         inquiries.length === 0 ? <p className="acc-empty">No product inquiries</p> :
         inquiries.map(inq => (
-          <div key={inq.account_inquiry_id} style={{ background: 'var(--bg)', border: '1px solid rgba(255,255,255,0.06)', padding: '14px', marginBottom: '10px' }}>
-            <p style={{ fontSize: '13px', color: 'rgba(255,255,255,0.65)', marginBottom: '6px' }}>{inq.description}</p>
-            <span style={{ fontSize: '10px', color: 'rgba(255,255,255,0.35)' }}>{fmtDate(inq.created_at)}</span>
+          <div key={inq.account_inquiry_id} style={{ background: 'var(--bg)', border: '1px solid var(--border)', padding: '14px', marginBottom: '10px' }}>
+            <p style={{ fontSize: '13px', color: 'var(--text-muted)', marginBottom: '6px' }}>{inq.description}</p>
+            <span style={{ fontSize: '10px', color: 'var(--text-muted)' }}>{fmtDate(inq.created_at)}</span>
           </div>
         ))
       ) : (
@@ -53,20 +53,20 @@ export default function InquiryList({
           <button className="acc-btn-gold" style={{ marginBottom: '16px', width: 'auto', padding: '10px 20px' }} onClick={onOpenSRForm}>
             Submit Service Request
           </button>
-          {srGateMsg && <p style={{ fontSize: '12px', color: 'rgba(255,255,255,0.55)', background: 'rgba(214,180,70,0.08)', padding: '12px', marginBottom: '16px', lineHeight: 1.6 }}>{srGateMsg}</p>}
+          {srGateMsg && <p style={{ fontSize: '12px', color: 'var(--text-muted)', background: 'rgba(214,180,70,0.08)', padding: '12px', marginBottom: '16px', lineHeight: 1.6 }}>{srGateMsg}</p>}
 
           {showSRForm && (
-            <div style={{ background: 'var(--bg)', border: '1px solid rgba(255,255,255,0.06)', padding: '20px', marginBottom: '16px' }}>
+            <div style={{ background: 'var(--bg)', border: '1px solid var(--border)', padding: '20px', marginBottom: '16px' }}>
               <label className="acc-label">Service Type *</label>
               <select value={srType} onChange={e => setSrType(e.target.value)}
-                style={{ width: '100%', background: 'var(--bg)', border: '1px solid rgba(255,255,255,0.10)', color: 'var(--text)', padding: '10px', fontFamily: "'Comfortaa', sans-serif", fontSize: '13px', marginBottom: '12px' }}>
+                style={{ width: '100%', background: 'var(--bg)', border: '1px solid var(--border)', color: 'var(--text)', padding: '10px', fontFamily: "'Comfortaa', sans-serif", fontSize: '13px', marginBottom: '12px' }}>
                 <option value="">Select service type</option>
                 {SERVICE_TYPES.map(st => <option key={st} value={st}>{st}</option>)}
               </select>
               <label className="acc-label">Description *</label>
               <textarea value={srDesc} onChange={e => setSrDesc(e.target.value)} placeholder="Describe your request..."
-                style={{ width: '100%', background: 'var(--bg)', border: '1px solid rgba(255,255,255,0.10)', color: 'var(--text)', padding: '10px', fontFamily: "'Comfortaa', sans-serif", fontSize: '13px', minHeight: '96px', resize: 'vertical', marginBottom: '12px' }} />
-              <p style={{ fontFamily: "'Comfortaa', sans-serif", fontSize: '12px', color: 'rgba(255,255,255,0.45)', fontStyle: 'italic', marginBottom: '16px', lineHeight: 1.6 }}>
+                style={{ width: '100%', background: 'var(--bg)', border: '1px solid var(--border)', color: 'var(--text)', padding: '10px', fontFamily: "'Comfortaa', sans-serif", fontSize: '13px', minHeight: '96px', resize: 'vertical', marginBottom: '12px' }} />
+              <p style={{ fontFamily: "'Comfortaa', sans-serif", fontSize: '12px', color: 'var(--text-muted)', fontStyle: 'italic', marginBottom: '16px', lineHeight: 1.6 }}>
                 All prices are estimated starting prices. Some gems may be less, some may be more. No work order prices are set in stone until I am able to inspect the piece and the customer accepts the work order through the website.
               </p>
               <div style={{ display: 'flex', gap: '8px' }}>
@@ -80,10 +80,10 @@ export default function InquiryList({
 
           {serviceRequests.length === 0 ? <p className="acc-empty">No service requests</p> :
           serviceRequests.map(sr => (
-            <div key={sr.service_request_id} style={{ background: 'var(--bg)', border: '1px solid rgba(255,255,255,0.06)', padding: '14px', marginBottom: '10px' }}>
-              <div style={{ fontSize: '11px', color: '#d4af37', marginBottom: '4px' }}>{sr.service_type}</div>
-              <p style={{ fontSize: '13px', color: 'rgba(255,255,255,0.65)', marginBottom: '6px' }}>{sr.description}</p>
-              <span style={{ fontSize: '10px', color: 'rgba(255,255,255,0.35)' }}>{fmtDate(sr.created_at)}</span>
+            <div key={sr.service_request_id} style={{ background: 'var(--bg)', border: '1px solid var(--border)', padding: '14px', marginBottom: '10px' }}>
+              <div style={{ fontSize: '11px', color: 'var(--gold)', marginBottom: '4px' }}>{sr.service_type}</div>
+              <p style={{ fontSize: '13px', color: 'var(--text-muted)', marginBottom: '6px' }}>{sr.description}</p>
+              <span style={{ fontSize: '10px', color: 'var(--text-muted)' }}>{fmtDate(sr.created_at)}</span>
             </div>
           ))}
         </>

@@ -109,7 +109,7 @@ export default function WorkOrderDetailModal({ selectedWO, setSelectedWO, user, 
               <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                 <div style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '.15em', textTransform: 'uppercase', color: '#ffd700' }}>RETURN ITEM HERE →</div>
                 <button onClick={() => { setEditingWOAddr(true); setWoClientAddrEdit(selectedWO.wo_shipping_address || user.shipping_address || ''); setWoAdminAddrEdit(adminInfo?.address || ''); }}
-                  style={{ fontSize: '10px', letterSpacing: '.15em', textTransform: 'uppercase', background: 'none', border: '1px solid rgba(255,255,255,0.15)', color: 'rgba(255,255,255,0.5)', padding: '3px 8px', cursor: 'pointer' }}>
+                  style={{ fontSize: '10px', letterSpacing: '.15em', textTransform: 'uppercase', background: 'none', border: '1px solid rgba(255,255,255,0.15)', color: 'var(--text-muted)', padding: '3px 8px', cursor: 'pointer' }}>
                   Edit
                 </button>
               </div>
@@ -181,7 +181,7 @@ export default function WorkOrderDetailModal({ selectedWO, setSelectedWO, user, 
         {selectedWO.notes && (
           <div style={{ marginTop: '16px' }}>
             <div style={{ fontSize: '11px', letterSpacing: '.18em', textTransform: 'uppercase', color: 'var(--d2)', marginBottom: '8px' }}>Internal Notes</div>
-            <p style={{ fontSize: '15px', color: 'rgba(255,255,255,0.60)', lineHeight: 1.8 }}>{selectedWO.notes}</p>
+            <p style={{ fontSize: '15px', color: 'var(--text-muted)', lineHeight: 1.8 }}>{selectedWO.notes}</p>
           </div>
         )}
 

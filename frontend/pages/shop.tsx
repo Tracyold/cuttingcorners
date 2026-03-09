@@ -21,15 +21,15 @@ const popupOverlayStyle: React.CSSProperties = {
 };
 const popupBoxStyle: React.CSSProperties = {
   backgroundColor: 'var(--bg)',
-  border: '1px solid rgba(255,255,255,0.10)',
+  border: '1px solid var(--border)',
   borderRadius: '16px',
   width: '100%', maxWidth: '480px', maxHeight: '90vh',
   overflowY: 'auto', padding: '32px',
 };
 const inputStyle: React.CSSProperties = {
   width: '100%',
-  background: 'rgba(255,255,255,0.04)',
-  border: '1px solid rgba(255,255,255,0.10)',
+  background: 'var(--bg-card)',
+  border: '1px solid var(--border)',
   padding: '10px 12px',
   color: 'var(--text)',
   fontFamily: "'Comfortaa', sans-serif",
@@ -340,7 +340,7 @@ export default function ShopPage() {
             fontFamily: "'Comfortaa', sans-serif",
             fontSize: '11px', textTransform: 'uppercase',
             letterSpacing: '0.20em',
-            color: 'rgba(255,255,255,0.52)',
+            color: 'var(--text-muted)',
             marginBottom: '8px',
           }}>
             Gems for Sale
@@ -356,13 +356,13 @@ export default function ShopPage() {
           </h1>
 
           {loading ? (
-            <div style={{ textAlign: 'center', padding: '80px 0', color: 'rgba(255,255,255,0.45)' }}>
+            <div style={{ textAlign: 'center', padding: '80px 0', color: 'var(--text-muted)' }}>
               <p style={{ fontFamily: "'Montserrat', sans-serif", fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.2em' }}>
                 Loading...
               </p>
             </div>
           ) : products.length === 0 ? (
-            <div style={{ textAlign: 'center', padding: '80px 0', color: 'rgba(255,255,255,0.45)' }}>
+            <div style={{ textAlign: 'center', padding: '80px 0', color: 'var(--text-muted)' }}>
               <p style={{ fontFamily: "'Montserrat', sans-serif", fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.2em' }}>
                 No products available
               </p>
@@ -384,7 +384,7 @@ export default function ShopPage() {
                         style={{ width: '100%', height: '100%', objectFit: 'cover', transform: 'scale(1.0)', transformOrigin: 'center' }}
                       />
                     ) : (
-                      <div style={{ width: '100%', height: '100%', background: '#111', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                      <div style={{ width: '100%', height: '100%', background: 'var(--bg-deep)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                         <span style={{ color: 'rgba(255,255,255,0.2)', fontFamily: "'Montserrat', sans-serif", fontSize: '15px', textTransform: 'uppercase', letterSpacing: '0.2em' }}>No Photo</span>
                       </div>
                     )}

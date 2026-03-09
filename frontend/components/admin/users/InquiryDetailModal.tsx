@@ -17,7 +17,7 @@ export default function InquiryDetailModal({ selectedInq, setSelectedInq, select
   return (
     <div style={{ position: 'fixed', inset: 0, zIndex: 200, background: 'rgba(0,0,0,0.85)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px' }}
       onClick={e => { if (e.target === e.currentTarget) onClose(); }}>
-      <div style={{ background: 'var(--bg)', border: '1px solid rgba(255,255,255,0.10)', padding: '31px', maxWidth: '560px', width: '100%', maxHeight: '90vh', overflowY: 'auto', borderRadius: '2px' }}>
+      <div style={{ background: 'var(--bg)', border: '1px solid var(--border)', padding: '31px', maxWidth: '560px', width: '100%', maxHeight: '90vh', overflowY: 'auto', borderRadius: '2px' }}>
 
         {/* Header */}
         <div style={{ marginBottom: '20px' }}>
@@ -84,7 +84,7 @@ export default function InquiryDetailModal({ selectedInq, setSelectedInq, select
         <div style={{ fontSize: '11px', color: 'var(--d2)' }}>{fmtDate(selectedInq.created_at)} · {fmtTime(selectedInq.created_at)}</div>
 
         <button onClick={onClose}
-          style={{ marginTop: '20px', background: 'none', border: '1px solid rgba(255,255,255,0.10)', color: 'rgba(255,255,255,0.45)', padding: '10px 20px', fontFamily: 'var(--sans)', fontSize: '10px', letterSpacing: '.18em', textTransform: 'uppercase', cursor: 'pointer' }}>
+          style={{ marginTop: '20px', background: 'none', border: '1px solid var(--border)', color: 'var(--text-muted)', padding: '10px 20px', fontFamily: 'var(--sans)', fontSize: '10px', letterSpacing: '.18em', textTransform: 'uppercase', cursor: 'pointer' }}>
           Close
         </button>
       </div>

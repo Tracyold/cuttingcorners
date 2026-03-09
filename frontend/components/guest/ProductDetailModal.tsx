@@ -57,19 +57,19 @@ export default function ProductDetailModal({ product: modalProduct, onClose, onB
               ].filter(r => r.value).map(({ label, value }) => (
                 <div key={label} style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '6px' }}>
                   <span style={{ fontFamily: "'Montserrat', sans-serif", fontSize: '9px', textTransform: 'uppercase', letterSpacing: '0.18em', color: 'rgba(255,255,255,0.38)' }}>{label}</span>
-                  <span style={{ fontFamily: "'Comfortaa', sans-serif", fontSize: '12px', color: 'rgba(255,255,255,0.70)' }}>{value}</span>
+                  <span style={{ fontFamily: "'Comfortaa', sans-serif", fontSize: '12px', color: 'var(--text)' }}>{value}</span>
                 </div>
               ))}
             </div>
 
             {/* GIA */}
             {modalProduct.gia_report_number && (
-              <div style={{ marginBottom: '20px', padding: '12px', background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.06)' }}>
+              <div style={{ marginBottom: '20px', padding: '12px', background: 'rgba(255,255,255,0.03)', border: '1px solid var(--border)' }}>
                 <span style={{ fontFamily: "'Montserrat', sans-serif", fontSize: '9px', textTransform: 'uppercase', letterSpacing: '0.18em', color: 'rgba(255,255,255,0.38)' }}>GIA Report</span>
-                <p style={{ fontFamily: "'Comfortaa', sans-serif", fontSize: '13px', color: 'rgba(255,255,255,0.70)', margin: '4px 0 0' }}>
+                <p style={{ fontFamily: "'Comfortaa', sans-serif", fontSize: '13px', color: 'var(--text)', margin: '4px 0 0' }}>
                   #{modalProduct.gia_report_number}
                   {modalProduct.gia_report_pdf_url && (
-                    <a href={modalProduct.gia_report_pdf_url} target="_blank" rel="noopener noreferrer" style={{ color: '#d4af37', marginLeft: '8px', fontSize: '11px' }}>
+                    <a href={modalProduct.gia_report_pdf_url} target="_blank" rel="noopener noreferrer" style={{ color: 'var(--gold)', marginLeft: '8px', fontSize: '11px' }}>
                       View Report
                     </a>
                   )}
@@ -78,7 +78,7 @@ export default function ProductDetailModal({ product: modalProduct, onClose, onB
             )}
 
             {modalProduct.description && (
-              <p style={{ fontFamily: "'Comfortaa', sans-serif", fontSize: '13px', lineHeight: 1.75, color: 'rgba(255,255,255,0.55)', marginBottom: '24px' }}>
+              <p style={{ fontFamily: "'Comfortaa', sans-serif", fontSize: '13px', lineHeight: 1.75, color: 'var(--text-muted)', marginBottom: '24px' }}>
                 {modalProduct.description}
               </p>
             )}
@@ -91,7 +91,7 @@ export default function ProductDetailModal({ product: modalProduct, onClose, onB
                 <ShoppingCart size={14} /> Buy Now
               </button>
               <button
-                style={{ flex: 1, textAlign: 'center', fontFamily: "'Montserrat', sans-serif", fontSize: '11px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.20em', backgroundColor: 'transparent', color: 'rgba(255,255,255,0.65)', border: '1px solid rgba(255,255,255,0.15)', padding: '14px 24px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}
+                style={{ flex: 1, textAlign: 'center', fontFamily: "'Montserrat', sans-serif", fontSize: '11px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.20em', backgroundColor: 'transparent', color: 'var(--text-muted)', border: '1px solid rgba(255,255,255,0.15)', padding: '14px 24px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}
                 onClick={handleInquiryClick}
               >
                 <MessageSquare size={14} /> Inquire
