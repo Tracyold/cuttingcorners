@@ -5,52 +5,75 @@
 @tailwind utilities;
 
 :root {
-  --bg:           #1b1e21;
-  --bg-card:      #393E46;
-  --bg-deep:      #202225;
-  --accent:       #FFD369;
-  --text:         #EEEEEE;
-  --text-muted:   #aaaaaa;
-  --border:       #393E46;
-  --gold:         #f4c730;
-  --font-display: 'Oranienbaum', Georgia, serif;
-  --font-ui:      'Montserrat', sans-serif;
-  --font-body:    'Comfortaa', sans-serif;
-  --font-mono:    'Courier New', monospace;
-  --bg-gradient:  linear-gradient(135deg, #222831 0%, #272c33 35%, #2e3239 60%, #222831 100%);
+  --bg:             #171819;
+  --bg-rgb:         23, 24, 25;
+  --bg-card:        #15171a;
+  --bg-card-rgb:    21, 23, 26;
+  --bg-deep:        #202225;
+  --bg-deep-rgb:    32, 34, 37;
+  --accent:         #FFD369;
+  --accent-rgb:     255, 211, 105;
+  --text:           #eeeeeeed;
+  --text-rgb:       238, 238, 238;
+  --text-muted:     #aaaaaa;
+  --text-muted-rgb: 170, 170, 170;
+  --border:         #111215;
+  --border-rgb:     17, 18, 21;
+  --gold:           #f1bf1cfa;
+  --gold-rgb:       241, 191, 28;
+  --font-display:   'Oranienbaum', Georgia, serif;
+  --font-ui:        'Montserrat', sans-serif;
+  --font-body:      'Comfortaa', sans-serif;
+  --font-mono:      'Courier New', monospace;
+  --bg-gradient:    linear-gradient(135deg, #1c1f24 15%, #101112 30%, #252525 45%, #1c2129 65%);
 }
 
-
 :root[data-theme="dark"] {
-  --bg:           #212327;
-  --bg-card:      #3d3f43;
-  --bg-deep:      #282b35;
-  --accent:       #FFD369;
-  --text:         #EEEEEE;
-  --text-muted:   #aaaaaa;
-  --border:       #080808;
-  --gold:         #fccb28;
-  --font-display: 'Oranienbaum', Georgia, serif;
-  --font-ui:      'Montserrat', sans-serif;
-  --font-body:    'Comfortaa', sans-serif;
-  --font-mono:    'Courier New', monospace;
-  --bg-gradient:  linear-gradient(135deg, #202122 0%, #313336 35%, #626364 60%, #17191b 100%);
+  --bg:             #13161c;
+  --bg-rgb:         19, 22, 28;
+  --bg-card:        #1d1d1d;
+  --bg-card-rgb:    29, 29, 29;
+  --bg-deep:        #16181e;
+  --bg-deep-rgb:    22, 24, 30;
+  --accent:         #FFD369;
+  --accent-rgb:     255, 211, 105;
+  --text:           #eeeeeefa;
+  --text-rgb:       238, 238, 238;
+  --text-muted:     #05043a;
+  --text-muted-rgb: 5, 4, 58;
+  --border:         #b8b9bb;
+  --border-rgb:     184, 185, 187;
+  --gold:           #fccb28f4;
+  --gold-rgb:       252, 203, 40;
+  --font-display:   'Oranienbaum', Georgia, serif;
+  --font-ui:        'Montserrat', sans-serif;
+  --font-body:      'Comfortaa', sans-serif;
+  --font-mono:      'Courier New', monospace;
+  --bg-gradient:    linear-gradient(135deg, #13141a 15%, #191b1f 31%, #272940 47%, #0a0d35e2 65%);
 }
 
 :root[data-theme="light"] {
-  --bg:           #EEEEEE;
-  --bg-card:      #ccc3c3;
-  --bg-deep:      #cfcac0;
-  --accent:       #FFD369;
-  --text:         #222831;
-  --text-muted:   #555555;
-  --border:       #cccccc;
-  --gold:         #eecf1d;
-  --font-display: 'Oranienbaum', Georgia, serif;
-  --font-ui:      'Montserrat', sans-serif;
-  --font-body:    'Comfortaa', sans-serif;
-  --font-mono:    'Courier New', monospace;
-  --bg-gradient:  linear-gradient(135deg, #e8e4dc 0%, #EEEEEE 35%, #f0ede8 60%, #e8e4dc 100%);
+  --bg:             #eeeeeefa;
+  --bg-rgb:         238, 238, 238;
+  --bg-card:        #f3f0de;
+  --bg-card-rgb:    243, 240, 222;
+  --bg-deep:        #d0c3a9;
+  --bg-deep-rgb:    208, 195, 169;
+  --accent:         #aa8c47;
+  --accent-rgb:     170, 140, 71;
+  --text:           #0b0c0e;
+  --text-rgb:       11, 12, 14;
+  --text-muted:     #555555;
+  --text-muted-rgb: 85, 85, 85;
+  --border:         #cccccc;
+  --border-rgb:     204, 204, 204;
+  --gold:           #eec11d;
+  --gold-rgb:       238, 193, 29;
+  --font-display:   'Oranienbaum', Georgia, serif;
+  --font-ui:        'Montserrat', sans-serif;
+  --font-body:      'Comfortaa', sans-serif;
+  --font-mono:      'Courier New', monospace;
+  --bg-gradient:    linear-gradient(135deg, #e8e4dc 15%, #EEEEEE 35%, #f0ede8 47%, #e8e4dc 67%);
 }
 
 html, body {
