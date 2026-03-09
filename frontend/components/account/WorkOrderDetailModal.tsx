@@ -111,7 +111,7 @@ export default function WorkOrderDetailModal({
                     setWorkOrders((prev: any[]) => prev.map(w => w.work_order_id === selectedWO.work_order_id ? { ...w, wo_shipping_address: tempAddress.trim(), edit_history: log } : w));
                     setAddressConfirmed(true);
                   }}
-                    style={{ fontFamily: 'var(--font-ui)', fontSize: '10px', fontWeight: 600, letterSpacing: '0.15em', textTransform: 'uppercase', background: '#d4af37', color: 'var(--bg)', border: 'none', padding: '10px 16px', cursor: 'pointer' }}>
+                    style={{ fontFamily: 'var(--font-ui)', fontSize: '10px', fontWeight: 600, letterSpacing: '0.15em', textTransform: 'uppercase', background: 'var(--gold)', color: 'var(--bg)', border: 'none', padding: '10px 16px', cursor: 'pointer' }}>
                     Confirm Address
                   </button>
                   <button onClick={() => setShowAddressEdit(false)}
@@ -165,10 +165,10 @@ export default function WorkOrderDetailModal({
 
         {/* Payment — show stripe link if completed */}
         {selectedWO.status === 'COMPLETED' && selectedWO.stripe_payment_link && (
-          <div style={{ marginTop: '16px', padding: '16px', background: '#d4af37', border: '1px solid #d4af37' }}>
+          <div style={{ marginTop: '16px', padding: '16px', background: 'var(--gold)', border: '1px solid var(--gold)' }}>
             <div style={{ fontFamily: 'var(--font-ui)', fontSize: '10px', letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--text-muted)', marginBottom: '10px' }}>Payment</div>
             <a href={selectedWO.stripe_payment_link} target="_blank" rel="noopener noreferrer"
-              style={{ fontFamily: 'var(--font-ui)', fontSize: '11px', fontWeight: 600, letterSpacing: '0.15em', textTransform: 'uppercase', background: '#d4af37', color: 'var(--bg)', padding: '12px 20px', textDecoration: 'none', display: 'inline-block' }}>
+              style={{ fontFamily: 'var(--font-ui)', fontSize: '11px', fontWeight: 600, letterSpacing: '0.15em', textTransform: 'uppercase', background: 'var(--gold)', color: 'var(--bg)', padding: '12px 20px', textDecoration: 'none', display: 'inline-block' }}>
               Pay Now
             </a>
           </div>

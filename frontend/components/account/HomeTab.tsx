@@ -99,7 +99,7 @@ export default function HomeTab({
               }}
               style={{
                 width: '40px', height: '22px', borderRadius: '11px', border: 'none', cursor: 'pointer', position: 'relative',
-                background: smsPrefs?.[t.col] ? '#d4af37' : 'rgba(255,255,255,0.12)', transition: 'background 200ms',
+                background: smsPrefs?.[t.col] ? 'var(--gold)' : 'var(--border)', transition: 'background 200ms',
               }}
             >
               <div style={{

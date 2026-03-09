@@ -34,7 +34,7 @@ export default function ChatPanel({
             <div key={m.chat_message_id} style={{ display: 'flex', flexDirection: 'column', alignItems: m.actor === 'ACCOUNT' ? 'flex-end' : 'flex-start', marginBottom: '13px' }}>
               <div style={{
                 maxWidth: '80%', padding: '11px 15px', borderRadius: '14px',
-                background: m.actor === 'ACCOUNT' ? 'rgba(45,212,191,1)' : '#d4af37',
+                background: m.actor === 'ACCOUNT' ? 'rgba(45,212,191,1)' : 'var(--gold)',
                 color: 'var(--bg)', fontFamily: 'var(--font-body)', fontSize: '15.9px', lineHeight: 1.7,
               }}>
                 {m.body && <div>{m.body}</div>}
@@ -77,7 +77,7 @@ export default function ChatPanel({
               <div key={m.chat_message_id} style={{ display: 'flex', flexDirection: 'column', alignItems: m.actor === 'ACCOUNT' ? 'flex-end' : 'flex-start', marginBottom: '13px' }}>
                 <div style={{
                   maxWidth: '80%', padding: '11px 15px', borderRadius: '1.7px',
-                  background: m.actor === 'ACCOUNT' ? 'rgba(45,212,191,1)' : '#d4af37',
+                  background: m.actor === 'ACCOUNT' ? 'rgba(45,212,191,1)' : 'var(--gold)',
                   color: 'var(--bg)', fontFamily: 'var(--font-body)', fontSize: '17px',
                 }}>
                   {m.body && <div>{m.body}</div>}
