@@ -229,6 +229,18 @@ h1, h2, h3, h4, h5, h6 {
 export default function Home() {
 
   useEffect(() => {
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+      const maxScroll = document.body.scrollHeight - window.innerHeight;
+      const progress = Math.min(scrollY / maxScroll, 1);
+      const angle = 135 + progress * 45;
+      document.body.style.background = `linear-gradient(${angle}deg, #222831 0%, #2d3340 35%, #393E46 60%, #222831 100%)`;
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  useEffect(() => {
     const groups = document.querySelectorAll('[data-reveal-group]');
     groups.forEach((group) => {
       const elements = group.querySelectorAll('[data-scroll-reveal]');
