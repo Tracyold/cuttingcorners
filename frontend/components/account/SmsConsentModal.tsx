@@ -41,7 +41,7 @@ export default function SmsConsentModal({ toggle, onConfirm, onCancel, hasOpenWo
   return (
     <div style={{
       position: 'fixed', inset: 0, zIndex: 1000,
-      background: 'rgba(0,0,0,0.78)',
+      background: 'var(--bg-deep)',
       display: 'flex', alignItems: 'center', justifyContent: 'center',
       padding: '24px',
     }}>

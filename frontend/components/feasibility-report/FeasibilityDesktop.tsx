@@ -17,7 +17,7 @@ const FV = { fontFamily: 'var(--font-body)', fontSize: '15px', color: 'var(--tex
 const TH = { fontFamily: 'var(--font-ui)', fontSize: '13px', letterSpacing: '0.12em', textTransform: 'uppercase' as const, color: 'rgba(100,160,220,0.9)', padding: '8px 10px', borderBottom: '1px solid var(--border)', textAlign: 'left' as const };
 const TC = { fontFamily: 'var(--font-body)', fontSize: '15px', color: 'var(--text)', padding: '10px', borderBottom: '1px solid var(--border)', verticalAlign: 'top' as const };
 
-const CARD: React.CSSProperties = { background: 'var(--bg-deep)', border: '1px solid #d4af37', padding: '48px', width: '100%' };
+const CARD: React.CSSProperties = { background: 'var(--bg-deep)', border: '1px solid var(--gold)', padding: '48px', width: '100%' };
 
 export default function FeasibilityDesktop() {
   return (
@@ -163,7 +163,7 @@ export default function FeasibilityDesktop() {
               <p style={{ fontFamily: 'var(--font-ui)', fontSize: '8px', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.2)', marginBottom: '10px' }}>Before</p>
               {[['Weight', postcut.overview.originalWeight], ['Measurements', postcut.overview.originalMeasurements], ['Cut', postcut.overview.originalShapeStyle]].map(([l, v]) => <div key={l}><p style={FL}>{l}</p><p style={FV}>{v}</p></div>)}
             </div>
-            <div style={{ padding: '17px', background: '#d4af37', border: '1px solid #d4af37' }}>
+            <div style={{ padding: '17px', background: 'var(--gold)', border: '1px solid var(--gold)' }}>
               <p style={{ fontFamily: 'var(--font-ui)', fontSize: '8px', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--gold)', marginBottom: '10px' }}>After</p>
               {[['Weight', postcut.overview.finalWeight], ['Measurements', postcut.overview.finalMeasurements], ['Cut', postcut.overview.finalShapeStyle]].map(([l, v]) => <div key={l}><p style={FL}>{l}</p><p style={FV}>{v}</p></div>)}
             </div>

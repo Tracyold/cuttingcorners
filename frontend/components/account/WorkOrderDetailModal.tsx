@@ -3,10 +3,10 @@ import { formatMoney, fmtDate, fmtTime } from '../../lib/utils';
 
 const STATUS_COLORS: Record<string, { bg: string; color: string }> = {
   CREATED: { bg: 'rgba(212,175,55,0.12)', color: 'var(--gold)' },
-  ACCEPTED: { bg: 'rgba(45,212,191,0.12)', color: 'rgba(45,212,191,1)' },
+  ACCEPTED: { bg: 'rgba(45,212,191,0.12)', color: 'var(--accent)' },
   COMPLETED: { bg: 'var(--border)', color: 'var(--text-muted)' },
-  CONFIRMED: { bg: 'rgba(120,80,200,0.12)', color: '#b388ff' },
-  CANCELLED: { bg: 'rgba(181,64,64,0.1)', color: '#c07070' },
+  CONFIRMED: { bg: 'rgba(120,80,200,0.12)', color: 'var(--text-muted)' },
+  CANCELLED: { bg: 'rgba(181,64,64,0.1)', color: 'var(--text-muted)' },
 };
 
 interface Props {
@@ -33,7 +33,7 @@ export default function WorkOrderDetailModal({
   if (!selectedWO) return null;
 
   return (
-    <div style={{ position: 'fixed', inset: 0, zIndex: 200, background: 'rgba(0,0,0,0.85)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px' }}
+    <div style={{ position: 'fixed', inset: 0, zIndex: 200, background: 'var(--bg-deep)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px' }}
       onClick={e => { if (e.target === e.currentTarget) { setSelectedWO(null); setShowAddressEdit(false); setAddressConfirmed(false); } }}>
       <div style={{ background: 'var(--bg)', border: '1px solid var(--border)', padding: '40px', maxWidth: '680px', width: '100%', maxHeight: '92vh', overflowY: 'auto', borderRadius: '2px' }}>
 
@@ -121,7 +121,7 @@ export default function WorkOrderDetailModal({
                 </div>
               </>
             ) : (
-              <p style={{ fontFamily: 'var(--font-body)', fontSize: '13px', color: 'rgba(45,212,191,1)' }}>✓ Address updated for this work order.</p>
+              <p style={{ fontFamily: 'var(--font-body)', fontSize: '13px', color: 'var(--accent)' }}>✓ Address updated for this work order.</p>
             )}
           </div>
         )}
@@ -159,7 +159,7 @@ export default function WorkOrderDetailModal({
         {selectedWO.estimated_price && (
           <div style={{ marginTop: '20px', display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', padding: '16px', background: 'var(--bg-card)', border: '1px solid var(--border)' }}>
             <span style={{ fontFamily: 'var(--font-ui)', fontSize: '10px', letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--text-muted)' }}>Quoted Price</span>
-            <span style={{ fontFamily: 'var(--font-mono)', fontSize: '22px', color: 'rgba(45,212,191,1)' }}>{formatMoney(selectedWO.estimated_price)}</span>
+            <span style={{ fontFamily: 'var(--font-mono)', fontSize: '22px', color: 'var(--accent)' }}>{formatMoney(selectedWO.estimated_price)}</span>
           </div>
         )}
 
@@ -174,15 +174,15 @@ export default function WorkOrderDetailModal({
           </div>
         )}
         {selectedWO.status === 'COMPLETED' && selectedWO.paid_outside_site && (
-          <div style={{ marginTop: '16px', padding: '14px', background: 'rgba(45,212,191,0.06)', border: '1px solid rgba(45,212,191,0.15)' }}>
-            <span style={{ fontFamily: 'var(--font-body)', fontSize: '13px', color: 'rgba(45,212,191,1)' }}>✓ Payment received — thank you!</span>
+          <div style={{ marginTop: '16px', padding: '14px', background: 'rgba(255,211,105,0.06)', border: '1px solid var(--border)' }}>
+            <span style={{ fontFamily: 'var(--font-body)', fontSize: '13px', color: 'var(--accent)' }}>✓ Payment received — thank you!</span>
           </div>
         )}
 
         {/* CONFIRMED status notice */}
         {selectedWO.status === 'CONFIRMED' && (
-          <div style={{ marginTop: '16px', padding: '14px', background: 'rgba(179,136,255,0.06)', border: '1px solid rgba(179,136,255,0.2)' }}>
-            <p style={{ fontFamily: 'var(--font-body)', fontSize: '13px', color: '#b388ff', lineHeight: 1.6 }}>
+          <div style={{ marginTop: '16px', padding: '14px', background: 'var(--bg-card)', border: '1px solid var(--border)' }}>
+            <p style={{ fontFamily: 'var(--font-body)', fontSize: '13px', color: 'var(--text-muted)', lineHeight: 1.6 }}>
               Your work order has been confirmed! Please send your item to the address above. We'll notify you when we receive it.
             </p>
           </div>
@@ -205,7 +205,7 @@ export default function WorkOrderDetailModal({
             {[...selectedWO.edit_history].reverse().map((entry: any, i: number) => (
               <div key={i} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', padding: '8px 0', borderBottom: '1px solid var(--border)', gap: '12px' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
-                  <span style={{ fontFamily: 'var(--font-ui)', fontSize: '10px', fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase', padding: '2px 6px', background: entry.by === 'admin' ? '#d4af37' : 'rgba(45,212,191,0.1)', color: entry.by === 'admin' ? '#d4af37' : 'rgba(45,212,191,0.9)' }}>{entry.by}</span>
+                  <span style={{ fontFamily: 'var(--font-ui)', fontSize: '10px', fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase', padding: '2px 6px', background: entry.by === 'admin' ? 'var(--gold)' : 'rgba(45,212,191,0.1)', color: entry.by === 'admin' ? 'var(--gold)' : 'rgba(45,212,191,0.9)' }}>{entry.by}</span>
                   <span style={{ fontFamily: 'var(--font-body)', fontSize: '13px', color: 'var(--text-muted)' }}>{entry.action}</span>
                 </div>
                 <span style={{ fontFamily: 'var(--font-body)', fontSize: '10px', color: 'rgba(255,255,255,0.3)', whiteSpace: 'nowrap', flexShrink: 0 }}>{fmtDate(entry.at)} · {fmtTime(entry.at)}</span>

@@ -43,7 +43,7 @@ export default function SmsTerms() {
           <p style={{ fontSize: '15px', color: 'var(--text-muted)', marginBottom: '48px' }}>Program Name: Cutting Corners Gems — User Opt-In/Out Account Notifications</p>
 
           {/* Intro */}
-          <div style={{ background: '#d4af37', border: '1px solid #d4af37', padding: '20px 24px', marginBottom: '48px' }}>
+          <div style={{ background: 'var(--gold)', border: '1px solid var(--gold)', padding: '20px 24px', marginBottom: '48px' }}>
             <P>By providing a mobile phone number and enabling SMS notification toggles within your account dashboard, you consent to receive transactional SMS notifications related to your account activity. Notifications are optional and can be enabled or disabled individually at any time from your Account Dashboard.</P>
             <p style={{ fontSize: '17px', color: 'rgba(255,220,100,0.8)', margin: 0 }}>Cutting Corners Gems does not send unsolicited marketing or promotional SMS messages. All messages are operational in nature and correspond to account activity you have chosen to track.</p>
           </div>
@@ -58,7 +58,7 @@ export default function SmsTerms() {
                 { label: 'Chat Message Alerts', desc: 'Two-way conversational notifications when new messages are sent or received through the account chat system.' },
               ].map(p => (
                 <div key={p.label} style={{ padding: '14px 18px', background: 'var(--bg)', border: '1px solid var(--border)', borderRadius: '6px', display: 'flex', gap: '14px', alignItems: 'flex-start' }}>
-                  <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#d4af37', flexShrink: 0, marginTop: '5px' }} />
+                  <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: 'var(--gold)', flexShrink: 0, marginTop: '5px' }} />
                   <div>
                     <p style={{ fontSize: '17px', fontWeight: 600, color: 'var(--text)', margin: '0 0 4px 0', letterSpacing: '0.05em' }}>{p.label}</p>
                     <p style={{ fontSize: '15px', color: 'var(--text-muted)', margin: 0, lineHeight: 1.65 }}>{p.desc}</p>
@@ -88,7 +88,7 @@ export default function SmsTerms() {
             <SampleMsg label="Work Order Complete" msg="Cutting Corners Gems: Your workorder [work_order_id] for [work_order_gem_type] [work_order_service_type]  is complete! Please click the link to review your invoice, notes, photos and payment options." />
             <SampleMsg label="Work Order Payment Completed" msg="Cutting Corners Gems: Workorder [work_order_id] for [work_order_gem_type] [work_order_service_type] payment is complete. Your item will be shipped to the address on the your workorder within 24 horus." />
             <SampleMsg label="Your item Is On the Way" msg="Cutting Corners Gems: Your gemsone for workorder [work_order_id] for [work_order_gem_type] [work_order_service_type] has been shipped! Please click the link to view tracking information [link]. Please opt in to shipping notifications in your account dashboard to recieve shipping updates" />  
-                        <div style={{ background: '#d4af37', border: '1px solid #d4af37', padding: '16px 20px', marginTop: '16px' }}>
+                        <div style={{ background: 'var(--gold)', border: '1px solid var(--gold)', padding: '16px 20px', marginTop: '16px' }}>
               <p style={{ fontSize: '17px', color: 'var(--accent)', lineHeight: 1.75, margin: 0 }}>
                 <strong>Active Work Order Requirement:</strong> Work order notifications cannot be disabled while you have an open work order. Because your gemstone is in our possession during this time, we require the ability to reach you with status updates and required confirmations. This toggle becomes available to turn off once your work order is complete and your item has been returned.
               </p>
@@ -152,7 +152,7 @@ export default function SmsTerms() {
           </Block>
 
           {/* Contact */}
-          <div style={{ marginTop: '32px', padding: '24px', border: '1px solid #d4af37', background: '#d4af37' }}>
+          <div style={{ marginTop: '32px', padding: '24px', border: '1px solid var(--gold)', background: 'var(--gold)' }}>
             <p style={{ fontFamily: 'var(--font-ui)', fontSize: '15px', letterSpacing: '0.25em', textTransform: 'uppercase', color: 'var(--gold)', marginBottom: '12px' }}>Contact</p>
             <p style={{ fontSize: '15px', color: 'var(--text-muted)', lineHeight: 2, margin: 0 }}>
               Cutting Corners Gems<br />

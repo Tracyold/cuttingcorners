@@ -2,10 +2,10 @@ import { formatMoney, fmtDate } from '../../lib/utils';
 
 const STATUS_COLORS: Record<string, { bg: string; color: string }> = {
   CREATED: { bg: 'rgba(212,175,55,0.12)', color: 'var(--gold)' },
-  ACCEPTED: { bg: 'rgba(45,212,191,0.12)', color: 'rgba(45,212,191,1)' },
+  ACCEPTED: { bg: 'rgba(45,212,191,0.12)', color: 'var(--accent)' },
   COMPLETED: { bg: 'var(--border)', color: 'var(--text-muted)' },
-  CONFIRMED: { bg: 'rgba(120,80,200,0.12)', color: '#b388ff' },
-  CANCELLED: { bg: 'rgba(181,64,64,0.1)', color: '#c07070' },
+  CONFIRMED: { bg: 'rgba(120,80,200,0.12)', color: 'var(--text-muted)' },
+  CANCELLED: { bg: 'rgba(181,64,64,0.1)', color: 'var(--text-muted)' },
 };
 
 interface Props {

@@ -39,7 +39,7 @@ export default function EstimatesPage() {
                 Answer seven quick questions about your stone and the service you need. No account required.
               </p>
               <a href="/get-estimate/instant"
-                style={{ display: 'inline-block', padding: '19px 56px', background: '#d4af37', color: 'var(--bg)', fontFamily: 'var(--font-ui)', fontSize: '11px', fontWeight: 700, letterSpacing: '0.28em', textTransform: 'uppercase', textDecoration: 'none', transition: 'opacity 150ms' }}
+                style={{ display: 'inline-block', padding: '19px 56px', background: 'var(--gold)', color: 'var(--bg)', fontFamily: 'var(--font-ui)', fontSize: '11px', fontWeight: 700, letterSpacing: '0.28em', textTransform: 'uppercase', textDecoration: 'none', transition: 'opacity 150ms' }}
                 onMouseEnter={e => (e.currentTarget.style.opacity = '0.85')}
                 onMouseLeave={e => (e.currentTarget.style.opacity = '1')}>
                 Start Instant Estimate

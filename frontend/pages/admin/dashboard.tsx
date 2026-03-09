@@ -279,7 +279,7 @@ export default function AdminDashboard() {
                 <div key={p.id} style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '8px', padding: '10px 14px', background: 'var(--c2)', border: '1px solid var(--border)', borderRadius: '8px' }}>
                   <div onClick={() => togglePhone(p.id, !p.active)} style={{
                     width: '32px', height: '18px', borderRadius: '9px', position: 'relative', flexShrink: 0, cursor: 'pointer',
-                    background: p.active ? 'var(--gl)' : 'rgba(255,255,255,0.12)', transition: 'background 300ms',
+                    background: p.active ? 'var(--gl)' : 'var(--border)', transition: 'background 300ms',
                   }}>
                     <div style={{ position: 'absolute', top: '2px', left: p.active ? '16px' : '2px', width: '14px', height: '14px', borderRadius: '50%', background: 'var(--text)', transition: 'left 300ms' }} />
                   </div>
@@ -330,7 +330,7 @@ export default function AdminDashboard() {
                   <span style={{ fontSize: '12px', color: 'var(--wh)', letterSpacing: '.05em' }}>{label}</span>
                   <div style={{
                     width: '36px', height: '20px', borderRadius: '10px', position: 'relative',
-                    background: smsConfig[key] ? 'var(--gl)' : 'rgba(255,255,255,0.12)',
+                    background: smsConfig[key] ? 'var(--gl)' : 'var(--border)',
                     transition: 'background 300ms ease',
                   }}>
                     <div style={{

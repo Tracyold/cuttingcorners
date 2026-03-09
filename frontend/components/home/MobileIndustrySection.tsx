@@ -13,12 +13,12 @@ export default function MobileIndustrySection() {
           if (entry.isIntersecting && !glowTriggered) {
             glowTriggered = true;
             yearsEl.style.transition = 'color 700ms ease-out, text-shadow 700ms ease-out';
-            yearsEl.style.color = '#d4af37';
+            yearsEl.style.color = 'var(--gold)';
             yearsEl.style.textShadow =
               '0 0 10px rgba(212,175,55,0.55), 0 0 22px rgba(212,175,55,0.28), 0 0 44px rgba(212,175,55,0.14)';
             setTimeout(() => {
               sevenEl.style.transition = 'color 700ms ease-out, text-shadow 700ms ease-out';
-              sevenEl.style.color = '#d4af37';
+              sevenEl.style.color = 'var(--gold)';
               sevenEl.style.textShadow =
                 '0 0 10px rgba(212,175,55,0.55), 0 0 22px rgba(212,175,55,0.28), 0 0 44px rgba(212,175,55,0.14)';
             }, 250);
