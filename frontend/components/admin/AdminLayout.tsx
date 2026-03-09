@@ -26,7 +26,7 @@ export const adminCss = `
 .sb-name{font-family:var(--serif);font-size:18px;font-weight:400;color:var(--wh);letter-spacing:.07em;line-height:1.3}
 .sb-role{font-size:9px;letter-spacing:.28em;text-transform:uppercase;color:var(--d2);margin-top:6px}
 .sb-nav{flex:1;padding:12px 0}
-.ni{display:flex;align-items:center;gap:12px;padding:14px 24px;font-size:13px;font-weight:400;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,0.45);cursor:pointer;border:none;background:none;width:100%;text-align:left;transition:color .15s;position:relative;font-family:var(--sans)}
+.ni{display:flex;align-items:center;gap:12px;padding:14px 24px;font-size:13px;font-weight:400;letter-spacing:.22em;text-transform:uppercase;color:var(--text-muted);cursor:pointer;border:none;background:none;width:100%;text-align:left;transition:color .15s;position:relative;font-family:var(--sans)}
 .ni::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--gl);opacity:0;transition:opacity .15s}
 .ni.on{color:#d4af37}.ni.on::before{opacity:1}.ni:hover:not(.on){color:#aaa}
 .ni-ic{display:none}
@@ -133,7 +133,7 @@ export const adminCss = `
 .photo-preview-empty{width:100%;aspect-ratio:1/1;background:var(--k3);display:flex;align-items:center;justify-content:center;font-size:32px;opacity:.08;margin-top:9px;border:1px solid var(--ln)}
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
 .card{position:relative;cursor:pointer;background:var(--k2);border:1px solid var(--ln)}.card:hover{border-color:var(--ln2)}
-.card.selected{border-color:rgba(207,176,64,.5);box-shadow:0 0 0 1px rgba(207,176,64,.2)}
+.card.selected{border-color:var(--gold);box-shadow:0 0 0 1px rgba(212,175,55,0.2)}
 .card-thumb{width:100%;aspect-ratio:1/1;object-fit:cover;display:block;background:var(--k3)}
 .card-thumb-empty{width:100%;aspect-ratio:1/1;background:var(--k3);display:flex;align-items:center;justify-content:center;font-size:28px;opacity:.1}
 .card-meta{padding:12px 14px;border-top:1px solid var(--ln)}
@@ -145,7 +145,7 @@ export const adminCss = `
 .sort-input{position:absolute;top:7px;left:7px;width:42px;background:rgba(0,0,0,0.92);border:1px solid var(--gl);color:var(--gl);font-size:10px;font-family:monospace;padding:2px 6px;outline:none;text-align:center}
 .pub-dot{position:absolute;top:10px;right:10px;width:7px;height:7px;border-radius:50%}
 .pub-dot.live{background:var(--gl);box-shadow:0 0 6px rgba(207,176,64,.5)}
-.pub-dot.draft{background:rgba(255,255,255,.18)}
+.pub-dot.draft{background:var(--border)}
 .card-check{position:absolute;top:8px;left:8px;width:16px;height:16px;accent-color:var(--gl);cursor:pointer}
 .card-ra{position:absolute;bottom:52px;right:8px;display:flex;gap:5px;opacity:0;transition:opacity .15s}
 .card:hover .card-ra{opacity:1}
@@ -157,7 +157,7 @@ export const adminCss = `
 .bb.arc:hover{border-color:var(--er);color:#c07070}
 .stat-card{background:var(--k1);border:1px solid var(--ln);padding:28px;min-height:100px}
 .stat-val{font-family:var(--serif);font-size:32px;color:var(--gl);letter-spacing:.03em}
-.stat-label{font-size:11px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,0.45);margin-top:6px}
+.stat-label{font-size:11px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--text-muted);margin-top:6px}
 .notif-row{display:flex;align-items:center;gap:12px;padding:14px 0;border-bottom:1px solid var(--ln);cursor:pointer;transition:background .1s}
 .notif-row:hover{background:var(--k2)}
 .notif-dot{width:7px;height:7px;border-radius:50%;background:var(--gl);flex-shrink:0}
