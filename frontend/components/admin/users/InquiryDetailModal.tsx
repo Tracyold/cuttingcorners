@@ -15,7 +15,7 @@ export default function InquiryDetailModal({ selectedInq, setSelectedInq, select
   const onClose = () => { setSelectedInq(null); setSelectedInqProduct(null); };
 
   return (
-    <div style={{ position: 'fixed', inset: 0, zIndex: 200, background: 'rgba(0,0,0,0.85)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px' }}
+    <div style={{ position: 'fixed', inset: 0, zIndex: 200, background: 'var(--bg-deep)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px' }}
       onClick={e => { if (e.target === e.currentTarget) onClose(); }}>
       <div style={{ background: 'var(--bg)', border: '1px solid var(--border)', padding: '31px', maxWidth: '560px', width: '100%', maxHeight: '90vh', overflowY: 'auto', borderRadius: '2px' }}>
 
@@ -55,7 +55,7 @@ export default function InquiryDetailModal({ selectedInq, setSelectedInq, select
               </div>
             )}
             <div style={{ fontFamily: 'var(--serif)', fontSize: '20px', color: 'var(--wh)', marginBottom: '4px' }}>{selectedInqProduct.title}</div>
-            <div style={{ fontFamily: 'var(--font-mono)', fontSize: '18px', color: 'rgba(45,212,191,1)', marginBottom: '14px' }}>{selectedInqProduct.total_price ? '$' + Number(selectedInqProduct.total_price).toLocaleString() : ''}</div>
+            <div style={{ fontFamily: 'var(--font-mono)', fontSize: '18px', color: 'var(--accent)', marginBottom: '14px' }}>{selectedInqProduct.total_price ? '$' + Number(selectedInqProduct.total_price).toLocaleString() : ''}</div>
             {[
               { label: 'Product ID', val: selectedInqProduct.product_id },
               { label: 'Gem Type', val: selectedInqProduct.gem_type },

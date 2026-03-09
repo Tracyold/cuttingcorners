@@ -49,7 +49,7 @@ export default function InquiryModal({ inquiryStep, product: modalProduct, guest
     <div style={popupOverlayStyle}>
       <div style={{ ...popupBoxStyle, textAlign: 'center' }}>
         <div style={{ fontSize: '32px', marginBottom: '16px' }}>✓</div>
-        <p style={{ fontFamily: 'var(--font-ui)', fontSize: '12px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.20em', color: 'rgba(45,212,191,1)', marginBottom: '10px' }}>Inquiry Sent!</p>
+        <p style={{ fontFamily: 'var(--font-ui)', fontSize: '12px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.20em', color: 'var(--accent)', marginBottom: '10px' }}>Inquiry Sent!</p>
         <p style={{ fontFamily: 'var(--font-body)', fontSize: '13px', color: 'var(--text-muted)', lineHeight: 1.7, marginBottom: '28px' }}>
           We've received your inquiry about <strong style={{ color: 'var(--text)' }}>{modalProduct.title}</strong> and will be in touch soon.
         </p>

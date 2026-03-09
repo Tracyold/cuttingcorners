@@ -26,14 +26,14 @@ const SectionHeading = ({ id, children }: { id?: string; children: React.ReactNo
   <h3 id={id} style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(18px, 2.5vw, 24px)', color: 'var(--text)', marginBottom: '18px', marginTop: '40px', scrollMarginTop: '120px' }}>{children}</h3>
 );
 const GoldNote = ({ children }: { children: React.ReactNode }) => (
-  <div style={{ background: 'rgba(212,175,55,0.06)', border: '1px solid #d4af37', padding: '16px 20px', marginBottom: '20px', borderRadius: '2px' }}>
+  <div style={{ background: 'rgba(212,175,55,0.06)', border: '1px solid var(--gold)', padding: '16px 20px', marginBottom: '20px', borderRadius: '2px' }}>
     <p style={{ fontSize: '13px', color: 'rgba(255,230,130,1)', lineHeight: 1.8, margin: 0 }}>{children}</p>
   </div>
 );
 const GoldDivider = () => (
   <div style={{ margin: '72px 0 64px', display: 'flex', alignItems: 'center', gap: '20px' }}>
     <div style={{ flex: 1, height: '1px', background: 'linear-gradient(to right, transparent, rgba(212,175,55,0.35), transparent)' }} />
-    <div style={{ width: '5px', height: '5px', borderRadius: '50%', background: '#d4af37', opacity: 0.5, flexShrink: 0 }} />
+    <div style={{ width: '5px', height: '5px', borderRadius: '50%', background: 'var(--gold)', opacity: 0.5, flexShrink: 0 }} />
     <div style={{ flex: 1, height: '1px', background: 'linear-gradient(to left, transparent, #d4af37, transparent)' }} />
   </div>
 );
@@ -402,7 +402,7 @@ export default function LegalUnified() {
                 { label: 'Chat Message Alerts', desc: 'Two-way conversational notifications when new messages are sent or received through the account chat system.' },
               ].map(p => (
                 <div key={p.label} style={{ padding: '14px 18px', background: 'var(--bg)', border: '1px solid var(--border)', borderRadius: '4px', display: 'flex', gap: '14px', alignItems: 'flex-start' }}>
-                  <div style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#d4af37', flexShrink: 0, marginTop: '5px', opacity: 0.7 }} />
+                  <div style={{ width: '6px', height: '6px', borderRadius: '50%', background: 'var(--gold)', flexShrink: 0, marginTop: '5px', opacity: 0.7 }} />
                   <div>
                     <p style={{ fontSize: '13px', fontWeight: 600, color: '#FFFFFF', margin: '0 0 4px 0', letterSpacing: '0.05em' }}>{p.label}</p>
                     <p style={{ fontSize: '13px', color: 'var(--text)', margin: 0, lineHeight: 1.65 }}>{p.desc}</p>
@@ -445,7 +445,7 @@ export default function LegalUnified() {
             </div>
 
             {/* ── Contact block ── */}
-            <div style={{ marginTop: '64px', padding: '28px', border: '1px solid #d4af37', background: '#d4af37', borderRadius: '2px' }}>
+            <div style={{ marginTop: '64px', padding: '28px', border: '1px solid var(--gold)', background: 'var(--gold)', borderRadius: '2px' }}>
               <p style={{ fontFamily: 'var(--font-ui)', fontSize: '9px', letterSpacing: '0.3em', textTransform: 'uppercase', color: 'var(--gold)', marginBottom: '14px' }}>Contact</p>
               <p style={{ fontSize: '13px', color: 'var(--text)', lineHeight: 2.1, margin: 0 }}>
                 Cutting Corners Gems<br />

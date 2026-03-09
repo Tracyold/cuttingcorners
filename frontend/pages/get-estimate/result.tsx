@@ -24,7 +24,7 @@ export default function EstimateResult() {
             This is a preliminary estimate summary. A formal estimate will be prepared once we review your stone in person or via submitted photos.
           </p>
           <button onClick={() => router.push('/account')}
-            style={{ padding: '15px 36px', background: '#d4af37', border: 'none', color: 'var(--bg)', fontFamily: 'var(--font-ui)', fontSize: '11px', fontWeight: 700, letterSpacing: '0.25em', textTransform: 'uppercase', cursor: 'pointer' }}>
+            style={{ padding: '15px 36px', background: 'var(--gold)', border: 'none', color: 'var(--bg)', fontFamily: 'var(--font-ui)', fontSize: '11px', fontWeight: 700, letterSpacing: '0.25em', textTransform: 'uppercase', cursor: 'pointer' }}>
             Continue to Account
           </button>
         </div>

@@ -11,10 +11,10 @@ import WorkOrderDetailModal from '../../../components/admin/users/WorkOrderDetai
 
 const STATUS_COLORS: Record<string, { bg: string; color: string }> = {
   CREATED: { bg: 'rgba(184,154,42,0.08)', color: 'var(--gold)' },
-  ACCEPTED: { bg: 'rgba(90,150,90,0.1)', color: '#7ec87e' },
-  COMPLETED: { bg: 'rgba(80,120,200,0.1)', color: '#88aadd' },
-  CONFIRMED: { bg: 'rgba(120,80,200,0.12)', color: '#b388ff' },
-  CANCELLED: { bg: 'rgba(181,64,64,0.1)', color: '#c07070' },
+  ACCEPTED: { bg: 'rgba(90,150,90,0.1)', color: 'var(--accent)' },
+  COMPLETED: { bg: 'rgba(80,120,200,0.1)', color: 'var(--text-muted)' },
+  CONFIRMED: { bg: 'rgba(120,80,200,0.12)', color: 'var(--text-muted)' },
+  CANCELLED: { bg: 'rgba(181,64,64,0.1)', color: 'var(--text-muted)' },
 };
 
 export default function AdminUserDetail() {
@@ -192,7 +192,7 @@ export default function AdminUserDetail() {
         <div style={{ display: 'flex', flexDirection: 'column', width: '100%', height: '100vh', overflow: 'hidden' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '19px', padding: '13px 25px', borderBottom: '1px solid var(--ln)', background: 'var(--k1)', flexShrink: 0 }}>
             <button onClick={() => router.push('/admin/users')} className="hidden md:inline-block" style={{ background: 'none', border: 'none', color: 'var(--text-muted)', cursor: 'pointer', fontSize: '13px', letterSpacing: '.09em', textTransform: 'uppercase', fontFamily: "'Montserrat'", transition: 'color .15s' }} onMouseEnter={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.75)')} onMouseLeave={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.45)')}>← USER LIST</button>
-            <div style={{ fontFamily: 'Montserrat', fontSize: '17px', textTransform: 'uppercase', color: 'rgba(45,212,191,1)' }}>
+            <div style={{ fontFamily: 'Montserrat', fontSize: '17px', textTransform: 'uppercase', color: 'var(--accent)' }}>
               <span style={{ fontSize: '5px', color: 'var(--d2)', textTransform: 'uppercase', letterSpacing: '.15em', marginRight: '11px' }}></span>
               {isGuest ? 'Guest Account' : user?.name || 'User'}
             </div>
@@ -234,10 +234,10 @@ export default function AdminUserDetail() {
                   </div>
                 </div>
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '17px', alignContent: 'start' }}>
-                  <div className="stat-card"><div className="stat-val" style={{ color: 'rgba(45,212,191,1)', fontFamily: 'var(--font-mono)' }}>{woCount}</div><div className="stat-label">Work Orders</div></div>
-                  <div className="stat-card"><div className="stat-val" style={{ color: 'rgba(45,212,191,1)', fontFamily: 'var(--font-mono)' }}>{formatMoney(invTotal)}</div><div className="stat-label">Total Invoiced</div></div>
-                  <div className="stat-card"><div className="stat-val" style={{ color: 'rgba(45,212,191,1)', fontFamily: 'var(--font-mono)' }}>{inqCount}</div><div className="stat-label">Inquiries</div></div>
-                  <div className="stat-card"><div className="stat-val" style={{ color: 'rgba(45,212,191,1)', fontFamily: 'var(--font-mono)' }}>{srCount}</div><div className="stat-label">Service Requests</div></div>
+                  <div className="stat-card"><div className="stat-val" style={{ color: 'var(--accent)', fontFamily: 'var(--font-mono)' }}>{woCount}</div><div className="stat-label">Work Orders</div></div>
+                  <div className="stat-card"><div className="stat-val" style={{ color: 'var(--accent)', fontFamily: 'var(--font-mono)' }}>{formatMoney(invTotal)}</div><div className="stat-label">Total Invoiced</div></div>
+                  <div className="stat-card"><div className="stat-val" style={{ color: 'var(--accent)', fontFamily: 'var(--font-mono)' }}>{inqCount}</div><div className="stat-label">Inquiries</div></div>
+                  <div className="stat-card"><div className="stat-val" style={{ color: 'var(--accent)', fontFamily: 'var(--font-mono)' }}>{srCount}</div><div className="stat-label">Service Requests</div></div>
                 </div>
               </div>
             )}
@@ -316,7 +316,7 @@ export default function AdminUserDetail() {
                       <span style={{ fontSize: '9px', fontWeight: 500, letterSpacing: '.2em', textTransform: 'uppercase', padding: '4px 9px', background: STATUS_COLORS[wo.status]?.bg, color: STATUS_COLORS[wo.status]?.color }}>{wo.status}</span>
                     </div>
                     <p style={{ fontSize: '13px', color: 'var(--d1)', marginBottom: '6px' }}>{wo.description}</p>
-                    {wo.estimated_price && <div style={{ fontSize: '15px', color: 'rgba(45,212,191,1)', fontFamily: 'var(--font-mono)' }}>{formatMoney(wo.estimated_price)}</div>}
+                    {wo.estimated_price && <div style={{ fontSize: '15px', color: 'var(--accent)', fontFamily: 'var(--font-mono)' }}>{formatMoney(wo.estimated_price)}</div>}
                     <div style={{ fontSize: '12px', color: 'var(--d2)', marginTop: '8px' }}>{fmtDate(wo.created_at)}</div>
                     <div style={{ display: 'flex', gap: '9px', marginTop: '11px' }} onClick={e => e.stopPropagation()}>
                       {(wo.status === 'ACCEPTED' || wo.status === 'CONFIRMED') && <button className="ab pub" onClick={() => completeWO(wo)}>Complete</button>}

@@ -5,10 +5,10 @@ import { formatMoney, fmtDate, fmtTime } from '../../../lib/utils';
 // STATUS_COLORS — lines 7–13 of [id].tsx
 const STATUS_COLORS: Record<string, { bg: string; color: string }> = {
   CREATED:   { bg: 'rgba(184,154,42,0.08)',   color: 'var(--gold)' },
-  ACCEPTED:  { bg: 'rgba(90,150,90,0.1)',      color: '#7ec87e' },
-  COMPLETED: { bg: 'rgba(80,120,200,0.1)',     color: '#88aadd' },
-  CONFIRMED: { bg: 'rgba(120,80,200,0.12)',    color: '#b388ff' },
-  CANCELLED: { bg: 'rgba(181,64,64,0.1)',      color: '#c07070' },
+  ACCEPTED:  { bg: 'rgba(90,150,90,0.1)',      color: 'var(--accent)' },
+  COMPLETED: { bg: 'rgba(80,120,200,0.1)',     color: 'var(--text-muted)' },
+  CONFIRMED: { bg: 'rgba(120,80,200,0.12)',    color: 'var(--text-muted)' },
+  CANCELLED: { bg: 'rgba(181,64,64,0.1)',      color: 'var(--text-muted)' },
 };
 
 interface WorkOrderDetailModalProps {
@@ -142,7 +142,7 @@ export default function WorkOrderDetailModal({ selectedWO, setSelectedWO, user, 
               </div>
             ) : (
               <div style={{ fontSize: '15px', color: 'var(--text)', lineHeight: 2 }}>
-                <div style={{ color: 'rgba(66,200,194,0.9)', fontSize: '16px' }}>{user.name}</div>
+                <div style={{ color: 'var(--accent)', fontSize: '16px' }}>{user.name}</div>
                 <div>{user.email}</div>
                 {user.phone && <div>{user.phone}</div>}
                 <div style={{ fontWeight: 600, color: 'rgba(var(--text-rgb, 238,238,238),0.85)' }}>{selectedWO.wo_shipping_address || user.shipping_address || 'No address on file'}</div>
@@ -197,7 +197,7 @@ export default function WorkOrderDetailModal({ selectedWO, setSelectedWO, user, 
           <div style={{ marginTop: '16px', padding: '16px', background: 'var(--k0)', border: '.5px solid var(--ln)' }}>
             <div style={{ fontSize: '11px', letterSpacing: '.2em', textTransform: 'uppercase', color: 'var(--d2)', marginBottom: '12px' }}>Payment</div>
             {selectedWO.paid_outside_site ? (
-              <div style={{ fontSize: '13px', color: '#7ec87e' }}>✓ Marked as paid outside site</div>
+              <div style={{ fontSize: '13px', color: 'var(--accent)' }}>✓ Marked as paid outside site</div>
             ) : selectedWO.stripe_payment_link ? (
               <div>
                 <div style={{ fontSize: '11px', color: 'var(--d2)', marginBottom: '6px' }}>Stripe payment link:</div>
@@ -251,7 +251,7 @@ export default function WorkOrderDetailModal({ selectedWO, setSelectedWO, user, 
             {[...selectedWO.edit_history].reverse().map((entry: any, i: number) => (
               <div key={i} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', padding: '8px 0', borderBottom: '1px solid var(--border)', gap: '12px' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
-                  <span style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '.15em', textTransform: 'uppercase', padding: '2px 6px', background: entry.by === 'admin' ? '#d4af37' : 'rgba(45,212,191,0.1)', color: entry.by === 'admin' ? '#cfb040' : 'rgba(45,212,191,0.9)' }}>{entry.by}</span>
+                  <span style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '.15em', textTransform: 'uppercase', padding: '2px 6px', background: entry.by === 'admin' ? 'var(--gold)' : 'rgba(45,212,191,0.1)', color: entry.by === 'admin' ? '#cfb040' : 'rgba(45,212,191,0.9)' }}>{entry.by}</span>
                   <span style={{ fontSize: '13px', color: 'var(--tx)' }}>{entry.action}</span>
                 </div>
                 <span style={{ fontSize: '10px', color: 'var(--d2)', whiteSpace: 'nowrap', flexShrink: 0 }}>{fmtDate(entry.at)} · {fmtTime(entry.at)}</span>

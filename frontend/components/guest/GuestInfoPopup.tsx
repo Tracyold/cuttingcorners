@@ -38,7 +38,7 @@ export function GuestInfoPopup({ onSubmit, onClose }: { onSubmit: (info: GuestIn
         <label style={labelStyle}>Shipping Address *</label>
         <input style={inputStyle} placeholder="123 Main St, City, State, ZIP" value={address} onChange={e => setAddress(e.target.value)} onFocus={inputFocus} onBlur={inputBlur} />
 
-        {err && <p style={{ fontFamily: 'var(--font-body)', fontSize: '11px', color: '#c07070', marginBottom: '10px' }}>{err}</p>}
+        {err && <p style={{ fontFamily: 'var(--font-body)', fontSize: '11px', color: 'var(--text-muted)', marginBottom: '10px' }}>{err}</p>}
 
         <button style={goldBtnStyle} onClick={handleSubmit}>Continue</button>
         <button style={ghostBtnStyle} onClick={onClose}>Cancel</button>

@@ -226,7 +226,7 @@ export default function FeasibilityMobile() {
           <p style={FL}>Primary Objectives</p>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', margin: '9px 0 17px' }}>
             {postcut.beforeAfter.objectives.map((o, i) => (
-              <span key={i} style={{ padding: '6px 13px', border: '1px solid #d4af37', background: '#d4af37', fontFamily: 'var(--font-ui)', fontSize: '13px', letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--gold)', display: 'inline-block' }}>{o}</span>
+              <span key={i} style={{ padding: '6px 13px', border: '1px solid var(--gold)', background: 'var(--gold)', fontFamily: 'var(--font-ui)', fontSize: '13px', letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--gold)', display: 'inline-block' }}>{o}</span>
             ))}
           </div>
           <p style={FL}>Summary Notes</p>

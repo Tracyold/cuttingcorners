@@ -51,7 +51,7 @@ const goldBtnStyle: React.CSSProperties = {
   fontSize: '11px', fontWeight: 600,
   textTransform: 'uppercase',
   letterSpacing: '0.20em',
-  backgroundColor: '#d4af37', color: 'var(--bg)',
+  backgroundColor: 'var(--gold)', color: 'var(--bg)',
   border: 'none', padding: '14px 24px',
   cursor: 'pointer',
 };
