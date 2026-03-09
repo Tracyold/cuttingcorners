@@ -9,7 +9,7 @@ const Li = ({ children }: { children: React.ReactNode }) => (
 );
 const Sec = ({ n, title, children }: { n: string; title: string; children: React.ReactNode }) => (
   <div style={{ marginBottom: '40px' }}>
-    <h2 style={{ fontFamily: "'Montserrat', sans-serif", fontSize: '15px', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(212,175,55,0.8)', marginBottom: '14px' }}>{n}. {title}</h2>
+    <h2 style={{ fontFamily: 'var(--font-ui)', fontSize: '15px', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(212,175,55,0.8)', marginBottom: '14px' }}>{n}. {title}</h2>
     {children}
   </div>
 );
@@ -31,8 +31,8 @@ export default function PrivacyPolicy() {
 
         <div style={{ maxWidth: '1300px', margin: '0 auto', padding: '64px 40px' }}>
 
-          <p style={{ fontFamily: "'Montserrat', sans-serif", fontSize: '11px', letterSpacing: '0.3em', textTransform: 'uppercase', color: 'var(--gold)', marginBottom: '12px' }}>Cutting Corners Gems</p>
-          <h1 style={{ fontFamily: "'Oranienbaum', serif", fontSize: 'clamp(32px, 5vw, 52px)', color: 'var(--text)', marginBottom: '16px', lineHeight: 1.15 }}>Privacy Policy</h1>
+          <p style={{ fontFamily: 'var(--font-ui)', fontSize: '11px', letterSpacing: '0.3em', textTransform: 'uppercase', color: 'var(--gold)', marginBottom: '12px' }}>Cutting Corners Gems</p>
+          <h1 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(32px, 5vw, 52px)', color: 'var(--text)', marginBottom: '16px', lineHeight: 1.15 }}>Privacy Policy</h1>
           <p style={{ fontSize: '13px', color: 'var(--text-muted)', marginBottom: '64px' }}>Effective Date: March 4, 2026</p>
 
           <P>Cutting Corners Gems respects your privacy and is committed to protecting the personal information you provide when using our website and services. By using this website or creating an account, you acknowledge and agree to the practices described in this Privacy Policy.</P>

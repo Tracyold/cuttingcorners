@@ -85,7 +85,7 @@ export default function HomeTab({
 
       {/* SMS Preferences */}
       <div style={{ marginTop: '32px' }}>
-        <h3 style={{ fontFamily: "'Montserrat', sans-serif", fontSize: '17px', textTransform: 'uppercase', letterSpacing: '0.2em', color: 'var(--text-muted)', marginBottom: '16px' }}>Notification Preferences</h3>
+        <h3 style={{ fontFamily: 'var(--font-ui)', fontSize: '17px', textTransform: 'uppercase', letterSpacing: '0.2em', color: 'var(--text-muted)', marginBottom: '16px' }}>Notification Preferences</h3>
         {smToggles.map(t => (
           <div key={t.col} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '10px 0', borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
             <span style={{ fontSize: '13px', color: 'var(--text-muted)' }}>{t.label}</span>

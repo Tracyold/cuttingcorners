@@ -32,13 +32,13 @@ const inputStyle: React.CSSProperties = {
   border: '1px solid var(--border)',
   padding: '10px 12px',
   color: 'var(--text)',
-  fontFamily: "'Comfortaa', sans-serif",
+  fontFamily: 'var(--font-body)',
   fontSize: '13px',
   outline: 'none',
   marginBottom: '10px',
 };
 const labelStyle: React.CSSProperties = {
-  fontFamily: "'Comfortaa', sans-serif",
+  fontFamily: 'var(--font-body)',
   fontSize: '9px', fontWeight: 600,
   textTransform: 'uppercase',
   letterSpacing: '0.18em',
@@ -47,7 +47,7 @@ const labelStyle: React.CSSProperties = {
 };
 const goldBtnStyle: React.CSSProperties = {
   width: '100%', textAlign: 'center',
-  fontFamily: "'Comfortaa', sans-serif",
+  fontFamily: 'var(--font-body)',
   fontSize: '11px', fontWeight: 600,
   textTransform: 'uppercase',
   letterSpacing: '0.20em',
@@ -57,7 +57,7 @@ const goldBtnStyle: React.CSSProperties = {
 };
 const ghostBtnStyle: React.CSSProperties = {
   width: '100%', textAlign: 'center',
-  fontFamily: "'Comfortaa', sans-serif",
+  fontFamily: 'var(--font-body)',
   fontSize: '10px', fontWeight: 500,
   textTransform: 'uppercase',
   letterSpacing: '0.18em',
@@ -337,7 +337,7 @@ export default function ShopPage() {
       <main style={{ background: 'linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 35%, #141414 60%, #0d0d0d 100%)', minHeight: '100vh', paddingTop: '56px' }}>
         <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '48px 48px 80px' }}>
           <p style={{
-            fontFamily: "'Comfortaa', sans-serif",
+            fontFamily: 'var(--font-body)',
             fontSize: '11px', textTransform: 'uppercase',
             letterSpacing: '0.20em',
             color: 'var(--text-muted)',
@@ -346,7 +346,7 @@ export default function ShopPage() {
             Gems for Sale
           </p>
           <h1 style={{
-            fontFamily: "'Comfortaa', sans-serif",
+            fontFamily: 'var(--font-body)',
             fontSize: 'clamp(30px, 6vw, 60px)',
             fontWeight: 400,
             color: 'var(--text)',
@@ -357,13 +357,13 @@ export default function ShopPage() {
 
           {loading ? (
             <div style={{ textAlign: 'center', padding: '80px 0', color: 'var(--text-muted)' }}>
-              <p style={{ fontFamily: "'Montserrat', sans-serif", fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.2em' }}>
+              <p style={{ fontFamily: 'var(--font-ui)', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.2em' }}>
                 Loading...
               </p>
             </div>
           ) : products.length === 0 ? (
             <div style={{ textAlign: 'center', padding: '80px 0', color: 'var(--text-muted)' }}>
-              <p style={{ fontFamily: "'Montserrat', sans-serif", fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.2em' }}>
+              <p style={{ fontFamily: 'var(--font-ui)', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.2em' }}>
                 No products available
               </p>
             </div>
@@ -385,13 +385,13 @@ export default function ShopPage() {
                       />
                     ) : (
                       <div style={{ width: '100%', height: '100%', background: 'var(--bg-deep)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                        <span style={{ color: 'rgba(255,255,255,0.2)', fontFamily: "'Montserrat', sans-serif", fontSize: '15px', textTransform: 'uppercase', letterSpacing: '0.2em' }}>No Photo</span>
+                        <span style={{ color: 'rgba(255,255,255,0.2)', fontFamily: 'var(--font-ui)', fontSize: '15px', textTransform: 'uppercase', letterSpacing: '0.2em' }}>No Photo</span>
                       </div>
                     )}
                     <div className="shop-card-vignette" />
                   </div>
                   <div style={{ padding: '0px 0px 0' }}>
-                    <h3 style={{ fontFamily: "'Montserrat', sans-serif", fontSize: '23px', color: 'var(--bg)', margin: '0 0 4px', fontWeight: 700 }}>
+                    <h3 style={{ fontFamily: 'var(--font-ui)', fontSize: '23px', color: 'var(--bg)', margin: '0 0 4px', fontWeight: 700 }}>
                       {product.title}
                     </h3>
                     <div className="shop-card-mobile-title" style={{ display: 'none' }}>

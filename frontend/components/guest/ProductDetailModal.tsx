@@ -36,7 +36,7 @@ export default function ProductDetailModal({ product: modalProduct, onClose, onB
               </div>
             )}
 
-            <h2 style={{ fontFamily: "'Oranienbaum', serif", fontSize: '24px', fontWeight: 400, color: 'var(--text)', marginBottom: '8px' }}>
+            <h2 style={{ fontFamily: 'var(--font-display)', fontSize: '24px', fontWeight: 400, color: 'var(--text)', marginBottom: '8px' }}>
               {modalProduct.title}
             </h2>
 
@@ -56,8 +56,8 @@ export default function ProductDetailModal({ product: modalProduct, onClose, onB
                 { label: 'Price/ct', value: modalProduct.price_per_carat ? formatMoney(modalProduct.price_per_carat) : null },
               ].filter(r => r.value).map(({ label, value }) => (
                 <div key={label} style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '6px' }}>
-                  <span style={{ fontFamily: "'Montserrat', sans-serif", fontSize: '9px', textTransform: 'uppercase', letterSpacing: '0.18em', color: 'rgba(255,255,255,0.38)' }}>{label}</span>
-                  <span style={{ fontFamily: "'Comfortaa', sans-serif", fontSize: '12px', color: 'var(--text)' }}>{value}</span>
+                  <span style={{ fontFamily: 'var(--font-ui)', fontSize: '9px', textTransform: 'uppercase', letterSpacing: '0.18em', color: 'rgba(255,255,255,0.38)' }}>{label}</span>
+                  <span style={{ fontFamily: 'var(--font-body)', fontSize: '12px', color: 'var(--text)' }}>{value}</span>
                 </div>
               ))}
             </div>
@@ -65,8 +65,8 @@ export default function ProductDetailModal({ product: modalProduct, onClose, onB
             {/* GIA */}
             {modalProduct.gia_report_number && (
               <div style={{ marginBottom: '20px', padding: '12px', background: 'rgba(255,255,255,0.03)', border: '1px solid var(--border)' }}>
-                <span style={{ fontFamily: "'Montserrat', sans-serif", fontSize: '9px', textTransform: 'uppercase', letterSpacing: '0.18em', color: 'rgba(255,255,255,0.38)' }}>GIA Report</span>
-                <p style={{ fontFamily: "'Comfortaa', sans-serif", fontSize: '13px', color: 'var(--text)', margin: '4px 0 0' }}>
+                <span style={{ fontFamily: 'var(--font-ui)', fontSize: '9px', textTransform: 'uppercase', letterSpacing: '0.18em', color: 'rgba(255,255,255,0.38)' }}>GIA Report</span>
+                <p style={{ fontFamily: 'var(--font-body)', fontSize: '13px', color: 'var(--text)', margin: '4px 0 0' }}>
                   #{modalProduct.gia_report_number}
                   {modalProduct.gia_report_pdf_url && (
                     <a href={modalProduct.gia_report_pdf_url} target="_blank" rel="noopener noreferrer" style={{ color: 'var(--gold)', marginLeft: '8px', fontSize: '11px' }}>
@@ -78,7 +78,7 @@ export default function ProductDetailModal({ product: modalProduct, onClose, onB
             )}
 
             {modalProduct.description && (
-              <p style={{ fontFamily: "'Comfortaa', sans-serif", fontSize: '13px', lineHeight: 1.75, color: 'var(--text-muted)', marginBottom: '24px' }}>
+              <p style={{ fontFamily: 'var(--font-body)', fontSize: '13px', lineHeight: 1.75, color: 'var(--text-muted)', marginBottom: '24px' }}>
                 {modalProduct.description}
               </p>
             )}
@@ -91,7 +91,7 @@ export default function ProductDetailModal({ product: modalProduct, onClose, onB
                 <ShoppingCart size={14} /> Buy Now
               </button>
               <button
-                style={{ flex: 1, textAlign: 'center', fontFamily: "'Montserrat', sans-serif", fontSize: '11px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.20em', backgroundColor: 'transparent', color: 'var(--text-muted)', border: '1px solid rgba(255,255,255,0.15)', padding: '14px 24px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}
+                style={{ flex: 1, textAlign: 'center', fontFamily: 'var(--font-ui)', fontSize: '11px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.20em', backgroundColor: 'transparent', color: 'var(--text-muted)', border: '1px solid rgba(255,255,255,0.15)', padding: '14px 24px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}
                 onClick={handleInquiryClick}
               >
                 <MessageSquare size={14} /> Inquire

@@ -21,8 +21,8 @@ export default function InquiryModal({ inquiryStep, product: modalProduct, guest
   if (inquiryStep === 'collect-info') return (
     <div style={popupOverlayStyle}>
       <div style={popupBoxStyle}>
-        <p style={{ fontFamily: "'Montserrat', sans-serif", fontSize: '10px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.20em', color: 'var(--text-muted)', marginBottom: '6px' }}>Inquire About This Gem</p>
-        <p style={{ fontFamily: "'Comfortaa', sans-serif", fontSize: '12px', color: 'var(--text-muted)', marginBottom: '20px', lineHeight: 1.6 }}>Please share your contact details so we can follow up.</p>
+        <p style={{ fontFamily: 'var(--font-ui)', fontSize: '10px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.20em', color: 'var(--text-muted)', marginBottom: '6px' }}>Inquire About This Gem</p>
+        <p style={{ fontFamily: 'var(--font-body)', fontSize: '12px', color: 'var(--text-muted)', marginBottom: '20px', lineHeight: 1.6 }}>Please share your contact details so we can follow up.</p>
         <InquiryContactForm onSubmit={handleGuestInfoForInquiry} onClose={closeInquiry} />
       </div>
     </div>
@@ -31,10 +31,10 @@ export default function InquiryModal({ inquiryStep, product: modalProduct, guest
   if (inquiryStep === 'describe') return (
     <div style={popupOverlayStyle}>
       <div style={popupBoxStyle}>
-        <p style={{ fontFamily: "'Montserrat', sans-serif", fontSize: '10px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.20em', color: 'var(--text-muted)', marginBottom: '6px' }}>Inquiry — {modalProduct.title}</p>
+        <p style={{ fontFamily: 'var(--font-ui)', fontSize: '10px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.20em', color: 'var(--text-muted)', marginBottom: '6px' }}>Inquiry — {modalProduct.title}</p>
         <div style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.07)', borderRadius: '8px', padding: '14px 16px', marginBottom: '20px' }}>
-          <div style={{ fontFamily: "'Montserrat', sans-serif", fontSize: '9px', textTransform: 'uppercase', letterSpacing: '0.18em', color: 'var(--text-muted)', marginBottom: '8px' }}>Your Details</div>
-          <div style={{ fontFamily: "'Comfortaa', sans-serif", fontSize: '13px', color: 'var(--text-muted)', lineHeight: 1.7 }}>
+          <div style={{ fontFamily: 'var(--font-ui)', fontSize: '9px', textTransform: 'uppercase', letterSpacing: '0.18em', color: 'var(--text-muted)', marginBottom: '8px' }}>Your Details</div>
+          <div style={{ fontFamily: 'var(--font-body)', fontSize: '13px', color: 'var(--text-muted)', lineHeight: 1.7 }}>
             {displayName && <div>{displayName}</div>}
             {displayEmail && <div>{displayEmail}</div>}
             {displayPhone && <div>{displayPhone}</div>}
@@ -49,8 +49,8 @@ export default function InquiryModal({ inquiryStep, product: modalProduct, guest
     <div style={popupOverlayStyle}>
       <div style={{ ...popupBoxStyle, textAlign: 'center' }}>
         <div style={{ fontSize: '32px', marginBottom: '16px' }}>✓</div>
-        <p style={{ fontFamily: "'Montserrat', sans-serif", fontSize: '12px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.20em', color: 'rgba(45,212,191,1)', marginBottom: '10px' }}>Inquiry Sent!</p>
-        <p style={{ fontFamily: "'Comfortaa', sans-serif", fontSize: '13px', color: 'var(--text-muted)', lineHeight: 1.7, marginBottom: '28px' }}>
+        <p style={{ fontFamily: 'var(--font-ui)', fontSize: '12px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.20em', color: 'rgba(45,212,191,1)', marginBottom: '10px' }}>Inquiry Sent!</p>
+        <p style={{ fontFamily: 'var(--font-body)', fontSize: '13px', color: 'var(--text-muted)', lineHeight: 1.7, marginBottom: '28px' }}>
           We've received your inquiry about <strong style={{ color: 'var(--text)' }}>{modalProduct.title}</strong> and will be in touch soon.
         </p>
         <button style={goldBtnStyle} onClick={handleInquiryOK}>OK</button>

@@ -12,18 +12,18 @@ const Li = ({ children }: { children: React.ReactNode }) => (
 );
 const Num = ({ n, title, children }: { n: string; title: string; children: React.ReactNode }) => (
   <div style={{ marginBottom: '28px' }}>
-    <h4 style={{ fontFamily: "'Montserrat', sans-serif", fontSize: '13px', letterSpacing: '0.15em', textTransform: 'uppercase', color: 'rgba(100,160,220,0.85)', marginBottom: '10px' }}>{n}. {title}</h4>
+    <h4 style={{ fontFamily: 'var(--font-ui)', fontSize: '13px', letterSpacing: '0.15em', textTransform: 'uppercase', color: 'var(--accent)', marginBottom: '10px' }}>{n}. {title}</h4>
     {children}
   </div>
 );
 const PrivSec = ({ n, title, children }: { n: string; title: string; children: React.ReactNode }) => (
   <div style={{ marginBottom: '36px' }}>
-    <h4 style={{ fontFamily: "'Montserrat', sans-serif", fontSize: '13px', letterSpacing: '0.15em', textTransform: 'uppercase', color: 'rgba(100,160,220,0.85)', marginBottom: '10px' }}>{n}. {title}</h4>
+    <h4 style={{ fontFamily: 'var(--font-ui)', fontSize: '13px', letterSpacing: '0.15em', textTransform: 'uppercase', color: 'var(--accent)', marginBottom: '10px' }}>{n}. {title}</h4>
     {children}
   </div>
 );
 const SectionHeading = ({ id, children }: { id?: string; children: React.ReactNode }) => (
-  <h3 id={id} style={{ fontFamily: "'Oranienbaum', serif", fontSize: 'clamp(18px, 2.5vw, 24px)', color: 'var(--text)', marginBottom: '18px', marginTop: '40px', scrollMarginTop: '120px' }}>{children}</h3>
+  <h3 id={id} style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(18px, 2.5vw, 24px)', color: 'var(--text)', marginBottom: '18px', marginTop: '40px', scrollMarginTop: '120px' }}>{children}</h3>
 );
 const GoldNote = ({ children }: { children: React.ReactNode }) => (
   <div style={{ background: 'rgba(212,175,55,0.06)', border: '1px solid #d4af37', padding: '16px 20px', marginBottom: '20px', borderRadius: '2px' }}>
@@ -200,7 +200,7 @@ export default function LegalUnified() {
           <button onClick={() => router.push('/')} style={{ background: 'none', border: 'none', color: 'var(--text)', fontSize: '11px', letterSpacing: '0.25em', textTransform: 'uppercase', cursor: 'pointer' }}>
             ← Cutting Corners Gems
           </button>
-          <span style={{ fontFamily: "'Montserrat', sans-serif", fontSize: '10px', letterSpacing: '0.25em', textTransform: 'uppercase', color: 'var(--text-muted)' }}>
+          <span style={{ fontFamily: 'var(--font-ui)', fontSize: '10px', letterSpacing: '0.25em', textTransform: 'uppercase', color: 'var(--text-muted)' }}>
             Legal &amp; Disclosures
           </span>
         </div>
@@ -242,7 +242,7 @@ export default function LegalUnified() {
               <button key={t.id} className={`toc-btn${activeId === t.id ? ' active' : ''}`} onClick={() => scrollTo(t.id)}>{t.label}</button>
             ))}
             <div style={{ margin: '32px 14px 0', paddingTop: '20px', borderTop: '1px solid rgba(255,255,255,0.05)' }}>
-              <p style={{ fontFamily: "'Comfortaa', sans-serif", fontSize: '9px', color: 'var(--text-muted)', lineHeight: 1.9 }}>
+              <p style={{ fontFamily: 'var(--font-body)', fontSize: '9px', color: 'var(--text-muted)', lineHeight: 1.9 }}>
                 Effective<br />March 4, 2026
               </p>
             </div>
@@ -252,8 +252,8 @@ export default function LegalUnified() {
           <main style={{ flex: 1, padding: '64px 48px 120px', minWidth: 0 }}>
 
             {/* Hero */}
-            <p style={{ fontFamily: "'Montserrat', sans-serif", fontSize: '11px', letterSpacing: '0.3em', textTransform: 'uppercase', color: 'rgba(100,160,220,0.85)', marginBottom: '12px' }}>Cutting Corners Gems</p>
-            <h1 style={{ fontFamily: "'Oranienbaum', serif", fontSize: 'clamp(34px, 5vw, 56px)', color: 'var(--text)', marginBottom: '20px', lineHeight: 1.1 }}>Legal, Privacy<br />&amp; SMS Disclosure</h1>
+            <p style={{ fontFamily: 'var(--font-ui)', fontSize: '11px', letterSpacing: '0.3em', textTransform: 'uppercase', color: 'var(--accent)', marginBottom: '12px' }}>Cutting Corners Gems</p>
+            <h1 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(34px, 5vw, 56px)', color: 'var(--text)', marginBottom: '20px', lineHeight: 1.1 }}>Legal, Privacy<br />&amp; SMS Disclosure</h1>
             <p style={{ fontSize: '13px', color: 'rgba(255,255,255,0.7)', marginBottom: '64px' }}>
               Effective Date: March 4, 2026 · Program: Cutting Corners Gems — User Opt-In/Out Account Notifications
             </p>
@@ -262,7 +262,7 @@ export default function LegalUnified() {
                 SECTION 1 — LEGAL & POLICIES
             ════════════════════════════════════════════════════ */}
             <div id="legal-top" className="anchor">
-              <h2 style={{ fontFamily: "'Oranienbaum', serif", fontSize: 'clamp(24px, 3vw, 34px)', color: 'var(--text)', marginBottom: '24px' }}>Legal &amp; Policies</h2>
+              <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(24px, 3vw, 34px)', color: 'var(--text)', marginBottom: '24px' }}>Legal &amp; Policies</h2>
               <P>Cutting Corners Gems believes that clear communication builds trust. Because gemstone cutting involves natural materials, shipping, and specialized services, we provide written policies so customers know exactly how our services operate before sending in their gemstones.</P>
               <P>These policies are not written to avoid responsibility. They exist to ensure that customers understand how the process works, what risks naturally exist with gemstone materials, and what procedures we follow to protect both the customer and the gemstone. Our goal is simple: clarity, transparency, and fairness for everyone involved.</P>
             </div>
@@ -325,7 +325,7 @@ export default function LegalUnified() {
                 SECTION 2 — PRIVACY POLICY
             ════════════════════════════════════════════════════ */}
             <div id="privacy-top" className="anchor">
-              <h2 style={{ fontFamily: "'Oranienbaum', serif", fontSize: 'clamp(24px, 3vw, 34px)', color: 'var(--text)', marginBottom: '24px' }}>Privacy Policy</h2>
+              <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(24px, 3vw, 34px)', color: 'var(--text)', marginBottom: '24px' }}>Privacy Policy</h2>
               <P>Cutting Corners Gems respects your privacy and is committed to protecting the personal information you provide when using our website and services. By using this website or creating an account, you acknowledge and agree to the practices described below.</P>
             </div>
 
@@ -386,7 +386,7 @@ export default function LegalUnified() {
                 SECTION 3 — SMS DISCLOSURE
             ════════════════════════════════════════════════════ */}
             <div id="sms-top" className="anchor">
-              <h2 style={{ fontFamily: "'Oranienbaum', serif", fontSize: 'clamp(24px, 3vw, 34px)', color: 'var(--text)', marginBottom: '24px' }}>SMS Notification Terms &amp; Disclosure</h2>
+              <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(24px, 3vw, 34px)', color: 'var(--text)', marginBottom: '24px' }}>SMS Notification Terms &amp; Disclosure</h2>
               <p style={{ fontSize: '12px', color: 'rgba(255,255,255,0.7)', marginBottom: '28px' }}>Program Name: Cutting Corners Gems — User Opt-In/Out Account Notifications</p>
               <GoldNote>
                 By providing a mobile phone number and enabling SMS notification toggles within your account dashboard, you consent to receive transactional SMS notifications related to your account activity. Notifications are optional and can be enabled or disabled individually at any time from your Account Dashboard. Cutting Corners Gems does not send unsolicited marketing or promotional SMS messages.
@@ -446,7 +446,7 @@ export default function LegalUnified() {
 
             {/* ── Contact block ── */}
             <div style={{ marginTop: '64px', padding: '28px', border: '1px solid #d4af37', background: '#d4af37', borderRadius: '2px' }}>
-              <p style={{ fontFamily: "'Montserrat', sans-serif", fontSize: '9px', letterSpacing: '0.3em', textTransform: 'uppercase', color: 'var(--gold)', marginBottom: '14px' }}>Contact</p>
+              <p style={{ fontFamily: 'var(--font-ui)', fontSize: '9px', letterSpacing: '0.3em', textTransform: 'uppercase', color: 'var(--gold)', marginBottom: '14px' }}>Contact</p>
               <p style={{ fontSize: '13px', color: 'rgba(var(--text-rgb, 238,238,238),0.85)', lineHeight: 2.1, margin: 0 }}>
                 Cutting Corners Gems<br />
                 850 S River Dr #2117, Tempe, Arizona 85281<br />
