@@ -346,7 +346,7 @@ export default function AccountPage() {
   // Open WO detail
   const openWODetail = (wo: any) => { setSelectedWO(wo); };
 
-  if (loading) return <div style={{ background: '#1a1919', minHeight: '100vh' }} />;
+  if (loading) return <div style={{ background: 'var(--bg-deep)', minHeight: '100vh' }} />;
 
   const NAV = [
     { id: 'home', label: 'Home' },
@@ -379,7 +379,7 @@ export default function AccountPage() {
               onClick={async () => { await supabase.auth.signOut(); router.push('/'); }}>
               Sign Out
             </button>
-            <button className="acc-nav-item" style={{ color: 'rgba(180,60,60,0.6)', fontSize: '11px', marginTop: '4px' }}
+            <button className="acc-nav-item" style={{ color: 'var(--text-muted)', fontSize: '11px', marginTop: '4px' }}
               onClick={() => { setShowDeleteModal(true); setDeleteConfirmText(''); setDeleteError(''); }}>
               Delete Account
             </button>
@@ -507,25 +507,25 @@ const accountCss = `
 .acc-nav { width: 180px; flex-shrink: 0; background: var(--bg); border-right: 1px solid var(--border); display: flex; flex-direction: column; padding: 20px 0; overflow-y: auto; }
 .acc-nav-item { display: block; width: 100%; text-align: left; padding: 10px 20px; font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 400; letter-spacing: 0.20em; text-transform: uppercase; color: rgba(255,255,255,0.45); background: none; border: none; border-left: 2px solid transparent; cursor: pointer; transition: color 0.15s; }
 .acc-nav-item.on { color: #d4af37; border-left-color: #d4af37; }
-.acc-nav-item:hover:not(.on) { color: rgba(255,255,255,0.75); }
+.acc-nav-item:hover:not(.on) { color: var(--text); }
 .acc-content { flex: 1; overflow-y: auto; min-height: 0; min-width: 0; }
 .acc-right { width: 35%; min-width: 300px; max-width: 420px; border-left: 1px solid rgba(255,255,255,0.08); display: flex; flex-direction: column; background: var(--bg); }
 .acc-chat-header { padding: 16px 20px; border-bottom: 1px solid var(--border); }
 .acc-chat-messages { flex: 1; overflow-y: auto; padding: 16px 20px; }
 .acc-chat-input-bar { display: flex; gap: 8px; padding: 12px 20px; border-top: 1px solid var(--border); }
 .acc-chat-input { flex: 1; background: var(--border); border: 1px solid var(--border); padding: 10px 12px; color: var(--text); font-family: var(--font-body); font-size: 13px; outline: none; }
-.acc-chat-input:focus { border-color: rgba(214,180,70,0.55); }
+.acc-chat-input:focus { border-color: var(--gold); }
 .acc-chat-send { background: #d4af37; border: none; color: #050505; padding: 10px 16px; font-size: 14px; cursor: pointer; font-weight: 700; }
 .acc-chat-send:disabled { opacity: 0.4; cursor: not-allowed; }
 .acc-label { font-family: 'Montserrat', sans-serif; font-size: 9px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-muted); display: block; margin-bottom: 5px; }
 .acc-input { width: 100%; background: var(--border); border: 1px solid var(--border); padding: 10px 12px; color: var(--text); font-family: var(--font-body); font-size: 13px; outline: none; }
-.acc-input:focus { border-color: rgba(214,180,70,0.55); }
+.acc-input:focus { border-color: var(--gold); }
 .acc-btn-gold { background: #d4af37; color: #050505; border: none; padding: 12px 20px; font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; cursor: pointer; width: 100%; }
 .acc-btn-gold:disabled { opacity: 0.4; cursor: not-allowed; }
 .acc-btn-ghost { background: none; border: 1px solid var(--border); color: rgba(255,255,255,0.45); padding: 10px 16px; font-family: 'Montserrat', sans-serif; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; cursor: pointer; }
 .acc-tab { padding: 10px 0; font-family: 'Montserrat', sans-serif; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.45); background: none; border: none; border-bottom: 1px solid transparent; cursor: pointer; }
 .acc-tab.on { color: var(--text); border-bottom-color: #d4af37; }
-.acc-empty { font-size: 11px; color: rgba(255,255,255,0.35); text-transform: uppercase; letter-spacing: 0.2em; }
+.acc-empty { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.2em; }
 .acc-chat-mobile-bar { display: none; position: fixed; bottom: 0; left: 0; right: 0; background: #d4af37; color: #050505; text-align: center; padding: 14px; font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; cursor: pointer; z-index: 50; }
 .acc-chat-mobile-bar.hidden { display: none !important; }
 .acc-chat-mobile-drawer { display: none; position: fixed; inset: 0; background: transparent; z-index: 100; flex-direction: column; }

@@ -500,7 +500,7 @@ const shopCss = `
   font-size: 15px;
   text-transform: uppercase;
   letter-spacing: 0.13em;
-  color: rgba(228, 182, 44, 0.82);
+  color: var(--accent);
   background: rgba(34, 32, 32, 0.84);
   border: 1px solid var(--border);
   padding: 0px 8px;

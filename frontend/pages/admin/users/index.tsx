@@ -191,7 +191,7 @@ export default function AdminUsersPage() {
                   <td><div className="td-name" style={{ opacity: 0.6 }}>{u.name || '—'}</div></td>
                   <td style={{ fontSize: 17, color: 'var(--d1)' }}>{u.email || '—'}</td>
                   <td style={{ fontSize: 15 }}>{u.phone || '—'}</td>
-                  <td style={{ fontSize: 13, color: 'rgba(220,80,80,0.7)' }}>{fmtDate(u.deleted_at)} {fmtTime(u.deleted_at)}</td>
+                  <td style={{ fontSize: 13, color: 'var(--text-muted)' }}>{fmtDate(u.deleted_at)} {fmtTime(u.deleted_at)}</td>
                   <td style={{ fontSize: 13, color: 'var(--d1)' }}>{u.deleted_reason || '—'}</td>
                   <td>
                     <div className="ra">

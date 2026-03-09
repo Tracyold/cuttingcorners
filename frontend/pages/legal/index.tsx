@@ -28,7 +28,7 @@ const SectionHeading = ({ id, children }: { id?: string; children: React.ReactNo
 );
 const GoldNote = ({ children }: { children: React.ReactNode }) => (
   <div style={{ background: 'rgba(212,175,55,0.06)', border: '1px solid var(--gold)', padding: '16px 20px', marginBottom: '20px', borderRadius: '2px' }}>
-    <p style={{ fontSize: '13px', color: 'rgba(255,230,130,1)', lineHeight: 1.8, margin: 0 }}>{children}</p>
+    <p style={{ fontSize: '13px', color: 'var(--accent)', lineHeight: 1.8, margin: 0 }}>{children}</p>
   </div>
 );
 const GoldDivider = () => (
@@ -194,7 +194,7 @@ export default function LegalUnified() {
         {/* ── Top nav ── */}
         <div style={{
           position: 'sticky', top: 0, zIndex: 100,
-          background: 'rgba(5,5,5,0.96)', backdropFilter: 'blur(10px)',
+          background: 'var(--bg-deep)', backdropFilter: 'blur(10px)',
           borderBottom: '1px solid var(--border)',
           padding: '16px 32px',
           display: 'flex', alignItems: 'center', justifyContent: 'space-between',
@@ -406,7 +406,7 @@ export default function LegalUnified() {
                 <div key={p.label} style={{ padding: '14px 18px', background: 'var(--bg)', border: '1px solid var(--border)', borderRadius: '4px', display: 'flex', gap: '14px', alignItems: 'flex-start' }}>
                   <div style={{ width: '6px', height: '6px', borderRadius: '50%', background: 'var(--gold)', flexShrink: 0, marginTop: '5px', opacity: 0.7 }} />
                   <div>
-                    <p style={{ fontSize: '13px', fontWeight: 600, color: '#FFFFFF', margin: '0 0 4px 0', letterSpacing: '0.05em' }}>{p.label}</p>
+                    <p style={{ fontSize: '13px', fontWeight: 600, color: 'var(--text)', margin: '0 0 4px 0', letterSpacing: '0.05em' }}>{p.label}</p>
                     <p style={{ fontSize: '13px', color: 'var(--text)', margin: 0, lineHeight: 1.65 }}>{p.desc}</p>
                   </div>
                 </div>

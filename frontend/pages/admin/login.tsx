@@ -72,7 +72,7 @@ export default function AdminLoginPage() {
     <div style={{ background: 'transparent', minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '24px' }}>
       <div
         style={{
-          background: '#111111',
+          background: 'var(--bg-deep)',
           border: '0.5px solid rgba(214,180,70,0.55)',
           padding: '40px',
           maxWidth: '480px',

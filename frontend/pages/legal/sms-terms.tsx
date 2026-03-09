@@ -45,7 +45,7 @@ export default function SmsTerms() {
           {/* Intro */}
           <div style={{ background: 'var(--gold)', border: '1px solid var(--gold)', padding: '20px 24px', marginBottom: '48px' }}>
             <P>By providing a mobile phone number and enabling SMS notification toggles within your account dashboard, you consent to receive transactional SMS notifications related to your account activity. Notifications are optional and can be enabled or disabled individually at any time from your Account Dashboard.</P>
-            <p style={{ fontSize: '17px', color: 'rgba(255,220,100,0.8)', margin: 0 }}>Cutting Corners Gems does not send unsolicited marketing or promotional SMS messages. All messages are operational in nature and correspond to account activity you have chosen to track.</p>
+            <p style={{ fontSize: '17px', color: 'var(--accent)', margin: 0 }}>Cutting Corners Gems does not send unsolicited marketing or promotional SMS messages. All messages are operational in nature and correspond to account activity you have chosen to track.</p>
           </div>
 
           {/* Program Categories */}
