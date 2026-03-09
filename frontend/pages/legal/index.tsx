@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import TopNav from '../../components/shared/TopNav';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import SmsPreview from '../../components/legal/smscomp';
@@ -187,7 +188,8 @@ export default function LegalUnified() {
         @media (max-width: 900px) { .desktop-sidebar { display: none !important; } }
       `}</style>
 
-      <div style={{ background: 'transparent', minHeight: '100vh', color: 'var(--text)' }}>
+      <TopNav />
+      <div style={{ background: 'transparent', minHeight: '100vh', color: 'var(--text)', paddingTop: '56px' }}>
 
         {/* ── Top nav ── */}
         <div style={{
