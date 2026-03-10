@@ -324,7 +324,7 @@ button, input, textarea, select { border-radius: 0 !important; }
 }
 :root[data-theme="dark"] .ml-on {
   mix-blend-mode: normal;
-  opacity: 0.06;
+  opacity: 0.09;
   animation: bulbAppear 4000ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
   transition: none;
 }
@@ -357,7 +357,7 @@ button, input, textarea, select { border-radius: 0 !important; }
   80%  { opacity: 0.0655; filter: brightness(1.023) contrast(1.022) saturate(1.056) hue-rotate(-17.9deg); }
   83%  { opacity: 0.0632; filter: brightness(1.022) contrast(1.021) saturate(1.053) hue-rotate(-17.9deg); }
   87%  { opacity: 0.0616; filter: brightness(1.021) contrast(1.021) saturate(1.052) hue-rotate(-18.0deg); }
-  100% { opacity: 0.0616; filter: brightness(1.021) contrast(1.021) saturate(1.052) hue-rotate(-18.0deg); }
+  100% { opacity: 0.09; filter: brightness(1.021) contrast(1.021) saturate(1.052) hue-rotate(-18.0deg); }
 }
 
 @keyframes bulbPulse {
