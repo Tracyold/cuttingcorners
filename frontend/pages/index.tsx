@@ -233,7 +233,7 @@ function MachineShowcase() {
         <div style={{
           position: 'absolute', top: '0', left: '50%', transform: 'translateX(-50%)',
           width: '500px', height: '300px',
-          background: 'radial-gradient(ellipse at 50% 30%, rgba(252,203,40,0.18) 0%, transparent 70%)',
+          background: 'radial-gradient(ellipse at 50% 30%, rgba(252,203,40,0.07) 0%, transparent 60%)',
           opacity: lampOn ? 1 : 0,
           transition: 'opacity 2800ms cubic-bezier(0.05, 0.9, 0.1, 1)',
           pointerEvents: 'none', zIndex: 0
@@ -241,16 +241,12 @@ function MachineShowcase() {
 
         {/* Machine images */}
         <div style={{ position: 'relative', width: '100%', height: '480px', zIndex: 1 }}>
-          <img
-            src="https://ik.imagekit.io/postvibe/off.png?updatedAt=1773160807663"
-            style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'contain', mixBlendMode: 'multiply', opacity: lampOn ? 0 : 1, transition: 'opacity 150ms ease', filter: 'brightness(0.92) contrast(1.05)' }}
-            alt="Faceting machine lamp off"
-          />
-          <img
-            src="https://ik.imagekit.io/postvibe/on..png?updatedAt=1773160821219"
-            style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'contain', mixBlendMode: 'multiply', opacity: lampOn ? 1 : 0, transition: 'opacity 2800ms cubic-bezier(0.05, 0.9, 0.1, 1)', filter: 'brightness(1.05) contrast(1.1) saturate(1.2)' }}
-            alt="Faceting machine lamp on"
-          />
+          {/* Multiply base layers */}
+          <img src="https://ik.imagekit.io/postvibe/off.png?updatedAt=1773160807663" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'contain', mixBlendMode: 'multiply', opacity: lampOn ? 0 : 1, transition: 'opacity 150ms ease' }} alt="" />
+          <img src="https://ik.imagekit.io/postvibe/on..png?updatedAt=1773160821219" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'contain', mixBlendMode: 'multiply', opacity: lampOn ? 1 : 0, transition: 'opacity 2800ms cubic-bezier(0.05, 0.9, 0.1, 1)' }} alt="" />
+          {/* Normal overlay at 80% */}
+          <img src="https://ik.imagekit.io/postvibe/off.png?updatedAt=1773160807663" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'contain', opacity: lampOn ? 0 : 0.8, transition: 'opacity 150ms ease' }} alt="" />
+          <img src="https://ik.imagekit.io/postvibe/on..png?updatedAt=1773160821219" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'contain', opacity: lampOn ? 0.8 : 0, transition: 'opacity 2800ms cubic-bezier(0.05, 0.9, 0.1, 1)' }} alt="" />
         </div>
 
         {/* Name plate */}
@@ -417,7 +413,7 @@ export default function Home() {
         {/* ── Machine Showcase Section ── */}
         <MachineShowcase />
 
-        {/* ── Services Section ── */
+        {/* ── Services Section ── */}
         <section id="services-section" data-reveal-group style={{ minHeight: "100svh", display: "flex", alignItems: "center", paddingTop: "6rem", paddingBottom: "6rem" }}>
           <div className="container-custom">
             <div
