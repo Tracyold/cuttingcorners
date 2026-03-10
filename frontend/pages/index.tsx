@@ -225,8 +225,8 @@ h1, h2, h3, h4, h5, h6 {
 
 function MachineShowcase() {
   const [lampOn, setLampOn] = React.useState(() => {
-    if (typeof window !== 'undefined') return document.documentElement.getAttribute('data-theme') !== 'dark';
-    return true;
+    if (typeof window !== 'undefined') return document.documentElement.getAttribute('data-theme') === 'dark';
+    return false;
   });
 
   React.useEffect(() => {
