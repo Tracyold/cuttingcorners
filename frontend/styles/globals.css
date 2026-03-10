@@ -329,6 +329,7 @@ button, input, textarea, select { border-radius: 0 !important; }
 :root[data-theme="dark"] .machine-light { opacity: 0; }
 :root[data-theme="dark"] .machine-dark {
   opacity: 0.55;
+  transition: opacity 400ms ease 1000ms;
   animation: bulbPulse 4s ease-in-out infinite;
 }
 
