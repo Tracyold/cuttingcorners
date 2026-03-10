@@ -357,7 +357,8 @@ button, input, textarea, select { border-radius: 0 !important; }
   80%  { opacity: 0.0655; filter: brightness(1.023) contrast(1.022) saturate(1.056) hue-rotate(-17.9deg); }
   83%  { opacity: 0.0632; filter: brightness(1.022) contrast(1.021) saturate(1.053) hue-rotate(-17.9deg); }
   87%  { opacity: 0.0616; filter: brightness(1.021) contrast(1.021) saturate(1.052) hue-rotate(-18.0deg); }
-  
+  100% { opacity: 0.0616; filter: brightness(1.021) contrast(1.021) saturate(1.052) hue-rotate(-18.0deg); }
+}
 
 @keyframes bulbPulse {
   0%, 100% { filter: brightness(1.05) contrast(1.05); }
