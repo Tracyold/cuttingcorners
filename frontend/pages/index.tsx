@@ -226,46 +226,78 @@ h1, h2, h3, h4, h5, h6 {
 function MachineShowcase() {
   const [lampOn, setLampOn] = React.useState(false);
   return (
-    <section style={{ padding: '80px 0', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-      <div style={{ position: 'relative', width: '100%', maxWidth: '700px', margin: '0 auto' }}>
+    <section style={{ padding: '80px 0 40px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+      <div style={{ position: 'relative', width: '100%', maxWidth: '700px', margin: '0 auto', padding: '0 24px' }}>
+
+        {/* Warm glow behind machine */}
+        <div style={{
+          position: 'absolute', top: '0', left: '50%', transform: 'translateX(-50%)',
+          width: '500px', height: '300px',
+          background: 'radial-gradient(ellipse at 50% 30%, rgba(252,203,40,0.18) 0%, transparent 70%)',
+          opacity: lampOn ? 1 : 0,
+          transition: 'opacity 2800ms cubic-bezier(0.05, 0.9, 0.1, 1)',
+          pointerEvents: 'none', zIndex: 0
+        }} />
+
         {/* Machine images */}
-        <div style={{ position: 'relative', width: '100%', height: '480px' }}>
+        <div style={{ position: 'relative', width: '100%', height: '480px', zIndex: 1 }}>
           <img
             src="https://ik.imagekit.io/postvibe/off.png?updatedAt=1773160807663"
-            style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'contain', mixBlendMode: 'multiply', opacity: lampOn ? 0 : 1, transition: 'opacity 150ms ease' }}
+            style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'contain', mixBlendMode: 'multiply', opacity: lampOn ? 0 : 1, transition: 'opacity 150ms ease', filter: 'brightness(0.92) contrast(1.05)' }}
             alt="Faceting machine lamp off"
           />
           <img
             src="https://ik.imagekit.io/postvibe/on..png?updatedAt=1773160821219"
-            style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'contain', mixBlendMode: 'multiply', opacity: lampOn ? 1 : 0, transition: 'opacity 2800ms cubic-bezier(0.05, 0.9, 0.1, 1)' }}
+            style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'contain', mixBlendMode: 'multiply', opacity: lampOn ? 1 : 0, transition: 'opacity 2800ms cubic-bezier(0.05, 0.9, 0.1, 1)', filter: 'brightness(1.05) contrast(1.1) saturate(1.2)' }}
             alt="Faceting machine lamp on"
           />
         </div>
 
-        {/* Light switch */}
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '16px', marginTop: '32px' }}>
-          <span style={{ fontFamily: 'var(--font-ui)', fontSize: '11px', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--text-muted)' }}>
-            {lampOn ? 'Lamp On' : 'Lamp Off'}
-          </span>
-          <button
-            onClick={() => setLampOn(p => !p)}
-            aria-label="Toggle lamp"
-            style={{
-              width: '52px', height: '28px', borderRadius: '14px',
-              background: lampOn ? 'var(--gold)' : 'var(--border)',
-              border: 'none', cursor: 'pointer', position: 'relative',
-              transition: 'background 300ms ease'
-            }}
-          >
-            <span style={{
-              position: 'absolute', top: '4px',
-              left: lampOn ? '28px' : '4px',
-              width: '20px', height: '20px', borderRadius: '50%',
-              background: 'var(--bg-card)',
-              transition: 'left 300ms ease',
-              display: 'block'
-            }} />
-          </button>
+        {/* Name plate */}
+        <div style={{ textAlign: 'center', marginTop: '8px', zIndex: 1, position: 'relative' }}>
+          <p style={{ fontFamily: 'var(--font-ui)', fontSize: '11px', letterSpacing: '0.3em', textTransform: 'uppercase', color: 'var(--text-muted)', marginBottom: '6px' }}>
+            Est. 1982 · Faceting Equipment
+          </p>
+          <h3 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(28px, 5vw, 48px)', fontWeight: 400, color: 'var(--text)', letterSpacing: '0.04em', margin: '0 0 4px' }}>
+            GemMaster Facet-ette
+          </h3>
+          <p style={{ fontFamily: 'var(--font-mono)', fontSize: '11px', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--text-muted)', margin: '0 0 28px' }}>
+            Variable Speed · Precision Angle · Water Feed
+          </p>
+
+          {/* Switch panel */}
+          <div style={{
+            display: 'inline-flex', alignItems: 'center', gap: '20px',
+            padding: '16px 28px',
+            border: '1px solid var(--border)',
+            background: 'var(--bg-card)',
+          }}>
+            <span style={{ fontFamily: 'var(--font-ui)', fontSize: '11px', letterSpacing: '0.2em', textTransform: 'uppercase', color: lampOn ? 'var(--gold)' : 'var(--text-muted)', transition: 'color 300ms ease', minWidth: '56px', textAlign: 'right' }}>
+              {lampOn ? 'On' : 'Off'}
+            </span>
+            <button
+              onClick={() => setLampOn(p => !p)}
+              aria-label="Toggle lamp"
+              style={{
+                width: '52px', height: '28px', borderRadius: '14px',
+                background: lampOn ? 'var(--gold)' : 'var(--border)',
+                border: 'none', cursor: 'pointer', position: 'relative',
+                transition: 'background 300ms ease', flexShrink: 0
+              }}
+            >
+              <span style={{
+                position: 'absolute', top: '4px',
+                left: lampOn ? '28px' : '4px',
+                width: '20px', height: '20px', borderRadius: '50%',
+                background: 'var(--bg-deep)',
+                transition: 'left 300ms ease',
+                display: 'block'
+              }} />
+            </button>
+            <span style={{ fontFamily: 'var(--font-ui)', fontSize: '11px', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--text-muted)', minWidth: '56px' }}>
+              Lamp
+            </span>
+          </div>
         </div>
       </div>
     </section>
