@@ -253,24 +253,20 @@ function MachineShowcase() {
         <div className="machine-showcase-img-wrap">
           <img src="https://ik.imagekit.io/postvibe/off.png"
             style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'contain', mixBlendMode: 'multiply', opacity: dark ? 0 : 1, transition: 'opacity 150ms ease' }} alt="" />
-          <img src="https://ik.imagekit.io/postvibe/off.png"
-            style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'contain', opacity: dark ? 0 : 0.8, transition: 'opacity 150ms ease' }} alt="" />
           <img src="https://ik.imagekit.io/postvibe/on.png"
             style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'contain', mixBlendMode: 'multiply', opacity: dark ? 1 : 0, transition: 'opacity 2800ms cubic-bezier(0.05, 0.9, 0.1, 1)' }} alt="" />
-          <img src="https://ik.imagekit.io/postvibe/on.png"
-            style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'contain', opacity: dark ? 0.8 : 0, transition: 'opacity 2800ms cubic-bezier(0.05, 0.9, 0.1, 1)' }} alt="" />
         </div>
 
         {/* Nameplate */}
         <div style={{ textAlign: 'center', marginTop: '8px', zIndex: 1, position: 'relative' }}>
           <p style={{ fontFamily: 'var(--font-ui)', fontSize: '11px', letterSpacing: '0.3em', textTransform: 'uppercase', color: 'var(--text-muted)', marginBottom: '6px' }}>
-            Est. 1982 · Faceting Equipment
+            
           </p>
           <h3 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(28px, 5vw, 48px)', fontWeight: 400, color: 'var(--text)', letterSpacing: '0.04em', margin: '0 0 4px' }}>
-            GemMaster Facet-ette
+            Fac-ette GemMaster II
           </h3>
           <p style={{ fontFamily: 'var(--font-mono)', fontSize: '11px', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--text-muted)', margin: '0 0 28px' }}>
-            Variable Speed · Precision Angle · Water Feed
+           
           </p>
         </div>
       </div>
