@@ -255,9 +255,9 @@ function MachineShowcase() {
             style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'contain', mixBlendMode: 'multiply', opacity: dark ? 0 : 1, transition: 'opacity 150ms ease' }} alt="" />
           <img src="https://ik.imagekit.io/postvibe/off.png?updatedAt=1773160807663"
             style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'contain', opacity: dark ? 0 : 0.8, transition: 'opacity 150ms ease' }} alt="" />
-          <img src="https://ik.imagekit.io/postvibe/on..png?updatedAt=1773160821219"
+          <img src="https://ik.imagekit.io/postvibe/on.png"
             style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'contain', mixBlendMode: 'multiply', opacity: dark ? 1 : 0, transition: 'opacity 2800ms cubic-bezier(0.05, 0.9, 0.1, 1)' }} alt="" />
-          <img src="https://ik.imagekit.io/postvibe/on..png?updatedAt=1773160821219"
+          <img src="https://ik.imagekit.io/postvibe/on.png"
             style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'contain', opacity: dark ? 0.8 : 0, transition: 'opacity 2800ms cubic-bezier(0.05, 0.9, 0.1, 1)' }} alt="" />
         </div>
 
