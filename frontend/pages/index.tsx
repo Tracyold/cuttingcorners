@@ -1,3 +1,4 @@
+import ServicesShowcase from '../components/ServicesShowcase';
 import React, { useEffect } from 'react';
 import { ArrowRight } from 'lucide-react';
 import { services } from '../components/home/homeData';
@@ -372,51 +373,7 @@ export default function Home() {
         <MachineShowcase />
 
         {/* ── Services Section ── */}
-        <section id="services-section" data-reveal-group style={{ minHeight: "100svh", display: "flex", alignItems: "center", paddingTop: "6rem", paddingBottom: "6rem" }}>
-          <div className="container-custom">
-            <div
-              id="services-sticky-header"
-              className="text-center"
-              style={{
-                position: 'sticky',
-                top: 0,
-                zIndex: 20,
-                background: 'transparent',
-                paddingTop: '28px',
-                paddingBottom: '3px',
-              }}
-            >
-              <p
-                className="uppercase mb-3 text-center"
-                style={{
-                  fontSize: '13px',
-                  letterSpacing: '0.20em',
-                  color: 'var(--text-muted)',
-                }}
-              >
-                What I Do
-              </p>
-              <h2
-                data-gold="section-title"
-                className="title-xl text-center"
-                style={{
-                  fontSize: 'clamp(28px, 3.5vw, 56px)',
-                  letterSpacing: '-0.01em',
-                  marginBottom: '0px',
-                  color: 'var(--text-muted-rgba)',
-                }}
-              >
-                Services
-              </h2>
-            </div>
-
-            {/* Desktop services grid */}
-            <DesktopServicesGrid />
-
-            {/* Mobile scroll carousel */}
-            <MobileServicesCarousel />
-          </div>
-        </section>
+        <ServicesShowcase />
 
         {/* ── About Section ("The Cutter") ── */}
         <section data-reveal-group style={{ minHeight: "100svh", display: "flex", alignItems: "center", paddingTop: "6rem", paddingBottom: "6rem" }}>
