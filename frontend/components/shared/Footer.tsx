@@ -102,6 +102,8 @@ export default function Footer() {
             <a href="/shop" className="ccg-footer-link">shop</a>
             <a href="/portfolio" className="ccg-footer-link">portfolio</a>
             <a href="/login" className="ccg-footer-link">sign in / sign up</a>
+            <a href="/feasibility-check" className="ccg-footer-link">feasibility check</a>
+            <a href="/feasibility" className="ccg-footer-link">feasibility form</a>
           </div>
           <div className="ccg-footer-contact">
             <span className="ccg-footer-contact-name">Michael Wall</span>
