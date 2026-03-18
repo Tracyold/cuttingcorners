@@ -128,14 +128,14 @@ export default function FeasibilityCheckPage() {
           .full-screen {
             justify-content: center;
           }
-          .tool-title.wizard-size {
-            padding-top: 40px !important;
-          }
           .tool-title.intro-size {
             padding-top: 40px !important;
           }
           .tool-rule.intro-rule {
             margin-bottom: 48px !important;
+          }
+          .wiz-stage {
+            padding-top: 60px !important;
           }
         }
         @keyframes flyInUp {
