@@ -239,12 +239,11 @@ export default function WizardScreen({
       {currentStep.type === 'positive-group' && (
         <div key={`pg-${stepIndex}`} style={{ animation: 'wizFlyIn 300ms cubic-bezier(0.16,1,0.3,1) both' }}>
         <p style={{
-          fontFamily: 'var(--font-display)',
-          fontStyle: 'italic',
+          fontFamily: 'var(--font-body)',
+          fontWeight: 700,
           fontSize: 'clamp(15px, 2vw, 17px)',
-          color: 'var(--text-muted)',
+          color: 'var(--accent)',
           margin: '0 0 20px',
-          opacity: 0.7,
         }}>
           Select ALL that CURRENTLY apply
         </p>
@@ -259,12 +258,11 @@ export default function WizardScreen({
       {currentStep.type === 'limiting-group' && (
         <div key={`lg-${stepIndex}`} style={{ animation: 'wizFlyIn 300ms cubic-bezier(0.16,1,0.3,1) both' }}>
         <p style={{
-          fontFamily: 'var(--font-display)',
-          fontStyle: 'italic',
+          fontFamily: 'var(--font-body)',
+          fontWeight: 700,
           fontSize: 'clamp(15px, 2vw, 17px)',
-          color: 'var(--text-muted)',
+          color: 'var(--accent)',
           margin: '0 0 20px',
-          opacity: 0.7,
         }}>
           Select ALL that CURRENTLY apply
         </p>
@@ -279,12 +277,11 @@ export default function WizardScreen({
       {currentStep.type === 'structural-group' && (
         <div key={`sg-${stepIndex}`} style={{ animation: 'wizFlyIn 300ms cubic-bezier(0.16,1,0.3,1) both' }}>
         <p style={{
-          fontFamily: 'var(--font-display)',
-          fontStyle: 'italic',
+          fontFamily: 'var(--font-body)',
+          fontWeight: 700,
           fontSize: 'clamp(15px, 2vw, 17px)',
-          color: 'var(--text-muted)',
+          color: 'var(--accent)',
           margin: '0 0 20px',
-          opacity: 0.7,
         }}>
           Select ALL that CURRENTLY apply
         </p>
