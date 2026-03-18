@@ -128,6 +128,10 @@ export default function FeasibilityCheckPage() {
           from { opacity: 0; transform: translateY(-24px); }
           to   { opacity: 1; transform: translateY(0); }
         }
+        @keyframes wizFlyIn {
+          from { opacity: 0; transform: translateY(10px); }
+          to   { opacity: 1; transform: translateY(0); }
+        }
         @keyframes completePop {
           0%   { opacity: 0; transform: scale(0.94) translateY(12px); }
           60%  { transform: scale(1.02) translateY(-2px); }
@@ -214,7 +218,7 @@ export default function FeasibilityCheckPage() {
         .disc-card {
           width: 100%; max-width: 560px;
           background: var(--bg-card);
-          border: '0.5px solid var(--border);
+          border: 0.5px solid var(--border);
           padding: clamp(22px, 4vw, 34px);
           text-align: left;
         }
@@ -285,7 +289,7 @@ export default function FeasibilityCheckPage() {
         /* Wizard UI */
         .wiz-input {
           width: 100%;
-          background: var(--bg-card); border: '0.5px solid var(--border);
+          background: var(--bg-card); border: 0.5px solid var(--border);
           color: var(--text); font-family: var(--font-body);
           font-size: clamp(18px, 2vw, 20px);
           padding: 16px 18px; border-radius: 10px;
@@ -312,7 +316,7 @@ export default function FeasibilityCheckPage() {
         .wiz-btn-secondary { text-transform: uppercase; letter-spacing: 0.12em;
           flex: 0; display: flex; align-items: center; justify-content: center;
           background: transparent; color: var(--text-muted);
-          border: '0.5px solid var(--border);
+          border: 0.5px solid var(--border);
           padding: 14px 32px;
           font-family: var(--font-body);
           font-size: 13px;

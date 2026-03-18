@@ -14,52 +14,45 @@ export default function CheckItem({ item, checked, onChange }: CheckItemProps) {
       style={{
         display: 'flex',
         alignItems: 'center',
-        gap: 14,
-        padding: checked ? '20px 20px' : '16px 18px',
-        background: checked ? 'rgba(255,211,105,0.08)' : 'var(--bg-card)',
-        border: `0.5px solid ${checked ? 'rgba(255,211,105,0.4)' : 'transparent'}`,
-        borderRadius: 14,
+        gap: 16,
+        padding: '18px 20px',
+        background: checked ? 'rgba(255,211,105,0.04)' : 'rgba(255,255,255,0.015)',
+        border: `0.5px solid ${checked ? 'rgba(255,211,105,0.28)' : 'rgba(255,255,255,0.07)'}`,
+        borderRadius: 6,
         cursor: 'pointer',
-        marginBottom: 10,
-        boxShadow: checked ? '0 4px 20px rgba(255,211,105,0.08)' : '0 1px 6px rgba(0,0,0,0.12)',
-        transform: checked ? 'scale(1.02)' : 'scale(1)',
-        transition: 'all 220ms cubic-bezier(0.34,1.56,0.64,1)',
+        marginBottom: 8,
+        transition: 'all 200ms ease',
         userSelect: 'none',
         WebkitTapHighlightColor: 'transparent',
-        minHeight: 58,
+        boxShadow: checked
+          ? '0 4px 20px rgba(0,0,0,0.14), 0 0 16px rgba(255,211,105,0.04)'
+          : '0 2px 10px rgba(0,0,0,0.1)',
+        transform: checked ? 'translateY(-1px)' : 'translateY(0)',
       }}
     >
-      {/* Circle indicator */}
       <div style={{
         flexShrink: 0,
-        width: 20, height: 20,
+        width: 7, height: 7,
         borderRadius: '50%',
-        border: `0.5px solid ${checked ? 'rgba(255,211,105,0.6)' : 'var(--border)'}`,
-        background: checked ? 'rgba(255,211,105,0.18)' : 'transparent',
-        display: 'flex', alignItems: 'center', justifyContent: 'center',
-        transition: 'all 220ms ease',
-      }}>
-        {checked && (
-          <div style={{ width: 8, height: 8, borderRadius: '50%', background: 'var(--accent)' }} />
-        )}
-      </div>
+        border: `0.5px solid ${checked ? 'var(--accent)' : 'rgba(255,255,255,0.2)'}`,
+        background: checked ? 'var(--accent)' : 'transparent',
+        transition: 'all 200ms ease',
+      }} />
 
-      {/* Label */}
       <span style={{
         flex: 1,
         fontFamily: 'var(--font-body)',
-        fontSize: 'clamp(19px, 2.2vw, 21px)',
-        fontWeight: checked ? 600 : 400,
-        color: checked ? 'var(--bg-deep)' : 'var(--text-muted)',
-        transition: 'color 220ms ease',
+        fontSize: 14,
+        fontWeight: checked ? 400 : 300,
+        color: checked ? 'var(--text)' : 'var(--text-muted)',
+        transition: 'color 200ms ease',
         lineHeight: 1.4,
       }}>
         {item.label}
       </span>
 
-      {/* Info icon */}
       {item.info && (
-        <div style={{ opacity: 0.4, flexShrink: 0 }}>
+        <div style={{ opacity: 0.25, flexShrink: 0 }}>
           <InfoDrawer item={item} />
         </div>
       )}

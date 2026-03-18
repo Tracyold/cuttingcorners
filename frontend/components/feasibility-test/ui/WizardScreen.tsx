@@ -20,32 +20,6 @@ const positiveGroups  = groupBy(positiveItems)
 const limitingGroups  = groupBy(limitingItems)
 const structuralGroup = groupBy(structuralItems)
 
-// ── Strict type system ────────────────────────────────────────
-const T = {
-  large: {
-    fontFamily: 'var(--font-display)',
-    fontSize: 'clamp(28px, 4.5vw, 34px)',
-    fontWeight: 400,
-    color: 'var(--text)',
-    lineHeight: 1.2,
-    margin: 0,
-  } as React.CSSProperties,
-  body: {
-    fontFamily: 'var(--font-body)',
-    fontSize: 'clamp(19px, 2.2vw, 21px)',
-    color: 'var(--text-muted)',
-    lineHeight: 1.75,
-    margin: 0,
-  } as React.CSSProperties,
-  label: {
-    fontFamily: 'var(--font-body)',
-    fontSize: 'clamp(19px, 2.2vw, 21px)',
-    fontWeight: 600,
-    color: 'var(--accent)',
-    margin: 0,
-  } as React.CSSProperties,
-}
-
 interface WizardScreenProps {
   STEPS:                    StepKind[]
   stepIndex:                number
@@ -86,18 +60,7 @@ function stepLabel(step: StepKind): string {
     case 'structural-group':  return 'Structural Condition'
     case 'correctable-row':   return correctableRows.find(r => r.id === step.rowId)?.label ?? step.rowId
     case 'category-complete': return ''
-    case 'results':           return 'Results'
-  }
-}
-
-function stepInstruction(step: StepKind): string {
-  switch (step.type) {
-    case 'stone-info':        return 'Fill in what you know. Leave anything blank that you are unsure of.'
-    case 'positive-group':
-    case 'limiting-group':
-    case 'structural-group':  return 'Select ALL that currently apply. Leave the rest unmarked.'
-    case 'correctable-row':   return 'Select the ONE option that best describes this category.'
-    default:                  return ''
+    case 'results':           return ''
   }
 }
 
@@ -113,7 +76,6 @@ export default function WizardScreen({
   const isComplete   = currentStep.type === 'category-complete'
   const currentPhase = phaseOfStep(currentStep)
   const label        = stepLabel(currentStep)
-  const instruction  = stepInstruction(currentStep)
   const phaseSteps   = STEPS.filter(s => phaseOfStep(s) === currentPhase && s.type !== 'category-complete')
   const phaseIndex   = phaseSteps.findIndex(s => s === currentStep)
   const canProceed   = currentStep.type !== 'correctable-row' || correctableSelections[currentStep.rowId] !== null
@@ -131,19 +93,47 @@ export default function WizardScreen({
   const handleCorrectableChange = (row: keyof CorrectableSelections, value: CorrectableOption) =>
     setCorrectableSelections(prev => ({ ...prev, [row]: value }))
 
-  return (
-    <div className="wiz-stage">
+  const labelStyle: React.CSSProperties = {
+    fontFamily: 'var(--font-body)',
+    fontSize: 10,
+    fontWeight: 600,
+    letterSpacing: '0.2em',
+    textTransform: 'uppercase',
+    color: 'var(--text-muted)',
+    margin: 0,
+  }
 
-      {/* ── Phase bar ── */}
+  const sublabelStyle: React.CSSProperties = {
+    fontFamily: 'var(--font-body)',
+    fontSize: 10,
+    fontWeight: 500,
+    letterSpacing: '0.18em',
+    textTransform: 'uppercase',
+    color: 'var(--accent)',
+    marginLeft: 8,
+  }
+
+  return (
+    <div style={{
+      width: '100%',
+      maxWidth: 560,
+      margin: '0 auto',
+      padding: '0 24px 80px',
+      display: 'flex',
+      flexDirection: 'column',
+      flex: 1,
+    }}>
+
+      {/* ── Progress ── */}
       {!isResults && (
-        <div style={{ marginBottom: 28 }}>
-          <div style={{ display: 'flex', gap: 5, marginBottom: 10 }}>
+        <div style={{ marginBottom: 32 }}>
+          <div style={{ display: 'flex', gap: 4, marginBottom: 10 }}>
             {PHASES.map((ph, i) => {
               const filled = i < currentPhase || (i === currentPhase && !isComplete)
               return (
                 <div key={ph} style={{ flex: 1 }}>
                   <div style={{
-                    height: 3, borderRadius: 2,
+                    height: 1.5,
                     background: filled ? 'var(--accent)' : 'var(--border)',
                     opacity: filled ? 1 : 0.3,
                     transition: 'background 300ms ease',
@@ -152,10 +142,15 @@ export default function WizardScreen({
               )
             })}
           </div>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-            <span style={{ ...T.label, textTransform: "uppercase", letterSpacing: "0.18em", fontSize: '11px' }}>{PHASES[currentPhase] ?? ''}</span>
+          <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between' }}>
+            <div>
+              <span style={labelStyle}>{PHASES[currentPhase] ?? ''}</span>
+              {label && currentStep.type !== 'stone-info' && currentStep.type !== 'correctable-row' && (
+                <span style={sublabelStyle}>↳ {label}</span>
+              )}
+            </div>
             {phaseSteps.length > 1 && phaseIndex >= 0 && (
-              <span style={{ ...T.body, fontSize: 'clamp(19px, 2.2vw, 21px)' }}>
+              <span style={{ ...labelStyle, opacity: 0.4 }}>
                 {phaseIndex + 1} / {phaseSteps.length}
               </span>
             )}
@@ -163,22 +158,50 @@ export default function WizardScreen({
         </div>
       )}
 
-      {/* ── Step header ── */}
-      {!isResults && !isComplete && label && currentStep.type !== 'stone-info' && currentStep.type !== 'correctable-row' && (
-        <div className="wiz-slide" key={`hdr-${stepIndex}`} style={{ marginBottom: 24 }}>
-          <p style={{ fontFamily: 'var(--font-body)', fontSize: '11px', fontWeight: 500, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--accent)', margin: '0 0 20px 10px' }}>↳ {label}</p>
-        </div>
-      )}
-
       {/* ── Category complete ── */}
       {currentStep.type === 'category-complete' && (
-        <div className="wiz-complete" key={`cc-${stepIndex}`}>
-          <div style={{ textAlign: 'center', padding: '24px 0 32px' }}>
-            <div style={{ fontSize: 36, marginBottom: 20, color: 'var(--text-muted)', opacity: 0.4 }}>✦</div>
-            <p style={{ fontFamily: 'var(--font-display)', fontStyle: 'italic', fontSize: 'clamp(26px,5vw,36px)', fontWeight: 400, color: 'var(--text)', margin: '0 0 12px', lineHeight: 1.2 }}>{currentStep.title}</p>
-          </div>
-
-          <button type="button" onClick={handleNext} className="wiz-btn-primary" style={{ width: '100%' }}>
+        <div key={`cc-${stepIndex}`} style={{
+          flex: 1,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          textAlign: 'center',
+          gap: 20,
+          animation: 'wizFlyIn 300ms cubic-bezier(0.16,1,0.3,1) both',
+        }}>
+          <div style={{ fontSize: 28, color: 'var(--text-muted)', opacity: 0.2 }}>✦</div>
+          <p style={{
+            fontFamily: 'var(--font-display)',
+            fontStyle: 'italic',
+            fontSize: 'clamp(24px, 4vw, 34px)',
+            fontWeight: 400,
+            color: 'var(--text)',
+            margin: 0,
+            lineHeight: 1.3,
+          }}>
+            {currentStep.title}
+          </p>
+          <button
+            type="button"
+            onClick={handleNext}
+            style={{
+              marginTop: 12,
+              background: 'transparent',
+              color: 'var(--accent)',
+              border: '0.5px solid rgba(255,211,105,0.4)',
+              padding: '13px 40px',
+              fontFamily: 'var(--font-body)',
+              fontSize: 11,
+              fontWeight: 500,
+              letterSpacing: '0.2em',
+              textTransform: 'uppercase',
+              cursor: 'pointer',
+              borderRadius: 4,
+              transition: 'all 200ms ease',
+              boxShadow: '0 2px 16px rgba(0,0,0,0.18), 0 0 16px rgba(255,211,105,0.03)',
+            }}
+          >
             {currentStep.isLastBeforeResults ? 'Begin Final Section' : 'Continue'}
           </button>
         </div>
@@ -186,7 +209,10 @@ export default function WizardScreen({
 
       {/* ── Stone info ── */}
       {currentStep.type === 'stone-info' && (
-        <div className="wiz-slide" key={`si-${stepIndex}`} style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+        <div key={`si-${stepIndex}`} style={{
+          display: 'flex', flexDirection: 'column', gap: 18,
+          animation: 'wizFlyIn 300ms cubic-bezier(0.16,1,0.3,1) both',
+        }}>
           {[
             { key: 'species',    label: 'Species',             placeholder: 'e.g. Corundum'       },
             { key: 'variety',    label: 'Variety',             placeholder: 'e.g. Blue Sapphire'  },
@@ -195,7 +221,7 @@ export default function WizardScreen({
             { key: 'cut',        label: 'Current Cut / Shape', placeholder: 'e.g. Oval Mixed Cut' },
           ].map(field => (
             <div key={field.key}>
-              <label style={{ display: 'block', ...T.body, fontSize: 'clamp(19px, 2.2vw, 21px)', marginBottom: 7 }}>
+              <label style={{ display: 'block', ...labelStyle, marginBottom: 8 }}>
                 {field.label}
               </label>
               <input
@@ -212,7 +238,7 @@ export default function WizardScreen({
 
       {/* ── Positive ── */}
       {currentStep.type === 'positive-group' && (
-        <div className="wiz-slide" key={`pg-${stepIndex}`}>
+        <div key={`pg-${stepIndex}`} style={{ animation: 'wizFlyIn 300ms cubic-bezier(0.16,1,0.3,1) both' }}>
           {positiveGroups[currentStep.group]?.map(item => (
             <CheckItem key={item.id} item={item} checked={positiveChecked.has(item.id)} onChange={toggleChecked(setPositiveChecked)} />
           ))}
@@ -221,7 +247,7 @@ export default function WizardScreen({
 
       {/* ── Limiting ── */}
       {currentStep.type === 'limiting-group' && (
-        <div className="wiz-slide" key={`lg-${stepIndex}`}>
+        <div key={`lg-${stepIndex}`} style={{ animation: 'wizFlyIn 300ms cubic-bezier(0.16,1,0.3,1) both' }}>
           {limitingGroups[currentStep.group]?.map(item => (
             <CheckItem key={item.id} item={item} checked={limitingChecked.has(item.id)} onChange={toggleChecked(setLimitingChecked)} />
           ))}
@@ -230,7 +256,7 @@ export default function WizardScreen({
 
       {/* ── Structural ── */}
       {currentStep.type === 'structural-group' && (
-        <div className="wiz-slide" key={`sg-${stepIndex}`}>
+        <div key={`sg-${stepIndex}`} style={{ animation: 'wizFlyIn 300ms cubic-bezier(0.16,1,0.3,1) both' }}>
           {structuralGroup[currentStep.group]?.map(item => (
             <CheckItem key={item.id} item={item} checked={structuralChecked.has(item.id)} onChange={toggleChecked(setStructuralChecked)} />
           ))}
@@ -239,7 +265,7 @@ export default function WizardScreen({
 
       {/* ── Correctable ── */}
       {currentStep.type === 'correctable-row' && (
-        <div className="wiz-slide" key={`cr-${stepIndex}`}>
+        <div key={`cr-${stepIndex}`} style={{ animation: 'wizFlyIn 300ms cubic-bezier(0.16,1,0.3,1) both' }}>
           <CorrectableRowComponent
             label={correctableRows.find(r => r.id === currentStep.rowId)?.label ?? ''}
             required={correctableRows.find(r => r.id === currentStep.rowId)?.required}
@@ -250,7 +276,7 @@ export default function WizardScreen({
             structuralChecked={structuralChecked}
           />
           {!canProceed && (
-            <p style={{ ...T.body, color: 'var(--accent)', marginTop: 12 }}>
+            <p style={{ fontFamily: 'var(--font-body)', fontSize: 12, color: 'var(--accent)', opacity: 0.6, marginTop: 12, textAlign: 'center' }}>
               Please make a selection to continue.
             </p>
           )}
@@ -259,7 +285,7 @@ export default function WizardScreen({
 
       {/* ── Results ── */}
       {currentStep.type === 'results' && results && (
-        <div className="wiz-slide" key="results">
+        <div key="results" style={{ animation: 'wizFlyIn 300ms cubic-bezier(0.16,1,0.3,1) both' }}>
           <ResultsDisplay
             results={results}
             weightCt={parseFloat(stoneInfo.weightCt) || 0}
@@ -270,37 +296,59 @@ export default function WizardScreen({
         </div>
       )}
 
-      {/* ── Start over link ── */}
-      {!isResults && (
-        <div style={{ textAlign: 'right', marginTop: 20 }}>
-          <button
-            type="button"
-            onClick={handleStartOver}
-            style={{
-              background: 'none', border: 'none', cursor: 'pointer',
-              ...T.body,
-              fontSize: 'clamp(19px, 2.2vw, 21px)',
-              color: 'var(--text-muted)',
-              opacity: 0.5,
-              textDecoration: 'underline',
-              textUnderlineOffset: 3,
-              padding: 0,
-              transition: 'opacity 180ms ease',
-            }}
-          >
-            Start Over
-          </button>
-        </div>
-      )}
-
       {/* ── Nav ── */}
       {!isResults && !isComplete && (
-        <div style={{ display: 'flex', gap: 10, marginTop: 16 }}>
-          {stepIndex > 0 && (
-            <button type="button" onClick={handleBack} className="wiz-btn-secondary">Back</button>
-          )}
-          <button type="button" onClick={handleNext} disabled={!canProceed} className="wiz-btn-primary">
-            {STEPS[stepIndex + 1]?.type === 'category-complete' ? 'Done' : 'Next'}
+        <div style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          marginTop: 40,
+          paddingTop: 18,
+          borderTop: '0.5px solid var(--border)',
+        }}>
+          <div style={{ display: 'flex', gap: 20, alignItems: 'center' }}>
+            {stepIndex > 0 && (
+              <button type="button" onClick={handleBack} style={{
+                background: 'none', border: 'none', cursor: 'pointer',
+                fontFamily: 'var(--font-body)', fontSize: 11,
+                fontWeight: 500, letterSpacing: '0.15em', textTransform: 'uppercase',
+                color: 'var(--text-muted)', opacity: 0.55, padding: 0,
+                transition: 'opacity 180ms ease',
+              }}>
+                Back
+              </button>
+            )}
+            <button type="button" onClick={handleStartOver} style={{
+              background: 'none', border: 'none', cursor: 'pointer',
+              fontFamily: 'var(--font-body)', fontSize: 10,
+              color: 'var(--text-muted)', opacity: 0.3, padding: 0,
+              textDecoration: 'underline', textUnderlineOffset: 3,
+              transition: 'opacity 180ms ease',
+            }}>
+              start over
+            </button>
+          </div>
+
+          <button
+            type="button"
+            onClick={handleNext}
+            disabled={!canProceed}
+            style={{
+              background: 'transparent',
+              color: canProceed ? 'var(--accent)' : 'var(--text-muted)',
+              border: `0.5px solid ${canProceed ? 'rgba(255,211,105,0.45)' : 'var(--border)'}`,
+              padding: '13px 32px',
+              fontFamily: 'var(--font-body)',
+              fontSize: 11, fontWeight: 500,
+              letterSpacing: '0.2em', textTransform: 'uppercase',
+              cursor: canProceed ? 'pointer' : 'not-allowed',
+              borderRadius: 4,
+              transition: 'all 200ms ease',
+              opacity: canProceed ? 1 : 0.3,
+              boxShadow: canProceed ? '0 2px 16px rgba(0,0,0,0.18), 0 0 16px rgba(255,211,105,0.03)' : 'none',
+            }}
+          >
+            {STEPS[stepIndex + 1]?.type === 'category-complete' ? 'Done' : 'Next →'}
           </button>
         </div>
       )}
