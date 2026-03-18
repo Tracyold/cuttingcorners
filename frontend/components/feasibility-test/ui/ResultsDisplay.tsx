@@ -1,5 +1,4 @@
 import ScoreBox from './ScoreBox'
-import EstimateDisplay from './EstimateDisplay'
 import type { ScoreBreakdown } from '../logic/calculator'
 
 interface StoneInfo {
@@ -56,7 +55,7 @@ export default function ResultsDisplay({ results, weightCt, stoneInfo, onStartOv
 
         /* Stone info */
         .stone-block {
-          border: 1px solid var(--border);
+          border: '0.5px solid var(--border);
           padding: clamp(18px, 3vw, 26px);
         }
         .stone-eyebrow {
@@ -81,7 +80,7 @@ export default function ResultsDisplay({ results, weightCt, stoneInfo, onStartOv
 
         /* Disclaimer */
         .disclaimer {
-          border-left: 2px solid rgba(255,255,255,0.1);
+          border-left: 0.5px solid rgba(255,255,255,0.1);
           padding: clamp(19px, 2.2vw, 21px) clamp(19px, 2.2vw, 21px);
         }
         .disclaimer p {
@@ -99,7 +98,7 @@ export default function ResultsDisplay({ results, weightCt, stoneInfo, onStartOv
         .btn-export { text-transform: uppercase; letter-spacing: 0.1em;
           width: 100%; display: flex; align-items: center; justify-content: center; gap: 10px;
           background: transparent; color: var(--accent);
-          border: 1px solid rgba(255,211,105,0.35);
+          border: '0.5px solid rgba(255,211,105,0.35);
           padding: clamp(19px, 2.2vw, 21px) 20px;
           font-family: var(--font-body); font-size: clamp(19px, 2.2vw, 21px);
           font-weight: 600;
@@ -119,7 +118,7 @@ export default function ResultsDisplay({ results, weightCt, stoneInfo, onStartOv
         .btn-restart { text-transform: uppercase; letter-spacing: 0.1em;
           width: 100%; display: flex; align-items: center; justify-content: center;
           background: transparent; color: var(--text-muted);
-          border: 1px solid var(--border);
+          border: '0.5px solid var(--border);
           padding: clamp(19px, 2.2vw, 21px) 20px;
           font-family: var(--font-body); font-size: clamp(19px, 2.2vw, 21px);
           font-weight: 500;
@@ -147,13 +146,6 @@ export default function ResultsDisplay({ results, weightCt, stoneInfo, onStartOv
 
         {/* Score box — color lives here */}
         <ScoreBox results={results} />
-
-        {/* Estimate */}
-        <EstimateDisplay input={{
-          weightCt,
-          recommendation: results.recommendation,
-          feasibilityPercent: results.feasibilityPercent,
-        }} />
 
         {/* Disclaimer */}
         <div className="disclaimer">

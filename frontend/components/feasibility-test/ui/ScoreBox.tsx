@@ -19,8 +19,8 @@ export default function ScoreBox({ results }: ScoreBoxProps) {
   return (
     <div style={{
       width: '100%',
-      border: `2px solid ${color}`,
-      padding: 'clamp(28px, 6vw, 48px) clamp(20px, 5vw, 40px)',
+      border: `0.5px solid ${color}`,
+      padding: 'clamp(40px, 8vw, 72px) clamp(28px, 6vw, 56px)',
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
@@ -43,7 +43,7 @@ export default function ScoreBox({ results }: ScoreBoxProps) {
       {/* Score number */}
       <p style={{
         fontFamily: 'var(--font-display)',
-        fontSize: 'clamp(74px, 18vw, 122px)',
+        fontSize: 'clamp(96px, 24vw, 160px)',
         fontWeight: 400,
         lineHeight: 1,
         color,
