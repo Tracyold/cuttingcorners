@@ -133,6 +133,17 @@ export default function SectionIntroCard({ step, stepIndex, onContinue }: Sectio
         </p>
       </div>
 
+      <p style={{
+        fontFamily: 'var(--font-body)',
+        fontWeight: 700,
+        fontSize: 'clamp(13px, 1.6vw, 15px)',
+        color: 'var(--accent)',
+        margin: '0 0 20px',
+        letterSpacing: '0.05em',
+      }}>
+        Select ALL that CURRENTLY apply
+      </p>
+
       <button
         type="button"
         onClick={onContinue}
