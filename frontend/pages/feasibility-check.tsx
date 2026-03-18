@@ -29,7 +29,7 @@ function buildSteps(): StepKind[] {
   Object.keys(limitingGroups).forEach(g => s.push({ type: 'limiting-group', group: g }))
   s.push({ type: 'category-complete', phase: 3, title: 'Limitations noted.', message: 'One more section before the final step.', nextTitle: 'Structural Condition', nextDescription: 'This section looks at physical damage and internal features that affect whether the stone can safely be worked on.' })
   Object.keys(structuralGroup).forEach(g => s.push({ type: 'structural-group', group: g }))
-  s.push({ type: 'category-complete', phase: 4, title: "You're almost done.", message: 'Only one more section to go!', nextTitle: 'Correctable Likelihood', nextDescription: "For each category you'll see your selections so far as a reference. One answer per row — this is the final step.", isLastBeforeResults: true })
+  s.push({ type: 'category-complete', phase: 4, title: "You're almost done.", message: 'The next section answers are auto selected based on your answers, but can still be manually changed.', nextTitle: 'Correctable Likelihood', nextDescription: "For each category you'll see your selections so far as a reference. One answer per row — this is the final step.", isLastBeforeResults: true })
   correctableRows.forEach(r => s.push({ type: 'correctable-row', rowId: r.id }))
   s.push({ type: 'results' })
   return s
