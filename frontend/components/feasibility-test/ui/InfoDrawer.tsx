@@ -32,7 +32,7 @@ export default function InfoDrawer({ item }: { item: QuestionItem }) {
         <div style={{
           marginTop: 10,
           background: 'var(--bg-deep)',
-          border: '1px solid var(--border)',
+          border: '0.5px solid var(--border)',
           borderRadius: 10,
           padding: '16px 18px',
           display: 'flex', flexDirection: 'column', gap: 14,

@@ -164,14 +164,9 @@ export default function WizardScreen({
       )}
 
       {/* ── Step header ── */}
-      {!isResults && !isComplete && label && (
+      {!isResults && !isComplete && label && currentStep.type !== 'stone-info' && currentStep.type !== 'correctable-row' && (
         <div className="wiz-slide" key={`hdr-${stepIndex}`} style={{ marginBottom: 24 }}>
-          <p style={{ ...T.body, fontSize: 'clamp(24px,4vw,28px)', color: 'var(--text)', fontWeight: 600, marginBottom: 12 }}>{label}</p>
-          {instruction && (
-            <p style={{ ...T.body, paddingBottom: 20, borderBottom: '1px solid var(--border)' }}>
-              {instruction}
-            </p>
-          )}
+          <p style={{ fontFamily: 'var(--font-body)', fontSize: '11px', fontWeight: 500, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--accent)', margin: '0 0 20px 10px' }}>↳ {label}</p>
         </div>
       )}
 
@@ -180,29 +175,7 @@ export default function WizardScreen({
         <div className="wiz-complete" key={`cc-${stepIndex}`}>
           <div style={{ textAlign: 'center', padding: '24px 0 32px' }}>
             <div style={{ fontSize: 36, marginBottom: 20, color: 'var(--text-muted)', opacity: 0.4 }}>✦</div>
-            <p style={{ ...T.body, fontSize: 'clamp(24px,4vw,28px)', color: 'var(--text)', fontWeight: 600, marginBottom: 12 }}>
-              {currentStep.title}
-            </p>
-            <p style={{
-              ...T.body,
-              color: currentStep.isLastBeforeResults ? 'var(--accent)' : 'var(--text-muted)',
-              fontWeight: currentStep.isLastBeforeResults ? 600 : 400,
-            }}>
-              {currentStep.message}
-            </p>
-          </div>
-
-          <div style={{
-            border: '1px solid var(--border)',
-            borderLeft: '2px solid var(--accent)',
-            padding: '20px 22px',
-            marginBottom: 28,
-          }}>
-            <p style={{ ...T.label, marginBottom: 10 }}>Up Next</p>
-            <p style={{ ...T.body, fontSize: 'clamp(20px,3vw,24px)', color: 'var(--text)', fontWeight: 600, marginBottom: 10 }}>
-              {currentStep.nextTitle}
-            </p>
-            <p style={T.body}>{currentStep.nextDescription}</p>
+            <p style={{ fontFamily: 'var(--font-display)', fontStyle: 'italic', fontSize: 'clamp(26px,5vw,36px)', fontWeight: 400, color: 'var(--text)', margin: '0 0 12px', lineHeight: 1.2 }}>{currentStep.title}</p>
           </div>
 
           <button type="button" onClick={handleNext} className="wiz-btn-primary" style={{ width: '100%' }}>

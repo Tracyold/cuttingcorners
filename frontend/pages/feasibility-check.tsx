@@ -197,7 +197,8 @@ export default function FeasibilityCheckPage() {
 
         /* Intro text */
         .intro-line {
-          font-family: var(--font-body);
+          font-family: var(--font-display);
+          font-style: italic;
           font-size: clamp(29px, 3vw, 43px);
           color: var(--text-muted);
           line-height: 1.75;
@@ -213,7 +214,7 @@ export default function FeasibilityCheckPage() {
         .disc-card {
           width: 100%; max-width: 560px;
           background: var(--bg-card);
-          border: 1px solid var(--border);
+          border: '0.5px solid var(--border);
           padding: clamp(22px, 4vw, 34px);
           text-align: left;
         }
@@ -238,7 +239,7 @@ export default function FeasibilityCheckPage() {
         }
         .disc-checkbox {
           flex-shrink: 0; width: 24px; height: 24px;
-          border: 1.5px solid var(--border); border-radius: 6px;
+          border: 0.5px solid var(--border); border-radius: 6px;
           background: transparent;
           display: flex; align-items: center; justify-content: center;
           transition: all 200ms ease; margin-top: 2px;
@@ -255,7 +256,7 @@ export default function FeasibilityCheckPage() {
         .disc-btn { text-transform: uppercase; letter-spacing: 0.12em;
           width: 100%;
           display: flex; align-items: center; justify-content: center; gap: 10px;
-          background: transparent; color: var(--accent); border: 1.5px solid rgba(255,211,105,0.5);
+          background: var(--bg-deep); color: var(--accent); border: 0.5px solid rgba(255,211,105,0.5);
           padding: 18px 24px;
           font-family: var(--font-body);
           font-size: clamp(19px, 2.2vw, 21px);
@@ -269,11 +270,11 @@ export default function FeasibilityCheckPage() {
         /* Begin button */
         .begin-btn { text-transform: uppercase; letter-spacing: 0.08em;
           display: inline-flex; align-items: center; gap: 14px;
-          background: transparent; color: var(--accent); border: 1.5px solid rgba(255,211,105,0.5);
+          background: var(--bg-deep); color: var(--accent); border: 0.5px solid rgba(255,211,105,0.5);
           padding: clamp(20px, 3vw, 26px) clamp(50px, 8vw, 74px);
           font-family: var(--font-display);
           font-size: clamp(28px, 4.5vw, 34px);
-          font-weight: 400;
+          font-weight: 700;
           cursor: pointer; transition: all 300ms ease;
           box-shadow: 0 0 24px rgba(255,211,105,0.2);
           animation: flyInUp 900ms cubic-bezier(0.16,1,0.3,1) forwards;
@@ -284,7 +285,7 @@ export default function FeasibilityCheckPage() {
         /* Wizard UI */
         .wiz-input {
           width: 100%;
-          background: var(--bg-card); border: 1px solid var(--border);
+          background: var(--bg-card); border: '0.5px solid var(--border);
           color: var(--text); font-family: var(--font-body);
           font-size: clamp(18px, 2vw, 20px);
           padding: 16px 18px; border-radius: 10px;
@@ -295,7 +296,7 @@ export default function FeasibilityCheckPage() {
 
         .wiz-btn-primary { text-transform: uppercase; letter-spacing: 0.12em;
           flex: 1; display: flex; align-items: center; justify-content: center; gap: 8px;
-          background: transparent; color: var(--accent); border: 1.5px solid rgba(255,211,105,0.5);
+          background: var(--bg-deep); color: var(--accent); border: 0.5px solid rgba(255,211,105,0.5);
           padding: clamp(18px, 2.5vw, 22px) 20px;
           font-family: var(--font-body);
           font-size: clamp(19px, 2.2vw, 21px);
@@ -310,7 +311,7 @@ export default function FeasibilityCheckPage() {
         .wiz-btn-secondary { text-transform: uppercase; letter-spacing: 0.12em;
           flex: 1; display: flex; align-items: center; justify-content: center;
           background: transparent; color: var(--text-muted);
-          border: 1px solid var(--border);
+          border: '0.5px solid var(--border);
           padding: clamp(18px, 2.5vw, 22px) 20px;
           font-family: var(--font-body);
           font-size: clamp(19px, 2.2vw, 21px);

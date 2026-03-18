@@ -43,7 +43,7 @@ export default function CorrectableRow({ label, required, rowId, selected, onCha
         {required && (
           <span style={{
             fontFamily: 'var(--font-body)', fontSize: 17,
-            color: 'var(--accent)', border: '1px solid var(--accent)',
+            color: 'var(--accent)', border: '0.5px solid var(--accent)',
             borderRadius: 4, padding: '2px 7px',
           }}>
             Required
@@ -54,7 +54,7 @@ export default function CorrectableRow({ label, required, rowId, selected, onCha
       {/* Relevant selections */}
       {selectedItems.length > 0 && (
         <div style={{
-          background: 'var(--bg-deep)', border: '1px solid var(--border)',
+          background: 'var(--bg-deep)', border: '0.5px solid var(--border)',
           borderRadius: 10, padding: '12px 16px', marginBottom: 14,
         }}>
           <p style={{ fontFamily: 'var(--font-body)', fontSize: 17, color: 'var(--accent)', margin: '0 0 10px' }}>
@@ -85,9 +85,9 @@ export default function CorrectableRow({ label, required, rowId, selected, onCha
                 fontSize: 'clamp(19px, 2.2vw, 21px)',
                 fontWeight: isSelected ? 600 : 400,
                 padding: isSelected ? '20px 12px' : '16px 12px',
-                background: isSelected ? 'rgba(255,211,105,0.08)' : 'var(--bg-card)',
+                background: isSelected ? 'rgba(255,211,105,0.08)' : 'var(--bg-deep)',
                 color: isSelected ? 'var(--text)' : 'var(--text-muted)',
-                border: `1.5px solid ${isSelected ? 'rgba(255,211,105,0.4)' : 'transparent'}`,
+                border: `0.5px solid ${isSelected ? 'rgba(255,211,105,0.4)' : 'transparent'}`,
                 borderRadius: 14,
                 cursor: 'pointer',
                 transform: isSelected ? 'scale(1.03)' : 'scale(1)',
