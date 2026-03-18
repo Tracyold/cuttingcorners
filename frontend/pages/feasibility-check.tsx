@@ -49,12 +49,10 @@ function phaseOfStep(step: StepKind): number {
 
 export default function FeasibilityCheckPage() {
 
-  // ── Intro state ───────────────────────────────────────────
   const [introPhase, setIntroPhase] = useState<IntroPhase>('line1')
   const [check1,     setCheck1]     = useState(false)
   const [check2,     setCheck2]     = useState(false)
 
-  // ── Wizard state ──────────────────────────────────────────
   const STEPS = useMemo(() => buildSteps(), [])
   const [stepIndex,             setStepIndex]             = useState(0)
   const [stoneInfo,             setStoneInfo]             = useState<StoneInfo>({ species: '', variety: '', weightCt: '', dimensions: '', cut: '' })
@@ -64,7 +62,6 @@ export default function FeasibilityCheckPage() {
   const [correctableSelections, setCorrectableSelections] = useState<CorrectableSelections>({ external: null, light: null, geometry: null, structural: null })
   const [results,               setResults]               = useState<ScoreBreakdown | null>(null)
 
-  // ── Intro timing ──────────────────────────────────────────
   useEffect(() => {
     if (introPhase === 'line1')     { const t = setTimeout(() => setIntroPhase('line1exit'), 3500); return () => clearTimeout(t) }
     if (introPhase === 'line1exit') { const t = setTimeout(() => setIntroPhase('line2'),     700);  return () => clearTimeout(t) }
@@ -74,7 +71,6 @@ export default function FeasibilityCheckPage() {
     if (introPhase === 'disc2exit') { const t = setTimeout(() => setIntroPhase('begin'),     700);  return () => clearTimeout(t) }
   }, [introPhase])
 
-  // ── Handlers ──────────────────────────────────────────────
   const scrollTop = () => { const el = document.querySelector('.full-screen'); if (el) el.scrollTop = 0 }
 
   const handleNext = () => {
@@ -89,7 +85,7 @@ export default function FeasibilityCheckPage() {
     scrollTop()
   }
 
-  const handleBack = () => { setStepIndex(i => Math.max(i - 1, 0)); scrollTop() }
+  const handleBack    = () => { setStepIndex(i => Math.max(i - 1, 0)); scrollTop() }
 
   const handleStartOver = () => {
     setStepIndex(0)
@@ -106,38 +102,21 @@ export default function FeasibilityCheckPage() {
       <TopNav />
 
       <style>{`
-        
+        /* ── Mobile overrides ── */
         @media (max-width: 480px) {
-          .tool-title.welcome-size {
-          font-size: clamp(26px, 5vw, 52px);
-          padding: 0 32px;
-          margin: auto;
-          flex: 1;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          text-align: center;
-          animation: titleFadeIn 800ms cubic-bezier(0.16,1,0.3,1) both;
-        }
-        .tool-title.intro-size { font-size: 28px !important; padding-top: 60px !important; }
+          .tool-title.intro-size { font-size: 28px !important; padding-top: 60px !important; }
           .intro-line { font-size: 17px !important; }
         }
 
-
+        /* ── Desktop centering ── */
         @media (min-width: 768px) {
-          .full-screen {
-            justify-content: center;
-          }
-          .tool-title.intro-size {
-            padding-top: 40px !important;
-          }
-          .tool-rule.intro-rule {
-            margin-bottom: 48px !important;
-          }
-          .wiz-stage {
-            margin-top: 60px !important;
-          }
+          .full-screen { justify-content: center; }
+          .tool-title.intro-size { padding-top: 40px !important; }
+          .tool-rule.intro-rule { margin-bottom: 48px !important; }
+          .wiz-stage { flex: 0 1 auto !important; margin-top: 40px; margin-bottom: 40px; }
         }
+
+        /* ── Keyframes ── */
         @keyframes flyInUp {
           from { opacity: 0; transform: translateY(70px); }
           to   { opacity: 1; transform: translateY(0); }
@@ -149,10 +128,6 @@ export default function FeasibilityCheckPage() {
         @keyframes titleFadeIn {
           from { opacity: 0; transform: translateY(-16px); }
           to   { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes titleShrink {
-          from { font-size: clamp(38px, 8vw, 66px); padding-top: 0; }
-          to   { font-size: clamp(28px, 4.5vw, 34px); padding-top: clamp(62px, 10vh, 92px); }
         }
         @keyframes accordionDown {
           from { opacity: 0; transform: translateY(-24px); }
@@ -168,6 +143,7 @@ export default function FeasibilityCheckPage() {
           100% { opacity: 1; transform: scale(1) translateY(0); }
         }
 
+        /* ── Layout ── */
         .full-screen {
           position: fixed; inset: 0; z-index: 100;
           background: var(--bg);
@@ -177,79 +153,61 @@ export default function FeasibilityCheckPage() {
         .full-screen::-webkit-scrollbar { width: 3px; }
         .full-screen::-webkit-scrollbar-thumb { background: var(--border); }
 
-        /* Title — big during intro, shrinks and moves up on wizard */
+        /* Title */
         .tool-title {
           font-family: var(--font-display);
-          font-weight: 400;
-          color: var(--text);
-          text-align: center;
+          font-weight: 400; color: var(--text); text-align: center;
           flex-shrink: 0;
           animation: titleFadeIn 1000ms cubic-bezier(0.16,1,0.3,1) 200ms both;
           transition: font-size 700ms cubic-bezier(0.16,1,0.3,1),
                       padding  700ms cubic-bezier(0.16,1,0.3,1),
                       margin   700ms cubic-bezier(0.16,1,0.3,1);
         }
-        .tool-title.welcome-size {
-          font-size: clamp(26px, 5vw, 52px);
-          padding: 0 32px;
-          margin: auto;
-          flex: 1;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          text-align: center;
-          animation: titleFadeIn 800ms cubic-bezier(0.16,1,0.3,1) both;
-        }
         .tool-title.intro-size {
-          font-size: clamp(53px, 8vw, 73px);
-          padding: clamp(82px, 14vh, 142px) 24px 0;
-          margin: 0 0 17px;
+          font-size: clamp(36px, 8vw, 64px);
+          padding: clamp(80px, 14vh, 120px) 24px 0;
+          margin: 0 0 16px;
         }
         .tool-title.wizard-size {
-          font-size: clamp(28px, 4.5vw, 34px);
-          padding: clamp(25px, 4vh, 40px) 24px 0;
+          font-size: clamp(28px, 4.5vw, 38px);
+          padding: clamp(24px, 4vh, 40px) 24px 0;
           margin: 0 0 8px;
         }
         .tool-rule {
-          width: 32px; height: 1px;
-          background: var(--accent);
-          flex-shrink: 0;
+          width: 32px; height: 0.5px;
+          background: var(--accent); flex-shrink: 0;
           transition: margin 700ms cubic-bezier(0.16,1,0.3,1);
           animation: titleFadeIn 1000ms 500ms both;
         }
-        .tool-rule.intro-rule { margin: 0 auto clamp(50px, 10vh, 82px); }
+        .tool-rule.intro-rule { margin: 0 auto clamp(40px, 8vh, 70px); }
         .tool-rule.wizard-rule { margin: 0 auto 24px; }
 
-        /* Intro — fills remaining space, centers content */
+        /* Center stage (intro) */
         .center-stage {
           flex: 1;
           display: flex; flex-direction: column;
           align-items: center; justify-content: center;
-          padding: 0 clamp(22px, 6vw, 62px) clamp(42px, 8vh, 82px);
-          text-align: center;
-          position: relative;
+          padding: 0 clamp(20px, 6vw, 60px) clamp(40px, 8vh, 80px);
+          text-align: center; position: relative;
         }
 
-        /* Wizard — slides down from title */
+        /* Wizard stage */
         .wiz-stage {
           flex: 1;
           width: 100%; max-width: 520px;
           margin: 0 auto;
           padding: 0 20px 80px;
-          padding-top: 0;
           text-align: left;
           animation: accordionDown 500ms cubic-bezier(0.16,1,0.3,1) 200ms both;
         }
 
-        /* Intro text */
+        /* Intro lines */
         .intro-line {
           font-family: var(--font-display);
           font-style: italic;
-          font-size: clamp(29px, 3vw, 43px);
-          color: var(--text-muted);
-          line-height: 1.75;
-          max-width: 600px;
-          margin: 0;
+          font-size: clamp(22px, 3vw, 34px);
+          color: var(--text-muted); line-height: 1.75;
+          max-width: 600px; margin: 0;
         }
         .fly-in  { animation: flyInUp  900ms cubic-bezier(0.16,1,0.3,1) forwards; }
         .fly-out { animation: flyOutUp 650ms cubic-bezier(0.4,0,1,1)    forwards; }
@@ -259,32 +217,22 @@ export default function FeasibilityCheckPage() {
         /* Disclaimer cards */
         .disc-card {
           width: 100%; max-width: 560px;
-          background: var(--bg-card);
-          border: 0.5px solid var(--border);
-          padding: clamp(22px, 4vw, 34px);
-          text-align: left;
+          background: var(--bg-card); border: 0.5px solid var(--border);
+          padding: clamp(24px, 4vw, 36px); text-align: left;
         }
         .disc-card.fly-in  { animation: flyInUp  900ms cubic-bezier(0.16,1,0.3,1) forwards; }
         .disc-card.fly-out { animation: flyOutUp 650ms cubic-bezier(0.4,0,1,1)    forwards; }
         .disc-label {
-          font-family: var(--font-body);
-          font-size: clamp(19px, 2.2vw, 21px);
-          color: var(--accent);
-          margin: 0 0 16px;
+          font-family: var(--font-body); font-size: clamp(14px, 2vw, 16px);
+          color: var(--accent); margin: 0 0 16px;
         }
         .disc-text {
-          font-family: var(--font-body);
-          font-size: clamp(19px, 3vw, 27px);
-          line-height: 1.85;
-          color: var(--text-muted);
-          margin: 0 0 24px;
+          font-family: var(--font-body); font-size: clamp(15px, 2vw, 17px);
+          line-height: 1.85; color: var(--text-muted); margin: 0 0 24px;
         }
-        .disc-check-row {
-          display: flex; align-items: flex-start; gap: 14px;
-          margin-bottom: 24px; cursor: pointer;
-        }
+        .disc-check-row { display: flex; align-items: flex-start; gap: 14px; margin-bottom: 24px; cursor: pointer; }
         .disc-checkbox {
-          flex-shrink: 0; width: 24px; height: 24px;
+          flex-shrink: 0; width: 22px; height: 22px;
           border: 0.5px solid var(--border); border-radius: 6px;
           background: transparent;
           display: flex; align-items: center; justify-content: center;
@@ -292,21 +240,15 @@ export default function FeasibilityCheckPage() {
         }
         .disc-checkbox.on { background: var(--accent); border-color: var(--accent); }
         .disc-check-label {
-          font-family: var(--font-body);
-          font-size: clamp(19px, 3vw, 27px);
-          font-weight: 500;
-          color: var(--text-muted);
-          line-height: 1.5;
-          margin: 0;
+          font-family: var(--font-body); font-size: clamp(14px, 2vw, 16px);
+          font-weight: 500; color: var(--text-muted); line-height: 1.5; margin: 0;
         }
-        .disc-btn { text-transform: uppercase; letter-spacing: 0.12em;
-          width: 100%;
-          display: flex; align-items: center; justify-content: center; gap: 10px;
+        .disc-btn {
+          width: 100%; display: flex; align-items: center; justify-content: center; gap: 10px;
           background: var(--bg-deep); color: var(--accent); border: 0.5px solid rgba(255,211,105,0.5);
-          padding: 18px 24px;
-          font-family: var(--font-body);
-          font-size: clamp(19px, 2.2vw, 21px);
-          font-weight: 700;
+          padding: 16px 24px; font-family: var(--font-body);
+          font-size: clamp(13px, 1.6vw, 15px); font-weight: 700;
+          letter-spacing: 0.15em; text-transform: uppercase;
           transition: all 220ms ease; opacity: 0.28; cursor: not-allowed;
         }
         .disc-btn.on { opacity: 1; cursor: pointer; box-shadow: 0 0 20px rgba(255,211,105,0.2); }
@@ -314,71 +256,64 @@ export default function FeasibilityCheckPage() {
         .disc-btn.on:active { background: rgba(255,211,105,0.2); }
 
         /* Begin button */
-        .begin-btn { text-transform: uppercase; letter-spacing: 0.08em;
+        .begin-btn {
           display: inline-flex; align-items: center; gap: 14px;
           background: var(--bg-deep); color: var(--accent); border: 0.5px solid rgba(255,211,105,0.5);
-          padding: clamp(20px, 3vw, 26px) clamp(50px, 8vw, 74px);
-          font-family: var(--font-display);
-          font-size: clamp(28px, 4.5vw, 34px);
-          font-weight: 700;
+          padding: clamp(16px, 3vw, 22px) clamp(40px, 8vw, 64px);
+          font-family: var(--font-display); font-size: clamp(24px, 4vw, 36px);
+          font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
           cursor: pointer; transition: all 300ms ease;
-          box-shadow: 0 0 24px rgba(255,211,105,0.2);
+          box-shadow: 0 0 24px rgba(255,211,105,0.15);
           animation: flyInUp 900ms cubic-bezier(0.16,1,0.3,1) forwards;
         }
-        .begin-btn:hover { background: rgba(255,211,105,0.08); box-shadow: 0 0 36px rgba(255,211,105,0.3); transform: translateY(-2px); }
+        .begin-btn:hover { background: rgba(255,211,105,0.08); box-shadow: 0 0 36px rgba(255,211,105,0.25); transform: translateY(-2px); }
         .begin-btn:active { background: rgba(255,211,105,0.2); }
 
-        /* Wizard UI */
+        /* Wizard inputs and buttons */
         .wiz-input {
-          width: 100%;
-          background: var(--bg-card); border: 0.5px solid var(--border);
+          width: 100%; background: transparent; border: none;
+          border-bottom: 0.5px solid var(--border);
           color: var(--text); font-family: var(--font-body);
-          font-size: clamp(18px, 2vw, 20px);
-          padding: 16px 18px; border-radius: 10px;
-          transition: border-color 200ms ease; outline: none;
+          font-size: clamp(15px, 2vw, 17px); font-weight: 300;
+          padding: 10px 0; outline: none; border-radius: 0;
+          transition: border-color 200ms ease;
         }
-        .wiz-input::placeholder { color: var(--text-muted); opacity: 0.4; }
-        .wiz-input:focus { border-color: var(--accent); }
+        .wiz-input::placeholder { color: var(--text-muted); opacity: 0.3; }
+        .wiz-input:focus { border-bottom-color: rgba(255,211,105,0.5); }
 
-        .wiz-btn-primary { text-transform: uppercase; letter-spacing: 0.12em;
+        .wiz-btn-primary {
           flex: 0; display: flex; align-items: center; justify-content: center; gap: 8px;
           background: var(--bg-deep); color: var(--accent); border: 0.5px solid rgba(255,211,105,0.5);
-          padding: 14px 32px;
-          font-family: var(--font-body);
-          font-size: 13px;
-          font-weight: 700;
-          min-width: 120px;
-          cursor: pointer; border-radius: 14px; transition: all 220ms ease;
-          box-shadow: 0 4px 16px rgba(255,211,105,0.18);
+          padding: 13px 32px; font-family: var(--font-body);
+          font-size: 12px; font-weight: 700; min-width: 110px;
+          letter-spacing: 0.18em; text-transform: uppercase;
+          cursor: pointer; border-radius: 3px; transition: all 220ms ease;
+          box-shadow: 0 2px 12px rgba(0,0,0,0.2);
         }
-        .wiz-btn-primary:hover:not(:disabled) { background: rgba(255,211,105,0.08); box-shadow: 0 0 24px rgba(255,211,105,0.25); }
+        .wiz-btn-primary:hover:not(:disabled) { background: rgba(255,211,105,0.08); }
         .wiz-btn-primary:disabled { opacity: 0.25; cursor: not-allowed; }
         .wiz-btn-primary:active:not(:disabled) { background: rgba(255,211,105,0.2); }
 
-        .wiz-btn-secondary { text-transform: uppercase; letter-spacing: 0.12em;
+        .wiz-btn-secondary {
           flex: 0; display: flex; align-items: center; justify-content: center;
           background: transparent; color: var(--text-muted);
           border: 0.5px solid var(--border);
-          padding: 14px 32px;
-          font-family: var(--font-body);
-          font-size: 13px;
-          font-weight: 500;
-          min-width: 120px;
-          cursor: pointer; border-radius: 14px; transition: all 220ms ease;
+          padding: 13px 32px; font-family: var(--font-body);
+          font-size: 12px; font-weight: 500; min-width: 110px;
+          letter-spacing: 0.15em; text-transform: uppercase;
+          cursor: pointer; border-radius: 3px; transition: all 220ms ease;
         }
-        .wiz-btn-secondary:hover { background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.3); color: var(--text); }
-        .wiz-btn-secondary:active { background: rgba(255,255,255,0.2); }
+        .wiz-btn-secondary:hover { background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.25); color: var(--text); }
+        .wiz-btn-secondary:active { background: rgba(255,255,255,0.12); }
       `}</style>
 
       <div className="full-screen">
 
-        {/* Title — smooth transition between intro and wizard size */}
-        <p className={`tool-title ${inWizard ? 'wizard-size' : 'intro-size'}`}>
+        <p className={`tool-title \${inWizard ? 'wizard-size' : 'intro-size'}`}>
           The Cut Feasibility Wizard
         </p>
-        <div className={`tool-rule ${inWizard ? 'wizard-rule' : 'intro-rule'}`} />
+        <div className={`tool-rule \${inWizard ? 'wizard-rule' : 'intro-rule'}`} />
 
-        {/* Intro */}
         {!inWizard && (
           <IntroScreen
             introPhase={introPhase}
@@ -389,11 +324,10 @@ export default function FeasibilityCheckPage() {
             onConfirmDisc1={() => { if (check1) setIntroPhase('disc1exit') }}
             onConfirmDisc2={() => { if (check2) setIntroPhase('disc2exit') }}
             onBegin={() => setIntroPhase('wizard')}
-            onSkip={() => introPhase === 'welcome' ? setIntroPhase('disc1') : setIntroPhase('disc1')}
+            onSkip={() => setIntroPhase('disc1')}
           />
         )}
 
-        {/* Wizard */}
         {inWizard && (
           <WizardScreen
             STEPS={STEPS}
