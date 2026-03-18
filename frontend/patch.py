@@ -1,80 +1,94 @@
 #!/usr/bin/env python3
-import re, os
+import os, re
 
-files = [
-    'pages/feasibility-check.tsx',
-    'components/feasibility-test/ui/WizardScreen.tsx',
-    'components/feasibility-test/ui/CheckItem.tsx',
-    'components/feasibility-test/ui/CorrectableRow.tsx',
-    'components/feasibility-test/ui/ResultsDisplay.tsx',
-    'components/feasibility-test/ui/ScoreBox.tsx',
-    'components/feasibility-test/ui/EstimateDisplay.tsx',
-    'components/feasibility-test/ui/InfoDrawer.tsx',
-    'components/feasibility-test/ui/IntroScreen.tsx',
+# Find globals css
+css_path = None
+for candidate in ['styles/globals.css', 'styles/global.css', 'styles/postcss.css']:
+    if os.path.exists(candidate):
+        css_path = candidate
+        break
+
+if not css_path:
+    print("Could not find globals CSS file. Listing styles/:")
+    os.system("ls styles/")
+    exit(1)
+
+print(f"Found: {css_path}")
+
+with open(css_path) as f:
+    content = f.read()
+
+# ── 1. Add @font-face declarations at the very top ────────────
+font_faces = """
+@font-face {
+  font-family: 'Freight Display';
+  src: url('/fonts/freightdispbook-webfont.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Proxima Nova';
+  src: url('/fonts/ProximaNova-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Proxima Nova';
+  src: url('/fonts/ProximaNova-Semibold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Proxima Nova';
+  src: url('/fonts/ProximaNova-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Proxima Nova';
+  src: url('/fonts/ProximaNova-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+"""
+
+# Add font faces at top if not already there
+if 'Freight Display' not in content:
+    content = font_faces + content
+    print("Added @font-face declarations")
+else:
+    print("Font faces already present")
+
+# ── 2. Update CSS variables ───────────────────────────────────
+# Replace existing font variables
+replacements = [
+    # display font
+    (r"--font-display:[^;]+;", "--font-display: 'Freight Display', Georgia, serif;"),
+    # body font
+    (r"--font-body:[^;]+;", "--font-body: 'Proxima Nova', -apple-system, sans-serif;"),
+    # ui font — same as body
+    (r"--font-ui:[^;]+;", "--font-ui: 'Proxima Nova', -apple-system, sans-serif;"),
 ]
 
-for path in files:
-    if not os.path.exists(path):
-        print(f'skipped: {path}')
-        continue
-    with open(path) as f:
-        content = f.read()
+import re
+for pattern, replacement in replacements:
+    if re.search(pattern, content):
+        content = re.sub(pattern, replacement, content)
+        print(f"Updated: {replacement[:50]}...")
+    else:
+        print(f"Pattern not found: {pattern}")
 
-    # Remove textTransform uppercase and letterSpacing everywhere
-    content = re.sub(r",?\s*textTransform:\s*'uppercase'(\s*as\s*const)?", '', content)
-    content = re.sub(r",?\s*textTransform:\s*\"uppercase\"", '', content)
-    content = re.sub(r",?\s*letterSpacing:\s*'[^']+'", '', content)
-    content = re.sub(r",?\s*letterSpacing:\s*\"[^\"]+\"", '', content)
-    content = re.sub(r",?\s*text-transform:\s*uppercase;?", '', content)
-    content = re.sub(r",?\s*letter-spacing:\s*[^;]+;?", '', content)
+with open(css_path, 'w') as f:
+    f.write(content)
 
-    # Change fontFamily from font-ui to font-body everywhere except title
-    # Keep font-display for titles, use font-body for everything else
-    content = content.replace("var(--font-ui)", "var(--font-body)")
-
-    # Now restore uppercase + tracking ONLY for:
-    # 1. Phase bar label (PHASES[currentPhase])
-    # 2. Buttons (.wiz-btn-primary, .wiz-btn-secondary, .disc-btn, .begin-btn, .btn-*)
-    # 3. .tool-title stays as display font
-
-    # Restore button text-transform in CSS classes
-    content = content.replace(
-        '.wiz-btn-primary {',
-        '.wiz-btn-primary { text-transform: uppercase; letter-spacing: 0.12em;'
-    )
-    content = content.replace(
-        '.wiz-btn-secondary {',
-        '.wiz-btn-secondary { text-transform: uppercase; letter-spacing: 0.12em;'
-    )
-    content = content.replace(
-        '.disc-btn {',
-        '.disc-btn { text-transform: uppercase; letter-spacing: 0.12em;'
-    )
-    content = content.replace(
-        '.begin-btn {',
-        '.begin-btn { text-transform: uppercase; letter-spacing: 0.08em;'
-    )
-    content = content.replace(
-        '.btn-export {',
-        '.btn-export { text-transform: uppercase; letter-spacing: 0.1em;'
-    )
-    content = content.replace(
-        '.btn-quote {',
-        '.btn-quote { text-transform: uppercase; letter-spacing: 0.1em;'
-    )
-    content = content.replace(
-        '.btn-restart {',
-        '.btn-restart { text-transform: uppercase; letter-spacing: 0.1em;'
-    )
-
-    # Restore uppercase for phase label span only
-    content = content.replace(
-        '<span style={T.label}>{PHASES[currentPhase]',
-        '<span style={{ ...T.label, textTransform: "uppercase", letterSpacing: "0.18em" }}>{PHASES[currentPhase]'
-    )
-
-    with open(path, 'w') as f:
-        f.write(content)
-    print(f'fixed: {path}')
-
-print('Done.')
+print("\nDone. Run yarn build && yarn start to apply.")

@@ -1,5 +1,45 @@
 @import url('https://fonts.googleapis.com/css2?family=Oranienbaum&family=Montserrat:wght@300;400;500;600;700&family=Comfortaa:wght@300;400;500;600;700&family=DM+Sans:wght@300;400;500;600;700&display=swap');
 
+@font-face {
+  font-family: 'Freight Display';
+  src: url('/fonts/freightdispbook-webfont.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Proxima Nova';
+  src: url('/fonts/ProximaNova-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Proxima Nova';
+  src: url('/fonts/ProximaNova-Semibold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Proxima Nova';
+  src: url('/fonts/ProximaNova-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Proxima Nova';
+  src: url('/fonts/ProximaNova-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -21,9 +61,9 @@
   --border-rgba:     rgba(17, 18, 21, 1);
   --gold:            #f1bf1c;
   --gold-rgba:       rgba(241, 191, 28, 1);
-  --font-display:    'Oranienbaum', Georgia, serif;
-  --font-ui:         'Montserrat', sans-serif;
-  --font-body:       'Lora', Georgia, serif;
+  --font-display: 'Freight Display', Georgia, serif;
+  --font-ui: 'Proxima Nova', -apple-system, sans-serif;
+  --font-body: 'Proxima Nova', -apple-system, sans-serif;
   --font-mono:       'Courier New', monospace;
   --bg-gradient:     linear-gradient(187deg, #1c1f24 15%, #101112 30%, #252525 45%, #1c2129 65%);
 }
@@ -45,9 +85,9 @@
   --border-rgba:     rgba(184, 185, 187, 1);
   --gold:            #fccb28;
   --gold-rgba:       rgba(252, 203, 40, 1);
-  --font-display:    'Oranienbaum', Georgia, serif;
-  --font-ui:         'Montserrat', sans-serif;
-  --font-body:       'Lora', Georgia, serif;
+  --font-display: 'Freight Display', Georgia, serif;
+  --font-ui: 'Proxima Nova', -apple-system, sans-serif;
+  --font-body: 'Proxima Nova', -apple-system, sans-serif;
   --font-mono:       'Courier New', monospace;
   --bg-gradient:     linear-gradient(187deg, #16181e 15%, #1a1a27 31%, #0c0c14 47%, #171329 65%);
 }
@@ -69,9 +109,9 @@
   --border-rgba:     rgba(204, 204, 204, 1);
   --gold:            #eec11d;
   --gold-rgba:       rgba(238, 193, 29, 1);
-  --font-display:    'Oranienbaum', Georgia, serif;
-  --font-ui:         'Montserrat', sans-serif;
-  --font-body:       'Lora', Georgia, serif;
+  --font-display: 'Freight Display', Georgia, serif;
+  --font-ui: 'Proxima Nova', -apple-system, sans-serif;
+  --font-body: 'Proxima Nova', -apple-system, sans-serif;
   --font-mono:       'Courier New', monospace;
   --bg-gradient:     linear-gradient(135deg, #e8e4dc 15%, #EEEEEE 35%, #f0ede8 47%, #e8e4dc 67%);
 }
