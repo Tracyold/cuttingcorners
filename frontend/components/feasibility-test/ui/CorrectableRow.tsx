@@ -23,56 +23,29 @@ interface CorrectableRowProps {
   structuralChecked: Set<string>
 }
 
-export default function CorrectableRow({ label, required, rowId, selected, onChange, limitingChecked, structuralChecked }: CorrectableRowProps) {
-  const relevantIds = CATEGORY_ITEMS[rowId] ?? []
+export default function CorrectableRow({
+  rowId, selected, onChange, limitingChecked, structuralChecked
+}: CorrectableRowProps) {
+  const relevantIds   = CATEGORY_ITEMS[rowId] ?? []
   const selectedItems = relevantIds.filter(id => limitingChecked.has(id) || structuralChecked.has(id))
 
   return (
-    <div style={{ marginBottom: 28 }}>
+    <div style={{ marginBottom: 32 }}>
 
-      {/* Row label */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 14 }}>
-        <span style={{
-          fontFamily: 'var(--font-body)',
-          fontSize: 'clamp(19px, 2.2vw, 21px)',
-          fontWeight: 600,
-          color: 'var(--text-muted)',
-        }}>
-          {label}
-        </span>
-        {required && (
-          <span style={{
-            fontFamily: 'var(--font-body)', fontSize: 17,
-            color: 'var(--accent)', border: '0.5px solid var(--accent)',
-            borderRadius: 4, padding: '2px 7px',
-          }}>
-            Required
-          </span>
-        )}
-      </div>
-
-      {/* Relevant selections */}
       {selectedItems.length > 0 && (
-        <div style={{
-          background: 'var(--bg-deep)', border: '0.5px solid var(--border)',
-          borderRadius: 10, padding: '12px 16px', marginBottom: 14,
-        }}>
-          <p style={{ fontFamily: 'var(--font-body)', fontSize: 17, color: 'var(--accent)', margin: '0 0 10px' }}>
-            Relevant Selections
+        <div style={{ marginBottom: 20, paddingBottom: 14, borderBottom: '0.5px solid var(--border)' }}>
+          <p style={{ fontFamily: 'var(--font-body)', fontSize: 10, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--text-muted)', opacity: 0.5, margin: '0 0 10px' }}>
+            Your selections
           </p>
           {selectedItems.map(id => (
-            <div key={id} style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 6 }}>
-              <div style={{ width: 5, height: 5, borderRadius: '50%', background: 'var(--accent)', opacity: 0.5, flexShrink: 0 }} />
-              <span style={{ fontFamily: 'var(--font-body)', fontSize: 'clamp(19px, 2.2vw, 21px)', color: 'var(--text-muted)' }}>
-                {LABEL_MAP[id] ?? id}
-              </span>
-            </div>
+            <p key={id} style={{ fontFamily: 'var(--font-body)', fontSize: 13, fontWeight: 300, color: 'var(--text-muted)', margin: '0 0 4px' }}>
+              — {LABEL_MAP[id] ?? id}
+            </p>
           ))}
         </div>
       )}
 
-      {/* Option buttons */}
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8 }}>
         {correctableOptions.map(opt => {
           const isSelected = selected === opt.value
           return (
@@ -82,21 +55,22 @@ export default function CorrectableRow({ label, required, rowId, selected, onCha
               onClick={() => onChange(opt.value)}
               style={{
                 fontFamily: 'var(--font-body)',
-                fontSize: 'clamp(19px, 2.2vw, 21px)',
-                fontWeight: isSelected ? 600 : 400,
-                padding: isSelected ? '20px 12px' : '16px 12px',
-                background: isSelected ? 'rgba(255,211,105,0.08)' : 'var(--bg-deep)',
+                fontSize: 13,
+                fontWeight: isSelected ? 400 : 300,
                 color: isSelected ? 'var(--text)' : 'var(--text-muted)',
-                border: `0.5px solid ${isSelected ? 'rgba(255,211,105,0.4)' : 'transparent'}`,
-                borderRadius: 14,
+                padding: '18px 12px',
+                background: isSelected ? 'rgba(255,211,105,0.04)' : 'rgba(255,255,255,0.015)',
+                border: `0.5px solid ${isSelected ? 'rgba(255,211,105,0.28)' : 'rgba(255,255,255,0.07)'}`,
+                borderRadius: 6,
                 cursor: 'pointer',
-                transform: isSelected ? 'scale(1.03)' : 'scale(1)',
-                boxShadow: isSelected ? '0 4px 16px rgba(255,211,105,0.08)' : '0 1px 6px rgba(0,0,0,0.1)',
-                transition: 'all 220ms cubic-bezier(0.34,1.56,0.64,1)',
+                transition: 'all 200ms ease',
                 WebkitTapHighlightColor: 'transparent',
-                minHeight: 68,
                 textAlign: 'center',
                 lineHeight: 1.4,
+                boxShadow: isSelected
+                  ? '0 4px 20px rgba(0,0,0,0.14), 0 0 16px rgba(255,211,105,0.04)'
+                  : '0 2px 10px rgba(0,0,0,0.1)',
+                transform: isSelected ? 'translateY(-1px)' : 'translateY(0)',
               }}
             >
               {opt.label}
