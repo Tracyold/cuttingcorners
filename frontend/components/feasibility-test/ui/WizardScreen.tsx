@@ -7,6 +7,7 @@ import CorrectableRowComponent from './CorrectableRow'
 import ResultsDisplay from './ResultsDisplay'
 import type { StepKind, StoneInfo } from '../logic/feasibility-types'
 import { PHASES } from '../logic/feasibility-types'
+import { autoSelectAll } from '../logic/autoSelect'
 
 function groupBy<T extends { group: string }>(items: T[]): Record<string, T[]> {
   return items.reduce((acc, item) => {
@@ -300,6 +301,7 @@ export default function WizardScreen({
             required={correctableRows.find(r => r.id === currentStep.rowId)?.required}
             rowId={currentStep.rowId}
             selected={correctableSelections[currentStep.rowId]}
+            autoSelected={autoSelectAll(limitingChecked, structuralChecked)[currentStep.rowId]}
             onChange={val => handleCorrectableChange(currentStep.rowId, val)}
             limitingChecked={limitingChecked}
             structuralChecked={structuralChecked}
