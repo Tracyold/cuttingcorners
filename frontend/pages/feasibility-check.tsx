@@ -7,6 +7,8 @@ import type { CorrectableSelections, ScoreBreakdown } from '../components/feasib
 import CheckItem from '../components/feasibility-test/ui/CheckItem'
 import CorrectableRowComponent from '../components/feasibility-test/ui/CorrectableRow'
 import ResultsDisplay from '../components/feasibility-test/ui/ResultsDisplay'
+import { autoSelectAll } from '../components/feasibility-test/logic/autoSelect'
+
 
 type IntroPhase =
   | 'line1' | 'line1exit'
@@ -134,6 +136,12 @@ export default function FeasibilityCheckPage() {
 
   const handleNext = () => {
     const nextStep = STEPS[stepIndex + 1]
+    // Auto-select correctable answers when entering correctable phase
+    if (nextStep?.type === 'correctable-row' && STEPS[stepIndex]?.type === 'category-complete') {
+      setCorrectableSelections({
+        ...autoSelectAll(limitingChecked, structuralChecked),
+      })
+    }
     if (nextStep?.type === 'results') setResults(calculateAll(positiveChecked, limitingChecked, structuralChecked, correctableSelections))
     setStepIndex(i => Math.min(i + 1, STEPS.length - 1))
     scrollTop()
@@ -161,6 +169,8 @@ export default function FeasibilityCheckPage() {
   const instruction  = stepInstruction(currentStep)
   const phaseSteps   = STEPS.filter(s => phaseOfStep(s) === currentPhase && s.type !== 'category-complete')
   const phaseIndex   = phaseSteps.findIndex(s => s === currentStep)
+
+
   const canProceed   = currentStep.type !== 'correctable-row' || correctableSelections[currentStep.rowId] !== null
   const inWizard     = introPhase === 'wizard'
 
@@ -178,6 +188,10 @@ export default function FeasibilityCheckPage() {
         }
         @keyframes titleFadeIn {
           from { opacity: 0; transform: translateY(-16px); }
+          to   { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes accordionDown {
+          from { opacity: 0; transform: translateY(-20px); }
           to   { opacity: 1; transform: translateY(0); }
         }
         @keyframes completePop {
@@ -198,7 +212,7 @@ export default function FeasibilityCheckPage() {
         .tool-title {
           text-align: center;
           font-family: var(--font-display);
-          font-size: clamp(16px, 3vw, 28px);
+          font-size: clamp(28px, 4vw, 42px);
           font-weight: 400; color: var(--text); letter-spacing: 0.04em;
           padding: clamp(70px, 10vh, 100px) 24px 0; flex-shrink: 0;
           animation: titleFadeIn 1000ms cubic-bezier(0.16,1,0.3,1) 200ms both;
@@ -221,13 +235,14 @@ export default function FeasibilityCheckPage() {
           flex: 1;
           width: 100%; max-width: 520px;
           margin: 0 auto;
-          padding: 32px 20px 60px;
+          padding: 0 20px 60px;
           text-align: left;
+          animation: accordionDown 600ms cubic-bezier(0.16,1,0.3,1) 300ms both;
         }
 
         .intro-line {
           font-family: var(--font-body);
-          font-size: clamp(16px, 2.5vw, 24px);
+          font-size: clamp(22px, 3vw, 32px);
           color: var(--text-muted); line-height: 1.75;
           max-width: 600px; margin: 0;
         }
@@ -245,13 +260,13 @@ export default function FeasibilityCheckPage() {
         }
         .disc-card.fly-in  { animation: flyInUp  900ms cubic-bezier(0.16,1,0.3,1) forwards; }
         .disc-card.fly-out { animation: flyOutUp 650ms cubic-bezier(0.4,0,1,1)    forwards; }
-        .disc-label { font-family: var(--font-ui); font-size: 13px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--accent); margin: 0 0 14px; }
-        .disc-text  { font-family: var(--font-body); font-size: clamp(13px,1.8vw,27px); line-height: 1.8; color: var(--text-muted); margin: 0 0 22px; }
+        .disc-label { font-family: var(--font-ui); font-size: 16px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--accent); margin: 0 0 14px; }
+        .disc-text  { font-family: var(--font-body); font-size: clamp(17px,2vw,20px); line-height: 1.8; color: var(--text-muted); margin: 0 0 22px; }
         .disc-check-row { display: flex; align-items: flex-start; gap: 14px; margin-bottom: 22px; cursor: pointer; }
         .disc-checkbox { flex-shrink: 0; width: 22px; height: 22px; border: 1.5px solid var(--border); border-radius: 6px; background: transparent; display: flex; align-items: center; justify-content: center; transition: all 200ms ease; margin-top: 2px; }
         .disc-checkbox.on { background: var(--accent); border-color: var(--accent); }
-        .disc-check-label { font-family: var(--font-ui); font-size: 11px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); line-height: 1.5; margin: 0; }
-        .disc-btn { width: 100%; display: flex; align-items: center; justify-content: center; gap: 10px; background: var(--accent); color: var(--bg); border: none; padding: 16px 24px; font-family: var(--font-ui); font-size: 11px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; transition: all 220ms ease; opacity: 0.28; cursor: not-allowed; }
+        .disc-check-label { font-family: var(--font-ui); font-size: 18px; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; color: var(--text-muted); line-height: 1.5; margin: 0; }
+        .disc-btn { width: 100%; display: flex; align-items: center; justify-content: center; gap: 10px; background: var(--accent); color: var(--bg); border: none; padding: 16px 24px; font-family: var(--font-ui); font-size: 14px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; transition: all 220ms ease; opacity: 0.28; cursor: not-allowed; }
         .disc-btn.on { opacity: 1; cursor: pointer; box-shadow: 0 4px 24px rgba(255,211,105,0.18); }
         .disc-btn.on:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(255,211,105,0.28); }
 
@@ -259,20 +274,20 @@ export default function FeasibilityCheckPage() {
           display: inline-flex; align-items: center; gap: 14px;
           background: var(--accent); color: var(--bg); border: none;
           padding: 22px 64px; font-family: var(--font-display);
-          font-size: clamp(20px, 3vw, 32px); font-weight: 400; letter-spacing: 0.08em;
+          font-size: clamp(22px, 3vw, 32px); font-weight: 400; letter-spacing: 0.08em;
           cursor: pointer; transition: all 401ms ease;
           box-shadow: 0 4px 40px rgba(255,211,105,0.22);
           animation: flyInUp 1200ms cubic-bezier(0.16,1,0.3,1) forwards;
         }
         .begin-btn:hover { transform: translateY(-4px); box-shadow: 0 12px 48px rgba(255,211,105,0.32); }
 
-        .wiz-input { width: 100%; background: var(--bg-card); border: 1px solid var(--border); color: var(--text); font-family: var(--font-body); font-size: 16px; padding: 15px 18px; border-radius: 10px; transition: border-color 200ms ease; outline: none; }
+        .wiz-input { width: 100%; background: var(--bg-card); border: 1px solid var(--border); color: var(--text); font-family: var(--font-body); font-size: 18px; padding: 16px 18px; border-radius: 10px; transition: border-color 200ms ease; outline: none; }
         .wiz-input::placeholder { color: var(--text-muted); opacity: 0.4; }
         .wiz-input:focus { border-color: var(--accent); }
-        .wiz-btn-primary { flex: 1; display: flex; align-items: center; justify-content: center; gap: 8px; background: var(--accent); color: var(--bg); border: none; padding: 18px 20px; font-family: var(--font-ui); font-size: 12px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; cursor: pointer; border-radius: 14px; transition: all 220ms ease; box-shadow: 0 4px 16px rgba(255,211,105,0.18); }
+        .wiz-btn-primary { flex: 1; display: flex; align-items: center; justify-content: center; gap: 8px; background: var(--accent); color: var(--bg); border: none; padding: 18px 20px; font-family: var(--font-ui); font-size: 16px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; cursor: pointer; border-radius: 14px; transition: all 220ms ease; box-shadow: 0 4px 16px rgba(255,211,105,0.18); }
         .wiz-btn-primary:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(255,211,105,0.28); }
         .wiz-btn-primary:disabled { opacity: 0.25; cursor: not-allowed; }
-        .wiz-btn-secondary { flex: 1; display: flex; align-items: center; justify-content: center; background: transparent; color: var(--text-muted); border: 1px solid var(--border); padding: 18px 20px; font-family: var(--font-ui); font-size: 12px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; cursor: pointer; border-radius: 14px; transition: all 220ms ease; }
+        .wiz-btn-secondary { flex: 1; display: flex; align-items: center; justify-content: center; background: transparent; color: var(--text-muted); border: 1px solid var(--border); padding: 18px 20px; font-family: var(--font-ui); font-size: 16px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; cursor: pointer; border-radius: 14px; transition: all 220ms ease; }
         .wiz-btn-secondary:hover { border-color: var(--text-muted); color: var(--text); }
       `}</style>
 
@@ -280,31 +295,63 @@ export default function FeasibilityCheckPage() {
       <div className="full-screen">
 
         {/* Title — always present */}
-        <p className="tool-title">The Cut Feasibility Tool</p>
+        <p className="tool-title">The Cut Feasibility Wizard</p>
         <div className="tool-rule" />
+        {introPhase !== 'wizard' && introPhase !== 'begin' && (
+          <button
+            onClick={() => setIntroPhase('begin')}
+            style={{
+              position: 'absolute',
+              top: 'clamp(16px, 3vh, 24px)',
+              right: 'clamp(16px, 3vw, 28px)',
+              background: 'transparent',
+              border: '1px solid var(--border)',
+              color: 'var(--text-muted)',
+              fontFamily: 'var(--font-ui)',
+              fontSize: 10,
+              letterSpacing: '0.2em',
+              textTransform: 'uppercase',
+              padding: '8px 14px',
+              cursor: 'pointer',
+              borderRadius: 8,
+              transition: 'all 180ms ease',
+              zIndex: 10,
+            }}
+            onMouseEnter={e => {
+              e.currentTarget.style.borderColor = 'var(--text-muted)'
+              e.currentTarget.style.color = 'var(--text)'
+            }}
+            onMouseLeave={e => {
+              e.currentTarget.style.borderColor = 'var(--border)'
+              e.currentTarget.style.color = 'var(--text-muted)'
+            }}
+          >
+            Skip
+          </button>
+        )}
 
         {/* ── Intro stage (centered) ── */}
         {!inWizard && (
           <div className="center-stage">
 
             {(introPhase === 'line1' || introPhase === 'line1exit') && (
-              <p className={`intro-line${introPhase === 'line1exit' ? ' fly-out' : ' fly-in'}`}>
+              <p key={introPhase} className={`intro-line${introPhase === 'line1exit' ? ' fly-out' : ' fly-in'}`}>
                 This guide is an immersive journey into stone evaluation from a gemstone cutter&#39;s perspective.
               </p>
             )}
             {(introPhase === 'line2' || introPhase === 'line2exit') && (
-              <p className={`intro-line${introPhase === 'line2exit' ? ' fly-out' : ' fly-in'}`}>
+              <p key={introPhase} className={`intro-line${introPhase === 'line2exit' ? ' fly-out' : ' fly-in'}`}>
                 It is designed with you in mind to bridge the gap between cutter and client communication.
               </p>
             )}
             {(introPhase === 'line3' || introPhase === 'line3exit') && (
-              <p className={`intro-line${introPhase === 'line3exit' ? ' fly-out' : ' fly-in'}`}>
+              <p key={introPhase} className={`intro-line${introPhase === 'line3exit' ? ' fly-out' : ' fly-in'}`}>
                 For clarity, each selection includes educational context accessed by clicking the information icon.
               </p>
             )}
 
             {(introPhase === 'disc1' || introPhase === 'disc1exit') && (
-              <div className={`disc-card${introPhase === 'disc1exit' ? ' fly-out' : ' fly-in'}`}>
+              <div key={introPhase} className={`disc-card${introPhase === 'disc1exit' ? ' fly-out' : ' fly-in'}`}>
                 <p className="disc-label">Terms of Use &nbsp;·&nbsp; 1 of 2</p>
                 <p className="disc-text">By choosing to use this tool you confirm and understand that this evaluation acts as a preliminary assessment that may or may not provide accurate information for your specific gemstone. Results are highly reliant on your selections. You hold harmless Cutting Corners Gems from any misinterpretation of results or otherwise educational information. Gemstones are a very nuanced field and depend on each individual situation.</p>
                 <div className="disc-check-row" onClick={() => setCheck1(p => !p)}>
@@ -316,7 +363,7 @@ export default function FeasibilityCheckPage() {
             )}
 
             {(introPhase === 'disc2' || introPhase === 'disc2exit') && (
-              <div className={`disc-card${introPhase === 'disc2exit' ? ' fly-out' : ' fly-in'}`}>
+              <div key={introPhase} className={`disc-card${introPhase === 'disc2exit' ? ' fly-out' : ' fly-in'}`}>
                 <p className="disc-label">Scope of Evaluation &nbsp;·&nbsp; 2 of 2</p>
                 <p className="disc-text">I understand this evaluation is intended for faceted gemstones with or without damage. It does not provide evaluation for rough material, preformed stones, or gemstones with excessive chemical or heat damage. Those situations require an in-person assessment.</p>
                 <div className="disc-check-row" onClick={() => setCheck2(p => !p)}>
@@ -351,16 +398,16 @@ export default function FeasibilityCheckPage() {
                   })}
                 </div>
                 <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                  <span style={{ fontFamily: 'var(--font-ui)', fontSize: 10, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--accent)' }}>{PHASES[currentPhase] ?? 'Results'}</span>
-                  {phaseSteps.length > 1 && phaseIndex >= 0 && <span style={{ fontFamily: 'var(--font-ui)', fontSize: 10, color: 'var(--text-muted)' }}>{phaseIndex + 1} / {phaseSteps.length}</span>}
+                  <span style={{ fontFamily: 'var(--font-ui)', fontSize: 14, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--accent)' }}>{PHASES[currentPhase] ?? 'Results'}</span>
+                  {phaseSteps.length > 1 && phaseIndex >= 0 && <span style={{ fontFamily: 'var(--font-ui)', fontSize: 14, color: 'var(--text-muted)' }}>{phaseIndex + 1} / {phaseSteps.length}</span>}
                 </div>
               </div>
             )}
 
             {!isResults && !isComplete && label && (
               <div className="wiz-slide" key={`hdr-${stepIndex}`}>
-                <p style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(22px,5vw,30px)', fontWeight: 400, color: 'var(--text)', margin: '0 0 16px', letterSpacing: '0.02em', lineHeight: 1.2 }}>{label}</p>
-                {instruction && <p style={{ fontFamily: 'var(--font-body)', fontSize: 'clamp(14px,2vw,16px)', color: 'var(--text-muted)', lineHeight: 1.75, margin: '0 0 28px', paddingBottom: 24, borderBottom: '1px solid var(--border)' }}>{instruction}</p>}
+                <p style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(24px,5vw,32px)', fontWeight: 400, color: 'var(--text)', margin: '0 0 16px', letterSpacing: '0.02em', lineHeight: 1.2 }}>{label}</p>
+                {instruction && <p style={{ fontFamily: 'var(--font-body)', fontSize: 'clamp(17px,2vw,18px)', color: 'var(--text-muted)', lineHeight: 1.75, margin: '0 0 28px', paddingBottom: 24, borderBottom: '1px solid var(--border)' }}>{instruction}</p>}
               </div>
             )}
 
@@ -392,7 +439,7 @@ export default function FeasibilityCheckPage() {
                   { key: 'cut', label: 'Current Cut / Shape', placeholder: 'e.g. Oval Mixed Cut' },
                 ].map(field => (
                   <div key={field.key}>
-                    <label style={{ display: 'block', fontFamily: 'var(--font-ui)', fontSize: 10, letterSpacing: '0.22em', textTransform: 'uppercase', color: 'var(--text-muted)', marginBottom: 8 }}>{field.label}</label>
+                    <label style={{ display: 'block', fontFamily: 'var(--font-ui)', fontSize: 13, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--text-muted)', marginBottom: 8 }}>{field.label}</label>
                     <input type="text" className="wiz-input" value={stoneInfo[field.key as keyof typeof stoneInfo]} onChange={e => setStoneInfo(prev => ({ ...prev, [field.key]: e.target.value }))} placeholder={field.placeholder} />
                   </div>
                 ))}
@@ -417,12 +464,14 @@ export default function FeasibilityCheckPage() {
 
             {currentStep.type === 'correctable-row' && (
               <div className="wiz-slide" key={`cr-${stepIndex}`}>
-                <SelectionReference positiveChecked={positiveChecked} limitingChecked={limitingChecked} structuralChecked={structuralChecked} />
-                <CorrectableRowComponent
+                  <CorrectableRowComponent
                   label={correctableRows.find(r => r.id === currentStep.rowId)?.label ?? ''}
                   required={correctableRows.find(r => r.id === currentStep.rowId)?.required}
+                  rowId={currentStep.rowId}
                   selected={correctableSelections[currentStep.rowId]}
                   onChange={val => handleCorrectableChange(currentStep.rowId, val)}
+                  limitingChecked={limitingChecked}
+                  structuralChecked={structuralChecked}
                 />
                 {!canProceed && <p style={{ fontFamily: 'var(--font-body)', fontSize: 14, color: 'var(--accent)', opacity: 0.8, marginTop: 12 }}>Please make a selection to continue.</p>}
               </div>
@@ -430,7 +479,7 @@ export default function FeasibilityCheckPage() {
 
             {currentStep.type === 'results' && results && (
               <div className="wiz-slide" key="results">
-                <ResultsDisplay results={results} weightCt={parseFloat(stoneInfo.weightCt) || 0} onStartOver={handleStartOver} onRequestQuote={handleStartOver} />
+                <ResultsDisplay results={results} weightCt={parseFloat(stoneInfo.weightCt) || 0} stoneInfo={stoneInfo} onStartOver={handleStartOver} onRequestQuote={handleStartOver} />
               </div>
             )}
 
