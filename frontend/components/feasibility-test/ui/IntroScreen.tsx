@@ -48,12 +48,12 @@ export default function IntroScreen({
       {/* Info lines */}
       {(introPhase === 'line1' || introPhase === 'line1exit') && (
         <p key={introPhase} className={`intro-line${introPhase === 'line1exit' ? ' fly-out' : ' fly-in'}`}>
-          This is an educational tool to calculate the cut feasibility of a stone and its potential yield based on industry standards.
+          This tool provides a preliminary feasibility gemstone cut assessment and weight loss estimation based on industry standard metrics. 
         </p>
       )}
       {(introPhase === 'line2' || introPhase === 'line2exit') && (
         <p key={introPhase} className={`intro-line${introPhase === 'line2exit' ? ' fly-out' : ' fly-in'}`}>
-          It is designed to improve communication between cutter and client.
+          It is designed to assist cutters and clients determine the appropriate service for a faceted gemstone.
         </p>
       )}
 
@@ -62,11 +62,10 @@ export default function IntroScreen({
         <div key={introPhase} className={`disc-card${introPhase === 'disc1exit' ? ' fly-out' : ' fly-in'}`}>
           <p className="disc-label">Terms of Use &nbsp;·&nbsp; 1 of 2</p>
           <p className="disc-text">
-            By choosing to use this tool you confirm and understand that this evaluation acts as a preliminary
-            assessment that may or may not provide accurate information for your specific gemstone. Results are
-            highly reliant on your selections. You hold harmless Cutting Corners Gems from any misinterpretation
-            of results or otherwise educational information. Gemstones are a very nuanced field and depend on
-            each individual situation.
+            By choosing to use this tool you acknowledge and understand that a preliminary evaluation is not equalivent
+            to an in-person assessment. The tool may or may not provide accurate information for your specific gemstone. 
+            Results rely on various combinations of characteristics you select. You hold harmless: Cutting Corners Gems,
+            from misinterpretations of results, educational information or misuse of this tool.  
           </p>
           <div className="disc-check-row" onClick={() => setCheck1(!check1)}>
             <div className={`disc-checkbox${check1 ? ' on' : ''}`}>
@@ -92,9 +91,9 @@ export default function IntroScreen({
         <div key={introPhase} className={`disc-card${introPhase === 'disc2exit' ? ' fly-out' : ' fly-in'}`}>
           <p className="disc-label">Scope of Evaluation &nbsp;·&nbsp; 2 of 2</p>
           <p className="disc-text">
-            I understand this evaluation is intended for faceted gemstones with or without damage.
-            It does not provide evaluation for rough material, preformed stones, or gemstones with
-            excessive chemical or heat damage. Those situations require an in-person assessment.
+            I understand this tool is intended for faceted gemstones only -- with or without damage.
+            It does not provide accurate results for rough material, preformed stones or gemstones with
+            excessive chemical or heat damage. 
           </p>
           <div className="disc-check-row" onClick={() => setCheck2(!check2)}>
             <div className={`disc-checkbox${check2 ? ' on' : ''}`}>
