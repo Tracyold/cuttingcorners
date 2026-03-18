@@ -50,7 +50,7 @@ function phaseOfStep(step: StepKind): number {
 export default function FeasibilityCheckPage() {
 
   // ── Intro state ───────────────────────────────────────────
-  const [introPhase, setIntroPhase] = useState<IntroPhase>('welcome')
+  const [introPhase, setIntroPhase] = useState<IntroPhase>('line1')
   const [check1,     setCheck1]     = useState(false)
   const [check2,     setCheck2]     = useState(false)
 
@@ -66,7 +66,6 @@ export default function FeasibilityCheckPage() {
 
   // ── Intro timing ──────────────────────────────────────────
   useEffect(() => {
-    if (introPhase === 'welcome')   { const t = setTimeout(() => setIntroPhase('line1'),     2000); return () => clearTimeout(t) }
     if (introPhase === 'line1')     { const t = setTimeout(() => setIntroPhase('line1exit'), 3500); return () => clearTimeout(t) }
     if (introPhase === 'line1exit') { const t = setTimeout(() => setIntroPhase('line2'),     700);  return () => clearTimeout(t) }
     if (introPhase === 'line2')     { const t = setTimeout(() => setIntroPhase('line2exit'), 3500); return () => clearTimeout(t) }
@@ -97,7 +96,7 @@ export default function FeasibilityCheckPage() {
     setStoneInfo({ species: '', variety: '', weightCt: '', dimensions: '', cut: '' })
     setPositiveChecked(new Set()); setLimitingChecked(new Set()); setStructuralChecked(new Set())
     setCorrectableSelections({ external: null, light: null, geometry: null, structural: null })
-    setResults(null); setIntroPhase('welcome'); scrollTop()
+    setResults(null); setIntroPhase('begin'); scrollTop()
   }
 
   const inWizard = introPhase === 'wizard'
@@ -359,10 +358,10 @@ export default function FeasibilityCheckPage() {
       <div className="full-screen">
 
         {/* Title — smooth transition between intro and wizard size */}
-        <p className={`tool-title ${inWizard ? 'wizard-size' : introPhase === 'welcome' ? 'welcome-size' : 'intro-size'}`}>
-          {introPhase === 'welcome' ? 'Welcome to the Cut Feasibility Wizard' : 'The Cut Feasibility Wizard'}
+        <p className={`tool-title ${inWizard ? 'wizard-size' : 'intro-size'}`}>
+          The Cut Feasibility Wizard
         </p>
-        {introPhase !== 'welcome' && <div className={`tool-rule ${inWizard ? 'wizard-rule' : 'intro-rule'}`} />}
+        <div className={`tool-rule ${inWizard ? 'wizard-rule' : 'intro-rule'}`} />
 
         {/* Intro */}
         {!inWizard && (
