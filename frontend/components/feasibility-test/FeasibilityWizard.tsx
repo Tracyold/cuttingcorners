@@ -452,6 +452,7 @@ export default function FeasibilityWizard({ onRequestQuote }: FeasibilityWizardP
                 required={correctableRows.find(r => r.id === currentStep.rowId)?.required}
                 rowId={currentStep.rowId}
                 selected={correctableSelections[currentStep.rowId]}
+                autoSelected={null}
                 onChange={val => handleCorrectableChange(currentStep.rowId, val)}
                 limitingChecked={limitingChecked}
                 structuralChecked={structuralChecked}
