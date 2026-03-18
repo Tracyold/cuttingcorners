@@ -347,7 +347,7 @@ export default function FeasibilityCheckPage() {
             onConfirmDisc1={() => { if (check1) setIntroPhase('disc1exit') }}
             onConfirmDisc2={() => { if (check2) setIntroPhase('disc2exit') }}
             onBegin={() => setIntroPhase('wizard')}
-            onSkip={() => setIntroPhase('begin')}
+            onSkip={() => setIntroPhase('disc1')}
           />
         )}
 
