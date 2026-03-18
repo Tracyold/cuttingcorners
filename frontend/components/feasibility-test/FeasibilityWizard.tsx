@@ -447,12 +447,14 @@ export default function FeasibilityWizard({ onRequestQuote }: FeasibilityWizardP
           {/* Correctable */}
           {currentStep.type === 'correctable-row' && (
             <div className="wiz-slide" key={`corr-${stepIndex}`}>
-              <SelectionReference positiveChecked={positiveChecked} limitingChecked={limitingChecked} structuralChecked={structuralChecked} />
               <CorrectableRowComponent
                 label={correctableRows.find(r => r.id === currentStep.rowId)?.label ?? ''}
                 required={correctableRows.find(r => r.id === currentStep.rowId)?.required}
+                rowId={currentStep.rowId}
                 selected={correctableSelections[currentStep.rowId]}
                 onChange={val => handleCorrectableChange(currentStep.rowId, val)}
+                limitingChecked={limitingChecked}
+                structuralChecked={structuralChecked}
               />
               {!canProceed && (
                 <p style={{ fontFamily: 'var(--font-body)', fontSize: 14, color: 'var(--accent)', opacity: 0.8, marginTop: 12 }}>
@@ -465,7 +467,7 @@ export default function FeasibilityWizard({ onRequestQuote }: FeasibilityWizardP
           {/* Results */}
           {currentStep.type === 'results' && results && (
             <div className="wiz-slide" key="results">
-              <ResultsDisplay results={results} weightCt={parseFloat(stoneInfo.weightCt) || 0} onStartOver={handleStartOver} onRequestQuote={onRequestQuote ?? (() => {})} />
+              <ResultsDisplay results={results} weightCt={parseFloat(stoneInfo.weightCt) || 0} stoneInfo={stoneInfo} onStartOver={handleStartOver} onRequestQuote={onRequestQuote ?? (() => {})} />
             </div>
           )}
 
