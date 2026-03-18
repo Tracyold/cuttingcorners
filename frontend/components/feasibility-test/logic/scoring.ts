@@ -11,8 +11,8 @@ export const LIMITING_COUNT     =  12
 export const LIMITING_MAX       =  30
 
 export const STRUCTURAL_CHECKED   = -10
-export const STRUCTURAL_UNCHECKED =   5
-export const STRUCTURAL_COUNT     =   5
+export const STRUCTURAL_UNCHECKED =  5
+export const STRUCTURAL_COUNT     = 5
 export const STRUCTURAL_MAX       =  25
 
 export const CORRECTABLE_SCORES: Record<CorrectableOption, number> = {
