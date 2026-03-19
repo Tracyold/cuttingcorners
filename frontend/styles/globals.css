@@ -440,8 +440,7 @@ button, input, textarea, select { border-radius: 0 !important; }
 }
 
 /* ── Index page background image effect ── */
-.bg-blueprint::before {
-  content: '';
+.bg-blueprint-overlay {
   position: fixed;
   inset: 0;
   z-index: 0;
@@ -454,7 +453,7 @@ button, input, textarea, select { border-radius: 0 !important; }
   filter: invert(1) contrast(1.4) grayscale(1);
   pointer-events: none;
 }
-[data-theme='light'] .bg-blueprint::before {
+[data-theme='light'] .bg-blueprint-overlay {
   opacity: 0.07;
   filter: invert(0) contrast(1.2) grayscale(1);
 }
