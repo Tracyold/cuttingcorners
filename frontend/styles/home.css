@@ -16,17 +16,21 @@
   opacity: 0.02;
   mix-blend-mode: luminositymultiply;
   filter: grayscale(1) contrast(2) blur(var(--blur-amount, 2px));
-  transition: filter 200ms ease;
+    transition: filter 200ms ease;
 }
 :root[data-theme="dark"] .bg-blueprint-overlay img {
   opacity: 0.02;
   mix-blend-mode: multiplyluminosity;
   filter: contrast(1.8) grayscale(1) blur(var(--blur-amount, 2px));
+    transition: filter 200ms ease;
+
 }
 :root[data-theme="light"] .bg-blueprint-overlay img {
   opacity: 0.05;
   mix-blend-mode: luminositylighten;
-  filter: invert(1) contrast(2) grayscale(1) blur(var(--blur-amount, 1px));
+  filter: invert(1) contrast(2) grayscale(1) blur(var(--blur-amount, 4px));
+    transition: filter 200ms ease;
+
 }
 
 /* Scroll animations */
