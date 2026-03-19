@@ -444,7 +444,7 @@ button, input, textarea, select { border-radius: 0 !important; }
   position: fixed;
   inset: 0;
   z-index: 0;
-  background-image: url('/hand.webp');
+  background-image: url('/assets/hand.webp');
   background-size: cover;
   background-position: center 30%;
   background-attachment: fixed;
