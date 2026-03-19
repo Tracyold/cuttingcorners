@@ -16,7 +16,6 @@ const NAV_LINKS = [
 ];
 
 const css = `
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&family=Oranienbaum&display=swap');
 
 .tnav {
   position: fixed;

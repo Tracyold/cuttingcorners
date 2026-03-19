@@ -13,8 +13,6 @@ function GlobalStyles() {
     <style
       dangerouslySetInnerHTML={{
         __html: `
-@import url('https://fonts.googleapis.com/css2?family=Oranienbaum&family=Comfortaa:wght@300;400&family=Montserrat:wght@400;500;600&display=swap');
-
 :root {
   --font-display: 'Oranienbaum', Georgia, serif;
   --font-subtitle: 'Montserrat', sans-serif;
