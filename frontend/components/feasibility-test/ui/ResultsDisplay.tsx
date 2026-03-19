@@ -13,14 +13,18 @@ interface StoneInfo {
 }
 
 interface ResultsDisplayProps {
-  results:        ScoreBreakdown
-  weightCt:       number
-  stoneInfo:      StoneInfo
-  onStartOver:    () => void
-  onRequestQuote: () => void
+  results:               ScoreBreakdown
+  weightCt:              number
+  stoneInfo:             StoneInfo
+  positiveSelections:    string[]
+  limitingSelections:    string[]
+  structuralSelections:  string[]
+  correctableSelections: Record<string, string | null>
+  onStartOver:           () => void
+  onRequestQuote:        () => void
 }
 
-export default function ResultsDisplay({ results, weightCt, stoneInfo, onStartOver, onRequestQuote }: ResultsDisplayProps) {
+export default function ResultsDisplay({ results, weightCt, stoneInfo, positiveSelections, limitingSelections, structuralSelections, correctableSelections, onStartOver, onRequestQuote }: ResultsDisplayProps) {
 
   const [isLoggedIn, setIsLoggedIn] = useState(false)
 
@@ -38,10 +42,10 @@ export default function ResultsDisplay({ results, weightCt, stoneInfo, onStartOv
 
   const savePayload = {
     stoneInfo,
-    positiveSelections:    [],
-    limitingSelections:    [],
-    structuralSelections:  [],
-    correctableSelections: {},
+    positiveSelections,
+    limitingSelections,
+    structuralSelections,
+    correctableSelections,
     results,
   }
 
