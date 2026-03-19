@@ -275,6 +275,8 @@ export default function Home() {
       const progress = Math.min(scrollY / maxScroll, 1);
       const angle = 187 + progress * 45;
       document.documentElement.style.setProperty('--scroll-angle', `${angle}deg`);
+      const blur = Math.min(progress * 8, 8);
+      document.documentElement.style.setProperty('--bg-blur', `${blur}px`);
     };
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
