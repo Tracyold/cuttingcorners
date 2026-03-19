@@ -319,7 +319,8 @@ export default function Home() {
 
   return (
     <>
-      <main className="bg-blueprint">
+      <main>
+        <div className="bg-blueprint-overlay" aria-hidden="true" />
         <TopNav />
 
         {/* ── Hero Section ── */}
