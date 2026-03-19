@@ -273,12 +273,8 @@ export default function Home() {
       const scrollY = window.scrollY;
       const maxScroll = document.body.scrollHeight - window.innerHeight;
       const progress = Math.min(scrollY / maxScroll, 1);
-      const angle = 135 + progress * 45;
-      const isLight = document.documentElement.getAttribute('data-theme') === 'light';
-      const c1 = isLight ? '#e8e4dc' : '#222831';
-      const c2 = isLight ? '#EEEEEE' : '#2d3340';
-      const c3 = isLight ? '#f0ede8' : '#393E46';
-      document.body.style.backgroundImage = `linear-gradient(${angle}deg, ${c1} 0%, ${c2} 35%, ${c3} 60%, ${c1} 100%)`;
+      const angle = 187 + progress * 45;
+      document.documentElement.style.setProperty('--scroll-angle', `${angle}deg`);
     };
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
@@ -323,7 +319,8 @@ export default function Home() {
 
   return (
     <>
-      <main>
+      <div className="page-bg-image" aria-hidden="true" />
+    <main>
         <TopNav />
 
         {/* ── Hero Section ── */}
