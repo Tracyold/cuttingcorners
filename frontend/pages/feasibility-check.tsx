@@ -7,6 +7,7 @@ import { positiveItems, limitingItems, structuralItems, correctableRows } from '
 import { calculateAll } from '../components/feasibility-test/logic/calculator'
 import type { CorrectableSelections, ScoreBreakdown } from '../components/feasibility-test/logic/calculator'
 import { autoSelectAll } from '../components/feasibility-test/logic/autoSelect'
+import { trackWizardAnalytics } from '../lib/wizardResultsService'
 
 function groupBy<T extends { group: string }>(items: T[]): Record<string, T[]> {
   return items.reduce((acc, item) => {
@@ -52,6 +53,8 @@ export default function FeasibilityCheckPage() {
   const [introPhase, setIntroPhase] = useState<IntroPhase>('line1')
   const [check1,     setCheck1]     = useState(false)
   const [check2,     setCheck2]     = useState(false)
+  const [disc1ConfirmedAt, setDisc1ConfirmedAt] = useState<string | null>(null)
+  const [disc2ConfirmedAt, setDisc2ConfirmedAt] = useState<string | null>(null)
 
   const STEPS = useMemo(() => buildSteps(), [])
   const [stepIndex,             setStepIndex]             = useState(0)
@@ -79,7 +82,23 @@ export default function FeasibilityCheckPage() {
       setCorrectableSelections({ ...autoSelectAll(limitingChecked, structuralChecked) })
     }
     if (nextStep?.type === 'results') {
-      setResults(calculateAll(positiveChecked, limitingChecked, structuralChecked, correctableSelections))
+      const r = calculateAll(positiveChecked, limitingChecked, structuralChecked, correctableSelections)
+      setResults(r)
+      const sessionId = sessionStorage.getItem('wiz_session') ?? (() => {
+        const id = Math.random().toString(36).slice(2)
+        sessionStorage.setItem('wiz_session', id)
+        return id
+      })()
+      trackWizardAnalytics({
+        stoneInfo,
+        positiveSelections:    Array.from(positiveChecked),
+        limitingSelections:    Array.from(limitingChecked),
+        structuralSelections:  Array.from(structuralChecked),
+        correctableSelections: correctableSelections as Record<string, string | null>,
+        results: r,
+        disclaimer1ConfirmedAt: disc1ConfirmedAt,
+        disclaimer2ConfirmedAt: disc2ConfirmedAt,
+      }, sessionId, true, 'results')
     }
     setStepIndex(i => Math.min(i + 1, STEPS.length - 1))
     scrollTop()
@@ -321,8 +340,8 @@ export default function FeasibilityCheckPage() {
             check2={check2}
             setCheck1={setCheck1}
             setCheck2={setCheck2}
-            onConfirmDisc1={() => { if (check1) setIntroPhase('disc1exit') }}
-            onConfirmDisc2={() => { if (check2) setIntroPhase('disc2exit') }}
+            onConfirmDisc1={(ts) => { if (check1) { setDisc1ConfirmedAt(ts); setIntroPhase('disc1exit') } }}
+            onConfirmDisc2={(ts) => { if (check2) { setDisc2ConfirmedAt(ts); setIntroPhase('disc2exit') } }}
             onBegin={() => setIntroPhase('wizard')}
             onSkip={() => setIntroPhase('disc1')}
           />

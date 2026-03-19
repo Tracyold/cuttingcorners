@@ -6,8 +6,8 @@ interface IntroScreenProps {
   check2:        boolean
   setCheck1:     (v: boolean) => void
   setCheck2:     (v: boolean) => void
-  onConfirmDisc1: () => void
-  onConfirmDisc2: () => void
+  onConfirmDisc1: (timestamp: string) => void
+  onConfirmDisc2: (timestamp: string) => void
   onBegin:        () => void
   onSkip:         () => void
 }
@@ -77,7 +77,7 @@ export default function IntroScreen({
             </div>
             <p className="disc-check-label">I understand and agree to these terms</p>
           </div>
-          <button className={`disc-btn${check1 ? ' on' : ''}`} onClick={onConfirmDisc1}>
+          <button className={`disc-btn${check1 ? ' on' : ''}`} onClick={() => onConfirmDisc1(new Date().toISOString())}>
             Next
             <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
               <path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
@@ -105,7 +105,7 @@ export default function IntroScreen({
             </div>
             <p className="disc-check-label">I understand the scope of this evaluation</p>
           </div>
-          <button className={`disc-btn${check2 ? ' on' : ''}`} onClick={onConfirmDisc2}>
+          <button className={`disc-btn${check2 ? ' on' : ''}`} onClick={() => onConfirmDisc2(new Date().toISOString())}>
             Confirm
             <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
               <path d="M2 6l3 3 5-5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
