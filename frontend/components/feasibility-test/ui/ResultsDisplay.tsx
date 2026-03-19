@@ -1,4 +1,6 @@
 import ScoreBox from './ScoreBox'
+import SaveToAccountButton from './SaveToAccountButton'
+import { supabase } from '../../../lib/supabaseClient'
 import type { ScoreBreakdown } from '../logic/calculator'
 
 interface StoneInfo {
@@ -18,6 +20,23 @@ interface ResultsDisplayProps {
 }
 
 export default function ResultsDisplay({ results, weightCt, stoneInfo, onStartOver, onRequestQuote }: ResultsDisplayProps) {
+
+  const [isLoggedIn, setIsLoggedIn] = React.useState(false)
+
+  React.useEffect(() => {
+    supabase.auth.getUser().then(({ data }) => {
+      setIsLoggedIn(!!data.user && data.user.email !== process.env.NEXT_PUBLIC_GUEST_ACCOUNT_EMAIL)
+    })
+  }, [])
+
+  const savePayload = {
+    stoneInfo,
+    positiveSelections:    [],
+    limitingSelections:    [],
+    structuralSelections:  [],
+    correctableSelections: {},
+    results,
+  }
 
   const handleExport = () => window.print()
 
@@ -161,6 +180,7 @@ export default function ResultsDisplay({ results, weightCt, stoneInfo, onStartOv
 
         {/* Buttons */}
         <div className="results-actions ccg-no-print">
+          <SaveToAccountButton payload={savePayload} isLoggedIn={isLoggedIn} />
           <button type="button" onClick={handleExport} className="btn-export">
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
               <path d="M7 1v8M4 6l3 3 3-3M2 10v1a1 1 0 001 1h8a1 1 0 001-1v-1" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
