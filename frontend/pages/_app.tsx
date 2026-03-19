@@ -4,6 +4,8 @@ import { SpeedInsights } from '@vercel/speed-insights/next';
 import { supabase } from '../lib/supabase';
 import type { AppProps } from 'next/app';
 import '../styles/globals.css';
+import '../styles/home.css';
+import '../styles/wizard.css';
 
 export default function App({ Component, pageProps }: AppProps) {
 
