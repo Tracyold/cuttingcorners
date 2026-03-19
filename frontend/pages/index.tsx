@@ -319,9 +319,7 @@ export default function Home() {
 
   return (
     <>
-      <div className="page-bg-image" aria-hidden="true" />
-    <div className="page-bg-image" aria-hidden="true" />
-    <main>
+      <main className="bg-blueprint">
         <TopNav />
 
         {/* ── Hero Section ── */}
