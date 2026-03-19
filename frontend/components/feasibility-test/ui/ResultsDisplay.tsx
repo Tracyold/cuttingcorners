@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from 'react'
 import ScoreBox from './ScoreBox'
 import SaveToAccountButton from './SaveToAccountButton'
 import { supabase } from '../../../lib/supabase'
@@ -21,9 +22,9 @@ interface ResultsDisplayProps {
 
 export default function ResultsDisplay({ results, weightCt, stoneInfo, onStartOver, onRequestQuote }: ResultsDisplayProps) {
 
-  const [isLoggedIn, setIsLoggedIn] = React.useState(false)
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
 
-  React.useEffect(() => {
+  useEffect(() => {
     supabase.auth.getUser().then(({ data }) => {
       setIsLoggedIn(!!data.user && data.user.email !== process.env.NEXT_PUBLIC_GUEST_ACCOUNT_EMAIL)
     })
