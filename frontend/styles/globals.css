@@ -65,31 +65,31 @@
   --font-ui: 'Proxima Nova', -apple-system, sans-serif;
   --font-body: 'Proxima Nova', -apple-system, sans-serif;
   --font-mono:       'Courier New', monospace;
-  --bg-gradient:     linear-gradient(187deg, #1c1f24 15%, #101112 30%, #252525 45%, #1c2129 65%);
+  --bg-gradient:     linear-gradient(187deg, #10141f 15%, #181e2c 31%, #131b2a 47%, #1f2635 65%, #16181e 85%);
 }
 
 :root[data-theme="dark"] {
   --bg:              #16181e;
   --bg-rgba:         rgba(19, 22, 28, 1);
   --bg-card:         #262a37;
-  --bg-card-rgba:    rgba(29, 29, 29, 1);
+  --bg-card-rgba:    rgb(17, 23, 27);
   --bg-deep:         #171819;
   --bg-deep-rgba:    rgba(23, 24, 25, 1);
     --accent:          #d4af37;
-  --accent-rgba:     rgba(114, 114, 138, 0.921);
+  --accent-rgba:     rgba(165, 165, 187, 0.921);
     --text:            #EEEEEE;
   --text-rgba:       rgba(238, 238, 238, 1);
     --text-muted:      #aaaaaa;
   --text-muted-rgba: rgba(170, 170, 170, 1);
     --border:          rgba(255,255,255,0.12);
   --border-rgba:     rgba(184, 185, 187, 1);
-  --gold:            #fccb28;
+  --gold:            #f2dc93;
   --gold-rgba:       rgba(252, 203, 40, 1);
   --font-display: 'Freight Display', Georgia, serif;
-  --font-ui: 'Proxima Nova', -apple-system, sans-serif;
-  --font-body: 'Proxima Nova', -apple-system, sans-serif;
+  --font-ui: 'Proxima Nova Regular', -apple-system, sans-serif;
+  --font-body: 'Proxima Nova Thin', -apple-system, sans-serif;
   --font-mono:       'Courier New', monospace;
-  --bg-gradient:     linear-gradient(187deg, #16181e 15%, #1a1a27 31%, #0c0c14 47%, #171329 65%);
+  --bg-gradient:     linear-gradient(187deg, #10141f 15%, #181e2c 31%, #131b2a 47%, #1f2635 65%, #16181e 85%);
 }
 
 :root[data-theme="light"] {
