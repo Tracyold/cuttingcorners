@@ -468,7 +468,7 @@ export default function FeasibilityWizard({ onRequestQuote }: FeasibilityWizardP
           {/* Results */}
           {currentStep.type === 'results' && results && (
             <div className="wiz-slide" key="results">
-              <ResultsDisplay results={results} weightCt={parseFloat(stoneInfo.weightCt) || 0} stoneInfo={stoneInfo} positiveSelections={Array.from(positiveChecked)} limitingSelections={Array.from(limitingChecked)} structuralSelections={Array.from(structuralChecked)} correctableSelections={correctableSelections as Record<string, string | null>} onStartOver={handleStartOver} onRequestQuote={onRequestQuote ?? (() => {})} />
+              <ResultsDisplay results={results} weightCt={parseFloat(stoneInfo.weightCt) || 0} stoneInfo={stoneInfo} positiveSelections={Array.from(positiveChecked)} limitingSelections={Array.from(limitingChecked)} structuralSelections={Array.from(structuralChecked)} correctableSelections={correctableSelections as unknown as Record<string, string | null>} onStartOver={handleStartOver} onRequestQuote={onRequestQuote ?? (() => {})} />
             </div>
           )}
 
