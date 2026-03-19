@@ -300,8 +300,7 @@ const CATALOGUE = [
 /* ─── Global Styles ───────────────────────────────────────── */
 const G = () => (
   <style>{`
-    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Mono:wght@300;400;500&family=Jost:wght@300;400;500&display=swap');
-
+    
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     body { background: ${C.parchment}; font-family: 'Jost', sans-serif; color: ${C.ink}; margin: 0; }
 
