@@ -267,6 +267,10 @@ export default function WizardScreen({
             results={results}
             weightCt={parseFloat(stoneInfo.weightCt) || 0}
             stoneInfo={stoneInfo}
+            positiveSelections={Array.from(positiveChecked)}
+            limitingSelections={Array.from(limitingChecked)}
+            structuralSelections={Array.from(structuralChecked)}
+            correctableSelections={correctableSelections as Record<string, string | null>}
             onStartOver={handleStartOver}
             onRequestQuote={handleRequestQuote}
           />
