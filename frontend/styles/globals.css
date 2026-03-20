@@ -84,8 +84,8 @@
   --font-body:       'Proxima Nova Light', -apple-system, sans-serif;
   --font-mono:       'Courier New', monospace;
   --font-pop:        'Poppins Light', -apple-system, sans-serif;
-  --bg-gradient:     linear-gradient(145deg, #16181e 15%, #14171e 31%, #262f43 47%, #19202e 65%, #0f131d 85%);
-    --radial:        radial-gradient(145deg, #16181e 15%, #14171e 31%, #262f43 47%, #19202e 65%, #0f131d 85%);
+  --bg-gradient:     linear-gradient(145deg, #16181e 15%, #20252f 31%, #242b38 47%, #1b212d 65%, #07090e 85%);
+  --radial:          radial-gradient(145deg, #16181e 15%, #14171e 31%, #262f43 47%, #19202e 65%, #0f131d 85%);
   --blur-amount:     1px;
 }
 
@@ -113,8 +113,8 @@
   --font-body:       'Proxima Nova Light', -apple-system, sans-serif;
   --font-mono:       'Courier New', monospace;
   --font-pop:        'Poppins Light', -apple-system, sans-serif;
-  --bg-gradient:     linear-gradient(145deg, #16181e 15%, #14171e 31%, #262f43 47%, #19202e 65%, #0f131d 85%);
-    --radial:        radial-gradient(145deg, #16181e 15%, #14171e 31%, #262f43 47%, #19202e 65%, #0f131d 85%);
+  --bg-gradient:     linear-gradient(145deg, #16181e 15%, #20252f 31%, #242b38 47%, #1b212d 65%, #07090e 85%);
+  --radial:          radial-gradient(145deg, #16181e 15%, #14171e 31%, #262f43 47%, #19202e 65%, #0f131d 85%);
   --blur-amount:     1px;
 }
 
@@ -123,17 +123,17 @@
   --bg-rgba:         rgba(238, 238, 238, 1);
   --bg-card:         #f3f0de;
   --bg-card-rgba:    rgba(243, 240, 222, 1);
-  --bg-deep:         #d0c3a9;
+  --bg-deep:         #51504c;
   --bg-deep-rgba:    rgba(208, 195, 169, 1);
   --accent:          #aa8c47;
   --accent-rgba:     rgba(170, 140, 71, 1);
-  --text:            #141415;
+  --text:            #1a1919;
   --text-rgba:       rgba(11, 12, 14, 1);
   --text-muted:      #555555;
   --text-muted-rgba: rgba(85, 85, 85, 1);
   --border:          #cccccc;
   --border-rgba:     rgba(204, 204, 204, 1);
-  --gold:            #eec11d;
+  --gold:            #ddb24e;
   --gold-rgba:       rgba(238, 193, 29, 1);
   --font-display:    'Freight Display', Georgia, serif;
   --font-subdisplay: 'Freight Display Italic', Georgia, serif;
@@ -142,8 +142,8 @@
   --font-body:       'Proxima Nova Light', -apple-system, sans-serif;
   --font-mono:       'Courier New', monospace;
   --font-pop:        'Poppins Light', -apple-system, sans-serif;
-  --bg-gradient:     linear-gradient(129deg, #e8e4dc 15%, #EEEEEE 35%, #f0ede8 47%, #e8e4dc 67%);
-    --radial:        radial-gradient(187deg, #e8e4dc 15%, #EEEEEE 35%, #f0ede8 47%, #e8e4dc 67%);
+  --bg-gradient:     linear-gradient(129deg, #e8e4dc 15%, #eeeeee 35%, #f0ede8 47%, #c7c7c7 67%);
+  --bg-radial:       radial-gradient(129deg, #e8e4dc 15%, #eeeeee 35%, #f0ede8 47%, #c7c7c7 67%);
 
 }
 
