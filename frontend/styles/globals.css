@@ -84,7 +84,7 @@
   --font-body:       'Proxima Nova Light', -apple-system, sans-serif;
   --font-mono:       'Courier New', monospace;
   --font-pop:        'Poppins Light', -apple-system, sans-serif;
-  --bg-gradient:     linear-gradient(145deg, #16181e 15%, #20252f 31%, #242b38 47%, #1b212d 65%, #07090e 85%);
+  --bg-gradient:     linear-gradient(var(--scroll-angle, 187deg), #0f131d 0%, #111520 12%, #0d1119 22%, #141824 34%, #161a26 45%, #0e1520 55%, #1a1e2b 66%, #0b0f1a 75%, #121828 86%, #13172a 100%);
   --radial:          radial-gradient(145deg, #16181e 15%, #14171e 31%, #262f43 47%, #19202e 65%, #0f131d 85%);
   --blur-amount:     1px;
 }
@@ -113,8 +113,8 @@
   --font-body:       'Proxima Nova Light', -apple-system, sans-serif;
   --font-mono:       'Courier New', monospace;
   --font-pop:        'Poppins Light', -apple-system, sans-serif;
-  --bg-gradient:     linear-gradient(145deg, #16181e 15%, #20252f 31%, #242b38 47%, #1b212d 65%, #07090e 85%);
-  --radial:          radial-gradient(145deg, #16181e 15%, #14171e 31%, #262f43 47%, #19202e 65%, #0f131d 85%);
+  --bg-gradient:     linear-gradient(var(--scroll-angle, 187deg), #0f131d 0%, #111520 12%, #0d1119 22%, #141824 34%, #161a26 45%, #0e1520 55%, #1a1e2b 66%, #0b0f1a 75%, #121828 86%, #13172a 100%);
+  --radial:          radial-gradient(145deg, #16181e 15%, #14171e 31%, #262f43 47%, #0f121a 65%, #0f131d 85%, #0f131d 45%);
   --blur-amount:     1px;
 }
 
