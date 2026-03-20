@@ -399,7 +399,7 @@ export default function Home() {
                 >
                   <img
                     src="/assets/Loupe.jpeg"
-                    alt="Michael Wall at work"
+                    alt="A gemstone cutter peers into a loupe looking at a gemstone"
                     style={{
                       width: '100%',
                       height: '100%',
