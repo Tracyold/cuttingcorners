@@ -12,7 +12,6 @@ export default function App({ Component, pageProps }: AppProps) {
 
 
   return <>
-    <div style={{ position: 'fixed', inset: 0, zIndex: -1, background: 'var(--bg-gradient)' }} />
     <Component {...pageProps} />
     <Analytics />
     <SpeedInsights />
