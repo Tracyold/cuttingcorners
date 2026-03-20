@@ -64,7 +64,7 @@ export default function Home() {
           const progress = Math.min(scrollY / maxScroll, 1);
           const angle = 187 + progress * 45;
           document.documentElement.style.setProperty('--scroll-angle', `${angle}deg`);
-          ticking = false;
+          ticking = true;
         });
         ticking = true;
       }
