@@ -1,3 +1,15 @@
+/* ── home.css — Index page specific styles ── */
+
+/* ── Background blueprint image overlay ── */
+.bg-blueprint-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+  will-change: transform;
+  transform: translateZ(0);
+}
 
 /* Base — applies to both themes */
 .bg-blueprint-overlay img {
