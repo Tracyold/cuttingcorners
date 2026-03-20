@@ -63,7 +63,7 @@ export default function Home() {
         <TopNav />
 
         {/* ── Hero Section ── */}
-        <section style={{ height: '100svh', display: 'flex', alignItems: 'center', justifyContent: 'center', textAlign: 'center', position: 'relative', overflow: 'hidden' }}>
+        <section style={{ height: '100svh', display: 'flex', alignItems: 'center', justifyContent: 'center', textAlign: 'center', position: 'relative' }}>
 
 
           <div style={{ position: 'relative', zIndex: 10, padding: '0 24px', maxWidth: '600px', margin: '0 auto' }}>
