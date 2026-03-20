@@ -55,12 +55,19 @@ function MachineShowcase() {
 export default function Home() {
 
   useEffect(() => {
+    let ticking = false;
     const handleScroll = () => {
-      const scrollY = window.scrollY;
-      const maxScroll = document.body.scrollHeight - window.innerHeight;
-      const progress = Math.min(scrollY / maxScroll, 1);
-      const angle = 187 + progress * 45;
-      document.documentElement.style.setProperty('--scroll-angle', `${angle}deg`);
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          const scrollY = window.scrollY;
+          const maxScroll = document.body.scrollHeight - window.innerHeight;
+          const progress = Math.min(scrollY / maxScroll, 1);
+          const angle = 187 + progress * 45;
+          document.documentElement.style.setProperty('--scroll-angle', `${angle}deg`);
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
