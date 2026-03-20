@@ -184,7 +184,7 @@ button, input, textarea, select { border-radius: 0 !important; }
 }
 
 @media (max-width: 767px) {
-  .hero-title          { font-size: 3.4rem !important; }
+  .hero-title          { font-size: 2.4rem !important; }
   .page-title.title-xl { font-size: 2rem !important; }
   .name-title          { font-size: 2rem !important; }
   .section-spacing     { padding-top: 4rem; padding-bottom: 4rem; }
@@ -197,14 +197,14 @@ button, input, textarea, select { border-radius: 0 !important; }
   font-family: var(--font-display);
   font-size: 5.8rem;
   line-height: 1.4;
-  letter-spacing: 0.4em;
+  letter-spacing: 0.04em;
   font-weight: 400;
 }
 .title-xl {
   font-family: var(--font-display);
-  font-size: 6rem;
+  font-size: 4rem;
   line-height: 1.8;
-  letter-spacing: 0.4em;
+  letter-spacing: 0.04em;
   font-weight: 400;
 }
 .title-sm   { font-family: var(--font-subdisplay); font-weight: 200; }
