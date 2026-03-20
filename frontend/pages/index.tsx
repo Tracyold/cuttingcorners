@@ -72,11 +72,7 @@ export default function Home() {
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
-  }, []);
-
-
-
+  
   return (
     <>
       <div className="bg-blueprint-overlay" aria-hidden="true"><img src="/assets/hand.webp" alt="" /></div>
