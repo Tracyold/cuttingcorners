@@ -61,22 +61,6 @@
 
 /* ── CSS Variables ── */
 :root {
-  --bg:              #16181e;
-  --bg-rgba:         rgba(23, 24, 25, 1);
-  --bg-card:         #181e2c;
-  --bg-card-rgba:    rgba(21, 23, 26, 1);
-  --bg-deep:         #131b2a;
-  --bg-deep-rgba:    rgba(32, 34, 37, 1);
-  --accent:          #906b16;
-  --accent-rgba:     rgba(255, 211, 105, 1);
-  --text:            #f9f7ff;
-  --text-rgba:       rgb(235, 235, 235);
-  --text-muted:      #131b2a;
-  --text-muted-rgba: rgba(170, 170, 170, 1);
-  --border:          #13151b;
-  --border-rgba:     rgba(17, 18, 21, 1);
-  --gold:            #f1bf1c;
-  --gold-rgba:       rgb(140, 125, 76);
   --font-display:    'Freight Display Heavy', Georgia, serif;
   --font-subdisplay: 'Freight Display Italic', Georgia, serif;
   --font-ui:         'Proxima Nova', -apple-system, sans-serif;
@@ -84,9 +68,6 @@
   --font-body:       'Proxima Nova Light', -apple-system, sans-serif;
   --font-mono:       'Courier New', monospace;
   --font-pop:        'Poppins Light', -apple-system, sans-serif;
-  --bg-gradient:     linear-gradient(var(--scroll-angle, 187deg), #0f131d 0%, #10141f 15%, #111520 28%, #0f1320 40%, #111622 52%, #0e1320 64%, #101420 76%, #0f131d 88%, #111521 100%);
-  --blur-amount:     1px;
-  --bg-radial:       radial-gradient(145deg, #16181e 15%, #14171e 31%, #262f43 47%, #19202e 65%, #0f131d 85%);
 }
 
 :root[data-theme="dark"] {
@@ -106,13 +87,6 @@
   --border-rgba:     rgba(17, 18, 21, 1);
   --gold:            #f1bf1c;
   --gold-rgba:       rgb(140, 125, 76);
-   --font-display:   'Freight Display Heavy', Georgia, serif;
-  --font-subdisplay: 'Freight Display Italic', Georgia, serif;
-  --font-ui:         'Proxima Nova', -apple-system, sans-serif;
-  --font-title:      'Proxima Nova Semi Bold', -apple-system, sans-serif;
-  --font-body:       'Proxima Nova Light', -apple-system, sans-serif;
-  --font-mono:       'Courier New', monospace;
-  --font-pop:        'Poppins Light', -apple-system, sans-serif;
   --bg-gradient:     linear-gradient(var(--scroll-angle, 187deg), #0f131d 0%, #10141f 15%, #111520 28%, #0f1320 40%, #111622 52%, #0e1320 64%, #101420 76%, #0f131d 88%, #111521 100%);
   --blur-amount:     1px;
   --bg-radial:       radial-gradient(145deg, #16181e 15%, #14171e 31%, #262f43 47%, #0f121a 65%, #0f131d 85%, #0f131d 45%);
@@ -135,14 +109,7 @@
   --border-rgba:     rgba(204, 204, 204, 1);
   --gold:            #ddb24e;
   --gold-rgba:       rgba(238, 193, 29, 1);
-  --font-display:    'Freight Display', Georgia, serif;
-  --font-subdisplay: 'Freight Display Italic', Georgia, serif;
-  --font-ui:         'Proxima Nova', -apple-system, sans-serif;
-  --font-title:      'Proxima Nova Semi Bold', -apple-system, sans-serif;
-  --font-body:       'Proxima Nova Light', -apple-system, sans-serif;
-  --font-mono:       'Courier New', monospace;
-  --font-pop:        'Poppins Light', -apple-system, sans-serif;
-  --bg-gradient:     linear-gradient(129deg, #e8e4dc 15%, #eeeeee 35%, #f0ede8 47%, #c7c7c7 67%);
+  --bg-gradient:     linear-gradient(var(--scroll-angle, 187deg), #e8e4dc 15%, #eeeeee 35%, #f0ede8 47%, #c7c7c7 67%);
   --blur-amount:     1px;
   --bg-radial:       radial-gradient(129deg, #e8e4dc 15%, #eeeeee 35%, #f0ede8 47%, #c7c7c7 67%);
 }
