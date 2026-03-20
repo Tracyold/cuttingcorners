@@ -59,7 +59,7 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ── CSS Variables ── */
+/* ── Non-color variables only ── */
 :root {
   --font-display:    'Freight Display Heavy', Georgia, serif;
   --font-subdisplay: 'Freight Display Italic', Georgia, serif;
@@ -68,49 +68,51 @@
   --font-body:       'Proxima Nova Light', -apple-system, sans-serif;
   --font-mono:       'Courier New', monospace;
   --font-pop:        'Poppins Light', -apple-system, sans-serif;
+  --blur-amount:     1px;
+  --scroll-angle:    187deg;
 }
 
+/* ── Dark Theme ── */
 :root[data-theme="dark"] {
   --bg:              #16181e;
-  --bg-rgba:         rgba(23, 24, 25, 1);
+  --bg-rgba:         rgba(19, 22, 28, 1);
   --bg-card:         #181e2c;
-  --bg-card-rgba:    rgba(21, 23, 26, 1);
+  --bg-card-rgba:    rgba(24, 30, 44, 1);
   --bg-deep:         #131b2a;
-  --bg-deep-rgba:    rgba(32, 34, 37, 1);
-  --accent:          #906b16;
-  --accent-rgba:     rgba(255, 211, 105, 1);
+  --bg-deep-rgba:    rgba(19, 27, 42, 1);
+  --accent:          #d4af37;
+  --accent-rgba:     rgba(212, 175, 55, 1);
   --text:            #f9f7ff;
-  --text-rgba:       rgb(235, 235, 235);
-  --text-muted:      #131b2a;
+  --text-rgba:       rgba(249, 247, 255, 1);
+  --text-muted:      #aaaaaa;
   --text-muted-rgba: rgba(170, 170, 170, 1);
-  --border:          #13151b;
-  --border-rgba:     rgba(17, 18, 21, 1);
-  --gold:            #f1bf1c;
-  --gold-rgba:       rgb(140, 125, 76);
+  --border:          rgba(255,255,255,0.12);
+  --border-rgba:     rgba(184, 185, 187, 1);
+  --gold:            #f2dc93;
+  --gold-rgba:       rgba(242, 220, 147, 1);
   --bg-gradient:     linear-gradient(var(--scroll-angle, 187deg), #0f131d 0%, #10141f 15%, #111520 28%, #0f1320 40%, #111622 52%, #0e1320 64%, #101420 76%, #0f131d 88%, #111521 100%);
-  --blur-amount:     1px;
-  --bg-radial:       radial-gradient(145deg, #16181e 15%, #14171e 31%, #262f43 47%, #0f121a 65%, #0f131d 85%, #0f131d 45%);
+  --bg-radial:       radial-gradient(145deg, #16181e 15%, #14171e 31%, #262f43 47%, #0f121a 65%, #0f131d 85%);
 }
 
+/* ── Light Theme ── */
 :root[data-theme="light"] {
   --bg:              #EEEEEE;
   --bg-rgba:         rgba(238, 238, 238, 1);
   --bg-card:         #f3f0de;
   --bg-card-rgba:    rgba(243, 240, 222, 1);
   --bg-deep:         #51504c;
-  --bg-deep-rgba:    rgba(208, 195, 169, 1);
+  --bg-deep-rgba:    rgba(81, 80, 76, 1);
   --accent:          #aa8c47;
   --accent-rgba:     rgba(170, 140, 71, 1);
   --text:            #19191a;
-  --text-rgba:       rgba(11, 12, 14, 1);
+  --text-rgba:       rgba(25, 25, 26, 1);
   --text-muted:      #555555;
   --text-muted-rgba: rgba(85, 85, 85, 1);
   --border:          #cccccc;
   --border-rgba:     rgba(204, 204, 204, 1);
   --gold:            #ddb24e;
-  --gold-rgba:       rgba(238, 193, 29, 1);
-  --bg-gradient:     linear-gradient(var(--scroll-angle, 187deg), #e8e4dc 15%, #eeeeee 35%, #f0ede8 47%, #c7c7c7 67%);
-  --blur-amount:     1px;
+  --gold-rgba:       rgba(221, 178, 78, 1);
+  --bg-gradient:     linear-gradient(129deg, #e8e4dc 15%, #eeeeee 35%, #f0ede8 47%, #c7c7c7 67%);
   --bg-radial:       radial-gradient(129deg, #e8e4dc 15%, #eeeeee 35%, #f0ede8 47%, #c7c7c7 67%);
 }
 
@@ -132,7 +134,7 @@ html, body {
 
 * { box-sizing: border-box; }
 #__next { background: transparent; min-height: 100vh; }
-button, input, textarea, select { border-radius: 1.7 !important; }
+button, input, textarea, select { border-radius: 0 !important; }
 
 /* ── Scrollbar ── */
 ::-webkit-scrollbar { width: 6px; }
