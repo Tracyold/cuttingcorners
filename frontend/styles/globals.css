@@ -239,7 +239,7 @@ button, input, textarea, select { border-radius: 0 !important; }
   text-transform: uppercase;
   letter-spacing: 0.15em;
   font-size: 0.875rem;
-  transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease;
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
@@ -256,7 +256,7 @@ button, input, textarea, select { border-radius: 0 !important; }
   letter-spacing: 0.15em;
   font-size: 0.95rem;
   border: 1px solid var(--border);
-  transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease;
   display: inline-flex;
   align-items: center;
   text-decoration: none;
