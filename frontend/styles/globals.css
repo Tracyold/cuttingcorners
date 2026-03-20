@@ -127,7 +127,7 @@
   --bg-deep-rgba:    rgba(208, 195, 169, 1);
   --accent:          #aa8c47;
   --accent-rgba:     rgba(170, 140, 71, 1);
-  --text:            #1a1919;
+  --text:            #19191a;
   --text-rgba:       rgba(11, 12, 14, 1);
   --text-muted:      #555555;
   --text-muted-rgba: rgba(85, 85, 85, 1);
@@ -166,11 +166,11 @@ html, body {
 
 * { box-sizing: border-box; }
 #__next { background: transparent; min-height: 100vh; }
-button, input, textarea, select { border-radius: 0 !important; }
+button, input, textarea, select { border-radius: 1.7 !important; }
 
 /* ── Scrollbar ── */
 ::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-track { background: var(--bg-deep); }
 ::-webkit-scrollbar-thumb { background: var(--border); }
 ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
 
@@ -217,7 +217,7 @@ button, input, textarea, select { border-radius: 0 !important; }
 }
 
 @media (max-width: 767px) {
-  .hero-title          { font-size: 2.4rem !important; }
+  .hero-title          { font-size: 3.4rem !important; }
   .page-title.title-xl { font-size: 2rem !important; }
   .name-title          { font-size: 2rem !important; }
   .section-spacing     { padding-top: 4rem; padding-bottom: 4rem; }
@@ -228,22 +228,22 @@ button, input, textarea, select { border-radius: 0 !important; }
 /* ── Typography ── */
 .hero-title {
   font-family: var(--font-display);
-  font-size: 4.5rem;
-  line-height: 1.1;
-  letter-spacing: 0.04em;
+  font-size: 5.8rem;
+  line-height: 1.4;
+  letter-spacing: 0.4em;
   font-weight: 400;
 }
 .title-xl {
   font-family: var(--font-display);
-  font-size: 3rem;
+  font-size: 4rem;
   line-height: 1.2;
   letter-spacing: 0.04em;
   font-weight: 400;
 }
-.title-sm   { font-family: var(--font-ui); font-weight: 500; }
+.title-sm   { font-family: var(--font-subdisplay); font-weight: 500; }
 .name-title { font-size: 7rem; font-family: var(--font-display); font-weight: 400; }
 .spec-text  { font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 0.2em; }
-.page-title { font-family: var(--font-display); }
+.page-title { font-family: var(--font-subdisplay); }
 
 /* ── Shared Components ── */
 .gem-card {
@@ -267,7 +267,7 @@ button, input, textarea, select { border-radius: 0 !important; }
   text-transform: uppercase;
   letter-spacing: 0.15em;
   font-size: 0.875rem;
-  transition: all 0.3s ease;
+  transition: all 0.3s ease-in-out;
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
@@ -284,7 +284,7 @@ button, input, textarea, select { border-radius: 0 !important; }
   letter-spacing: 0.15em;
   font-size: 0.95rem;
   border: 1px solid var(--border);
-  transition: all 0.3s ease;
+  transition: all 0.3s ease-in-out;
   display: inline-flex;
   align-items: center;
   text-decoration: none;
