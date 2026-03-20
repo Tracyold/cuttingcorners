@@ -120,14 +120,14 @@ html, body {
   margin: 0;
   padding: 0;
   background: transparent;
-  background-color: var(--bg-gradient);
+  background-color: var(--bg-deep-rgba);
   min-height: 100vh;
   color: var(--text);
   font-family: var(--font-body);
   font-weight: 400;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  transition: color 400ms ease;
+  transition: 400ms ease;
 
 }
 
