@@ -112,7 +112,7 @@ export default function Home() {
         {/* <ServicesShowcase /> */}
 
         {/* ── About Section ("The Cutter") ── */}
-        <section data-reveal-group style={{ minHeight: "100svh", display: "flex", alignItems: "center", paddingTop: "6rem", paddingBottom: "6rem" }}>
+        <section style={{ minHeight: "100svh", display: "flex", alignItems: "center", paddingTop: "6rem", paddingBottom: "6rem" }}>
           <div className="container-custom">
             <p
               className="uppercase text-gray-500 mb-4 text-center"
@@ -124,9 +124,7 @@ export default function Home() {
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
               <div
-                className="transition-all duration-700"
-                data-scroll-reveal
-                style={{ animationDelay: '100ms' }}
+               
               >
                 <div
                   style={{
@@ -164,7 +162,7 @@ export default function Home() {
               <div>
                 <h2
                   data-gold="name"
-                  className="page-title title-xl name-title mb-6 transition-all duration-700"
+                  className="page-title title-xl name-title mb-6"
                   data-scroll-reveal
                   style={{ animationDelay: '100ms' }}
                 >
@@ -172,7 +170,7 @@ export default function Home() {
                 </h2>
 
                 <p
-                  className="transition-all duration-700"
+                 
                   data-scroll-reveal
                   style={{
                     fontFamily: 'var(--font-body)',
@@ -190,7 +188,7 @@ export default function Home() {
                 </p>
 
                 <p
-                  className="transition-all duration-700"
+                 
                   data-scroll-reveal
                   style={{
                     fontFamily: 'var(--font-body)',
@@ -233,23 +231,19 @@ export default function Home() {
           <div className="container-custom relative z-10 text-center" style={{ maxWidth: '880px' }}>
             <h2
               data-gold="section-title"
-              className="page-title title-xl mb-8 transition-all duration-700"
-              data-scroll-reveal
-              style={{ animationDelay: '30ms' }}
+              className="page-title title-xl mb-8"
             >
               Ready to Start?
             </h2>
 
             <p
-              className="mx-auto mb-12 transition-all duration-700"
-              data-scroll-reveal
+              className="mx-auto mb-12"
               style={{
                 fontFamily: 'var(--font-ui)',
                 fontSize: '23px',
                 lineHeight: 1.75,
                 color: 'var(--text)',
                 maxWidth: '600px',
-                animationDelay: '200ms',
               }}
             >
               Whether you have a rough stone waiting to be transformed or need expert advice on your next
@@ -259,13 +253,11 @@ export default function Home() {
             {/* FIX: /booking → /shop */}
             <a
               href="/shop"
-              className="btn-primary transition-all duration-700"
-              data-scroll-reveal
+              className="btn-primary"
               style={{
                 borderRadius: '999px',
                 padding: '16px 40px',
                 fontSize: '14px',
-                animationDelay: '300ms',
               }}
             >
               Browse Shop
