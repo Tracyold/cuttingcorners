@@ -398,7 +398,7 @@ export default function Home() {
                   }}
                 >
                   <img
-                    src="/assets/Loupe.jpeg"
+                    src="/assets/IMG_5555.jpeg"
                     alt="A gemstone cutter peers into a loupe looking at a gemstone"
                     style={{
                       width: '100%',
