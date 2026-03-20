@@ -1,6 +1,6 @@
 /* ── home.css — Index page specific styles ── */
 
-/* Background blueprint image overlay */
+/* ── Background blueprint image overlay ── */
 .bg-blueprint-overlay {
   position: fixed;
   inset: 0;
@@ -8,30 +8,33 @@
   pointer-events: none;
   overflow: hidden;
 }
+
+/* Base — applies to both themes */
 .bg-blueprint-overlay img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: center;
   opacity: 0.02;
-  mix-blend-mode: hard-light;
-  filter: grayscale(1) contrast(2) blur(var(--blur-amount, 9px));
-    transition: 100ms ease-in-out;
+  mix-blend-mode: luminosity;
+  filter: grayscale(1) invert(1) contrast(1.8) blur(var(--blur-amount, 1px));
+  transition: filter 300ms ease-out;
 }
+
+/* Dark theme — dark areas of image show as subtle dark texture */
 :root[data-theme="dark"] .bg-blueprint-overlay img {
   opacity: 0.02;
-  mix-blend-mode: hard-light;
-  filter: contrast(1.8) grayscale(1) blur(var(--blur-amount, 9px));
-    transition: 100ms ease-in-out;
-
-}
-:root[data-theme="light"] .bg-blueprint-overlay img {
-  opacity: 0.05;
   mix-blend-mode: luminosity;
-  filter: invert(1) contrast(2) grayscale(1) blur(var(--blur-amount, 9px));
-    transition: 100ms ease-in-out;
-
+  filter: grayscale(1) invert(1) contrast(2) blur(var(--blur-amount, 1px));
 }
+
+/* Light theme — same effect but slightly more visible on light bg */
+:root[data-theme="light"] .bg-blueprint-overlay img {
+  opacity: 0.04;
+  mix-blend-mode: multiply;
+  filter: grayscale(1) invert(0) contrast(1.9) blur(var(--blur-amount, 1px));
+}
+
 
 /* Scroll animations */
 @keyframes scrollPulse {
