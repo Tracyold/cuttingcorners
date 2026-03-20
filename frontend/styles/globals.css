@@ -118,24 +118,12 @@
 html {
   background: #0f131d;
 }
-:root[data-theme="light"] html {
-  background: #e8e4dc;
-}
-
-html {
-  background-color: #0f131d;
-  overscroll-behavior: none;
-}
-
-:root[data-theme="light"] html {
-  background-color: #e8e4dc;
-}
-
 html, body {
   overscroll-behavior: none;
   margin: 0;
   padding: 0;
   background: transparent;
+  background-color: #0f131d;
   min-height: 100vh;
   color: var(--text);
   font-family: var(--font-body);
