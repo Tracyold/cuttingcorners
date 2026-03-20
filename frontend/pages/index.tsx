@@ -73,39 +73,6 @@ export default function Home() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  useEffect(() => {
-    const groups = document.querySelectorAll('[data-reveal-group]');
-    groups.forEach((group) => {
-      const elements = group.querySelectorAll('[data-scroll-reveal]');
-      elements.forEach((el, i) => {
-        const h = el as HTMLElement;
-        h.style.opacity = '0';
-        h.style.transform = 'translateY(80px)';
-        h.dataset.revealIndex = String(i);
-      });
-    });
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const el = entry.target as HTMLElement;
-            const index = parseInt(el.dataset.revealIndex || '0');
-            const delay = index * 100;
-            setTimeout(() => {
-              el.style.transition = 'opacity 500ms cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 500ms cubic-bezier(0.25, 0.46, 0.45, 0.94)';
-              el.style.opacity = '1';
-              el.style.transform = 'translateY(0)';
-            }, delay);
-            observer.unobserve(el);
-          }
-        });
-      },
-      { threshold: 0.01, rootMargin: '0px 0px 400px 0px' }
-    );
-
-    document.querySelectorAll('[data-scroll-reveal]').forEach((el) => observer.observe(el));
-    return () => observer.disconnect();
   }, []);
 
 
