@@ -86,7 +86,7 @@
   --font-pop:        'Poppins Light', -apple-system, sans-serif;
   --bg-gradient:     linear-gradient(var(--scroll-angle, 187deg), #0f131d 0%, #10141f 15%, #111520 28%, #0f1320 40%, #111622 52%, #0e1320 64%, #101420 76%, #0f131d 88%, #111521 100%);
   --blur-amount:     1px;
-  --bg-radial:          radial-gradient(145deg, #16181e 15%, #14171e 31%, #262f43 47%, #19202e 65%, #0f131d 85%);
+  --bg-radial:       radial-gradient(145deg, #16181e 15%, #14171e 31%, #262f43 47%, #19202e 65%, #0f131d 85%);
 }
 
 :root[data-theme="dark"] {
@@ -115,7 +115,7 @@
   --font-pop:        'Poppins Light', -apple-system, sans-serif;
   --bg-gradient:     linear-gradient(var(--scroll-angle, 187deg), #0f131d 0%, #10141f 15%, #111520 28%, #0f1320 40%, #111622 52%, #0e1320 64%, #101420 76%, #0f131d 88%, #111521 100%);
   --blur-amount:     1px;
-  --bg-radial:          radial-gradient(145deg, #16181e 15%, #14171e 31%, #262f43 47%, #0f121a 65%, #0f131d 85%, #0f131d 45%);
+  --bg-radial:       radial-gradient(145deg, #16181e 15%, #14171e 31%, #262f43 47%, #0f121a 65%, #0f131d 85%, #0f131d 45%);
 }
 
 :root[data-theme="light"] {
@@ -143,7 +143,6 @@
   --font-mono:       'Courier New', monospace;
   --font-pop:        'Poppins Light', -apple-system, sans-serif;
   --bg-gradient:     linear-gradient(129deg, #e8e4dc 15%, #eeeeee 35%, #f0ede8 47%, #c7c7c7 67%);
-  --bg-gradient:     linear-gradient(...);
   --blur-amount:     1px;
   --bg-radial:       radial-gradient(129deg, #e8e4dc 15%, #eeeeee 35%, #f0ede8 47%, #c7c7c7 67%);
 }
