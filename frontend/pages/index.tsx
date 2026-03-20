@@ -54,26 +54,7 @@ function MachineShowcase() {
 
 export default function Home() {
 
-  useEffect(() => {
-    let ticking = false;
-    const handleScroll = () => {
-      if (!ticking) {
-        ticking = true;
-        requestAnimationFrame(() => {
-          const scrollY = window.scrollY;
-          const maxScroll = document.body.scrollHeight - window.innerHeight;
-          const progress = Math.min(scrollY / maxScroll, 1);
-          const angle = 187 + progress * 45;
-          document.documentElement.style.setProperty('--scroll-angle', `${angle}deg`);
-          const blur = 1 + Math.min(progress * 12, 12);
-          document.documentElement.style.setProperty('--blur-amount', `${blur}px`);
-          ticking = false;
-        });
-      }
-    };
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+
 
   return (
     <>
