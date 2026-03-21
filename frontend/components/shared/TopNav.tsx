@@ -1,4 +1,5 @@
 import { useTheme } from 'next-themes';
+import { ModeToggle } from './ModeToggle';
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 
@@ -287,9 +288,9 @@ useEffect(() => {
         </div>
 
         {/* Mobile burger */}
-        <button className="tnav-theme" onClick={toggleTheme} aria-label="Toggle theme">
-          {theme === 'dark' ? '● Dark' : '○ Light'} [{typeof document !== 'undefined' ? document.documentElement.getAttribute('data-theme') : '?'}]
-        </button>
+        <div style={{ height: '36px', display: 'flex', alignItems: 'center', position: 'relative', zIndex: 201 }}>
+          <ModeToggle />
+        </div>
         <button
           className={`tnav-burger${drawerOpen ? ' open' : ''}`}
           onClick={() => setDrawerOpen(p => !p)}
