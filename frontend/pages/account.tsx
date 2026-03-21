@@ -452,7 +452,11 @@ export default function AccountPage() {
 
           </div>
         </div>
+        </ResizablePanel>
 
+        <ResizableHandle withHandle />
+
+        <ResizablePanel defaultSize={35} minSize={20}>
         <ChatPanel
           messages={messages}
           chatInput={chatInput}
@@ -467,6 +471,9 @@ export default function AccountPage() {
           sendChat={sendChat}
           handleChatFile={handleChatFile}
         />
+        </ResizablePanel>
+
+        </ResizablePanelGroup>
       </div>
 
       <WorkOrderDetailModal
@@ -557,3 +564,4 @@ const accountCss = `
   .acc-left { flex-direction: column; }
 }
 `;
+};
