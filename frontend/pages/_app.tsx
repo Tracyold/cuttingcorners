@@ -12,8 +12,11 @@ export default function App({ Component, pageProps }: AppProps) {
 
 
   return <>
-    <Component {...pageProps} />
-    <Analytics />
-    <SpeedInsights />
+    <div style={{ position: 'fixed', inset: 0, zIndex: -1, background: 'var(--bg-gradient)' }} />
+    <div style={{ position: 'relative', minHeight: '100vh', overflowY: 'auto', overflowX: 'hidden' }}>
+      <Component {...pageProps} />
+      <Analytics />
+      <SpeedInsights />
+    </div>
   </>;
 }
