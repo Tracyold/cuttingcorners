@@ -1,6 +1,10 @@
 import { useState } from 'react';
 import { formatMoney } from '../../lib/utils';
 import SmsConsentModal from './SmsConsentModal';
+import { Switch } from '@/components/ui/switch';
+import { Field, FieldContent, FieldDescription, FieldGroup, FieldLabel, FieldTitle } from '@/components/ui/field';
+import { Field, FieldContent, FieldDescription, FieldGroup, FieldLabel, FieldTitle } from '@/components/ui/field';
+
 
 const smToggles = [
   { label: 'Work Order Updates', col: 'opt_in_work_orders' },
