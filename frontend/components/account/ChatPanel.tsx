@@ -17,6 +17,77 @@ interface Props {
   handleChatFile: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
+function getAttachmentUrl(url: string) {
+  return url.startsWith('http')
+    ? url
+    : supabase.storage.from('ChatUploads').getPublicUrl(url).data.publicUrl;
+}
+
+function MessageBubble({ m }: { m: any }) {
+  const isMe = m.actor === 'ACCOUNT';
+  return (
+    <div style={{
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: isMe ? 'flex-end' : 'flex-start',
+      marginBottom: '0.9em',
+    }}>
+      <div style={{
+        maxWidth: '78%',
+        padding: '0.65em 1em',
+        borderRadius: isMe ? '1.2em 1.2em 0.25em 1.2em' : '1.2em 1.2em 1.2em 0.25em',
+        background: isMe
+          ? 'var(--chat-bubble-me, rgba(45,212,191,0.92))'
+          : 'var(--chat-bubble-them, var(--gold))',
+        color: 'var(--chat-bubble-text, #0a0a0a)',
+        fontFamily: 'var(--font-subdisplay)',
+        fontSize: '1em',
+        lineHeight: 1.65,
+        boxShadow: '0 1px 4px rgba(0,0,0,0.18)',
+        wordBreak: 'break-word',
+      }}>
+        {m.body && <div>{m.body}</div>}
+        {m.attachment_url && m.attachment_type?.startsWith('image/') && (
+          <img
+            src={getAttachmentUrl(m.attachment_url)}
+            alt="attachment"
+            style={{
+              maxWidth: '100%',
+              maxHeight: '12em',
+              objectFit: 'cover',
+              marginTop: m.body ? '0.4em' : '0',
+              borderRadius: '0.6em',
+              display: 'block',
+            }}
+          />
+        )}
+        {m.attachment_url && m.attachment_type === 'application/pdf' && (
+          <div style={{ marginTop: m.body ? '0.4em' : '0', fontSize: '0.88em' }}>
+            📄 <a
+              href={getAttachmentUrl(m.attachment_url)}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ color: 'inherit', textDecoration: 'underline' }}
+            >
+              Download PDF
+            </a>
+          </div>
+        )}
+      </div>
+      <span style={{
+        fontSize: '0.68em',
+        color: 'var(--text-muted)',
+        marginTop: '0.25em',
+        fontFamily: 'var(--font-body)',
+        paddingLeft: isMe ? '0' : '0.4em',
+        paddingRight: isMe ? '0.4em' : '0',
+      }}>
+        {fmtTime(m.created_at)}
+      </span>
+    </div>
+  );
+}
+
 export default function ChatPanel({
   messages, chatInput, chatSending, chatUploading, chatOpen,
   chatEndRef, chatFileRef,
@@ -24,13 +95,14 @@ export default function ChatPanel({
 }: Props) {
   const chatRef = useRef<HTMLDivElement>(null);
 
+  // Scale font with panel width
   useEffect(() => {
     const el = chatRef.current;
     if (!el) return;
     const observer = new ResizeObserver(entries => {
       for (const entry of entries) {
         const w = entry.contentRect.width;
-        const size = Math.max(12, Math.min(20, w / 22));
+        const size = Math.max(12, Math.min(19, w / 20));
         el.style.fontSize = size + 'px';
       }
     });
@@ -38,84 +110,205 @@ export default function ChatPanel({
     return () => observer.disconnect();
   }, []);
 
+  const inputBar = (
+    <div style={{
+      display: 'flex',
+      gap: '0.5em',
+      padding: '0.7em 0.9em',
+      borderTop: '1px solid var(--border)',
+      background: 'var(--bg)',
+      alignItems: 'center',
+    }}>
+      <input
+        type="file"
+        ref={chatFileRef}
+        accept=".jpg,.jpeg,.png,.tiff,.tif,.dng,.heic,.pdf"
+        style={{ display: 'none' }}
+        onChange={handleChatFile}
+      />
+      <button
+        onClick={() => chatFileRef.current?.click()}
+        disabled={chatUploading}
+        title="Attach file"
+        style={{
+          background: 'none',
+          border: '1px solid var(--border)',
+          color: 'var(--text-muted)',
+          width: '2.2em', height: '2.2em',
+          borderRadius: '50%',
+          cursor: 'pointer',
+          fontSize: '1em',
+          flexShrink: 0,
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          transition: 'border-color 150ms ease',
+        }}
+      >
+        {chatUploading ? '…' : '📎'}
+      </button>
+      <input
+        value={chatInput}
+        onChange={e => setChatInput(e.target.value)}
+        placeholder="Type a message..."
+        style={{
+          flex: 1,
+          background: 'var(--bg-card)',
+          border: '1px solid var(--border)',
+          borderRadius: '1.4em',
+          padding: '0.5em 0.9em',
+          color: 'var(--text)',
+          fontFamily: 'var(--font-subdisplay)',
+          fontSize: '0.9em',
+          outline: 'none',
+          transition: 'border-color 150ms ease',
+        }}
+        onKeyDown={e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendChat(); } }}
+      />
+      <button
+        onClick={sendChat}
+        disabled={chatSending || !chatInput.trim()}
+        style={{
+          background: chatInput.trim() ? 'rgba(45,212,191,0.85)' : 'var(--border)',
+          border: 'none',
+          borderRadius: '50%',
+          width: '2.2em', height: '2.2em',
+          color: chatInput.trim() ? '#050505' : 'var(--text-muted)',
+          fontWeight: 700,
+          cursor: chatSending || !chatInput.trim() ? 'not-allowed' : 'pointer',
+          fontSize: '1em',
+          flexShrink: 0,
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          transition: 'background 150ms ease',
+        }}
+      >
+        {chatSending ? '…' : '↑'}
+      </button>
+    </div>
+  );
+
+  const messageList = (endRef: React.RefObject<HTMLDivElement>) => (
+    <div style={{
+      flex: 1,
+      overflowY: 'auto',
+      padding: '1em 0.9em',
+      display: 'flex',
+      flexDirection: 'column',
+    }}>
+      {messages.length === 0 && (
+        <p style={{
+          fontFamily: 'var(--font-subdisplay)',
+          fontStyle: 'italic',
+          fontSize: '0.85em',
+          color: 'var(--text-muted)',
+          textAlign: 'center',
+          margin: 'auto',
+          opacity: 0.6,
+        }}>
+          No messages yet. Say hello!
+        </p>
+      )}
+      {messages.map(m => <MessageBubble key={m.chat_message_id} m={m} />)}
+      <div ref={endRef} />
+    </div>
+  );
+
   return (
     <>
-      {/* Right panel — Chat (desktop) */}
-      <div className="acc-right" ref={chatRef}>
-        <div className="acc-chat-header">
-          <span style={{ fontFamily: 'var(--font-ui)', fontSize: '0.75em', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--gold)' }}>Chat</span>
-          <p style={{ fontFamily: 'var(--font-body)', fontSize: '0.8em', color: 'var(--text-muted)', marginTop: '5px' }}>We're here to help — don't hesitate to reach out</p>
+      {/* ── Desktop chat panel ── */}
+      <div
+        ref={chatRef}
+        className="acc-right"
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          height: '100%',
+          // Theme-aware bubble colors
+          ['--chat-bubble-me' as any]: 'rgba(45,212,191,0.88)',
+          ['--chat-bubble-them' as any]: 'var(--gold)',
+          ['--chat-bubble-text' as any]: '#0a0a0a',
+        }}
+      >
+        {/* Header */}
+        <div style={{
+          padding: '0.9em 1em',
+          borderBottom: '1px solid var(--border)',
+          flexShrink: 0,
+        }}>
+          <span style={{
+            fontFamily: 'var(--font-ui)',
+            fontSize: '0.7em',
+            textTransform: 'uppercase',
+            letterSpacing: '0.18em',
+            color: 'var(--gold)',
+          }}>
+            Chat
+          </span>
+          <p style={{
+            fontFamily: 'var(--font-subdisplay)',
+            fontStyle: 'italic',
+            fontSize: '0.8em',
+            color: 'var(--text-muted)',
+            marginTop: '0.3em',
+            margin: '0.3em 0 0',
+          }}>
+            We're here to help — don't hesitate to reach out
+          </p>
         </div>
-        <div className="acc-chat-messages">
-          {messages.map(m => (
-            <div key={m.chat_message_id} style={{ display: 'flex', flexDirection: 'column', alignItems: m.actor === 'ACCOUNT' ? 'flex-end' : 'flex-start', marginBottom: '13px' }}>
-              <div style={{
-                maxWidth: '80%', padding: 'clamp(8px, 1vw, 14px) clamp(10px, 1.2vw, 18px)', borderRadius: '14px',
-                background: m.actor === 'ACCOUNT' ? 'rgba(45,212,191,1)' : 'var(--gold)',
-                color: 'var(--bg)', fontFamily: 'var(--font-body)', fontSize: '1em', lineHeight: 1.7,
-              }}>
-                {m.body && <div>{m.body}</div>}
-                {m.attachment_url && m.attachment_type?.startsWith('image/') && (
-                  <img src={m.attachment_url.startsWith('http') ? m.attachment_url : supabase.storage.from('ChatUploads').getPublicUrl(m.attachment_url).data.publicUrl} alt="attachment" style={{ maxWidth: 'clamp(120px, 15vw, 220px)', maxHeight: 'clamp(120px, 15vw, 220px)', objectFit: 'cover', marginTop: m.body ? '6px' : '0', borderRadius: '6px' }} />
-                )}
-                {m.attachment_url && m.attachment_type === 'application/pdf' && (
-                  <div style={{ marginTop: m.body ? '7px' : '0', fontSize: '0.9em' }}>📄 <a href={m.attachment_url.startsWith('http') ? m.attachment_url : supabase.storage.from('ChatUploads').getPublicUrl(m.attachment_url).data.publicUrl} target="_blank" rel="noopener noreferrer" style={{ color: 'var(--bg)', textDecoration: 'underline' }}>Download PDF</a></div>
-                )}
-              </div>
-              <span style={{ fontSize: '0.75em', color: 'var(--text-muted)', marginTop: '3px', fontFamily: 'var(--font-body)' }}>{fmtTime(m.created_at)}</span>
-            </div>
-          ))}
-          <div ref={chatEndRef} />
-        </div>
-        <div className="acc-chat-input-bar">
-          <input type="file" ref={chatFileRef} accept=".jpg,.jpeg,.png,.tiff,.tif,.dng,.heic,.pdf" style={{ display: 'none' }} onChange={handleChatFile} />
-          <button onClick={() => chatFileRef.current?.click()} disabled={chatUploading} style={{ background: 'none', border: '1px solid var(--border)', color: 'var(--text-muted)', padding: 'clamp(8px, 0.9vw, 13px)', cursor: 'pointer', fontSize: '1.1em', flexShrink: 0 }} title="Attach file">{chatUploading ? '...' : '📎'}</button>
-          <input value={chatInput} onChange={e => setChatInput(e.target.value)}
-            placeholder="Type a message..." className="acc-chat-input"
-            onKeyDown={e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendChat(); } }} />
-          <button onClick={sendChat} disabled={chatSending || !chatInput.trim()} className="acc-chat-send">
-            {chatSending ? '...' : '→'}
-          </button>
-        </div>
+
+        {messageList(chatEndRef)}
+        {inputBar}
       </div>
 
-      {/* Mobile chat drawer */}
-      <div className={`acc-chat-mobile-bar ${chatOpen ? 'hidden' : ''}`} onClick={openChatDrawer}>
+      {/* ── Mobile chat bar ── */}
+      <div
+        className={`acc-chat-mobile-bar ${chatOpen ? 'hidden' : ''}`}
+        onClick={openChatDrawer}
+      >
         Chat with Admin
       </div>
+
+      {/* ── Mobile chat drawer ── */}
       {chatOpen && (
-        <div className="acc-chat-mobile-drawer">
-          <div className="acc-chat-header" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-            <span style={{ fontFamily: 'var(--font-ui)', fontSize: '0.8em', textTransform: 'uppercase', letterSpacing: '0.3em', color: 'var(--gold)' }}>Chat</span>
-            <button onClick={() => setChatOpen(false)} style={{ background: 'none', border: 'none', color: 'var(--text-muted)', cursor: 'pointer', fontSize: '1.2em' }}>↓</button>
+        <div className="acc-chat-mobile-drawer" style={{
+          background: 'var(--bg)',
+          display: 'flex',
+          flexDirection: 'column',
+          ['--chat-bubble-me' as any]: 'rgba(45,212,191,0.88)',
+          ['--chat-bubble-them' as any]: 'var(--gold)',
+          ['--chat-bubble-text' as any]: '#0a0a0a',
+        }}>
+          <div style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            padding: '0.9em 1em',
+            borderBottom: '1px solid var(--border)',
+            flexShrink: 0,
+          }}>
+            <span style={{
+              fontFamily: 'var(--font-ui)',
+              fontSize: '11px',
+              textTransform: 'uppercase',
+              letterSpacing: '0.3em',
+              color: 'var(--gold)',
+            }}>
+              Chat
+            </span>
+            <button
+              onClick={() => setChatOpen(false)}
+              style={{
+                background: 'none',
+                border: 'none',
+                color: 'var(--text-muted)',
+                cursor: 'pointer',
+                fontSize: '19px',
+                lineHeight: 1,
+              }}
+            >
+              ↓
+            </button>
           </div>
-          <div className="acc-chat-messages" style={{ flex: 1 }}>
-            {messages.map(m => (
-              <div key={m.chat_message_id} style={{ display: 'flex', flexDirection: 'column', alignItems: m.actor === 'ACCOUNT' ? 'flex-end' : 'flex-start', marginBottom: '13px' }}>
-                <div style={{
-                  maxWidth: '80%', padding: 'clamp(8px, 1vw, 14px) clamp(10px, 1.2vw, 18px)', borderRadius: '1.7px',
-                  background: m.actor === 'ACCOUNT' ? 'rgba(45,212,191,1)' : 'var(--gold)',
-                  color: 'var(--bg)', fontFamily: 'var(--font-body)', fontSize: '1em',
-                }}>
-                  {m.body && <div>{m.body}</div>}
-                  {m.attachment_url && m.attachment_type?.startsWith('image/') && (
-                    <img src={m.attachment_url.startsWith('http') ? m.attachment_url : supabase.storage.from('ChatUploads').getPublicUrl(m.attachment_url).data.publicUrl} alt="attachment" style={{ maxWidth: 'clamp(120px, 15vw, 220px)', maxHeight: 'clamp(120px, 15vw, 220px)', objectFit: 'cover', marginTop: m.body ? '6px' : '0', borderRadius: '6px' }} />
-                  )}
-                  {m.attachment_url && m.attachment_type === 'application/pdf' && (
-                    <div style={{ marginTop: m.body ? '6px' : '0', fontSize: '0.8em' }}>📄 <a href={m.attachment_url.startsWith('http') ? m.attachment_url : supabase.storage.from('ChatUploads').getPublicUrl(m.attachment_url).data.publicUrl} target="_blank" rel="noopener noreferrer" style={{ color: 'var(--bg)', textDecoration: 'underline' }}>Download PDF</a></div>
-                  )}
-                </div>
-                <span style={{ fontSize: '0.7em', color: 'var(--text-muted)', marginTop: '4px' }}>{fmtTime(m.created_at)}</span>
-              </div>
-            ))}
-            <div ref={chatEndRef} />
-          </div>
-          <div className="acc-chat-input-bar">
-            <button onClick={() => chatFileRef.current?.click()} disabled={chatUploading} style={{ background: 'none', border: '1px solid var(--border)', color: 'var(--text-muted)', padding: 'clamp(8px, 0.9vw, 12px)', cursor: 'pointer', fontSize: '1em', flexShrink: 0 }}>{chatUploading ? '...' : '📎'}</button>
-            <input value={chatInput} onChange={e => setChatInput(e.target.value)} placeholder="Type a message..." className="acc-chat-input"
-              onKeyDown={e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendChat(); } }} />
-            <button onClick={sendChat} disabled={chatSending || !chatInput.trim()} className="acc-chat-send">{chatSending ? '...' : '→'}</button>
-          </div>
+          {messageList(chatEndRef)}
+          {inputBar}
         </div>
       )}
     </>
