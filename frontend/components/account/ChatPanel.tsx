@@ -21,10 +21,26 @@ export default function ChatPanel({
   chatEndRef, chatFileRef,
   setChatInput, setChatOpen, openChatDrawer, sendChat, handleChatFile,
 }: Props) {
+  const chatRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const el = chatRef.current;
+    if (!el) return;
+    const observer = new ResizeObserver(entries => {
+      for (const entry of entries) {
+        const w = entry.contentRect.width;
+        const size = Math.max(12, Math.min(20, w / 22));
+        el.style.fontSize = size + 'px';
+      }
+    });
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <>
       {/* Right panel — Chat (desktop) */}
-      <div className="acc-right">
+      <div className="acc-right" ref={chatRef}>
         <div className="acc-chat-header">
           <span style={{ fontFamily: 'var(--font-ui)', fontSize: 'clamp(10px, 1vw, 13px)', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--gold)' }}>Chat</span>
           <p style={{ fontFamily: 'var(--font-body)', fontSize: 'clamp(11px, 1.1vw, 14px)', color: 'var(--text-muted)', marginTop: '5px' }}>We're here to help — don't hesitate to reach out</p>
