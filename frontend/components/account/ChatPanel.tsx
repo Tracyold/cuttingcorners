@@ -40,7 +40,7 @@ function MessageBubble({ m }: { m: any }) {
           ? 'var(--chat-bubble-me, rgba(45,212,191,0.92))'
           : 'var(--chat-bubble-them, var(--gold))',
         color: 'var(--chat-bubble-text, #0a0a0a)',
-        fontFamily: 'var(--font-subdisplay)',
+        fontFamily: 'var(--font-body)',
         fontSize: '1em',
         lineHeight: 1.65,
         boxShadow: '0 1px 4px rgba(0,0,0,0.18)',
@@ -102,7 +102,7 @@ export default function ChatPanel({
     const observer = new ResizeObserver(entries => {
       for (const entry of entries) {
         const w = entry.contentRect.width;
-        const size = Math.max(12, Math.min(19, w / 20));
+        const size = Math.max(19, Math.min(83, w / 8));
         el.style.fontSize = size + 'px';
       }
     });
@@ -156,7 +156,7 @@ export default function ChatPanel({
           borderRadius: '1.4em',
           padding: '0.5em 0.9em',
           color: 'var(--text)',
-          fontFamily: 'var(--font-subdisplay)',
+          fontFamily: 'var(--font-body)',
           fontSize: '0.9em',
           outline: 'none',
           transition: 'border-color 150ms ease',
@@ -195,7 +195,7 @@ export default function ChatPanel({
     }}>
       {messages.length === 0 && (
         <p style={{
-          fontFamily: 'var(--font-subdisplay)',
+          fontFamily: 'var(--font-body)',
           fontStyle: 'italic',
           fontSize: '0.85em',
           color: 'var(--text-muted)',
@@ -243,7 +243,7 @@ export default function ChatPanel({
             Chat
           </span>
           <p style={{
-            fontFamily: 'var(--font-subdisplay)',
+            fontFamily: 'var(--font-body)',
             fontStyle: 'italic',
             fontSize: '0.8em',
             color: 'var(--text-muted)',
