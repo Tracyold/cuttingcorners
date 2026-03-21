@@ -26,33 +26,33 @@ export default function ChatPanel({
       {/* Right panel — Chat (desktop) */}
       <div className="acc-right">
         <div className="acc-chat-header">
-          <span style={{ fontFamily: 'var(--font-ui)', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--gold)' }}>Chat</span>
-          <p style={{ fontFamily: 'var(--font-body)', fontSize: '13px', color: 'var(--text-muted)', marginTop: '5px' }}>We're here to help — don't hesitate to reach out</p>
+          <span style={{ fontFamily: 'var(--font-ui)', fontSize: 'clamp(10px, 1vw, 13px)', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--gold)' }}>Chat</span>
+          <p style={{ fontFamily: 'var(--font-body)', fontSize: 'clamp(11px, 1.1vw, 14px)', color: 'var(--text-muted)', marginTop: '5px' }}>We're here to help — don't hesitate to reach out</p>
         </div>
         <div className="acc-chat-messages">
           {messages.map(m => (
             <div key={m.chat_message_id} style={{ display: 'flex', flexDirection: 'column', alignItems: m.actor === 'ACCOUNT' ? 'flex-end' : 'flex-start', marginBottom: '13px' }}>
               <div style={{
-                maxWidth: '80%', padding: '11px 15px', borderRadius: '14px',
+                maxWidth: '80%', padding: 'clamp(8px, 1vw, 14px) clamp(10px, 1.2vw, 18px)', borderRadius: '14px',
                 background: m.actor === 'ACCOUNT' ? 'rgba(45,212,191,1)' : 'var(--gold)',
-                color: 'var(--bg)', fontFamily: 'var(--font-body)', fontSize: '15.9px', lineHeight: 1.7,
+                color: 'var(--bg)', fontFamily: 'var(--font-body)', fontSize: 'clamp(13px, 1.3vw, 17px)', lineHeight: 1.7,
               }}>
                 {m.body && <div>{m.body}</div>}
                 {m.attachment_url && m.attachment_type?.startsWith('image/') && (
-                  <img src={m.attachment_url.startsWith('http') ? m.attachment_url : supabase.storage.from('ChatUploads').getPublicUrl(m.attachment_url).data.publicUrl} alt="attachment" style={{ maxWidth: '180px', maxHeight: '180px', objectFit: 'cover', marginTop: m.body ? '6px' : '0', borderRadius: '6px' }} />
+                  <img src={m.attachment_url.startsWith('http') ? m.attachment_url : supabase.storage.from('ChatUploads').getPublicUrl(m.attachment_url).data.publicUrl} alt="attachment" style={{ maxWidth: 'clamp(120px, 15vw, 220px)', maxHeight: 'clamp(120px, 15vw, 220px)', objectFit: 'cover', marginTop: m.body ? '6px' : '0', borderRadius: '6px' }} />
                 )}
                 {m.attachment_url && m.attachment_type === 'application/pdf' && (
-                  <div style={{ marginTop: m.body ? '7px' : '0', fontSize: '15.9px' }}>📄 <a href={m.attachment_url.startsWith('http') ? m.attachment_url : supabase.storage.from('ChatUploads').getPublicUrl(m.attachment_url).data.publicUrl} target="_blank" rel="noopener noreferrer" style={{ color: 'var(--bg)', textDecoration: 'underline' }}>Download PDF</a></div>
+                  <div style={{ marginTop: m.body ? '7px' : '0', fontSize: 'clamp(12px, 1.2vw, 16px)' }}>📄 <a href={m.attachment_url.startsWith('http') ? m.attachment_url : supabase.storage.from('ChatUploads').getPublicUrl(m.attachment_url).data.publicUrl} target="_blank" rel="noopener noreferrer" style={{ color: 'var(--bg)', textDecoration: 'underline' }}>Download PDF</a></div>
                 )}
               </div>
-              <span style={{ fontSize: '13px', color: 'var(--text-muted)', marginTop: '3px', fontFamily: 'var(--font-body)' }}>{fmtTime(m.created_at)}</span>
+              <span style={{ fontSize: 'clamp(10px, 0.9vw, 13px)', color: 'var(--text-muted)', marginTop: '3px', fontFamily: 'var(--font-body)' }}>{fmtTime(m.created_at)}</span>
             </div>
           ))}
           <div ref={chatEndRef} />
         </div>
         <div className="acc-chat-input-bar">
           <input type="file" ref={chatFileRef} accept=".jpg,.jpeg,.png,.tiff,.tif,.dng,.heic,.pdf" style={{ display: 'none' }} onChange={handleChatFile} />
-          <button onClick={() => chatFileRef.current?.click()} disabled={chatUploading} style={{ background: 'none', border: '1px solid var(--border)', color: 'var(--text-muted)', padding: '11px', cursor: 'pointer', fontSize: '17px', flexShrink: 0 }} title="Attach file">{chatUploading ? '...' : '📎'}</button>
+          <button onClick={() => chatFileRef.current?.click()} disabled={chatUploading} style={{ background: 'none', border: '1px solid var(--border)', color: 'var(--text-muted)', padding: 'clamp(8px, 0.9vw, 13px)', cursor: 'pointer', fontSize: 'clamp(14px, 1.4vw, 19px)', flexShrink: 0 }} title="Attach file">{chatUploading ? '...' : '📎'}</button>
           <input value={chatInput} onChange={e => setChatInput(e.target.value)}
             placeholder="Type a message..." className="acc-chat-input"
             onKeyDown={e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendChat(); } }} />
@@ -69,32 +69,32 @@ export default function ChatPanel({
       {chatOpen && (
         <div className="acc-chat-mobile-drawer">
           <div className="acc-chat-header" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-            <span style={{ fontFamily: 'var(--font-ui)', fontSize: '13px', textTransform: 'uppercase', letterSpacing: '0.3em', color: 'var(--gold)' }}>Chat</span>
-            <button onClick={() => setChatOpen(false)} style={{ background: 'none', border: 'none', color: 'var(--text-muted)', cursor: 'pointer', fontSize: '19px' }}>↓</button>
+            <span style={{ fontFamily: 'var(--font-ui)', fontSize: 'clamp(11px, 1.1vw, 14px)', textTransform: 'uppercase', letterSpacing: '0.3em', color: 'var(--gold)' }}>Chat</span>
+            <button onClick={() => setChatOpen(false)} style={{ background: 'none', border: 'none', color: 'var(--text-muted)', cursor: 'pointer', fontSize: 'clamp(16px, 1.6vw, 21px)' }}>↓</button>
           </div>
           <div className="acc-chat-messages" style={{ flex: 1 }}>
             {messages.map(m => (
               <div key={m.chat_message_id} style={{ display: 'flex', flexDirection: 'column', alignItems: m.actor === 'ACCOUNT' ? 'flex-end' : 'flex-start', marginBottom: '13px' }}>
                 <div style={{
-                  maxWidth: '80%', padding: '11px 15px', borderRadius: '1.7px',
+                  maxWidth: '80%', padding: 'clamp(8px, 1vw, 14px) clamp(10px, 1.2vw, 18px)', borderRadius: '1.7px',
                   background: m.actor === 'ACCOUNT' ? 'rgba(45,212,191,1)' : 'var(--gold)',
-                  color: 'var(--bg)', fontFamily: 'var(--font-body)', fontSize: '17px',
+                  color: 'var(--bg)', fontFamily: 'var(--font-body)', fontSize: 'clamp(13px, 1.3vw, 17px)',
                 }}>
                   {m.body && <div>{m.body}</div>}
                   {m.attachment_url && m.attachment_type?.startsWith('image/') && (
-                    <img src={m.attachment_url.startsWith('http') ? m.attachment_url : supabase.storage.from('ChatUploads').getPublicUrl(m.attachment_url).data.publicUrl} alt="attachment" style={{ maxWidth: '180px', maxHeight: '180px', objectFit: 'cover', marginTop: m.body ? '6px' : '0', borderRadius: '6px' }} />
+                    <img src={m.attachment_url.startsWith('http') ? m.attachment_url : supabase.storage.from('ChatUploads').getPublicUrl(m.attachment_url).data.publicUrl} alt="attachment" style={{ maxWidth: 'clamp(120px, 15vw, 220px)', maxHeight: 'clamp(120px, 15vw, 220px)', objectFit: 'cover', marginTop: m.body ? '6px' : '0', borderRadius: '6px' }} />
                   )}
                   {m.attachment_url && m.attachment_type === 'application/pdf' && (
-                    <div style={{ marginTop: m.body ? '6px' : '0', fontSize: '12px' }}>📄 <a href={m.attachment_url.startsWith('http') ? m.attachment_url : supabase.storage.from('ChatUploads').getPublicUrl(m.attachment_url).data.publicUrl} target="_blank" rel="noopener noreferrer" style={{ color: 'var(--bg)', textDecoration: 'underline' }}>Download PDF</a></div>
+                    <div style={{ marginTop: m.body ? '6px' : '0', fontSize: 'clamp(11px, 1vw, 13px)' }}>📄 <a href={m.attachment_url.startsWith('http') ? m.attachment_url : supabase.storage.from('ChatUploads').getPublicUrl(m.attachment_url).data.publicUrl} target="_blank" rel="noopener noreferrer" style={{ color: 'var(--bg)', textDecoration: 'underline' }}>Download PDF</a></div>
                   )}
                 </div>
-                <span style={{ fontSize: '10px', color: 'var(--text-muted)', marginTop: '4px' }}>{fmtTime(m.created_at)}</span>
+                <span style={{ fontSize: 'clamp(9px, 0.8vw, 11px)', color: 'var(--text-muted)', marginTop: '4px' }}>{fmtTime(m.created_at)}</span>
               </div>
             ))}
             <div ref={chatEndRef} />
           </div>
           <div className="acc-chat-input-bar">
-            <button onClick={() => chatFileRef.current?.click()} disabled={chatUploading} style={{ background: 'none', border: '1px solid var(--border)', color: 'var(--text-muted)', padding: '10px', cursor: 'pointer', fontSize: '14px', flexShrink: 0 }}>{chatUploading ? '...' : '📎'}</button>
+            <button onClick={() => chatFileRef.current?.click()} disabled={chatUploading} style={{ background: 'none', border: '1px solid var(--border)', color: 'var(--text-muted)', padding: 'clamp(8px, 0.9vw, 12px)', cursor: 'pointer', fontSize: 'clamp(13px, 1.2vw, 16px)', flexShrink: 0 }}>{chatUploading ? '...' : '📎'}</button>
             <input value={chatInput} onChange={e => setChatInput(e.target.value)} placeholder="Type a message..." className="acc-chat-input"
               onKeyDown={e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendChat(); } }} />
             <button onClick={sendChat} disabled={chatSending || !chatInput.trim()} className="acc-chat-send">{chatSending ? '...' : '→'}</button>
