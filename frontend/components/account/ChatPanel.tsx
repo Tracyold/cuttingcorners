@@ -23,6 +23,40 @@ function getAttachmentUrl(url: string) {
     : supabase.storage.from('ChatUploads').getPublicUrl(url).data.publicUrl;
 }
 
+function fmtDate(iso: string) {
+  const d = new Date(iso);
+  const today = new Date();
+  const yesterday = new Date();
+  yesterday.setDate(today.getDate() - 1);
+  if (d.toDateString() === today.toDateString()) return 'Today';
+  if (d.toDateString() === yesterday.toDateString()) return 'Yesterday';
+  return d.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+}
+
+function DateDivider({ label }: { label: string }) {
+  return (
+    <div style={{
+      display: 'flex',
+      alignItems: 'center',
+      gap: '0.6em',
+      margin: '0.8em 0',
+    }}>
+      <div style={{ flex: 1, height: '1px', background: 'var(--border)' }} />
+      <span style={{
+        fontFamily: 'var(--font-ui)',
+        fontSize: '0.62em',
+        letterSpacing: '0.12em',
+        textTransform: 'uppercase',
+        color: 'var(--text-muted)',
+        whiteSpace: 'nowrap',
+      }}>
+        {label}
+      </span>
+      <div style={{ flex: 1, height: '1px', background: 'var(--border)' }} />
+    </div>
+  );
+}
+
 function MessageBubble({ m }: { m: any }) {
   const isMe = m.actor === 'ACCOUNT';
   return (
@@ -94,6 +128,7 @@ export default function ChatPanel({
   setChatInput, setChatOpen, openChatDrawer, sendChat, handleChatFile,
 }: Props) {
   const chatRef = useRef<HTMLDivElement>(null);
+  const scrollRef = useRef<HTMLDivElement>(null);
 
   // Scale font with panel width
   useEffect(() => {
@@ -109,6 +144,18 @@ export default function ChatPanel({
     observer.observe(el);
     return () => observer.disconnect();
   }, []);
+
+  // Auto-scroll to bottom when messages change
+  useEffect(() => {
+    chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [messages]);
+
+  // Also scroll on drawer open
+  useEffect(() => {
+    if (chatOpen) {
+      setTimeout(() => chatEndRef.current?.scrollIntoView({ behavior: 'smooth' }), 100);
+    }
+  }, [chatOpen]);
 
   const inputBar = (
     <div style={{
@@ -185,31 +232,44 @@ export default function ChatPanel({
     </div>
   );
 
-  const messageList = (endRef: React.RefObject<HTMLDivElement>) => (
-    <div style={{
-      flex: 1,
-      overflowY: 'auto',
-      padding: '1em 0.9em',
-      display: 'flex',
-      flexDirection: 'column',
-    }}>
-      {messages.length === 0 && (
-        <p style={{
-          fontFamily: 'var(--font-body)',
-          fontStyle: 'italic',
-          fontSize: '0.85em',
-          color: 'var(--text-muted)',
-          textAlign: 'center',
-          margin: 'auto',
-          opacity: 0.6,
-        }}>
-          No messages yet. Say hello!
-        </p>
-      )}
-      {messages.map(m => <MessageBubble key={m.chat_message_id} m={m} />)}
-      <div ref={endRef} />
-    </div>
-  );
+  const messageList = (endRef: React.RefObject<HTMLDivElement>) => {
+    let lastDate = '';
+    return (
+      <div style={{
+        flex: 1,
+        overflowY: 'auto',
+        padding: '1em 0.9em',
+        display: 'flex',
+        flexDirection: 'column',
+      }}>
+        {messages.length === 0 && (
+          <p style={{
+            fontFamily: 'var(--font-body)',
+            fontStyle: 'italic',
+            fontSize: '0.85em',
+            color: 'var(--text-muted)',
+            textAlign: 'center',
+            margin: 'auto',
+            opacity: 0.6,
+          }}>
+            No messages yet. Say hello!
+          </p>
+        )}
+        {messages.map(m => {
+          const msgDate = fmtDate(m.created_at);
+          const showDivider = msgDate !== lastDate;
+          lastDate = msgDate;
+          return (
+            <div key={m.chat_message_id}>
+              {showDivider && <DateDivider label={msgDate} />}
+              <MessageBubble m={m} />
+            </div>
+          );
+        })}
+        <div ref={endRef} />
+      </div>
+    );
+  };
 
   return (
     <>
@@ -221,13 +281,11 @@ export default function ChatPanel({
           display: 'flex',
           flexDirection: 'column',
           height: '100%',
-          // Theme-aware bubble colors
           ['--chat-bubble-me' as any]: 'rgba(45,212,191,0.88)',
           ['--chat-bubble-them' as any]: 'var(--gold)',
           ['--chat-bubble-text' as any]: '#0a0a0a',
         }}
       >
-        {/* Header */}
         <div style={{
           padding: '0.9em 1em',
           borderBottom: '1px solid var(--border)',
@@ -247,13 +305,11 @@ export default function ChatPanel({
             fontStyle: 'italic',
             fontSize: '0.8em',
             color: 'var(--text-muted)',
-            marginTop: '0.3em',
             margin: '0.3em 0 0',
           }}>
             We're here to help — don't hesitate to reach out
           </p>
         </div>
-
         {messageList(chatEndRef)}
         {inputBar}
       </div>
