@@ -156,7 +156,7 @@ export default function HomeTab({
                 style={{
                   background: 'var(--bg-deep)',
                   border: `1px solid ${isOn ? 'var(--accent)' : 'var(--border)'}`,
-                  borderRadius: '4px',
+                  borderRadius: '12px',
                   padding: '16px',
                   cursor: 'pointer',
                   display: 'flex',
@@ -202,7 +202,7 @@ export default function HomeTab({
           })}
         </div>
 
-        <p style={{ fontSize: '11px', color: 'var(--text-muted)', marginTop: '12px', lineHeight: 1.65 }}>
+        <p style={{ fontSize: '13px', color: 'var(--text-muted)', marginTop: '12px', lineHeight: 1.65 }}>
           SMS alerts are sent to your phone number on file. Message & data rates may apply. Reply STOP to any message to opt out. For help reply HELP.
         </p>
       </div>
