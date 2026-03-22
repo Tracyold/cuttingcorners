@@ -69,43 +69,27 @@ export default function AdminDashboard() {
     const { data: { session } } = await supabase.auth.getSession();
     if (!session) return;
 
-    // Admin info
-    const { data: admin } = await supabase.from('admin_users').select('*').eq('admin_user_id', session.user.id).single();
+    const [
+      { data: admin },
+      { data: invoices },
+      { data: wos },
+      { data: notifs },
+      { data: smsData },
+      { data: phonesData },
+    ] = await Promise.all([
+      supabase.from('admin_users').select('*').eq('admin_user_id', session.user.id).single(),
+      supabase.from('invoices').select('total_amount'),
+      supabase.from('work_orders').select('estimated_price').eq('status', 'COMPLETED'),
+      supabase.from('admin_notifications').select('*, account_users(name)').eq('read', false).order('created_at', { ascending: false }),
+      supabase.from('admin_notification_config').select('*').limit(1).single(),
+      supabase.from('admin_phones').select('*').order('created_at', { ascending: true }),
+    ]);
+
     if (admin) setAdminInfo(admin);
-
-    // Stats
-    const { data: invoices } = await supabase.from('invoices').select('total_amount');
-    if (invoices) {
-      setItemsSold(invoices.length);
-      setShopRevenue(invoices.reduce((s: number, i: any) => s + Number(i.total_amount || 0), 0));
-    }
-    const { data: wos } = await supabase.from('work_orders').select('estimated_price').eq('status', 'COMPLETED');
-    if (wos) {
-      setWoCompleted(wos.length);
-      setWoRevenue(wos.reduce((s: number, w: any) => s + Number(w.estimated_price || 0), 0));
-    }
-
-    // Notifications
-    const { data: notifs } = await supabase
-      .from('admin_notifications')
-      .select('*, account_users(name)')
-      .eq('read', false)
-      .order('created_at', { ascending: false });
+    if (invoices) { setItemsSold(invoices.length); setShopRevenue(invoices.reduce((s: number, i: any) => s + Number(i.total_amount || 0), 0)); }
+    if (wos) { setWoCompleted(wos.length); setWoRevenue(wos.reduce((s: number, w: any) => s + Number(w.estimated_price || 0), 0)); }
     setNotifications(notifs || []);
-
-    // SMS config
-    const { data: smsData } = await supabase
-      .from('admin_notification_config')
-      .select('*')
-      .limit(1)
-      .single();
-    if (smsData) { setSmsConfig(smsData); }
-
-    // Admin phones
-    const { data: phonesData } = await supabase
-      .from('admin_phones')
-      .select('*')
-      .order('created_at', { ascending: true });
+    if (smsData) setSmsConfig(smsData);
     setAdminPhones(phonesData || []);
 
     // Realtime subscription
