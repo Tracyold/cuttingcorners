@@ -31,6 +31,7 @@ function PillToggle({ checked, onChange }: { checked: boolean; onChange: (v: boo
       role="switch"
       aria-checked={checked}
       onClick={() => onChange(!checked)}
+      className="pill-toggle"
       style={{
         width: '52px',
         height: '28px',
