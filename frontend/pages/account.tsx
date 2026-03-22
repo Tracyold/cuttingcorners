@@ -11,7 +11,6 @@ import WizardResultsTab from '../components/account/WizardResultsTab';
 import WorkOrderDetailModal from '../components/account/WorkOrderDetailModal';
 import ChatPanel from '../components/account/ChatPanel';
 import TopNav from '../components/shared/TopNav';
-import Footer from '../components/shared/Footer';
 
 
 
@@ -478,7 +477,6 @@ export default function AccountPage() {
 
         </ResizablePanelGroup>
       </div>
-      <Footer />
 
       <WorkOrderDetailModal
         selectedWO={selectedWO}
