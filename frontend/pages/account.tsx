@@ -378,7 +378,7 @@ export default function AccountPage() {
       <TopNav />
       <div className="acc-shell">
         {/* Left panel */}
-        <ResizablePanelGroup orientation="horizontal" className="hidden-mobile" style={{ height: '100vh' }}>
+        <ResizablePanelGroup orientation="horizontal" className="hidden-mobile" style={{ height: '100%' }}>
         <ResizablePanel defaultSize={65} minSize={40}>
         <div className="acc-left" style={{ height: '100%' }}>
           {/* Nav */}
