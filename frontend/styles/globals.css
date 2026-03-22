@@ -3,22 +3,22 @@
 
 
 @font-face {
-  font-family: 'Freight Display';
-  src: url('/fonts/freightdispbook-webfont.ttf') format('truetype');
+  font-family: 'Qt Display';
+  src: url('/fonts/ktquantum-semibold.otf') format('truetype');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
-  font-family: 'Freight Display Heavy';
-  src: url('/fonts/freightdispbook-webfont.ttf') format('truetype');
+  font-family: 'Qt Display Thin';
+  src: url('/fonts/KTQuantum-Thin.otf') format('truetype');
   font-weight: 800;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
-  font-family: 'Freight Display Italic';
-  src: url('/fonts/Freight-Disp-Bold-Italic.otf') format('opentype');
+  font-family: 'Fontspring';
+  src: url('/fonts/Fontspring-DEMO-horanta-extralight-Exfontdb91.otf') format('opentype');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -65,13 +65,13 @@
 
 /* ── Non-color variables only ── */
 :root {
-  --font-display:    'Freight Display Heavy', Georgia, serif;
-  --font-subdisplay: 'Freight Display Italic', Georgia, serif;
-  --font-ui:         'Proxima Nova', -apple-system, sans-serif;
-  --font-title:      'Proxima Nova Semi Bold', -apple-system, sans-serif;
-  --font-body:       'Proxima Nova Light', -apple-system, sans-serif;
-  --font-mono:       'Courier New', monospace;
-  --font-pop:        'Poppins Light', -apple-system, sans-serif;
+  --font-display:    'Qt Display', Georgia, serif;
+  --font-subdisplay: 'Qt Display Thin', Arial, serif;
+  --font-ui:         'Proxima Nova', Georgia, sans-serif;
+  --font-title:      'Proxima Nova Semi Bold', Arial, sans-serif;
+  --font-body:       'Fontspring', Arial, sans-serif;
+  --font-mono:       'Courier New', Arial, monospace;
+  --font-pop:        'Poppins Light', georgia, sans-serif;
   --blur-amount:     1px;
   --scroll-angle:    187deg;
 }
