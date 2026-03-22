@@ -131,7 +131,7 @@
   --muted-foreground: #27272d;
   --input:           #cccccc;
   --ring:            #aa8c47;
-  --bg-gradient:     linear-gradient(129deg, #e8e4dc 15%, #eeeeee 35%, #f0ede8 47%, #c7c7c7 67%);
+  --bg-gradient:     linear-gradient(129deg, #ebebeb 15%, #e2e2e2, #dbd7d7 47%, #fffdfd 67%);
 }
 
 /* ── Base Resets ── */
