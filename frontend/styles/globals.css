@@ -78,23 +78,23 @@
 
 /* ── Dark Theme ── */
 :root[data-theme="dark"] {
-  --bg:              #16181e;
+  --bg:              #1e1e25;
   --bg-rgba:         rgba(19, 22, 28, 1);
   --bg-card:         #181e2c;
   --bg-card-rgba:    rgba(24, 30, 44, 1);
   --bg-deep:         #131b2a;
   --bg-deep-rgba:    rgba(19, 27, 42, 1);
-  --accent:          #d4af37;
-  --accent-rgba:     rgba(212, 175, 55, 1);
-  --text:            #f9f7ff;
+  --accent:          #a1978a;
+  --accent-rgba:     rgb(161, 151, 138);
+  --text:            #ebebeb;
   --text-rgba:       rgba(249, 247, 255, 1);
   --text-muted:      #aaaaaa;
   --text-muted-rgba: rgba(170, 170, 170, 1);
   --border:          rgba(255,255,255,0.12);
-  --border-rgba:     rgba(184, 185, 187, 1);
+  --border-rgba:     rgb(255, 255, 255);
   --gold:            #f2dc93;
   --gold-rgba:       rgba(242, 220, 147, 1);
-  --background:      #16181e;
+  --background:      #1e1e25;
   --foreground:      #f9f7ff;
   --primary:         #d4af37;
   --primary-foreground: #0a0a0a;
@@ -107,28 +107,28 @@
 
 /* ── Light Theme ── */
 :root[data-theme="light"] {
-  --bg:              #EEEEEE;
+  --bg:              #ebebeb;
   --bg-rgba:         rgba(238, 238, 238, 1);
-  --bg-card:         #f3f0de;
-  --bg-card-rgba:    rgba(243, 240, 222, 1);
-  --bg-deep:         #51504c;
+  --bg-card:         #dadbdb;
+  --bg-card-rgba:    rgb(201, 202, 202);
+  --bg-deep:         #a1978a;
   --bg-deep-rgba:    rgba(81, 80, 76, 1);
   --accent:          #aa8c47;
   --accent-rgba:     rgba(170, 140, 71, 1);
-  --text:            #19191a;
+  --text:            #1e1e25;
   --text-rgba:       rgba(25, 25, 26, 1);
-  --text-muted:      #555555;
+  --text-muted:      #dbdada;
   --text-muted-rgba: rgba(85, 85, 85, 1);
-  --border:          #cccccc;
+  --border:          #dbdada;
   --border-rgba:     rgba(204, 204, 204, 1);
   --gold:            #ddb24e;
   --gold-rgba:       rgba(221, 178, 78, 1);
-  --background:      #EEEEEE;
-  --foreground:      #19191a;
+  --background:      #ebebeb;
+  --foreground:      #1e1e25;
   --primary:         #aa8c47;
-  --primary-foreground: #ffffff;
-  --muted:           #f3f0de;
-  --muted-foreground: #555555;
+  --primary-foreground: #1e1e25;
+  --muted:           #1e1e25;
+  --muted-foreground: #27272d;
   --input:           #cccccc;
   --ring:            #aa8c47;
   --bg-gradient:     linear-gradient(129deg, #e8e4dc 15%, #eeeeee 35%, #f0ede8 47%, #c7c7c7 67%);
