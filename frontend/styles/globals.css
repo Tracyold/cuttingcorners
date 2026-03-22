@@ -153,6 +153,7 @@ html, body {
 * { box-sizing: border-box; }
 #__next { background: transparent; min-height: 100vh; }
 button, input, textarea, select { border-radius: 0 !important; }
+.pill-toggle { border-radius: 999px !important; }
 
 /* ── Scrollbar ── */
 ::-webkit-scrollbar { width: 6px; }
