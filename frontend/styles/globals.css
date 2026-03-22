@@ -115,6 +115,14 @@
   --border-rgba:     rgba(204, 204, 204, 1);
   --gold:            #ddb24e;
   --gold-rgba:       rgba(221, 178, 78, 1);
+  --background:      #EEEEEE;
+  --foreground:      #19191a;
+  --primary:         #aa8c47;
+  --primary-foreground: #ffffff;
+  --muted:           #f3f0de;
+  --muted-foreground: #555555;
+  --input:           #cccccc;
+  --ring:            #aa8c47;
   --bg-gradient:     linear-gradient(129deg, #e8e4dc 15%, #eeeeee 35%, #f0ede8 47%, #c7c7c7 67%);
 }
 
