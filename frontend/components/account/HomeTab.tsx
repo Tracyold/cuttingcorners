@@ -89,29 +89,38 @@ export default function HomeTab({
       {/* SMS Preferences */}
       <div style={{ marginTop: '32px' }}>
         <h3 style={{ fontFamily: 'var(--font-ui)', fontSize: '17px', textTransform: 'uppercase', letterSpacing: '0.2em', color: 'var(--text-muted)', marginBottom: '16px' }}>Notification Preferences</h3>
-        {smToggles.map(t => (
-          <div key={t.col} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '10px 0', borderBottom: '1px solid var(--border)' }}>
-            <span style={{ fontSize: '13px', color: 'var(--text-muted)' }}>{t.label}</span>
-            <button
-              onClick={() => {
-                if (smsPrefs?.[t.col]) {
-                  toggleSms(t.col, false);
-                } else {
-                  setPendingToggle(t);
-                }
-              }}
-              style={{
-                width: '40px', height: '22px', borderRadius: '11px', border: 'none', cursor: 'pointer', position: 'relative',
-                background: smsPrefs?.[t.col] ? 'var(--gold)' : 'var(--border)', transition: 'background 200ms',
-              }}
-            >
-              <div style={{
-                width: '16px', height: '16px', borderRadius: '50%', background: 'var(--text)', position: 'absolute', top: '3px',
-                left: smsPrefs?.[t.col] ? '21px' : '3px', transition: 'left 200ms',
-              }} />
-            </button>
-          </div>
-        ))}
+        <FieldGroup style={{ width: '100%', gap: '8px', display: 'flex', flexDirection: 'column' }}>
+          {smToggles.map(t => {
+            const descriptions: Record<string, string> = {
+              opt_in_work_orders:  'Status updates while your stone is with us',
+              opt_in_tracking:     'Shipping and delivery notifications',
+              opt_in_chat:         'Alerts when you have a new message',
+              opt_in_purchases:    'Confirmations when a purchase completes',
+              opt_in_new_listings: 'Notify me when new gems are listed',
+            };
+            return (
+              <FieldLabel key={t.col} htmlFor={t.col}>
+                <Field orientation="horizontal">
+                  <FieldContent>
+                    <FieldTitle>{t.label}</FieldTitle>
+                    <FieldDescription>{descriptions[t.col]}</FieldDescription>
+                  </FieldContent>
+                  <Switch
+                    id={t.col}
+                    checked={!!smsPrefs?.[t.col]}
+                    onCheckedChange={(checked) => {
+                      if (!checked) {
+                        toggleSms(t.col, false);
+                      } else {
+                        setPendingToggle(t);
+                      }
+                    }}
+                  />
+                </Field>
+              </FieldLabel>
+            );
+          })}
+        </FieldGroup>
         <p style={{ fontSize: '11px', color: 'var(--text-muted)', marginTop: '12px', lineHeight: 1.65 }}>
           SMS alerts are sent to your phone number on file. Message & data rates may apply. Reply STOP to any message to opt out. For help reply HELP.
         </p>
