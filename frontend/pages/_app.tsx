@@ -8,7 +8,7 @@ import '../styles/wizard.css';
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <ThemeProvider attribute="data-theme" defaultTheme="dark" enableSystem={false}>
+    <ThemeProvider attribute={["data-theme", "class"]} defaultTheme="dark" enableSystem={false}>
       <div style={{ position: 'fixed', inset: 0, zIndex: -1, background: 'var(--bg-gradient)' }} />
       <div style={{ position: 'relative', minHeight: '100vh', overflowY: 'auto', overflowX: 'hidden' }}>
         <Component {...pageProps} />
