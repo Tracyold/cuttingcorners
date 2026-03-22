@@ -76,13 +76,31 @@ export default function AccountPage() {
     if (!session) return;
     const uid = session.user.id;
     async function loadAll() {
-      const { data: p } = await supabase.from('account_users').select('*').eq('account_user_id', uid).single();
+      const [
+        { data: p },
+        { data: prefs },
+        { data: invs },
+        { data: wo },
+        { data: admin },
+        { data: inq },
+        { data: sr },
+        { data: inv },
+        { data: thread },
+      ] = await Promise.all([
+        supabase.from('account_users').select('*').eq('account_user_id', uid).single(),
+        supabase.from('user_sms_preferences').select('*').eq('user_id', uid).single(),
+        supabase.from('invoices').select('invoice_id, total_amount').eq('account_user_id', uid),
+        supabase.from('work_orders').select('*').eq('account_user_id', uid).order('created_at', { ascending: false }),
+        supabase.from('admin_users').select('business_name, full_name, address, phone, contact_email').single(),
+        supabase.from('account_inquiries').select('*').eq('account_user_id', uid).order('created_at', { ascending: false }),
+        supabase.from('service_requests').select('*').eq('account_user_id', uid).order('created_at', { ascending: false }),
+        supabase.from('invoices').select('*').eq('account_user_id', uid).order('paid_at', { ascending: false }),
+        supabase.from('chat_threads').select('*').eq('account_user_id', uid).single(),
+      ]);
+
       setProfile(p); setEditProfile(p ? { ...p } : null);
-      const { data: prefs } = await supabase.from('user_sms_preferences').select('*').eq('user_id', uid).single();
       setSmsPrefs(prefs);
-      const { data: invs } = await supabase.from('invoices').select('invoice_id, total_amount').eq('account_user_id', uid);
       if (invs) { setInvoiceCount(invs.length); setInvoiceTotal(invs.reduce((s, i) => s + Number(i.total_amount || 0), 0)); }
-      const { data: wo } = await supabase.from('work_orders').select('*').eq('account_user_id', uid).order('created_at', { ascending: false });
       setWorkOrders(wo || []);
       supabase.channel('user-wo-' + uid)
         .on('postgres_changes', { event: '*', schema: 'public', table: 'work_orders', filter: `account_user_id=eq.${uid}` },
@@ -90,15 +108,10 @@ export default function AccountPage() {
             if (payload.eventType === 'INSERT') setWorkOrders(prev => [payload.new as any, ...prev]);
             else if (payload.eventType === 'UPDATE') setWorkOrders(prev => prev.map(w => w.work_order_id === (payload.new as any).work_order_id ? payload.new as any : w));
           }).subscribe();
-      const { data: admin } = await supabase.from('admin_users').select('business_name, full_name, address, phone, contact_email').single();
       setAdminInfo(admin);
-      const { data: inq } = await supabase.from('account_inquiries').select('*').eq('account_user_id', uid).order('created_at', { ascending: false });
       setInquiries(inq || []);
-      const { data: sr } = await supabase.from('service_requests').select('*').eq('account_user_id', uid).order('created_at', { ascending: false });
       setServiceRequests(sr || []);
-      const { data: inv } = await supabase.from('invoices').select('*').eq('account_user_id', uid).order('paid_at', { ascending: false });
       setInvoices(inv || []);
-      const { data: thread } = await supabase.from('chat_threads').select('*').eq('account_user_id', uid).single();
       setChatThread(thread);
       if (thread) {
         const { data: msgs } = await supabase.from('chat_messages').select('*').eq('chat_thread_id', thread.chat_thread_id).order('created_at', { ascending: true });
