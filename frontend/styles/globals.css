@@ -232,7 +232,7 @@ button, input, textarea, select { border-radius: 0 !important; }
 .title-xl {
   font-family: var(--font-display);
   font-size: 4rem;
-  line-height: 1.8;
+  line-height: 1.1;
   letter-spacing: 0.04em;
   font-weight: 400;
 }
