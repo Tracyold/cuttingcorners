@@ -67,18 +67,16 @@ export default function Home() {
 
 
           <div style={{ position: 'relative', zIndex: 10, padding: '0 24px', maxWidth: '600px', margin: '0 auto' }}>
-            <p style={{ fontFamily: 'var(--font-subdisplay)', fontSize: '15px', letterSpacing: '0.35em', textTransform: 'uppercase', color: 'var(--accent)', marginBottom: '24px' }}>
+            <p style={{ fontFamily: 'var(--font-subdisplay)', fontWeight: 600, fontSize: '13px', letterSpacing: '0.35em', textTransform: 'uppercase', color: 'var(--text)', marginBottom: '24px' }}>
               Tempe, Arizona
             </p>
-            <h1 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(31px, 13vw, 71px)', color: 'var(--text)', lineHeight: 1.05, marginBottom: '28px', fontWeight: 400 }}>
+            <h1 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(49px, 68vw, 71px)', color: 'var(--text)', lineHeight: 1.05, marginBottom: '28px', fontWeight: 200 }}>
               <span style={{ color: 'var(--accent)' }}>Cutting</span> Corners —{' '}
               Not the <span style={{ color: 'var(--accent)' }}>Quality</span>
             </h1>
-            <p style={{ fontFamily: 'var(--font-ui)', fontSize: 'clamp(17px, 2.5vw, 21px)', color: 'var(--text)', lineHeight: 1.7, marginBottom: '40px', maxWidth: '560px', margin: '0 auto 40px' }}>
+            <p style={{ fontFamily: 'var(--font-body)', fontSize: 'clamp(17px, 2.5vw, 21px)', color: 'var(--text)', lineHeight: 1.7, marginBottom: '40px', maxWidth: '560px', margin: '0 auto 40px' }}>
               Professional gemstone cutter focused on color, yield, and stone potential for jewelry professionals nationwide.
             </p>
-             <p style={{ fontFamily: 'var(--font-sig)', fontSize: 'clamp(17px, 2.5vw, 21px)', color: 'var(--text)', lineHeight: 1.7, marginBottom: '40px', maxWidth: '560px', margin: '0 auto 40px' }}>
-              Michael Wall</p>
             <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'wrap' }}>
               <a href="/get-estimate/instant" style={{ display: 'inline-block', padding: '17px 40px', background: 'var(--accent)', color: 'var(--bg)', fontFamily: 'var(--font-ui)', fontSize: '13px', fontWeight: 700, letterSpacing: '0.25em', textTransform: 'uppercase', textDecoration: 'none' }}>
                 Get an Estimate
@@ -93,7 +91,7 @@ export default function Home() {
           <div className="hidden md:flex" style={{ position: 'absolute', bottom: '32px', right: '32px', flexDirection: 'column', justifyContent: 'center', width: '11rem', height: '11rem', background: 'var(--bg-deep)', border: 'var(--border)', padding: '1.5rem' }}>
             <p style={{ fontFamily: 'var(--font-ui)', fontSize: '13px', letterSpacing: '0.15em', textTransform: 'uppercase', color: 'var(--text-muted)', marginBottom: '8px' }}>Industry for</p>
             <p style={{ fontFamily: 'var(--font-display)', fontSize: '36px', color: 'var(--accent)', lineHeight: 1 }}>13 Yrs</p>
-            <p style={{ fontFamily: 'var(--font-ui)', fontSize: '13px', color: 'var(--text-muted)', marginTop: '6px' }}>Cutting for Seven</p>
+            <p style={{ fontFamily: 'var(--font-ui)', fontSize: '13px', letterSpacing: '0.15em', textTransform: 'uppercase', color: 'var(--text-muted)', marginTop: '6px' }}>Cutting for Seven</p>
           </div>
 
           {/* Scroll indicator */}
@@ -166,16 +164,16 @@ export default function Home() {
                   data-gold="name"
                   className="page-title title-xl name-title mb-6"
                   style={{ animationDelay: '100ms' }}
+                  
                 >
                   Michael Wall
                 </h2>
 
                 <p
-                 
                   style={{
-                    fontFamily: 'var(--font-body)',
+                    fontFamily: 'var(--font-ui)',
                     fontSize: '19px',
-                    lineHeight: 1.75,
+                    lineHeight: 1.31,
                     color: 'var(--text-rgba)',
                     maxWidth: '520px',
                     marginBottom: '24px',
@@ -190,9 +188,9 @@ export default function Home() {
                 <p
                  
                   style={{
-                    fontFamily: 'var(--font-body)',
-                    fontSize: '17px',
-                    lineHeight: 1.75,
+                    fontFamily: 'var(--font-ui)',
+                    fontSize: '19px',
+                    lineHeight: 1.31,
                     color: 'var(--text-rgba)',
                     maxWidth: '520px',
                     marginBottom: '32px',
@@ -204,6 +202,8 @@ export default function Home() {
                   need a custom cut, re-polish, or expert consultation, I&apos;m here to deliver results that
                   exceed expectations.
                 </p>
+                 <p style={{ fontFamily: 'var(--font-sig)', fontSize: '19px', color: 'var(--text)', lineHeight: 1.7, marginBottom: '40px', maxWidth: '560px', margin: '0 auto 40px' }}>
+              Michael Wall</p>
 
                 <div className="flex flex-col sm:flex-row gap-4 mt-8">
                   {/* FIX: /gallery → /portfolio */}

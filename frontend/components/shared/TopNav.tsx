@@ -33,17 +33,18 @@ const css = `
 }
 .tnav.scrolled {
   background: var(--bg-deep);
+  font-family: var(--font-body)
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(19px);
   border-bottom-color: var(--border);
 }
 .tnav-brand {
-  font-family: 'Comfortaa', Georgia, serif;
-  font-size: 27px;
-  font-weight: 650;
+  font-family: var(--font-sig), Georgia, serif;
+  font-size: 49px;
+  font-weight: 250;
   color: var(--text)eb;
   text-decoration: none;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.00em;
   white-space: nowrap;
   transition: color 200ms ease;
 }
@@ -55,11 +56,11 @@ const css = `
 }
 .tnav-link {
   font-family: var(--font-body);
-  font-size: 10px;
+  font-size: 13px;
   font-weight: 500;
-  letter-spacing: 0.22em;
+  letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: var(--text-muted);
+  color: var(--button);
   text-decoration: none;
   transition: color 200ms ease;
   position: relative;
@@ -78,7 +79,7 @@ const css = `
   font-family: var(--font-body);
   font-size: 10px;
   font-weight: 500;
-  letter-spacing: 0.22em;
+  letter-spacing: 0.15em;
   text-transform: uppercase;
   color: #d4af37;
   text-decoration: none;
@@ -87,9 +88,9 @@ const css = `
   transition: all 200ms ease;
 }
 .tnav-auth:hover {
-  background: rgba(212,175,55,0.08);
-  border-color: #d4af37;
-  color: #e5c84a;
+  background: var(--bg);
+  border-color: var(--accent);
+  color: var(--accent);
 }
 .tnav-burger {
   display: none;
@@ -104,11 +105,11 @@ const css = `
   padding: 8px;
   transition: border-color 200ms ease;
 }
-.tnav-burger:hover { border-color: #ffcd27; }
+.tnav-burger:hover { border-color: var(--bg-border); }
 .tnav-burger .bar {
   width: 100%;
   height: 1px;
-  background: var(--text-muted);
+  background: var(--bg-gradient);
   border-radius: 1.7px;
   transition: all 280ms ease;
   transform-origin: center;
@@ -150,13 +151,13 @@ const css = `
   border-bottom: 0.5px solid var(--border);
   transition: color 180ms ease;
 }
-.tnav-drawer-link:hover { color: #f8e42f; }
+.tnav-drawer-link:hover { color: var(--button-hover); }
 .tnav-drawer-link:last-child { border-bottom: none; }
 .tnav-drawer-auth {
   font-family: var(--font-body);
   font-size: 27px;
   font-weight: 500;
-  letter-spacing: 0.24em;
+  letter-spacing: 0.15em;
   text-transform: uppercase;
   color: #ffe48c;
   text-decoration: none;
@@ -276,7 +277,7 @@ useEffect(() => {
 
       <nav className={`tnav${scrolled ? ' scrolled' : ''}`}>
         {/* Brand */}
-        <Link href="/" className="tnav-brand">Cutting Corners Gems</Link>
+        <Link href="/" className="tnav-brand">Cutting Corners</Link>
 
         {/* Desktop links */}
         <div className="tnav-links">
