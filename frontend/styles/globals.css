@@ -4,27 +4,24 @@
 
 @font-face {
   font-family: 'Qt Display';
-  src: url('/fonts/ktquantum-semibold.otf') format('truetype');
+  src: url('/fonts/ktquantum-semibold.otf') format('opentype');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: 'Qt Display Thin';
-  src: url('/fonts/KTQuantum-Thin.otf') format('truetype');
+  src: url('/fonts/KTQuantum-Thin.otf') format('opentype');
   font-weight: 800;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
-  font-family: 'Akshar';
-  src: url('/fonts/Akshar-Regular-Exfont86dd.ttf') format('opentype');
+  font-family: 'Fira Sans Hair';
+  src: url('/fonts/FiraSans-HairItalic.otf') format('opentype');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-
 }
 @font-face {
   font-family: 'Fira Mono';
@@ -35,21 +32,21 @@
 }
 @font-face {
   font-family: 'Fira Sans Book';
-  src: url('/fonts/FiraSans-Book.otf') format('truetype');
+  src: url('/fonts/FiraSans-Book.otf') format('opentype');
   font-weight: 600;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: 'CM Sans Italic';
-  src: url('/fonts/NewCMSans10-BoldOblique.otf') format('truetype');
+  src: url('/fonts/NewCMSans10-BoldOblique.otf') format('opentype');
   font-weight: 700;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: 'Fira Sans Eight';
-  src: url('/fonts/FiraSans-Eight.otf') format('truetype');
+  src: url('/fonts/FiraSans-Eight.otf') format('opentype');
   font-weight: 250;
   font-style: normal;
   font-display: swap;
