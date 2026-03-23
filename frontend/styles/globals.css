@@ -76,7 +76,7 @@
   --scroll-angle:    187deg;
 }
 
-body {
+.font-body {
   font-family: var(--font-body);
   letter-spacing: 0.15em;
   text-transform: uppercase;
