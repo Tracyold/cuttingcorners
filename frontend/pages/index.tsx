@@ -60,7 +60,7 @@ export default function Home() {
 
     const handleScroll = () => {
       const scrollY = window.scrollY;
-      const maxScroll = window.innerHeight;
+      const maxScroll = window.innerHeight * 2.5;
       const progress = Math.min(scrollY / maxScroll, 1);
       const blur = progress * 20;
       const opacity = 1 - progress;
