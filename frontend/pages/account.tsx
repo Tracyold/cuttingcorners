@@ -75,6 +75,9 @@ export default function AccountPage() {
   useEffect(() => {
     if (!session) return;
     const uid = session.user.id;
+    let woChannel: any = null;
+    let chatChannel: any = null;
+
     async function loadAll() {
       const [
         { data: p },
@@ -102,7 +105,7 @@ export default function AccountPage() {
       setSmsPrefs(prefs);
       if (invs) { setInvoiceCount(invs.length); setInvoiceTotal(invs.reduce((s, i) => s + Number(i.total_amount || 0), 0)); }
       setWorkOrders(wo || []);
-      supabase.channel('user-wo-' + uid)
+      woChannel = supabase.channel('user-wo-' + uid)
         .on('postgres_changes', { event: '*', schema: 'public', table: 'work_orders', filter: `account_user_id=eq.${uid}` },
           (payload) => {
             if (payload.eventType === 'INSERT') setWorkOrders(prev => [payload.new as any, ...prev]);
@@ -119,7 +122,7 @@ export default function AccountPage() {
         if (typeof window !== 'undefined' && window.innerWidth >= 768) {
           await supabase.from('chat_threads').update({ account_has_unread: false }).eq('chat_thread_id', thread.chat_thread_id);
         }
-        supabase.channel('user-chat-' + thread.chat_thread_id)
+        chatChannel = supabase.channel('user-chat-' + thread.chat_thread_id)
           .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'chat_messages', filter: `chat_thread_id=eq.${thread.chat_thread_id}` },
             (payload) => {
               const newMsg = payload.new as any;
@@ -133,6 +136,11 @@ export default function AccountPage() {
       setLoading(false);
     }
     loadAll();
+
+    return () => {
+      if (woChannel) supabase.removeChannel(woChannel);
+      if (chatChannel) supabase.removeChannel(chatChannel);
+    };
   }, [session]);
 
   const deleteAccount = async () => {
@@ -268,9 +276,9 @@ export default function AccountPage() {
         <Link href="/shop" className="acc-nav-item" style={{ textDecoration: 'none' }}>Browse Shop</Link>
         <Link href="/portfolio" className="acc-nav-item" style={{ textDecoration: 'none' }}>See Portfolio</Link>
         <button className="acc-nav-item" style={{ color: 'var(--er, #b54040)' }} onClick={async () => { await supabase.auth.signOut(); router.push('/'); }}>Sign Out</button>
-        <button className="acc-nav-item" style={{ color: 'var(--text-muted)', fontSize: '11px' }} onClick={() => { setShowDeleteModal(true); setDeleteConfirmText(''); setDeleteError(''); }}>Delete Account</button>
+        <button className="acc-nav-item" style={{ color: 'var(--text-muted)', fontSize: '13px' }} onClick={() => { setShowDeleteModal(true); setDeleteConfirmText(''); setDeleteError(''); }}>Delete Account</button>
         <div style={{ padding: '12px 20px', borderTop: '1px solid var(--border)', marginTop: '8px' }}>
-          <p style={{ fontFamily: 'var(--font-ui)', fontSize: '9px', letterSpacing: '0.15em', textTransform: 'uppercase', color: 'var(--text-muted)', opacity: 0.5, lineHeight: 1.6 }}>© 2025 Cutting Corners Gems</p>
+          <p style={{ fontFamily: 'var(--font-ui)', fontSize: '11px', letterSpacing: '0.15em', textTransform: 'uppercase', color: 'var(--text-muted)', opacity: 0.5, lineHeight: 1.6 }}>© 2025 Cutting Corners Gems</p>
         </div>
       </div>
     </>
@@ -336,21 +344,21 @@ export default function AccountPage() {
 
       {showDeleteModal && (
         <div style={{ position: 'fixed', inset: 0, background: 'var(--bg-deep)', zIndex: 200, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '24px' }}>
-          <div style={{ background: 'var(--bg-deep)', border: '1px solid rgba(180,60,60,0.4)', padding: '40px', maxWidth: '440px', width: '100%' }}>
-            <p style={{ fontFamily: 'var(--font-ui)', fontSize: '11px', letterSpacing: '0.25em', textTransform: 'uppercase', color: 'rgba(180,60,60,0.8)', marginBottom: '16px' }}>Permanent Action</p>
-            <p style={{ fontFamily: 'var(--font-display)', fontSize: '24px', color: 'var(--text)', marginBottom: '16px', lineHeight: 1.2 }}>Delete Account</p>
+          <div style={{ background: 'var(--bg-deep)', border: '1px solid var(--bg-button', padding: '40px', maxWidth: '440px', width: '100%' }}>
+            <p style={{ fontFamily: 'var(--font-ui)', fontSize: '13px', letterSpacing: '0.25em', textTransform: 'uppercase', color: 'rgba(180,60,60,0.8)', marginBottom: '16px' }}>Permanent Action</p>
+            <p style={{ fontFamily: 'var(--font-display)', fontSize: '25px', color: 'var(--text)', marginBottom: '16px', lineHeight: 1.2 }}>Delete Account</p>
             <p style={{ fontFamily: 'var(--font-body)', fontSize: '13px', color: 'var(--text-muted)', lineHeight: 1.75, marginBottom: '28px' }}>This will permanently delete your account. Any open work orders or invoices will remain on file. This cannot be undone.</p>
-            <p style={{ fontFamily: 'var(--font-ui)', fontSize: '11px', letterSpacing: '0.15em', textTransform: 'uppercase', color: 'var(--text-muted)', marginBottom: '8px' }}>Type DELETE to confirm</p>
+            <p style={{ fontFamily: 'var(--font-ui)', fontSize: '13px', letterSpacing: '0.15em', textTransform: 'uppercase', color: 'var(--text-muted)', marginBottom: '8px' }}>Type DELETE to confirm</p>
             <input type="text" value={deleteConfirmText} onChange={e => setDeleteConfirmText(e.target.value)} placeholder="DELETE"
               style={{ width: '100%', background: 'var(--bg-card)', border: '1px solid rgba(180,60,60,0.3)', color: 'var(--text)', fontFamily: 'var(--font-body)', fontSize: '13px', padding: '12px 14px', marginBottom: '12px', boxSizing: 'border-box', outline: 'none' }} />
-            {deleteError && <p style={{ fontFamily: 'var(--font-body)', fontSize: '12px', color: 'rgba(220,80,80,0.9)', marginBottom: '12px' }}>{deleteError}</p>}
+            {deleteError && <p style={{ fontFamily: 'var(--font-body)', fontSize: '15px', color: 'rgba(220,80,80,0.9)', marginBottom: '12px' }}>{deleteError}</p>}
             <div style={{ display: 'flex', gap: '8px' }}>
               <button onClick={deleteAccount} disabled={deleting}
-                style={{ flex: 1, background: 'rgba(180,60,60,0.8)', border: 'none', color: 'var(--text)', fontFamily: 'var(--font-ui)', fontSize: '11px', fontWeight: 600, letterSpacing: '0.2em', textTransform: 'uppercase', padding: '13px', cursor: deleting ? 'not-allowed' : 'pointer', opacity: deleting ? 0.5 : 1 }}>
+                style={{ flex: 1, background: 'rgba(180,60,60,0.8)', border: 'none', color: 'var(--text)', fontFamily: 'var(--font-ui)', fontSize: '13px', fontWeight: 600, letterSpacing: '0.2em', textTransform: 'uppercase', padding: '13px', cursor: deleting ? 'not-allowed' : 'pointer', opacity: deleting ? 0.5 : 1 }}>
                 {deleting ? 'Deleting...' : 'Delete My Account'}
               </button>
               <button onClick={() => setShowDeleteModal(false)}
-                style={{ flex: 1, background: 'none', border: '1px solid rgba(255,255,255,0.1)', color: 'var(--text-muted)', fontFamily: 'var(--font-ui)', fontSize: '11px', letterSpacing: '0.2em', textTransform: 'uppercase', padding: '13px', cursor: 'pointer' }}>
+                style={{ flex: 1, background: 'none', border: '1px solid rgba(255,255,255,0.1)', color: 'var(--text-muted)', fontFamily: 'var(--font-ui)', fontSize: '13px', letterSpacing: '0.2em', textTransform: 'uppercase', padding: '13px', cursor: 'pointer' }}>
                 Cancel
               </button>
             </div>
@@ -394,7 +402,7 @@ const accountCss = `
   width: 100%;
   text-align: left;
   padding: 10px 20px;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'var(--font-ui', sans-serif;
   font-size: 11px;
   font-weight: 400;
   letter-spacing: 0.20em;
@@ -406,37 +414,37 @@ const accountCss = `
   cursor: pointer;
   transition: color 0.15s;
 }
-.acc-nav-item.on { color: #d4af37; border-left-color: #d4af37; }
+.acc-nav-item.on { color: var(--bg-button); border-left-color: var(--border); }
 .acc-nav-item:hover:not(.on) { color: var(--text); }
 .acc-content { flex: 1; overflow-y: auto; min-height: 0; min-width: 0; max-height: 100%; }
-.acc-right { width: 100%; height: 100%; border-left: 1px solid rgba(255,255,255,0.08); display: flex; flex-direction: column; background: var(--bg); overflow: hidden; }
-.acc-chat-header { padding: 16px 20px; border-bottom: 1px solid var(--border); }
+.acc-right { width: 100%; height: 100%; border-left: 1px solid var(--border); display: flex; flex-direction: column; background: var(--bg-deep); overflow: hidden; }
+.acc-chat-header { padding: 16px 20px; border-bottom: 1px solid var(--border); background: var(--bg); }
 .acc-chat-messages { flex: 1; overflow-y: auto; padding: 16px 20px; min-height: 0; }
 .acc-chat-input-bar { display: flex; gap: 8px; padding: 12px 20px; border-top: 1px solid var(--border); }
 .acc-chat-input { flex: 1; background: var(--border); border: 1px solid var(--border); padding: 10px 12px; color: var(--text); font-family: var(--font-body); font-size: 13px; outline: none; }
 .acc-chat-input:focus { border-color: var(--gold); }
-.acc-chat-send { background: #d4af37; border: none; color: #050505; padding: 10px 16px; font-size: 14px; cursor: pointer; font-weight: 700; }
+.acc-chat-send { background: var(--bg-deep); border: none; color: #050505; padding: 10px 16px; font-size: 15px; cursor: pointer; font-weight: 700; }
 .acc-chat-send:disabled { opacity: 0.4; cursor: not-allowed; }
-.acc-label { font-family: 'Montserrat', sans-serif; font-size: 9px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-muted); display: block; margin-bottom: 5px; }
+.acc-label { font-family: 'var(--font-ui', sans-serif; font-size: 9px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-muted); display: block; margin-bottom: 5px; }
 .acc-input { width: 100%; background: var(--border); border: 1px solid var(--border); padding: 10px 12px; color: var(--text); font-family: var(--font-body); font-size: 13px; outline: none; }
 .acc-input:focus { border-color: var(--gold); }
-.acc-btn-gold { background: #d4af37; color: #050505; border: none; padding: 12px 20px; font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; cursor: pointer; width: 100%; }
+.acc-btn-gold { background: var(--gold); color: #050505; border: none; padding: 12px 20px; font-family: 'var(--font-ui', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; cursor: pointer; width: 100%; }
 .acc-btn-gold:disabled { opacity: 0.4; cursor: not-allowed; }
-.acc-btn-ghost { background: none; border: 1px solid var(--border); color: rgba(255,255,255,0.45); padding: 10px 16px; font-family: 'Montserrat', sans-serif; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; cursor: pointer; }
-.acc-tab { padding: 10px 0; font-family: 'Montserrat', sans-serif; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.45); background: none; border: none; border-bottom: 1px solid transparent; cursor: pointer; }
-.acc-tab.on { color: var(--text); border-bottom-color: #d4af37; }
+.acc-btn-ghost { background: var(--bg); border: 1px solid var(--border); color: var(--accent); padding: 10px 16px; font-family: 'var(--font-ui', sans-serif; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; cursor: pointer; }
+.acc-tab { padding: 10px 0; font-family: 'var(--font-ui', sans-serif; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.45); background: none; border: none; border-bottom: 1px solid transparent; cursor: pointer; }
+.acc-tab.on { color: var(--text); border-bottom-color: var(--bg-deep); }
 .acc-empty { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.2em; }
-.acc-chat-mobile-bar { display: none; position: fixed; bottom: 0; left: 0; right: 0; background: #d4af37; color: #050505; text-align: center; padding: 14px; font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; cursor: pointer; z-index: 50; }
+.acc-chat-mobile-bar { display: none; position: fixed; bottom: 0; left: 0; right: 0; background: var(--bg-deep); color: var(--text); text-align: center; padding: 15px; font-family: 'var(--font-ui)', sans-serif; font-size: 13px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; cursor: pointer; z-index: 50; }
 .acc-chat-mobile-bar.hidden { display: none !important; }
-.acc-chat-mobile-drawer { display: none; position: fixed; inset: 0; background: transparent; z-index: 100; flex-direction: column; }
-.pill-toggle { border-radius: 999px !important; }
+.acc-chat-mobile-drawer { display: none; position: fixed; inset: 0; background: var(--bg); z-index: 100; flex-direction: column; }
+.pill-toggle { border-radius: 860px !important; }
 @media (max-width: 767px) {
   .acc-right { display: none; }
   .acc-chat-mobile-bar { display: block; }
   .acc-chat-mobile-drawer { display: flex; }
   .acc-nav { width: 100%; flex-direction: row; overflow-x: auto; height: auto; border-right: none; border-bottom: 1px solid var(--border); }
   .acc-nav-item { border-left: none; border-bottom: 2px solid transparent; white-space: nowrap; padding: 12px 16px; }
-  .acc-nav-item.on { border-bottom-color: #d4af37; }
+  .acc-nav-item.on { border-bottom-color: var(--bg-deep); }
   .acc-left { flex-direction: column; }
 }
 `;

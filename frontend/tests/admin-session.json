@@ -1,0 +1,14 @@
+{
+  "cookies": [],
+  "origins": [
+    {
+      "origin": "http://localhost:3000",
+      "localStorage": [
+        {
+          "name": "sb-jvbkcihypbjlnffsbohd-auth-token",
+          "value": "{\"access_token\":\"eyJhbGciOiJFUzI1NiIsImtpZCI6Ijc4ZjM0OTYyLWE0NWMtNDVkZC1iNDE4LTRhMGY3ZmYzOTNiNCIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL2p2YmtjaWh5cGJqbG5mZnNib2hkLnN1cGFiYXNlLmNvL2F1dGgvdjEiLCJzdWIiOiI3M2I1ODQ5My1iYWMxLTQ3YTctYjE0ZC0yMjg5NTgwODg5NzYiLCJhdWQiOiJhdXRoZW50aWNhdGVkIiwiZXhwIjoxNzc0MzIwMTY0LCJpYXQiOjE3NzQzMTY1NjQsImVtYWlsIjoiYWRtaW5AY3V0dGluZ2Nvcm5lcnNnZW1zLmNvbSIsInBob25lIjoiIiwiYXBwX21ldGFkYXRhIjp7InByb3ZpZGVyIjoiZW1haWwiLCJwcm92aWRlcnMiOlsiZW1haWwiXX0sInVzZXJfbWV0YWRhdGEiOnsiZW1haWxfdmVyaWZpZWQiOnRydWV9LCJyb2xlIjoiYXV0aGVudGljYXRlZCIsImFhbCI6ImFhbDEiLCJhbXIiOlt7Im1ldGhvZCI6InBhc3N3b3JkIiwidGltZXN0YW1wIjoxNzc0MzE2NTY0fV0sInNlc3Npb25faWQiOiJmZTU4ODNlMi03OGEzLTRhM2ItOTNjYS0wYmVhNjZlZjk2NDAiLCJpc19hbm9ueW1vdXMiOmZhbHNlfQ.GmMPuT2jVjwgQjo5H2YMafwW89D7lSlRFMrImcQ3WWhdZ5t8YVghsjtI7Z19WtLeqgbcy0D3zFvh8wLNTYESyA\",\"token_type\":\"bearer\",\"expires_in\":3600,\"expires_at\":1774320164,\"refresh_token\":\"53qzatki7hk2\",\"user\":{\"id\":\"73b58493-bac1-47a7-b14d-228958088976\",\"aud\":\"authenticated\",\"role\":\"authenticated\",\"email\":\"admin@cuttingcornersgems.com\",\"email_confirmed_at\":\"2026-02-24T23:35:56.194374Z\",\"phone\":\"\",\"confirmed_at\":\"2026-02-24T23:35:56.194374Z\",\"recovery_sent_at\":\"2026-02-25T00:28:29.474297Z\",\"last_sign_in_at\":\"2026-03-24T01:42:44.224758303Z\",\"app_metadata\":{\"provider\":\"email\",\"providers\":[\"email\"]},\"user_metadata\":{\"email_verified\":true},\"identities\":[{\"identity_id\":\"95de6e8f-db9f-4903-8f0a-55d7a46ebd40\",\"id\":\"73b58493-bac1-47a7-b14d-228958088976\",\"user_id\":\"73b58493-bac1-47a7-b14d-228958088976\",\"identity_data\":{\"email\":\"admin@cuttingcornersgems.com\",\"email_verified\":false,\"phone_verified\":false,\"sub\":\"73b58493-bac1-47a7-b14d-228958088976\"},\"provider\":\"email\",\"last_sign_in_at\":\"2026-02-24T23:35:56.173864Z\",\"created_at\":\"2026-02-24T23:35:56.174957Z\",\"updated_at\":\"2026-02-24T23:35:56.174957Z\",\"email\":\"admin@cuttingcornersgems.com\"}],\"created_at\":\"2026-02-24T23:35:56.146552Z\",\"updated_at\":\"2026-03-24T01:42:44.295439Z\",\"is_anonymous\":false},\"weak_password\":null}"
+        }
+      ]
+    }
+  ]
+}

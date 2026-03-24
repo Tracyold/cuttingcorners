@@ -41,18 +41,18 @@ function DateDivider({ label }: { label: string }) {
       gap: '0.6em',
       margin: '0.8em 0',
     }}>
-      <div style={{ flex: 1, height: '1px', background: 'var(--border)' }} />
+      <div style={{ flex: 1, height: '1px', background: 'var(--bg-deep)' }} />
       <span style={{
         fontFamily: 'var(--font-ui)',
         fontSize: '0.62em',
         letterSpacing: '0.12em',
         textTransform: 'uppercase',
-        color: 'var(--text-muted)',
+        color: 'var(--text)',
         whiteSpace: 'nowrap',
       }}>
         {label}
       </span>
-      <div style={{ flex: 1, height: '1px', background: 'var(--border)' }} />
+      <div style={{ flex: 1, height: '1px', background: 'var(--bg-deep)' }} />
     </div>
   );
 }
@@ -71,10 +71,10 @@ function MessageBubble({ m }: { m: any }) {
         padding: '0.65em 1em',
         borderRadius: isMe ? '1.2em 1.2em 0.25em 1.2em' : '1.2em 1.2em 1.2em 0.25em',
         background: isMe
-          ? 'var(--chat-bubble-me, rgba(45,212,191,0.92))'
-          : 'var(--chat-bubble-them, var(--gold))',
-        color: 'var(--chat-bubble-text, #0a0a0a)',
-        fontFamily: 'var(--font-body)',
+          ? 'var(--chat-bubble-me, var(--accent))'
+          : 'var(--chat-bubble-them, var(--primary))',
+        color: 'var(--chat-bubble-text, var(--text))',
+        fontFamily: 'var(--font-ui)',
         fontSize: '1em',
         lineHeight: 1.65,
         boxShadow: '0 1px 4px rgba(0,0,0,0.18)',
@@ -110,7 +110,7 @@ function MessageBubble({ m }: { m: any }) {
       </div>
       <span style={{
         fontSize: '0.68em',
-        color: 'var(--text-muted)',
+        color: 'var(--muted)',
         marginTop: '0.25em',
         fontFamily: 'var(--font-body)',
         paddingLeft: isMe ? '0' : '0.4em',
@@ -163,7 +163,7 @@ export default function ChatPanel({
       gap: '0.5em',
       padding: '0.7em 0.9em',
       borderTop: '1px solid var(--border)',
-      background: 'var(--bg)',
+      background: 'var(--bg-card)',
       alignItems: 'center',
     }}>
       <input
@@ -178,9 +178,9 @@ export default function ChatPanel({
         disabled={chatUploading}
         title="Attach file"
         style={{
-          background: 'none',
+          background: 'var(--bg)',
           border: '1px solid var(--border)',
-          color: 'var(--text-muted)',
+          color: 'var(--muted)',
           width: '2.2em', height: '2.2em',
           borderRadius: '50%',
           cursor: 'pointer',
@@ -193,6 +193,7 @@ export default function ChatPanel({
         {chatUploading ? '…' : '📎'}
       </button>
       <input
+        className="acc-chat-input"
         value={chatInput}
         onChange={e => setChatInput(e.target.value)}
         placeholder="Type a message..."
@@ -214,11 +215,11 @@ export default function ChatPanel({
         onClick={sendChat}
         disabled={chatSending || !chatInput.trim()}
         style={{
-          background: chatInput.trim() ? 'rgba(45,212,191,0.85)' : 'var(--border)',
+          background: chatInput.trim() ? 'var(--bg-button)' : 'var(--border)',
           border: 'none',
           borderRadius: '50%',
           width: '2.2em', height: '2.2em',
-          color: chatInput.trim() ? '#050505' : 'var(--text-muted)',
+          color: chatInput.trim() ? '#050505' : 'var(--muted)',
           fontWeight: 700,
           cursor: chatSending || !chatInput.trim() ? 'not-allowed' : 'pointer',
           fontSize: '1em',
@@ -247,7 +248,7 @@ export default function ChatPanel({
             fontFamily: 'var(--font-body)',
             fontStyle: 'italic',
             fontSize: '0.85em',
-            color: 'var(--text-muted)',
+            color: 'var(--muted)',
             textAlign: 'center',
             margin: 'auto',
             opacity: 0.6,
@@ -304,7 +305,7 @@ export default function ChatPanel({
             fontFamily: 'var(--font-body)',
             fontStyle: 'italic',
             fontSize: '0.8em',
-            color: 'var(--text-muted)',
+            color: 'var(--muted)',
             margin: '0.3em 0 0',
           }}>
             We're here to help — don't hesitate to reach out
@@ -354,7 +355,7 @@ export default function ChatPanel({
               style={{
                 background: 'none',
                 border: 'none',
-                color: 'var(--text-muted)',
+                color: 'var(--text)',
                 cursor: 'pointer',
                 fontSize: '19px',
                 lineHeight: 1,

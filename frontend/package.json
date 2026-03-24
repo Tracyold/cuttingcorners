@@ -72,7 +72,9 @@
     "start": "next start -p 3000 -H 0.0.0.0",
     "build": "next build",
     "lint": "next lint",
-    "fresh": "rm -rf .next/lock && next build"
+    "fresh": "rm -rf .next/lock && next build",
+    "test": "playwright test --config=playwright.config.ts --project=chromium",
+    "build:test": "next build && playwright test --config=playwright.config.ts --project=chromium"
   },
   "browserslist": {
     "production": [
@@ -89,8 +91,9 @@
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@eslint/js": "9.23.0",
+    "@playwright/test": "^1.58.2",
     "autoprefixer": "^10.4.20",
-    "eslint": "9.23.0",
+    "eslint": "^9.39.4",
     "eslint-plugin-import": "2.31.0",
     "eslint-plugin-jsx-a11y": "6.10.2",
     "eslint-plugin-react": "7.37.4",

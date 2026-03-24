@@ -1,0 +1,14 @@
+{
+  "cookies": [],
+  "origins": [
+    {
+      "origin": "http://localhost:3000",
+      "localStorage": [
+        {
+          "name": "sb-jvbkcihypbjlnffsbohd-auth-token",
+          "value": "{\"access_token\":\"eyJhbGciOiJFUzI1NiIsImtpZCI6Ijc4ZjM0OTYyLWE0NWMtNDVkZC1iNDE4LTRhMGY3ZmYzOTNiNCIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL2p2YmtjaWh5cGJqbG5mZnNib2hkLnN1cGFiYXNlLmNvL2F1dGgvdjEiLCJzdWIiOiJiYTFmMzllZi1mODgxLTQyMzYtYTg1MC04N2UyNjhhMDc2YjQiLCJhdWQiOiJhdXRoZW50aWNhdGVkIiwiZXhwIjoxNzc0MzE4MzIzLCJpYXQiOjE3NzQzMTQ3MjMsImVtYWlsIjoiIiwicGhvbmUiOiIxNDgwMzMyNjA1MCIsImFwcF9tZXRhZGF0YSI6eyJwcm92aWRlciI6InBob25lIiwicHJvdmlkZXJzIjpbInBob25lIl19LCJ1c2VyX21ldGFkYXRhIjp7ImVtYWlsX3ZlcmlmaWVkIjpmYWxzZSwicGhvbmVfdmVyaWZpZWQiOmZhbHNlLCJzdWIiOiJiYTFmMzllZi1mODgxLTQyMzYtYTg1MC04N2UyNjhhMDc2YjQifSwicm9sZSI6ImF1dGhlbnRpY2F0ZWQiLCJhYWwiOiJhYWwxIiwiYW1yIjpbeyJtZXRob2QiOiJvdHAiLCJ0aW1lc3RhbXAiOjE3NzQzMTQ3MjN9XSwic2Vzc2lvbl9pZCI6IjZmNWJkMWZjLWU2ODQtNGM2Yi04ZGQzLThhZTQ0MmYzZThhMyIsImlzX2Fub255bW91cyI6ZmFsc2V9.PeRH8SP1gCoFCqPtrHcunqGrQ6dPmFr_TL3LoMosDYgQI8L-ty-RPvkBwpo6KwdKkAxv0Xlf-7QuTiewGh0Tsg\",\"token_type\":\"bearer\",\"expires_in\":3600,\"expires_at\":1774318323,\"refresh_token\":\"n55l6kgcptmp\",\"user\":{\"id\":\"ba1f39ef-f881-4236-a850-87e268a076b4\",\"aud\":\"authenticated\",\"role\":\"authenticated\",\"email\":\"\",\"phone\":\"14803326050\",\"phone_confirmed_at\":\"2026-03-24T01:12:03.246835Z\",\"confirmation_sent_at\":\"2026-03-24T01:11:49.947448Z\",\"confirmed_at\":\"2026-03-24T01:12:03.246835Z\",\"last_sign_in_at\":\"2026-03-24T01:12:03.272652522Z\",\"app_metadata\":{\"provider\":\"phone\",\"providers\":[\"phone\"]},\"user_metadata\":{\"email_verified\":false,\"phone_verified\":false,\"sub\":\"ba1f39ef-f881-4236-a850-87e268a076b4\"},\"identities\":[{\"identity_id\":\"cddfe455-048e-47a2-b73a-8f4e594a7e68\",\"id\":\"ba1f39ef-f881-4236-a850-87e268a076b4\",\"user_id\":\"ba1f39ef-f881-4236-a850-87e268a076b4\",\"identity_data\":{\"email_verified\":false,\"phone_verified\":false,\"sub\":\"ba1f39ef-f881-4236-a850-87e268a076b4\"},\"provider\":\"phone\",\"last_sign_in_at\":\"2026-02-28T15:14:07.876236Z\",\"created_at\":\"2026-02-28T15:14:07.87629Z\",\"updated_at\":\"2026-02-28T15:14:07.87629Z\"}],\"created_at\":\"2026-02-28T15:14:07.831062Z\",\"updated_at\":\"2026-03-24T01:12:03.351196Z\",\"is_anonymous\":false}}"
+        }
+      ]
+    }
+  ]
+}
