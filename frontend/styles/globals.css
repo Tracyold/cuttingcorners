@@ -58,6 +58,13 @@
   font-style: normal;
   font-display: swap;
 }
+@font-face {
+  font-family: 'Fira Sans Bold';
+  src: url('/fonts/FiraSans-Bold.otf') format('opentype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
 
 @tailwind base;
 @tailwind components;
@@ -68,7 +75,8 @@
   --font-display:    'Qt Display', Georgia, serif;
   --font-subdisplay: 'Qt Display Thin', Arial, serif;
   --font-ui:         'Fira Sans Book', Georgia, sans-serif;
-  --font-title:      'Fira Sans Eight', Arial, sans-serif;
+  --font-eight:      'Fira Sans Eight', Arial, sans-serif;
+  --font-title:      'Fira Sans Bold', Georgia, sans-serif;
   --font-body:       'Akshar', Arial, sans-serif;
   --font-mono:       'Fira Mono', Arial, monospace;
   --font-sig:        'Authentic', georgia, sans-serif;
