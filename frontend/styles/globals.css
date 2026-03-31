@@ -265,7 +265,9 @@ button, input, textarea, select { border-radius: 0 !important; }
   border: 0.03px;
   cursor: pointer;
 }
-.btn-primary:hover {border-color: var(transparent); background-color: var(--bg-card)}
+.btn-primary:hover {border-color: var(transparent); background-color: var(--bg-card);
+  
+}
 
 .btn-secondary {
   background-color: transparent;
