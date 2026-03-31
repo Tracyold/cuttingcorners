@@ -220,8 +220,6 @@ export default function Home() {
                   need a custom cut, re-polish, or expert consultation, I&apos;m here to deliver results that
                   exceed expectations.
                 </p>
-                 <p style={{ fontFamily: 'var(--font-sig)', fontSize: '32px', color: 'var(--accent)', lineHeight: 1.7, marginBottom: '40px', maxWidth: '560px', margin: '0 auto 40px' }}>
-              Michael Wall</p>
 
                 <div className="flex flex-col sm:flex-row gap-4 mt-8">
                   {/* FIX: /gallery → /portfolio */}
