@@ -92,18 +92,15 @@ export default function Footer() {
       <style dangerouslySetInnerHTML={{ __html: footerCss }} />
       <footer className="ccg-footer">
         <div className="ccg-footer-tagline">
-          COLOR CONSCIOUS CAREFUL CUTTING
+          COLOR CONSCIOUS CUTTING
         </div>
         <div className="ccg-footer-content">
           <div className="ccg-footer-links">
             <a href="/legal" className="ccg-footer-link">legal</a>
             <a href="/company-model" className="ccg-footer-link">Our Story</a>
-            <a href="/legal/privacy-policy" className="ccg-footer-link">privacy policy</a>
             <a href="/shop" className="ccg-footer-link">shop</a>
             <a href="/portfolio" className="ccg-footer-link">portfolio</a>
             <a href="/login" className="ccg-footer-link">sign in / sign up</a>
-            <a href="/feasibility-check" className="ccg-footer-link">feasibility check</a>
-            <a href="/feasibility" className="ccg-footer-link">feasibility form</a>
           </div>
           <div className="ccg-footer-contact">
             <span className="ccg-footer-contact-name">Michael Wall</span>
