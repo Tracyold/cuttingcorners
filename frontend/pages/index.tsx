@@ -39,7 +39,7 @@ function MachineShowcase() {
           <p style={{ fontFamily: 'var(--font-ui)', fontSize: '13px', letterSpacing: '0.3em', textTransform: 'uppercase', color: 'var(--accent)', marginBottom: '6px' }}>
             
           </p>
-          <h3 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(28px, 5vw, 48px)', fontWeight: 400, color: 'var(--text)', letterSpacing: '0.04em', margin: '0 0 4px' }}>
+          <h3 style={{ fontFamily: 'var(--font-subdisplay)', fontSize: 'clamp(15px, 5vw, 19px)', fontWeight: 400, color: 'var(--bg-deep)', letterSpacing: '0.07em', margin: '0 0 4px' }}>
             Fac-ette GemMaster II
           </h3>
           <p style={{ fontFamily: 'var(--font-mono)', fontSize: '13px', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--accent)', margin: '0 0 28px' }}>
