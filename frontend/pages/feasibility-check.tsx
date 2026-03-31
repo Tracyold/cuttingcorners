@@ -276,28 +276,28 @@ export default function FeasibilityCheckPage() {
         }
         .disc-btn {
           width: 100%; display: flex; align-items: center; justify-content: center; gap: 10px;
-          background: var(--bg-deep); color: var(--accent); border: 0.5px solid rgba(255,211,105,0.5);
+          background: var(--bg-deep); color: var(--accent); border: none;
           padding: 16px 24px; font-family: var(--font-body);
           font-size: clamp(13px, 1.6vw, 15px); font-weight: 700;
           letter-spacing: 0.15em; text-transform: uppercase;
           transition: all 220ms ease; opacity: 0.28; cursor: not-allowed;
         }
-        .disc-btn.on { opacity: 1; cursor: pointer; box-shadow: 0 0 20px rgba(255,211,105,0.2); }
-        .disc-btn.on:hover { background: rgba(255,211,105,0.08); box-shadow: 0 0 28px rgba(255,211,105,0.28); }
-        .disc-btn.on:active { background: rgba(255,211,105,0.2); }
+        .disc-btn.on { opacity: 1; cursor: pointer; box-shadow: 0 0 20px var(--bg-deep); }
+        .disc-btn.on:hover { background: var(--bg-deep); box-shadow: 0 0 28px transparent; }
+        .disc-btn.on:active { background: var(--bg-deep); }
 
         .begin-btn {
           display: inline-flex; align-items: center; gap: 14px;
-          background: var(--bg-deep); color: var(--accent); border: 0.5px solid rgba(255,211,105,0.5);
+          background: var(--bg-deep); color: var(--accent); border: 0.5px solid var(--accent);
           padding: clamp(16px, 3vw, 22px) clamp(40px, 8vw, 64px);
           font-family: var(--font-display); font-size: clamp(24px, 4vw, 36px);
           font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
           cursor: pointer; transition: all 300ms ease;
-          box-shadow: 0 0 24px rgba(255,211,105,0.15);
+          box-shadow: 0 0 24px transparent;
           animation: flyInUp 900ms cubic-bezier(0.16,1,0.3,1) forwards;
         }
-        .begin-btn:hover { background: rgba(255,211,105,0.08); box-shadow: 0 0 36px rgba(255,211,105,0.25); transform: translateY(-2px); }
-        .begin-btn:active { background: rgba(255,211,105,0.2); }
+        .begin-btn:hover { background: var(--bg-deep); box-shadow: 0 0 36px transparent; transform: translateY(-2px); }
+        .begin-btn:active { background: var(--bg-deep); }
 
         .wiz-input {
           width: 100%; background: transparent; border: none;
@@ -308,20 +308,20 @@ export default function FeasibilityCheckPage() {
           transition: border-color 200ms ease;
         }
         .wiz-input::placeholder { color: var(--text-muted); opacity: 0.3; }
-        .wiz-input:focus { border-bottom-color: rgba(255,211,105,0.5); }
+        .wiz-input:focus { border-bottom-color: var(--accent); }
 
         .wiz-btn-primary {
           flex: 0; display: flex; align-items: center; justify-content: center; gap: 8px;
-          background: var(--bg-deep); color: var(--accent); border: 0.5px solid rgba(255,211,105,0.5);
+          background: var(--bg-deep); color: var(--accent); border: none;
           padding: 13px 32px; font-family: var(--font-body);
           font-size: 12px; font-weight: 700; min-width: 110px;
           letter-spacing: 0.18em; text-transform: uppercase;
           cursor: pointer; border-radius: 3px; transition: all 220ms ease;
           box-shadow: 0 2px 12px rgba(0,0,0,0.2);
         }
-        .wiz-btn-primary:hover:not(:disabled) { background: rgba(255,211,105,0.08); }
+        .wiz-btn-primary:hover:not(:disabled) { background: var(--bg-deep); }
         .wiz-btn-primary:disabled { opacity: 0.25; cursor: not-allowed; }
-        .wiz-btn-primary:active:not(:disabled) { background: rgba(255,211,105,0.2); }
+        .wiz-btn-primary:active:not(:disabled) { background: var(--bg-deep); }
 
         .wiz-btn-secondary {
           flex: 0; display: flex; align-items: center; justify-content: center;
@@ -332,11 +332,25 @@ export default function FeasibilityCheckPage() {
           letter-spacing: 0.15em; text-transform: uppercase;
           cursor: pointer; border-radius: 3px; transition: all 220ms ease;
         }
-        .wiz-btn-secondary:hover { background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.25); color: var(--text); }
-        .wiz-btn-secondary:active { background: rgba(255,255,255,0.12); }
+        .wiz-btn-secondary:hover { background: var(--bg-card); border-color: var(--border); color: var(--text); }
+        .wiz-btn-secondary:active { background: var(--bg-card); }
       `}</style>
 
-      <div className="full-screen">
+      <div className="full-screen" style={{ position: 'relative' }}>
+        <a
+          href="/"
+          style={{
+            position: 'absolute', top: '14px', left: '18px', zIndex: 10,
+            fontFamily: 'var(--font-body)', fontSize: '11px', fontWeight: 700,
+            textTransform: 'uppercase', letterSpacing: '0.18em',
+            color: 'var(--accent)', textDecoration: 'none',
+            opacity: 0.75, transition: 'opacity 200ms ease',
+          }}
+          onMouseEnter={e => (e.currentTarget.style.opacity = '1')}
+          onMouseLeave={e => (e.currentTarget.style.opacity = '0.75')}
+        >
+          ← Home
+        </a>
 
         <p className={`tool-title ${inWizard ? 'wizard-size' : 'intro-size'}`}>
           The Cut Feasibility Wizard
