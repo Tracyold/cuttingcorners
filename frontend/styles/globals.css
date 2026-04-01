@@ -240,14 +240,14 @@ button, input, textarea, select { border-radius: 0 !important; }
 /* ── Shared Components ── */
 .gem-card {
   background-color: var(--bg-card);
-  border: 1px solid var(--accent);
-  transition: all 0.5s ease;
+  border: .5px solid var(--accent);
+  transition: all 0.3s ease;
   overflow: none;
   position: relative;
 }
 .gem-card:hover {
   border-color: var(--accent);
-  box-shadow: 0 0 30px var(--shadow);
+  box-shadow: 0 0 31px var(--shadow);
 }
 
 .btn-primary {
