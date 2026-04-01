@@ -103,6 +103,7 @@
   --border:          #2c2d2d;
   --gold:            #cfdd4eff;
   --background:      #212223;
+  --shadow:          #111111;
   --foreground:      #aeaeae;
   --primary:         #b8b89c;
   --primary-foreground: #aeaeae;
@@ -123,6 +124,7 @@
   --button-text:     #575450;
   --accent:          #1b63bbc4;
   --text:            #212223;
+  --shadow:          #111111;
   --border:          #afafaf;
   --gold:            #0c70b8f3;
   --background:      #dddddd;
@@ -133,7 +135,7 @@
   --muted-foreground: #bababa;
   --input:           #212223;
   --ring:            #1b63bb72;
-  --bg-gradient:     linear-gradient(--scroll-angle, #ebebeb 0%, #eceff7 15%, #ebeff8 28%, #ecf0f8 40%, #eef1f4 52%, #ecf0f8 64%, #e4e6ec 76%, #edf0f8 88%, #d6d7dc 100%);
+  --bg-gradient:     linear-gradient(var(--scroll-angle), #ebebeb 0%, #eceff7 15%, #ebeff8 28%, #ecf0f8 40%, #eef1f4 52%, #ecf0f8 64%, #e4e6ec 76%, #edf0f8 88%, #d6d7dc 100%);
 }
 
 
@@ -143,7 +145,7 @@ html, body {
   margin: 0;
   padding: 0;
   background: var(--bg-gradient);
-  background-color: var(--bg-deep-rgba);
+  background-color: var(--bg-deep);
   min-height: 100vh;
   color: var(--text);
   font-family: var(--font-body);
@@ -245,7 +247,7 @@ button, input, textarea, select { border-radius: 0 !important; }
 }
 .gem-card:hover {
   border-color: var(--accent);
-  box-shadow: 0 0 30px rgba(14, 13, 11, 0.08);
+  box-shadow: 0 0 30px var(--shadow);
 }
 
 .btn-primary {
