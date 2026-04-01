@@ -238,7 +238,7 @@ button, input, textarea, select { border-radius: 0 !important; }
 /* ── Shared Components ── */
 .gem-card {
   background-color: var(--bg-card);
-  border: 1px solid var(--border);
+  border: 1px solid var(--accent);
   transition: all 0.5s ease;
   overflow: none;
   position: relative;
