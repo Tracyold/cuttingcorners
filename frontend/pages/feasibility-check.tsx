@@ -336,11 +336,11 @@ export default function FeasibilityCheckPage() {
         .wiz-btn-secondary:active { background: var(--bg-card); }
       `}</style>
 
-      <div className="full-screen" style={{ position: 'relative' }}>
+      <div className="full-screen">
         <a
           href="/"
           style={{
-            position: 'absolute', top: '14px', left: '18px', zIndex: 10,
+            position: 'fixed', top: '14px', left: '18px', zIndex: 110,
             fontFamily: 'var(--font-body)', fontSize: '11px', fontWeight: 700,
             textTransform: 'uppercase', letterSpacing: '0.18em',
             color: 'var(--accent)', textDecoration: 'none',
