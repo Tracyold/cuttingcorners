@@ -26,19 +26,14 @@ export default function IntroScreen({
         <button
           onClick={onSkip}
           style={{
-            position: 'fixed',
-            top: '20px',
-            right: '20px',
-            background: 'transparent',
-            border: '1px solid var(--border)',
+            position: 'fixed', top: '14px', right: '18px',
+            background: 'transparent', border: 'none',
             color: 'var(--text-muted)',
             fontFamily: 'var(--font-body)',
-            fontSize: 17,
-            padding: '8px 16px',
-            cursor: 'pointer',
-            borderRadius: 8,
-            transition: 'all 180ms ease',
-            zIndex: 10,
+            fontSize: '13px', fontWeight: 700,
+            textTransform: 'uppercase', letterSpacing: '0.18em',
+            padding: 0, cursor: 'pointer', opacity: 0.75,
+            transition: 'opacity 200ms ease', zIndex: 10,
           }}
         >
           Skip
