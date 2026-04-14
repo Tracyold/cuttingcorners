@@ -1,7 +1,7 @@
 // app/legal/page.tsx
 // or pages/legal.tsx
 
-import SmsPreview from 'components/legal/smscomp';
+import SmsPreview from '@/components/legal/smscomp';
 
 const smsExamples = [
   {
