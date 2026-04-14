@@ -78,10 +78,10 @@ export default function MobileAccount() {
   if (loading) return null
 
   // ── Render ────────────────────────────────────────────────────────────────
-  return (
-    <>
-      {/* ── Top nav ── */}
-      <MobileNavBar />
+return (
+  <div className="acc-shell">
+    {/* ── Top nav ── */}
+    <MobileNavBar />
 
       {/* ── Main scroll feed ── */}
       <MobileDashboard
@@ -228,13 +228,13 @@ export default function MobileAccount() {
         onOpenMenu={() => openPanel('menu')}
       />
 
-      {/* ── Hamburger menu ── */}
+   {/* ── Hamburger menu ── */}
       <MobileHamburgerMenu
         isOpen={isPanelOpen('menu')}
         onClose={closePanel}
         onNavigate={openPanel}
         activePanel={activePanel}
       />
-    </>
+    </div>
   )
 }
