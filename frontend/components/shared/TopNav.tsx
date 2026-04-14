@@ -2,6 +2,7 @@ import { useTheme } from 'next-themes';
 import { ModeToggle } from './ModeToggle';
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 // ── TopNav — Cutting Corners Gems ────────────────────────────
 // Absolutely positioned so it overlays the hero section.
@@ -33,7 +34,7 @@ const css = `
 }
 .tnav.scrolled {
   background: var(--bg-deep);
-  font-family: var(--font-body)
+  font-family: var(--font-body);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(19px);
   border-bottom-color: var(--border);
@@ -42,7 +43,7 @@ const css = `
   font-family: var(--font-sig), Georgia, serif;
   font-size: 49px;
   font-weight: 250;
-  color: var(--text)eb;
+  color: var(--text);
   text-decoration: none;
   letter-spacing: 0.00em;
   white-space: nowrap;
@@ -196,18 +197,30 @@ const css = `
   z-index: 201;
 }
 .tnav-theme:hover { border-color: var(--muted-foreground) }
+
+@media (max-width: 767px) {
+  .tnav-account-hidden {
+    display: none !important;
+  }
+}
+@media (min-width: 768px) {
+  .tnav-account-hidden {
+    display: flex !important;
+  }
+}
 `;
 
 export default function TopNav() {
-  const [scrolled, setScrolled] = useState(false);
+  const [scrolled, setScrolled]     = useState(false);
   const [drawerOpen, setDrawerOpen] = useState(false);
-  const [authed, setAuthed] = useState(false);
-  const { theme, setTheme } = useTheme();
+  const [authed, setAuthed]         = useState(false);
+  const { theme, setTheme }         = useTheme();
+  const router                      = useRouter();
+  const isAccount                   = router.pathname.startsWith('/account');
 
   const toggleTheme = () => {
     setTheme(theme === 'dark' ? 'light' : 'dark');
   };
-
 
   // Scroll detection
   useEffect(() => {
@@ -217,32 +230,31 @@ export default function TopNav() {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
- // Auth detection — check Supabase session
-useEffect(() => {
-  let subscription: any;
-  async function checkAuth() {
-    try {
-      const { createClient } = await import('@supabase/supabase-js');
-      const supabase = createClient(
-        process.env.NEXT_PUBLIC_SUPABASE_URL!,
-        process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-      );
-      const guestId = process.env.NEXT_PUBLIC_GUEST_ACCOUNT_USER_ID;
-      const { data: { session } } = await supabase.auth.getSession();
-      setAuthed(!!session && session.user.id !== guestId);
+  // Auth detection — check Supabase session
+  useEffect(() => {
+    let subscription: any;
+    async function checkAuth() {
+      try {
+        const { createClient } = await import('@supabase/supabase-js');
+        const supabase = createClient(
+          process.env.NEXT_PUBLIC_SUPABASE_URL!,
+          process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+        );
+        const guestId = process.env.NEXT_PUBLIC_GUEST_ACCOUNT_USER_ID;
+        const { data: { session } } = await supabase.auth.getSession();
+        setAuthed(!!session && session.user.id !== guestId);
 
-      const { data: { subscription: sub } } = supabase.auth.onAuthStateChange((_e, s) => {
-        setAuthed(!!s && s.user.id !== guestId);
-      });
-      subscription = sub;
-    } catch {
-      setAuthed(false);
+        const { data: { subscription: sub } } = supabase.auth.onAuthStateChange((_e, s) => {
+          setAuthed(!!s && s.user.id !== guestId);
+        });
+        subscription = sub;
+      } catch {
+        setAuthed(false);
+      }
     }
-  }
-  checkAuth();
-  return () => { if (subscription) subscription.unsubscribe(); };
-}, []);
-
+    checkAuth();
+    return () => { if (subscription) subscription.unsubscribe(); };
+  }, []);
 
   // Close drawer on outside click
   useEffect(() => {
@@ -255,7 +267,7 @@ useEffect(() => {
     return () => document.removeEventListener('click', close);
   }, [drawerOpen]);
 
-    const authHref = authed ? '/account' : '/login';
+  const authHref  = authed ? '/account' : '/login';
   const authLabel = authed ? 'Account' : 'Login';
 
   const handleAuthClick = async (e: React.MouseEvent) => {
@@ -275,17 +287,15 @@ useEffect(() => {
     <>
       <style dangerouslySetInnerHTML={{ __html: css }} />
 
-      <nav className={`tnav${scrolled ? ' scrolled' : ''}`}>
+      <nav className={`tnav${scrolled ? ' scrolled' : ''}${isAccount ? ' tnav-account-hidden' : ''}`}>
         {/* Brand */}
-        <Link href="/" className="tnav-brand">Cutting Corners</Link>
-
+        <Link href={authHref} className="tnav-auth tnav-auth-desktop">{authLabel}</Link>
         {/* Desktop links */}
         <div className="tnav-links">
           {NAV_LINKS.map(l => (
             <Link key={l.href} href={l.href} className="tnav-link">{l.label}</Link>
           ))}
-                    <Link href={authHref} className="tnav-auth tnav-auth-desktop" onClick={handleAuthClick}>{authLabel}</Link>
-
+          <Link href={authHref} className="tnav-auth tnav-auth-desktop" onClick={handleAuthClick}>{authLabel}</Link>
         </div>
 
         {/* Mobile burger */}
@@ -303,8 +313,8 @@ useEffect(() => {
         </button>
       </nav>
 
-      {/* Mobile drawer */}
-      <div className={`tnav-drawer${drawerOpen ? ' open' : ''}`}>
+     {/* Mobile drawer */}
+      <div className={`tnav-drawer${drawerOpen ? ' open' : ''}${isAccount ? ' tnav-account-hidden' : ''}`}>
         {NAV_LINKS.map(l => (
           <Link
             key={l.href}
@@ -318,7 +328,6 @@ useEffect(() => {
         <a
           href={authHref}
           className="tnav-drawer-auth"
-          onClick={(e) => { setDrawerOpen(false); handleAuthClick(e); }}
         >
           {authLabel}
         </a>
