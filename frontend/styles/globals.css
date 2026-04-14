@@ -87,7 +87,7 @@
   --font-body:    'Segoe UI', system-ui, sans-serif;
 
   /* Container */
-  max-width: 430px;
+  max-width: 100%;
   margin: 0 auto;
   min-height: 100dvh;
   overflow-x: hidden;
