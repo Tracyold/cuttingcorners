@@ -79,6 +79,14 @@
   --blur-amount:     1px;
   --scroll-angle:    187deg;
 }
+/* ── Account dashboard font override ── */
+.acc-shell {
+  --font-display: Georgia, serif;
+  --font-mono:    Consolas, monospace;
+  --font-ui:      'Segoe UI', system-ui, sans-serif;
+  --font-sig:     'Palatino Linotype', Georgia, serif;
+  --font-body:    'Segoe UI', system-ui, sans-serif;
+}
 
 .font-body {
   font-family: var(--font-body);
