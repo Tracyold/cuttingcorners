@@ -112,12 +112,12 @@ export default function MobileDashboard({
         @keyframes mbPulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.4;transform:scale(0.8)}}
         @keyframes favPop{0%{transform:scale(0.85);opacity:0}100%{transform:scale(1);opacity:1}}
         @keyframes slideHint{0%,100%{transform:translateX(0)}50%{transform:translateX(6px)}}
-        .feed{padding:23px 15px 121px;display:flex;flex-direction:column;gap:0}
-        .welcome{padding:0 2px 22px;border-bottom:0.5px solid var(--bdr2);margin-bottom:23px}
+        .feed{padding:22px 14px 120px;display:flex;flex-direction:column;gap:0}
+        .welcome{padding:0 2px 22px;border-bottom:0.5px solid var(--bdr2);margin-bottom:22px}
         .welcome-name{font-family:var(--font-sig);font-size:33px;font-style:italic;color:var(--text);line-height:1.15;margin-bottom:5px}
         .welcome-meta{font-family:var(--font-mono);font-size:19px;letter-spacing:0.26em;text-transform:uppercase;color:var(--text-muted)}
         .welcome-meta span{color:var(--gold)}
-        .tile{background:var(--bg-card);border:0.5px solid var(--bdr2);padding:19px 17px;cursor:pointer;position:relative;overflow:hidden;transition:border-color 280ms ease,transform 200ms ease;display:flex;flex-direction:column;min-height:140px;-webkit-tap-highlight-color:transparent}
+        .tile{background:var(--bg-card);border:0.5px solid var(--bdr2);padding:18px 16px;cursor:pointer;position:relative;overflow:hidden;transition:border-color 280ms ease,transform 200ms ease;display:flex;flex-direction:column;min-height:140px;-webkit-tap-highlight-color:transparent}
         .tile::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:rgba(255,255,255,0.15);opacity:0;transition:opacity 300ms ease}
         .tile.lit::before{opacity:1}
         .tile.lit{border-color:rgba(255,255,255,0.22)}
@@ -127,34 +127,34 @@ export default function MobileDashboard({
         .tile:active{transform:scale(0.975)}
         .tile.wide{flex-direction:row;align-items:center;gap:16px;min-height:100px}
         .tile-row{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-        .t-badge{display:none;position:absolute;top:13px;right:13px;width:11px;height:11px;border-radius:50%;background:rgba(248,113,113,0.5)}
+        .t-badge{display:none;position:absolute;top:10px;right:10px;width:8px;height:8px;border-radius:50%;background:rgba(248,113,113,0.5)}
         .tile.lit .t-badge{display:inline-flex}
-        .t-icon{font-size:31px;margin-bottom:13px;line-height:1}
+        .t-icon{font-size:31px;margin-bottom:10px;line-height:1}
         .t-label{font-family:var(--font-mono);font-size:17.5px;letter-spacing:0.24em;text-transform:uppercase;color:var(--text-muted);margin-bottom:5px}
         .t-main{font-family:var(--font-display);font-size:21px;line-height:1.3;color:var(--text);font-weight:400;letter-spacing:0.02em;transition:color 280ms ease}
         .t-sub{font-family:var(--font-ui);font-size:17.5px;color:var(--text-muted);margin-top:5px;line-height:1.5;letter-spacing:0.03em}
         .t-arrow{position:absolute;bottom:13px;right:13px;font-size:17px;color:var(--text-muted);opacity:0.3;transition:all 180ms ease}
         .tile:hover .t-arrow{opacity:0.75;transform:translateX(2.5px)}
         .tile.lit .t-arrow{color:var(--text-muted);opacity:0.6}
-        .feed-block{display:flex;flex-direction:column;gap11px;margin-bottom:11px}
-        .fdiv{display:flex;align-items:center;gap:15px;padding:31px 2px 25px}
+        .feed-block{display:flex;flex-direction:column;gap:8.5px;margin-bottom:8.5px}
+        .fdiv{display:flex;align-items:center;gap:12px;padding:28px 2px 22px}
         .fdiv-line{flex:1;height:0.5px;background:var(--bdr2)}
-        .fdiv-lbl{font-family:var(--font-mono);font-size:15.5px;letter-spacing:0.26em;text-transform:uppercase;color:var(--text-muted);white-space:nowrap;opacity:0.6}
+        .fdiv-lbl{font-family:var(--font-mono);font-size:19px;letter-spacing:0.26em;text-transform:uppercase;color:var(--text-muted);white-space:nowrap;opacity:0.6}
         .cycle-sep{display:flex;align-items:center;gap:14px;padding:36px 2px 30px}
         .cycle-sep-line{flex:1;height:0.5px;background:var(--bdr2)}
         .cycle-sep-dots{font-family:var(--font-mono);font-size:15px;letter-spacing:0.32em;color:var(--text-muted);opacity:0.38;white-space:nowrap}
-        .shop-grid{display:grid;grid-template-columns:1fr 1fr;gap:11px}
+        .shop-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
         .shop-thumb{background:var(--bg-card);border:0.5px solid var(--bdr2);position:relative;overflow:hidden;cursor:pointer;transition:all 240ms ease;aspect-ratio:3/4;display:flex;flex-direction:column}
         .shop-thumb:hover{transform:translateY(-2px)}
         .shop-img{flex:1;display:flex;align-items:center;justify-content:center;font-size:43px;background:var(--bg-deep)}
-        .shop-info{padding:11px 13px 9px;border-top:0.5px solid var(--bdr2)}
-        .shop-name{font-family:var(--font-display);font-size:21px;color:var(--text);letter-spacing:0.03em;margin-bottom:3px}
+        .shop-info{padding:10px 11px 9px;border-top:0.5px solid var(--bdr2)}
+        .shop-name{font-family:var(--font-display);font-size:21px;color:var(--text);letter-spacing:0.03em;margin-bottom:2px}
         .inv-overlay{position:absolute;inset:0;background:color-mix(in srgb,var(--gold) 55%,rgba(0,0,0,0.2));display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:0;transition:opacity 220ms ease;padding:12px}
         .shop-thumb.tapped .inv-overlay{opacity:1}
         .inv-price{font-family:var(--font-mono);font-size:23px;font-weight:700;color:#fff;margin-bottom:4px}
         .inv-date{font-family:var(--font-ui);font-size:15px;letter-spacing:0.1em;color:rgba(255,255,255,0.7)}
         .inv-tap-hint{font-family:var(--font-ui);font-size:15px;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.5);margin-top:10px}
-        .heart-btn{position:absolute;top:9px;right:10px;background:none;border:none;cursor:pointer;z-index:10;padding:0;-webkit-tap-highlight-color:transparent;display:flex;align-items:center;justify-content:center;outline:none;transition:transform 200ms ease}
+        .heart-btn{position:absolute;top:6px;right:7px;background:none;border:none;cursor:pointer;z-index:10;padding:0;-webkit-tap-highlight-color:transparent;display:flex;align-items:center;justify-content:center;outline:none;transition:transform 200ms ease}
         .heart-btn:active{transform:scale(1.2)}
         .heart-icon{font-size:31px;line-height:1;color:rgba(255,255,255,0.5);transition:color 80ms ease;user-select:none}
         .heart-btn.hearted .heart-icon{color:var(--gold)}
@@ -186,14 +186,14 @@ export default function MobileDashboard({
             onClick={() => onOpenPanel('chat')}
           >
             <div className="t-badge" />
-            <div style={{ fontSize: 24, flexShrink: 0, lineHeight: 1, color: 'rgba(255,255,255,0.85)' }}>✉︎</div>
+            <div style={{ fontSize: 29, flexShrink: 0, lineHeight: 1, color: 'var(--gold)' }}>✉︎</div>
             <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
               {dash.hasNewMsg && (
-                <span style={{ fontFamily: 'var(--font-mono)', fontSize: 32, fontWeight: 700, color: 'rgba(207,221,78,0.7)', lineHeight: 1, WebkitTextStroke: '0.5px rgba(0,0,0,0.6)' }}>
+                <span style={{ fontFamily: 'var(--font-mono)', fontSize: 32, fontWeight: 700, color: 'var(--gold)', lineHeight: 1, WebkitTextStroke: '0.5px rgba(0,0,0,0.6)' }}>
                   {dash.unreadCount}
                 </span>
               )}
-              <span style={{ fontFamily: 'var(--font-display)', fontSize: 15, color: 'var(--text)' }}>
+              <span style={{ fontFamily: 'var(--font-display)', fontSize: 21, color: 'var(--text)' }}>
                 {dash.hasNewMsg ? `new message${dash.unreadCount > 1 ? 's' : ''}` : 'Chat with the shop'}
               </span>
             </div>
@@ -209,10 +209,10 @@ export default function MobileDashboard({
             >
               <div className="t-badge" />
               <div style={{ display: 'flex', alignItems: 'center', gap: 10, flex: 1 }}>
-                <div style={{ fontSize: 22, lineHeight: 1, color: 'rgba(255,255,255,0.85)', flexShrink: 0 }}>⚙︎</div>
-                <div style={{ fontFamily: 'var(--font-display)', fontSize: 14, color: 'var(--text)', lineHeight: 1.4 }}>
+                <div style={{ fontSize: 25, lineHeight: 1, color: 'var(--gold)', flexShrink: 0 }}>⚙︎</div>
+                <div style={{ fontFamily: 'var(--font-display)', fontSize: 17, color: 'var(--text)', lineHeight: 1.4 }}>
                   {dash.hasNewWO
-                    ? <><span style={{ color: 'rgba(207,221,78,0.7)', WebkitTextStroke: '0.4px rgba(0,0,0,0.5)' }}>New</span> work order!</>
+                    ? <><span style={{ color: 'var(--gold)', WebkitTextStroke: '0.4px rgba(0,0,0,0.5)' }}>New</span> work order!</>
                     : dash.hasUpdatedWO ? <>Status <strong>updated</strong></>
                     : dash.recentWO ? dash.recentWO.status : 'None active'}
                 </div>
@@ -225,8 +225,8 @@ export default function MobileDashboard({
               style={{ '--tc': 'var(--tile-invoice)', minHeight: 110, flexDirection: 'row', alignItems: 'center', gap: 14, padding: '16px 14px' } as React.CSSProperties}
               onClick={() => onOpenPanel('invoices')}
             >
-              <div style={{ fontFamily: 'var(--font-display)', fontSize: 13, color: 'var(--text)', flex: 1 }}>Invoices</div>
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 38, fontWeight: 700, lineHeight: 1, color: 'rgba(90,90,90,0.6)', WebkitTextStroke: '1.5px rgba(207,221,78,0.7)' }}>
+              <div style={{ fontFamily: 'var(--font-display)', fontSize: 21, color: 'var(--text-muted)', flex: 1 }}>Invoices</div>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 38, fontWeight: 700, lineHeight: 1, color: 'var(--text-muted)', WebkitTextStroke: '1.5px var(--gold)' }}>
                 {invoices.length}
               </div>
               <div className="t-arrow">→</div>
@@ -239,16 +239,16 @@ export default function MobileDashboard({
             style={{ '--tc': 'var(--tile-feasib)', minHeight: 'auto', padding: '16px 16px', flexDirection: 'column', gap: 12 } as React.CSSProperties}
             onClick={() => onOpenPanel(recentWiz.length > 0 ? 'results' : 'wizard')}
           >
-            <div style={{ fontFamily: 'var(--font-mono)', fontSize: 7.5, letterSpacing: '0.22em', textTransform: 'uppercase', color: 'var(--text-muted)' }}>
+            <div style={{ fontFamily: 'var(--font-mono)', fontSize: 21, letterSpacing: '0.22em', textTransform: 'uppercase', color: 'var(--text-muted)' }}>
               Recent Wizard Results
             </div>
 
             {recentWiz.length === 0 ? (
               <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-                <div style={{ fontSize: 22, color: 'rgba(255,255,255,0.35)', flexShrink: 0 }}>◇</div>
+                <div style={{ fontSize: 27, color: 'var(--text)', flexShrink: 0 }}>◇</div>
                 <div>
-                  <div style={{ fontFamily: 'var(--font-display)', fontSize: 13, color: 'var(--text)' }}>No results yet</div>
-                  <div style={{ fontFamily: 'var(--font-ui)', fontSize: 10, color: 'var(--text-muted)' }}>Take the cut feasibility wizard</div>
+                  <div style={{ fontFamily: 'var(--font-display)', fontSize: 21, color: 'var(--text)' }}>No results yet</div>
+                  <div style={{ fontFamily: 'var(--font-ui)', fontSize: 21, color: 'var(--text-muted)' }}>Take the cut feasibility wizard</div>
                 </div>
               </div>
             ) : (
@@ -269,13 +269,13 @@ export default function MobileDashboard({
                         <circle cx="18" cy="18" r="14" fill="none" stroke={color} strokeWidth="2"
                           strokeDasharray={circ} strokeDashoffset={offset} strokeLinecap="round" transform="rotate(-90 18 18)" />
                       </svg>
-                      <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'var(--font-mono)', fontSize: 9, fontWeight: 700, color }}>
+                      <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'var(--font-mono)', fontSize: 15, fontWeight: 700, color }}>
                         {pct}
                       </div>
                     </div>
                     <div style={{ flex: 1 }}>
-                      <div style={{ fontFamily: 'var(--font-display)', fontSize: 13, color: 'var(--text)' }}>{r.recommendation || 'See result'}</div>
-                      <div style={{ fontFamily: 'var(--font-ui)', fontSize: 10, color: 'var(--text-muted)' }}>{stone}{date ? ` · ${date}` : ''}</div>
+                      <div style={{ fontFamily: 'var(--font-display)', fontSize: 21, color: 'var(--text)' }}>{r.recommendation || 'See result'}</div>
+                      <div style={{ fontFamily: 'var(--font-ui)', fontSize: 21, color: 'var(--text-muted)' }}>{stone}{date ? ` · ${date}` : ''}</div>
                     </div>
                   </div>
                 )
@@ -292,8 +292,8 @@ export default function MobileDashboard({
               onClick={() => onOpenPanel('inquiries')}
             >
               <div style={{ display: 'flex', alignItems: 'center', gap: 10, flex: 1 }}>
-                <div style={{ fontSize: 22, lineHeight: 1, color: 'rgba(255,255,255,0.35)', flexShrink: 0 }}>◈</div>
-                <div style={{ fontFamily: 'var(--font-display)', fontSize: 14, color: 'var(--text)' }}>Inquiries</div>
+                <div style={{ fontSize: 22, lineHeight: 1, color: 'var(--text-muted)', flexShrink: 0 }}>◈</div>
+                <div style={{ fontFamily: 'var(--font-display)', fontSize: 21, color: 'var(--text)' }}>Inquiries</div>
               </div>
               <div className="t-arrow">→</div>
             </div>
@@ -305,8 +305,8 @@ export default function MobileDashboard({
             >
               <div style={{ flex: 1 }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-                  <div style={{ fontSize: 22, lineHeight: 1, color: 'rgba(255,255,255,0.35)', flexShrink: 0 }}>◉</div>
-                  <div style={{ fontFamily: 'var(--font-display)', fontSize: 14, color: 'var(--text)' }}>SMS Alerts</div>
+                  <div style={{ fontSize: 22, lineHeight: 1, color: 'var(--text-muted)', flexShrink: 0 }}>◉</div>
+                  <div style={{ fontFamily: 'var(--font-display)', fontSize: 21, color: 'var(--text)' }}>SMS Alerts</div>
                 </div>
               </div>
               <div className="sms-dots" style={{ marginTop: 6 }}>
@@ -325,8 +325,8 @@ export default function MobileDashboard({
             onClick={() => onOpenPanel('servicerequests')}
           >
             <div style={{ flex: 1 }}>
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 8, letterSpacing: '0.22em', textTransform: 'uppercase', color: 'var(--text-muted)', marginBottom: 4 }}>Service Requests</div>
-              <div style={{ fontFamily: 'var(--font-ui)', fontSize: 11, color: 'var(--text-muted)', lineHeight: 1.4 }}>Submitted over your account history</div>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 21, letterSpacing: '0.22em', textTransform: 'uppercase', color: 'var(--text-muted)', marginBottom: 4 }}>Service Requests</div>
+              <div style={{ fontFamily: 'var(--font-ui)', fontSize: 21, color: 'var(--text-muted)', lineHeight: 1.4 }}>Submitted over your account history</div>
             </div>
             <div style={{ fontFamily: 'var(--font-mono)', fontSize: 48, fontWeight: 700, color: 'var(--text)', letterSpacing: '-0.02em', lineHeight: 1, opacity: 0.15 }}>
               {serviceRequests.length}
@@ -340,9 +340,9 @@ export default function MobileDashboard({
             style={{ '--tc': '#888', minHeight: 0, padding: '13px 17px', flexDirection: 'row', alignItems: 'center', gap: 14 } as React.CSSProperties}
             onClick={() => onOpenPanel('profile')}
           >
-            <div style={{ fontSize: 24, flexShrink: 0, lineHeight: 1 }}>⚙︎</div>
+            <div style={{ fontSize: 27, flexShrink: 0, lineHeight: 1 }}>⚙︎</div>
             <div style={{ flex: 1 }}>
-              <div style={{ fontFamily: 'var(--font-display)', fontSize: 14, color: 'var(--text)' }}>Profile</div>
+              <div style={{ fontFamily: 'var(--font-display)', fontSize: 21, color: 'var(--text)' }}>Profile</div>
             </div>
             <div className="t-arrow">→</div>
           </div>
@@ -361,7 +361,7 @@ export default function MobileDashboard({
               onTap={() => tapShopThumb(p)} onHeart={e => toggleHeart(e, p.product_id)} />
           ))}
           {Array.from(hearted).length === 0 && (
-            <div style={{ gridColumn: '1/-1', fontFamily: 'var(--font-ui)', fontSize: 12, color: 'var(--text-muted)', textAlign: 'center', padding: '20px 0', fontStyle: 'italic', opacity: 0.7 }}>
+            <div style={{ gridColumn: '1/-1', fontFamily: 'var(--font-ui)', fontSize: 21, color: 'var(--text-muted)', textAlign: 'center', padding: '20px 0', fontStyle: 'italic', opacity: 0.7 }}>
               No saved items yet. Heart a gem from the shop.
             </div>
           )}
