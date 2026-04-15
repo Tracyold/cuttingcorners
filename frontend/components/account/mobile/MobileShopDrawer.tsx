@@ -137,32 +137,32 @@ export default function MobileShopDrawer({ isOpen, onClose, item, session }: Pro
         .shop-drawer-handle:active{cursor:grabbing}
         .shop-drawer-body{flex:1;background:var(--bg);display:flex;flex-direction:column;overflow:hidden}
         .shop-drawer-topbar{display:flex;align-items:center;justify-content:space-between;padding:13px 16px;border-bottom:0.5px solid var(--border);flex-shrink:0}
-        .shop-drawer-title{font-family:var(--font-mono);font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:var(--text-muted)}
+        .shop-drawer-title{font-family:var(--font-mono);font-size:15px;letter-spacing:0.22em;text-transform:uppercase;color:var(--text-muted)}
         .shop-drawer-close{background:none;border:0.5px solid var(--border);color:var(--text-muted);width:30px;height:30px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:14px;border-radius:50%;transition:all 160ms ease}
         .shop-drawer-close:hover{border-color:var(--text);color:var(--text)}
         .shop-drawer-content{flex:1;overflow-y:auto;padding:20px 18px}
-        .shop-img-full{width:100%;aspect-ratio:4/3;object-fit:cover;background:var(--bg-card);display:flex;align-items:center;justify-content:center;font-size:80px;margin-bottom:18px}
+        .shop-img-full{width:100%;aspect-ratio:4/3;object-fit:cover;background:var(--bg-card);display:flex;align-items:center;justify-content:center;font-size:110px;margin-bottom:18px}
         .shop-spec-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:7px}
-        .shop-spec-label{font-family:var(--font-ui);font-size:9px;text-transform:uppercase;letter-spacing:0.18em;color:var(--text-muted)}
-        .shop-spec-value{font-family:var(--font-body);font-size:12px;color:var(--text)}
+        .shop-spec-label{font-family:var(--font-ui);font-size:13px;text-transform:uppercase;letter-spacing:0.18em;color:var(--text-muted)}
+        .shop-spec-value{font-family:var(--font-body);font-size:14px;color:var(--text)}
         .shop-btn-row{display:flex;gap:10px;padding:14px 18px;border-top:0.5px solid var(--border);flex-shrink:0}
-        .shop-btn-buy{flex:1;background:var(--gold);color:var(--bg-deep);border:none;padding:13px;font-family:var(--font-mono);font-size:10px;letter-spacing:0.2em;text-transform:uppercase;cursor:pointer;transition:opacity 180ms ease}
+        .shop-btn-buy{flex:1;background:var(--gold);color:var(--bg-deep);border:none;padding:13px;font-family:var(--font-mono);font-size:15px;letter-spacing:0.2em;text-transform:uppercase;cursor:pointer;transition:opacity 180ms ease}
         .shop-btn-buy:hover{opacity:0.85}
-        .shop-btn-inq{flex:1;background:transparent;color:var(--text-muted);border:0.5px solid var(--border);padding:13px;font-family:var(--font-mono);font-size:10px;letter-spacing:0.2em;text-transform:uppercase;cursor:pointer;transition:all 180ms ease}
+        .shop-btn-inq{flex:1;background:transparent;color:var(--text-muted);border:0.5px solid var(--border);padding:13px;font-family:var(--font-mono);font-size:15px;letter-spacing:0.2em;text-transform:uppercase;cursor:pointer;transition:all 180ms ease}
         .shop-btn-inq:hover{border-color:var(--text);color:var(--text)}
         .shop-inq-form{display:flex;flex-direction:column;gap:10px;padding:14px 18px;border-top:0.5px solid var(--border);background:var(--bg-card);flex-shrink:0}
         .shop-inq-textarea{width:100%;background:var(--bg);border:0.5px solid var(--bdr2);color:var(--text);font-family:var(--font-ui);font-size:14px;padding:10px 12px;outline:none;resize:none;line-height:1.6;border-radius:4px;transition:border-color 150ms ease}
         .shop-inq-textarea:focus{border-color:var(--gold)}
         .shop-inq-actions{display:flex;justify-content:space-between;align-items:center}
-        .shop-inq-cancel{background:none;border:none;font-family:var(--font-mono);font-size:9px;letter-spacing:0.16em;text-transform:uppercase;color:var(--text-muted);cursor:pointer;padding:0}
-        .shop-inq-send{background:var(--gold);color:var(--bg-deep);border:none;padding:9px 18px;font-family:var(--font-mono);font-size:9px;letter-spacing:0.18em;text-transform:uppercase;cursor:pointer;transition:opacity 180ms ease}
+        .shop-inq-cancel{background:none;border:none;font-family:var(--font-mono);font-size:13px;letter-spacing:0.16em;text-transform:uppercase;color:var(--text-muted);cursor:pointer;padding:0}
+        .shop-inq-send{background:var(--gold);color:var(--bg-deep);border:none;padding:9px 18px;font-family:var(--font-mono);font-size:13px;letter-spacing:0.18em;text-transform:uppercase;cursor:pointer;transition:opacity 180ms ease}
         .shop-inq-send:hover{opacity:0.85}
         .shop-inq-success{display:flex;align-items:center;gap:8px;padding:14px 18px;border-top:0.5px solid var(--border);background:var(--bg-card);flex-shrink:0}
-        .shop-inq-success-text{font-family:var(--font-ui);font-size:13px;color:#4ec994}
+        .shop-inq-success-text{font-family:var(--font-ui);font-size:17px;color:#4ec994}
         .slide-tip{position:fixed;left:0;top:50%;transform:translateY(-50%) translateX(-100%);z-index:600;display:flex;align-items:center;gap:10px;background:rgba(26,26,27,0.5);border:0.5px solid rgba(255,255,255,0.08);border-left:none;border-radius:0 8px 8px 0;padding:10px 14px 10px 12px;opacity:0;pointer-events:none;transition:opacity 300ms ease,transform 300ms ease;box-shadow:3px 0 10px rgba(0,0,0,0.35);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
         .slide-tip.show{opacity:1;transform:translateY(-50%) translateX(0);pointer-events:all}
         .slide-tip-arrow{font-size:22px;color:var(--gold);animation:slideHint 1.2s ease-in-out infinite}
-        .slide-tip-label{font-family:var(--font-mono);font-size:9px;letter-spacing:0.22em;text-transform:uppercase;color:var(--text-muted)}
+        .slide-tip-label{font-family:var(--font-mono);font-size:13px;letter-spacing:0.22em;text-transform:uppercase;color:var(--text-muted)}
         @keyframes slideHint{0%,100%{transform:translateX(0)}50%{transform:translateX(6px)}}
       `}</style>
 
