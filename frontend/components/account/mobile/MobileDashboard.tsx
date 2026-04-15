@@ -159,7 +159,7 @@ export default function MobileDashboard({
         .heart-icon{font-size:31px;line-height:1;color:rgba(255,255,255,0.5);transition:color 80ms ease;user-select:none}
         .heart-btn.hearted .heart-icon{color:var(--gold)}
         .sms-dots{display:flex;gap:4px;margin-top:10px;flex-wrap:wrap}
-        .sms-dot{width:8px;height:8px;border-radius:50%;background:var(--bdr2);transition:background 200ms ease}
+        .sms-dot{width:11px;height:11px;border-radius:50%;background:var(--bdr2);transition:background 200ms ease}
         .sms-dot.on{background:var(--gold)}
       `}</style>
 
