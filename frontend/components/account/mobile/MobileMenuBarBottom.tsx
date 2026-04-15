@@ -18,8 +18,8 @@ export default function MobileMenuBarBottom({
     <>
       <style>{`
         .tab-bar{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:100%;background:var(--bg-deep);border-top:0.5px solid var(--bdr2);display:flex;justify-content:space-around;align-items:center;padding:10px 0 calc(20px + env(safe-area-inset-bottom));z-index:110}        .tab{display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer;padding:2px 14px;position:relative}
-        .tab-icon{font-size:17px;opacity:0.45;transition:all 180ms ease}
-        .tab-lbl{font-family:var(--font-mono);font-size:7.5px;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-muted);transition:all 180ms ease}
+        .tab-icon{font-size:21px;opacity:0.45;transition:all 180ms ease}
+        .tab-lbl{font-family:var(--font-mono);font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-muted);transition:all 180ms ease}
         .tab.active .tab-icon{opacity:1}
         .tab.active .tab-lbl{color:var(--gold)}
         .tab-dot{position:absolute;top:0;right:8px;width:5px;height:5px;border-radius:50%;background:var(--gold)}
