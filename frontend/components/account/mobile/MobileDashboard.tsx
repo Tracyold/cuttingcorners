@@ -337,7 +337,7 @@ export default function MobileDashboard({
           {/* Profile */}
           <div
             className="tile dim"
-            style={{ '--tc': '#888', minHeight: 0, padding: '13px 17px', flexDirection: 'row', alignItems: 'center', gap: 14 } as React.CSSProperties}
+            style={{ '--tc': 'var(--text-muted)', minHeight: 0, padding: '13px 17px', flexDirection: 'row', alignItems: 'center', gap: 14 } as React.CSSProperties}
             onClick={() => onOpenPanel('profile')}
           >
             <div style={{ fontSize: 27, flexShrink: 0, lineHeight: 1 }}>⚙︎</div>
