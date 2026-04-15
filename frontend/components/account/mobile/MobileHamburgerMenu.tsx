@@ -30,8 +30,8 @@ export default function MobileHamburgerMenu({ isOpen, onClose, onNavigate, activ
         .menu-drawer.open{transform:translateY(0)}
         .menu-drawer-handle{width:36px;height:4px;border-radius:2px;background:var(--bdr2);margin:12px auto 0}
         .menu-drawer-head{display:flex;align-items:center;justify-content:space-between;padding:16px 20px 10px}
-        .menu-drawer-title{font-family:var(--font-mono);font-size:9px;letter-spacing:0.28em;text-transform:uppercase;color:var(--text-muted)}
-        .menu-drawer-close{background:none;border:0.5px solid var(--bdr2);color:var(--text-muted);width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:13px;transition:all 160ms ease}
+        .menu-drawer-title{font-family:var(--font-mono);font-size:13px;letter-spacing:0.28em;text-transform:uppercase;color:var(--text-muted)}
+        .menu-drawer-close{background:none;border:0.5px solid var(--bdr2);color:var(--text-muted);width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:17px;transition:all 160ms ease}
         .menu-drawer-close:hover{border-color:var(--text);color:var(--text)}
         .menu-items{padding:4px 0 8px}
         .menu-item{display:flex;align-items:center;gap:16px;padding:16px 22px;cursor:pointer;transition:background 160ms ease;border-bottom:0.5px solid var(--bdr2)}
@@ -39,7 +39,7 @@ export default function MobileHamburgerMenu({ isOpen, onClose, onNavigate, activ
         .menu-item:hover{background:rgba(255,255,255,0.03)}
         .menu-item-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
         .menu-item-label{font-family:var(--font-display);font-size:20px;color:var(--text);letter-spacing:0.02em;flex:1}
-        .menu-item-arrow{font-size:12px;color:var(--text-muted);opacity:0.35}
+        .menu-item-arrow{font-size:15px;color:var(--text-muted);opacity:0.35}
       `}</style>
 
       <div className={`menu-overlay ${isOpen ? 'open' : ''}`} onClick={onClose} />
