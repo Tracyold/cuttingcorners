@@ -115,7 +115,7 @@ export default function MobileDashboard({
         .feed{padding:22px 14px 120px;display:flex;flex-direction:column;gap:0}
         .welcome{padding:0 2px 22px;border-bottom:0.5px solid var(--bdr2);margin-bottom:22px}
         .welcome-name{font-family:var(--font-sig);font-size:32px;font-style:italic;color:var(--text);line-height:1.15;margin-bottom:5px}
-        .welcome-meta{font-family:var(--font-mono);font-size:9px;letter-spacing:0.26em;text-transform:uppercase;color:var(--text-muted)}
+        .welcome-meta{font-family:var(--font-mono);font-size:12px;letter-spacing:0.26em;text-transform:uppercase;color:var(--text-muted)}
         .welcome-meta span{color:var(--gold)}
         .tile{background:var(--bg-card);border:0.5px solid var(--bdr2);padding:18px 16px;cursor:pointer;position:relative;overflow:hidden;transition:border-color 280ms ease,transform 200ms ease;display:flex;flex-direction:column;min-height:140px;-webkit-tap-highlight-color:transparent}
         .tile::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:rgba(255,255,255,0.15);opacity:0;transition:opacity 300ms ease}
@@ -130,30 +130,30 @@ export default function MobileDashboard({
         .t-badge{display:none;position:absolute;top:10px;right:10px;width:8px;height:8px;border-radius:50%;background:rgba(248,113,113,0.5)}
         .tile.lit .t-badge{display:inline-flex}
         .t-icon{font-size:28px;margin-bottom:10px;line-height:1}
-        .t-label{font-family:var(--font-mono);font-size:8.5px;letter-spacing:0.24em;text-transform:uppercase;color:var(--text-muted);margin-bottom:5px}
-        .t-main{font-family:var(--font-display);font-size:16px;line-height:1.3;color:var(--text);font-weight:400;letter-spacing:0.02em;transition:color 280ms ease}
-        .t-sub{font-family:var(--font-ui);font-size:10.5px;color:var(--text-muted);margin-top:5px;line-height:1.5;letter-spacing:0.03em}
-        .t-arrow{position:absolute;bottom:11px;right:13px;font-size:11px;color:var(--text-muted);opacity:0.3;transition:all 180ms ease}
+        .t-label{font-family:var(--font-mono);font-size:11.5px;letter-spacing:0.24em;text-transform:uppercase;color:var(--text-muted);margin-bottom:5px}
+        .t-main{font-family:var(--font-display);font-size:19px;line-height:1.3;color:var(--text);font-weight:400;letter-spacing:0.02em;transition:color 280ms ease}
+        .t-sub{font-family:var(--font-ui);font-size:13.5px;color:var(--text-muted);margin-top:5px;line-height:1.5;letter-spacing:0.03em}
+        .t-arrow{position:absolute;bottom:11px;right:13px;font-size:14px;color:var(--text-muted);opacity:0.3;transition:all 180ms ease}
         .tile:hover .t-arrow{opacity:0.75;transform:translateX(2px)}
         .tile.lit .t-arrow{color:var(--text-muted);opacity:0.6}
         .feed-block{display:flex;flex-direction:column;gap:8px;margin-bottom:8px}
         .fdiv{display:flex;align-items:center;gap:12px;padding:28px 2px 22px}
         .fdiv-line{flex:1;height:0.5px;background:var(--bdr2)}
-        .fdiv-lbl{font-family:var(--font-mono);font-size:8.5px;letter-spacing:0.26em;text-transform:uppercase;color:var(--text-muted);white-space:nowrap;opacity:0.6}
+        .fdiv-lbl{font-family:var(--font-mono);font-size:11.5px;letter-spacing:0.26em;text-transform:uppercase;color:var(--text-muted);white-space:nowrap;opacity:0.6}
         .cycle-sep{display:flex;align-items:center;gap:14px;padding:36px 2px 30px}
         .cycle-sep-line{flex:1;height:0.5px;background:var(--bdr2)}
-        .cycle-sep-dots{font-family:var(--font-mono);font-size:8px;letter-spacing:0.32em;color:var(--text-muted);opacity:0.38;white-space:nowrap}
+        .cycle-sep-dots{font-family:var(--font-mono);font-size:11px;letter-spacing:0.32em;color:var(--text-muted);opacity:0.38;white-space:nowrap}
         .shop-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
         .shop-thumb{background:var(--bg-card);border:0.5px solid var(--bdr2);position:relative;overflow:hidden;cursor:pointer;transition:all 240ms ease;aspect-ratio:3/4;display:flex;flex-direction:column}
         .shop-thumb:hover{transform:translateY(-2px)}
         .shop-img{flex:1;display:flex;align-items:center;justify-content:center;font-size:40px;background:var(--bg-deep)}
         .shop-info{padding:10px 11px 9px;border-top:0.5px solid var(--bdr2)}
-        .shop-name{font-family:var(--font-display);font-size:12px;color:var(--text);letter-spacing:0.03em;margin-bottom:2px}
+        .shop-name{font-family:var(--font-display);font-size:15px;color:var(--text);letter-spacing:0.03em;margin-bottom:2px}
         .inv-overlay{position:absolute;inset:0;background:color-mix(in srgb,var(--gold) 55%,rgba(0,0,0,0.2));display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:0;transition:opacity 220ms ease;padding:12px}
         .shop-thumb.tapped .inv-overlay{opacity:1}
-        .inv-price{font-family:var(--font-mono);font-size:18px;font-weight:700;color:#fff;margin-bottom:4px}
-        .inv-date{font-family:var(--font-ui);font-size:10px;letter-spacing:0.1em;color:rgba(255,255,255,0.7)}
-        .inv-tap-hint{font-family:var(--font-ui);font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.5);margin-top:10px}
+        .inv-price{font-family:var(--font-mono);font-size:21px;font-weight:700;color:#fff;margin-bottom:4px}
+        .inv-date{font-family:var(--font-ui);font-size:13px;letter-spacing:0.1em;color:rgba(255,255,255,0.7)}
+        .inv-tap-hint{font-family:var(--font-ui);font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.5);margin-top:10px}
         .heart-btn{position:absolute;top:6px;right:7px;background:none;border:none;cursor:pointer;z-index:10;padding:0;-webkit-tap-highlight-color:transparent;display:flex;align-items:center;justify-content:center;outline:none;transition:transform 200ms ease}
         .heart-btn:active{transform:scale(1.2)}
         .heart-icon{font-size:22px;line-height:1;color:rgba(255,255,255,0.5);transition:color 80ms ease;user-select:none}

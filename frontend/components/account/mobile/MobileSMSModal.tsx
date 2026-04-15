@@ -134,15 +134,15 @@ export default function MobileSMSModal({
         .sms-modal.open{transform:translateY(0)}
         .sms-handle{width:36px;height:4px;border-radius:2px;background:var(--bdr2);margin:12px auto 0}
         .sms-mhead{display:flex;align-items:center;justify-content:space-between;padding:16px 20px 12px;border-bottom:0.5px solid var(--bdr2)}
-        .sms-mtitle{font-family:var(--font-mono);font-size:10px;letter-spacing:0.24em;text-transform:uppercase;color:var(--text-muted)}
-        .sms-mclose{background:none;border:none;color:var(--text-muted);font-size:16px;cursor:pointer;padding:2px 6px}
+        .sms-mtitle{font-family:var(--font-mono);font-size:13px;letter-spacing:0.24em;text-transform:uppercase;color:var(--text-muted)}
+        .sms-mclose{background:none;border:none;color:var(--text-muted);font-size:19px;cursor:pointer;padding:2px 6px}
         .sms-row{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:16px 20px;border-bottom:0.5px solid var(--bdr2);cursor:pointer;transition:background 160ms ease}
         .sms-row:hover{background:rgba(255,255,255,0.025)}
         .sms-row:last-of-type{border-bottom:none}
-        .sms-lbl{font-family:var(--font-ui);font-size:13px;font-weight:500;color:var(--text);letter-spacing:0.02em;margin-bottom:3px;transition:color 200ms ease}
+        .sms-lbl{font-family:var(--font-ui);font-size:15px;font-weight:500;color:var(--text);letter-spacing:0.02em;margin-bottom:3px;transition:color 200ms ease}
         .sms-lbl.on{color:var(--gold)}
-        .sms-desc{font-family:var(--font-ui);font-size:11px;color:var(--text-muted);line-height:1.45}
-        .sms-note{font-family:var(--font-ui);font-size:10px;color:var(--text-muted);padding:14px 20px 0;line-height:1.65;opacity:0.7}
+        .sms-desc{font-family:var(--font-ui);font-size:13px;color:var(--text-muted);line-height:1.45}
+        .sms-note{font-family:var(--font-ui);font-size:13px;color:var(--text-muted);padding:14px 20px 0;line-height:1.65;opacity:0.7}
         .pill{width:44px;height:24px;border-radius:999px;border:none;cursor:pointer;position:relative;flex-shrink:0;transition:background 200ms ease;outline:none}
         .pill.on{background:var(--gold)}
         .pill.off{background:var(--bdr2)}
