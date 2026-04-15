@@ -13,7 +13,7 @@ import ChatPanel from '../components/account/ChatPanel';
 import TopNav from '../components/shared/TopNav';
 
 // ── Mobile orchestrator ────────────────────────────────────────────────────
-import MobileAccount from '../components/account/mobile/MobileAccount';
+import MobileAccount from '../components/account/mobile.bak/MobileAccount';
 import { useIsMobile } from '../components/account/shared/hooks/useIsMobile';
 
 export default function AccountPage() {
