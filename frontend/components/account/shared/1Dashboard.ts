@@ -59,17 +59,17 @@ export interface ScoreRingValues {
 export const TILE_COLORS: TileColors = {
   chat:    'var(--tile-chat,    #cfdd4e)',
   orders:  'var(--tile-orders,  #6ab0f5)',
-  invoice: 'var(--tile-invoice, #c084fc)',
+  invoice: 'var(--tile-invoice, #86fc84)',
   feasib:  'var(--tile-feasib,  #4ec994)',
-  sms:     'var(--tile-sms,     #fb923c)',
-  est:     'var(--tile-est,     #e879f9)',
+  sms:     'var(--tile-sms,     #fbc23c)',
+  est:     'var(--tile-est,     #a679f9)',
 }
 
 export const BAND_COLORS: Record<string, string> = {
-  '80-100': '#a3c4a8',
+  '80-100': '#59efd8',
   '60-79':  '#38bdf8',
   '40-59':  '#a3e635',
-  '18-39':  '#94a3b8',
+  '18-39':  '#6ce7e1',
   '0-17':   '#f87171',
 }
 
