@@ -157,7 +157,7 @@ button, [role="button"] { touch-action: manipulation; }
   display: flex; align-items: center; gap: 0.75rem;
   padding: clamp(0.7rem, 3vw, 0.875rem) clamp(1rem, 4.5vw, 1.125rem);
   cursor: pointer; border-left: 7% solid transparent;
-  transition: all 340ms ease-in-out;
+  transition: transform 340ms ease;
 }
 .dr-item:hover { background: var(--bg-deep); }
 .dr-item.active { border-left-color: var(--gold); }
@@ -189,7 +189,7 @@ button, [role="button"] { touch-action: manipulation; }
 }
 .dr-foot-btn { background: none; border: none; padding: 0; text-align: left; transition: color 160ms ease; }
 .dr-foot-btn:hover { color: #f87171; }
-.dr-exit { text-decoration: none; display: block; transition: color 160ms ease; }
+.dr-exit { text-decoration: none; display: block; transition: color 240ms ease; }
 .dr-exit:hover { color: var(--text); }
 
 /* ── FEED ── */
@@ -228,7 +228,7 @@ button, [role="button"] { touch-action: manipulation; }
 }
 .tile::before {
   content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
-  background: rgba(255,255,255,0.15); opacity: 0; transition: opacity 300ms ease;
+  background: var(--bg-card); opacity: 1; transition: opacity 300ms ease;
 }
 .tile.lit::before { opacity: 1; }
 .tile.lit { border-color: rgba(255,255,255,0.22); }
@@ -454,14 +454,14 @@ button, [role="button"] { touch-action: manipulation; }
 
 /* ── MENU DRAWER ── */
 .menu-overlay {
-  position: fixed; inset: 0; background: rgba(0,0,0,0.55);
-  z-index: 400; opacity: 0; pointer-events: none; transition: opacity 280ms ease;
+  position: fixed; inset: 0; background: var(--gold);
+  z-index: 400; opacity: 0; pointer-events: none; transition: transform 340ms ease;
 }
 .menu-overlay.open { opacity: 1; pointer-events: all; }
 .menu-drawer {
   position: fixed; bottom: 0; left: 0; right: 0;
-  max-width: 430px; margin: 0 auto;
-  background: var(--bg-deep); border-top: 0.5px solid var(--bdr2);
+  max-width: 80%; margin: 0 auto;
+  background: var(--gold); border-top: 0.5px solid var(--bdr2);
   border-radius: 0.75rem 0.75rem 0 0; z-index: 401;
   transform: translateY(100%);
   transition: transform 360ms cubic-bezier(0.16,1,0.3,1);
@@ -480,14 +480,14 @@ button, [role="button"] { touch-action: manipulation; }
 }
 .menu-drawer-title {
   font-family: var(--font-mono);
-  font-size: clamp(8px, 2.1vw, 9px);
+  font-size: clamp(9px, 2.1vw, 15px);
   letter-spacing: 0.28em; text-transform: uppercase; color: var(--text-muted);
 }
 .menu-drawer-close {
   background: none; border: 0.5px solid var(--bdr2); color: var(--text-muted);
-  width: clamp(24px, 6.5vw, 30px); height: clamp(24px, 6.5vw, 30px);
+  width: clamp(24px, 6.5vw, 30px); height: clamp(15px, 6.5vw, 17px);
   border-radius: 50%; display: flex; align-items: center; justify-content: center;
-  cursor: pointer; font-size: clamp(11px, 3vw, 13px);
+  cursor: pointer; font-size: clamp(4px, 3vw, 3px);
 }
 .menu-items { padding: 0.25rem 0 0.5rem; }
 .menu-item {
