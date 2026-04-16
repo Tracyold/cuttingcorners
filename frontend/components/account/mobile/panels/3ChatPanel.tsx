@@ -64,7 +64,7 @@ export default function ChatPanel3({
       <div className="chat-msgs">
         {messages.length === 0 && (
           <p style={{
-            fontFamily: 'var(--font-ui)', fontStyle: 'italic', fontSize: 14,
+            fontFamily: 'var(--font-ui)', fontStyle: 'italic', fontSize: 17,
             color: 'var(--text-muted)', textAlign: 'center', margin: 'auto', opacity: 0.6,
           }}>
             No messages yet -- say hello!
