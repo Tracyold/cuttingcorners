@@ -354,3 +354,7 @@ button,[role="button"] { touch-action:manipulation; }
   to{opacity:1;transform:translateY(0)}
 }
 
+/* FIX 5: Ensure right drawers capture touch events for swipe-to-close */
+.wo-drawer, .inv-drawer, .sr-drawer, .res-drawer {
+  touch-action: pan-y;
+}

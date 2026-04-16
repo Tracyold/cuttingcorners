@@ -162,12 +162,16 @@ export default function WizardResultDrawer3({
         className={`res-drawer${open ? ' open' : ''}`}
       >
         {/* res-handle: left drag zone -- touch to swipe-close */}
-        <div
-          className="res-handle"
-          onTouchStart={onTouchStart}
+         <div
+          ref={drawerRef}
+          className={`wo-drawer${open ? ' open' : ''}`}
+          onTouchStart={onTouchStart}    // ← whole drawer responds to swipe
           onTouchMove={onTouchMove}
           onTouchEnd={onTouchEnd}
-        />
+        >
+        <div className="wo-handle" />  {/* just visual, no events */}
+        <div className="wo-body">...</div>
+        </div>
 
         {/* res-body: the main content area */}
         <div className="res-body">
