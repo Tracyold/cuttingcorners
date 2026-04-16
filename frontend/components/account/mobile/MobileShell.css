@@ -454,8 +454,8 @@ button, [role="button"] { touch-action: manipulation; }
 
 /* ── MENU DRAWER ── */
 .menu-overlay {
-  position: fixed; inset: 0; background: var(--gold);
-  z-index: 400; opacity: 0; pointer-events: none; transition: transform 340ms ease;
+  position: fixed; inset: 0; background: transparent;
+  z-index: 400; opacity: 0; pointer-events: none; transition: opacity 340ms ease;
 }
 .menu-overlay.open { opacity: 1; pointer-events: all; }
 .menu-drawer {
