@@ -37,7 +37,7 @@ button,[role="button"] { touch-action:manipulation; }
   --bg-gradient:linear-gradient(187deg,#212223 3%,#1e1f21 16%,#202021 37%,#242425 58%,#202021 79%,#212223 100%);
   --tile-chat:#cfdd4e; --tile-orders:#6ab0f5; --tile-invoice:#c084fc;
   --tile-feasib:#4ec994; --tile-sms:#fb923c; --tile-est:#e879f9;
-  --bubble-them:rgba(168,172,173,0.8);
+  --bubble-them:rgba(60,60,60,0.12);
 }
 :root[data-theme="light"] {
   --bg:#ebebeb; --bg-card:#e0e0e0; --bg-deep:#d4d4d4;
@@ -132,8 +132,8 @@ button,[role="button"] { touch-action:manipulation; }
 .msg-wrap.me{align-items:flex-end}
 .msg-wrap.them{align-items:flex-start}
 .bubble{max-width:78%;padding:9px 13px;font-family:var(--font-ui);font-size:15px;line-height:1.5;word-break:break-word}
-.bubble.me{background:color-mix(in hsl,var(--gold) 40%,gray);border-radius:1.1em 1.1em 0.2em 1.1em;color:#2c1a0e}
-.bubble.them{background:var(--bubble-them);border-radius:1.1em 1.1em 1.1em 0.2em;color:#2c1a0e}
+.bubble.me{background:color-mix(in srgb,var(--gold) 55%,#3a3000);border-radius:1.1em 1.1em 0.2em 1.1em;color:#1a1200}
+.bubble.them{background:var(--bg-card);border:0.5px solid var(--bdr2);border-radius:1.1em 1.1em 1.1em 0.2em;color:var(--text)}
 .msg-time{font-family:var(--font-ui);font-size:10px;color:var(--text-muted);margin-top:3px;padding:0 3px}
 .date-divider{display:flex;align-items:center;gap:10px;margin:14px 0 10px}
 .date-divider-line{flex:1;height:0.5px;background:var(--bdr2)}
