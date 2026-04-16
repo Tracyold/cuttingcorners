@@ -80,12 +80,16 @@ export default function ServiceRequestDrawer3({ open, sr, onClose }: ServiceRequ
         className={`sr-drawer${open ? ' open' : ''}`}
       >
         {/* sr-drawer-handle: left drag zone */}
-        <div
-          className="sr-drawer-handle"
-          onTouchStart={onTouchStart}
+         <div
+          ref={drawerRef}
+          className={`wo-drawer${open ? ' open' : ''}`}
+          onTouchStart={onTouchStart}    // ← whole drawer responds to swipe
           onTouchMove={onTouchMove}
           onTouchEnd={onTouchEnd}
-        />
+        >
+        <div className="wo-handle" />  {/* just visual, no events */}
+        <div className="wo-body">...</div>
+        </div>
 
         {/* sr-drawer-body: main content */}
         <div className="sr-drawer-body">
