@@ -97,7 +97,7 @@ button, [role="button"] { touch-action: manipulation; }
 .icon-btn {
   background: transparent;
   border: 0.5px solid var(--bdr2);
-  color: var(--text-muted);
+  color: var(--text);
   width: clamp(30px, 8vw, 36px);
   height: clamp(30px, 8vw, 36px);
   display: flex;
@@ -105,13 +105,13 @@ button, [role="button"] { touch-action: manipulation; }
   justify-content: center;
   cursor: pointer;
   font-size: clamp(13px, 3vw, 15px);
-  transition: all 180ms ease;
+  transition: all 344ms ease;
   flex-shrink: 0;
 }
 .icon-btn.lg {
   width: clamp(36px, 10vw, 46px);
   height: clamp(36px, 10vw, 46px);
-  font-size: clamp(15px, 4vw, 19px);
+  font-size: clamp(17px, 4vw, 21px);
 }
 .icon-btn:hover { border-color: var(--gold); color: var(--gold); }
 
@@ -125,10 +125,10 @@ button, [role="button"] { touch-action: manipulation; }
 .overlay.open { opacity: 1; pointer-events: all; }
 .drawer {
   position: fixed; top: 0; right: 0;
-  width: 70%;
+  width: 75%;
   max-width: 100%;
   height: 95dvh;
-  background: var(--bg-deep);
+  background: var(--bg-gradient);
   border-left: 0.5px solid var(--bdr2);
   z-index: 201;
   transform: translateX(100%);
@@ -142,9 +142,9 @@ button, [role="button"] { touch-action: manipulation; }
   display: flex; align-items: center; justify-content: space-between;
 }
 .dr-name {
-  font-family: var(--font-display);
-  font-size: clamp(15px, 3.5vw, 17px);
-  letter-spacing: 0.04em;
+  font-family: var(--font-body);
+  font-size: clamp(15px, 3.5vw, 21px);
+  letter-spacing: 0.08em;
 }
 .dr-close {
   background: none; border: none;
@@ -218,7 +218,7 @@ button, [role="button"] { touch-action: manipulation; }
 /* ── TILES ── */
 .tile {
   background: var(--bg-card);
-  border: 0.5px solid var(--bdr2);
+  border: 0.5px solid var(--bg-deep);
   padding: clamp(0.875rem, 4vw, 1.25rem) clamp(0.75rem, 3.5vw, 1.125rem);
   cursor: pointer; position: relative; overflow: hidden;
   transition: border-color 280ms ease, transform 200ms ease;
@@ -353,7 +353,7 @@ button, [role="button"] { touch-action: manipulation; }
   position: fixed; left: 0; right: 0;
   max-width: 100%; margin: 0 auto;
   top: 0; bottom: clamp(56px, 13vw, 68px);
-  z-index: 105; background: var(--bg-gradient);
+  z-index: 105; background: var(--bg-deep);
   display: flex; flex-direction: column;
   transform: translateY(100%);
   transition: transform 423ms ease cubic-bezier(0.16,1,0.3,1);
