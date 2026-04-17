@@ -401,7 +401,7 @@ button, [role="button"] { touch-action: manipulation; }
   max-width: 78%;
   padding: clamp(0.5rem, 2.3vw, 0.75rem) clamp(0.625rem, 3vw, 0.9375rem);
   font-family: var(--font-ui);
-  font-size: clamp(17px, 4.5vw, 21px);
+  font-size: clamp(17px, 5vw, 25px);
   line-height: 1.5; word-break: break-word;
 }
 .bubble.me {
