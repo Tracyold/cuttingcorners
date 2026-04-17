@@ -108,9 +108,9 @@ const css = `
 }
 .tnav-burger:hover { border-color: var(--bg-border); }
 .tnav-burger .bar {
-  width: 100%;
+  width: 20px;
   height: 1px;
-  background: var(--bg-gradient);
+  background: var(--text);
   border-radius: 1.7px;
   transition: all 280ms ease;
   transform-origin: center;
