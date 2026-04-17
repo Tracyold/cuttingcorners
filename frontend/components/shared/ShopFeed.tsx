@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState, useRef } from 'react';
 import { getPhotoUrl } from '../account/shared/utils/photoUrl';
 import { ShopProduct, formatPrice, fetchAvailableProducts } from '../account/shared/1ShopList';
 
@@ -119,19 +119,61 @@ export default function SharedShopFeed({
   const [items, setItems] = useState<ShopProduct[]>([]);
   const [favorites, setFavorites] = useState<string[]>([]);
   const [loading, setLoading] = useState(true);
+  const [page, setPage] = useState(0);
+  const [hasMore, setHasMore] = useState(true);
+  const sentinelRef = useRef<HTMLDivElement>(null);
 
+  // Initial load
   useEffect(() => {
     let isMounted = true;
     async function load() {
-      const data = await fetchAvailableProducts();
+      const data = await fetchAvailableProducts(0, 12);
       if (isMounted) {
         setItems(data);
         setLoading(false);
+        if (data.length < 12) setHasMore(false);
       }
     }
     load();
     return () => { isMounted = false; };
   }, []);
+
+  // Endless scroll observer
+  useEffect(() => {
+    const sentinel = sentinelRef.current;
+    if (!sentinel || !hasMore || loading) return;
+
+    const observer = new IntersectionObserver(
+      entries => {
+        if (entries[0].isIntersecting) {
+          setPage(prev => prev + 1);
+        }
+      },
+      { rootMargin: '300px' }
+    );
+    observer.observe(sentinel);
+    return () => observer.disconnect();
+  }, [hasMore, loading]);
+
+  // Load more pages
+  useEffect(() => {
+    if (page === 0) return;
+    let isMounted = true;
+    async function loadMore() {
+      const data = await fetchAvailableProducts(page, 12);
+      if (isMounted) {
+        if (data.length < 12) setHasMore(false);
+        setItems(prev => {
+          // Filter out duplicates just in case
+          const existingIds = new Set(prev.map(p => p.product_id));
+          const newItems = data.filter(p => !existingIds.has(p.product_id));
+          return [...prev, ...newItems];
+        });
+      }
+    }
+    loadMore();
+    return () => { isMounted = false; };
+  }, [page]);
 
   const toggleFav = (id: string) => {
     setFavorites(prev => (prev.includes(id) ? prev.filter(f => f !== id) : [...prev, id]));
@@ -170,7 +212,7 @@ export default function SharedShopFeed({
         <div className="fdiv-line" />
       </div>
 
-      {loading ? (
+      {loading && items.length === 0 ? (
         <div
           style={{
             textAlign: 'center',
@@ -199,16 +241,29 @@ export default function SharedShopFeed({
           {emptyLabel}
         </div>
       ) : (
-        <div className="shop-grid">
-          {items.map(item => (
-            <ShopTile
-              key={item.product_id}
-              item={item}
-              isFav={favorites.includes(item.product_id)}
-              onFav={toggleFav}
-            />
-          ))}
-        </div>
+        <>
+          <div className="shop-grid">
+            {items.map(item => (
+              <ShopTile
+                key={item.product_id}
+                item={item}
+                isFav={favorites.includes(item.product_id)}
+                onFav={toggleFav}
+              />
+            ))}
+          </div>
+          {hasMore && (
+            <div ref={sentinelRef} style={{ height: 1, marginBottom: 8 }} />
+          )}
+          <div style={{
+            textAlign: 'center', padding: '16px 0 8px',
+            fontFamily: 'var(--font-mono)', fontSize: 9,
+            letterSpacing: '0.22em', textTransform: 'uppercase',
+            color: 'var(--text-muted)', opacity: 0.5,
+          }}>
+            · · ·
+          </div>
+        </>
       )}
     </>
   );
