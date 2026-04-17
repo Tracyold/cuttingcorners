@@ -4,16 +4,17 @@
 // Right-slide drawer. Uses wo-drawer, wo-handle, wo-body, wo-topbar,
 // wo-status-badge, wo-scroll, wo-content classes from MobileShell.css.
 //
-// The handle on the left edge is a drag zone -- swipe right to close.
+// The entire drawer responds to swipe right to close.
 //
 // HTML → JSX changes:
 //   class=      → className=
 //   onclick=    → onClick=
 //   style="..." → style={{ camelCase }}
 
-import { useState, useRef, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { supabase } from '../../../../lib/supabase';
 import { formatMoney, fmtDate, fmtTime } from '../../../../lib/utils';
+import { useSwipeToClose } from '../shared/hooks/useSwipeToClose';
 
 const STATUS_CLASS: Record<string, string> = {
   CREATED:   'wo-s-created',
@@ -46,31 +47,7 @@ export default function WorkOrderDrawer3({
   }, [wo?.work_order_id]);
 
   // ── Swipe to close ──
-  const startX  = useRef(0);
-  const dragging = useRef(false);
-  const drawerRef = useRef<HTMLDivElement>(null);
-
-  const onTouchStart = (e: React.TouchEvent) => {
-    startX.current  = e.touches[0].clientX;
-    dragging.current = false;
-    if (drawerRef.current) drawerRef.current.style.transition = 'none';
-  };
-  const onTouchMove = (e: React.TouchEvent) => {
-    const dx = e.touches[0].clientX - startX.current;
-    if (!dragging.current && Math.abs(dx) > 6) dragging.current = true;
-    if (dragging.current && dx > 0 && drawerRef.current) {
-      drawerRef.current.style.transform = `translateX(${dx}px)`;
-    }
-  };
-  const onTouchEnd = (e: React.TouchEvent) => {
-    if (drawerRef.current) {
-      drawerRef.current.style.transition = '';
-      drawerRef.current.style.transform  = '';
-    }
-    const dx = e.changedTouches[0].clientX - startX.current;
-    if (dragging.current && dx > 80) onClose();
-    dragging.current = false;
-  };
+  const { elementRef, touchHandlers } = useSwipeToClose({ onClose });
 
   const saveAddress = async () => {
     if (!tempAddr.trim() || !wo) return;
@@ -115,16 +92,12 @@ export default function WorkOrderDrawer3({
 
       {/* wo-drawer: the drawer itself -- slides in from right */}
       <div
-        ref={drawerRef}
+        ref={elementRef}
         className={`wo-drawer${open ? ' open' : ''}`}
+        {...touchHandlers}
       >
-        {/* wo-handle: left drag strip -- touch here to swipe-close */}
-        <div
-          className="wo-handle"
-          onTouchStart={onTouchStart}
-          onTouchMove={onTouchMove}
-          onTouchEnd={onTouchEnd}
-        />
+        {/* wo-handle: left drag strip -- visual indicator */}
+        <div className="wo-handle" />
 
         {/* wo-body: the white/themed content area */}
         <div className="wo-body">

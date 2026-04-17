@@ -4,13 +4,15 @@
 // Right-slide drawer. Uses sr-drawer, sr-drawer-handle, sr-drawer-body,
 // sr-drawer-topbar, sr-drawer-scroll, sr-drawer-section classes from MobileShell.css.
 //
+// The entire drawer responds to swipe right to close.
+//
 // HTML → JSX changes:
 //   class=      → className=
 //   onclick=    → onClick=
 //   style="..." → style={{ camelCase }}
 
-import { useRef } from 'react';
 import { fmtDate, fmtTime } from '../../../../lib/utils';
+import { useSwipeToClose } from '../shared/hooks/useSwipeToClose';
 
 interface ServiceRequestDrawerProps {
   open:    boolean;
@@ -21,31 +23,7 @@ interface ServiceRequestDrawerProps {
 export default function ServiceRequestDrawer3({ open, sr, onClose }: ServiceRequestDrawerProps) {
 
   // ── Swipe to close ──
-  const startX    = useRef(0);
-  const dragging  = useRef(false);
-  const drawerRef = useRef<HTMLDivElement>(null);
-
-  const onTouchStart = (e: React.TouchEvent) => {
-    startX.current   = e.touches[0].clientX;
-    dragging.current = false;
-    if (drawerRef.current) drawerRef.current.style.transition = 'none';
-  };
-  const onTouchMove = (e: React.TouchEvent) => {
-    const dx = e.touches[0].clientX - startX.current;
-    if (!dragging.current && Math.abs(dx) > 6) dragging.current = true;
-    if (dragging.current && dx > 0 && drawerRef.current) {
-      drawerRef.current.style.transform = `translateX(${dx}px)`;
-    }
-  };
-  const onTouchEnd = (e: React.TouchEvent) => {
-    if (drawerRef.current) {
-      drawerRef.current.style.transition = '';
-      drawerRef.current.style.transform  = '';
-    }
-    const dx = e.changedTouches[0].clientX - startX.current;
-    if (dragging.current && dx > 80) onClose();
-    dragging.current = false;
-  };
+  const { elementRef, touchHandlers } = useSwipeToClose({ onClose });
 
   if (!sr) return null;
 
@@ -77,16 +55,12 @@ export default function ServiceRequestDrawer3({ open, sr, onClose }: ServiceRequ
 
       {/* sr-drawer: right-slide container */}
       <div
-        ref={drawerRef}
+        ref={elementRef}
         className={`sr-drawer${open ? ' open' : ''}`}
+        {...touchHandlers}
       >
-        {/* sr-drawer-handle: left drag zone */}
-        <div
-          className="sr-drawer-handle"
-          onTouchStart={onTouchStart}
-          onTouchMove={onTouchMove}
-          onTouchEnd={onTouchEnd}
-        />
+        {/* sr-drawer-handle: left drag zone -- visual indicator */}
+        <div className="sr-drawer-handle" />
 
         {/* sr-drawer-body: main content */}
         <div className="sr-drawer-body">

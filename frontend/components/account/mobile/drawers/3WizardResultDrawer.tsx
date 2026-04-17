@@ -9,13 +9,15 @@
 // res-stone-name, res-stone-meta, res-rec, res-section, res-section-label
 // All defined in MobileShell.css.
 //
+// The entire drawer responds to swipe right to close.
+//
 // HTML → JSX changes:
 //   class=      → className=
 //   onclick=    → onClick=
 //   style="..." → style={{ camelCase }}
 
-import { useRef } from 'react';
 import type { WizardResult } from '../../../../lib/wizardResultsService';
+import { useSwipeToClose } from '../shared/hooks/useSwipeToClose';
 
 interface WizardResultDrawerProps {
   open:                    boolean;
@@ -100,31 +102,7 @@ export default function WizardResultDrawer3({
 }: WizardResultDrawerProps) {
 
   // ── Swipe to close ──
-  const startX    = useRef(0);
-  const dragging  = useRef(false);
-  const drawerRef = useRef<HTMLDivElement>(null);
-
-  const onTouchStart = (e: React.TouchEvent) => {
-    startX.current   = e.touches[0].clientX;
-    dragging.current = false;
-    if (drawerRef.current) drawerRef.current.style.transition = 'none';
-  };
-  const onTouchMove = (e: React.TouchEvent) => {
-    const dx = e.touches[0].clientX - startX.current;
-    if (!dragging.current && Math.abs(dx) > 6) dragging.current = true;
-    if (dragging.current && dx > 0 && drawerRef.current) {
-      drawerRef.current.style.transform = `translateX(${dx}px)`;
-    }
-  };
-  const onTouchEnd = (e: React.TouchEvent) => {
-    if (drawerRef.current) {
-      drawerRef.current.style.transition = '';
-      drawerRef.current.style.transform  = '';
-    }
-    const dx = e.changedTouches[0].clientX - startX.current;
-    if (dragging.current && dx > 80) onClose();
-    dragging.current = false;
-  };
+  const { elementRef, touchHandlers } = useSwipeToClose({ onClose });
 
   if (!result) return null;
 
@@ -158,20 +136,12 @@ export default function WizardResultDrawer3({
 
       {/* res-drawer: right-slide container */}
       <div
-        ref={drawerRef}
+        ref={elementRef}
         className={`res-drawer${open ? ' open' : ''}`}
+        {...touchHandlers}
       >
-        {/* res-handle: left drag zone -- touch to swipe-close */}
-         <div
-          ref={drawerRef}
-          className={`wo-drawer${open ? ' open' : ''}`}
-          onTouchStart={onTouchStart}    // ← whole drawer responds to swipe
-          onTouchMove={onTouchMove}
-          onTouchEnd={onTouchEnd}
-        >
-        <div className="wo-handle" />  {/* just visual, no events */}
-        <div className="wo-body">...</div>
-        </div>
+        {/* res-handle: left drag zone -- visual indicator */}
+        <div className="res-handle" />
 
         {/* res-body: the main content area */}
         <div className="res-body">
