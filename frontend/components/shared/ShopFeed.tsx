@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState, useRef } from 'react';
+import { useEffect, useMemo, useState, useRef, useCallback } from 'react';
 import { getPhotoUrl } from '../account/shared/utils/photoUrl';
 import { ShopProduct, formatPrice, fetchAvailableProducts } from '../account/shared/1ShopList';
 
@@ -116,64 +116,85 @@ export default function SharedShopFeed({
   savedLabel = 'Saved Items',
   emptyLabel = 'No shop items available right now.',
 }: SharedShopFeedProps) {
-  const [items, setItems] = useState<ShopProduct[]>([]);
+  const [items,     setItems]     = useState<ShopProduct[]>([]);
   const [favorites, setFavorites] = useState<string[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [page, setPage] = useState(0);
-  const [hasMore, setHasMore] = useState(true);
+  const [loading,   setLoading]   = useState(true);
+  const [loadingMore, setLoadingMore] = useState(false);
+  const [hasMore,   setHasMore]   = useState(true);
+
+  // Track the next page to fetch. Using a ref avoids stale-closure issues
+  // inside the IntersectionObserver callback.
+  const nextPageRef = useRef(1);
+
+  // Sentinel element observed for infinite scroll
   const sentinelRef = useRef<HTMLDivElement>(null);
 
-  // Initial load
+  // Guard against concurrent fetches
+  const fetchingRef = useRef(false);
+
+  // ── Load more pages ──────────────────────────────────────────────────────
+  const loadMore = useCallback(async () => {
+    if (fetchingRef.current || !hasMore) return;
+    fetchingRef.current = true;
+    setLoadingMore(true);
+
+    const page = nextPageRef.current;
+    const data = await fetchAvailableProducts(page, 12);
+
+    setItems(prev => {
+      const existingIds = new Set(prev.map(p => p.product_id));
+      const newItems = data.filter(p => !existingIds.has(p.product_id));
+      return [...prev, ...newItems];
+    });
+
+    if (data.length < 12) setHasMore(false);
+    nextPageRef.current = page + 1;
+    setLoadingMore(false);
+    fetchingRef.current = false;
+  }, [hasMore]);
+
+  // ── Initial load (page 0) ────────────────────────────────────────────────
   useEffect(() => {
     let isMounted = true;
     async function load() {
       const data = await fetchAvailableProducts(0, 12);
-      if (isMounted) {
-        setItems(data);
-        setLoading(false);
-        if (data.length < 12) setHasMore(false);
-      }
+      if (!isMounted) return;
+      setItems(data);
+      setLoading(false);
+      if (data.length < 12) setHasMore(false);
     }
     load();
     return () => { isMounted = false; };
   }, []);
 
-  // Endless scroll observer
+  // ── Infinite scroll observer ─────────────────────────────────────────────
+  // The observer is set up once after the initial load completes and is only
+  // torn down when the component unmounts or there are no more pages.
+  // We do NOT include `loading` or `hasMore` in the dep array to avoid
+  // re-creating the observer on every state change (which can cause it to
+  // miss the intersection event). Instead we read `hasMore` via a ref.
+  const hasMoreRef = useRef(hasMore);
+  useEffect(() => { hasMoreRef.current = hasMore; }, [hasMore]);
+
   useEffect(() => {
+    if (loading) return; // wait until first batch is rendered
+
     const sentinel = sentinelRef.current;
-    if (!sentinel || !hasMore || loading) return;
+    if (!sentinel) return;
 
     const observer = new IntersectionObserver(
       entries => {
-        if (entries[0].isIntersecting) {
-          setPage(prev => prev + 1);
+        if (entries[0].isIntersecting && hasMoreRef.current) {
+          loadMore();
         }
       },
-      { rootMargin: '300px' }
+      { rootMargin: '400px' } // start loading well before the sentinel is visible
     );
+
     observer.observe(sentinel);
     return () => observer.disconnect();
-  }, [hasMore, loading]);
-
-  // Load more pages
-  useEffect(() => {
-    if (page === 0) return;
-    let isMounted = true;
-    async function loadMore() {
-      const data = await fetchAvailableProducts(page, 12);
-      if (isMounted) {
-        if (data.length < 12) setHasMore(false);
-        setItems(prev => {
-          // Filter out duplicates just in case
-          const existingIds = new Set(prev.map(p => p.product_id));
-          const newItems = data.filter(p => !existingIds.has(p.product_id));
-          return [...prev, ...newItems];
-        });
-      }
-    }
-    loadMore();
-    return () => { isMounted = false; };
-  }, [page]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [loading]); // only re-run when loading transitions false→true (initial load done)
 
   const toggleFav = (id: string) => {
     setFavorites(prev => (prev.includes(id) ? prev.filter(f => f !== id) : [...prev, id]));
@@ -252,9 +273,30 @@ export default function SharedShopFeed({
               />
             ))}
           </div>
+
+          {/* Sentinel — observed by IntersectionObserver to trigger loadMore */}
           {hasMore && (
             <div ref={sentinelRef} style={{ height: 1, marginBottom: 8 }} />
           )}
+
+          {/* Loading indicator shown while fetching additional pages */}
+          {loadingMore && (
+            <div
+              style={{
+                textAlign: 'center',
+                padding: '12px 0 4px',
+                fontFamily: 'var(--font-mono)',
+                fontSize: 9,
+                letterSpacing: '0.22em',
+                textTransform: 'uppercase',
+                color: 'var(--text-muted)',
+                opacity: 0.5,
+              }}
+            >
+              Loading
+            </div>
+          )}
+
           <div style={{
             textAlign: 'center', padding: '16px 0 8px',
             fontFamily: 'var(--font-mono)', fontSize: 9,
