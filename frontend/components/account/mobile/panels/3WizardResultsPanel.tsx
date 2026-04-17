@@ -96,7 +96,7 @@ export default function WizardResultsPanel3({
             <a href="/feasibility-check" className="wiz-empty-link">Open Wizard →</a>
           </div>
         ) : (
-          <div className="wiz-grid">
+          <div className="wiz-grid" style={{ flex: 1, overflowY: 'auto' }}>
             {results.map(r => {
               const color = BAND_COLOR[r.band] ?? '#e7e5e4';
               const label = BAND_LABEL[r.band] ?? r.recommendation;

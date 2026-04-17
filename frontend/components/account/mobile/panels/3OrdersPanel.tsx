@@ -38,7 +38,9 @@ export default function OrdersPanel3({
         padding: 'clamp(1rem, 4.5vw, 1.25rem)', 
         display: 'flex', 
         flexDirection: 'column', 
-        gap: 'clamp(0.875rem, 4vw, 1.125rem)' 
+        gap: 'clamp(0.875rem, 4vw, 1.125rem)',
+        flex: 1,
+        overflowY: 'auto'
       }}>
         {workOrders.length === 0 && (
           <div style={{

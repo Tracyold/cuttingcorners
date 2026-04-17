@@ -67,7 +67,7 @@ export default function ChatPanel3({
         <button className="panel-close" onClick={onClose}>✕</button>
       </div>
 
-      <div className="chat-msgs" style={{ padding: '24px 16px', display: 'flex', flexDirection: 'column', gap: 12 }}>
+      <div className="chat-msgs" style={{ padding: '24px 16px', display: 'flex', flexDirection: 'column', gap: 12, flex: 1, overflowY: 'auto' }}>
         {messages.length === 0 && (
           <p style={{
             fontFamily: 'var(--font-ui)', fontStyle: 'italic', fontSize: 19,
