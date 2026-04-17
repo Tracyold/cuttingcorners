@@ -329,15 +329,6 @@ export default function MobileAccount(props: MobileAccountProps) {
         hasUnread={!!props.chatThread?.account_has_unread}
       />
 
-      {/* ── Menu drawer ── */}
-      {/* Bottom sheet with navigation links */}
-      <MenuDrawer3
-        open={menuOpen}
-        onClose={() => setMenuOpen(false)}
-        onNavigate={(panel) => { setMenuOpen(false); openPanel(panel); }}
-        onSignOut={signOut}
-      />
-
       {/* ── Panels ── */}
       {/* Each panel slides up from the bottom. Only one is open at a time.
           The open prop controls whether className includes 'open'. */}
@@ -436,7 +427,15 @@ export default function MobileAccount(props: MobileAccountProps) {
 
       {/* ── Drawers ── */}
       {/* Each drawer slides in from the right. Only one is open at a time.
-          drawerData holds the selected item (wo, invoice, sr). */}
+          drawerData holds the selected item (wo, invoice, sr). 
+          RENDERED LAST TO ENSURE THEY ARE ON TOP. */}
+
+      <MenuDrawer3
+        open={menuOpen}
+        onClose={() => setMenuOpen(false)}
+        onNavigate={(panel) => { setMenuOpen(false); openPanel(panel); }}
+        onSignOut={signOut}
+      />
 
       <WorkOrderDrawer3
         open={activeDrawer === 'workorder'}
