@@ -21,12 +21,16 @@ export function formatPrice(value: number | null | undefined): string {
 }
 
 // ── Data fetching ──────────────────────────────────────────────────────────
-export async function fetchAvailableProducts(): Promise<ShopProduct[]> {
+export async function fetchAvailableProducts(page: number = 0, pageSize: number = 12): Promise<ShopProduct[]> {
+  const from = page * pageSize
+  const to = from + pageSize - 1
+
   const { data, error } = await supabase
     .from('products')
     .select('product_id, title, total_price, photo_url, product_state, created_at')
     .eq('product_state', 'available')
     .order('created_at', { ascending: false })
+    .range(from, to)
 
   if (error) {
     console.error('Failed to fetch shop products:', error)
