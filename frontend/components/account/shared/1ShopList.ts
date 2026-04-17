@@ -28,7 +28,7 @@ export async function fetchAvailableProducts(page: number = 0, pageSize: number 
   const { data, error } = await supabase
     .from('products')
     .select('product_id, title, total_price, photo_url, product_state, created_at')
-    .eq('product_state', 'available')
+    .in('product_state', ['PUBLISHED', 'ACTIVE'])
     .order('created_at', { ascending: false })
     .range(from, to)
 

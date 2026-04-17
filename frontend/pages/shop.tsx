@@ -145,7 +145,7 @@ export default function ShopPage() {
         const { data: fallback } = await supabase
           .from('products')
           .select('*')
-          .eq('product_state', 'PUBLISHED')
+          .in('product_state', ['PUBLISHED', 'ACTIVE'])
           .order('created_at', { ascending: false });
         setProducts(fallback || []);
       }
