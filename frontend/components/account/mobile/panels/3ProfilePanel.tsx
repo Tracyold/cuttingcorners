@@ -8,6 +8,7 @@
 //   style="..." → style={{ camelCase }}
 
 import { formatMoney } from '../../../../lib/utils';
+import { useSwipeDownToClose } from '../../shared/hooks/useSwipeDownToClose';
 
 const PROFILE_FIELDS = [
   { label: 'Full Name',        key: 'name',             placeholder: 'Full name'         },
@@ -73,11 +74,13 @@ export default function ProfilePanel3({
   showDeleteModal, setShowDeleteModal, deleteConfirmText, setDeleteConfirmText,
   deleteError, deleting, onOpenDeleteModal, onDeleteAccount,
 }: ProfilePanelProps) {
+  const { elementRef, touchHandlers } = useSwipeDownToClose({ onClose });
+
   return (
-    <div className={`slide-panel${open ? ' open' : ''}`}>
+    <div ref={elementRef} className={`slide-panel${open ? ' open' : ''}`}>
 
       {/* Panel header */}
-      <div className="panel-header">
+      <div className="panel-header" {...touchHandlers}>
         <span className="panel-title">Profile</span>
         <button className="panel-close" onClick={onClose}>✕</button>
       </div>

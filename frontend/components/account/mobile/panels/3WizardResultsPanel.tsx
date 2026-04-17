@@ -5,6 +5,7 @@ import { getUserWizardResults, deleteWizardResult } from '../../../../lib/wizard
 import type { WizardResult } from '../../../../lib/wizardResultsService';
 // FIX 4: import the drawer
 import WizardResultDrawer3 from '../drawers/3WizardResultDrawer';
+import { useSwipeDownToClose } from '../../shared/hooks/useSwipeDownToClose';
 
 interface WizardResultsPanelProps {
   open:                    boolean;
@@ -48,6 +49,7 @@ function ScoreRing({ pct, color }: { pct: number; color: string }) {
 export default function WizardResultsPanel3({
   open, onClose, onCreateServiceRequest,
 }: WizardResultsPanelProps) {
+  const { elementRef, touchHandlers } = useSwipeDownToClose({ onClose });
 
   const [results,        setResults]        = useState<WizardResult[]>([]);
   const [loading,        setLoading]        = useState(true);
@@ -73,8 +75,8 @@ export default function WizardResultsPanel3({
 
   return (
     <>
-      <div className={`slide-panel${open ? ' open' : ''}`}>
-        <div className="panel-header">
+      <div ref={elementRef} className={`slide-panel${open ? ' open' : ''}`}>
+        <div className="panel-header" {...touchHandlers}>
           <span className="panel-title">Wizard Results</span>
           <button className="panel-close" onClick={onClose}>✕</button>
         </div>

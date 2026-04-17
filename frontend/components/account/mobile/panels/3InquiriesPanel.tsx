@@ -7,6 +7,7 @@
 //   style="..." → style={{ camelCase }}
 
 import { fmtDate } from '../../../../lib/utils';
+import { useSwipeDownToClose } from '../../shared/hooks/useSwipeDownToClose';
 
 interface InquiriesPanelProps {
   open:      boolean;
@@ -15,11 +16,13 @@ interface InquiriesPanelProps {
 }
 
 export default function InquiriesPanel3({ open, inquiries, onClose }: InquiriesPanelProps) {
+  const { elementRef, touchHandlers } = useSwipeDownToClose({ onClose });
+
   return (
-    <div className={`slide-panel${open ? ' open' : ''}`}>
+    <div ref={elementRef} className={`slide-panel${open ? ' open' : ''}`}>
 
       {/* Panel header */}
-      <div className="panel-header">
+      <div className="panel-header" {...touchHandlers}>
         <span className="panel-title">Inquiries</span>
         <button className="panel-close" onClick={onClose}>✕</button>
       </div>

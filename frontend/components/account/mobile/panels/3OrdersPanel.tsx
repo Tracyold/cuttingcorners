@@ -1,6 +1,7 @@
 // components/account/mobile/panels/3OrdersPanel.tsx
 
 import { formatMoney, fmtDate, fmtTime } from '../../../../lib/utils';
+import { useSwipeDownToClose } from '../../shared/hooks/useSwipeDownToClose';
 
 const STATUS_STYLE: Record<string, { bg: string; color: string }> = {
   CREATED:   { bg: 'rgba(207,221,78,0.12)',  color: 'var(--gold)' },
@@ -23,9 +24,11 @@ interface OrdersPanelProps {
 export default function OrdersPanel3({
   open, workOrders, onSelectWO, onAcceptWO, onClose,
 }: OrdersPanelProps) {
+  const { elementRef, touchHandlers } = useSwipeDownToClose({ onClose });
+
   return (
-    <div className={`slide-panel${open ? ' open' : ''}`}>
-      <div className="panel-header">
+    <div ref={elementRef} className={`slide-panel${open ? ' open' : ''}`}>
+      <div className="panel-header" {...touchHandlers}>
         <span className="panel-title">Work Orders</span>
         <button className="panel-close" onClick={onClose}>✕</button>
       </div>
