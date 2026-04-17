@@ -57,6 +57,14 @@ export default function ServiceRequestPanel3({
   // We keep local state for form UI that isn't part of the submission
   const [activeTip,   setActiveTip]   = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  // Optional stone detail fields (not required for submission)
+  const [stone, setStone] = useState('');
+  const [weight, setWeight] = useState('');
+  const [dims, setDims] = useState('');
+  const [serviceType, setServiceType] = useState('');
+  const [wizardRef, setWizardRef] = useState('');
+  const [desc, setDesc] = useState('');
+  const [photos, setPhotos] = useState<string[]>([]);
 
   // Toggle tooltip -- clicking the gold "i" button shows/hides the tip
   const toggleTip = (id: string) => setActiveTip(prev => prev === id ? null : id);
@@ -65,6 +73,10 @@ export default function ServiceRequestPanel3({
   const handlePhotos = (e: React.ChangeEvent<HTMLInputElement>) => {
     // TODO: In production, upload photos to Supabase Storage and attach to submission
     // For now, this is a placeholder for future photo upload functionality
+  };
+
+  const removePhoto = (idx: number) => {
+    setPhotos(prev => prev.filter((_, i) => i !== idx));
   };
 
   const handleOpenForm = async () => {
