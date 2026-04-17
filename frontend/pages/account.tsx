@@ -115,6 +115,7 @@ export default function AccountPage() {
     const uid = session.user.id;
     let woChannel:   any = null;
     let chatChannel: any = null;
+    let inqChannel:  any = null;
 
     async function loadAll() {
       const [
@@ -160,6 +161,13 @@ export default function AccountPage() {
         }).subscribe();
       setAdminInfo(admin);
       setInquiries(inq || []);
+      inqChannel = supabase.channel('user-inq-' + uid)
+        .on('postgres_changes', {
+          event: 'INSERT', schema: 'public', table: 'account_inquiries',
+          filter: `account_user_id=eq.${uid}`,
+        }, payload => {
+          setInquiries(prev => [payload.new as any, ...prev]);
+        }).subscribe();
       setServiceRequests(sr || []);
       setInvoices(inv || []);
       setChatThread(thread);
@@ -204,6 +212,7 @@ export default function AccountPage() {
     return () => {
       if (woChannel)   supabase.removeChannel(woChannel);
       if (chatChannel) supabase.removeChannel(chatChannel);
+      if (inqChannel)  supabase.removeChannel(inqChannel);
     };
   }, [session]); // ── removed isMobile from deps ──
   // ── END CHANGE 5 ──
