@@ -50,16 +50,17 @@ export default function ServiceRequestDrawer3({ open, sr, onClose }: ServiceRequ
   if (!sr) return null;
 
   // Stone detail fields -- label/value pairs shown in the drawer
+  // Mapping from Supabase service_requests table fields
   const stoneFields = [
-    { label: 'Stone',      val: sr.stone          },
-    { label: 'Weight',     val: sr.weight         },
-    { label: 'Cut',        val: sr.cut            },
-    { label: 'Dimensions', val: sr.dims           },
-    { label: 'Service',    val: sr.rec            },
+    { label: 'Service Type', val: sr.service_type   },
+    { label: 'Stone',        val: sr.stone          },
+    { label: 'Weight',       val: sr.weight         },
+    { label: 'Cut',          val: sr.cut            },
+    { label: 'Dimensions',   val: sr.dims           },
   ].filter(f => f.val && f.val !== '--');
 
-  const submitted = sr.date || (sr.created_at ? `${fmtDate(sr.created_at)} · ${fmtTime(sr.created_at)}` : '--');
-  const source    = sr.fromWizard ? 'Created from Wizard Result' : 'Created from Service Request Form';
+  const submitted = sr.created_at ? `${fmtDate(sr.created_at)} · ${fmtTime(sr.created_at)}` : '--';
+  const source    = sr.wizard_result_id ? 'Created from Wizard Result' : 'Created from Service Request Form';
 
   return (
     <>
@@ -78,18 +79,12 @@ export default function ServiceRequestDrawer3({ open, sr, onClose }: ServiceRequ
       <div
         ref={drawerRef}
         className={`sr-drawer${open ? ' open' : ''}`}
+        onTouchStart={onTouchStart}    // ← whole drawer responds to swipe
+        onTouchMove={onTouchMove}
+        onTouchEnd={onTouchEnd}
       >
         {/* sr-drawer-handle: left drag zone */}
-         <div
-          ref={drawerRef}
-          className={`wo-drawer${open ? ' open' : ''}`}
-          onTouchStart={onTouchStart}    // ← whole drawer responds to swipe
-          onTouchMove={onTouchMove}
-          onTouchEnd={onTouchEnd}
-        >
-        <div className="wo-handle" />  {/* just visual, no events */}
-        <div className="wo-body">...</div>
-        </div>
+        <div className="sr-drawer-handle" />
 
         {/* sr-drawer-body: main content */}
         <div className="sr-drawer-body">
@@ -105,7 +100,7 @@ export default function ServiceRequestDrawer3({ open, sr, onClose }: ServiceRequ
               letterSpacing: '0.16em', textTransform: 'uppercase',
               color: 'var(--text-muted)', flex: 1,
             }}>
-              {sr.id || 'Service Request'}
+              {sr.service_request_id?.slice(0, 8) || 'Service Request'}
             </span>
             <button className="sr-drawer-close" onClick={onClose}>✕</button>
           </div>
@@ -126,23 +121,25 @@ export default function ServiceRequestDrawer3({ open, sr, onClose }: ServiceRequ
 
             {/* ── Wizard result reference ── */}
             {/* Only shown if the SR was created from a wizard result */}
-            {sr.wizardRef && (
+            {sr.wizard_result_id && (
               <div className="sr-drawer-section">
                 <div className="sr-drawer-section-label">Wizard Result</div>
                 <div className="sr-drawer-field">
                   <span className="sr-drawer-key">Reference</span>
                   <span className="sr-drawer-val" style={{ color: 'var(--tile-feasib)' }}>
-                    {sr.wizardRef}
+                    {sr.wizard_result_id.slice(0, 8)}
                   </span>
                 </div>
               </div>
             )}
 
             {/* ── Client notes / description ── */}
-            {sr.notes && (
+            {sr.description && (
               <div className="sr-drawer-section">
-                <div className="sr-drawer-section-label">Notes</div>
-                <div className="sr-drawer-note">"{sr.notes}"</div>
+                <div className="sr-drawer-section-label">Description</div>
+                <div className="sr-drawer-note" style={{ whiteSpace: 'pre-wrap' }}>
+                  "{sr.description}"
+                </div>
               </div>
             )}
 
