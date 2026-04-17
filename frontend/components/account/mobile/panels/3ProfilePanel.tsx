@@ -255,7 +255,7 @@ export default function ProfilePanel3({
           <div
             style={{
               position: 'fixed', top: 0, left: 0, right: 0, bottom: 0,
-              background: 'rgba(0,0,0,0.5)', zIndex: 1000,
+              background: 'rgba(0,0,0,0.5)', zIndex: 20000,
             }}
             onClick={() => setShowDeleteModal(false)}
           />
@@ -263,7 +263,7 @@ export default function ProfilePanel3({
             style={{
               position: 'fixed', top: '50%', left: '50%', transform: 'translate(-50%, -50%)',
               background: 'var(--bg)', border: '1px solid var(--bdr2)', borderRadius: 8,
-              padding: 24, maxWidth: 320, zIndex: 1001, boxShadow: '0 4px 12px rgba(0,0,0,0.15)',
+              padding: 24, maxWidth: 320, zIndex: 20001, boxShadow: '0 4px 12px rgba(0,0,0,0.15)',
             }}
           >
             <div style={{ fontFamily: 'var(--font-ui)', fontSize: 16, fontWeight: 600, marginBottom: 12, color: 'var(--text)' }}>
