@@ -22,14 +22,18 @@ function ShopTile({
 }) {
   const [animating, setAnimating] = useState(false);
 
-  const handlePhotoClick = () => {
+  const handlePhotoClick = (e: React.MouseEvent) => {
+    // We only trigger the drawer if the click is directly on the photo area
     if (onClick) {
       onClick(item);
     }
   };
 
   const handleFav = (e: React.MouseEvent) => {
+    // CRITICAL: Stop the click from ever reaching any parent div
+    e.preventDefault();
     e.stopPropagation();
+    
     setAnimating(true);
     onFav(item.product_id);
     window.setTimeout(() => setAnimating(false), 400);
@@ -40,8 +44,12 @@ function ShopTile({
 
   return (
     <div className="shop-thumb" style={{ position: 'relative' }}>
-      {/* ONLY the photo area is clickable to open the drawer */}
-      <div className="shop-img" onClick={handlePhotoClick} style={{ cursor: 'pointer' }}>
+      {/* ── PHOTO AREA: Only this triggers the drawer ── */}
+      <div 
+        className="shop-img" 
+        onClick={handlePhotoClick} 
+        style={{ cursor: 'pointer', position: 'relative' }}
+      >
         {photoUrl ? (
           <img
             src={photoUrl}
@@ -49,48 +57,44 @@ function ShopTile({
             style={{ width: '100%', height: '100%', objectFit: 'cover' }}
           />
         ) : (
-          '💎'
+          <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'var(--bg-card)', fontSize: '40px' }}>💎</div>
         )}
         
-        {/* Overlay appears only on the image area */}
+        {/* Overlay only on the image */}
         <div className="inv-overlay" style={{ flexDirection: 'column', gap: 6 }}>
-          <div
-            style={{
-              fontFamily: 'var(--font-mono)',
-              fontSize: 16,
-              fontWeight: 700,
-              color: '#fff',
-              textAlign: 'center',
-            }}
-          >
+          <div style={{ fontFamily: 'var(--font-mono)', fontSize: 16, fontWeight: 700, color: '#fff', textAlign: 'center' }}>
             {price}
           </div>
-          <div
-            style={{
-              fontFamily: 'var(--font-mono)',
-              fontSize: 9,
-              letterSpacing: '0.18em',
-              textTransform: 'uppercase',
-              color: 'rgba(255,255,255,0.7)',
-              textAlign: 'center',
-            }}
-          >
+          <div style={{ fontFamily: 'var(--font-mono)', fontSize: 9, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.7)', textAlign: 'center' }}>
             Tap to view
           </div>
         </div>
       </div>
 
-      <div className="shop-info" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+      {/* ── INFO AREA: Completely separate from the drawer trigger ── */}
+      <div 
+        className="shop-info" 
+        style={{ 
+          display: 'flex', 
+          justifyContent: 'space-between', 
+          alignItems: 'center',
+          pointerEvents: 'auto' // Ensure this area is interactive but doesn't trigger parent
+        }}
+        onClick={(e) => e.stopPropagation()} // Shield this entire area from parent clicks
+      >
         <div className="shop-name" style={{ flex: 1, marginRight: 8 }}>{item.title}</div>
         
-        {/* Favorite icon in the bottom right of the card info area */}
+        {/* Favorite icon - explicitly handled to prevent any bubbling */}
         <button
           type="button"
+          onMouseDown={(e) => e.stopPropagation()} // Block mouse down
+          onTouchStart={(e) => e.stopPropagation()} // Block touch start
           onClick={handleFav}
           style={{
             background: 'none',
             border: 'none',
-            padding: 0,
+            padding: '8px', // Larger hit area for mobile
+            margin: '-8px', // Offset padding
             fontSize: 22,
             color: isFav ? 'var(--gold)' : 'var(--text-muted)',
             opacity: isFav ? 1 : 0.4,
@@ -99,7 +103,8 @@ function ShopTile({
               ? 'transform 400ms ease, opacity 400ms ease'
               : 'color 120ms ease, opacity 120ms ease',
             cursor: 'pointer',
-            flexShrink: 0
+            flexShrink: 0,
+            zIndex: 10 // Ensure it's on top
           }}
           aria-label={isFav ? 'Remove from saved items' : 'Add to saved items'}
         >
@@ -122,17 +127,10 @@ export default function SharedShopFeed({
   const [loadingMore, setLoadingMore] = useState(false);
   const [hasMore,   setHasMore]   = useState(true);
 
-  // Track the next page to fetch. Using a ref avoids stale-closure issues
-  // inside the IntersectionObserver callback.
   const nextPageRef = useRef(1);
-
-  // Sentinel element observed for infinite scroll
   const sentinelRef = useRef<HTMLDivElement>(null);
-
-  // Guard against concurrent fetches
   const fetchingRef = useRef(false);
 
-  // ── Load more pages ──────────────────────────────────────────────────────
   const loadMore = useCallback(async () => {
     if (fetchingRef.current || !hasMore) return;
     fetchingRef.current = true;
@@ -153,7 +151,6 @@ export default function SharedShopFeed({
     fetchingRef.current = false;
   }, [hasMore]);
 
-  // ── Initial load (page 0) ────────────────────────────────────────────────
   useEffect(() => {
     let isMounted = true;
     async function load() {
@@ -167,34 +164,24 @@ export default function SharedShopFeed({
     return () => { isMounted = false; };
   }, []);
 
-  // ── Infinite scroll observer ─────────────────────────────────────────────
-  // The observer is set up once after the initial load completes and is only
-  // torn down when the component unmounts or there are no more pages.
-  // We do NOT include `loading` or `hasMore` in the dep array to avoid
-  // re-creating the observer on every state change (which can cause it to
-  // miss the intersection event). Instead we read `hasMore` via a ref.
   const hasMoreRef = useRef(hasMore);
   useEffect(() => { hasMoreRef.current = hasMore; }, [hasMore]);
 
   useEffect(() => {
-    if (loading) return; // wait until first batch is rendered
-
+    if (loading) return;
     const sentinel = sentinelRef.current;
     if (!sentinel) return;
-
     const observer = new IntersectionObserver(
       entries => {
         if (entries[0].isIntersecting && hasMoreRef.current) {
           loadMore();
         }
       },
-      { rootMargin: '400px' } // start loading well before the sentinel is visible
+      { rootMargin: '400px' }
     );
-
     observer.observe(sentinel);
     return () => observer.disconnect();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [loading]); // only re-run when loading transitions false→true (initial load done)
+  }, [loading, loadMore]);
 
   const toggleFav = (id: string) => {
     setFavorites(prev => {
@@ -242,31 +229,11 @@ export default function SharedShopFeed({
       </div>
 
       {loading && items.length === 0 ? (
-        <div
-          style={{
-            textAlign: 'center',
-            padding: '16px 0 8px',
-            fontFamily: 'var(--font-mono)',
-            fontSize: 9,
-            letterSpacing: '0.22em',
-            textTransform: 'uppercase',
-            color: 'var(--text-muted)',
-            opacity: 0.5,
-          }}
-        >
+        <div style={{ textAlign: 'center', padding: '16px 0 8px', fontFamily: 'var(--font-mono)', fontSize: 9, letterSpacing: '0.22em', textTransform: 'uppercase', color: 'var(--text-muted)', opacity: 0.5 }}>
           Loading
         </div>
       ) : items.length === 0 ? (
-        <div
-          style={{
-            textAlign: 'center',
-            padding: '16px 0 8px',
-            fontFamily: 'var(--font-ui)',
-            fontSize: 13,
-            color: 'var(--text-muted)',
-            opacity: 0.8,
-          }}
-        >
+        <div style={{ textAlign: 'center', padding: '16px 0 8px', fontFamily: 'var(--font-ui)', fontSize: 13, color: 'var(--text-muted)', opacity: 0.8 }}>
           {emptyLabel}
         </div>
       ) : (
@@ -282,36 +249,13 @@ export default function SharedShopFeed({
               />
             ))}
           </div>
-
-          {/* Sentinel — observed by IntersectionObserver to trigger loadMore */}
-          {hasMore && (
-            <div ref={sentinelRef} style={{ height: 1, marginBottom: 8 }} />
-          )}
-
-          {/* Loading indicator shown while fetching additional pages */}
+          {hasMore && <div ref={sentinelRef} style={{ height: 1, marginBottom: 8 }} />}
           {loadingMore && (
-            <div
-              style={{
-                textAlign: 'center',
-                padding: '12px 0 4px',
-                fontFamily: 'var(--font-mono)',
-                fontSize: 9,
-                letterSpacing: '0.22em',
-                textTransform: 'uppercase',
-                color: 'var(--text-muted)',
-                opacity: 0.5,
-              }}
-            >
+            <div style={{ textAlign: 'center', padding: '12px 0 4px', fontFamily: 'var(--font-mono)', fontSize: 9, letterSpacing: '0.22em', textTransform: 'uppercase', color: 'var(--text-muted)', opacity: 0.5 }}>
               Loading
             </div>
           )}
-
-          <div style={{
-            textAlign: 'center', padding: '16px 0 8px',
-            fontFamily: 'var(--font-mono)', fontSize: 9,
-            letterSpacing: '0.22em', textTransform: 'uppercase',
-            color: 'var(--text-muted)', opacity: 0.5,
-          }}>
+          <div style={{ textAlign: 'center', padding: '16px 0 8px', fontFamily: 'var(--font-mono)', fontSize: 9, letterSpacing: '0.22em', textTransform: 'uppercase', color: 'var(--text-muted)', opacity: 0.5 }}>
             · · ·
           </div>
         </>
