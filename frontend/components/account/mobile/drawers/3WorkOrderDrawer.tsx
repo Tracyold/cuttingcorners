@@ -119,16 +119,12 @@ export default function WorkOrderDrawer3({
         className={`wo-drawer${open ? ' open' : ''}`}
       >
         {/* wo-handle: left drag strip -- touch here to swipe-close */}
-         <div
-          ref={drawerRef}
-          className={`wo-drawer${open ? ' open' : ''}`}
-          onTouchStart={onTouchStart}    // ← whole drawer responds to swipe
+        <div
+          className="wo-handle"
+          onTouchStart={onTouchStart}
           onTouchMove={onTouchMove}
           onTouchEnd={onTouchEnd}
-        >
-        <div className="wo-handle" />  {/* just visual, no events */}
-        <div className="wo-body">...</div>
-        </div>
+        />
 
         {/* wo-body: the white/themed content area */}
         <div className="wo-body">
