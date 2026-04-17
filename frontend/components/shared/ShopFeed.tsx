@@ -70,7 +70,10 @@ function ShopTile({
         {/* Favorite icon moved to the bottom right of the card info area */}
         <button
           type="button"
-          onClick={handleFav}
+          onClick={(e) => {
+            e.stopPropagation(); // Prevents the drawer from opening
+            handleFav(e);
+          }}
           style={{
             background: 'none',
             border: 'none',
