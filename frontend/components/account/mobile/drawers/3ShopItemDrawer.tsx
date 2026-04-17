@@ -147,7 +147,6 @@ export default function ShopItemDrawer3({ open, item, session, onClose }: ShopIt
                   autoFocus
                 />
                 <div className="shop-item-inq-actions">
-                  <button className="shop-item-inq-cancel" onClick={() => setInquiryOpen(false)}>Cancel</button>
                   <button 
                     className="shop-item-inq-submit" 
                     onClick={handleInquiry}
@@ -155,6 +154,7 @@ export default function ShopItemDrawer3({ open, item, session, onClose }: ShopIt
                   >
                     {inquirySending ? 'Sending...' : 'Submit Request'}
                   </button>
+                  <button className="shop-item-inq-cancel" onClick={() => setInquiryOpen(false)}>Cancel</button>
                 </div>
               </div>
             )}
@@ -333,8 +333,10 @@ export default function ShopItemDrawer3({ open, item, session, onClose }: ShopIt
         }
         .shop-item-inq-actions {
           display: flex;
-          justify-content: space-between;
+          flex-direction: row-reverse; /* Put cancel on the right, submit on the left */
+          justify-content: flex-end;
           align-items: center;
+          gap: 16px;
         }
         .shop-item-inq-cancel {
           background: none;
