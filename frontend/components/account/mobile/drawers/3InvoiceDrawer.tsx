@@ -79,16 +79,11 @@ export default function InvoiceDrawer3({
       >
         {/* inv-drawer-handle: left drag zone -- touch to swipe close */}
         <div
-          ref={drawerRef}
-          className={`wo-drawer${open ? ' open' : ''}`}
-          onTouchStart={onTouchStart}    // ← whole drawer responds to swipe
+          className="inv-drawer-handle"
+          onTouchStart={onTouchStart}
           onTouchMove={onTouchMove}
           onTouchEnd={onTouchEnd}
-        >
-        <div className="wo-handle" />  {/* just visual, no events */}
-        <div className="wo-body">...</div>
-        </div>
-
+        />
 
         {/* inv-drawer-body: always white -- this is a printed document */}
         <div className="inv-drawer-body">
