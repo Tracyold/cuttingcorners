@@ -336,7 +336,7 @@ export default function ShopPage() {
       <style dangerouslySetInnerHTML={{ __html: shopCss }} />
       <TopNav />
       <main style={{ background: 'var(--bg-gradient)', minHeight: '100vh', paddingTop: '56px' }}>
-        <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '48px 48px 80px' }}>
+        <div className="shop-page-content" style={{ maxWidth: '1200px', margin: '0 auto', padding: '48px 48px 80px' }}>
           <p style={{
             fontFamily: 'var(--font-body)',
             fontSize: '11px', textTransform: 'uppercase',
@@ -507,10 +507,16 @@ const shopCss = `
   padding: 0px 8px;
 }
 @media (max-width: 767px) {
+  .shop-page-content {
+    padding: 32px 12px 64px !important;
+  }
   .shop-grid {
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-    padding: 15px 15px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+    padding: 0;
+  }
+  .shop-card {
+    min-width: 0;
   }
   .shop-card-img {
     border-radius: 8px;

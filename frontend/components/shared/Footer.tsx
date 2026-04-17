@@ -1,79 +1,59 @@
 import { useRouter } from 'next/router';
+import Link from 'next/link';
 
 const footerCss = `
 .ccg-footer {
   background: var(--bg-deep);
-  border-top: 1px solid rgba(255,255,255,0.08);
-  padding: 40px 48px;
-}
-.ccg-footer-tagline {
-  font-family: var(--font-body);
-  font-size: 11px;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--text);
-  margin-bottom: 28px;
-}
-.ccg-footer-content {
+  border-top: 1px solid var(--border);
+  padding: 60px 24px;
   display: flex;
-  justify-content: space-between;
-  gap: 32px;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 .ccg-footer-links {
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
 }
 .ccg-footer-link {
   font-family: var(--font-body);
   font-size: 12px;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
   color: var(--text-muted);
   text-decoration: none;
-  line-height: 2.0;
-  transition: color 180ms ease, font-size 150ms ease;
+  transition: color 180ms ease;
 }
 .ccg-footer-link:hover {
-  color: rgba(var(--text-rgb, 238,238,238),0.85);
-  font-size: 12.5px;
-}
-.ccg-footer-contact {
-  display: flex;
-  flex-direction: column;
-}
-.ccg-footer-contact-name {
-  font-family: var(--font-body);
-  font-size: 12px;
-  letter-spacing: 0.04em;
-  color: var(--text-muted);
-  line-height: 2.0;
-}
-.ccg-footer-contact-link {
-  font-family: var(--font-body);
-  font-size: 15px;
-  letter-spacing: 0.04em;
   color: var(--text);
-  text-decoration: none;
-  line-height: 2.0;
-  transition: color 180ms ease, font-size 150ms ease;
 }
-.ccg-footer-contact-link:hover {
-  color: rgba(var(--text-rgb, 238,238,238),0.85);
-  font-size: 12.5px;
+.ccg-footer-separator {
+  color: var(--border);
+  font-size: 12px;
+  user-select: none;
 }
-.ccg-footer-welcome {
+.ccg-footer-email {
   font-family: var(--font-body);
-  font-size: 11px;
+  font-size: 13px;
+  letter-spacing: 0.05em;
   color: var(--text-muted);
-  font-style: italic;
-  line-height: 2.0;
+  text-decoration: none;
+  transition: color 180ms ease;
+}
+.ccg-footer-email:hover {
+  color: var(--text);
 }
 
 @media (max-width: 767px) {
   .ccg-footer {
-    padding: 32px 24px;
+    padding: 48px 20px;
   }
-  .ccg-footer-tagline {
-    margin-bottom: 24px;
+  .ccg-footer-links {
+    gap: 8px;
   }
 }
 `;
@@ -91,24 +71,18 @@ export default function Footer() {
     <>
       <style dangerouslySetInnerHTML={{ __html: footerCss }} />
       <footer className="ccg-footer">
-        <div className="ccg-footer-tagline">
-          COLOR CONSCIOUS CUTTING
+        <div className="ccg-footer-links">
+          <Link href="/legal" className="ccg-footer-link">legal</Link>
+          <span className="ccg-footer-separator">|</span>
+          <Link href="/about" className="ccg-footer-link">about</Link>
+          <span className="ccg-footer-separator">|</span>
+          <Link href="/social" className="ccg-footer-link">social</Link>
+          <span className="ccg-footer-separator">|</span>
+          <Link href="/contact" className="ccg-footer-link">contact</Link>
         </div>
-        <div className="ccg-footer-content">
-          <div className="ccg-footer-links">
-            <a href="/legal" className="ccg-footer-link">legal</a>
-            <a href="/company-model" className="ccg-footer-link">Our Story</a>
-            <a href="/shop" className="ccg-footer-link">shop</a>
-            <a href="/portfolio" className="ccg-footer-link">portfolio</a>
-            <a href="/login" className="ccg-footer-link">sign in / sign up</a>
-          </div>
-          <div className="ccg-footer-contact">
-            <span className="ccg-footer-contact-name">Michael Wall</span>
-            <a href="tel:4802864595" className="ccg-footer-contact-link">480.286.4595</a>
-            <a href="mailto:mwall@cuttingcornersgems.com" className="ccg-footer-contact-link">mwall@cuttingcornersgems.com</a>
-            <span className="ccg-footer-welcome">texts and emails welcome</span>
-          </div>
-        </div>
+        <a href="mailto:admin@cuttingcornersgems.com" className="ccg-footer-email">
+          admin@cuttingcornersgems.com
+        </a>
       </footer>
     </>
   );
