@@ -5,8 +5,9 @@ import { useRouter } from 'next/router';
 
 const inputStyle: React.CSSProperties = {
   width: '100%', background: 'var(--bg)', border: '1px solid var(--border)',
-  padding: '10px', color: 'var(--gold)', fontFamily: 'var(--font-body)', fontSize: '14px',
+  padding: '16px', color: 'var(--gold)', fontFamily: 'var(--font-body)', fontSize: '18px',
   marginBottom: '12px', outline: 'none', transition: 'border 200ms ease, box-shadow 200ms ease',
+  borderRadius: '8px',
 };
 const labelStyle: React.CSSProperties = {
   fontFamily: 'var(--font-ui)', fontSize: '11px', letterSpacing: '0.2em',
@@ -127,27 +128,47 @@ export default function LoginPage() {
             {mode === 'signup' && (
               <>
                 <label style={labelStyle}>FULL NAME</label>
-                <input value={name} onChange={e => setName(e.target.value)} placeholder="Jane Smith" autoFocus style={inputStyle}
+                <input 
+                  name="name"
+                  autoComplete="name"
+                  value={name} 
+                  onChange={e => setName(e.target.value)} 
+                  placeholder="Jane Smith" 
+                  autoFocus 
+                  style={inputStyle}
                   onFocus={e => { e.target.style.borderColor = 'var(--gold)'; e.target.style.boxShadow = '0 0 10px rgba(214,180,70,0.15)'; }}
-                  onBlur={e => { e.target.style.borderColor = 'var(--border)'; e.target.style.boxShadow = 'none'; }} />
+                  onBlur={e => { e.target.style.borderColor = 'var(--border)'; e.target.style.boxShadow = 'none'; }} 
+                />
                 <label style={labelStyle}>EMAIL</label>
-                <input type="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="jane@email.com" style={inputStyle}
+                <input 
+                  type="email" 
+                  name="email"
+                  autoComplete="email"
+                  value={email} 
+                  onChange={e => setEmail(e.target.value)} 
+                  placeholder="jane@email.com" 
+                  style={inputStyle}
                   onFocus={e => { e.target.style.borderColor = 'var(--gold)'; e.target.style.boxShadow = '0 0 10px rgba(214,180,70,0.15)'; }}
-                  onBlur={e => { e.target.style.borderColor = 'var(--border)'; e.target.style.boxShadow = 'none'; }} />
+                  onBlur={e => { e.target.style.borderColor = 'var(--border)'; e.target.style.boxShadow = 'none'; }} 
+                />
               </>
             )}
             <label style={labelStyle}>PHONE NUMBER</label>
             <div style={{ display: 'flex', gap: '8px', marginBottom: '12px' }}>
               <input 
+                name="countryCode"
+                autoComplete="tel-country-code"
                 value={countryCode} 
                 onChange={e => setCountryCode(e.target.value)} 
                 placeholder="+1" 
-                style={{ ...inputStyle, width: '70px', marginBottom: 0, textAlign: 'center' }}
+                style={{ ...inputStyle, width: '90px', marginBottom: 0, textAlign: 'center' }}
                 onFocus={e => { e.target.style.borderColor = 'var(--gold)'; e.target.style.boxShadow = '0 0 10px rgba(214,180,70,0.15)'; }}
-                onBlur={e => { e.target.style.borderColor = 'var(--border)'; e.target.style.boxShadow = 'none'; }}
+                onBlur={e => { e.target.style.borderColor = 'var(--border)'; e.target.style.boxShadow = 'none'; }} 
               />
               <input 
                 type="tel" 
+                name="tel"
+                autoComplete="tel-national"
                 value={phone} 
                 onChange={e => setPhone(e.target.value)} 
                 placeholder="(555) 000-0000" 
