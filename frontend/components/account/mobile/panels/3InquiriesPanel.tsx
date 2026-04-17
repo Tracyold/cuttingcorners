@@ -176,7 +176,7 @@ export default function InquiriesPanel3({ open, inquiries, onClose }: InquiriesP
         <button className="panel-close" onClick={onClose}>✕</button>
       </div>
 
-      <div style={{ 
+      <div className="inq-list" style={{ 
         flex: 1, 
         overflowY: 'auto', 
         padding: 'clamp(1rem, 4.5vw, 1.25rem)', 

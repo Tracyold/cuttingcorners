@@ -244,7 +244,7 @@ export default function ServiceRequestPanel3({
         )}
 
         {/* sr-list: the list of existing service request cards */}
-        <div className="sr-list">
+        <div className="sr-list" style={{ flex: 1, overflowY: 'auto' }}>
           {localSRs.length === 0 ? (
             <div style={{
               fontFamily: 'var(--font-ui)', fontSize: 12, color: 'var(--text-muted)',
