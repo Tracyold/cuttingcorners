@@ -15,6 +15,7 @@
 
 import { useState, useRef } from 'react';
 import { fmtDate, fmtTime } from '../../../../lib/utils';
+import { useSwipeDownToClose } from '../../shared/hooks/useSwipeDownToClose';
 
 interface ServiceRequestPanelProps {
   open:            boolean;
@@ -51,6 +52,10 @@ export default function ServiceRequestPanel3({
   showSRForm, setShowSRForm, srType, setSrType, srDesc, setSrDesc,
   srSubmitting, srGateMsg, openSRForm, submitSR,
 }: ServiceRequestPanelProps) {
+
+  // ── Swipe down to close ──
+  const { elementRef: panelRef, touchHandlers: panelHandlers } = useSwipeDownToClose({ onClose });
+  const { elementRef: sheetRef, touchHandlers: sheetHandlers } = useSwipeDownToClose({ onClose: () => setShowSRForm(false) });
 
   // ── New request form state ──
   // Note: srType and srDesc are now managed by the parent via useServiceRequest hook
@@ -116,10 +121,10 @@ export default function ServiceRequestPanel3({
     <>
       {/* ── SERVICE REQUESTS LIST PANEL ── */}
       {/* Converted from <div class="slide-panel" id="servicereq-panel"> */}
-      <div className={`slide-panel${open ? ' open' : ''}`}>
+      <div ref={panelRef} className={`slide-panel${open ? ' open' : ''}`}>
 
         {/* Panel header with + New button */}
-        <div className="panel-header">
+        <div className="panel-header" {...panelHandlers}>
           <span className="panel-title">Service Requests</span>
           <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
             {/* + New button -- opens the new request sheet */}
@@ -193,13 +198,13 @@ export default function ServiceRequestPanel3({
         onClick={() => setShowSRForm(false)}
       />
       {/* nr-sheet: the bottom sheet that slides up */}
-      <div className={`nr-sheet${showSRForm ? ' open' : ''}`}>
+      <div ref={sheetRef} className={`nr-sheet${showSRForm ? ' open' : ''}`}>
 
         {/* Drag handle bar */}
-        <div className="nr-handle" />
+        <div className="nr-handle" {...sheetHandlers} />
 
         {/* Sheet header */}
-        <div className="nr-head">
+        <div className="nr-head" {...sheetHandlers}>
           <span className="nr-title">New Service Request</span>
           <button className="nr-close" onClick={() => setShowSRForm(false)}>✕</button>
         </div>

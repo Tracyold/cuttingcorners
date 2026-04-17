@@ -3,6 +3,7 @@
 import { useEffect } from 'react';
 import { supabase } from '../../../../lib/supabase';
 import { fmtTime } from '../../../../lib/utils';
+import { useSwipeDownToClose } from '../../shared/hooks/useSwipeDownToClose';
 
 interface ChatPanelProps {
   open:           boolean;
@@ -41,6 +42,9 @@ export default function ChatPanel3({
   onClose, onOpen,
 }: ChatPanelProps) {
 
+  // ── Swipe down to close ──
+  const { elementRef, touchHandlers } = useSwipeDownToClose({ onClose });
+
   // Scroll to bottom when messages change or panel opens
   useEffect(() => {
     if (open) chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -54,9 +58,9 @@ export default function ChatPanel3({
   let lastDate = '';
 
   return (
-    <div className={`slide-panel${open ? ' open' : ''}`}>
+    <div ref={elementRef} className={`slide-panel${open ? ' open' : ''}`}>
 
-      <div className="panel-header">
+      <div className="panel-header" {...touchHandlers}>
         <span className="panel-title">Messages</span>
         <button className="panel-close" onClick={onClose}>✕</button>
       </div>

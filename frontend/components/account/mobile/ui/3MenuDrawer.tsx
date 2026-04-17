@@ -1,4 +1,5 @@
 // components/account/mobile/ui/3MenuDrawer.tsx
+import { useSwipeDownToClose } from '../shared/hooks/useSwipeDownToClose';
 
 type PanelName = 'chat' | 'orders' | 'invoices' | 'servicereq'
   | 'inquiries' | 'wizard' | 'profile' | null;
@@ -23,13 +24,15 @@ const PANEL_ITEMS: { label: string; panel: PanelName }[] = [
 ];
 
 export default function MenuDrawer3({ open, onClose, onNavigate, onSignOut }: MenuDrawerProps) {
+  const { elementRef, touchHandlers } = useSwipeDownToClose({ onClose });
+
   return (
     <>
       <div className={`menu-overlay${open ? ' open' : ''}`} onClick={onClose} />
 
-      <div className={`menu-drawer${open ? ' open' : ''}`}>
-        <div className="menu-drawer-handle" />
-        <div className="menu-drawer-head">
+      <div ref={elementRef} className={`menu-drawer${open ? ' open' : ''}`}>
+        <div className="menu-drawer-handle" {...touchHandlers} />
+        <div className="menu-drawer-head" {...touchHandlers}>
           <span className="menu-drawer-title">Navigate</span>
           <button className="menu-drawer-close" onClick={onClose}>✕</button>
         </div>

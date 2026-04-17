@@ -11,6 +11,7 @@
 
 import { useState } from 'react';
 import { formatMoney, fmtDate, fmtTime } from '../../../../lib/utils';
+import { useSwipeDownToClose } from '../../shared/hooks/useSwipeDownToClose';
 
 interface InvoicesPanelProps {
   open:            boolean;
@@ -39,6 +40,9 @@ export default function InvoicesPanel3({
   const [dateFrom,  setDateFrom]  = useState('');
   const [dateTo,    setDateTo]    = useState('');
 
+  // ── Swipe down to close ──
+  const { elementRef, touchHandlers } = useSwipeDownToClose({ onClose });
+
   // Filter invoices by date range if set
   const filtered = invoices.filter(inv => {
     if (!inv.paid_at) return true;
@@ -51,10 +55,10 @@ export default function InvoicesPanel3({
   const clearSearch = () => { setDateFrom(''); setDateTo(''); };
 
   return (
-    <div className={`slide-panel${open ? ' open' : ''}`}>
+    <div ref={elementRef} className={`slide-panel${open ? ' open' : ''}`}>
 
       {/* Panel header -- from .panel-header in HTML */}
-      <div className="panel-header">
+      <div className="panel-header" {...touchHandlers}>
         <span className="panel-title">Invoices</span>
         <button className="panel-close" onClick={onClose}>✕</button>
       </div>
