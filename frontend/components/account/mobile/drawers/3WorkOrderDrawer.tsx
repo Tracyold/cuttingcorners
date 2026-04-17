@@ -80,15 +80,7 @@ export default function WorkOrderDrawer3({
   return (
     <>
       {/* Dark overlay behind the drawer */}
-      <div
-        style={{
-          position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.4)',
-          zIndex: 499, opacity: open ? 1 : 0,
-          pointerEvents: open ? 'all' : 'none',
-          transition: 'opacity 550ms ease',
-        }}
-        onClick={onClose}
-      />
+      <div className={`overlay${open ? ' open' : ''}`} onClick={onClose} />
 
       {/* wo-drawer: the drawer itself -- slides in from right */}
       <div

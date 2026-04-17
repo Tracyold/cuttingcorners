@@ -37,15 +37,7 @@ export default function InvoiceDrawer3({
   return (
     <>
       {/* Dark overlay */}
-      <div
-        style={{
-          position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.4)',
-          zIndex: 499, opacity: open ? 1 : 0,
-          pointerEvents: open ? 'all' : 'none',
-          transition: 'opacity 550ms ease',
-        }}
-        onClick={onClose}
-      />
+      <div className={`overlay${open ? ' open' : ''}`} onClick={onClose} />
 
       {/* inv-drawer: right-slide container */}
       <div
