@@ -197,7 +197,14 @@ export default function SharedShopFeed({
   }, [loading]); // only re-run when loading transitions false→true (initial load done)
 
   const toggleFav = (id: string) => {
-    setFavorites(prev => (prev.includes(id) ? prev.filter(f => f !== id) : [...prev, id]));
+    setFavorites(prev => {
+      const isAlreadyFav = prev.includes(id);
+      if (isAlreadyFav) {
+        return prev.filter(f => f !== id);
+      } else {
+        return [...prev, id];
+      }
+    });
   };
 
   const favoriteItems = useMemo(
