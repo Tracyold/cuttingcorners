@@ -47,21 +47,34 @@ export default function ShopItemDrawer3({ open, item, session, onClose }: ShopIt
     }
   }, [open, item?.product_id]);
 
+  const [inquiryError, setInquiryError] = useState<string | null>(null);
+
   const handleInquiry = async () => {
     if (!inquiryText.trim() || !item || !session) return;
     setInquirySending(true);
+    setInquiryError(null);
     
-    const { error } = await supabase.from('account_inquiries').insert({
-      account_user_id: session.user.id,
-      product_id:      item.product_id,
-      description:     inquiryText.trim(),
-      status:          'pending',
-    });
+    try {
+      const { error } = await supabase.from('account_inquiries').insert({
+        account_user_id: session.user.id,
+        product_id:      item.product_id,
+        description:     inquiryText.trim(),
+        status:          'pending',
+      });
 
-    setInquirySending(false);
-    if (!error) {
-      setInquirySent(true);
-      setInquiryOpen(false);
+      if (error) {
+        console.error('Inquiry error:', error);
+        setInquiryError(error.message);
+      } else {
+        setInquirySent(true);
+        setInquiryOpen(false);
+        setInquiryText('');
+      }
+    } catch (err: any) {
+      console.error('Inquiry exception:', err);
+      setInquiryError(err.message || 'An unexpected error occurred');
+    } finally {
+      setInquirySending(false);
     }
   };
 
@@ -154,8 +167,16 @@ export default function ShopItemDrawer3({ open, item, session, onClose }: ShopIt
                   >
                     {inquirySending ? 'Sending...' : 'Submit Request'}
                   </button>
-                  <button className="shop-item-inq-cancel" onClick={() => setInquiryOpen(false)}>Cancel</button>
+                  <button className="shop-item-inq-cancel" onClick={() => {
+                    setInquiryOpen(false);
+                    setInquiryError(null);
+                  }}>Cancel</button>
                 </div>
+                {inquiryError && (
+                  <div style={{ color: '#ff4d4d', fontSize: '12px', marginTop: '8px', fontFamily: 'var(--font-mono)' }}>
+                    Error: {inquiryError}
+                  </div>
+                )}
               </div>
             )}
 
