@@ -1,4 +1,9 @@
-// components/account/mobile/tiles/3ServiceRequestsTile.tsx
+// frontend/components/account/mobile/tiles/3ServiceRequestsTile.tsx
+//
+// Changed this revision: count filters out archived rows so the tile
+// reflects only active (non-archived) service requests. The number
+// updates in realtime because Supabase realtime UPDATEs flow through
+// useAccountInfo → MobileAccount → this tile's `serviceRequests` prop.
 
 interface ServiceRequestsTileProps {
   serviceRequests: any[];
@@ -6,6 +11,9 @@ interface ServiceRequestsTileProps {
 }
 
 export default function ServiceRequestsTile3({ serviceRequests, onClick }: ServiceRequestsTileProps) {
+  // Active-only count — archived rows live on the Archive tab inside the panel.
+  const activeCount = serviceRequests.filter(sr => !sr.is_archived).length;
+
   return (
     <div
       className="tile dim"
@@ -24,10 +32,10 @@ export default function ServiceRequestsTile3({ serviceRequests, onClick }: Servi
         }}>
           Service Requests
         </div>
-        <div style={{ 
-          fontFamily: 'var(--font-ui)', 
-          fontSize: 14, 
-          color: 'var(--text)', 
+        <div style={{
+          fontFamily: 'var(--font-ui)',
+          fontSize: 14,
+          color: 'var(--text)',
           lineHeight: 1.5,
           opacity: 0.8
         }}>
@@ -40,7 +48,7 @@ export default function ServiceRequestsTile3({ serviceRequests, onClick }: Servi
         textShadow: '0 4px 12px rgba(0,0,0,0.4)',
         opacity: 0.9
       }}>
-        {serviceRequests.length}
+        {activeCount}
       </div>
     </div>
   );

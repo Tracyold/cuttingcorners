@@ -15,7 +15,6 @@
 
 
 import { useState } from 'react';
-import { supabase } from '@/lib/supabase'
 import { WizardResult } from '@/components/account/mobile/tiles/3FeasibilityTile';
 
 import { useAuth } from '../shared/hooks/useAuth';
@@ -96,8 +95,11 @@ latestWizardResult?: WizardResult;
   sendChat:          () => void;
   openChatDrawer:    () => void;
   handleChatFile:    (e: React.ChangeEvent<HTMLInputElement>) => void;
-  submitSR:          () => Promise<void>;
-  openSRForm:        () => Promise<void>;
+  // Fallback refreshers for realtime-less tables. Child components call
+  // these after a successful write so the list updates even when the
+  // Supabase realtime channel misses the event.
+  refreshInquiries:       () => Promise<void>;
+  refreshServiceRequests: () => Promise<void>;
   deleteAccount:     (confirmText: string) => Promise<{ error?: string }>;
 }
 
@@ -143,13 +145,14 @@ export default function MobileAccount(props: MobileAccountProps) {
   // pendingSmsConsent holds which toggle is waiting for confirmation.
   const [pendingSmsConsent, setPendingSmsConsent] = useState<any>(null);
 
-  // ── Service Request Form state (Mobile) ──
-  // We manage the form visibility and field state here, but use props.submitSR for the action.
+  // ── Service Request form state (mobile) ──
+  // These are kept in MobileAccount ONLY so the wizard-results flow can
+  // pre-fill the form before opening the sheet (handleWizardServiceRequest).
+  // Submission, gate check, and submitting-boolean all live inside
+  // ServiceRequestPanel3 itself.
   const [showSRForm, setShowSRForm] = useState(false);
-  const [srGateMsg, setSrGateMsg] = useState('');
-  const [srType, setSrType] = useState('');
-  const [srDesc, setSrDesc] = useState('');
-  const [srSubmitting, setSrSubmitting] = useState(false);
+  const [srType,     setSrType]     = useState('');
+  const [srDesc,     setSrDesc]     = useState('');
 
 
   // ── Panel helpers ──
@@ -192,51 +195,11 @@ export default function MobileAccount(props: MobileAccountProps) {
     html.setAttribute('data-theme', next);
   };
 
-  // ── Service Request Submission ──
-  const handleOpenSRForm = async () => {
-    // Re-use the logic from props.openSRForm but manage visibility locally
-    const { data: prefs } = await supabase.from('user_sms_preferences').select('opt_in_work_orders').eq('user_id', props.session.user.id).single();
-    const { data: p } = await supabase.from('account_users').select('phone').eq('account_user_id', props.session.user.id).single();
-    
-    setSrGateMsg('');
-    if (!p?.phone || !prefs?.opt_in_work_orders) {
-      setSrGateMsg('To submit a service request, please add a phone number and enable work order notifications in your profile.');
-      alert('To submit a service request you must have a phone number on file and work order SMS notifications enabled.');
-      return;
-    }
-    setShowSRForm(true);
-  };
-
-  const handleSubmitSR = async () => {
-    if (!srType || !srDesc.trim()) return;
-    setSrSubmitting(true);
-    
-    try {
-      // Use the parent's submit logic but pass the local state
-      // Note: We need to ensure pages/account.tsx's submitSR is compatible or just do it here
-      // Given the current structure, let's do the insert here to ensure persistence and then refresh
-      await supabase.from('service_requests').insert({
-        account_user_id: props.session.user.id,
-        service_type: srType,
-        description: srDesc,
-        is_archived: false
-      });
-      
-      await supabase.functions.invoke('send-admin-notification', {
-        body: { event_type: 'service_requests', user_id: props.session.user.id },
-      });
-
-      setSrType('');
-      setSrDesc('');
-      setShowSRForm(false);
-      // Real-time subscription in account.tsx will pick up the change
-    } catch (err) {
-      console.error('SR Submit Error:', err);
-    } finally {
-      setSrSubmitting(false);
-    }
-  };
-
+  // ── Wizard → Service Request pre-fill ──
+  // Wizard results panel calls this on "Create Service Request".
+  // We populate the form state, then flip showSRForm=true to open the sheet.
+  // The ServiceRequestPanel3 sees the pre-filled values and lets the user
+  // edit them before submitting.
   const handleWizardServiceRequest = (result: any) => {
     setSrType(result.recommendation ?? '');
     const stone = [result.stone_variety, result.stone_species].filter(Boolean).join(' ');
@@ -388,7 +351,10 @@ export default function MobileAccount(props: MobileAccountProps) {
 
         {/* ── Shop feed ── */}
         {/* Divider + 2-column grid of shop items */}
-        <ShopFeed3 onItemClick={(item) => openDrawer('shopitem', item)} />
+        <ShopFeed3
+          session={props.session}
+          onItemClick={(item) => openDrawer('shopitem', item)}
+        />
 
       </div>{/* end feed */}
 
@@ -442,19 +408,17 @@ export default function MobileAccount(props: MobileAccountProps) {
         open={activePanel === 'servicereq'}
         serviceRequests={serviceRequests}
         session={props.session}
+        profile={props.profile}
         onSelectSR={(sr) => openDrawer('servicereq', sr)}
         onClose={closePanel}
-        // Service request form logic
+        refreshServiceRequests={props.refreshServiceRequests}
+        // Wizard-prefill handshake stays exactly as before.
         showSRForm={showSRForm}
         setShowSRForm={setShowSRForm}
         srType={srType}
         setSrType={setSrType}
         srDesc={srDesc}
         setSrDesc={setSrDesc}
-        srSubmitting={srSubmitting}
-        srGateMsg={""}
-        openSRForm={props.openSRForm}
-        submitSR={props.submitSR}
       />
 
       <InquiriesPanel3
@@ -538,6 +502,7 @@ export default function MobileAccount(props: MobileAccountProps) {
         item={drawerData}
         session={props.session}
         onClose={closeDrawer}
+        refreshInquiries={props.refreshInquiries}
       />
 
     </div>

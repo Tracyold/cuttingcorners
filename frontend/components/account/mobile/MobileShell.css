@@ -1314,3 +1314,136 @@ button, [role="button"] { touch-action: manipulation; }
   40%  { transform: scale(2.2); }
   100% { transform: scale(1); }
 }
+
+/* ═══════════════════════════════════════════════════════════════
+   APPEND THESE RULES TO THE END OF MobileShell.css
+   — Do not restructure the existing file.
+   — All additions use the existing design tokens (--gold, --bdr2,
+     --text, --text-muted, etc.) and add two new ones below for the
+     archive accent color.
+   ═══════════════════════════════════════════════════════════════ */
+
+
+/* ── NEW THEME TOKENS — archive accent ──
+   Teal / blue-green. One value per theme so it reads correctly
+   in both modes. Added as a fresh block so the existing theme
+   blocks above are untouched. */
+:root[data-theme="dark"]  { --archive: #4a9d9c; }
+:root[data-theme="light"] { --archive: #2d6867; }
+
+
+/* ── PILL FIX — retrofit border-radius on buttons that were
+   flat-edged. Only border-radius is added; all other styling
+   on these classes is preserved. */
+.nr-submit-btn { border-radius: 999px; }
+.icon-btn      { border-radius: 999px; }
+
+
+/* ── SERVICE REQUEST PANEL — Active / Archive tabs ──
+   Lives directly under the gold .panel-header. Uses the same
+   pill treatment as the rest of the UI. */
+.sr-tab-bar {
+  display: flex;
+  gap: clamp(0.5rem, 2.5vw, 0.75rem);
+  padding: clamp(0.75rem, 3.5vw, 1rem) clamp(1rem, 4.5vw, 1.25rem);
+  border-bottom: 0.5px solid var(--bdr2);
+  background: var(--bg);
+  flex-shrink: 0;
+}
+.sr-tab {
+  background: transparent;
+  border: 0.5px solid var(--bdr2);
+  color: var(--text-muted);
+  font-family: var(--font-ui);
+  font-size: clamp(13px, 3.5vw, 14px);
+  letter-spacing: 0.08em;
+  padding: clamp(0.5rem, 2.3vw, 0.6rem) clamp(1rem, 4vw, 1.25rem);
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all 150ms ease;
+  opacity: 0.7;
+}
+.sr-tab:hover   { border-color: var(--gold); color: var(--text); opacity: 1; }
+.sr-tab.active  { background: var(--gold); color: var(--text); border-color: var(--gold); opacity: 1; }
+
+
+/* ── SERVICE REQUEST LIST — scroll container ──
+   `min-height: 0` is the magic that lets a flex child scroll its
+   own content instead of expanding its parent. `gap` keeps cards
+   separated without per-card margins. */
+.sr-list {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: clamp(0.5rem, 2.5vw, 0.75rem) clamp(1rem, 4.5vw, 1.25rem);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.5rem, 2.5vw, 0.75rem);
+}
+/* Pull any inline `padding-top` on .sr-list back into reach of
+   the button divider above, so the first card doesn't sit too far
+   from the tab bar. */
+.sr-list > :first-child { margin-top: clamp(0.25rem, 1vw, 0.5rem); }
+
+
+/* ── SR CARD WRAPPER ──
+   Holds the slide button behind and the .sr-card in front.
+   `flex-shrink: 0` + `min-height` stops cards from shrinking as
+   more are added to the list. */
+.sr-card-wrap {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  flex-shrink: 0;
+  min-height: clamp(120px, 30vw, 148px);
+}
+
+
+/* ── SR ARCHIVE BUTTON — revealed by swipe ──
+   Teal (var(--archive)), NOT red. Replaces the hardcoded
+   #ef4444 that was inline in the panel before. */
+.sr-archive-btn {
+  position: absolute;
+  right: 0; top: 0; bottom: 0;
+  width: 80px;
+  background: var(--archive);
+  color: #ffffff;
+  border: none;
+  font-family: var(--font-mono);
+  font-size: clamp(9px, 2.5vw, 11px);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+  cursor: pointer;
+}
+
+
+/* ── SR CARD — ARCHIVED STATE ──
+   Fully grayed-out, desaturated, NOT clickable. The only way
+   back is admin action (future mirror-account feature). */
+.sr-card.archived {
+  opacity: 0.45;
+  filter: grayscale(1);
+  pointer-events: none;
+  cursor: default;
+  user-select: none;
+}
+
+
+/* ── OPTIONAL: empty state sits inside the scroll area ──
+   Keeps it vertically centered regardless of tab. */
+.sr-empty {
+  font-family: var(--font-ui);
+  font-size: clamp(13px, 3.5vw, 14px);
+  color: var(--text-muted);
+  text-align: center;
+  padding: 40px 0;
+  font-style: italic;
+  opacity: 0.6;
+  flex-shrink: 0;
+}

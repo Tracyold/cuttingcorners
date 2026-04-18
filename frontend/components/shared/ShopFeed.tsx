@@ -1,12 +1,18 @@
+// frontend/components/shared/ShopFeed.tsx
+
 import { useEffect, useMemo, useState, useRef, useCallback } from 'react';
 import { getPhotoUrl } from '../account/shared/utils/photoUrl';
 import { ShopProduct, formatPrice, fetchAvailableProducts } from '../account/shared/1ShopList';
+import { useFavorites } from '../account/shared/hooks/useFavorites';
 
 interface SharedShopFeedProps {
   sectionLabel?: string;
   savedLabel?: string;
   emptyLabel?: string;
   onItemClick?: (item: ShopProduct) => void;
+  // Passing session activates persistent favorites. If omitted/null, the feed
+  // falls back to in-memory favorites (used for anon browsing).
+  session?: any;
 }
 
 function ShopTile({
@@ -22,7 +28,7 @@ function ShopTile({
 }) {
   const heartIconRef = useRef<HTMLSpanElement>(null);
 
-  const handlePhotoClick = (e: React.MouseEvent) => {
+  const handlePhotoClick = (_e: React.MouseEvent) => {
     // We only trigger the drawer if the click is directly on the photo area
     if (onClick) {
       onClick(item);
@@ -53,9 +59,9 @@ function ShopTile({
   return (
     <div className="shop-thumb" style={{ position: 'relative' }}>
       {/* ── PHOTO AREA: Only this triggers the drawer ── */}
-      <div 
-        className="shop-img" 
-        onClick={handlePhotoClick} 
+      <div
+        className="shop-img"
+        onClick={handlePhotoClick}
         style={{ cursor: 'pointer', position: 'relative' }}
       >
         {photoUrl ? (
@@ -67,7 +73,7 @@ function ShopTile({
         ) : (
           <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'var(--bg-card)', fontSize: '40px' }}>💎</div>
         )}
-        
+
         {/* Overlay only on the image */}
         <div className="inv-overlay" style={{ flexDirection: 'column', gap: 6 }}>
           <div style={{ fontFamily: 'var(--font-mono)', fontSize: 16, fontWeight: 700, color: '#fff', textAlign: 'center' }}>
@@ -80,18 +86,18 @@ function ShopTile({
       </div>
 
       {/* ── INFO AREA: Completely separate from the drawer trigger ── */}
-      <div 
-        className="shop-info" 
-        style={{ 
-          display: 'flex', 
-          justifyContent: 'space-between', 
+      <div
+        className="shop-info"
+        style={{
+          display: 'flex',
+          justifyContent: 'space-between',
           alignItems: 'center',
           pointerEvents: 'auto' // Ensure this area is interactive but doesn't trigger parent
         }}
         onClick={(e) => e.stopPropagation()} // Shield this entire area from parent clicks
       >
         <div className="shop-name" style={{ flex: 1, marginRight: 8 }}>{item.title}</div>
-        
+
         {/* Favorite icon - explicitly handled to prevent any bubbling */}
         <button
           type="button"
@@ -140,12 +146,15 @@ export default function SharedShopFeed({
   savedLabel = 'Saved Items',
   emptyLabel = 'No shop items available right now.',
   onItemClick,
+  session,
 }: SharedShopFeedProps) {
-  const [items,     setItems]     = useState<ShopProduct[]>([]);
-  const [favorites, setFavorites] = useState<string[]>([]);
-  const [loading,   setLoading]   = useState(true);
+  const [items,       setItems]       = useState<ShopProduct[]>([]);
+  const [loading,     setLoading]     = useState(true);
   const [loadingMore, setLoadingMore] = useState(false);
-  const [hasMore,   setHasMore]   = useState(true);
+  const [hasMore,     setHasMore]     = useState(true);
+
+  // Persistent favorites — reads/writes the `user_favorites` table when signed in.
+  const { isFavorite, toggleFavorite } = useFavorites(session);
 
   const nextPageRef = useRef(1);
   const sentinelRef = useRef<HTMLDivElement>(null);
@@ -203,20 +212,9 @@ export default function SharedShopFeed({
     return () => observer.disconnect();
   }, [loading, loadMore]);
 
-  const toggleFav = (id: string) => {
-    setFavorites(prev => {
-      const isAlreadyFav = prev.includes(id);
-      if (isAlreadyFav) {
-        return prev.filter(f => f !== id);
-      } else {
-        return [...prev, id];
-      }
-    });
-  };
-
   const favoriteItems = useMemo(
-    () => items.filter(item => favorites.includes(item.product_id)),
-    [items, favorites]
+    () => items.filter(item => isFavorite(item.product_id)),
+    [items, isFavorite]
   );
 
   return (
@@ -234,7 +232,7 @@ export default function SharedShopFeed({
                 key={`saved-${item.product_id}`}
                 item={item}
                 isFav={true}
-                onFav={toggleFav}
+                onFav={toggleFavorite}
                 onClick={onItemClick}
               />
             ))}
@@ -263,8 +261,8 @@ export default function SharedShopFeed({
               <ShopTile
                 key={item.product_id}
                 item={item}
-                isFav={favorites.includes(item.product_id)}
-                onFav={toggleFav}
+                isFav={isFavorite(item.product_id)}
+                onFav={toggleFavorite}
                 onClick={onItemClick}
               />
             ))}
