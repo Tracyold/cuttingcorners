@@ -148,6 +148,7 @@ export default function MobileAccount(props: MobileAccountProps) {
   // ── Service Request Form state (Mobile) ──
   // We manage the form visibility and field state here, but use props.submitSR for the action.
   const [showSRForm, setShowSRForm] = useState(false);
+  const [srGateMsg, setSrGateMsg] = useState('');
   const [srType, setSrType] = useState('');
   const [srDesc, setSrDesc] = useState('');
   const [srSubmitting, setSrSubmitting] = useState(false);
@@ -199,7 +200,9 @@ export default function MobileAccount(props: MobileAccountProps) {
     const { data: prefs } = await supabase.from('user_sms_preferences').select('opt_in_work_orders').eq('user_id', props.session.user.id).single();
     const { data: p } = await supabase.from('account_users').select('phone').eq('account_user_id', props.session.user.id).single();
     
+    setSrGateMsg('');
     if (!p?.phone || !prefs?.opt_in_work_orders) {
+      setSrGateMsg(
       alert('To submit a service request you must have a phone number on file and work order SMS notifications enabled.');
       return;
     }
