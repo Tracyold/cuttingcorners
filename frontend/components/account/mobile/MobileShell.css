@@ -463,11 +463,7 @@ button, [role="button"] { touch-action: manipulation; }
   width: clamp(32px, 8.5vw, 38px); height: clamp(32px, 8.5vw, 38px);
   display: flex; align-items: center; justify-content: center;
   cursor: pointer; font-size: clamp(14px, 3.7vw, 17px); flex-shrink: 0;
-}
-.chat-input {
-  flex: 1; background: var(--bg-deep); border: 0.5px solid var(--bdr2);
-  border-radius: 24px !important;
-  padding: clamp(0.6rem, 2.5vw, 0.8rem) clamp(1rem, 4vw, 1.25rem);
+}padding: clamp(0.6rem, 2.5vw, 0.8rem) clamp(1rem, 4vw, 1.25rem);
   color: var(--text); font-family: var(--font-ui);
   font-size: clamp(16px, 4.2vw, 19px);
   outline: none; transition: all 220ms ease;
@@ -478,6 +474,10 @@ button, [role="button"] { touch-action: manipulation; }
   background: var(--bg);
   box-shadow: inset 0 1px 2px rgba(0,0,0,0.1), 0 0 0 3px color-mix(in srgb, var(--gold) 12%, transparent);
 }
+.chat-input {
+  flex: 1; background: var(--bg-deep); border: 0.5px solid var(--bdr2);
+  border-radius: 24px !important;
+  
 .chat-send {
   background: var(--gold); border: none;
   width: clamp(32px, 8.5vw, 38px); height: clamp(32px, 8.5vw, 38px);
@@ -709,10 +709,12 @@ button, [role="button"] { touch-action: manipulation; }
 
 /* ── SERVICE REQUEST PANEL ── */
 .sr-list {
+  flex: 1;
+  overflow-y: auto;
   padding: clamp(1rem, 4.5vw, 1.25rem);
-  display: flex; flex-direction: column;
+  display: flex;
+  flex-direction: column;
   gap: clamp(0.875rem, 4vw, 1.125rem);
-  overflow-y: auto; flex: 1;
 }
 .sr-card {
   background: var(--bg-card); border: 0.5px solid var(--bdr2);
@@ -722,6 +724,7 @@ button, [role="button"] { touch-action: manipulation; }
   position: relative; overflow: hidden;
   border-radius: 12px !important;
   box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  min-height: 100px;
 }
 .sr-card::after {
   content: ''; position: absolute; top: 0; left: 3px; right: 0; height: 1px;
