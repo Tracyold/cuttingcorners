@@ -29,6 +29,25 @@ export function useWorkOrders(session: any, setWorkOrders: (fn: any) => void) {
     );
   };
 
+
+  const updateShippingAddress = async (wo: any, address: string) => {
+    const log = [
+      ...(Array.isArray(wo.edit_history) ? wo.edit_history : []),
+      { action: 'Return address updated by user', by: 'user', at: new Date().toISOString() },
+    ];
+    await supabase.from('work_orders')
+      .update({ wo_shipping_address: address.trim(), edit_history: log })
+      .eq('work_order_id', wo.work_order_id);
+    setSelectedWO((prev: any) =>
+      prev ? { ...prev, wo_shipping_address: address.trim(), edit_history: log } : prev
+    );
+    setWorkOrders((prev: any[]) => prev.map(w =>
+      w.work_order_id === wo.work_order_id
+        ? { ...w, wo_shipping_address: address.trim(), edit_history: log }
+        : w
+    ));
+  };
+
   const openWODetail = (wo: any) => setSelectedWO(wo);
 
   return {
@@ -36,6 +55,6 @@ export function useWorkOrders(session: any, setWorkOrders: (fn: any) => void) {
     showAddressEdit, setShowAddressEdit,
     tempAddress, setTempAddress,
     addressConfirmed, setAddressConfirmed,
-    acceptWO, openWODetail,
+    acceptWO, openWODetail, updateShippingAddress,
   };
 }
