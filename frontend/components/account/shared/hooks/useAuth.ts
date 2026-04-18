@@ -12,6 +12,30 @@ export function useAuth() {
   };
 
   useEffect(() => {
+    // Session timeout logic (2 hours of inactivity)
+    const TIMEOUT_MS = 2 * 60 * 60 * 1000;
+    let timeoutId: any;
+
+    const resetTimeout = () => {
+      if (timeoutId) clearTimeout(timeoutId);
+      timeoutId = setTimeout(() => {
+        console.log("Session timed out due to inactivity");
+        signOut();
+      }, TIMEOUT_MS);
+    };
+
+    // Track activity
+    const events = ['mousedown', 'keydown', 'touchstart', 'scroll'];
+    events.forEach(event => window.addEventListener(event, resetTimeout));
+    resetTimeout();
+
+    return () => {
+      if (timeoutId) clearTimeout(timeoutId);
+      events.forEach(event => window.removeEventListener(event, resetTimeout));
+    };
+  }, []);
+
+  useEffect(() => {
     const guestId = process.env.NEXT_PUBLIC_GUEST_ACCOUNT_USER_ID;
     supabase.auth.getSession().then(async ({ data: { session: s } }) => {
       if (!s) { router.replace('/login'); return; }
