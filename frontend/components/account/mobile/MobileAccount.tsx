@@ -97,7 +97,7 @@ latestWizardResult?: WizardResult;
   sendChat:          () => void;
   openChatDrawer:    () => void;
   handleChatFile:    (e: React.ChangeEvent<HTMLInputElement>) => void;
-  submitSR:          () => void;
+  submitSR:          () => Promise<void>;
   openSRForm:        () => Promise<void>;
   deleteAccount:     (confirmText: string) => Promise<{ error?: string }>;
 }
