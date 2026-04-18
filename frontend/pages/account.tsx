@@ -97,8 +97,8 @@ export default function AccountPage() {
           sendChat={chatHook.sendChat}
           openChatDrawer={chatHook.openChatDrawer}
           handleChatFile={chatHook.handleChatFile}
-          submitSR={srHook.submitSR}
-          openSRForm={srHook.openSRForm}
+          refreshInquiries={data.refreshInquiries}
+          refreshServiceRequests={data.refreshServiceRequests}
           deleteAccount={async (confirmText: string) => {
             deleteHook.setDeleteConfirmText(confirmText);
             await deleteHook.deleteAccount();
