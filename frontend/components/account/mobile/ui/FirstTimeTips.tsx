@@ -58,12 +58,12 @@ export default function FirstTimeTips({ type, show }: FirstTimeTipsProps) {
         .tip-box {
           position: absolute;
           /* Changed from var(--gold) to a distinct color that pops against gold/dark backgrounds */
-          background: #38bdf8; /* Sky blue */
+          background: #57f0ca; /* Sky blue */
           color: #0c0a09; /* Deep stone */
           padding: 6px 12px;
           border-radius: 20px;
-          font-family: var(--font-mono);
-          font-size: 10px;
+          font-family: var(--font-body);
+          font-size: 11px;
           font-weight: 700;
           letter-spacing: 0.05em;
           text-transform: uppercase;

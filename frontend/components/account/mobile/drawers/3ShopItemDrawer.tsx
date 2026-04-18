@@ -146,7 +146,7 @@ export default function ShopItemDrawer3({ open, item, session, onClose }: ShopIt
           <div className="shop-item-footer">
             {!inquiryOpen && !inquirySent && (
               <div className="shop-item-btns">
-                <button className="shop-item-btn buy">🛒 Buy Now</button>
+                <button className="shop-item-btn buy">Buy Now</button>
                 <button className="shop-item-btn inq" onClick={() => setInquiryOpen(true)}>✉ Inquire</button>
               </div>
             )}
@@ -185,7 +185,7 @@ export default function ShopItemDrawer3({ open, item, session, onClose }: ShopIt
             {inquirySent && (
               <div className="shop-item-success">
                 <div className="shop-item-btns">
-                  <button className="shop-item-btn buy">🛒 Buy Now</button>
+                  <button className="shop-item-btn buy">Buy Now</button>
                   <button className="shop-item-btn inq" onClick={() => setInquiryOpen(true)}>✉ Inquire Again</button>
                 </div>
                 <div className="shop-item-success-msg">Success!</div>
