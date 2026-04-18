@@ -15,6 +15,7 @@
 
 
 import { useState } from 'react';
+import { supabase } from '../../../../lib/supabase';
 import { useAuth } from '../shared/hooks/useAuth';
 import { useServiceRequest } from '../shared/hooks/useServiceRequest';
 import { useDeleteAccount } from '../shared/hooks/useDeleteAccount';
@@ -110,10 +111,6 @@ export default function MobileAccount(props: MobileAccountProps) {
 
   // ── Shared hooks ──
   const { signOut } = useAuth();
-  const srHook = useServiceRequest(props.session, (sr) => {
-    // This callback updates the service requests list when a new one is submitted
-    // The parent (pages/account.tsx) will handle the actual state update
-  });
   const deleteHook = useDeleteAccount(props.session);
 
   // ── Panel state ──
@@ -135,6 +132,13 @@ export default function MobileAccount(props: MobileAccountProps) {
   // When the user taps a SMS toggle to enable it, we show a consent modal first.
   // pendingSmsConsent holds which toggle is waiting for confirmation.
   const [pendingSmsConsent, setPendingSmsConsent] = useState<any>(null);
+
+  // ── Service Request Form state (Mobile) ──
+  // We manage the form visibility and field state here, but use props.submitSR for the action.
+  const [showSRForm, setShowSRForm] = useState(false);
+  const [srType, setSrType] = useState('');
+  const [srDesc, setSrDesc] = useState('');
+  const [srSubmitting, setSrSubmitting] = useState(false);
 
   // ── Panel helpers ──
   const openPanel  = (name: PanelName) => setActivePanel(name);
@@ -174,6 +178,49 @@ export default function MobileAccount(props: MobileAccountProps) {
     const html = document.documentElement;
     const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
     html.setAttribute('data-theme', next);
+  };
+
+  // ── Service Request Submission ──
+  const handleOpenSRForm = async () => {
+    // Re-use the logic from props.openSRForm but manage visibility locally
+    const { data: prefs } = await supabase.from('user_sms_preferences').select('opt_in_work_orders').eq('user_id', props.session.user.id).single();
+    const { data: p } = await supabase.from('account_users').select('phone').eq('account_user_id', props.session.user.id).single();
+    
+    if (!p?.phone || !prefs?.opt_in_work_orders) {
+      alert('To submit a service request you must have a phone number on file and work order SMS notifications enabled.');
+      return;
+    }
+    setShowSRForm(true);
+  };
+
+  const handleSubmitSR = async () => {
+    if (!srType || !srDesc.trim()) return;
+    setSrSubmitting(true);
+    
+    try {
+      // Use the parent's submit logic but pass the local state
+      // Note: We need to ensure pages/account.tsx's submitSR is compatible or just do it here
+      // Given the current structure, let's do the insert here to ensure persistence and then refresh
+      await supabase.from('service_requests').insert({
+        account_user_id: props.session.user.id,
+        service_type: srType,
+        description: srDesc,
+        is_archived: false
+      });
+      
+      await supabase.functions.invoke('send-admin-notification', {
+        body: { event_type: 'service_requests', user_id: props.session.user.id },
+      });
+
+      setSrType('');
+      setSrDesc('');
+      setShowSRForm(false);
+      // Real-time subscription in account.tsx will pick up the change
+    } catch (err) {
+      console.error('SR Submit Error:', err);
+    } finally {
+      setSrSubmitting(false);
+    }
   };
 
   // ── Derived values used in the welcome block ──
@@ -279,9 +326,9 @@ export default function MobileAccount(props: MobileAccountProps) {
             />
           </div>
 
-          {/* Feasibility tile -- shows 3 most recent wizard results */}
+          {/* Feasibility -- wide variant */}
           <FeasibilityTile3
-            results={wizardResults}
+            wizardResults={wizardResults}
             onClick={() => openPanel('wizard')}
           />
 
@@ -297,7 +344,7 @@ export default function MobileAccount(props: MobileAccountProps) {
             />
           </div>
 
-          {/* Service Requests -- count tile, full width */}
+          {/* Service Requests -- wide variant */}
           <ServiceRequestsTile3
             serviceRequests={props.serviceRequests}
             onClick={() => openPanel('servicereq')}
@@ -373,16 +420,16 @@ export default function MobileAccount(props: MobileAccountProps) {
         onSelectSR={(sr) => openDrawer('servicereq', sr)}
         onClose={closePanel}
         // Service request form logic
-        showSRForm={srHook.showSRForm}
-        setShowSRForm={srHook.setShowSRForm}
-        srType={srHook.srType}
-        setSrType={srHook.setSrType}
-        srDesc={srHook.srDesc}
-        setSrDesc={srHook.setSrDesc}
-        srSubmitting={srHook.srSubmitting}
-        srGateMsg={srHook.srGateMsg}
-        openSRForm={srHook.openSRForm}
-        submitSR={srHook.submitSR}
+        showSRForm={showSRForm}
+        setShowSRForm={setShowSRForm}
+        srType={srType}
+        setSrType={setSrType}
+        srDesc={srDesc}
+        setSrDesc={setSrDesc}
+        srSubmitting={srSubmitting}
+        srGateMsg={""}
+        openSRForm={handleOpenSRForm}
+        submitSR={handleSubmitSR}
       />
 
       <InquiriesPanel3
