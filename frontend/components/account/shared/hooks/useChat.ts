@@ -9,7 +9,7 @@ export function useChat(
   const [chatInput, setChatInput] = useState('');
   const [chatSending, setChatSending] = useState(false);
   const [chatOpen, setChatOpen] = useState(false);
-  const [chatUploading, setChatUploading] = useState(false);
+  const [chatUploading, setChatUploading] = useState(false)
   const chatEndRef = useRef<HTMLDivElement>(null);
   const chatFileRef = useRef<HTMLInputElement>(null);
 
