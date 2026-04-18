@@ -52,9 +52,9 @@ export function useAccountData(session: any) {
             )
           `)
           .eq('account_user_id', uid)
-          .eq('is_archived', false)
+          .neq('is_archived', true)
           .order('created_at', { ascending: false }),
-        supabase.from('service_requests').select('*').eq('account_user_id', uid).eq('is_archived', false).order('created_at', { ascending: false }),
+        supabase.from('service_requests').select('*').eq('account_user_id', uid).neq('is_archived', true).order('created_at', { ascending: false }),
         supabase.from('invoices').select('*').eq('account_user_id', uid).order('paid_at', { ascending: false }),
         supabase.from('chat_threads').select('*').eq('account_user_id', uid).single(),
       ]);
@@ -93,7 +93,7 @@ export function useAccountData(session: any) {
             .from('account_inquiries')
             .select(`*, products(title, weight, shape, total_price)`)
             .eq('account_user_id', uid)
-            .eq('is_archived', false)
+            .neq('is_archived', true)
             .order('created_at', { ascending: false });
           if (fresh) setInquiries(fresh);
         })
