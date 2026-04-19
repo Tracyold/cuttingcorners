@@ -88,27 +88,18 @@ export default function ServiceRequestPanel3({
   }, [showSRForm]);
 
   // ── Open form — phone + SMS gate ──
-  // Uses .maybeSingle() (returns null for 0 rows) instead of .single()
-  // (throws on 0 rows). Wraps the gate check in try/catch so missing
-  // user_sms_preferences rows or transient errors surface a message to
-  // the user instead of silently killing the button.
   const handleOpenForm = async () => {
     if (!session?.user?.id) return;
     setGateMsg('');
-    try {
-      const [{ data: prefs }, { data: p }] = await Promise.all([
-        supabase.from('user_sms_preferences').select('opt_in_work_orders').eq('user_id', session.user.id).maybeSingle(),
-        supabase.from('account_users').select('phone').eq('account_user_id', session.user.id).maybeSingle(),
-      ]);
-      if (!p?.phone || !prefs?.opt_in_work_orders) {
-        setGateMsg('To submit a service request you need a phone number on file and work-order SMS notifications enabled. Open Profile to update these.');
-        return;
-      }
-      setShowSRForm(true);
-    } catch (err) {
-      console.error('Service request gate check failed:', err);
-      setGateMsg('Could not check your profile settings. Please try again in a moment.');
+    const [{ data: prefs }, { data: p }] = await Promise.all([
+      supabase.from('user_sms_preferences').select('opt_in_work_orders').eq('user_id', session.user.id).single(),
+      supabase.from('account_users').select('phone').eq('account_user_id', session.user.id).single(),
+    ]);
+    if (!p?.phone || !prefs?.opt_in_work_orders) {
+      setGateMsg('To submit a service request you must have a phone number on file and work order SMS notifications enabled in your profile.');
+      return;
     }
+    setShowSRForm(true);
   };
 
   // ── Submit — panel owns the insert ──

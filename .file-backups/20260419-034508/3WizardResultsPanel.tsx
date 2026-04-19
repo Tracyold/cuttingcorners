@@ -54,28 +54,16 @@ export default function WizardResultsPanel3({
 
   const [results,        setResults]        = useState<WizardResult[]>([]);
   const [loading,        setLoading]        = useState(true);
-  const [loadError,      setLoadError]      = useState<string | null>(null);
   // FIX 4: track which result is selected for the drawer
   const [selectedResult, setSelectedResult] = useState<WizardResult | null>(null);
 
   useEffect(() => {
     if (!open) return;
-    let cancelled = false;
     setLoading(true);
-    setLoadError(null);
-    getUserWizardResults()
-      .then(data => {
-        if (cancelled) return;
-        setResults(data);
-        setLoading(false);
-      })
-      .catch(err => {
-        if (cancelled) return;
-        console.error('getUserWizardResults failed:', err);
-        setLoadError('Could not load results. Please try again.');
-        setLoading(false);
-      });
-    return () => { cancelled = true; };
+    getUserWizardResults().then(data => {
+      setResults(data);
+      setLoading(false);
+    });
   }, [open]);
 
   const handleDelete = async (id: string) => {
@@ -98,19 +86,6 @@ export default function WizardResultsPanel3({
         {loading ? (
           <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
             <p style={{ fontFamily: 'var(--font-ui)', fontSize: 14, color: 'var(--text-muted)' }}>Loading...</p>
-          </div>
-        ) : loadError ? (
-          <div style={{
-            flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center',
-            padding: 'clamp(1rem, 4.5vw, 1.5rem)', textAlign: 'center',
-          }}>
-            <p style={{
-              fontFamily: 'var(--font-ui)',
-              fontSize: 'clamp(13px, 3.5vw, 14px)',
-              color: 'var(--text-muted)',
-            }}>
-              {loadError}
-            </p>
           </div>
         ) : results.length === 0 ? (
           <div className="wiz-empty">

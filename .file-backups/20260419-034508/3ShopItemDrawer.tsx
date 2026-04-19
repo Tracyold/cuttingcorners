@@ -59,45 +59,43 @@ export default function ShopItemDrawer3({ open, item, session, onClose, refreshI
     setInquirySending(true);
     setInquiryError(null);
 
+    // Race the insert against a 15-second timeout so the Send button can never
+    // hang forever. If we hit the timeout the user gets a real error message
+    // and the button re-enables.
+    const insertPromise = supabase.from('account_inquiries').insert({
+      account_user_id: session.user.id,
+      product_id:      item.product_id,
+      description:     inquiryText.trim(),
+      status:          'pending',
+    });
+    const timeoutPromise = new Promise<{ error: { message: string } }>((resolve) =>
+      setTimeout(
+        () => resolve({ error: { message: 'Request timed out after 15s. Check your connection and try again.' } }),
+        15000
+      )
+    );
+
     try {
-      // Direct await — no timeout race. Supabase's own network layer will
-      // surface errors in the error field. A race-timeout was masking real
-      // errors (trigger failures, RLS messages, etc.) behind a generic
-      // "timed out" string.
-      const { data, error } = await supabase
-        .from('account_inquiries')
-        .insert({
-          account_user_id: session.user.id,
-          product_id:      item.product_id,
-          description:     inquiryText.trim(),
-          status:          'pending',
-        })
-        .select('account_inquiry_id')
-        .maybeSingle();
+      const result = await Promise.race([insertPromise, timeoutPromise]);
+      const error = (result as any).error;
 
       if (error) {
-        console.error('Inquiry insert error:', error);
-        setInquiryError(error.message || 'Could not send inquiry. Please try again.');
-        return;
-      }
-      if (!data) {
-        // Insert succeeded but no row returned — unusual, but not fatal.
-        console.warn('Inquiry insert returned no row');
-      }
-
-      setInquirySent(true);
-      setInquiryOpen(false);
-      setInquiryText('');
-
-      // Fallback refresh — if realtime misses the INSERT on account_inquiries,
-      // this still pulls the new row into the Inquiries panel.
-      if (refreshInquiries) {
-        try { await refreshInquiries(); }
-        catch (e) { console.warn('refreshInquiries failed', e); }
+        console.error('Inquiry error:', error);
+        setInquiryError(error.message);
+      } else {
+        setInquirySent(true);
+        setInquiryOpen(false);
+        setInquiryText('');
+        // Fallback refresh — if realtime doesn't fire (e.g. realtime not enabled
+        // on account_inquiries at the supabase level), this still pulls the new
+        // row into the inquiries panel.
+        if (refreshInquiries) {
+          try { await refreshInquiries(); } catch (e) { console.warn('refreshInquiries failed', e); }
+        }
       }
     } catch (err: any) {
       console.error('Inquiry exception:', err);
-      setInquiryError(err?.message || 'An unexpected error occurred.');
+      setInquiryError(err?.message || 'An unexpected error occurred');
     } finally {
       setInquirySending(false);
     }
