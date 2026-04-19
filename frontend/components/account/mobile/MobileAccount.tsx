@@ -349,7 +349,7 @@ export default function MobileAccount(props: MobileAccountProps) {
           />
 
           {/* Feedback tile -- star rating, self-contained */}
-          <FeedbackTile3 />
+          <FeedbackTile3 session={props.session} />
 
         </div>{/* end feed-block */}
 
