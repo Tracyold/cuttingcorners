@@ -96,10 +96,6 @@ export default function AccountPage() {
           acceptWO={woHook.acceptWO}
           sendChat={chatHook.sendChat}
           openChatDrawer={chatHook.openChatDrawer}
-          chatError={chatHook.chatError}
-          clearChatError={chatHook.clearChatError}
-          pendingUploads={chatHook.pendingUploads}
-          dismissPendingUpload={chatHook.dismissPendingUpload}
           handleChatFile={chatHook.handleChatFile}
           refreshInquiries={data.refreshInquiries}
           refreshServiceRequests={data.refreshServiceRequests}
