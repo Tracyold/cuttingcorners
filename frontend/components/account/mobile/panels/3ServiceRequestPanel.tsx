@@ -335,6 +335,8 @@ export default function ServiceRequestPanel3({
         onClose={() => setShowSRForm(false)}
         onSubmitted={async () => {
           setShowSRForm(false);
+          setSrType('');
+          setSrDesc('');
           await refreshServiceRequests();
         }}
       />
