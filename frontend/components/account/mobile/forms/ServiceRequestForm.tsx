@@ -1,24 +1,38 @@
 // frontend/components/account/mobile/forms/ServiceRequestForm.tsx
 //
-// Extracted from 3ServiceRequestPanel.tsx. Owns:
-//   • Contact snapshot (name/email/phone/address) — prefill from profile,
-//     required input if profile is missing the value
-//   • Structured fields: gem type, color, weight (ct), size (L × W × D mm),
-//     quantity
-//   • Service type dropdown (now OPTIONAL)
-//   • Description textarea (REQUIRED)
-//   • Up to 2 custom fields with click-to-edit labels
-//   • Up to 3 photos, uploaded immediately to the
-//     `service-request-photos` bucket under the user's folder
-//   • SMS consent checkbox (required on first submission; passive
-//     "already consented" note on subsequent ones)
-//   • Submit → INSERT service_requests + custom_fields (+ UPSERT sms prefs
-//     if first-time consent) → onSubmitted()
+// ─── What changed in this revision ─────────────────────────────────────────
+//   • NEW "shape" field added (requires SQL migration below — paste into
+//     Supabase SQL Editor before deploying this file):
 //
-// Rules enforced:
-//   • 13px font floor, 25px font cap (clamp())
-//   • All colors via CSS custom properties (no hex literals in this file)
-//   • All visual state via CSS classes in MobileShell.css additions
+//        alter table public.service_requests
+//          add column if not exists shape text;
+//
+//   • Layout rearranged to pair related fields on the same row:
+//
+//       Row 1:  [ Gem Type        ]  [ Gem Color         ]
+//       Row 2:  [ Weight ][ ct ]      [ Shape             ]
+//       Row 3:  [ Qty ] [ L ]×[ W ]×[ D ]   (mm under each)
+//       Row 4:  [ Service Type dropdown — full width      ]
+//
+//     Each paired row uses a local .srf-pair CSS class injected via
+//     <style jsx> at the bottom of this file, so no separate CSS edit
+//     needed. Fields inside each pair remain independent inputs, each
+//     with its own state and DB column.
+//
+//   • Submit button no longer uses `disabled` — user can always click it.
+//     If validation fails, an error message appears above the button and
+//     auto-scrolls into view so the user can see the reason. This fixes
+//     the "clicking submit does nothing" bug (where the button was just
+//     silently greyed out).
+//
+//   • Small measurement rows now left-aligned instead of centered.
+//
+// ─── What stayed the same ──────────────────────────────────────────────────
+//   • Contact snapshot (prefill from profile; required inputs if missing)
+//   • Custom fields with click-to-edit labels, max 2
+//   • Photo upload to service-request-photos bucket, 3 max, 25MB each
+//   • SMS consent checkbox first time / passive note thereafter
+//   • All colors via CSS custom properties. Zero hex literals.
 
 import { useState, useRef, useEffect } from 'react';
 import { useSwipeDownToClose } from '../../shared/hooks/useSwipeDownToClose';
@@ -53,15 +67,15 @@ interface PhotoItem {
 }
 
 interface CustomField {
-  id:            string;
-  label:         string;
-  value:         string;
-  editingLabel:  boolean;
+  id:           string;
+  label:        string;
+  value:        string;
+  editingLabel: boolean;
 }
 
 // Upload rules
 const MAX_PHOTOS          = 3;
-const MAX_PHOTO_BYTES     = 25 * 1024 * 1024; // 25 MB
+const MAX_PHOTO_BYTES     = 25 * 1024 * 1024;
 const ACCEPTED_EXTENSIONS = ['png', 'jpg', 'jpeg', 'heic', 'webp'];
 const ACCEPTED_MIME_HINT  = '.png,.jpg,.jpeg,.heic,.webp,image/*';
 const MAX_CUSTOM_FIELDS   = 2;
@@ -71,6 +85,12 @@ const TOOLTIPS: Record<string, string> = {
   dims:    'If you\'re unsure, do not guess — leave blank and please include at least one photo of the stone next to a quarter for scale.',
   desc:    'All information is good information. Tell us a story — where did you get it? What do you want it to become? Any inclusions or cracks you\'ve noticed?',
   photos:  'Photos are the most helpful thing you can add. Include one next to a quarter for scale if possible. Up to 3, max 25MB each.',
+};
+
+// Lightweight unique-id generator (crypto.randomUUID isn't universally available on older iOS)
+const uid = () => {
+  if (typeof crypto !== 'undefined' && 'randomUUID' in crypto) return crypto.randomUUID();
+  return `${Date.now()}-${Math.random().toString(36).slice(2)}`;
 };
 
 
@@ -83,45 +103,52 @@ export default function ServiceRequestForm({
 
   const { elementRef, touchHandlers } = useSwipeDownToClose({ onClose });
 
-  // ── Contact snapshot (only typed if profile is missing the field) ──────────
+  // ── Contact snapshot (only editable if profile is missing the field) ──────
   const [contactName,    setContactName]    = useState('');
   const [contactEmail,   setContactEmail]   = useState('');
   const [contactPhone,   setContactPhone]   = useState('');
   const [contactAddress, setContactAddress] = useState('');
 
-  // ── Structured fields ──────────────────────────────────────────────────────
+  // ── Structured fields ─────────────────────────────────────────────────────
   const [gemType,  setGemType]  = useState('');
   const [gemColor, setGemColor] = useState('');
+  const [shape,    setShape]    = useState('');
   const [weightCt, setWeightCt] = useState('');
   const [dimL,     setDimL]     = useState('');
   const [dimW,     setDimW]     = useState('');
   const [dimD,     setDimD]     = useState('');
   const [quantity, setQuantity] = useState('1');
 
-  // ── Custom fields ──────────────────────────────────────────────────────────
+  // ── Custom fields ─────────────────────────────────────────────────────────
   const [customFields, setCustomFields] = useState<CustomField[]>([]);
 
-  // ── Photos ─────────────────────────────────────────────────────────────────
+  // ── Photos ────────────────────────────────────────────────────────────────
   const [photos, setPhotos] = useState<PhotoItem[]>([]);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  // ── SMS consent ────────────────────────────────────────────────────────────
+  // ── SMS consent ───────────────────────────────────────────────────────────
   const [consentChecked, setConsentChecked] = useState(false);
 
-  // ── Info tips + submit state ───────────────────────────────────────────────
+  // ── UI state ──────────────────────────────────────────────────────────────
   const [activeTip,   setActiveTip]   = useState<string | null>(null);
   const [submitting,  setSubmitting]  = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
+  const errorRef = useRef<HTMLDivElement | null>(null);
 
-  // Reset all transient state when the sheet closes, so a second open
-  // starts clean. Contact prefill recomputes on next render.
+  // Scroll submit error into view when it appears.
+  useEffect(() => {
+    if (submitError && errorRef.current) {
+      errorRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  }, [submitError]);
+
+  // Reset all transient state when the sheet closes.
   useEffect(() => {
     if (!open) {
       setContactName(''); setContactEmail(''); setContactPhone(''); setContactAddress('');
-      setGemType(''); setGemColor(''); setWeightCt('');
+      setGemType(''); setGemColor(''); setShape(''); setWeightCt('');
       setDimL(''); setDimW(''); setDimD(''); setQuantity('1');
       setCustomFields([]);
-      // Revoke object URLs before clearing
       photos.forEach(p => { try { URL.revokeObjectURL(p.objectUrl); } catch {} });
       setPhotos([]);
       setConsentChecked(false);
@@ -132,7 +159,7 @@ export default function ServiceRequestForm({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [open]);
 
-  // ── Contact resolution: profile value wins; else user-entered value ────────
+  // ── Contact resolution: profile value wins; else user-entered ─────────────
   const finalName    = (profile?.name             || '').trim() || contactName.trim();
   const finalEmail   = (profile?.email            || '').trim() || contactEmail.trim();
   const finalPhone   = (profile?.phone            || '').trim() || contactPhone.trim();
@@ -143,36 +170,26 @@ export default function ServiceRequestForm({
   const profileHasPhone   = !!(profile?.phone            && String(profile.phone).trim());
   const profileHasAddress = !!(profile?.shipping_address && String(profile.shipping_address).trim());
 
-  // ── Custom field helpers ───────────────────────────────────────────────────
+  // ── Custom field helpers ──────────────────────────────────────────────────
   const addCustomField = () => {
     if (customFields.length >= MAX_CUSTOM_FIELDS) return;
     setCustomFields(prev => [
       ...prev,
-      {
-        id: (typeof crypto !== 'undefined' && 'randomUUID' in crypto)
-          ? crypto.randomUUID()
-          : `cf-${Date.now()}-${Math.random()}`,
-        label: `Custom field ${prev.length + 1}`,
-        value: '',
-        editingLabel: true,
-      },
+      { id: uid(), label: `Custom field ${prev.length + 1}`, value: '', editingLabel: true },
     ]);
   };
-
   const updateCustomField = (id: string, patch: Partial<CustomField>) => {
     setCustomFields(prev => prev.map(cf => cf.id === id ? { ...cf, ...patch } : cf));
   };
-
   const removeCustomField = (id: string) => {
     setCustomFields(prev => prev.filter(cf => cf.id !== id));
   };
 
-  // ── Photo upload ───────────────────────────────────────────────────────────
+  // ── Photo upload ──────────────────────────────────────────────────────────
   const handleFilesPicked = async (files: FileList | null) => {
     if (!files || !session?.user?.id) return;
     const remaining = MAX_PHOTOS - photos.length;
     if (remaining <= 0) return;
-
     const toProcess = Array.from(files).slice(0, remaining);
 
     for (const file of toProcess) {
@@ -186,62 +203,80 @@ export default function ServiceRequestForm({
         continue;
       }
 
-      const tempId      = (typeof crypto !== 'undefined' && 'randomUUID' in crypto)
-        ? crypto.randomUUID()
-        : `p-${Date.now()}-${Math.random()}`;
+      const tempId      = uid();
       const objectUrl   = URL.createObjectURL(file);
       const storagePath = `${session.user.id}/${tempId}.${ext}`;
 
-      // Add the row immediately so the user sees the thumbnail + spinner.
-      setPhotos(prev => [
-        ...prev,
-        {
-          tempId, fileName: file.name, objectUrl,
-          storagePath, publicUrl: null,
-          uploading: true, uploaded: false,
-          showSuccessPill: false, error: null,
-        },
-      ]);
+      setPhotos(prev => [...prev, {
+        tempId, fileName: file.name, objectUrl,
+        storagePath, publicUrl: null,
+        uploading: true, uploaded: false,
+        showSuccessPill: false, error: null,
+      }]);
 
-      // Kick off the upload (no await here — all uploads run in parallel).
       (async () => {
+        let settled = false;
         try {
-          const { error: upErr } = await supabase.storage
-            .from('service-request-photos')
-            .upload(storagePath, file, { cacheControl: '3600', upsert: false });
+          // 60s timeout so a hung request can't freeze the submit button forever.
+          const uploadRace = Promise.race([
+            supabase.storage
+              .from('service-request-photos')
+              .upload(storagePath, file, { cacheControl: '3600', upsert: false }),
+            new Promise<{ data: null; error: { message: string } }>((resolve) =>
+              setTimeout(() => resolve({
+                data: null,
+                error: { message: 'Upload timed out after 60 seconds. Please try again.' },
+              }), 60_000),
+            ),
+          ]);
 
+          const result = await uploadRace;
+          const upErr = (result as any)?.error;
           if (upErr) {
-            console.error('Photo upload error:', upErr);
+            settled = true;
             setPhotos(prev => prev.map(p => p.tempId === tempId
-              ? { ...p, uploading: false, error: upErr.message }
+              ? { ...p, uploading: false, error: upErr.message ?? 'Upload failed' }
               : p));
             return;
           }
 
-          const { data: pub } = supabase.storage
-            .from('service-request-photos')
-            .getPublicUrl(storagePath);
+          let publicUrl: string | null = null;
+          try {
+            const { data: pub } = supabase.storage
+              .from('service-request-photos')
+              .getPublicUrl(storagePath);
+            publicUrl = pub?.publicUrl ?? null;
+          } catch (urlErr) {
+            console.warn('getPublicUrl threw (non-fatal):', urlErr);
+          }
 
+          settled = true;
           setPhotos(prev => prev.map(p => p.tempId === tempId
-            ? { ...p, uploading: false, uploaded: true, publicUrl: pub?.publicUrl ?? null, showSuccessPill: true }
+            ? { ...p, uploading: false, uploaded: true, publicUrl, showSuccessPill: true, error: null }
             : p));
 
-          // Fade the success pill after 2s
           setTimeout(() => {
             setPhotos(prev => prev.map(p => p.tempId === tempId
               ? { ...p, showSuccessPill: false }
               : p));
           }, 2000);
         } catch (err: any) {
+          settled = true;
           console.error('Photo upload exception:', err);
           setPhotos(prev => prev.map(p => p.tempId === tempId
             ? { ...p, uploading: false, error: err?.message ?? 'Upload failed' }
             : p));
+        } finally {
+          // Belt-and-suspenders: never leave a photo stuck in "uploading".
+          if (!settled) {
+            setPhotos(prev => prev.map(p => p.tempId === tempId
+              ? { ...p, uploading: false, error: 'Upload did not complete.' }
+              : p));
+          }
         }
       })();
     }
 
-    // Reset the file input so the same file can be re-selected if removed.
     if (fileInputRef.current) fileInputRef.current.value = '';
   };
 
@@ -250,41 +285,43 @@ export default function ServiceRequestForm({
     if (!target) return;
     try { URL.revokeObjectURL(target.objectUrl); } catch {}
     setPhotos(prev => prev.filter(p => p.tempId !== tempId));
-    // Best-effort: remove from storage if it was already uploaded.
     if (target.uploaded && target.storagePath) {
-      try {
-        await supabase.storage.from('service-request-photos').remove([target.storagePath]);
-      } catch (e) {
-        console.warn('Photo storage removal failed (non-blocking):', e);
-      }
+      try { await supabase.storage.from('service-request-photos').remove([target.storagePath]); }
+      catch (e) { console.warn('Photo storage removal failed (non-blocking):', e); }
     }
   };
 
-  // ── Derived submit state ───────────────────────────────────────────────────
+  // ── Derived state ─────────────────────────────────────────────────────────
   const anyPhotoUploading = photos.some(p => p.uploading);
-
   const contactComplete =
-    finalName.length   > 0 &&
-    finalEmail.length  > 0 &&
-    finalPhone.length  > 0 &&
+    finalName.length    > 0 &&
+    finalEmail.length   > 0 &&
+    finalPhone.length   > 0 &&
     finalAddress.length > 0;
-
   const consentSatisfied = existingConsent.consented ? true : consentChecked;
 
-  const canSubmit =
-    !submitting &&
-    !anyPhotoUploading &&
-    contactComplete &&
-    srDesc.trim().length > 0 &&
-    consentSatisfied;
-
-  // ── Submit ─────────────────────────────────────────────────────────────────
+  // ── Submit ────────────────────────────────────────────────────────────────
+  // NOTE: We do NOT disable the Submit button — if you click it and a gate
+  // fails, you get a visible error message instead of a silent dead click.
   const handleSubmit = async () => {
-    if (!session?.user?.id) return;
     setSubmitError(null);
 
+    if (!session?.user?.id) {
+      setSubmitError('Session missing. Please log out and log back in.');
+      return;
+    }
+    if (submitting) return;                 // already in flight
+    if (anyPhotoUploading) {
+      setSubmitError('Please wait for photos to finish uploading before submitting.');
+      return;
+    }
     if (!contactComplete) {
-      setSubmitError('Please fill in name, email, phone, and shipping address.');
+      const missing: string[] = [];
+      if (finalName.length    === 0) missing.push('name');
+      if (finalEmail.length   === 0) missing.push('email');
+      if (finalPhone.length   === 0) missing.push('phone');
+      if (finalAddress.length === 0) missing.push('shipping address');
+      setSubmitError(`Please fill in: ${missing.join(', ')}.`);
       return;
     }
     if (!srDesc.trim()) {
@@ -293,10 +330,6 @@ export default function ServiceRequestForm({
     }
     if (!consentSatisfied) {
       setSubmitError('Please check the SMS notification consent box to submit.');
-      return;
-    }
-    if (anyPhotoUploading) {
-      setSubmitError('Please wait for photos to finish uploading.');
       return;
     }
 
@@ -310,15 +343,15 @@ export default function ServiceRequestForm({
         ? (existingConsent.consentedAt ?? now)
         : (consentChecked ? now : null);
 
-      // 1. INSERT service_requests
       const { data: inserted, error: insErr } = await supabase
         .from('service_requests')
         .insert({
           account_user_id:          session.user.id,
           service_type:             srType.trim() || null,
           description:              srDesc.trim(),
-          gem_type:                 gemType.trim() || null,
+          gem_type:                 gemType.trim()  || null,
           gem_color:                gemColor.trim() || null,
+          shape:                    shape.trim()    || null,
           weight_ct:                weightCt.trim() ? parseFloat(weightCt) : null,
           dim_length_mm:            dimL.trim() ? parseFloat(dimL) : null,
           dim_width_mm:             dimW.trim() ? parseFloat(dimW) : null,
@@ -342,7 +375,7 @@ export default function ServiceRequestForm({
         return;
       }
 
-      // 2. INSERT custom fields (only if any have a non-empty label)
+      // Custom fields (best-effort)
       const goodFields = customFields
         .filter(cf => cf.label.trim().length > 0)
         .map((cf, i) => ({
@@ -359,7 +392,7 @@ export default function ServiceRequestForm({
         if (cfErr) console.warn('Custom fields insert failed (non-blocking):', cfErr);
       }
 
-      // 3. UPSERT user_sms_preferences.opt_in_work_orders if first-time consent
+      // SMS prefs upsert on first consent (best-effort)
       if (consentChecked && !existingConsent.consented) {
         const { error: prefErr } = await supabase
           .from('user_sms_preferences')
@@ -370,7 +403,7 @@ export default function ServiceRequestForm({
         if (prefErr) console.warn('SMS prefs upsert failed (non-blocking):', prefErr);
       }
 
-      // 4. Best-effort admin notification (non-blocking)
+      // Admin notification (best-effort)
       try {
         await supabase.functions.invoke('send-admin-notification', {
           body: { event_type: 'service_requests', user_id: session.user.id },
@@ -379,7 +412,6 @@ export default function ServiceRequestForm({
         console.warn('Admin notification edge function failed (non-blocking):', notifyErr);
       }
 
-      // 5. Tell the parent — it closes the sheet + refreshes the list
       await onSubmitted();
     } catch (err: any) {
       console.error('Service request submit exception:', err);
@@ -389,9 +421,8 @@ export default function ServiceRequestForm({
     }
   };
 
-  // ── Local render helpers ───────────────────────────────────────────────────
+  // ── Local render helpers ──────────────────────────────────────────────────
   const toggleTip = (id: string) => setActiveTip(prev => prev === id ? null : id);
-
   const InfoBtn = ({ id }: { id: string }) => (
     <button
       className={`nr-info-btn${activeTip === id ? ' active' : ''}`}
@@ -399,14 +430,12 @@ export default function ServiceRequestForm({
       type="button"
     >i</button>
   );
-
   const Tip = ({ id }: { id: string }) => (
     <div className={`nr-tooltip${activeTip === id ? ' show' : ''}`}>
       {TOOLTIPS[id]}
     </div>
   );
 
-  // Read-only contact row (profile had the value)
   const ReadContact = ({ label, value }: { label: string; value: string }) => (
     <div className="srf-contact-row">
       <span className="srf-contact-label">{label}</span>
@@ -414,15 +443,12 @@ export default function ServiceRequestForm({
     </div>
   );
 
-  // Required editable contact row (profile missing the value)
   const EditContact = ({
     label, value, onChange, type = 'text', placeholder,
   }: {
-    label:       string;
-    value:       string;
-    onChange:    (v: string) => void;
-    type?:       string;
-    placeholder: string;
+    label: string; value: string;
+    onChange: (v: string) => void;
+    type?: string; placeholder: string;
   }) => (
     <div className="srf-contact-row required">
       <span className="srf-contact-label">
@@ -454,26 +480,22 @@ export default function ServiceRequestForm({
 
         <div className="nr-body">
 
-          {/* ── CONTACT BLOCK ── */}
+          {/* ── CONTACT ── */}
           <div className="srf-section">
             <div className="srf-section-title">Contact Info</div>
             <div className="srf-contact-block">
               {profileHasName
                 ? <ReadContact label="Name" value={profile.name} />
-                : <EditContact label="Name"     value={contactName}    onChange={setContactName}    placeholder="Your full name" />
-              }
+                : <EditContact label="Name"     value={contactName}    onChange={setContactName}    placeholder="Your full name" />}
               {profileHasEmail
                 ? <ReadContact label="Email" value={profile.email} />
-                : <EditContact label="Email"    value={contactEmail}   onChange={setContactEmail}   placeholder="you@example.com" type="email" />
-              }
+                : <EditContact label="Email"    value={contactEmail}   onChange={setContactEmail}   placeholder="you@example.com" type="email" />}
               {profileHasPhone
                 ? <ReadContact label="Phone" value={profile.phone} />
-                : <EditContact label="Phone"    value={contactPhone}   onChange={setContactPhone}   placeholder="(555) 555-5555" type="tel" />
-              }
+                : <EditContact label="Phone"    value={contactPhone}   onChange={setContactPhone}   placeholder="(555) 555-5555" type="tel" />}
               {profileHasAddress
                 ? <ReadContact label="Shipping" value={profile.shipping_address} />
-                : <EditContact label="Shipping" value={contactAddress} onChange={setContactAddress} placeholder="Street, City, State, ZIP" />
-              }
+                : <EditContact label="Shipping" value={contactAddress} onChange={setContactAddress} placeholder="Street, City, State, ZIP" />}
             </div>
           </div>
 
@@ -481,105 +503,120 @@ export default function ServiceRequestForm({
           <div className="srf-section">
             <div className="srf-section-title">Stone Details</div>
 
-            <div className="nr-field">
-              <div className="nr-field-head">
-                <span className="nr-label">Gem Type</span>
-              </div>
-              <input
-                className="nr-input"
-                value={gemType}
-                onChange={e => setGemType(e.target.value)}
-                placeholder="e.g. Sapphire, Tourmaline, Opal..."
-              />
-            </div>
-
-            <div className="nr-field">
-              <div className="nr-field-head">
-                <span className="nr-label">Gem Color</span>
-              </div>
-              <input
-                className="nr-input"
-                value={gemColor}
-                onChange={e => setGemColor(e.target.value)}
-                placeholder="e.g. Cornflower blue, Padparadscha..."
-              />
-            </div>
-
-            {/* Weight */}
-            <div className="nr-field">
-              <div className="nr-field-head">
-                <span className="nr-label">Weight</span>
-              </div>
-              <div className="srf-weight-row">
+            {/* Row 1: Gem Type | Gem Color */}
+            <div className="srf-pair">
+              <div className="srf-pair-cell">
+                <div className="nr-field-head">
+                  <span className="nr-label">Gem Type</span>
+                </div>
                 <input
-                  className="nr-input srf-weight-input"
-                  inputMode="decimal"
-                  value={weightCt}
-                  onChange={e => setWeightCt(e.target.value.replace(/[^0-9.]/g, ''))}
-                  placeholder="4.20"
+                  className="nr-input"
+                  value={gemType}
+                  onChange={e => setGemType(e.target.value)}
+                  placeholder="e.g. Sapphire, Tourmaline..."
                 />
-                <span className="srf-unit-suffix">ct</span>
+              </div>
+              <div className="srf-pair-cell">
+                <div className="nr-field-head">
+                  <span className="nr-label">Gem Color</span>
+                </div>
+                <input
+                  className="nr-input"
+                  value={gemColor}
+                  onChange={e => setGemColor(e.target.value)}
+                  placeholder="e.g. Cornflower blue..."
+                />
               </div>
             </div>
 
-            {/* Size: L × W × D mm */}
-            <div className="nr-field">
-              <div className="nr-field-head">
-                <span className="nr-label">Size (L × W × D)</span>
-                <InfoBtn id="dims" />
+            {/* Row 2: Weight + ct | Shape */}
+            <div className="srf-pair">
+              <div className="srf-pair-cell">
+                <div className="nr-field-head">
+                  <span className="nr-label">Weight</span>
+                </div>
+                <div className="srf-weight-row">
+                  <input
+                    className="nr-input srf-weight-input"
+                    inputMode="decimal"
+                    value={weightCt}
+                    onChange={e => setWeightCt(e.target.value.replace(/[^0-9.]/g, ''))}
+                    placeholder="4.20"
+                  />
+                  <span className="srf-unit-suffix">ct</span>
+                </div>
               </div>
-              <Tip id="dims" />
-              <div className="srf-size-row">
-                <div className="srf-size-box">
-                  <input
-                    className="nr-input sq"
-                    inputMode="decimal"
-                    value={dimL}
-                    onChange={e => setDimL(e.target.value.replace(/[^0-9.]/g, ''))}
-                    placeholder="L"
-                  />
-                  <span className="srf-unit-suffix">mm</span>
+              <div className="srf-pair-cell">
+                <div className="nr-field-head">
+                  <span className="nr-label">Shape</span>
                 </div>
-                <span className="srf-size-sep" aria-hidden>×</span>
-                <div className="srf-size-box">
-                  <input
-                    className="nr-input sq"
-                    inputMode="decimal"
-                    value={dimW}
-                    onChange={e => setDimW(e.target.value.replace(/[^0-9.]/g, ''))}
-                    placeholder="W"
-                  />
-                  <span className="srf-unit-suffix">mm</span>
+                <input
+                  className="nr-input"
+                  value={shape}
+                  onChange={e => setShape(e.target.value)}
+                  placeholder="e.g. Oval, Round, Cushion..."
+                />
+              </div>
+            </div>
+
+            {/* Row 3: Qty | L × W × D mm */}
+            <div className="srf-pair srf-pair-tight">
+              <div className="srf-pair-cell srf-pair-qty">
+                <div className="nr-field-head">
+                  <span className="nr-label">Qty</span>
                 </div>
-                <span className="srf-size-sep" aria-hidden>×</span>
-                <div className="srf-size-box">
-                  <input
-                    className="nr-input sq"
-                    inputMode="decimal"
-                    value={dimD}
-                    onChange={e => setDimD(e.target.value.replace(/[^0-9.]/g, ''))}
-                    placeholder="D"
-                  />
-                  <span className="srf-unit-suffix">mm</span>
+                <input
+                  className="nr-input sq"
+                  inputMode="numeric"
+                  value={quantity}
+                  onChange={e => setQuantity(e.target.value.replace(/[^0-9]/g, ''))}
+                  placeholder="1"
+                />
+              </div>
+              <div className="srf-pair-cell srf-pair-size">
+                <div className="nr-field-head">
+                  <span className="nr-label">Size (L × W × D)</span>
+                  <InfoBtn id="dims" />
+                </div>
+                <Tip id="dims" />
+                <div className="srf-size-row">
+                  <div className="srf-size-box">
+                    <input
+                      className="nr-input sq"
+                      inputMode="decimal"
+                      value={dimL}
+                      onChange={e => setDimL(e.target.value.replace(/[^0-9.]/g, ''))}
+                      placeholder="L"
+                    />
+                    <span className="srf-unit-suffix">mm</span>
+                  </div>
+                  <span className="srf-size-sep" aria-hidden>×</span>
+                  <div className="srf-size-box">
+                    <input
+                      className="nr-input sq"
+                      inputMode="decimal"
+                      value={dimW}
+                      onChange={e => setDimW(e.target.value.replace(/[^0-9.]/g, ''))}
+                      placeholder="W"
+                    />
+                    <span className="srf-unit-suffix">mm</span>
+                  </div>
+                  <span className="srf-size-sep" aria-hidden>×</span>
+                  <div className="srf-size-box">
+                    <input
+                      className="nr-input sq"
+                      inputMode="decimal"
+                      value={dimD}
+                      onChange={e => setDimD(e.target.value.replace(/[^0-9.]/g, ''))}
+                      placeholder="D"
+                    />
+                    <span className="srf-unit-suffix">mm</span>
+                  </div>
                 </div>
               </div>
             </div>
 
-            {/* Quantity */}
-            <div className="nr-field">
-              <div className="nr-field-head">
-                <span className="nr-label">Quantity</span>
-              </div>
-              <input
-                className="nr-input sq"
-                inputMode="numeric"
-                value={quantity}
-                onChange={e => setQuantity(e.target.value.replace(/[^0-9]/g, ''))}
-                placeholder="1"
-              />
-            </div>
-
-            {/* Service type (OPTIONAL now) */}
+            {/* Row 4: Service type (full width) */}
             <div className="nr-field">
               <div className="nr-field-head">
                 <span className="nr-label">Service Type</span>
@@ -756,7 +793,7 @@ export default function ServiceRequestForm({
 
           {/* ── SUBMIT ERROR ── */}
           {submitError && (
-            <div className="srf-submit-error">{submitError}</div>
+            <div ref={errorRef} className="srf-submit-error">{submitError}</div>
           )}
 
         </div>{/* end nr-body */}
@@ -765,7 +802,6 @@ export default function ServiceRequestForm({
           <button
             className="nr-submit-btn"
             onClick={handleSubmit}
-            disabled={!canSubmit}
             type="button"
           >
             {submitting
@@ -779,6 +815,43 @@ export default function ServiceRequestForm({
           </div>
         </div>
       </div>
+
+      {/* ── LOCAL STYLES FOR THIS FILE ────────────────────────────────────────
+           Keeping these scoped via <style jsx> so you don't have to edit
+           MobileShell.css again for this round. Everything else the form
+           uses (.nr-*, .srf-*) already lives in the shared stylesheet. */}
+      <style jsx>{`
+        /* Two-column field pair layout. Wraps on very narrow screens so
+           it never horizontally overflows. */
+        :global(.srf-pair) {
+          display: flex;
+          gap: clamp(0.5rem, 2.5vw, 0.75rem);
+          margin-bottom: clamp(0.75rem, 3.5vw, 1.125rem);
+          flex-wrap: wrap;
+          align-items: flex-start;
+        }
+        :global(.srf-pair-cell) {
+          flex: 1 1 45%;
+          min-width: 0;
+        }
+
+        /* Tight layout for the Qty + L×W×D row — Qty stays skinny, size
+           takes the remainder. Left-aligned (not centered). */
+        :global(.srf-pair-tight) {
+          flex-wrap: nowrap;
+          align-items: flex-start;
+        }
+        :global(.srf-pair-qty) {
+          flex: 0 0 auto;
+          max-width: 30%;
+        }
+        :global(.srf-pair-size) {
+          flex: 1 1 auto;
+        }
+        :global(.srf-pair-size .srf-size-row) {
+          justify-content: flex-start !important;
+        }
+      `}</style>
     </>
   );
 }
