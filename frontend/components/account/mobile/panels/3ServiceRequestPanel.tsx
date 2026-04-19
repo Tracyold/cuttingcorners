@@ -2,30 +2,26 @@
 //
 // Service request panel (mobile).
 //
-// What changed this revision:
-//   • Active / Archive tab row beneath the gold panel header.
-//   • Swipe-reveal button is now "Archive" (teal --archive var, not red).
-//   • Archived items render as grayed-out, non-clickable cards.
-//   • Scroll container is now .sr-list (CSS class) with min-height: 0
-//     so cards don't shrink as the list grows.
-//   • Archive writes to Supabase FIRST, then updates local state on
-//     success. DB is source of truth — nothing lives only in memory.
-//   • Calls refreshServiceRequests() after the DB write as a fallback
-//     when realtime replication is not enabled on the table.
+// This panel now owns ONLY:
+//   • The list of service requests (active + archived)
+//   • The Active / Archive tabs
+//   • The swipe-to-archive mechanic
+//   • The "+ New Request" button that opens the form
+//   • Fetching the user's existing SMS-consent state once, to pass to
+//     the form (so a returning user doesn't re-see the checkbox)
 //
-// What was preserved:
-//   • Swipe mechanic (SwipeableSR's touch handlers, threshold, transform).
-//   • Panel down-slide animation.
-//   • All form logic — service type select, description, weight, dims, photos.
-//   • Contact Info read-only block added last revision.
-//   • All fonts, sizes (clamp 13–25px), and theme tokens.
+// The FORM itself lives in a separate file:
+//   components/account/mobile/forms/ServiceRequestForm.tsx
+//
+// Nothing about the archive flow or tabs has changed from the last
+// working version — those parts are preserved byte-for-byte.
 
-import { useState, useRef, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { fmtDate, fmtTime } from '../../../../lib/utils';
 import { useSwipeDownToClose } from '../../shared/hooks/useSwipeDownToClose';
 import { supabase } from '../../../../lib/supabase';
-import { SERVICE_TYPES } from '../../shared/1InquiryList';
 import FirstTimeTips from '../ui/FirstTimeTips';
+import ServiceRequestForm from '../forms/ServiceRequestForm';
 
 interface ServiceRequestPanelProps {
   open:                   boolean;
@@ -35,7 +31,9 @@ interface ServiceRequestPanelProps {
   onSelectSR:             (sr: any) => void;
   onClose:                () => void;
   refreshServiceRequests: () => Promise<void>;
-  // Controlled form state (kept in MobileAccount so the wizard can pre-fill)
+  // Wizard prefill handshake — MobileAccount holds these so the wizard
+  // results panel can set srType + srDesc + showSRForm=true to open the
+  // form with fields already populated.
   showSRForm:             boolean;
   setShowSRForm:          (v: boolean) => void;
   srType:                 string;
@@ -46,13 +44,6 @@ interface ServiceRequestPanelProps {
 
 type SRTab = 'active' | 'archive';
 
-const TOOLTIPS: Record<string, string> = {
-  service: 'This can be changed in the future. Selecting it doesn\'t lock you in. We just want a rough idea.',
-  dims:    'If you\'re unsure, do not guess -- just say "Unknown" and please include at least one photo of the stone next to a quarter for scale.',
-  desc:    'All information is good information. Tell us a story -- tell us anything about the stone. Where did you get it? What do you want it to become? Any inclusions or cracks you\'ve noticed?',
-  photos:  'Photos are the most helpful thing you can add. They give us a layer of understanding that words alone can\'t convey. Include one next to a quarter for scale if possible.',
-};
-
 export default function ServiceRequestPanel3({
   open, serviceRequests, session, profile, onSelectSR, onClose,
   refreshServiceRequests,
@@ -60,146 +51,57 @@ export default function ServiceRequestPanel3({
 }: ServiceRequestPanelProps) {
 
   const { elementRef: panelRef, touchHandlers: panelHandlers } = useSwipeDownToClose({ onClose });
-  const { elementRef: sheetRef, touchHandlers: sheetHandlers } = useSwipeDownToClose({ onClose: () => setShowSRForm(false) });
 
   // ── Tab state ──
   const [activeTab, setActiveTab] = useState<SRTab>('active');
 
-  // ── Form state (panel-owned) ──
-  const [activeTip,  setActiveTip]  = useState<string | null>(null);
-  const [weight,     setWeight]     = useState('');
-  const [dims,       setDims]       = useState('');
-  const [photos,     setPhotos]     = useState<string[]>([]);
-  const [submitting, setSubmitting] = useState(false);
-  const [gateMsg,    setGateMsg]    = useState('');
-  const fileInputRef = useRef<HTMLInputElement>(null);
+  // ── Existing-consent state ──
+  // Populated once when the panel opens. Passed to ServiceRequestForm so
+  // first-time users see the consent checkbox, and returning users see a
+  // passive "already consented" note.
+  const [existingConsent, setExistingConsent] = useState<{
+    consented:   boolean;
+    consentedAt: string | null;
+  }>({ consented: false, consentedAt: null });
 
-  const toggleTip   = (id: string) => setActiveTip(prev => prev === id ? null : id);
-  const removePhoto = (idx: number) => setPhotos(prev => prev.filter((_, i) => i !== idx));
-
-  // Clear the form when the sheet closes.
+  // Fetch consent state when the panel first becomes visible (and also
+  // re-fetch whenever the sheet is about to open, so a freshly consented
+  // user on a second SR flow sees the passive note).
   useEffect(() => {
-    if (!showSRForm) {
-      setWeight('');
-      setDims('');
-      setPhotos([]);
-      setGateMsg('');
-    }
-  }, [showSRForm]);
+    if (!open || !session?.user?.id) return;
+    let cancelled = false;
+    (async () => {
+      // Current SMS prefs — did they ever opt into work-order SMS?
+      const { data: prefs } = await supabase
+        .from('user_sms_preferences')
+        .select('opt_in_work_orders')
+        .eq('user_id', session.user.id)
+        .maybeSingle();
 
-  // ── Open form — phone + SMS gate ──
-  // Uses .maybeSingle() (returns null for 0 rows) instead of .single()
-  // (throws on 0 rows). Wraps the gate check in try/catch so missing
-  // user_sms_preferences rows or transient errors surface a message to
-  // the user instead of silently killing the button.
-  const handleOpenForm = async () => {
-    if (!session?.user?.id) return;
-    setGateMsg('');
-    try {
-      const [{ data: prefs }, { data: p }] = await Promise.all([
-        supabase.from('user_sms_preferences').select('opt_in_work_orders').eq('user_id', session.user.id).maybeSingle(),
-        supabase.from('account_users').select('phone').eq('account_user_id', session.user.id).maybeSingle(),
-      ]);
-      if (!p?.phone || !prefs?.opt_in_work_orders) {
-        setGateMsg('To submit a service request you need a phone number on file and work-order SMS notifications enabled. Open Profile to update these.');
-        return;
+      // If yes, find the earliest SR that recorded the consent so we
+      // can show the date ("consented on ...").
+      let consentedAt: string | null = null;
+      if (prefs?.opt_in_work_orders) {
+        const { data: firstSR } = await supabase
+          .from('service_requests')
+          .select('workorder_sms_consent_at')
+          .eq('account_user_id', session.user.id)
+          .eq('workorder_sms_consent', true)
+          .not('workorder_sms_consent_at', 'is', null)
+          .order('workorder_sms_consent_at', { ascending: true })
+          .limit(1)
+          .maybeSingle();
+        consentedAt = firstSR?.workorder_sms_consent_at ?? null;
       }
-      setShowSRForm(true);
-    } catch (err) {
-      console.error('Service request gate check failed:', err);
-      setGateMsg('Could not check your profile settings. Please try again in a moment.');
-    }
-  };
 
-  // ── Submit — panel owns the insert ──
-  const handleSubmitForm = async () => {
-    if (!session?.user?.id) return;
-    if (!srType.trim() || !srDesc.trim()) {
-      alert('Service type and description are required.');
-      return;
-    }
-
-    let fullDesc = srDesc.trim();
-    if (weight.trim()) fullDesc += `\nWeight: ${weight.trim()}`;
-    if (dims.trim())   fullDesc += `\nDimensions: ${dims.trim()}`;
-
-    setSubmitting(true);
-    try {
-      const { error } = await supabase.from('service_requests').insert({
-        account_user_id: session.user.id,
-        service_type:    srType,
-        description:     fullDesc,
-        photo_url:       null,
-        is_archived:     false,
+      if (cancelled) return;
+      setExistingConsent({
+        consented:   !!prefs?.opt_in_work_orders,
+        consentedAt,
       });
-      if (error) {
-        console.error('Service request insert failed:', error);
-        alert('Could not submit your service request. Please try again.');
-        return;
-      }
-
-      // Best-effort admin notification — do NOT block the form on failure.
-      try {
-        await supabase.functions.invoke('send-admin-notification', {
-          body: { event_type: 'service_requests', user_id: session.user.id },
-        });
-      } catch (notifyErr) {
-        console.warn('Admin notification edge function failed (non-blocking):', notifyErr);
-      }
-
-      // Reset form + close + refresh list so the card appears even if
-      // realtime replication is not enabled on the table.
-      setSrType('');
-      setSrDesc('');
-      setWeight('');
-      setDims('');
-      setPhotos([]);
-      setShowSRForm(false);
-      await refreshServiceRequests();
-    } catch (err) {
-      console.error('Service request submit exception:', err);
-      alert('Could not submit your service request. Please try again.');
-    } finally {
-      setSubmitting(false);
-    }
-  };
-
-  const InfoBtn = ({ id }: { id: string }) => (
-    <button
-      className={`nr-info-btn${activeTip === id ? ' active' : ''}`}
-      onClick={() => toggleTip(id)}
-    >
-      i
-    </button>
-  );
-
-  const Tip = ({ id }: { id: string }) => (
-    <div className={`nr-tooltip${activeTip === id ? ' show' : ''}`}>
-      {TOOLTIPS[id]}
-    </div>
-  );
-
-  // ── Read-only contact row ──
-  const ContactRow = ({ label, value }: { label: string; value: string | null | undefined }) => (
-    <div style={{ display: 'flex', alignItems: 'flex-start', gap: 12, padding: '6px 0', borderBottom: '0.5px dashed var(--bdr2)' }}>
-      <span style={{
-        fontFamily: 'var(--font-mono)',
-        fontSize: 'clamp(9px, 2.4vw, 10px)',
-        letterSpacing: '0.18em', textTransform: 'uppercase',
-        color: 'var(--text-muted)', opacity: 0.7,
-        minWidth: 70, flexShrink: 0, paddingTop: 2,
-      }}>{label}</span>
-      <span style={{
-        fontFamily: 'var(--font-ui)',
-        fontSize: 'clamp(13px, 3.5vw, 15px)',
-        color: value ? 'var(--text)' : 'var(--text-muted)',
-        opacity: value ? 1 : 0.55,
-        lineHeight: 1.4, wordBreak: 'break-word', flex: 1,
-      }}>
-        {value || 'Not set'}
-      </span>
-    </div>
-  );
+    })();
+    return () => { cancelled = true; };
+  }, [open, session?.user?.id]);
 
   // ── Swipeable SR card (mechanic preserved; button label + color via CSS) ──
   function SwipeableSR({
@@ -362,25 +264,12 @@ export default function ServiceRequestPanel3({
           </button>
         </div>
 
-        {gateMsg && (
-          <div style={{
-            background: 'var(--bg-card)', color: 'var(--text-muted)',
-            padding: 'clamp(0.75rem, 3.5vw, 1rem)',
-            margin: 'clamp(0.5rem, 2.5vw, 0.75rem)',
-            borderRadius: '8px',
-            fontSize: 'clamp(13px, 3.4vw, 14px)',
-            lineHeight: 1.5, textAlign: 'center',
-          }}>
-            {gateMsg}
-          </div>
-        )}
-
-        {/* ── "+ New Request" only visible on Active tab ── */}
+        {/* ── "+ New Request" only on Active tab ── */}
         {activeTab === 'active' && (
           <>
             <div style={{ display: 'flex', justifyContent: 'flex-end', padding: 'clamp(0.75rem, 3.5vw, 1rem) clamp(1rem, 4.5vw, 1.25rem) 0' }}>
               <button
-                onClick={handleOpenForm}
+                onClick={() => setShowSRForm(true)}
                 onMouseDown={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.borderColor = 'var(--gold)'; e.currentTarget.style.color = 'var(--gold)'; }}
                 onMouseUp={e => { e.currentTarget.style.background = 'var(--gold)'; e.currentTarget.style.borderColor = 'var(--border)'; e.currentTarget.style.color = 'var(--text)'; }}
                 onTouchStart={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.borderColor = 'var(--gold)'; e.currentTarget.style.color = 'var(--gold)'; }}
@@ -435,174 +324,20 @@ export default function ServiceRequestPanel3({
         </div>
       </div>
 
-      {/* ── NEW SERVICE REQUEST SHEET ── */}
-      <div
-        className={`nr-overlay${showSRForm ? ' open' : ''}`}
-        onClick={() => setShowSRForm(false)}
+      {/* ── FORM ── extracted into its own file/component ── */}
+      <ServiceRequestForm
+        open={showSRForm}
+        session={session}
+        profile={profile}
+        existingConsent={existingConsent}
+        srType={srType}   setSrType={setSrType}
+        srDesc={srDesc}   setSrDesc={setSrDesc}
+        onClose={() => setShowSRForm(false)}
+        onSubmitted={async () => {
+          setShowSRForm(false);
+          await refreshServiceRequests();
+        }}
       />
-      <div ref={sheetRef} className={`nr-sheet${showSRForm ? ' open' : ''}`}>
-        <FirstTimeTips type="panel-down" show={showSRForm} />
-        <div className="nr-handle" {...sheetHandlers} />
-        <div className="nr-head" {...sheetHandlers}>
-          <span className="nr-title">New Service Request</span>
-          <button className="nr-close" onClick={() => setShowSRForm(false)}>✕</button>
-        </div>
-
-        <div className="nr-body">
-
-          {/* ── Read-only Contact Info block ── */}
-          <div style={{
-            background: 'var(--bg-card)',
-            border: '0.5px solid var(--bdr2)',
-            borderRadius: '12px',
-            padding: 'clamp(0.75rem, 3.5vw, 1rem) clamp(0.875rem, 4vw, 1.125rem)',
-            marginBottom: 'clamp(0.875rem, 4vw, 1.25rem)',
-          }}>
-            <div style={{
-              display: 'flex', justifyContent: 'space-between', alignItems: 'baseline',
-              marginBottom: 8,
-            }}>
-              <span style={{
-                fontFamily: 'var(--font-mono)',
-                fontSize: 'clamp(9px, 2.4vw, 10px)',
-                letterSpacing: '0.24em', textTransform: 'uppercase',
-                color: 'var(--text)', opacity: 0.8,
-              }}>
-                Contact Info
-              </span>
-              <span style={{
-                fontFamily: 'var(--font-ui)',
-                fontSize: 'clamp(9px, 2.4vw, 10px)',
-                color: 'var(--text-muted)', opacity: 0.6, fontStyle: 'italic',
-              }}>
-                from your profile
-              </span>
-            </div>
-            <ContactRow label="Name"     value={profile?.name} />
-            <ContactRow label="Phone"    value={profile?.phone} />
-            <ContactRow label="Email"    value={profile?.email} />
-            <ContactRow label="Shipping" value={profile?.shipping_address} />
-          </div>
-
-          {/* Service Type */}
-          <div className="nr-field">
-            <div className="nr-field-head">
-              <span className="nr-label">
-                Service Type <span style={{ color: 'var(--gold)', fontSize: 'clamp(9px, 2.4vw, 10px)' }}>REQUIRED</span>
-              </span>
-              <InfoBtn id="service" />
-            </div>
-            <Tip id="service" />
-            <div className="nr-select-wrap">
-              <select
-                className="nr-select req"
-                value={srType}
-                onChange={e => setSrType(e.target.value)}
-              >
-                <option value="">Select a service type...</option>
-                {SERVICE_TYPES.map(st => (
-                  <option key={st} value={st}>{st}</option>
-                ))}
-              </select>
-              <span className="nr-select-arrow">▾</span>
-            </div>
-          </div>
-
-          {/* Description */}
-          <div className="nr-field">
-            <div className="nr-field-head">
-              <span className="nr-label">
-                Description <span style={{ color: 'var(--gold)', fontSize: 'clamp(9px, 2.4vw, 10px)' }}>REQUIRED</span>
-              </span>
-              <InfoBtn id="desc" />
-            </div>
-            <Tip id="desc" />
-            <textarea
-              className="nr-input req"
-              placeholder="Tell us about the stone and what you need..."
-              value={srDesc}
-              onChange={e => setSrDesc(e.target.value)}
-              style={{ minHeight: '100px', fontFamily: 'var(--font-ui)', resize: 'vertical' }}
-            />
-          </div>
-
-          {/* Weight */}
-          <div className="nr-field">
-            <div className="nr-field-head">
-              <span className="nr-label">Weight (ct)</span>
-            </div>
-            <input
-              className="nr-input"
-              placeholder="e.g. 4.2 ct or Unknown"
-              value={weight}
-              onChange={e => setWeight(e.target.value)}
-            />
-          </div>
-
-          {/* Dimensions */}
-          <div className="nr-field">
-            <div className="nr-field-head">
-              <span className="nr-label">Dimensions (W × L × D)</span>
-              <InfoBtn id="dims" />
-            </div>
-            <Tip id="dims" />
-            <input
-              className="nr-input"
-              placeholder="e.g. 10 × 8 × 6 mm or Unknown"
-              value={dims}
-              onChange={e => setDims(e.target.value)}
-            />
-          </div>
-
-          {/* Photos */}
-          <div className="nr-field" style={{ marginBottom: 24 }}>
-            <div className="nr-field-head">
-              <span className="nr-label">Photos</span>
-              <InfoBtn id="photos" />
-            </div>
-            <Tip id="photos" />
-            <div className="nr-photo-area" onClick={() => fileInputRef.current?.click()}>
-              <div className="nr-photo-area-icon">📷</div>
-              <div className="nr-photo-area-label">
-                Tap to add photos<br />
-                <span style={{ fontSize: 'clamp(10px, 2.6vw, 11px)', opacity: 0.6 }}>JPG, PNG — as many as you like</span>
-              </div>
-            </div>
-            <input
-              type="file"
-              ref={fileInputRef}
-              accept="image/*"
-              multiple
-              style={{ display: 'none' }}
-              onChange={() => {}}
-            />
-            {photos.length > 0 && (
-              <div className="nr-photo-grid">
-                {photos.map((src, i) => (
-                  <div
-                    key={i}
-                    className="nr-photo-thumb"
-                    style={{ backgroundImage: `url(${src})`, backgroundSize: 'cover', backgroundPosition: 'center' }}
-                  >
-                    <button className="nr-photo-rm" onClick={() => removePhoto(i)}>✕</button>
-                  </div>
-                ))}
-              </div>
-            )}
-          </div>
-
-        </div>{/* end nr-body */}
-
-        <div className="nr-footer">
-          <button className="nr-submit-btn" onClick={handleSubmitForm} disabled={submitting}>
-            {submitting ? 'Submitting...' : 'Submit Service Request →'}
-          </button>
-          <div className="nr-req-note">
-            Fields marked <span style={{ color: 'var(--gold)' }}>REQUIRED</span> must be filled before submitting.
-          </div>
-        </div>
-
-      </div>{/* end nr-sheet */}
     </>
   );
 }
