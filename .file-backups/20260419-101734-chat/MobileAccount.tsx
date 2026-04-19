@@ -81,10 +81,6 @@ export interface MobileAccountProps {
   chatInput:         string;
   chatSending:       boolean;
   chatUploading:     boolean;
-  chatError?:           string | null;
-  clearChatError?:      () => void;
-  pendingUploads?:      any[];
-  dismissPendingUpload?: (tempId: string) => void;
   chatEndRef:        React.RefObject<HTMLDivElement>;
   chatFileRef:       React.RefObject<HTMLInputElement>;
   // Wizard
@@ -386,10 +382,6 @@ export default function MobileAccount(props: MobileAccountProps) {
         chatFileRef={props.chatFileRef}
         setChatInput={props.setChatInput}
         sendChat={props.sendChat}
-        chatError={props.chatError}
-        clearChatError={props.clearChatError}
-        pendingUploads={props.pendingUploads}
-        dismissPendingUpload={props.dismissPendingUpload}
         handleChatFile={props.handleChatFile}
         onClose={closePanel}
         onOpen={props.openChatDrawer}

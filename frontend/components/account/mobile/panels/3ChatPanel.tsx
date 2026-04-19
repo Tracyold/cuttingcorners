@@ -5,20 +5,25 @@ import { supabase } from '../../../../lib/supabase';
 import { fmtTime } from '../../../../lib/utils';
 import { useSwipeDownToClose } from '../../shared/hooks/useSwipeDownToClose';
 import FirstTimeTips from '../ui/FirstTimeTips';
+import type { PendingUpload } from '../../shared/hooks/useChat';
 
 interface ChatPanelProps {
-  open:           boolean;
-  messages:       any[];
-  chatInput:      string;
-  chatSending:    boolean;
-  chatUploading:  boolean;
-  chatEndRef:     React.RefObject<HTMLDivElement>;
-  chatFileRef:    React.RefObject<HTMLInputElement>;
-  setChatInput:   (v: string) => void;
-  sendChat:       () => void;
-  handleChatFile: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  onClose:        () => void;
-  onOpen:         () => void;
+  open:                 boolean;
+  messages:             any[];
+  chatInput:            string;
+  chatSending:          boolean;
+  chatUploading:        boolean;
+  chatError?:           string | null;
+  clearChatError?:      () => void;
+  pendingUploads?:      PendingUpload[];
+  dismissPendingUpload?: (tempId: string) => void;
+  chatEndRef:           React.RefObject<HTMLDivElement>;
+  chatFileRef:          React.RefObject<HTMLInputElement>;
+  setChatInput:         (v: string) => void;
+  sendChat:             () => void;
+  handleChatFile:       (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onClose:              () => void;
+  onOpen:               () => void;
 }
 
 function getAttachmentUrl(url: string): string {
@@ -39,19 +44,18 @@ function formatDate(iso: string): string {
 
 export default function ChatPanel3({
   open, messages, chatInput, chatSending, chatUploading,
+  chatError, clearChatError,
+  pendingUploads = [], dismissPendingUpload,
   chatEndRef, chatFileRef, setChatInput, sendChat, handleChatFile,
   onClose, onOpen,
 }: ChatPanelProps) {
 
-  // ── Swipe down to close ──
   const { elementRef, touchHandlers } = useSwipeDownToClose({ onClose });
 
-  // Scroll to bottom when messages change or panel opens
   useEffect(() => {
     if (open) chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-  }, [messages, open]);
+  }, [messages, pendingUploads, open]);
 
-  // Mark as read when opened
   useEffect(() => {
     if (open) onOpen();
   }, [open]);
@@ -68,7 +72,7 @@ export default function ChatPanel3({
       </div>
 
       <div className="chat-msgs" style={{ padding: '24px 16px', display: 'flex', flexDirection: 'column', gap: 12, flex: 1, overflowY: 'auto' }}>
-        {messages.length === 0 && (
+        {messages.length === 0 && pendingUploads.length === 0 && (
           <p style={{
             fontFamily: 'var(--font-ui)', fontStyle: 'italic', fontSize: 19,
             color: 'var(--text-muted)', textAlign: 'center', margin: '60px auto', opacity: 0.6,
@@ -76,6 +80,7 @@ export default function ChatPanel3({
             No messages yet -- say hello!
           </p>
         )}
+
         {messages.map(m => {
           const msgDate     = formatDate(m.created_at);
           const showDivider = msgDate !== lastDate;
@@ -97,7 +102,7 @@ export default function ChatPanel3({
                     <img
                       src={getAttachmentUrl(m.attachment_url)}
                       alt="attachment"
-                      style={{ maxWidth: '100%', maxHeight: 180, objectFit: 'cover', marginTop: m.body ? 6 : 0, display: 'block' }}
+                      style={{ maxWidth: '100%', maxHeight: 180, objectFit: 'cover', marginTop: m.body ? 6 : 0, display: 'block', borderRadius: 8 }}
                     />
                   )}
                   {m.attachment_url && m.attachment_type === 'application/pdf' && (
@@ -119,8 +124,115 @@ export default function ChatPanel3({
             </div>
           );
         })}
+
+        {/* ── PENDING UPLOADS ── bubbles that appear instantly on file pick
+             and show either an "Uploading…" overlay or a red error state. */}
+        {pendingUploads.map(p => {
+          const isImage = p.fileType.startsWith('image/');
+          const isPdf   = p.fileType === 'application/pdf';
+          return (
+            <div key={p.tempId} className="msg-wrap me">
+              <div className={`bubble me${p.error ? ' upload-failed' : ''}`} style={{ position: 'relative' }}>
+                {isImage && (
+                  <img
+                    src={p.objectUrl}
+                    alt="uploading"
+                    style={{
+                      maxWidth: '100%', maxHeight: 180, objectFit: 'cover',
+                      display: 'block', borderRadius: 8,
+                      opacity: p.error ? 0.4 : (p.uploading ? 0.55 : 1),
+                      filter: p.error ? 'grayscale(1)' : undefined,
+                    }}
+                  />
+                )}
+                {isPdf && (
+                  <div style={{ fontSize: 13, opacity: p.error ? 0.5 : 0.85 }}>
+                    📄 {p.error ? 'PDF failed to upload' : 'Uploading PDF…'}
+                  </div>
+                )}
+                {(p.uploading || p.error) && (
+                  <div
+                    style={{
+                      position: 'absolute', inset: 0,
+                      display: 'flex', alignItems: 'center', justifyContent: 'center',
+                      background: 'rgba(0,0,0,0.25)',
+                      borderRadius: 8,
+                      fontFamily: 'var(--font-mono)',
+                      fontSize: 'clamp(10px, 2.8vw, 12px)',
+                      letterSpacing: '0.1em',
+                      textTransform: 'uppercase',
+                      color: '#fff',
+                      textAlign: 'center',
+                      pointerEvents: p.error ? 'auto' : 'none',
+                      padding: '0 12px',
+                    }}
+                  >
+                    {p.error ? (
+                      <div>
+                        <div style={{ marginBottom: 6 }}>Upload failed</div>
+                        <div style={{ fontSize: 'clamp(9px, 2.4vw, 10px)', opacity: 0.8, textTransform: 'none', letterSpacing: 'normal', marginBottom: 8 }}>
+                          {p.error}
+                        </div>
+                        <button
+                          onClick={() => dismissPendingUpload?.(p.tempId)}
+                          style={{
+                            background: 'transparent',
+                            border: '0.5px solid #fff',
+                            color: '#fff',
+                            borderRadius: 999,
+                            padding: '4px 12px',
+                            fontFamily: 'var(--font-mono)',
+                            fontSize: 'clamp(9px, 2.4vw, 10px)',
+                            letterSpacing: '0.1em',
+                            textTransform: 'uppercase',
+                            cursor: 'pointer',
+                          }}
+                        >
+                          Dismiss
+                        </button>
+                      </div>
+                    ) : (
+                      'Uploading…'
+                    )}
+                  </div>
+                )}
+              </div>
+              <div className="msg-time">now</div>
+            </div>
+          );
+        })}
+
         <div ref={chatEndRef} />
       </div>
+
+      {/* ── ERROR BANNER ── shown when chatError is set; tap X to dismiss. */}
+      {chatError && (
+        <div style={{
+          margin: '0 clamp(0.75rem, 3.5vw, 1rem) clamp(0.5rem, 2.5vw, 0.75rem)',
+          padding: 'clamp(0.625rem, 3vw, 0.875rem) clamp(0.75rem, 3.5vw, 1rem)',
+          background: 'rgba(239, 68, 68, 0.08)',
+          border: '0.5px solid rgba(239, 68, 68, 0.35)',
+          color: '#ef4444',
+          borderRadius: 10,
+          fontFamily: 'var(--font-ui)',
+          fontSize: 'clamp(13px, 3.4vw, 14px)',
+          lineHeight: 1.5,
+          display: 'flex',
+          alignItems: 'flex-start',
+          gap: 8,
+        }}>
+          <span style={{ flex: 1 }}>{chatError}</span>
+          <button
+            onClick={clearChatError}
+            style={{
+              background: 'transparent', border: 'none', color: 'inherit',
+              fontSize: 16, cursor: 'pointer', padding: 0, marginLeft: 4,
+              lineHeight: 1,
+            }}
+            aria-label="Dismiss error"
+          >✕</button>
+        </div>
+      )}
 
       <div className="chat-input-bar">
         <input
