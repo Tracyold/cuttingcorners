@@ -234,7 +234,12 @@ export default function ShopItemDrawer3({ open, item, session, onClose, refreshI
                   ) : (
                     <button className="shop-item-btn buy" onClick={() => alert('Please inquire for purchase details.')}>🛒 Buy Now</button>
                   )}
-                  <button className="shop-item-btn inq" onClick={() => setInquiryOpen(true)}>✉ Inquire Again</button>
+                  <button className="shop-item-btn inq" onClick={() => {
+                    setInquirySent(false);
+                    setInquiryText('');
+                    setInquiryError(null);
+                    setInquiryOpen(true);
+                  }}>✉ Inquire Again</button>
                 </div>
                 <div className="shop-item-success-msg">Success!</div>
               </div>
