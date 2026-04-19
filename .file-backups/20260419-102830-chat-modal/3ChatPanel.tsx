@@ -1,12 +1,11 @@
 // components/account/mobile/panels/3ChatPanel.tsx
 
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { supabase } from '../../../../lib/supabase';
 import { fmtTime } from '../../../../lib/utils';
 import { useSwipeDownToClose } from '../../shared/hooks/useSwipeDownToClose';
 import FirstTimeTips from '../ui/FirstTimeTips';
 import type { PendingUpload } from '../../shared/hooks/useChat';
-import ChatImageModal from '../modals/ChatImageModal';
 
 interface ChatPanelProps {
   open:                 boolean;
@@ -52,11 +51,6 @@ export default function ChatPanel3({
 }: ChatPanelProps) {
 
   const { elementRef, touchHandlers } = useSwipeDownToClose({ onClose });
-
-  // ── Image modal state ──
-  const [modalImageUrl, setModalImageUrl] = useState<string | null>(null);
-  const openImageModal  = (url: string) => setModalImageUrl(url);
-  const closeImageModal = () => setModalImageUrl(null);
 
   useEffect(() => {
     if (open) chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -108,12 +102,7 @@ export default function ChatPanel3({
                     <img
                       src={getAttachmentUrl(m.attachment_url)}
                       alt="attachment"
-                      onClick={() => openImageModal(getAttachmentUrl(m.attachment_url))}
-                      style={{
-                        maxWidth: '100%', maxHeight: 180, objectFit: 'cover',
-                        marginTop: m.body ? 6 : 0, display: 'block', borderRadius: 8,
-                        cursor: 'pointer',
-                      }}
+                      style={{ maxWidth: '100%', maxHeight: 180, objectFit: 'cover', marginTop: m.body ? 6 : 0, display: 'block', borderRadius: 8 }}
                     />
                   )}
                   {m.attachment_url && m.attachment_type === 'application/pdf' && (
@@ -136,7 +125,8 @@ export default function ChatPanel3({
           );
         })}
 
-        {/* ── PENDING UPLOADS ── */}
+        {/* ── PENDING UPLOADS ── bubbles that appear instantly on file pick
+             and show either an "Uploading…" overlay or a red error state. */}
         {pendingUploads.map(p => {
           const isImage = p.fileType.startsWith('image/');
           const isPdf   = p.fileType === 'application/pdf';
@@ -147,15 +137,11 @@ export default function ChatPanel3({
                   <img
                     src={p.objectUrl}
                     alt="uploading"
-                    onClick={() => {
-                      if (!p.uploading && !p.error) openImageModal(p.objectUrl);
-                    }}
                     style={{
                       maxWidth: '100%', maxHeight: 180, objectFit: 'cover',
                       display: 'block', borderRadius: 8,
                       opacity: p.error ? 0.4 : (p.uploading ? 0.55 : 1),
                       filter: p.error ? 'grayscale(1)' : undefined,
-                      cursor: (!p.uploading && !p.error) ? 'pointer' : 'default',
                     }}
                   />
                 )}
@@ -219,7 +205,7 @@ export default function ChatPanel3({
         <div ref={chatEndRef} />
       </div>
 
-      {/* ── ERROR BANNER ── */}
+      {/* ── ERROR BANNER ── shown when chatError is set; tap X to dismiss. */}
       {chatError && (
         <div style={{
           margin: '0 clamp(0.75rem, 3.5vw, 1rem) clamp(0.5rem, 2.5vw, 0.75rem)',
@@ -281,13 +267,6 @@ export default function ChatPanel3({
           {chatSending ? '…' : '↑'}
         </button>
       </div>
-
-      {/* ── IMAGE MODAL ── full-screen viewer with pinch-to-zoom ── */}
-      <ChatImageModal
-        open={modalImageUrl !== null}
-        imageUrl={modalImageUrl}
-        onClose={closeImageModal}
-      />
     </div>
   );
 }
