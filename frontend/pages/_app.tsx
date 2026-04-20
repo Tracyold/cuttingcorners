@@ -8,6 +8,23 @@ import '../styles/shopCardEffect.css';
 import '../styles/home.css';
 import '../styles/wizard.css';
 import '../components/account/mobile/MobileShell.css';
+import { useAuth } from '../components/account/shared/hooks/useAuth';
+
+import { useEffect, useState } from 'react';
+
+export function useIsMobile() {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener('resize', check);
+    return () => window.removeEventListener('resize', check);
+  }, []);
+
+  return { isMobile };
+}
+
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
