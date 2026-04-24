@@ -100,4 +100,12 @@ export default function AccountPage() {
       </>
     );
   }
+
+  // ── Desktop ──
+  if (isDesktop) {
+    return (
+      <>
+      </>
+    );
+  }
 }
