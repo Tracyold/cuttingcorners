@@ -85,15 +85,17 @@
   left: 0 !important;
   right: 0 !important;
   bottom: 0 !important;
+  width: 100% !important;
   height: 100% !important;
-  max-height: 100% !important;
-  transform: translateY(100%);
-  box-sizing: border-box;
-  z-index: 50;
+  padding-bottom: 0 !important;
+  z-index: 50 !important;
+  transform: translateY(110%);
 }
 
 .desktop-shell .slide-panel.open {
   transform: translateY(0) !important;
+  pointer-events: all !important;
+  visibility: visible !important;
 }
 
 /* ═══════════════════════════════════════════════════════════════
