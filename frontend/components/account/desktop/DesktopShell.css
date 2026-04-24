@@ -83,6 +83,12 @@
   transform: translateY(100%);
   padding: 0 1rem;
   box-sizing: border-box;
+  
+}
+
+.desktop-shell .slide-panel {
+  top: 0 !important;
+  bottom: 56px !important; /* leave room for tab bar height */
 }
 
 .desktop-shell .panel.open {
@@ -111,6 +117,8 @@
    ═══════════════════════════════════════════════════════════════ */
 
 .desktop-shell .menu-drawer {
-  position: fixed !important;
-  z-index: 200 !important;
+  width: 80% !important;
+  left: auto !important;
+  right: 0 !important;
+  position: absolute !important;
 }
