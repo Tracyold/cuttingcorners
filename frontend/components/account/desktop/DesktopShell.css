@@ -83,13 +83,10 @@
   transform: translateY(100%);
   padding: 0 1rem;
   box-sizing: border-box;
-  
-}
-
-.desktop-shell .slide-panel {
-  top: 0 !important;
+   top: 0 !important;
   bottom: 56px !important; /* leave room for tab bar height */
 }
+  
 
 .desktop-shell .panel.open {
   transform: translateY(0) !important;
@@ -117,8 +114,15 @@
    ═══════════════════════════════════════════════════════════════ */
 
 .desktop-shell .menu-drawer {
-  width: 80% !important;
-  left: auto !important;
-  right: 0 !important;
   position: absolute !important;
+  top: 0 !important;
+  right: 0 !important;
+  width: 80% !important;
+  height: 100% !important;
+  transform: translateX(100%);
+  z-index: 200 !important;
+}
+
+.desktop-shell .menu-drawer.open {
+  transform: translateX(0) !important;
 }
