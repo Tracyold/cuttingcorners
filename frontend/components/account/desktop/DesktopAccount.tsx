@@ -240,7 +240,7 @@ export default function DesktopAccount(props: DesktopAccountProps) {
   const wizardResults = props.latestWizardResult ? [props.latestWizardResult] : [];
 
   return (
-    <div className="desktop-shell">
+    <div className="mobile-shell desktop-shell">
 
       {/* ── SMS Consent Modal -- above everything ── */}
       {pendingSmsConsent && (
