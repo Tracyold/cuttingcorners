@@ -101,11 +101,9 @@
   position: relative !important;
   overflow: hidden !important;
   background: var(--bg-deep);
-  display: flex;
+  display: fixed;
   flex-direction: column;
   flex-shrink: 0;
-  /* isolation creates a new stacking context to contain all children */
-  isolation: isolate;
 }
 
 /* ═══════════════════════════════════════════════════════════════
@@ -114,7 +112,7 @@
 
 .desktop-right .tab-bar {
   position: absolute !important;
-  bottom: 0 !important;
+  bottom: 10 !important;
   left: 0 !important;
   right: 0 !important;
   width: 100% !important;
