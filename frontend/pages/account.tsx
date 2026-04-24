@@ -91,7 +91,7 @@ export default function AccountPage() {
     },
   };
 
-  // ── Mobile ──
+  // ── Mobile -- TopNav is external, MobileAccount has no built-in nav ──
   if (isMobile) {
     return (
       <>
@@ -101,11 +101,8 @@ export default function AccountPage() {
     );
   }
 
-  // ── Desktop ──
+  // ── Desktop -- Nav3 is built into DesktopAccount, no TopNav needed ──
   if (isDesktop) {
-    return (
-      <>
-      </>
-    );
+    return <DesktopAccount {...sharedProps} />;
   }
 }
