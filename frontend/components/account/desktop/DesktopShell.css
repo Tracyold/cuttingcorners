@@ -59,9 +59,7 @@
   display: flex;
   flex-direction: column;
   transform: translateZ(0); /* ← this is the key, forces fixed children to be contained here */
-}
-.desktop-shell .tab-bar {
-  display: none !important;
+
 }
 
 /* ── Tab bar pins to bottom of right column ── */
@@ -71,6 +69,7 @@
   left: 0 !important;
   right: 0 !important;
   z-index: 10;
+  
 }
 
 /* ═══════════════════════════════════════════════════════════════
@@ -79,6 +78,7 @@
 
 .desktop-shell .panel {
   position: absolute !important;
+  bottom: 0 !important;
   inset: 0 !important;
   transform: translateY(100%);
   padding: 0 1rem;
