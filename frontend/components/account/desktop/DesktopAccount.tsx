@@ -40,7 +40,7 @@ import ProfileTile3         from '../mobile/tiles/3ProfileTile';
 import FeedbackTile3        from '../mobile/tiles/3FeedbackTile';
 
 // ── Panels ──
-import ChatPanel3           from '../mobile/panels/3ChatPanel';
+import ChatPanel3           from './panels/DesktopChatPanel';
 import OrdersPanel3         from '../mobile/panels/3OrdersPanel';
 import InvoicesPanel3       from '../mobile/panels/3InvoicesPanel';
 import ServiceRequestPanel3 from '../mobile/panels/3ServiceRequestPanel';
