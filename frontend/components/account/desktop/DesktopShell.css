@@ -54,7 +54,7 @@
 /* Cap the feed width so tiles don't stretch across the column */
 .desktop-left .feed {
   width: 100%;
-  max-width: 520px;
+  max-width: 800px;
   margin: 0 auto;
   padding: 0 clamp(1rem, 2.5vw, 2rem) clamp(5rem, 12vw, 7rem);
   flex: 1 0 auto;
