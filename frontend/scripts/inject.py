@@ -348,6 +348,49 @@ def op_find_color_value(lines, color_val):
     else:
         print(f"  '{color_val}' not found in file.")
 
+def op_wildcard_search(lines, pattern, range_hint=None, file_mode=False, filepath=None):
+    """
+    Wildcard search where & = any letter, # = any digit.
+    Matches 1-7 chars of the wildcard type before the literal suffix.
+    Returns (hits, total) where hits = list of (linenum, linetext, matches)
+    file_mode=True  → only return count (for large file / directory use)
+    file_mode=False → return all line numbers and matches
+    """
+    import re as _re
+
+    # Build regex from pattern
+    # & → [a-zA-Z]{1,7}   # → [0-9]{1,7}
+    # Everything else is literal (escaped)
+    regex_parts = []
+    i = 0
+    while i < len(pattern):
+        ch = pattern[i]
+        if ch == '&':
+            regex_parts.append(r'[a-zA-Z]{1,7}')
+        elif ch == '#':
+            regex_parts.append(r'[0-9]{1,7}')
+        else:
+            regex_parts.append(_re.escape(ch))
+        i += 1
+    regex = _re.compile(''.join(regex_parts))
+
+    hits = []
+    for li, ln in enumerate(lines):
+        lnum = li + 1
+        if range_hint and not (range_hint[0] <= lnum <= range_hint[1]):
+            continue
+        matches = regex.findall(ln)
+        if matches:
+            hits.append((lnum, ln.rstrip(), matches))
+
+    if file_mode:
+        # Just count
+        total = sum(len(h[2]) for h in hits)
+        return hits, total
+    else:
+        return hits, sum(len(h[2]) for h in hits)
+
+
 def op_find_on_line(lines, line_num, text):
     idx = line_num - 1
     if idx < 0 or idx >= len(lines):
@@ -579,9 +622,9 @@ def execute(cmd_str: str):
         # ── find ─────────────────────────────────────────────────────────────
         elif cmd == 'find':
             req(cur_file or cur_dir, "go: must come before find:")
-            req(lines, "go: must point to a file for find:")
 
             if content == 'empty' or content.startswith('empty..'):
+                req(lines, "go: must point to a file for find:empty")
                 hint = None
                 if '..' in content:
                     rng = content.split('..', 1)[1]
@@ -592,17 +635,109 @@ def execute(cmd_str: str):
                 op_find_empty(lines, hint)
 
             elif content == 'text-color':
+                req(lines, "go: must point to a file for find:text-color")
                 op_find_colors(lines)
 
             elif content.startswith('color:'):
+                req(lines, "go: must point to a file for find:color:")
                 color_val = content.split(':', 1)[1].strip()
                 op_find_color_value(lines, color_val)
 
             else:
-                req(isinstance(cur_line, int), "go: must include a line number for find:text")
-                cur_match = content
-                op_find_on_line(lines, cur_line, cur_match)
-                print(f'  Found "{cur_match}" on line {cur_line} ✓')
+                # Parse optional line range suffix: find:text..1-400
+                search_text = content
+                range_hint  = None
+                if '..' in content:
+                    parts = content.split('..', 1)
+                    search_text = parts[0]
+                    rng_str     = parts[1]
+                    if '-' in rng_str:
+                        rs, re_ = map(int, rng_str.split('-', 1))
+                        range_hint = (rs, re_)
+                    else:
+                        range_hint = (int(rng_str), int(rng_str))
+
+                # ── Wildcard pattern detection ───────────────────────────────────
+                is_wildcard = '&' in search_text or '#' in search_text
+
+                # ── Directory search ──────────────────────────────────────────
+                if cur_dir and not cur_file:
+                    import glob as _glob
+                    matched_files = []
+                    for ext in EXTENSIONS:
+                        matched_files += _glob.glob(
+                            os.path.join(cur_dir, '**', f'*{ext}'),
+                            recursive=True
+                        )
+                    matched_files = sorted(set(matched_files))
+                    total = 0
+                    for fpath in matched_files:
+                        try:
+                            with open(fpath, 'r') as f:
+                                flines = f.readlines()
+                        except:
+                            continue
+                        if is_wildcard:
+                            hits, count = op_wildcard_search(flines, search_text, range_hint, file_mode=True, filepath=fpath)
+                            if hits:
+                                rel = os.path.relpath(fpath, cur_dir)
+                                print(f'  {rel}: {count} instance(s)')
+                                total += count
+                        else:
+                            hits = []
+                            for li, ln in enumerate(flines):
+                                lnum = li + 1
+                                if range_hint and not (range_hint[0] <= lnum <= range_hint[1]):
+                                    continue
+                                if search_text in ln:
+                                    hits.append((lnum, ln.rstrip()))
+                            if hits:
+                                rel = os.path.relpath(fpath, cur_dir)
+                                print(f'  {rel}:')
+                                for lnum, ln in hits:
+                                    print(f'    {lnum:5d} │ {ln.strip()}')
+                                total += len(hits)
+                    print(f'  ─── {total} match(es) across directory')
+
+                # ── Single file search ────────────────────────────────────────
+                elif lines is not None:
+                    if isinstance(cur_line, int) and range_hint is None:
+                        cur_match = search_text
+                        op_find_on_line(lines, cur_line, cur_match)
+                        print(f'  Found "{cur_match}" on line {cur_line} ✓')
+                    else:
+                        if is_wildcard:
+                            hits, total = op_wildcard_search(lines, search_text, range_hint, file_mode=False)
+                            if hits:
+                                print(f'  "{search_text}" matched {total} instance(s):')
+                                for lnum, ln, matches in hits:
+                                    print(f'  {lnum:5d} │ {ln.strip()}')
+                                    print(f'         matches: {", ".join(set(matches))}')
+                                cur_line  = hits[0][0]
+                                cur_match = search_text
+                            else:
+                                scope = f'lines {range_hint[0]}–{range_hint[1]}' if range_hint else 'file'
+                                print(f'  "{search_text}" not found in {scope}')
+                        else:
+                            hits = []
+                            for li, ln in enumerate(lines):
+                                lnum = li + 1
+                                if range_hint and not (range_hint[0] <= lnum <= range_hint[1]):
+                                    continue
+                                if search_text in ln:
+                                    hits.append((lnum, ln.rstrip()))
+                            if hits:
+                                print(f'  "{search_text}" found on {len(hits)} line(s):')
+                                for lnum, ln in hits:
+                                    print(f'  {lnum:5d} │ {ln.strip()}')
+                                cur_line  = hits[0][0]
+                                cur_match = search_text
+                            else:
+                                scope = f'lines {range_hint[0]}–{range_hint[1]}' if range_hint else 'file'
+                                print(f'  "{search_text}" not found in {scope}')
+                else:
+                    print("ERROR: go: must point to a file or directory for find:")
+                    sys.exit(1)
 
         # ── put-after> ────────────────────────────────────────────────────────
         elif cmd == 'put-after':
