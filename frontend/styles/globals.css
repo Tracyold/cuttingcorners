@@ -302,6 +302,7 @@ button, input, textarea, select { border-radius: 0 !important; }
   gap: 0.5rem;
   text-decoration: none;
   border: 0.03px;
+  border-radius: 999px;
   cursor: pointer;
 }
 .btn-primary:hover { border-color: transparent; background-color: var(--bg-card); }
