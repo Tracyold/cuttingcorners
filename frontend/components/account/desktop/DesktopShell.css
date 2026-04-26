@@ -28,7 +28,7 @@
    LEFT COLUMN — dashboard
    ══════════════════════════════════════════════════════════════ */
 
-.desktop-left {
+.desktop-shell .desktop-left {
   width: 50%;
   height: 100%;
   flex-shrink: 0;
