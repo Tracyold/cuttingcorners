@@ -102,7 +102,7 @@ export default function ChatPanel3({
                 </div>
               )}
               <div className={`msg-wrap ${isMe ? 'me' : 'them'}`}>
-                <div className={`bubble ${isMe ? 'me' : 'them'}`}>
+                <div className={`bubble them${isMe ? 'me' : 'them'}`}>
                   {m.body && <div>{m.body}</div>}
                   {m.attachment_url && m.attachment_type?.startsWith('image/') && (
                     <img

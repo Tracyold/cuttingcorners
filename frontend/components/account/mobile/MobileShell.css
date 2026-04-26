@@ -425,7 +425,7 @@ button, [role="button"] { touch-action: manipulation; }
 .bubble.me {
   background: linear-gradient(135deg, var(--gold), color-mix(in srgb, var(--gold) 85%, #000));
   border-radius: 1.25em 1.25em 0.25em 1.25em;
-  color: #1a1200;
+  color: var(--text);
   border: 0.5px solid rgba(255,255,255,0.2);
 }
 .bubble.them {
