@@ -297,7 +297,7 @@ export default function AdminDashboard() {
                 placeholder="Label (optional)"
                 style={{ background: 'var(--c2)', border: '1px solid rgba(255,255,255,0.1)', color: 'var(--wh)', padding: '8px 12px', fontSize: '13px', borderRadius: '6px', width: '150px' }}
               />
-              <button onClick={addPhone} style={{ background: 'var(--gl)', color: 'var(--bg)', border: 'none', padding: '8px 16px', fontSize: '11px', letterSpacing: '.12em', textTransform: 'uppercase', cursor: 'pointer', borderRadius: '4px' }}>
+              <button onClick={addPhone} className="bp">
                 {phoneAdding ? '...' : '+ Add'}
               </button>
             </div>

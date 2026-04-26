@@ -569,20 +569,29 @@ def parse_short_token(content: str):
     """
     Parse short> content: 'recorder=rec & hand=hd & forest=frst'
     Returns list of (shorthand, word) tuples.
+    Supports both 'word=sh' and 'sh=word' -- always stores (shorthand, word).
+    Splits on '&' with or without surrounding spaces.
     """
     entries = []
-    parts = [p.strip() for p in content.split('&')]
+    # Split on & with optional surrounding whitespace
+    parts = [p.strip() for p in re.split(r'\s*&\s*', content) if p.strip()]
     for part in parts:
         if '=' not in part:
             print(f"WARNING: Skipping malformed shorthand entry: '{part}'")
             continue
-        word, shorthand = part.split('=', 1)
-        word      = word.strip()
-        shorthand = shorthand.strip()
-        if word and shorthand:
-            entries.append((shorthand, word))
-        else:
+        left, right = part.split('=', 1)
+        left  = left.strip()
+        right = right.strip()
+        if not left or not right:
             print(f"WARNING: Skipping empty shorthand entry: '{part}'")
+            continue
+        # Convention: shorter token = shorthand, longer = word
+        if len(left) <= len(right):
+            shorthand, word = left, right
+        else:
+            shorthand, word = right, left
+        entries.append((shorthand, word))
+        print(f"  Parsed: {shorthand} → {word}")
     return entries
 
 

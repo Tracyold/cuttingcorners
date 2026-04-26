@@ -13,16 +13,8 @@ const labelStyle: React.CSSProperties = {
   fontFamily: 'var(--font-ui)', fontSize: '11px', letterSpacing: '0.2em',
   textTransform: 'uppercase', color: 'var(--text-muted)', display: 'block', marginBottom: '6px',
 };
-const btnStyle: React.CSSProperties = {
-  width: '100%', background: 'var(--gold)', border: 'none',
-  color: 'var(--bg)', fontFamily: 'var(--font-body)', fontSize: '11px',
-  letterSpacing: '0.3em', textTransform: 'uppercase', padding: '14px', cursor: 'pointer',
-};
-const ghostBtn: React.CSSProperties = {
-  width: '100%', background: 'none', border: 'none', color: 'var(--text-muted)',
-  fontFamily: 'var(--font-ui)', fontSize: '10px', textTransform: 'uppercase',
-  letterSpacing: '0.18em', padding: '12px 0', marginTop: '8px', cursor: 'pointer',
-};
+const btnStyle: React.CSSProperties = { width: 'auto', alignSelf: 'center' };
+const ghostBtn: React.CSSProperties = { width: 'auto', alignSelf: 'center', marginTop: '8px' };
 const errStyle: React.CSSProperties = {
   fontFamily: 'var(--font-body)', fontSize: '12px', color: 'var(--text-muted)', marginBottom: '12px',
 };
@@ -124,7 +116,7 @@ export default function LoginPage() {
     <>
     <TopNav />
     <div style={{ background: 'transparent', minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '24px' }}>
-      <div style={{ background: 'var(--bg-card)', border: '0.5px solid var(--border)', padding: '40px', maxWidth: '480px', width: '100%', position: 'relative' }}>
+      <div style={{ background: 'var(--bg-card)', border: '0.5px solid var(--border)', padding: '40px', maxWidth: '480px', width: '100%', position: 'relative', display: 'flex', flexDirection: 'column' }}>
         <button onClick={() => router.push('/')} style={{ position: 'absolute', top: '16px', right: '16px', background: 'none', border: 'none', color: 'var(--text-muted)', fontSize: '20px', cursor: 'pointer', lineHeight: 1, padding: '4px' }}>✕</button>
         <p style={{ fontFamily: 'var(--font-ui)', fontSize: '11px', letterSpacing: '0.25em', textTransform: 'uppercase', color: 'var(--text-muted)', marginBottom: '12px' }}>
           CUTTING CORNERS GEMS
@@ -332,10 +324,10 @@ export default function LoginPage() {
               </>
             )}
             {error && <p style={errStyle}>{error}</p>}
-            <button onClick={sendOtp} disabled={loading} style={btnStyle}>
+            <button onClick={sendOtp} disabled={loading} className="btn-primary" style={btnStyle}>
               {loading ? '...' : 'SEND CODE'}
             </button>
-            <button onClick={() => { setMode(mode === 'login' ? 'signup' : 'login'); setError(''); }} style={ghostBtn}>
+            <button onClick={() => { setMode(mode === 'login' ? 'signup' : 'login'); setError(''); }} className="btn-secondary" style={ghostBtn}>
               {mode === 'login' ? 'Create Account' : 'Already have an account? Sign In'}
             </button>
           </>
@@ -349,10 +341,10 @@ export default function LoginPage() {
               onFocus={e => { e.target.style.borderColor = 'var(--gold)'; }}
               onBlur={e => { e.target.style.borderColor = 'var(--border)'; }} />
             {error && <p style={errStyle}>{error}</p>}
-            <button onClick={verifyOtp} disabled={loading} style={btnStyle}>
+            <button onClick={verifyOtp} disabled={loading} className="btn-primary" style={btnStyle}>
               {loading ? '...' : 'VERIFY'}
             </button>
-            <button onClick={() => { setStep('form'); setOtp(''); setError(''); }} style={ghostBtn}>Back</button>
+            <button onClick={() => { setStep('form'); setOtp(''); setError(''); }} className="btn-secondary" style={ghostBtn}>Back</button>
           </>
         )}
       </div>
