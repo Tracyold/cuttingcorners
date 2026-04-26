@@ -13,7 +13,7 @@
 /* ── Shell root ─────────────────────────────────────────────── */
 
 .desktop-shell {
-  display: auto;
+  display: flex;
   width: 100%;
   max-width: 100dvw;
   height: 100%;
@@ -29,16 +29,18 @@
    ══════════════════════════════════════════════════════════════ */
 
 .desktop-left {
-  width: 50%;
-  height: 100vh;
+  width: 50vw;
+  height: 100vw;
   flex-shrink: 0;
   overflow-y: hidden;
   overflow-x: hidden;
   display: relative;
   flex-direction: column;
   background: var(--bg);
+}
 
   /* Premium center divider */
+  .desktop-shell .border-line {
   border-right: 1px solid var(--bdr2);
   box-shadow:
     inset -1px 0 0 color-mix(in srgb, var(--gold) 18%, transparent),
@@ -53,11 +55,12 @@
 
 /* Cap the feed width so tiles don't stretch across the column */
 .desktop-left .feed {
-  width: 40%;
-  height: auto;
-  margin: 0 auto;
-  padding: 0 clamp(1rem, 2.5vw, 2rem) clamp(5rem, 12vw, 7rem);
-  flex: 1 0 auto;
+  width: 50vw;
+  height: 100dvh;
+  right: 0;
+  flex-shrink: auto;
+  background: var(--bg-deep);
+  position: relative;
 }
 
 .desktop-left .welcome {
