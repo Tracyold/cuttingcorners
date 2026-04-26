@@ -121,6 +121,18 @@
   ],
   [
     "glob",
-    "globals"
+    "global"
+  ],
+  [
+    "MobSh",
+    "MobileShell"
+  ],
+  [
+    "mobshel",
+    "MobileShell.css"
+  ],
+  [
+    "mob",
+    "mobile"
   ]
 ]
