@@ -134,5 +134,25 @@
   [
     "mob",
     "mobile"
+  ],
+  [
+    "exp",
+    "export"
+  ],
+  [
+    "share",
+    "shared"
+  ],
+  [
+    "imp",
+    "import"
+  ],
+  [
+    "home",
+    "home"
+  ],
+  [
+    "view",
+    "view"
   ]
 ]
