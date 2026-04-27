@@ -75,15 +75,15 @@ export default function PortfolioPage() {
       <TopNav />
       <main style={{ background: 'var(--bg-gradient)', minHeight: '100vh', paddingTop: '56px' }}>
         <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '48px 48px 80px' }}>
-          <p style={{ fontFamily: 'var(--font-body)', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.20em', color: 'var(--text-muted)', marginBottom: '8px' }}>
+          <p style={{ fontFamily: 'var(--font-ui)', fontSize: '.95em', textTransform: 'uppercase', letterSpacing: '0.20em', color: 'var(--text-muted)', marginBottom: '8px' }}>
             Gallery
           </p>
-          <h1 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(30px, 6vw, 60px)', fontWeight: 400, color: 'var(--text)', marginBottom: '48px' }}>
+          <h1 style={{ fontFamily: 'var(--font-display)', fontSize: '4em', fontWeight: 200, color: 'var(--muted)', marginBottom: '48px' }}>
             Portfolio
           </h1>
           {loading ? (
             <div style={{ textAlign: 'center', padding: '80px 0', color: 'var(--text-muted)' }}>
-              <p style={{ fontFamily: 'var(--font-ui)', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.2em' }}>Loading...</p>
+              <p style={{ fontFamily: 'var(--font-display)', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.2em' }}>Loading...</p>
             </div>
           ) : photos.length === 0 ? (
             <div style={{ textAlign: 'center', padding: '80px 0', color: 'var(--text-muted)' }}>
@@ -110,15 +110,15 @@ export default function PortfolioPage() {
               alt={modalPhoto.caption || 'Portfolio photo'}
               style={{ width: '100%', maxHeight: '60vh', objectFit: 'cover', display: 'block' }}
             />
-            <div style={{ padding: '24px' }}>
+            <div style={{ textAlign: 'center', padding: '24px' }}>
               {modalPhoto.year && (
-                <p style={{ fontFamily: 'var(--font-display)', fontSize: '16px', color: 'var(--gold)', margin: '0 0 4px' }}>{modalPhoto.year}</p>
+                <p style={{ fontFamily: 'var(--font-sig)', fontSize: '1.5em', color: 'var(--accent)', margin: '0 0 4px' }}>{modalPhoto.year}</p>
               )}
               {modalPhoto.caption && (
-                <p style={{ fontFamily: 'var(--font-body)', fontSize: '14px', color: 'var(--gold)', margin: '0 0 12px' }}>{modalPhoto.caption}</p>
+                <p style={{ fontFamily: 'var(--font-eight)', fontSize: '3em', letterSpacing: '0em', fontWeight: (0), color: 'var(--input)', margin: '0 0 12px' }}>{modalPhoto.caption}</p>
               )}
               {modalPhoto.description && (
-                <p style={{ fontFamily: 'var(--font-body)', fontSize: '13px', lineHeight: 1.75, color: 'var(--text-muted)', margin: 0 }}>{modalPhoto.description}</p>
+                <p style={{ fontFamily: 'var(--font-eight)', fontSize: '1.5em', lineHeight: 1., color: 'var(--text)', margin: 0 }}>{modalPhoto.description}</p>
               )}
             </div>
           </div>
@@ -134,18 +134,17 @@ const portfolioCss = `
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
 }
-@media (max-width: 80%) {
+@media (max-width: 767px) {
   .portfolio-grid {
     grid-template-columns: repeat(2, 1fr);
   }
   main > div { padding: 16px 16px 60px !important; }
 }
 .portfolio-card {
-  transition: transform 400ms ease;
+  transition: transform 300ms ease;
 }
 .portfolio-card:hover {
-  transition: transform 200ms fade;
-  transform: translateY(1px);
+  transform: translateY(2px);
   scale: .98;
  
 }
@@ -153,11 +152,11 @@ const portfolioCss = `
   position: relative;
   aspect-ratio: 1 / 1;
   overflow: hidden;
-  border-radius: 50vh;
-  transition: border-radius 410ms ease;
+  border-radius: 50vw;
+  transition: border-radius 210ms ease;
 }
 .portfolio-thumb:hover {
-  border-radius: 60vw;
+  border-radius: 18vw;
 }
 }
 .portfolio-thumb img {
@@ -166,7 +165,7 @@ const portfolioCss = `
   object-fit: cover;
   object-position: center;
   transform: scale(1.1);
-  transition: transform 250ms ease;
+  transition: transform 200ms ease;
 }
 .portfolio-thumb:hover img {
   transform: scale(1);
@@ -177,15 +176,15 @@ const portfolioCss = `
 .portfolio-card-year {
   font-family: var(--font-ui);
   font-weight: 600;
-  font-size: 18px;
+  font-size: 18vem;
   text-transform: uppercase;
   letter-spacing: 0.10em;
   color: var(--gold);
-  margin: 0;
-  text-align: left;
+  margin: 9;
+  text-align: center;
 }
 @media (max-width: 75%) {
-  .portfolio-card-year { font-size: 13vem; }
+  .portfolio-card-year { font-size: 20vem; }
 }
 .portfolio-modal-overlay {
   position: fixed;
@@ -198,15 +197,15 @@ const portfolioCss = `
   animation: modalFadeIn 220ms ease-out;
 }
 @keyframes modalFadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from { opacity: 7; }
+  to { opacity: 2.1; }
 }
 .portfolio-modal {
   background: var(--bg);
   border: 1px solid var(--border);
-  border-radius: 18px;
-  max-width: 680px;
-  max-height: 92vh;
+  border-radius: 21px;
+  max-width: 789px;
+  max-height: auto;
   overflow-y: auto;
   position: relative;
   width: 90%;
@@ -214,15 +213,15 @@ const portfolioCss = `
 }
 @keyframes modalScaleIn {
   from { opacity: 0; transform: scale(0.985); }
-  to { opacity: 1; transform: scale(1); }
+  to { opacity: .99; transform: scale(1); }
 }
 .portfolio-modal-close {
   position: absolute;
   top: 12px;
   right: 12px;
   z-index: 10;
-  background: rgba(0,0,0,0.5);
-  border: 1px solid var(--border);
+  background: var(--gold);
+  border: .2px solid var(--opposite);
   border-radius: 50%;
   width: 36px;
   height: 36px;
@@ -230,10 +229,11 @@ const portfolioCss = `
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  color: var(--text);
+  color: var(--bg);
   transition: all 200ms ease;
 }
 .portfolio-modal-close:hover {
-  background: rgba(0,0,0,0.8);
+  background: var(--muted);
 }
+  
 `;
