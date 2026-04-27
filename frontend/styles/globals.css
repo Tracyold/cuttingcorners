@@ -78,10 +78,11 @@
   --font-sig:        'Authentic', georgia, sans-serif;
   --blur-amount:     1px;
   --scroll-angle:    187deg;
+  --fixed-angle:     45deg; 
 }
 .acc-shell {
-  --font-display: Georgia, serif;
-  --font-mono:    Consolas, monospace;
+  --font-display: 'Georgia', serif;
+  --font-mono:    'Consolas', monospace;
   --font-ui:      'Segoe UI', system-ui, sans-serif;
   --font-sig:     'Palatino Linotype', Georgia, serif;
   --font-body:    'Segoe UI', system-ui, sans-serif;
@@ -121,6 +122,7 @@
   --primary-foreground: #aeaeae;
   --muted-foreground: #aaaaaa;
   --input:           #e5e5e5;
+  --opposite:         #e0e0e0;
   --ring:            rgba(204, 218, 73, 0.622);
   --bg-gradient:     linear-gradient(var(--scroll-angle), #212223 3%, #1e1f21 16%, #202021 37%, #242425 58%, #202021 79%, #212223 100%, #171818 35%, #212223 40%, #171818 45%);
 
@@ -154,12 +156,13 @@
   --background:      #dddddd;
   --foreground:      #adadad;
   --primary:         #354d67;
+  --opposite:         linear-gradient(var(--fixed-angle,#2c2c2c 50, #cccbcb 50);)
   --primary-foreground: #888888;
   --muted:           #a7a7a7;
   --muted-foreground: #bababa;
   --input:           #212223;
   --ring:            #1b63bb72;
-  --bg-gradient:     linear-gradient(var(--scroll-angle), #ebebeb 0%, #eceff7 15%, #ebeff8 28%, #ecf0f8 40%, #eef1f4 52%, #ecf0f8 64%, #e4e6ec 76%, #edf0f8 88%, #d6d7dc 100%);
+  --bg-gradient:     linear-gradient(var(--scroll-angle, #ebebeb 0%, #eceff7 15%, #ebeff8 28%, #ecf0f8 40%, #eef1f4 52%, #ecf0f8 64%, #e4e6ec 76%, #edf0f8 88%, #d6d7dc 100%));
 
   /* ── Tile colors ── */
   --tile-chat:    #0c70b8;
@@ -179,7 +182,7 @@ html, body {
   margin: 0;
   padding: 0;
   background: var(--bg-gradient);
-  background-color: var(--bg-deep);
+  background-color: var(--bg-gradient);
   min-height: 100vh;
   color: var(--text);
   font-family: var(--font-body);
