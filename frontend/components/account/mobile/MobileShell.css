@@ -532,7 +532,7 @@ button, [role="button"] { touch-action: manipulation; }
 .sms-row:last-of-type { border-bottom: none; }
 .sms-lbl {
   font-family: var(--font-mob-ui);
-  font-size: clamp(0.75rem, 3.2vw, 0.8125rem);
+  font-size: clamp(0.9375rem, 3.8vw, 1.0625rem);
   font-weight: 500; color: var(--text-mob); margin-bottom: 0.1875em;
 }
 .sms-lbl.on { color: var(--gold); }
@@ -662,6 +662,20 @@ button, [role="button"] { touch-action: manipulation; }
   font-size: clamp(0.8125rem, 3.5vw, 0.9375rem);
   letter-spacing: 0.2em; text-transform: uppercase;
   cursor: pointer; margin-top: var(--sp-2);
+  border-radius: 999px !important;
+}
+.profile-delete-btn {
+  background: none;
+  border: 0.5px solid rgba(248,113,113,0.3);
+  color: rgba(248,113,113,0.7);
+  width: 100%;
+  padding: 16px 24px;
+  font-family: var(--font-mono-mob);
+  font-size: 0.875rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  cursor: pointer;
+  border-radius: 999px !important;
 }
 
 /* ── SERVICE REQUEST PANEL ── */
