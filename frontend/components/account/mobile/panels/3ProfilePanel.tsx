@@ -236,12 +236,7 @@ export default function ProfilePanel3({
         <div style={{ marginTop: 32, paddingTop: 24, borderTop: '0.5px solid var(--bdr2-mob)' }}>
           <button
             onClick={onOpenDeleteModal}
-            style={{
-              background: 'none', border: '0.5px solid rgba(248,113,113,0.3)',
-              color: 'rgba(248,113,113,0.7)', width: '100%', padding: 13,
-              fontFamily: 'var(--font-mono-mob)', fontSize: '0.8125rem', letterSpacing: '0.18em',
-              textTransform: 'uppercase', cursor: 'pointer',
-            }}
+className="profile-delete-btn"
           >
             Delete Account
           </button>
