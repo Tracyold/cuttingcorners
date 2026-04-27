@@ -59,13 +59,13 @@ export default function FeasibilityTile3({ results, onClick }: FeasibilityTilePr
     >
       <div style={{
         fontFamily: 'var(--font-mono-mob)', fontSize: '0.6875rem', letterSpacing: '0.25em',
-        textTransform: 'uppercase', color: 'var(--text-muted)', fontWeight: 600, opacity: 0.9
+        textTransform: 'uppercase', color: 'var(--text-mob-muted)', fontWeight: 600, opacity: 0.9
       }}>
         Recent Wizard Results
       </div>
 
       {recent.length === 0 ? (
-        <div style={{ fontFamily: 'var(--font-display-mob)', fontSize: '0.9375rem', color: 'var(--text-muted)', fontStyle: 'italic' }}>
+        <div style={{ fontFamily: 'var(--font-display-mob)', fontSize: '0.9375rem', color: 'var(--text-mob-muted)', fontStyle: 'italic' }}>
           No results yet -- run the wizard to get started
         </div>
       ) : recent.map(r => {
@@ -76,10 +76,10 @@ export default function FeasibilityTile3({ results, onClick }: FeasibilityTilePr
           <div key={r.id} style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
             <ScoreRing pct={pct} />
             <div style={{ flex: 1 }}>
-              <div style={{ fontFamily: 'var(--font-display-mob)', fontSize: '1.0rem', color: 'var(--text)', fontWeight: 500 }}>
+              <div style={{ fontFamily: 'var(--font-display-mob)', fontSize: '1.0rem', color: 'var(--text-mob)', fontWeight: 500 }}>
                 {r.recommendation}
               </div>
-              <div style={{ fontFamily: 'var(--font-ui-mob)', fontSize: '0.8125rem', color: 'var(--text-muted)', marginTop: 2 }}>
+              <div style={{ fontFamily: 'var(--font-ui-mob)', fontSize: '0.8125rem', color: 'var(--text-mob-muted)', marginTop: 2 }}>
                 {stone} · {date}
               </div>
             </div>

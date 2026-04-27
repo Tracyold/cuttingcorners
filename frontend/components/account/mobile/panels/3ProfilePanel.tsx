@@ -123,8 +123,8 @@ export default function ProfilePanel3({
             <button
               onClick={() => setEditProfile({ ...profile })}
               style={{
-                background: 'none', border: '0.5px solid var(--bdr2)',
-                color: 'var(--text-muted)', padding: '13px 16px',
+                background: 'none', border: '0.5px solid var(--bdr2-mob)',
+                color: 'var(--text-mob-muted)', padding: '13px 16px',
                 fontFamily: 'var(--font-mono-mob)', fontSize: '0.9375rem',
                 letterSpacing: '0.18em', textTransform: 'uppercase', cursor: 'pointer',
               }}
@@ -144,39 +144,39 @@ export default function ProfilePanel3({
         {/* ── Purchase stats block ── */}
         {/* Converted from the stats div in the HTML profile panel */}
         <div style={{
-          background: 'var(--bg-card)', border: '0.5px solid var(--bdr2)',
+          background: 'var(--bg-mob-card)', border: '0.5px solid var(--bdr2-mob)',
           padding: 16, marginBottom: 28,
         }}>
           <span style={{ fontFamily: 'var(--font-mono-mob)', fontSize: '1.5625rem', color: 'var(--accent)' }}>
             {invoiceCount}
           </span>
-          <span style={{ fontSize: '1.0625rem', color: 'var(--text-muted)', marginLeft: 8 }}>
+          <span style={{ fontSize: '1.0625rem', color: 'var(--text-mob-muted)', marginLeft: 8 }}>
             items purchased
           </span>
-          <span style={{ margin: '0 10px', color: 'var(--bdr2)' }}>|</span>
+          <span style={{ margin: '0 10px', color: 'var(--bdr2-mob)' }}>|</span>
           <span style={{ fontFamily: 'var(--font-mono-mob)', fontSize: '1.1875rem', color: 'var(--accent)' }}>
             {formatMoney(invoiceTotal)}
           </span>
-          <span style={{ fontSize: '0.8125rem', color: 'var(--text-muted)', marginLeft: 8 }}>
+          <span style={{ fontSize: '0.8125rem', color: 'var(--text-mob-muted)', marginLeft: 8 }}>
             total spent
           </span>
         </div>
 
         {/* ── Wizard preferences toggle ── */}
         {/* Converted from the wizard terms toggle section in the HTML */}
-        <div style={{ marginBottom: 28, paddingBottom: 22, borderBottom: '0.5px solid var(--bdr2)' }}>
+        <div style={{ marginBottom: 28, paddingBottom: 22, borderBottom: '0.5px solid var(--bdr2-mob)' }}>
           <div style={{
             fontFamily: 'var(--font-mono-mob)', fontSize: '0.8125rem', letterSpacing: '0.22em',
-            textTransform: 'uppercase', color: 'var(--text-muted)', marginBottom: 14,
+            textTransform: 'uppercase', color: 'var(--text-mob-muted)', marginBottom: 14,
           }}>
             Wizard Preferences
           </div>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12, padding: '12px 0' }}>
             <div>
-              <div style={{ fontFamily: 'var(--font-ui-mob)', fontSize: '0.8125rem', fontWeight: 500, color: 'var(--text)', marginBottom: 3 }}>
+              <div style={{ fontFamily: 'var(--font-ui-mob)', fontSize: '0.8125rem', fontWeight: 500, color: 'var(--text-mob)', marginBottom: 3 }}>
                 Skip wizard intro screen
               </div>
-              <div style={{ fontFamily: 'var(--font-ui-mob)', fontSize: '0.8125rem', color: 'var(--text-muted)', lineHeight: 1.45 }}>
+              <div style={{ fontFamily: 'var(--font-ui-mob)', fontSize: '0.8125rem', color: 'var(--text-mob-muted)', lineHeight: 1.45 }}>
                 Jump straight to step 1 each time you open the wizard
               </div>
             </div>
@@ -185,7 +185,7 @@ export default function ProfilePanel3({
               <span className="pill-thumb" />
             </button>
           </div>
-          <p style={{ fontFamily: 'var(--font-ui-mob)', fontSize: '0.9375rem', color: 'var(--text-muted)', marginTop: 8, lineHeight: 1.6, opacity: 0.7 }}>
+          <p style={{ fontFamily: 'var(--font-ui-mob)', fontSize: '0.9375rem', color: 'var(--text-mob-muted)', marginTop: 8, lineHeight: 1.6, opacity: 0.7 }}>
             Turn off to see the terms screen again next time you open the wizard.
           </p>
         </div>
@@ -195,7 +195,7 @@ export default function ProfilePanel3({
         <div style={{ marginBottom: 8 }}>
           <div style={{
             fontFamily: 'var(--font-mono-mob)', fontSize: '0.8125rem', letterSpacing: '0.22em',
-            textTransform: 'uppercase', color: 'var(--text-muted)', marginBottom: 14,
+            textTransform: 'uppercase', color: 'var(--text-mob-muted)', marginBottom: 14,
           }}>
             SMS Notifications
           </div>
@@ -211,7 +211,7 @@ export default function ProfilePanel3({
                 style={{
                   display: 'flex', alignItems: 'center', justifyContent: 'space-between',
                   gap: 14, padding: '14px 0', cursor: 'pointer',
-                  borderBottom: i < SMS_TOGGLES.length - 1 ? '0.5px solid var(--bdr2)' : 'none',
+                  borderBottom: i < SMS_TOGGLES.length - 1 ? '0.5px solid var(--bdr2-mob)' : 'none',
                 }}
               >
                 <div>
@@ -233,7 +233,7 @@ export default function ProfilePanel3({
         </p>
 
         {/* Delete account section */}
-        <div style={{ marginTop: 32, paddingTop: 24, borderTop: '0.5px solid var(--bdr2)' }}>
+        <div style={{ marginTop: 32, paddingTop: 24, borderTop: '0.5px solid var(--bdr2-mob)' }}>
           <button
             onClick={onOpenDeleteModal}
             style={{
@@ -262,17 +262,17 @@ export default function ProfilePanel3({
           <div
             style={{
               position: 'fixed', top: '50%', left: '50%', transform: 'translate(-50%, -50%)',
-              background: 'var(--bg)', border: '1px solid var(--bdr2)', borderRadius: 8,
+              background: 'var(--bg-mob)', border: '1px solid var(--bdr2-mob)', borderRadius: 8,
               padding: 24, maxWidth: 320, zIndex: 20001, boxShadow: '0 4px 12px rgba(0,0,0,0.15)',
             }}
           >
-            <div style={{ fontFamily: 'var(--font-ui-mob)', fontSize: '1.0rem', fontWeight: 600, marginBottom: 12, color: 'var(--text)' }}>
+            <div style={{ fontFamily: 'var(--font-ui-mob)', fontSize: '1.0rem', fontWeight: 600, marginBottom: 12, color: 'var(--text-mob)' }}>
               Delete Account?
             </div>
-            <p style={{ fontFamily: 'var(--font-ui-mob)', fontSize: '0.8125rem', color: 'var(--text-muted)', marginBottom: 16, lineHeight: 1.5 }}>
+            <p style={{ fontFamily: 'var(--font-ui-mob)', fontSize: '0.8125rem', color: 'var(--text-mob-muted)', marginBottom: 16, lineHeight: 1.5 }}>
               This action cannot be undone. All your data will be permanently deleted.
             </p>
-            <p style={{ fontFamily: 'var(--font-ui-mob)', fontSize: '1.0rem', color: 'var(--text-muted)', marginBottom: 16 }}>
+            <p style={{ fontFamily: 'var(--font-ui-mob)', fontSize: '1.0rem', color: 'var(--text-mob-muted)', marginBottom: 16 }}>
               Type <strong>DELETE</strong> to confirm:
             </p>
             <input
@@ -282,8 +282,8 @@ export default function ProfilePanel3({
               placeholder="Type DELETE"
               style={{
                 width: '100%', padding: 10, fontFamily: 'var(--font-ui-mob)', fontSize: '1.0rem',
-                border: '1px solid var(--bdr2)', borderRadius: 4, background: 'var(--bg-light)',
-                color: 'var(--text)', marginBottom: 12, boxSizing: 'border-box',
+                border: '1px solid var(--bdr2-mob)', borderRadius: 4, background: 'var(--bg-mob-light)',
+                color: 'var(--text-mob)', marginBottom: 12, boxSizing: 'border-box',
               }}
             />
             {deleteError && (
@@ -296,7 +296,7 @@ export default function ProfilePanel3({
                 onClick={() => setShowDeleteModal(false)}
                 style={{
                   flex: 1, padding: 10, fontFamily: 'var(--font-ui-mob)', fontSize: '1.0rem',
-                  border: '1px solid var(--bdr2)', background: 'var(--bg-light)', color: 'var(--text)',
+                  border: '1px solid var(--bdr2-mob)', background: 'var(--bg-mob-light)', color: 'var(--text-mob)',
                   borderRadius: 4, cursor: 'pointer',
                 }}
               >

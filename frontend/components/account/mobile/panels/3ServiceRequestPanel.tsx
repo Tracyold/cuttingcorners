@@ -271,12 +271,12 @@ export default function ServiceRequestPanel3({
               <button
                 onClick={() => setShowSRForm(true)}
                 onMouseDown={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.borderColor = 'var(--gold)'; e.currentTarget.style.color = 'var(--gold)'; }}
-                onMouseUp={e => { e.currentTarget.style.background = 'var(--gold)'; e.currentTarget.style.borderColor = 'var(--border)'; e.currentTarget.style.color = 'var(--text)'; }}
+                onMouseUp={e => { e.currentTarget.style.background = 'var(--gold)'; e.currentTarget.style.borderColor = 'var(--border-mob)'; e.currentTarget.style.color = 'var(--text)'; }}
                 onTouchStart={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.borderColor = 'var(--gold)'; e.currentTarget.style.color = 'var(--gold)'; }}
-                onTouchEnd={e => { e.currentTarget.style.background = 'var(--gold)'; e.currentTarget.style.borderColor = 'var(--border)'; e.currentTarget.style.color = 'var(--text)'; }}
+                onTouchEnd={e => { e.currentTarget.style.background = 'var(--gold)'; e.currentTarget.style.borderColor = 'var(--border-mob)'; e.currentTarget.style.color = 'var(--text)'; }}
                 style={{
                   background: 'var(--gold)',
-                  border: '0.5px solid var(--border)',
+                  border: '0.5px solid var(--border-mob)',
                   borderRadius: '999px',
                   color: 'var(--text)',
                   fontFamily: 'var(--font-ui-mob)',
@@ -290,7 +290,7 @@ export default function ServiceRequestPanel3({
                 + New Request
               </button>
             </div>
-            <div style={{ height: '0.5px', background: 'var(--bdr2)', margin: 'clamp(0.75rem, 3.5vw, 1rem) 0 0' }} />
+            <div style={{ height: '0.5px', background: 'var(--bdr2-mob)', margin: 'clamp(0.75rem, 3.5vw, 1rem) 0 0' }} />
           </>
         )}
 

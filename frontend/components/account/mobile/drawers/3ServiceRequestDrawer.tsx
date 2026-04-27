@@ -154,8 +154,8 @@ export default function ServiceRequestDrawer3({ open, sr, onClose }: ServiceRequ
                 <div style={{ marginBottom: '1.5rem' }}>
                   <div className="shop-item-desc-label" style={{ marginBottom: '0.625rem' }}>Contact</div>
                   <div style={{
-                    background: 'var(--bg-card)',
-                    border: '0.5px solid var(--bdr2)',
+                    background: 'var(--bg-mob-card)',
+                    border: '0.5px solid var(--bdr2-mob)',
                     borderRadius: '12px',
                     padding: 'clamp(0.625rem, 3vw, 0.875rem) clamp(0.75rem, 3.5vw, 1rem)',
                   }}>
@@ -164,21 +164,21 @@ export default function ServiceRequestDrawer3({ open, sr, onClose }: ServiceRequ
                         display: 'flex', justifyContent: 'space-between',
                         alignItems: 'flex-start', gap: 12,
                         padding: '6px 0',
-                        borderBottom: i === contact.length - 1 ? 'none' : '0.5px dashed var(--bdr2)',
+                        borderBottom: i === contact.length - 1 ? 'none' : '0.5px dashed var(--bdr2-mob)',
                       }}>
                         <span style={{
                           fontFamily: 'var(--font-mono-mob)',
                           fontSize: 'clamp(0.5625rem, 2.4vw, 0.625rem)',
                           letterSpacing: '0.18em',
                           textTransform: 'uppercase',
-                          color: 'var(--text-muted)',
+                          color: 'var(--text-mob-muted)',
                           opacity: 0.75,
                           minWidth: 70, flexShrink: 0, paddingTop: 2,
                         }}>{c.label}</span>
                         <span style={{
                           fontFamily: 'var(--font-ui-mob)',
                           fontSize: 'clamp(0.8125rem, 3.5vw, 0.9375rem)',
-                          color: 'var(--text)',
+                          color: 'var(--text-mob)',
                           wordBreak: 'break-word',
                           textAlign: 'right',
                           flex: 1,
@@ -191,25 +191,25 @@ export default function ServiceRequestDrawer3({ open, sr, onClose }: ServiceRequ
 
               {/* ── SPECS ── */}
               {specs.length > 0 && (
-                <div className="shop-item-specs" style={{ marginBottom: '1.5rem', borderTop: '0.5px solid var(--bdr2)' }}>
+                <div className="shop-item-specs" style={{ marginBottom: '1.5rem', borderTop: '0.5px solid var(--bdr2-mob)' }}>
                   {specs.map(s => (
                     <div key={s.label} style={{
                       display: 'flex',
                       justifyContent: 'space-between',
                       padding: '0.75rem 0',
-                      borderBottom: '0.5px solid var(--bdr2)',
+                      borderBottom: '0.5px solid var(--bdr2-mob)',
                     }}>
                       <span style={{
                         fontFamily: 'var(--font-mono-mob)',
                         fontSize: 'clamp(0.625rem, 2.6vw, 0.6875rem)',
                         letterSpacing: '0.1em',
                         textTransform: 'uppercase',
-                        color: 'var(--text-muted)',
+                        color: 'var(--text-mob-muted)',
                       }}>{s.label}</span>
                       <span style={{
                         fontFamily: 'var(--font-ui-mob)',
                         fontSize: 'clamp(0.8125rem, 3.6vw, 0.9375rem)',
-                        color: 'var(--text)',
+                        color: 'var(--text-mob)',
                       }}>{s.val}</span>
                     </div>
                   ))}
@@ -227,14 +227,14 @@ export default function ServiceRequestDrawer3({ open, sr, onClose }: ServiceRequ
                       alignItems: 'flex-start',
                       gap: 12,
                       padding: '0.625rem 0',
-                      borderBottom: '0.5px solid var(--bdr2)',
+                      borderBottom: '0.5px solid var(--bdr2-mob)',
                     }}>
                       <span style={{
                         fontFamily: 'var(--font-mono-mob)',
                         fontSize: 'clamp(0.625rem, 2.6vw, 0.6875rem)',
                         letterSpacing: '0.1em',
                         textTransform: 'uppercase',
-                        color: 'var(--text-muted)',
+                        color: 'var(--text-mob-muted)',
                         flexShrink: 0,
                         maxWidth: '45%',
                         wordBreak: 'break-word',
@@ -242,7 +242,7 @@ export default function ServiceRequestDrawer3({ open, sr, onClose }: ServiceRequ
                       <span style={{
                         fontFamily: 'var(--font-ui-mob)',
                         fontSize: 'clamp(0.8125rem, 3.6vw, 0.9375rem)',
-                        color: 'var(--text)',
+                        color: 'var(--text-mob)',
                         textAlign: 'right',
                         wordBreak: 'break-word',
                         flex: 1,
@@ -288,7 +288,7 @@ export default function ServiceRequestDrawer3({ open, sr, onClose }: ServiceRequ
                         style={{
                           aspectRatio: '1 / 1',
                           borderRadius: '12px',
-                          border: '0.5px solid var(--bdr2)',
+                          border: '0.5px solid var(--bdr2-mob)',
                           backgroundImage: `url(${url})`,
                           backgroundSize: 'cover',
                           backgroundPosition: 'center',
@@ -306,12 +306,12 @@ export default function ServiceRequestDrawer3({ open, sr, onClose }: ServiceRequ
                 <div style={{
                   marginTop: '1.5rem',
                   padding: 'clamp(0.625rem, 3vw, 0.875rem) clamp(0.75rem, 3.5vw, 1rem)',
-                  background: 'var(--bg-card)',
-                  border: '0.5px solid var(--bdr2)',
+                  background: 'var(--bg-mob-card)',
+                  border: '0.5px solid var(--bdr2-mob)',
                   borderRadius: '10px',
                   fontFamily: 'var(--font-ui-mob)',
                   fontSize: 'clamp(0.8125rem, 3.4vw, 0.875rem)',
-                  color: 'var(--text-muted)',
+                  color: 'var(--text-mob-muted)',
                   lineHeight: 1.55,
                 }}>
                   ✓ Work-order SMS consent recorded{consentedAt ? ` on ${consentedAt}` : ''}.
@@ -322,11 +322,11 @@ export default function ServiceRequestDrawer3({ open, sr, onClose }: ServiceRequ
               <div style={{
                 fontFamily: 'var(--font-mono-mob)',
                 fontSize: 'clamp(0.5625rem, 2.4vw, 0.625rem)',
-                color: 'var(--text-muted)',
+                color: 'var(--text-mob-muted)',
                 opacity: 0.6,
                 marginTop: '2rem',
                 lineHeight: 1.8,
-                borderTop: '0.5px solid var(--bdr2)',
+                borderTop: '0.5px solid var(--bdr2-mob)',
                 paddingTop: '1rem',
               }}>
                 Submitted {submitted}<br />
@@ -344,8 +344,8 @@ export default function ServiceRequestDrawer3({ open, sr, onClose }: ServiceRequ
           right: 0;
           width: 90%;
           height: 100dvh;
-          background: var(--bg);
-          color: var(--text);
+          background: var(--bg-mob);
+          color: var(--text-mob);
           z-index: 10101;
           transform: translateX(100%);
           transition: transform 500ms cubic-bezier(0.33, 1, 0.68, 1);
@@ -367,23 +367,23 @@ export default function ServiceRequestDrawer3({ open, sr, onClose }: ServiceRequ
         }
         .shop-item-header {
           padding: 1rem 1.25rem;
-          border-bottom: 0.5px solid var(--bdr2);
+          border-bottom: 0.5px solid var(--bdr2-mob);
           display: flex;
           align-items: center;
           justify-content: space-between;
-          background: var(--bg-deep);
+          background: var(--bg-mob-deep);
         }
         .shop-item-header-title {
           font-family: var(--font-mono-mob);
           font-size: clamp(0.6875rem, 2.8vw, 0.8125rem);
           letter-spacing: 0.2em;
           text-transform: uppercase;
-          color: var(--text-muted);
+          color: var(--text-mob-muted);
         }
         .shop-item-close {
           background: none;
           border: none;
-          color: var(--text-muted);
+          color: var(--text-mob-muted);
           font-size: clamp(1.0625rem, 4.5vw, 1.25rem);
           cursor: pointer;
         }
@@ -397,21 +397,21 @@ export default function ServiceRequestDrawer3({ open, sr, onClose }: ServiceRequ
         }
         .shop-item-specs {
           margin-bottom: 2rem;
-          border-top: 0.5px solid var(--bdr2);
+          border-top: 0.5px solid var(--bdr2-mob);
         }
         .shop-item-desc-label {
           font-family: var(--font-mono-mob);
           font-size: clamp(0.625rem, 2.6vw, 0.6875rem);
           letter-spacing: 0.2em;
           text-transform: uppercase;
-          color: var(--text-muted);
+          color: var(--text-mob-muted);
           margin-bottom: 0.75rem;
         }
         .shop-item-desc p {
           font-family: var(--font-body);
           font-size: clamp(0.875rem, 3.8vw, 1.0rem);
           line-height: 1.6;
-          color: var(--text) !important;
+          color: var(--text-mob) !important;
           opacity: 0.85;
           margin: 0;
         }

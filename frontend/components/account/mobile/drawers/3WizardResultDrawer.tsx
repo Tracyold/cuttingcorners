@@ -55,7 +55,7 @@ function HeroRing({ pct, color }: { pct: number; color: string }) {
     <div className="res-ring">
       <svg width="100" height="100" viewBox="0 0 100 100">
         {/* Background track */}
-        <circle cx="50" cy="50" r={r} fill="none" stroke="var(--border)" strokeWidth="4" />
+        <circle cx="50" cy="50" r={r} fill="none" stroke="var(--border-mob)" strokeWidth="4" />
         {/* Progress arc */}
         <circle
           cx="50" cy="50" r={r}
@@ -78,10 +78,10 @@ function ListItem({ text, color }: { text: string; color?: string }) {
   return (
     <div style={{
       display: 'flex', alignItems: 'flex-start', gap: 10,
-      padding: '8px 0', borderBottom: '0.5px solid var(--border)',
+      padding: '8px 0', borderBottom: '0.5px solid var(--border-mob)',
     }}>
       <span style={{ color: color || 'var(--gold)', fontSize: '0.75rem', flexShrink: 0, marginTop: 1 }}>✓</span>
-      <span style={{ fontFamily: 'var(--font-ui-mob)', fontSize: '0.8125rem', color: 'var(--text)' }}>{text}</span>
+      <span style={{ fontFamily: 'var(--font-ui-mob)', fontSize: '0.8125rem', color: 'var(--text-mob)' }}>{text}</span>
     </div>
   );
 }
@@ -92,7 +92,7 @@ function Section({ label, children }: { label: string; children: React.ReactNode
   return (
     <div className="res-section">
       {/* res-section-label: uppercase mono label with bottom border */}
-      <div className="res-section-label" style={{ color: 'var(--text-muted)' }}>{label}</div>
+      <div className="res-section-label" style={{ color: 'var(--text-mob-muted)' }}>{label}</div>
       {children}
     </div>
   );
@@ -153,7 +153,7 @@ export default function WizardResultDrawer3({
             <span style={{
               fontFamily: 'var(--font-mono-mob)', fontSize: '0.625rem',
               letterSpacing: '0.16em', textTransform: 'uppercase',
-              color: 'var(--text-muted)', flex: 1,
+              color: 'var(--text-mob-muted)', flex: 1,
             }}>
               {stone}
             </span>
@@ -186,7 +186,7 @@ export default function WizardResultDrawer3({
               {positive.length > 0 ? (
                 positive.map((item, i) => <ListItem key={i} text={item} color="var(--gold)" />)
               ) : (
-                <div style={{ fontFamily: 'var(--font-ui-mob)', fontSize: '0.75rem', color: 'var(--text-muted)', fontStyle: 'italic', padding: '6px 0' }}>
+                <div style={{ fontFamily: 'var(--font-ui-mob)', fontSize: '0.75rem', color: 'var(--text-mob-muted)', fontStyle: 'italic', padding: '6px 0' }}>
                   None selected
                 </div>
               )}
@@ -197,7 +197,7 @@ export default function WizardResultDrawer3({
               {limiting.length > 0 ? (
                 limiting.map((item, i) => <ListItem key={i} text={item} color="#f87171" />)
               ) : (
-                <div style={{ fontFamily: 'var(--font-ui-mob)', fontSize: '0.75rem', color: 'var(--text-muted)', fontStyle: 'italic', padding: '6px 0' }}>
+                <div style={{ fontFamily: 'var(--font-ui-mob)', fontSize: '0.75rem', color: 'var(--text-mob-muted)', fontStyle: 'italic', padding: '6px 0' }}>
                   None selected
                 </div>
               )}
@@ -208,7 +208,7 @@ export default function WizardResultDrawer3({
               {structural.length > 0 ? (
                 structural.map((item, i) => <ListItem key={i} text={item} color="#fb923c" />)
               ) : (
-                <div style={{ fontFamily: 'var(--font-ui-mob)', fontSize: '0.75rem', color: 'var(--text-muted)', fontStyle: 'italic', padding: '6px 0' }}>
+                <div style={{ fontFamily: 'var(--font-ui-mob)', fontSize: '0.75rem', color: 'var(--text-mob-muted)', fontStyle: 'italic', padding: '6px 0' }}>
                   None selected
                 </div>
               )}
@@ -225,7 +225,7 @@ export default function WizardResultDrawer3({
                 <button
                   onClick={() => onCreateServiceRequest(result)}
                   style={{
-                    width: '100%', background: 'var(--gold)', color: 'var(--bg-deep)',
+                    width: '100%', background: 'var(--gold)', color: 'var(--bg-mob-deep)',
                     border: 'none', padding: 13, fontFamily: 'var(--font-mono-mob)',
                     fontSize: '0.625rem', letterSpacing: '0.22em', textTransform: 'uppercase',
                     cursor: 'pointer', transition: 'opacity 180ms ease',
