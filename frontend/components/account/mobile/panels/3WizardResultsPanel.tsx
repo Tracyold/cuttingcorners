@@ -40,25 +40,14 @@ const BAND_LABEL: Record<string, string> = {
 };
 
 function ScoreRing({ pct, color }: { pct: number; color: string }) {
-  const r      = 40;
-  const circ   = 2 * Math.PI * r;
-  const offset = circ * (1 - pct / 100);
   return (
-    <div style={{ position: 'relative', width: 80, height: 80, flexShrink: 0 }}>
-      <svg width="80" height="80" viewBox="0 0 100 100">
-        <circle cx="50" cy="50" r={r} fill="none" stroke="var(--bdr2-mob)" strokeWidth="5" />
-        <circle cx="50" cy="50" r={r} fill="none" stroke={color} strokeWidth="5"
-          strokeDasharray={circ} strokeDashoffset={offset}
-          strokeLinecap="round" transform="rotate(-90 50 50)" />
-      </svg>
-      <div style={{
-        position: 'absolute', inset: 0,
-        display: 'flex', alignItems: 'center', justifyContent: 'center',
-        fontFamily: 'var(--font-mono-mob)', fontSize: '1.25rem',
-        fontWeight: 700, color,
-      }}>
-        {pct}
-      </div>
+    <div style={{
+      display: 'flex', alignItems: 'center', justifyContent: 'center',
+      fontFamily: 'var(--font-mono-mob)', fontSize: 'clamp(2.5rem,10vw,3.5rem)',
+      fontWeight: 700, color,
+      lineHeight: 1,
+    }}>
+      {pct}
     </div>
   );
 }
@@ -355,26 +344,27 @@ export default function WizardResultsPanel3({
                       key={r.id}
                       className="wiz-thumb"
                       style={{
-                        borderColor: color + '80',
+                        borderColor: 'var(--border-mob)',
                         cursor: 'pointer',
                         display: 'flex',
                         flexDirection: 'column',
                         alignItems: 'center',
                         justifyContent: 'center',
-                        gap: 8,
-                        padding: 'clamp(12px,3.5vw,16px)',
+                        gap: 6,
+                        padding: '16px 10px',
                         boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.06), inset 0 -1px 0 rgba(0,0,0,0.3)',
                         transition: 'box-shadow 120ms ease',
+                        maxWidth: 120,
                       }}
                       onClick={() => setSelectedResult(r)}
-                      onPointerDown={e => { (e.currentTarget as HTMLDivElement).style.boxShadow = 'inset 0 2px 6px rgba(0,0,0,0.5)'; }}
+                      onPointerDown={e => { (e.currentTarget as HTMLDivElement).style.boxShadow = 'inset 0 2px 8px rgba(0,0,0,0.55)'; }}
                       onPointerUp={e   => { (e.currentTarget as HTMLDivElement).style.boxShadow = 'inset 0 1px 0 rgba(255,255,255,0.06), inset 0 -1px 0 rgba(0,0,0,0.3)'; }}
                       onPointerLeave={e => { (e.currentTarget as HTMLDivElement).style.boxShadow = 'inset 0 1px 0 rgba(255,255,255,0.06), inset 0 -1px 0 rgba(0,0,0,0.3)'; }}
                     >
                       <ScoreRing pct={pct} color={color} />
                       <div style={{
                         fontFamily: 'var(--font-ui-mob)',
-                        fontSize: 'clamp(11px,3vw,13px)',
+                        fontSize: 11,
                         fontWeight: 600,
                         color: 'var(--text-mob)',
                         textAlign: 'center',
@@ -424,21 +414,22 @@ export default function WizardResultsPanel3({
                       key={r.id}
                       className="wiz-thumb"
                       style={{
-                        borderColor: color + '80',
+                        borderColor: 'var(--border-mob)',
                         cursor: 'default',
                         opacity: 0.45,
                         display: 'flex',
                         flexDirection: 'column',
                         alignItems: 'center',
                         justifyContent: 'center',
-                        gap: 8,
-                        padding: 'clamp(12px,3.5vw,16px)',
+                        gap: 6,
+                        padding: '16px 10px',
+                        maxWidth: 120,
                       }}
                     >
                       <ScoreRing pct={pct} color={color} />
                       <div style={{
                         fontFamily: 'var(--font-ui-mob)',
-                        fontSize: 'clamp(11px,3vw,13px)',
+                        fontSize: 11,
                         fontWeight: 600,
                         color: 'var(--text-mob)',
                         textAlign: 'center',
