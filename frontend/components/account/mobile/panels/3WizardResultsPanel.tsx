@@ -44,14 +44,21 @@ function ScoreRing({ pct, color }: { pct: number; color: string }) {
   const circ   = 2 * Math.PI * r;
   const offset = circ * (1 - pct / 100);
   return (
-    <div className="wiz-score-ring">
-      <svg width="100" height="100" viewBox="0 0 100 100">
+    <div style={{ position: 'relative', width: 80, height: 80, flexShrink: 0 }}>
+      <svg width="80" height="80" viewBox="0 0 100 100">
         <circle cx="50" cy="50" r={r} fill="none" stroke="var(--bdr2-mob)" strokeWidth="5" />
         <circle cx="50" cy="50" r={r} fill="none" stroke={color} strokeWidth="5"
           strokeDasharray={circ} strokeDashoffset={offset}
           strokeLinecap="round" transform="rotate(-90 50 50)" />
       </svg>
-      <div className="wiz-score-num" style={{ color, fontSize: '1.75rem' }}>{pct}</div>
+      <div style={{
+        position: 'absolute', inset: 0,
+        display: 'flex', alignItems: 'center', justifyContent: 'center',
+        fontFamily: 'var(--font-mono-mob)', fontSize: '1.25rem',
+        fontWeight: 700, color,
+      }}>
+        {pct}
+      </div>
     </div>
   );
 }
@@ -347,13 +354,34 @@ export default function WizardResultsPanel3({
                     <div
                       key={r.id}
                       className="wiz-thumb"
-                      style={{ borderColor: color + '80', cursor: 'pointer' }}
+                      style={{
+                        borderColor: color + '80',
+                        cursor: 'pointer',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        gap: 8,
+                        padding: 'clamp(12px,3.5vw,16px)',
+                        boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.06), inset 0 -1px 0 rgba(0,0,0,0.3)',
+                        transition: 'box-shadow 120ms ease',
+                      }}
                       onClick={() => setSelectedResult(r)}
+                      onPointerDown={e => { (e.currentTarget as HTMLDivElement).style.boxShadow = 'inset 0 2px 6px rgba(0,0,0,0.5)'; }}
+                      onPointerUp={e   => { (e.currentTarget as HTMLDivElement).style.boxShadow = 'inset 0 1px 0 rgba(255,255,255,0.06), inset 0 -1px 0 rgba(0,0,0,0.3)'; }}
+                      onPointerLeave={e => { (e.currentTarget as HTMLDivElement).style.boxShadow = 'inset 0 1px 0 rgba(255,255,255,0.06), inset 0 -1px 0 rgba(0,0,0,0.3)'; }}
                     >
                       <ScoreRing pct={pct} color={color} />
-                      <div className="wiz-band-label" style={{ color }}>{label}</div>
-                      <div className="wiz-stone">{stone} · {weight}<br />{r.stone_cut || 'Unknown'}</div>
-                      <div className="wiz-date">{date}</div>
+                      <div style={{
+                        fontFamily: 'var(--font-ui-mob)',
+                        fontSize: 'clamp(11px,3vw,13px)',
+                        fontWeight: 600,
+                        color: 'var(--text-mob)',
+                        textAlign: 'center',
+                        lineHeight: 1.3,
+                      }}>
+                        {stone}
+                      </div>
                     </div>
                   );
                 })}
@@ -395,14 +423,28 @@ export default function WizardResultsPanel3({
                     <div
                       key={r.id}
                       className="wiz-thumb"
-                      style={{ borderColor: color + '80', cursor: 'default', opacity: 0.45 }}
+                      style={{
+                        borderColor: color + '80',
+                        cursor: 'default',
+                        opacity: 0.45,
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        gap: 8,
+                        padding: 'clamp(12px,3.5vw,16px)',
+                      }}
                     >
                       <ScoreRing pct={pct} color={color} />
-                      <div className="wiz-band-label" style={{ color }}>{label}</div>
-                      <div className="wiz-stone">{stone} · {weight}<br />{r.stone_cut || 'Unknown'}</div>
-                      <div className="wiz-date">{date}</div>
-                      <div style={{ fontFamily: 'var(--font-mono-mob)', fontSize: 9, fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--text-mob-muted)', marginTop: 4 }}>
-                        Archived
+                      <div style={{
+                        fontFamily: 'var(--font-ui-mob)',
+                        fontSize: 'clamp(11px,3vw,13px)',
+                        fontWeight: 600,
+                        color: 'var(--text-mob)',
+                        textAlign: 'center',
+                        lineHeight: 1.3,
+                      }}>
+                        {stone}
                       </div>
                     </div>
                   );
