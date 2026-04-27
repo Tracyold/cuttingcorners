@@ -134,44 +134,48 @@ const portfolioCss = `
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
 }
-@media (max-width: 767px) {
+@media (max-width: 80%) {
   .portfolio-grid {
     grid-template-columns: repeat(2, 1fr);
   }
   main > div { padding: 16px 16px 60px !important; }
 }
 .portfolio-card {
-  transition: transform 300ms ease;
+  transition: transform 400ms ease;
 }
 .portfolio-card:hover {
-  transform: translateY(-2px);
+  transition: transform 200ms fade;
+  transform: translateY(1px);
+  scale: .98;
+ 
 }
 .portfolio-thumb {
   position: relative;
   aspect-ratio: 1 / 1;
   overflow: hidden;
-  border-radius: 50%;
-  transition: border-radius 400ms ease;
+  border-radius: 50vh;
+  transition: border-radius 410ms ease;
 }
 .portfolio-thumb:hover {
-  border-radius: 1.7px;
+  border-radius: 60vw;
+}
 }
 .portfolio-thumb img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: center;
-  transform: scale(1.08);
-  transition: transform 400ms ease;
+  transform: scale(1.1);
+  transition: transform 250ms ease;
 }
 .portfolio-thumb:hover img {
-  transform: scale(1.0);
+  transform: scale(1);
 }
 .portfolio-card-meta {
   padding: 8px 2px 0;
 }
 .portfolio-card-year {
-  font-family: var(--font-body);
+  font-family: var(--font-ui);
   font-weight: 600;
   font-size: 18px;
   text-transform: uppercase;
@@ -180,8 +184,8 @@ const portfolioCss = `
   margin: 0;
   text-align: left;
 }
-@media (max-width: 767px) {
-  .portfolio-card-year { font-size: 10px; }
+@media (max-width: 75%) {
+  .portfolio-card-year { font-size: 13vem; }
 }
 .portfolio-modal-overlay {
   position: fixed;
