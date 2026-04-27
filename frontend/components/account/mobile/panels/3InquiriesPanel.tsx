@@ -59,11 +59,11 @@ function InquiryBody({ inq, archived = false }: { inq: any; archived?: boolean }
       {/* Top row: product name + status badge */}
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 8 }}>
         <div>
-          <div style={{ fontFamily: 'var(--font-display-mob)', fontSize: 'clamp(14px, 3.8vw, 16px)', color: 'var(--text)', marginBottom: 2 }}>
+          <div style={{ fontFamily: 'var(--font-display-mob)', fontSize: 'clamp(14px, 3.8vw, 16px)', color: 'var(--text-mob)', marginBottom: 2 }}>
             {productTitle || 'Product Inquiry'}
           </div>
           {productMeta && (
-            <div style={{ fontFamily: 'var(--font-mono-mob)', fontSize: 'clamp(9px, 2.4vw, 10px)', letterSpacing: '0.12em', color: 'var(--text-muted)' }}>
+            <div style={{ fontFamily: 'var(--font-mono-mob)', fontSize: 'clamp(9px, 2.4vw, 10px)', letterSpacing: '0.12em', color: 'var(--text-mob-muted)' }}>
               {productMeta}
             </div>
           )}
@@ -80,7 +80,7 @@ function InquiryBody({ inq, archived = false }: { inq: any; archived?: boolean }
             ? 'rgba(127,127,127,0.1)'
             : (isPending ? 'rgba(207,221,78,0.1)' : 'rgba(45,212,191,0.1)'),
           color: archived
-            ? 'var(--text-muted)'
+            ? 'var(--text-mob-muted)'
             : (isPending ? 'var(--gold)' : '#2dd4bf'),
         }}>
           {archived ? 'Archived' : (isPending ? 'Pending' : 'Replied')}
@@ -91,9 +91,9 @@ function InquiryBody({ inq, archived = false }: { inq: any; archived?: boolean }
       <div style={{
         fontFamily: 'var(--font-ui-mob)',
         fontSize: 'clamp(13px, 3.4vw, 14px)',
-        color: 'var(--text-muted)',
+        color: 'var(--text-mob-muted)',
         lineHeight: 1.6,
-        borderTop: '0.5px solid var(--bdr2)',
+        borderTop: '0.5px solid var(--bdr2-mob)',
         paddingTop: 8,
         marginTop: 4,
       }}>
@@ -101,7 +101,7 @@ function InquiryBody({ inq, archived = false }: { inq: any; archived?: boolean }
       </div>
 
       {/* Submitted timestamp */}
-      <div style={{ fontFamily: 'var(--font-mono-mob)', fontSize: 'clamp(9px, 2.4vw, 10px)', color: 'var(--text-muted)', marginTop: 8, opacity: 0.6 }}>
+      <div style={{ fontFamily: 'var(--font-mono-mob)', fontSize: 'clamp(9px, 2.4vw, 10px)', color: 'var(--text-mob-muted)', marginTop: 8, opacity: 0.6 }}>
         Submitted {inq.created_at ? fmtDate(inq.created_at) : '--'}
       </div>
 
@@ -110,9 +110,9 @@ function InquiryBody({ inq, archived = false }: { inq: any; archived?: boolean }
         <div style={{
           fontFamily: 'var(--font-ui-mob)',
           fontSize: 'clamp(13px, 3.4vw, 14px)',
-          color: 'var(--text)',
+          color: 'var(--text-mob)',
           lineHeight: 1.6,
-          borderTop: '0.5px solid var(--bdr2)',
+          borderTop: '0.5px solid var(--bdr2-mob)',
           paddingTop: 8,
           marginTop: 8,
         }}>
@@ -129,7 +129,7 @@ function InquiryBody({ inq, archived = false }: { inq: any; archived?: boolean }
           </span>
           "{inq.reply}"
           {inq.replied_at && (
-            <div style={{ fontFamily: 'var(--font-mono-mob)', fontSize: 'clamp(9px, 2.4vw, 10px)', color: 'var(--text-muted)', marginTop: 6, opacity: 0.6 }}>
+            <div style={{ fontFamily: 'var(--font-mono-mob)', fontSize: 'clamp(9px, 2.4vw, 10px)', color: 'var(--text-mob-muted)', marginTop: 6, opacity: 0.6 }}>
               {fmtDate(inq.replied_at)}
             </div>
           )}
@@ -289,7 +289,7 @@ export default function InquiriesPanel3({
 
       {archiveError && (
         <div style={{
-          background: 'var(--bg-card)', color: 'var(--text-muted)',
+          background: 'var(--bg-card)', color: 'var(--text-mob-muted)',
           padding: 'clamp(0.75rem, 3.5vw, 1rem)',
           margin: 'clamp(0.5rem, 2.5vw, 0.75rem)',
           borderRadius: '8px',
@@ -331,7 +331,7 @@ export default function InquiriesPanel3({
           <p style={{
             fontFamily: 'var(--font-ui-mob)',
             fontSize: 'clamp(13px, 3.4vw, 14px)',
-            color: 'var(--text-muted)',
+            color: 'var(--text-mob-muted)',
             textAlign: 'center',
             padding: '8px 0',
             opacity: 0.6,

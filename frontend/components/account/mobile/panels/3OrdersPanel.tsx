@@ -46,7 +46,7 @@ export default function OrdersPanel3({
           <div style={{
             padding: '60px 20px', textAlign: 'center',
             fontFamily: 'var(--font-ui-mob)', fontSize: '1.0625rem',
-            color: 'var(--text-muted)', fontStyle: 'italic',
+            color: 'var(--text-mob-muted)', fontStyle: 'italic',
           }}>
             No work orders yet
           </div>

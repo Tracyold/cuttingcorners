@@ -37,7 +37,7 @@ function ScoreRing({ pct, color }: { pct: number; color: string }) {
   return (
     <div className="wiz-score-ring">
       <svg width="100" height="100" viewBox="0 0 100 100">
-        <circle cx="50" cy="50" r={r} fill="none" stroke="var(--bdr2)" strokeWidth="5" />
+        <circle cx="50" cy="50" r={r} fill="none" stroke="var(--bdr2-mob)" strokeWidth="5" />
         <circle cx="50" cy="50" r={r} fill="none" stroke={color} strokeWidth="5"
           strokeDasharray={circ} strokeDashoffset={offset}
           strokeLinecap="round" transform="rotate(-90 50 50)" />
@@ -97,7 +97,7 @@ export default function WizardResultsPanel3({
 
         {loading ? (
           <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <p style={{ fontFamily: 'var(--font-ui-mob)', fontSize: '0.875rem', color: 'var(--text-muted)' }}>Loading...</p>
+            <p style={{ fontFamily: 'var(--font-ui-mob)', fontSize: '0.875rem', color: 'var(--text-mob-muted)' }}>Loading...</p>
           </div>
         ) : loadError ? (
           <div style={{
@@ -107,7 +107,7 @@ export default function WizardResultsPanel3({
             <p style={{
               fontFamily: 'var(--font-ui-mob)',
               fontSize: 'clamp(13px, 3.5vw, 14px)',
-              color: 'var(--text-muted)',
+              color: 'var(--text-mob-muted)',
             }}>
               {loadError}
             </p>

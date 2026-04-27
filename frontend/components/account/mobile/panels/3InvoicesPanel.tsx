@@ -24,8 +24,8 @@ interface InvoicesPanelProps {
 const INPUT_STYLE: React.CSSProperties = {
   width: '100%',
   background: 'var(--bg-card)',
-  border: '1px solid var(--bdr2)',
-  color: 'var(--text)',
+  border: '1px solid var(--bdr2-mob)',
+  color: 'var(--text-mob)',
   fontFamily: 'var(--font-mono-mob)',
   fontSize: '1.0rem',
   padding: '12px 16px',
@@ -67,7 +67,7 @@ export default function InvoicesPanel3({
       </div>
 
       {/* Search + export bar -- converted from inline styles in HTML */}
-      <div style={{ padding: '20px 24px', borderBottom: '1px solid var(--bdr2)', display: 'flex', flexDirection: 'column', gap: 16, background: 'var(--bg-deep)' }}>
+      <div style={{ padding: '20px 24px', borderBottom: '1px solid var(--bdr2-mob)', display: 'flex', flexDirection: 'column', gap: 16, background: 'var(--bg-deep)' }}>
 
         {/* Date range row */}
         <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
@@ -79,7 +79,7 @@ export default function InvoicesPanel3({
               onChange={e => setDateFrom(e.target.value)}
               style={INPUT_STYLE}
               onFocus={e  => { e.currentTarget.style.borderColor = 'var(--gold)'; e.currentTarget.style.boxShadow = '0 0 0 2px rgba(207,221,78,0.1)'; }}
-              onBlur={e   => { e.currentTarget.style.borderColor = 'var(--bdr2)'; e.currentTarget.style.boxShadow = 'none'; }}
+              onBlur={e   => { e.currentTarget.style.borderColor = 'var(--bdr2-mob)'; e.currentTarget.style.boxShadow = 'none'; }}
             />
           </div>
           <div style={{ flex: 1 }}>
@@ -90,15 +90,15 @@ export default function InvoicesPanel3({
               onChange={e => setDateTo(e.target.value)}
               style={INPUT_STYLE}
               onFocus={e  => { e.currentTarget.style.borderColor = 'var(--gold)'; e.currentTarget.style.boxShadow = '0 0 0 2px rgba(207,221,78,0.1)'; }}
-              onBlur={e   => { e.currentTarget.style.borderColor = 'var(--bdr2)'; e.currentTarget.style.boxShadow = 'none'; }}
+              onBlur={e   => { e.currentTarget.style.borderColor = 'var(--bdr2-mob)'; e.currentTarget.style.boxShadow = 'none'; }}
             />
           </div>
           <button
             onClick={clearSearch}
             title="Clear"
             style={{
-              background: 'rgba(255,255,255,0.05)', border: '1px solid var(--bdr2)',
-              color: 'var(--text)', fontSize: '1.0rem',
+              background: 'rgba(255,255,255,0.05)', border: '1px solid var(--bdr2-mob)',
+              color: 'var(--text-mob)', fontSize: '1.0rem',
               width: 44, height: 44, display: 'flex', alignItems: 'center',
               justifyContent: 'center', cursor: 'pointer', flexShrink: 0,
               borderRadius: '8px', marginTop: 20
@@ -110,7 +110,7 @@ export default function InvoicesPanel3({
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: 4 }}>
           <span style={{
             fontFamily: 'var(--font-mono-mob)', fontSize: '0.8125rem',
-            letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--text-muted)',
+            letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--text-mob-muted)',
           }}>
             {filtered.length} invoice{filtered.length !== 1 ? 's' : ''}
           </span>

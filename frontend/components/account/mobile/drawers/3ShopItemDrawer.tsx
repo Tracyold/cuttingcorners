@@ -255,8 +255,8 @@ export default function ShopItemDrawer3({ open, item, session, onClose, refreshI
           right: 0;
           width: 90%; /* Leaves 10% on the left */
           height: 100dvh;
-          background: var(--bg);
-          color: var(--text); /* Force text color inheritance */
+          background: var(--bg-mob);
+          color: var(--text-mob); /* Force text color inheritance */
           z-index: 10101;
           transform: translateX(100%);
           transition: transform 500ms cubic-bezier(0.33, 1, 0.68, 1);
@@ -279,23 +279,23 @@ export default function ShopItemDrawer3({ open, item, session, onClose, refreshI
         }
         .shop-item-header {
           padding: 1rem 1.25rem;
-          border-bottom: 0.5px solid var(--bdr2);
+          border-bottom: 0.5px solid var(--bdr2-mob);
           display: flex;
           align-items: center;
           justify-content: space-between;
-          background: var(--bg-deep);
+          background: var(--bg-mob-deep);
         }
         .shop-item-header-title {
           font-family: var(--font-mono-mob);
           font-size: 0.75rem;
           letter-spacing: 0.2em;
           text-transform: uppercase;
-          color: var(--text-muted);
+          color: var(--text-mob-muted);
         }
         .shop-item-close {
           background: none;
           border: none;
-          color: var(--text-muted);
+          color: var(--text-mob-muted);
           font-size: 1.125rem;
           cursor: pointer;
         }
@@ -310,8 +310,8 @@ export default function ShopItemDrawer3({ open, item, session, onClose, refreshI
         .shop-item-hero {
           width: 100%;
           aspect-ratio: 1;
-          background: var(--bg-deep);
-          border: 0.5px solid var(--bdr2);
+          background: var(--bg-mob-deep);
+          border: 0.5px solid var(--bdr2-mob);
           border-radius: 12px;
           overflow: hidden;
           margin-bottom: 1.5rem;
@@ -332,7 +332,7 @@ export default function ShopItemDrawer3({ open, item, session, onClose, refreshI
           font-family: var(--font-display-mob);
           font-size: 1.75rem; /* Big font for native feel */
           line-height: 1.2;
-          color: var(--text) !important; /* Force visibility */
+          color: var(--text-mob) !important; /* Force visibility */
           margin-bottom: 0.5rem;
         }
         .shop-item-price {
@@ -343,28 +343,28 @@ export default function ShopItemDrawer3({ open, item, session, onClose, refreshI
         }
         .shop-item-specs {
           margin-bottom: 2rem;
-          border-top: 0.5px solid var(--bdr2);
+          border-top: 0.5px solid var(--bdr2-mob);
         }
         .shop-item-desc-label {
           font-family: var(--font-mono-mob);
           font-size: 0.625rem;
           letter-spacing: 0.2em;
           text-transform: uppercase;
-          color: var(--text-muted);
+          color: var(--text-mob-muted);
           margin-bottom: 0.75rem;
         }
         .shop-item-desc p {
           font-family: var(--font-body);
           font-size: 1.0rem;
           line-height: 1.6;
-          color: var(--text) !important; /* Force visibility */
+          color: var(--text-mob) !important; /* Force visibility */
           opacity: 0.8;
         }
         .shop-item-footer {
           padding: 1.25rem;
           padding-bottom: calc(1.25rem + env(safe-area-inset-bottom));
-          border-top: 0.5px solid var(--bdr2);
-          background: var(--bg-deep);
+          border-top: 0.5px solid var(--bdr2-mob);
+          background: var(--bg-mob-deep);
         }
         .shop-item-btns {
           display: flex;
@@ -388,14 +388,14 @@ export default function ShopItemDrawer3({ open, item, session, onClose, refreshI
         .shop-item-btn:active { transform: scale(0.96); }
         .shop-item-btn.buy {
           background: var(--gold);
-          color: var(--bg-deep);
+          color: var(--bg-mob-deep);
           border: none;
           font-weight: 700;
         }
         .shop-item-btn.inq {
           background: transparent;
-          color: var(--text);
-          border: 1px solid var(--bdr2);
+          color: var(--text-mob);
+          border: 1px solid var(--bdr2-mob);
         }
         .shop-item-inq-form {
           display: flex;
@@ -404,10 +404,10 @@ export default function ShopItemDrawer3({ open, item, session, onClose, refreshI
         }
         .shop-item-inq-input {
           width: 100%;
-          background: var(--bg-deep);
-          border: 0.5px solid var(--bdr2);
+          background: var(--bg-mob-deep);
+          border: 0.5px solid var(--bdr2-mob);
           border-radius: 12px;
-          color: var(--text);
+          color: var(--text-mob);
           padding: 14px;
           font-family: var(--font-ui-mob);
           font-size: 1.0rem;
@@ -417,7 +417,7 @@ export default function ShopItemDrawer3({ open, item, session, onClose, refreshI
         }
         .shop-item-inq-input:focus {
           border-color: var(--gold);
-          background: var(--bg-card);
+          background: var(--bg-mob-card);
           box-shadow: inset 0 1px 3px rgba(0,0,0,0.1), 0 0 0 3px color-mix(in srgb, var(--gold) 15%, transparent);
         }
         .shop-item-inq-actions {
@@ -430,7 +430,7 @@ export default function ShopItemDrawer3({ open, item, session, onClose, refreshI
         .shop-item-inq-cancel {
           background: none;
           border: none;
-          color: var(--text-muted);
+          color: var(--text-mob-muted);
           font-family: var(--font-mono-mob);
           font-size: 0.75rem;
           text-transform: uppercase;
@@ -438,7 +438,7 @@ export default function ShopItemDrawer3({ open, item, session, onClose, refreshI
         }
         .shop-item-inq-submit {
           background: var(--gold);
-          color: var(--bg-deep);
+          color: var(--bg-mob-deep);
           border: none;
           padding: 10px 20px;
           border-radius: 6px;
@@ -469,19 +469,19 @@ function SpecRow({ label, value }: { label: string; value: string | null }) {
       display: 'flex',
       justifyContent: 'space-between',
       padding: '12px 0',
-      borderBottom: '0.5px solid var(--bdr2)'
+      borderBottom: '0.5px solid var(--bdr2-mob)'
     }}>
       <span style={{
         fontFamily: 'var(--font-mono-mob)',
         fontSize: '0.625rem',
         letterSpacing: '0.15em',
         textTransform: 'uppercase',
-        color: 'var(--text-muted)'
+        color: 'var(--text-mob-muted)'
       }}>{label}</span>
       <span style={{
         fontFamily: 'var(--font-ui-mob)',
         fontSize: '0.875rem',
-        color: 'var(--text)',
+        color: 'var(--text-mob)',
         fontWeight: 500
       }}>{value}</span>
     </div>

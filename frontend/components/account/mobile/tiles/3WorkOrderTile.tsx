@@ -31,9 +31,9 @@ export default function WorkOrderTile3({ workOrders, onClick }: WorkOrderTilePro
           textShadow: '0 2px 4px rgba(0,0,0,0.3)'
         }}>✓</div>
         <div style={{ 
-          fontFamily: 'var(--font-display-mob)', 
+          fontFamily: 'var(--font-mob-display)', 
           fontSize: '1.125rem', 
-          color: 'var(--text)', 
+          color: 'var(--text-mob)', 
           lineHeight: 1.4,
           fontWeight: 500
         }}>

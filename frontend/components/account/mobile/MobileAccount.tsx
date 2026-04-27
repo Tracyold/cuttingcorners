@@ -47,6 +47,7 @@ import ServiceRequestPanel3 from './panels/3ServiceRequestPanel';
 import InquiriesPanel3      from './panels/3InquiriesPanel';
 import WizardResultsPanel3  from './panels/3WizardResultsPanel';
 import ProfilePanel3        from './panels/3ProfilePanel';
+import FeasibilityPanel     from './panels/3FeasibilityPanel';
 
 // ── Drawers ──
 import WorkOrderDrawer3      from './drawers/3WorkOrderDrawer';
@@ -110,7 +111,7 @@ latestWizardResult?: WizardResult;
 // Panel names -- which slide-up panel is open
 type PanelName =
   | 'chat' | 'orders' | 'invoices' | 'servicereq'
-  | 'inquiries' | 'wizard' | 'profile' | null;
+  | 'inquiries' | 'wizard' | 'profile' | 'feasibility' | null;
 
 // Drawer names -- which right-slide drawer is open
 type DrawerName = 'workorder' | 'invoice' | 'servicereq' | 'shopitem' | null;
@@ -133,7 +134,6 @@ export default function MobileAccount(props: MobileAccountProps) {
   // Only one panel can be open at a time.
   // Panels slide up from the bottom.
   const [activePanel,  setActivePanel]  = useState<PanelName>(null);
-
   // ── Drawer state ──
   // Only one drawer can be open at a time.
   // Drawers slide in from the right.
@@ -275,16 +275,16 @@ export default function MobileAccount(props: MobileAccountProps) {
               <span>{updateCount} update{updateCount !== 1 ? 's' : ''}</span>
             ) : (
               <span style={{ 
-                color: 'var(--text-muted)' }}>All caught up</span>
+                color: 'var(--text-mob-muted)' }}>All caught up</span>
             )}
           </div>
           {/* Login timestamp -- set dynamically */}
           <div
             id="login-stamp"
             style={{
-              fontFamily: 'var(--font-mono-mob)', fontSize: '1vem',
+              fontFamily: 'var(--font-mob-mono)', fontSize: '1vem',
               letterSpacing: '0.18em', textTransform: 'uppercase',
-              color: 'var(--text-muted)', marginTop: 6, opacity: 0.6,
+              color: 'var(--text-mob-muted)', marginTop: 6, opacity: 0.6,
             }}
           >
             {`Signed in ${new Date().toLocaleDateString('en-US', {
