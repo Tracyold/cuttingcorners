@@ -166,6 +166,21 @@ export default function AdminPortfolioPanel({ open, onClose }: Props) {
         )}
 
         <div className="sr-tab-bar">
+          <button
+            className={`sr-tab pill-action-btn${p.selectMode ? ' active' : ''}`}
+            onClick={()=>{p.setSelectMode(!p.selectMode);p.setSelected(new Set());}}
+          >
+            {p.selectMode ? 'Cancel' : 'Select'}
+          </button>
+          <button
+            className="sr-tab pill-action-btn"
+            onClick={p.openAdd}
+            style={{ marginLeft: 'auto' }}
+          >
+            + Add
+          </button>
+        </div>
+        <div className="sr-tab-bar" style={{ paddingTop: 0 }}>
           {PORTFOLIO_TABS.map(t => (
             <button key={t} className={`sr-tab${p.tab===t?' active':''}`} onClick={()=>p.setTab(t)}>
               {PORTFOLIO_TAB_LABELS[t]} · {p.filtered[t].length}
