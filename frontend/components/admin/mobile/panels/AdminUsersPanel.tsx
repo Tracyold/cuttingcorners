@@ -4,6 +4,7 @@
 // Tapping a user navigates to /admin/users/[id] (existing detail page).
 
 import { useRouter } from 'next/router';
+import { useSwipeDownToClose } from '../../../account/shared/hooks/useSwipeDownToClose';
 import { useAdminUsers } from '../../hooks/useAdminUsers';
 import { fmtDate, fmtTime } from '../../../../lib/utils';
 
@@ -15,12 +16,13 @@ interface Props {
 export default function AdminUsersPanel({ open, onClose }: Props) {
   const router = useRouter();
   const u = useAdminUsers();
+  const { elementRef, touchHandlers } = useSwipeDownToClose({ onClose });
 
   return (
-    <div className={`slide-panel${open ? ' open' : ''}`}>
+    <div ref={elementRef} className={`slide-panel${open ? ' open' : ''}`}>
 
       {/* Header */}
-      <div className="panel-header">
+      <div className="panel-header" {...touchHandlers}>
         <span className="panel-title">Users</span>
         <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
           <span style={{ fontFamily: 'var(--font-mono-mob)', fontSize: 11, color: 'var(--text-mob-muted)' }}>
