@@ -15,7 +15,6 @@ import { useRouter } from 'next/router';
 const NAV_LINKS = [
   { label: 'Shop', href: '/shop' },
   { label: 'Portfolio', href: '/portfolio' },
-  { label: 'Estimates', href: '/estimates' },
 ];
 
 const css = `
