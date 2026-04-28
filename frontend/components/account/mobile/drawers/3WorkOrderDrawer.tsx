@@ -103,7 +103,7 @@ export default function WorkOrderDrawer3({
               {wo.status}
             </span>
             <span style={{
-              fontFamily: 'var(--font-mono-mob)', fontSize: '0.625rem',
+              fontFamily: 'var(--font-mono-mob)', fontSize: 'clamp(0.8125rem, 3.5vw, 0.9375rem)',
               letterSpacing: '0.16em', textTransform: 'uppercase',
               color: 'var(--text-mob-muted)', flex: 1,
             }}>
@@ -121,7 +121,7 @@ export default function WorkOrderDrawer3({
               {adminInfo && (
                 <div style={{ marginBottom: 16 }}>
                   <div style={{
-                    fontFamily: 'var(--font-mono-mob)', fontSize: 8, letterSpacing: '0.18em',
+                    fontFamily: 'var(--font-mono-mob)', fontSize: 'clamp(0.75rem, 3.2vw, 0.875rem)', letterSpacing: '0.18em',
                     textTransform: 'uppercase', color: 'var(--accent)', marginBottom: 8,
                     display: 'flex', alignItems: 'center', gap: 6,
                   }}>
@@ -129,10 +129,10 @@ export default function WorkOrderDrawer3({
                   </div>
                   <div style={{
                     background: 'var(--bg-mob-card)', border: '0.5px solid var(--bdr2-mob)',
-                    padding: 14, fontFamily: 'var(--font-ui-mob)', fontSize: '0.75rem',
+                    padding: 14, fontFamily: 'var(--font-ui-mob)', fontSize: 'clamp(0.875rem, 3.8vw, 1.0rem)',
                     color: 'var(--text-mob-muted)', lineHeight: 2,
                   }}>
-                    <div style={{ color: 'var(--gold)', fontSize: '0.8125rem' }}>{adminInfo.business_name}</div>
+                    <div style={{ color: 'var(--gold)', fontSize: 'clamp(0.9375rem, 4vw, 1.0625rem)' }}>{adminInfo.business_name}</div>
                     <div>{adminInfo.full_name}</div>
                     <div>{adminInfo.address}</div>
                     <div>{adminInfo.contact_email}</div>
@@ -146,7 +146,7 @@ export default function WorkOrderDrawer3({
               {profile && (
                 <div style={{ marginBottom: 16 }}>
                   <div style={{
-                    fontFamily: 'var(--font-mono-mob)', fontSize: 8, letterSpacing: '0.18em',
+                    fontFamily: 'var(--font-mono-mob)', fontSize: 'clamp(0.75rem, 3.2vw, 0.875rem)', letterSpacing: '0.18em',
                     textTransform: 'uppercase', color: 'var(--accent)', marginBottom: 8,
                     display: 'flex', justifyContent: 'space-between', alignItems: 'center',
                   }}>
@@ -166,15 +166,15 @@ export default function WorkOrderDrawer3({
                   </div>
                   <div style={{
                     background: 'var(--bg-mob-card)', border: '0.5px solid var(--bdr2-mob)',
-                    padding: 14, fontFamily: 'var(--font-ui-mob)', fontSize: '0.75rem',
+                    padding: 14, fontFamily: 'var(--font-ui-mob)', fontSize: 'clamp(0.875rem, 3.8vw, 1.0rem)',
                     color: 'var(--text-mob-muted)', lineHeight: 2,
                   }}>
-                    <div style={{ color: 'var(--text-mob)', fontSize: '0.8125rem' }}>{profile.name}</div>
+                    <div style={{ color: 'var(--text-mob)', fontSize: 'clamp(0.9375rem, 4vw, 1.0625rem)' }}>{profile.name}</div>
                     <div>{profile.email}</div>
                     {profile.phone && <div>{profile.phone}</div>}
                     <div>{wo.wo_shipping_address || profile.shipping_address || 'No address on file'}</div>
                     {wo.wo_shipping_address && wo.wo_shipping_address !== profile.shipping_address && (
-                      <div style={{ fontSize: '0.625rem', color: 'var(--accent)', marginTop: 4, fontStyle: 'italic' }}>
+                      <div style={{ fontSize: 'clamp(0.8125rem, 3.5vw, 0.9375rem)', color: 'var(--accent)', marginTop: 4, fontStyle: 'italic' }}>
                         * Custom address for this work order only
                       </div>
                     )}
@@ -191,7 +191,7 @@ export default function WorkOrderDrawer3({
                 }}>
                   {!addrConfirmed ? (
                     <>
-                      <p style={{ fontFamily: 'var(--font-ui-mob)', fontSize: '0.6875rem', color: 'var(--text-mob-muted)', lineHeight: 1.6, marginBottom: 10 }}>
+                      <p style={{ fontFamily: 'var(--font-ui-mob)', fontSize: 'clamp(0.875rem, 3.8vw, 1.0rem)', color: 'var(--text-mob-muted)', lineHeight: 1.6, marginBottom: 10 }}>
                         This change applies to this work order only and does not update your profile.
                         By confirming, you agree this is the address we will ship your item to upon completion.
                       </p>
@@ -201,7 +201,7 @@ export default function WorkOrderDrawer3({
                         placeholder="Enter address for this work order..."
                         style={{
                           width: '100%', background: 'var(--bg-mob)', border: '0.5px solid var(--bdr2-mob)',
-                          color: 'var(--text-mob)', fontFamily: 'var(--font-ui-mob)', fontSize: '0.75rem',
+                          color: 'var(--text-mob)', fontFamily: 'var(--font-ui-mob)', fontSize: 'clamp(0.875rem, 3.8vw, 1.0rem)',
                           padding: '9px 11px', outline: 'none', marginBottom: 10,
                         }}
                       />
@@ -210,7 +210,7 @@ export default function WorkOrderDrawer3({
                           onClick={saveAddress}
                           style={{
                             background: 'var(--gold)', color: 'var(--bg-mob-deep)', border: 'none',
-                            padding: '9px 14px', fontFamily: 'var(--font-mono-mob)', fontSize: '0.5625rem',
+                            padding: '9px 14px', fontFamily: 'var(--font-mono-mob)', fontSize: 'clamp(0.75rem, 3.2vw, 0.875rem)',
                             letterSpacing: '0.18em', textTransform: 'uppercase', cursor: 'pointer',
                           }}
                         >
@@ -220,7 +220,7 @@ export default function WorkOrderDrawer3({
                           onClick={() => setShowAddrEdit(false)}
                           style={{
                             background: 'none', border: '0.5px solid var(--bdr2-mob)', color: 'var(--text-mob-muted)',
-                            padding: '9px 12px', fontFamily: 'var(--font-mono-mob)', fontSize: '0.5625rem',
+                            padding: '9px 12px', fontFamily: 'var(--font-mono-mob)', fontSize: 'clamp(0.75rem, 3.2vw, 0.875rem)',
                             letterSpacing: '0.14em', textTransform: 'uppercase', cursor: 'pointer',
                           }}
                         >
@@ -229,7 +229,7 @@ export default function WorkOrderDrawer3({
                       </div>
                     </>
                   ) : (
-                    <p style={{ fontFamily: 'var(--font-ui-mob)', fontSize: '0.75rem', color: 'var(--accent)' }}>
+                    <p style={{ fontFamily: 'var(--font-ui-mob)', fontSize: 'clamp(0.875rem, 3.8vw, 1.0rem)', color: 'var(--accent)' }}>
                       ✓ Address updated for this work order.
                     </p>
                   )}
@@ -243,10 +243,10 @@ export default function WorkOrderDrawer3({
                     display: 'flex', justifyContent: 'space-between',
                     padding: '7px 0', borderBottom: '0.5px solid var(--bdr2-mob)',
                   }}>
-                    <span style={{ fontFamily: 'var(--font-mono-mob)', fontSize: '0.5625rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--text-mob-muted)' }}>
+                    <span style={{ fontFamily: 'var(--font-mono-mob)', fontSize: 'clamp(0.75rem, 3.2vw, 0.875rem)', letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--text-mob-muted)' }}>
                       {row.label}
                     </span>
-                    <span style={{ fontFamily: 'var(--font-ui-mob)', fontSize: '0.75rem', color: 'var(--text-mob)', textAlign: 'right', maxWidth: '60%' }}>
+                    <span style={{ fontFamily: 'var(--font-ui-mob)', fontSize: 'clamp(0.875rem, 3.8vw, 1.0rem)', color: 'var(--text-mob)', textAlign: 'right', maxWidth: '60%' }}>
                       {row.val}
                     </span>
                   </div>
@@ -256,10 +256,10 @@ export default function WorkOrderDrawer3({
               {/* Description */}
               {wo.description && (
                 <div style={{ marginBottom: 20 }}>
-                  <div style={{ fontFamily: 'var(--font-mono-mob)', fontSize: 8.5, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--text-mob-muted)', marginBottom: 6 }}>
+                  <div style={{ fontFamily: 'var(--font-mono-mob)', fontSize: 'clamp(0.75rem, 3.2vw, 0.875rem)', letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--text-mob-muted)', marginBottom: 6 }}>
                     Description
                   </div>
-                  <p style={{ fontFamily: 'var(--font-ui-mob)', fontSize: '0.8125rem', color: 'var(--text-mob)', lineHeight: 1.7 }}>
+                  <p style={{ fontFamily: 'var(--font-ui-mob)', fontSize: 'clamp(0.9375rem, 4vw, 1.0625rem)', color: 'var(--text-mob)', lineHeight: 1.7 }}>
                     {wo.description}
                   </p>
                 </div>
@@ -268,10 +268,10 @@ export default function WorkOrderDrawer3({
               {/* Notes */}
               {wo.notes && (
                 <div style={{ marginBottom: 20 }}>
-                  <div style={{ fontFamily: 'var(--font-mono-mob)', fontSize: 8.5, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--text-mob-muted)', marginBottom: 6 }}>
+                  <div style={{ fontFamily: 'var(--font-mono-mob)', fontSize: 'clamp(0.75rem, 3.2vw, 0.875rem)', letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--text-mob-muted)', marginBottom: 6 }}>
                     Notes
                   </div>
-                  <p style={{ fontFamily: 'var(--font-ui-mob)', fontSize: '0.8125rem', color: 'var(--text-mob-muted)', lineHeight: 1.7 }}>
+                  <p style={{ fontFamily: 'var(--font-ui-mob)', fontSize: 'clamp(0.9375rem, 4vw, 1.0625rem)', color: 'var(--text-mob-muted)', lineHeight: 1.7 }}>
                     {wo.notes}
                   </p>
                 </div>
@@ -284,7 +284,7 @@ export default function WorkOrderDrawer3({
                   padding: 14, background: 'var(--bg-mob-card)', border: '0.5px solid var(--bdr2-mob)',
                   marginBottom: 16,
                 }}>
-                  <span style={{ fontFamily: 'var(--font-mono-mob)', fontSize: '0.5625rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--text-mob-muted)' }}>
+                  <span style={{ fontFamily: 'var(--font-mono-mob)', fontSize: 'clamp(0.75rem, 3.2vw, 0.875rem)', letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--text-mob-muted)' }}>
                     Quoted Price
                   </span>
                   <span style={{ fontFamily: 'var(--font-mono-mob)', fontSize: '1.375rem', color: 'var(--accent)' }}>
@@ -296,7 +296,7 @@ export default function WorkOrderDrawer3({
               {/* CONFIRMED notice */}
               {wo.status === 'CONFIRMED' && (
                 <div style={{ padding: 14, background: 'var(--bg-mob-card)', border: '0.5px solid var(--bdr2-mob)', marginBottom: 16 }}>
-                  <p style={{ fontFamily: 'var(--font-ui-mob)', fontSize: '0.8125rem', color: 'var(--text-mob-muted)', lineHeight: 1.6 }}>
+                  <p style={{ fontFamily: 'var(--font-ui-mob)', fontSize: 'clamp(0.9375rem, 4vw, 1.0625rem)', color: 'var(--text-mob-muted)', lineHeight: 1.6 }}>
                     Your work order has been confirmed! Please send your item to the address above.
                     We'll notify you when we receive it.
                   </p>
@@ -322,7 +322,7 @@ export default function WorkOrderDrawer3({
                   style={{
                     display: 'block', width: '100%', background: 'var(--gold)',
                     color: 'var(--bg-mob-deep)', padding: 14, textAlign: 'center',
-                    fontFamily: 'var(--font-mono-mob)', fontSize: '0.625rem', letterSpacing: '0.2em',
+                    fontFamily: 'var(--font-mono-mob)', fontSize: 'clamp(0.8125rem, 3.5vw, 0.9375rem)', letterSpacing: '0.2em',
                     textTransform: 'uppercase', textDecoration: 'none', marginBottom: 16,
                   }}
                 >
@@ -333,7 +333,7 @@ export default function WorkOrderDrawer3({
               {/* Paid outside site notice */}
               {wo.status === 'COMPLETED' && wo.paid_outside_site && (
                 <div style={{ padding: 14, background: 'rgba(207,221,78,0.06)', border: '0.5px solid var(--bdr2-mob)', marginBottom: 16 }}>
-                  <span style={{ fontFamily: 'var(--font-ui-mob)', fontSize: '0.8125rem', color: 'var(--accent)' }}>
+                  <span style={{ fontFamily: 'var(--font-ui-mob)', fontSize: 'clamp(0.9375rem, 4vw, 1.0625rem)', color: 'var(--accent)' }}>
                     ✓ Payment received -- thank you!
                   </span>
                 </div>
@@ -343,7 +343,7 @@ export default function WorkOrderDrawer3({
               {/* wo-log-entry: each log entry with colored dot indicator */}
               {wo.edit_history && wo.edit_history.length > 0 && (
                 <div className="wo-log" style={{ marginTop: 24, borderTop: '0.5px solid var(--bdr2-mob)', paddingTop: 16 }}>
-                  <div style={{ fontFamily: 'var(--font-mono-mob)', fontSize: 8, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--text-mob-muted)', marginBottom: 10 }}>
+                  <div style={{ fontFamily: 'var(--font-mono-mob)', fontSize: 'clamp(0.75rem, 3.2vw, 0.875rem)', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--text-mob-muted)', marginBottom: 10 }}>
                     Activity Log
                   </div>
                   {[...wo.edit_history].reverse().map((entry: any, i: number) => (

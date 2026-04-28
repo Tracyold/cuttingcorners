@@ -1,3 +1,5 @@
+// frontend/components/account/1ShopList
+
 import { supabase } from '../../../lib/supabase'
 
 // ── Types ──────────────────────────────────────────────────────────────────

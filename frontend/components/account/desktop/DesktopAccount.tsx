@@ -24,7 +24,7 @@ import { useDeleteAccount } from '../shared/hooks/useDeleteAccount';
 import Nav3            from '../mobile/ui/3Nav';
 import TabBar3         from '../mobile/ui/3TabBar';
 import MenuDrawer3     from '../mobile/ui/3MenuDrawer';
-import SmsConsent3     from '../mobile/ui/3SmsConsentModal';
+import SmsConsent3     from '../desktop/modals/DesktopSMSmodal';
 import ShopFeed3       from '../mobile/ui/3ShopFeed';
 import ShopItemDrawer3 from '../mobile/drawers/3ShopItemDrawer';
 
@@ -43,7 +43,7 @@ import FeedbackTile3        from '../mobile/tiles/3FeedbackTile';
 import ChatPanel3           from '../mobile/panels/3ChatPanel';
 import OrdersPanel3         from '../mobile/panels/3OrdersPanel';
 import InvoicesPanel3       from '../mobile/panels/3InvoicesPanel';
-import ServiceRequestPanel3 from '../mobile/panels/3ServiceRequestPanel';
+import ServiceRequestPanel3 from '../desktop/panels/DesktopServiceRequestsPanel';
 import InquiriesPanel3      from '../mobile/panels/3InquiriesPanel';
 import WizardResultsPanel3  from '../mobile/panels/3WizardResultsPanel';
 import FeasibilityPanel     from '../mobile/panels/3FeasibilityPanel';
