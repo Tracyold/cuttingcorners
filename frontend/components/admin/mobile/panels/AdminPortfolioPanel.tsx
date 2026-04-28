@@ -1,317 +1,236 @@
-// frontend/components/admin/mobile/drawers/AdminPortfolioAddDrawer.tsx
+// frontend/components/admin/mobile/panels/AdminPortfolioPanel.tsx
 //
-// Add new portfolio photo drawer.
-// Uses addSingle from useAdminPortfolio — no direct Supabase calls here.
-// Storage upload is still here because it's UI-specific (progress, preview).
-//
-// Error codes:
-//   100 — Internal/code error
-//   200 — DB insert failed (from hook)
-//   201 — Supabase Storage upload failed
-//   202 — Supabase Storage public URL failed
-//   400 — Validation error (year required)
-//   503 — Network error
+// Portfolio panel — all logic via useAdminPortfolio hook.
+// Tap card → AdminPortfolioDrawer (detail + actions)
+// "+ Add" → AdminPortfolioAddDrawer
+// All CSS classes from MobileShell.css / Admin.css
 
-import { useState, useRef, useEffect } from 'react';
-import { supabase } from '../../../../lib/supabase';
-import { useSwipeToClose } from '../../../account/shared/hooks/useSwipeToClose';
-import type { AddSinglePayload } from '../../hooks/useAdminPortfolio';
+import { useState, useRef } from 'react';
+import { useAdminPortfolio, PORTFOLIO_TAB_LABELS, PORTFOLIO_TABS } from '../../hooks/useAdminPortfolio';
+import { useSwipeDownToClose } from '../../../account/shared/hooks/useSwipeDownToClose';
+import AdminPortfolioDrawer from '../drawers/AdminPortfolioDrawer';
+import AdminPortfolioAddDrawer from '../drawers/AdminPortfolioAddDrawer';
 
-interface ErrorEntry {
-  code:    number;
-  message: string;
-  time:    string;
+// ── SortBadge — inline sort order editor on each card ────────────────────────
+function SortBadge({ value, onCommit }: { value: number; onCommit: (n: number) => void }) {
+  const [editing, setEditing] = useState(false);
+  const [draft,   setDraft]   = useState(String(value));
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  const startEdit = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setDraft(String(value));
+    setEditing(true);
+    setTimeout(() => inputRef.current?.focus(), 0);
+  };
+  const commit = () => {
+    const n = parseInt(draft, 10);
+    if (!isNaN(n) && n > 0) onCommit(n);
+    setEditing(false);
+  };
+  const handleKey = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter') commit();
+    if (e.key === 'Escape') setEditing(false);
+  };
+
+  if (editing) {
+    return (
+      <input
+        ref={inputRef}
+        className="sort-input"
+        value={draft}
+        onChange={e => setDraft(e.target.value)}
+        onBlur={commit}
+        onKeyDown={handleKey}
+        onClick={e => e.stopPropagation()}
+      />
+    );
+  }
+  return (
+    <div className="sort-badge" onClick={startEdit} title="Click to reposition">
+      {value}
+    </div>
+  );
 }
 
-interface Props {
-  open:      boolean;
-  onClose:   () => void;
-  onSaved:   () => void;
-  addSingle: (payload: AddSinglePayload) => Promise<{ error?: string }>;
-}
+// ── Panel ─────────────────────────────────────────────────────────────────────
+interface Props { open: boolean; onClose: () => void; }
 
-export default function AdminPortfolioAddDrawer({ open, onClose, onSaved, addSingle }: Props) {
-  const { elementRef, touchHandlers } = useSwipeToClose({ onClose });
+export default function AdminPortfolioPanel({ open, onClose }: Props) {
+  const p = useAdminPortfolio();
+  const { elementRef, touchHandlers } = useSwipeDownToClose({ onClose });
 
-  const [year,        setYear]        = useState('');
-  const [caption,     setCaption]     = useState('');
-  const [description, setDescription] = useState('');
-  const [photoUrl,    setPhotoUrl]    = useState('');
-  const [preview,     setPreview]     = useState('');
-  const [uploadName,  setUploadName]  = useState('');
-  const [uploading,   setUploading]   = useState(false);
-  const [saving,      setSaving]      = useState(false);
-  const [savedMsg,    setSavedMsg]    = useState('');
-  const [errors,      setErrors]      = useState<ErrorEntry[]>([]);
-  const [showErrors,  setShowErrors]  = useState(false);
-  const fileRef = useRef<HTMLInputElement>(null);
-
-  const logError = (code: number, message: string) => {
-    setErrors(prev => [{
-      code, message,
-      time: new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit' }),
-    }, ...prev]);
-    console.error(`[CCG ERR-${code}]`, message);
-  };
-
-  // Reset on open
-  useEffect(() => {
-    if (!open) return;
-    setYear(''); setCaption(''); setDescription('');
-    setPhotoUrl(''); setPreview(''); setUploadName('');
-    setSaving(false); setSavedMsg('');
-    setErrors([]); setShowErrors(false);
-  }, [open]);
-
-  // ── Photo upload (storage only — logic stays in UI since it's upload-specific) ──
-  const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
-
-    const localUrl = URL.createObjectURL(file);
-    setPreview(localUrl);
-    setUploadName(file.name);
-    setUploading(true);
-
-    try {
-      const ext  = file.name.split('.').pop()?.toLowerCase() || 'jpg';
-      const path = `add_${Date.now()}.${ext}`;
-
-      const { data, error: uploadErr } = await supabase.storage
-        .from('portfolio-photos')
-        .upload(path, file, { contentType: file.type });
-
-      if (uploadErr) { logError(201, `Storage upload failed: ${uploadErr.message}`); setUploading(false); return; }
-
-      let publicUrl = '';
-      try {
-        const { data: urlData } = supabase.storage.from('portfolio-photos').getPublicUrl(data.path);
-        publicUrl = urlData?.publicUrl ?? '';
-        if (!publicUrl) throw new Error('Empty public URL');
-      } catch (urlErr: any) {
-        logError(202, `Could not get public URL: ${urlErr?.message}`);
-        setUploading(false);
-        return;
-      }
-
-      setPhotoUrl(publicUrl);
-      setPreview(publicUrl);
-    } catch (err: any) {
-      if (err instanceof TypeError || err?.message?.toLowerCase().includes('network')) {
-        logError(503, `Network error: ${err?.message}`);
-      } else {
-        logError(100, `Unexpected upload error: ${err?.message}`);
-      }
-    } finally {
-      setUploading(false);
-      if (fileRef.current) fileRef.current.value = '';
-    }
-  };
-
-  // ── Save via hook ──────────────────────────────────────────────────────────
-  const handleSave = async (publishLive: boolean) => {
-    if (!year.trim()) { logError(400, 'Year is required before saving.'); return; }
-    if (saving) return;
-    setSaving(true);
-    setSavedMsg('');
-
-    const result = await addSingle({ photoUrl, year, caption, description, publishLive });
-
-    if (result.error) {
-      logError(200, `DB insert failed: ${result.error}`);
-      setSaving(false);
-      return;
-    }
-
-    setSavedMsg(publishLive ? '✓ Published live' : '✓ Saved as draft');
-    setTimeout(() => { onSaved(); onClose(); }, 700);
-  };
-
-  const errorCount = errors.length;
+  // Which photo is open in the detail drawer
+  const [drawerPhoto,   setDrawerPhoto]   = useState<any>(null);
+  // Whether the add drawer is open
+  const [addDrawerOpen, setAddDrawerOpen] = useState(false);
 
   return (
     <>
-      <div className={`overlay${open ? ' open' : ''}`} onClick={onClose} />
+      {/* ── Panel ── */}
+      <div ref={elementRef} className={`slide-panel${open ? ' open' : ''}`}>
 
-      <div ref={elementRef} className={`res-drawer${open ? ' open' : ''}`} {...touchHandlers}>
-        <div className="res-handle" />
+        {/* Header — title + close only */}
+        <div className="panel-header" {...touchHandlers}>
+          <span className="panel-title">Portfolio</span>
+          <button className="panel-close" onClick={onClose}>✕</button>
+        </div>
 
-        <div className="res-body">
+        {/* ── Action buttons row ── */}
+        <div className="sr-tab-bar" style={{ borderBottom: '0.5px solid var(--bdr2-mob)' }}>
+          <button
+            className={`btn-sel${p.selectMode ? ' on' : ''}`}
+            onClick={() => { p.setSelectMode(!p.selectMode); p.setSelected(new Set()); }}
+          >
+            {p.selectMode ? 'Cancel' : 'Select'}
+          </button>
+          <button
+            className="btn-add"
+            onClick={() => setAddDrawerOpen(true)}
+            style={{ marginLeft: 'auto' }}
+          >
+            + Add
+          </button>
+        </div>
 
-          {/* Topbar */}
-          <div className="res-topbar">
-            <span style={{ fontFamily: 'var(--font-mono-mob)', fontSize: 'clamp(0.75rem,3.2vw,0.875rem)', letterSpacing: '0.16em', textTransform: 'uppercase', color: 'var(--text-mob-muted)', flex: 1 }}>
-              New Portfolio Photo
+        {/* ── Bulk action bar (only when items selected) ── */}
+        {p.selectMode && p.selected.size > 0 && (
+          <div className="sr-tab-bar" style={{ borderBottom: '0.5px solid var(--bdr2-mob)' }}>
+            <span style={{ fontFamily: 'var(--font-mono-mob)', fontSize: 11, color: 'var(--gold)', letterSpacing: '0.12em', marginRight: 4 }}>
+              {p.selected.size} selected
             </span>
-            {errorCount > 0 && (
-              <button
-                onClick={() => setShowErrors(s => !s)}
-                style={{ background: 'rgba(248,113,113,0.12)', border: '0.5px solid rgba(248,113,113,0.35)', color: '#f87171', borderRadius: 6, padding: '3px 10px', fontFamily: 'var(--font-mono-mob)', fontSize: 10, letterSpacing: '0.1em', cursor: 'pointer', marginRight: 10, display: 'flex', alignItems: 'center', gap: 5 }}
-              >
-                ⚠ {errorCount} {showErrors ? '▲' : '▼'}
-              </button>
-            )}
-            <button className="res-close" onClick={onClose}>✕</button>
+            <button className="btn-add" style={{ fontSize: 10, padding: '6px 14px' }} onClick={p.bulkPublish}>Publish</button>
+            <button className="btn-sel" style={{ fontSize: 10, padding: '6px 14px' }} onClick={p.bulkUnpublish}>Unpublish</button>
+            <button className="btn-sel" style={{ fontSize: 10, padding: '6px 14px', color: '#f87171', borderColor: 'rgba(248,113,113,0.3)' }} onClick={p.bulkArchive}>Archive</button>
           </div>
+        )}
 
-          <div className="res-scroll">
+        {/* ── Tab filter row ── */}
+        <div className="sr-tab-bar">
+          {PORTFOLIO_TABS.map(t => (
+            <button
+              key={t}
+              className={`sr-tab${p.tab === t ? ' active' : ''}`}
+              onClick={() => p.setTab(t)}
+            >
+              {PORTFOLIO_TAB_LABELS[t]} · {p.filtered[t].length}
+            </button>
+          ))}
+        </div>
 
-            {/* Error log */}
-            {showErrors && errors.length > 0 && (
-              <div style={{ background: 'rgba(248,113,113,0.07)', border: '0.5px solid rgba(248,113,113,0.25)', borderRadius: 8, padding: '12px 14px', marginBottom: 20 }}>
-                <div style={{ fontFamily: 'var(--font-mono-mob)', fontSize: 10, letterSpacing: '0.14em', textTransform: 'uppercase', color: '#f87171', marginBottom: 10 }}>Error Log</div>
-                {errors.map((err, i) => (
-                  <div key={i} style={{ marginBottom: 8, paddingBottom: 8, borderBottom: i < errors.length - 1 ? '0.5px solid rgba(248,113,113,0.15)' : 'none' }}>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 2 }}>
-                      <span style={{ fontFamily: 'var(--font-mono-mob)', fontSize: 11, fontWeight: 700, color: '#f87171' }}>ERR-{err.code}</span>
-                      <span style={{ fontFamily: 'var(--font-mono-mob)', fontSize: 10, color: 'var(--text-mob-muted)', opacity: 0.6 }}>{err.time}</span>
-                    </div>
-                    <div style={{ fontFamily: 'var(--font-ui-mob)', fontSize: 'clamp(0.75rem,3.2vw,0.875rem)', color: 'var(--text-mob-muted)', lineHeight: 1.5 }}>{err.message}</div>
-                  </div>
-                ))}
-                <button onClick={() => setErrors([])} style={{ background: 'none', border: 'none', color: 'var(--text-mob-muted)', fontFamily: 'var(--font-mono-mob)', fontSize: 10, letterSpacing: '0.1em', textTransform: 'uppercase', cursor: 'pointer', marginTop: 4 }}>Clear log</button>
+        {/* ── Photo grid ── */}
+        <div className="sr-list" style={{ padding: 'clamp(0.75rem,3.5vw,1rem)' }}>
+          {p.loading ? (
+
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '48px 0' }}>
+              <span style={{ fontFamily: 'var(--font-mono-mob)', fontSize: 11, color: 'var(--text-mob-muted)', letterSpacing: '0.18em', textTransform: 'uppercase' }}>
+                Loading...
+              </span>
+            </div>
+
+          ) : p.currentTabPhotos.length === 0 ? (
+
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '48px 0', opacity: 0.5 }}>
+              <div style={{ fontSize: '1.75rem', marginBottom: 10 }}>◻</div>
+              <div style={{ fontFamily: 'var(--font-mono-mob)', fontSize: 10, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--text-mob-muted)' }}>
+                No {PORTFOLIO_TAB_LABELS[p.tab].toLowerCase()} photos
               </div>
-            )}
+            </div>
 
-            {/* Photo upload */}
-            <div style={{ marginBottom: 20 }}>
-              <div style={{ fontFamily: 'var(--font-mono-mob)', fontSize: 10, fontWeight: 600, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--text-mob-muted)', marginBottom: 10 }}>
-                Photo
-              </div>
+          ) : (
 
-              {uploading ? (
-                <div style={{ width: '100%', aspectRatio: '1/1', background: 'var(--bg-mob-card)', border: '0.5px solid var(--bdr2-mob)', borderRadius: 8, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 12, marginBottom: 12 }}>
-                  <div style={{ width: 36, height: 36, borderRadius: '50%', border: '3px solid var(--bdr2-mob)', borderTopColor: 'var(--gold)', animation: 'spin 0.8s linear infinite' }} />
-                  <div style={{ fontFamily: 'var(--font-mono-mob)', fontSize: 11, color: 'var(--text-mob-muted)', letterSpacing: '0.1em' }}>
-                    Uploading {uploadName}...
-                  </div>
-                </div>
-              ) : preview ? (
-                <div style={{ position: 'relative', marginBottom: 12 }}>
-                  <img
-                    src={preview}
-                    alt="preview"
-                    style={{ width: '100%', aspectRatio: '1/1', objectFit: 'cover', display: 'block', borderRadius: 8, border: '0.5px solid var(--bdr2-mob)' }}
-                    onError={() => setPreview('')}
-                  />
-                  <div style={{ position: 'absolute', bottom: 8, left: 8, background: 'rgba(0,0,0,0.7)', borderRadius: 4, padding: '3px 8px', fontFamily: 'var(--font-mono-mob)', fontSize: 9, color: 'var(--gold)', letterSpacing: '0.1em' }}>
-                    {photoUrl ? 'Uploaded ✓' : 'Preview only'}
-                  </div>
-                </div>
-              ) : (
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
+              {p.currentTabPhotos.map(photo => (
                 <div
-                  onClick={() => fileRef.current?.click()}
-                  style={{ width: '100%', aspectRatio: '1/1', background: 'var(--bg-mob-card)', border: '0.5px dashed var(--bdr2-mob)', borderRadius: 8, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 8, marginBottom: 12, cursor: 'pointer' }}
+                  key={photo.portfolio_photo_id}
+                  className="tile"
+                  onClick={() => p.selectMode ? void 0 : setDrawerPhoto(photo)}
+                  style={{
+                    position: 'relative',
+                    cursor: 'pointer',
+                    border: `0.5px solid ${p.selected.has(photo.portfolio_photo_id) ? 'var(--gold)' : 'var(--bdr2-mob)'}`,
+                    borderRadius: 10,
+                    overflow: 'hidden',
+                    padding: 0,
+                    boxShadow: p.selected.has(photo.portfolio_photo_id) ? '0 0 0 1px rgba(var(--gold-rgb),0.2)' : 'none',
+                  }}
                 >
-                  <div style={{ fontSize: '2.5rem', opacity: 0.2 }}>◻</div>
-                  <div style={{ fontFamily: 'var(--font-mono-mob)', fontSize: 11, color: 'var(--text-mob-muted)', letterSpacing: '0.1em' }}>Tap to upload photo</div>
+                  {/* Photo */}
+                  {photo.photo_url && !photo.photo_url.startsWith('[uploaded]') ? (
+                    <img
+                      src={photo.photo_url}
+                      alt={photo.caption || ''}
+                      style={{ width: '100%', aspectRatio: '1/1', objectFit: 'cover', display: 'block' }}
+                      onError={(e: any) => (e.target.style.display = 'none')}
+                    />
+                  ) : (
+                    <div style={{ width: '100%', aspectRatio: '1/1', background: 'var(--bg-mob)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.75rem', opacity: 0.1 }}>
+                      ◻
+                    </div>
+                  )}
+
+                  {/* Select checkbox */}
+                  {p.selectMode ? (
+                    <input
+                      type="checkbox"
+                      style={{ position: 'absolute', top: 8, left: 8, width: 16, height: 16, accentColor: 'var(--gold)', cursor: 'pointer' }}
+                      checked={p.selected.has(photo.portfolio_photo_id)}
+                      onChange={e => p.toggleSelect(photo.portfolio_photo_id, e)}
+                      onClick={e => e.stopPropagation()}
+                    />
+                  ) : p.tab !== 'archived' && (
+                    <SortBadge value={photo.sort_order} onCommit={n => p.handleSortCommit(photo, n)} />
+                  )}
+
+                  {/* Published dot */}
+                  <div style={{
+                    position: 'absolute', top: 8, right: 8,
+                    width: 7, height: 7, borderRadius: '50%',
+                    background: photo.published ? 'var(--gold)' : 'var(--bdr2-mob)',
+                    boxShadow: photo.published ? '0 0 6px rgba(var(--gold-rgb),0.5)' : 'none',
+                  }} />
+
+                  {/* Caption row */}
+                  <div style={{ padding: '8px 10px', borderTop: '0.5px solid var(--bdr2-mob)' }}>
+                    <div style={{
+                      fontFamily: 'var(--font-mono-mob)',
+                      fontSize: 'clamp(0.875rem,3.5vw,1rem)',
+                      color: photo.year ? 'var(--gold)' : 'var(--text-mob-muted)',
+                      fontStyle: photo.year ? 'normal' : 'italic',
+                    }}>
+                      {photo.year || 'No year'}
+                    </div>
+                    {photo.caption && (
+                      <div style={{ fontFamily: 'var(--font-ui-mob)', fontSize: 11, color: 'var(--text-mob-muted)', marginTop: 2, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                        {photo.caption}
+                      </div>
+                    )}
+                  </div>
                 </div>
-              )}
-
-              <button
-                onClick={() => fileRef.current?.click()}
-                disabled={uploading}
-                className="wiz-btn-pill wiz-btn-pill-outline"
-                style={{ fontSize: 11, opacity: uploading ? 0.5 : 1 }}
-              >
-                {uploading ? 'Uploading...' : preview ? 'Replace Photo' : 'Upload Photo'}
-              </button>
-              <input ref={fileRef} type="file" accept=".jpg,.jpeg,.png,.tiff,.tif,.dng,.heic,.webp" style={{ display: 'none' }} onChange={handleFileChange} />
-              <div style={{ fontFamily: 'var(--font-mono-mob)', fontSize: 9, color: 'var(--text-mob-muted)', opacity: 0.6, marginTop: 6, letterSpacing: '0.06em' }}>
-                JPG · PNG · TIFF · DNG · HEIC · WEBP · Max 25MB
-              </div>
+              ))}
             </div>
-
-            {/* Year */}
-            <div style={{ marginBottom: 16 }}>
-              <label style={{ fontFamily: 'var(--font-mono-mob)', fontSize: 10, fontWeight: 600, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--text-mob-muted)', display: 'block', marginBottom: 6 }}>
-                Year <span style={{ color: '#f87171' }}>*</span>
-              </label>
-              <input
-                value={year}
-                onChange={e => setYear(e.target.value.replace(/\D/g, '').slice(0, 4))}
-                placeholder="e.g. 2024"
-                maxLength={4}
-                inputMode="numeric"
-                style={{ width: '100%', background: 'var(--bg-mob-card)', border: `0.5px solid ${errors.some(e => e.code === 400) ? 'rgba(248,113,113,0.5)' : 'var(--bdr2-mob)'}`, borderRadius: 8, color: 'var(--text-mob)', fontFamily: 'var(--font-ui-mob)', fontSize: 'clamp(0.9375rem,4vw,1.0625rem)', padding: '12px 14px', outline: 'none', boxSizing: 'border-box' }}
-                onFocus={e => { e.target.style.borderColor = 'var(--gold)'; }}
-                onBlur={e => { e.target.style.borderColor = errors.some(err => err.code === 400) ? 'rgba(248,113,113,0.5)' : 'var(--bdr2-mob)'; }}
-              />
-              <div style={{ fontFamily: 'var(--font-mono-mob)', fontSize: 9, color: 'var(--text-mob-muted)', opacity: 0.6, marginTop: 4, letterSpacing: '0.06em' }}>
-                Displayed in gold below each photo on the public portfolio
-              </div>
-            </div>
-
-            {/* Caption */}
-            <div style={{ marginBottom: 16 }}>
-              <label style={{ fontFamily: 'var(--font-mono-mob)', fontSize: 10, fontWeight: 600, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--text-mob-muted)', display: 'block', marginBottom: 6 }}>
-                Caption
-              </label>
-              <input
-                value={caption}
-                onChange={e => setCaption(e.target.value)}
-                placeholder="e.g. Kashmir Sapphire Collection"
-                style={{ width: '100%', background: 'var(--bg-mob-card)', border: '0.5px solid var(--bdr2-mob)', borderRadius: 8, color: 'var(--text-mob)', fontFamily: 'var(--font-ui-mob)', fontSize: 'clamp(0.9375rem,4vw,1.0625rem)', padding: '12px 14px', outline: 'none', boxSizing: 'border-box' }}
-                onFocus={e => { e.target.style.borderColor = 'var(--gold)'; }}
-                onBlur={e => { e.target.style.borderColor = 'var(--bdr2-mob)'; }}
-              />
-            </div>
-
-            {/* Description */}
-            <div style={{ marginBottom: 28 }}>
-              <label style={{ fontFamily: 'var(--font-mono-mob)', fontSize: 10, fontWeight: 600, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--text-mob-muted)', display: 'block', marginBottom: 6 }}>
-                Description
-              </label>
-              <textarea
-                value={description}
-                onChange={e => setDescription(e.target.value)}
-                placeholder="Additional details about this piece or collection..."
-                rows={4}
-                style={{ width: '100%', background: 'var(--bg-mob-card)', border: '0.5px solid var(--bdr2-mob)', borderRadius: 8, color: 'var(--text-mob)', fontFamily: 'var(--font-ui-mob)', fontSize: 'clamp(0.9375rem,4vw,1.0625rem)', padding: '12px 14px', outline: 'none', resize: 'vertical', boxSizing: 'border-box', minHeight: 100 }}
-                onFocus={e => { e.target.style.borderColor = 'var(--gold)'; }}
-                onBlur={e => { e.target.style.borderColor = 'var(--bdr2-mob)'; }}
-              />
-            </div>
-
-            {/* Validation hint */}
-            {errors.some(e => e.code === 400) && (
-              <div style={{ fontFamily: 'var(--font-ui-mob)', fontSize: 'clamp(0.75rem,3.2vw,0.875rem)', color: '#f87171', marginBottom: 12, textAlign: 'center' }}>
-                Year is required before saving.
-              </div>
-            )}
-
-            {/* Success message */}
-            {savedMsg && (
-              <div style={{ fontFamily: 'var(--font-mono-mob)', fontSize: 12, color: 'var(--gold)', marginBottom: 12, textAlign: 'center', letterSpacing: '0.1em' }}>
-                {savedMsg}
-              </div>
-            )}
-
-            {/* Action buttons */}
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-              <button
-                className="wiz-btn-pill wiz-btn-pill-gold"
-                onClick={() => handleSave(true)}
-                disabled={saving || uploading}
-                style={{ opacity: saving || uploading ? 0.6 : 1 }}
-              >
-                {saving ? 'Publishing...' : uploading ? 'Waiting for upload...' : 'Publish Live'}
-              </button>
-              <button
-                className="wiz-btn-pill wiz-btn-pill-outline"
-                onClick={() => handleSave(false)}
-                disabled={saving || uploading}
-                style={{ opacity: saving || uploading ? 0.6 : 1 }}
-              >
-                {saving ? 'Saving...' : 'Save as Draft'}
-              </button>
-            </div>
-
-          </div>
+          )}
         </div>
       </div>
 
-      <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
+      {/* ── Detail drawer ── */}
+      <AdminPortfolioDrawer
+        open={!!drawerPhoto}
+        photo={drawerPhoto}
+        onClose={() => setDrawerPhoto(null)}
+        onPublish={p.publishOne}
+        onUnpublish={p.unpublishOne}
+        onArchive={id => { p.archiveOne(id); setDrawerPhoto(null); }}
+        onSaved={p.loadPhotos}
+      />
+
+      {/* ── Add drawer ── */}
+      <AdminPortfolioAddDrawer
+        open={addDrawerOpen}
+        onClose={() => setAddDrawerOpen(false)}
+        onSaved={() => { setAddDrawerOpen(false); }}
+        addSingle={p.addSingle}
+      />
     </>
   );
 }
