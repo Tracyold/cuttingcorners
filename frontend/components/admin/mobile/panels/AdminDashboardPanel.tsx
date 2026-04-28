@@ -1,3 +1,4 @@
+import { useSwipeDownToClose } from '../../../account/shared/hooks/useSwipeDownToClose';
 // frontend/components/admin/panels/AdminDashboardPanel.tsx
 //
 // Dashboard panel — consumes useAdminDashboard hook, pure UI.
@@ -37,12 +38,13 @@ interface Props {
 
 export default function AdminDashboardPanel({ open, onClose }: Props) {
   const d = useAdminDashboard();
+  const { elementRef, touchHandlers } = useSwipeDownToClose({ onClose });
 
   return (
-    <div className={`slide-panel${open ? ' open' : ''}`}>
+    <div ref={elementRef} className={`slide-panel${open ? ' open' : ''}`}>
 
       {/* Header */}
-      <div className="panel-header">
+      <div className="panel-header" {...touchHandlers}>
         <span className="panel-title">Dashboard</span>
         <button className="panel-close" onClick={onClose}>✕</button>
       </div>

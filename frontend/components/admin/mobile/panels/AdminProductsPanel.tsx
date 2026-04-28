@@ -5,6 +5,7 @@
 // and re-exported here so the overlay renders above the panel.
 
 import { useState, useEffect, useRef } from 'react';
+import { useSwipeDownToClose } from '../../../account/shared/hooks/useSwipeDownToClose';
 import { useAdminProducts, upsertProduct, PRODUCT_TAB_LABELS, PRODUCT_TABS } from '../../hooks/useAdminProducts';
 import { formatMoney, fmtDate, fmtTime } from '../../../../lib/utils';
 
@@ -128,13 +129,14 @@ interface Props {
 
 export default function AdminProductsPanel({ open, onClose }: Props) {
   const p = useAdminProducts();
+  const { elementRef, touchHandlers } = useSwipeDownToClose({ onClose });
 
   return (
     <>
-      <div className={`slide-panel${open ? ' open' : ''}`}>
+      <div ref={elementRef} className={`slide-panel${open ? ' open' : ''}`}>
 
         {/* Header */}
-        <div className="panel-header">
+        <div className="panel-header" {...touchHandlers}>
           <span className="panel-title">Products</span>
           <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
             {p.error && <span style={{ fontFamily: 'var(--font-mono-mob)', fontSize: 10, color: '#f87171' }}>{p.error}</span>}
