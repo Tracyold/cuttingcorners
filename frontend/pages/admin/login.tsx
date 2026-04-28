@@ -22,7 +22,7 @@ export default function AdminLoginPage() {
           .eq('admin_user_id', session.user.id)
           .single();
         if (adminCheck) {
-          router.push('/admin/dashboard');
+          router.push('/admin/mobile');
           return;
         }
       }
@@ -61,7 +61,7 @@ export default function AdminLoginPage() {
       return;
     }
 
-    router.push('/admin/dashboard');
+    router.push('/admin/mobile');
   };
 
   if (checkingSession) {
