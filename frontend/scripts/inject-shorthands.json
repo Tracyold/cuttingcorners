@@ -68,10 +68,6 @@
     "intro"
   ],
   [
-    "scr",
-    "screen"
-  ],
-  [
     "Scr",
     "Screen"
   ],
@@ -182,5 +178,37 @@
   [
     "estim",
     "EstimateDisplay.tsx"
+  ],
+  [
+    "them",
+    "theme"
+  ],
+  [
+    "prov",
+    "provider"
+  ],
+  [
+    "-",
+    "-"
+  ],
+  [
+    "inqlist",
+    "1InquiryList"
+  ],
+  [
+    "invlist",
+    "1InvoiceList"
+  ],
+  [
+    "homeview",
+    "1HomeView"
+  ],
+  [
+    "shoplist",
+    "1ShopList"
+  ],
+  [
+    "shar",
+    "shared"
   ]
 ]
