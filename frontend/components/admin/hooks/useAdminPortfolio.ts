@@ -1,7 +1,7 @@
 // frontend/components/admin/hooks/useAdminPortfolio.ts
 //
-// Extracts all data fetching and actions from pages/admin/portfolio.tsx.
-// UI components (PhotoSection, SortBadge, PhotoForm) stay in their own files.
+// All data fetching and actions for the portfolio admin panel.
+// UI components import this hook — no direct Supabase calls in UI files.
 
 import { useState, useEffect } from 'react';
 import { supabase } from '../../../lib/supabase';
@@ -21,48 +21,53 @@ export function genPhotoId() {
   return 'PPH-' + Date.now().toString(36).toUpperCase();
 }
 
-// ── Hook ──────────────────────────────────────────────────────────────────────
-export interface AdminPortfolioData {
-  tab:          PortfolioTab;
-  photos:       any[];
-  filtered:     Record<string, any[]>;
-  loading:      boolean;
-  showForm:     boolean;
-  isEdit:       boolean;
-  queue:        any[];
-  curIdx:       number;
-  selectMode:   boolean;
-  selected:     Set<string>;
-  setTab:       (t: PortfolioTab) => void;
-  setCurIdx:    (i: number) => void;
-  setQueue:     (q: any[]) => void;
-  setSelectMode:(v: boolean) => void;
-  setSelected:  (v: Set<string>) => void;
-  openAdd:      () => void;
-  openEdit:     (photo: any) => void;
-  updateCurrent:(updated: any) => void;
-  addToQueue:   () => void;
-  saveDrafts:   () => Promise<void>;
-  publishAll:   () => Promise<void>;
-  archiveOne:   (id: string) => Promise<void>;
-  toggleSelect: (id: string, e: any) => void;
-  bulkPublish:  () => Promise<void>;
-  bulkUnpublish:() => Promise<void>;
-  bulkArchive:  () => Promise<void>;
-  handleSortCommit: (photo: any, newOrder: number) => Promise<void>;
-  closeForm:    () => void;
-  loadPhotos:   () => Promise<void>;
-  currentTabPhotos: any[];
+// ── Payload types ─────────────────────────────────────────────────────────────
+export interface AddSinglePayload {
+  photoUrl:    string;
+  year:        string;
+  caption:     string;
+  description: string;
+  publishLive: boolean;
 }
 
+export interface UpdateSinglePayload {
+  portfolio_photo_id: string;
+  photoUrl:    string;
+  year:        string;
+  caption:     string;
+  description: string;
+}
+
+// ── Hook interface ────────────────────────────────────────────────────────────
+export interface AdminPortfolioData {
+  tab:              PortfolioTab;
+  photos:           any[];
+  filtered:         Record<string, any[]>;
+  loading:          boolean;
+  selectMode:       boolean;
+  selected:         Set<string>;
+  currentTabPhotos: any[];
+  setTab:           (t: PortfolioTab) => void;
+  setSelectMode:    (v: boolean) => void;
+  setSelected:      (v: Set<string>) => void;
+  loadPhotos:       () => Promise<void>;
+  addSingle:        (payload: AddSinglePayload) => Promise<{ error?: string }>;
+  updateSingle:     (payload: UpdateSinglePayload) => Promise<{ error?: string }>;
+  publishOne:       (photo: any) => Promise<void>;
+  unpublishOne:     (photo: any) => Promise<void>;
+  archiveOne:       (id: string) => Promise<void>;
+  toggleSelect:     (id: string, e: any) => void;
+  bulkPublish:      () => Promise<void>;
+  bulkUnpublish:    () => Promise<void>;
+  bulkArchive:      () => Promise<void>;
+  handleSortCommit: (photo: any, newOrder: number) => Promise<void>;
+}
+
+// ── Hook ──────────────────────────────────────────────────────────────────────
 export function useAdminPortfolio(): AdminPortfolioData {
   const [tab,        setTab]        = useState<PortfolioTab>('published');
   const [photos,     setPhotos]     = useState<any[]>([]);
   const [loading,    setLoading]    = useState(true);
-  const [showForm,   setShowForm]   = useState(false);
-  const [isEdit,     setIsEdit]     = useState(false);
-  const [queue,      setQueue]      = useState<any[]>([]);
-  const [curIdx,     setCurIdx]     = useState(0);
   const [selectMode, setSelectMode] = useState(false);
   const [selected,   setSelected]   = useState<Set<string>>(new Set());
 
@@ -84,6 +89,84 @@ export function useAdminPortfolio(): AdminPortfolioData {
 
   useEffect(() => { loadPhotos(); }, []);
 
+  // ── Add single photo ──────────────────────────────────────────────────────
+  const addSingle = async (payload: AddSinglePayload): Promise<{ error?: string }> => {
+    try {
+      const { data: existing } = await supabase
+        .from('portfolio_photos')
+        .select('sort_order')
+        .order('sort_order', { ascending: false })
+        .limit(1)
+        .maybeSingle();
+
+      const nextOrder = existing ? (existing.sort_order ?? 0) + 1 : 1;
+
+      const { error: dbErr } = await supabase
+        .from('portfolio_photos')
+        .insert({
+          photo_url:   payload.photoUrl   || null,
+          year:        payload.year.trim(),
+          caption:     payload.caption.trim()     || null,
+          description: payload.description.trim() || null,
+          sort_order:  nextOrder,
+          published:   payload.publishLive,
+          archived:    false,
+        });
+
+      if (dbErr) return { error: dbErr.message };
+      await loadPhotos();
+      setTab(payload.publishLive ? 'published' : 'drafts');
+      return {};
+    } catch (err: any) {
+      return { error: err?.message ?? 'Unknown error' };
+    }
+  };
+
+  // ── Update single photo ───────────────────────────────────────────────────
+  const updateSingle = async (payload: UpdateSinglePayload): Promise<{ error?: string }> => {
+    try {
+      const { error: dbErr } = await supabase
+        .from('portfolio_photos')
+        .update({
+          photo_url:   payload.photoUrl   || null,
+          year:        payload.year.trim()        || null,
+          caption:     payload.caption.trim()     || null,
+          description: payload.description.trim() || null,
+        })
+        .eq('portfolio_photo_id', payload.portfolio_photo_id);
+
+      if (dbErr) return { error: dbErr.message };
+      await loadPhotos();
+      return {};
+    } catch (err: any) {
+      return { error: err?.message ?? 'Unknown error' };
+    }
+  };
+
+  // ── Publish / Unpublish ───────────────────────────────────────────────────
+  const publishOne = async (photo: any) => {
+    await supabase.from('portfolio_photos')
+      .update({ published: true })
+      .eq('portfolio_photo_id', photo.portfolio_photo_id);
+    await loadPhotos();
+  };
+
+  const unpublishOne = async (photo: any) => {
+    await supabase.from('portfolio_photos')
+      .update({ published: false })
+      .eq('portfolio_photo_id', photo.portfolio_photo_id);
+    await loadPhotos();
+  };
+
+  // ── Archive ───────────────────────────────────────────────────────────────
+  const archiveOne = async (id: string) => {
+    await supabase.from('portfolio_photos')
+      .update({ archived: true, published: false })
+      .eq('portfolio_photo_id', id);
+    await loadPhotos();
+  };
+
+  // ── Sort order ────────────────────────────────────────────────────────────
   const handleSortCommit = async (photo: any, newOrder: number) => {
     const conflict = photos.find(p =>
       p.sort_order === newOrder && p.portfolio_photo_id !== photo.portfolio_photo_id
@@ -99,84 +182,7 @@ export function useAdminPortfolio(): AdminPortfolioData {
     await loadPhotos();
   };
 
-  const openAdd = () => {
-    const maxOrder = photos.length > 0 ? Math.max(...photos.map(p => p.sort_order)) : 0;
-    const np = {
-      ...EMPTY_PHOTO,
-      portfolio_photo_id: genPhotoId(),
-      created_at: new Date().toISOString(),
-      published: false, archived: false,
-      sort_order: maxOrder + 1,
-      _saved: false,
-    };
-    setQueue([np]); setCurIdx(0); setIsEdit(false); setShowForm(true);
-  };
-
-  const openEdit = (photo: any) => {
-    if (selectMode) return;
-    setQueue([{ ...photo, _saved: true }]);
-    setCurIdx(0); setIsEdit(true); setShowForm(true);
-  };
-
-  const updateCurrent = (updated: any) => {
-    const nq = [...queue]; nq[curIdx] = updated; setQueue(nq);
-  };
-
-  const addToQueue = () => {
-    if (queue.length >= 10) return;
-    const maxOrder = photos.length > 0 ? Math.max(...photos.map(p => p.sort_order)) : 0;
-    const np = {
-      ...EMPTY_PHOTO,
-      portfolio_photo_id: genPhotoId(),
-      created_at: new Date().toISOString(),
-      published: false, archived: false,
-      sort_order: maxOrder + queue.length + 1,
-      _saved: false,
-    };
-    const nq = [...queue, np]; setQueue(nq); setCurIdx(nq.length - 1);
-  };
-
-  const saveDrafts = async () => {
-    for (const q of queue) {
-      const isNew = !q.portfolio_photo_id || q.portfolio_photo_id.startsWith('PPH-');
-      const payload = {
-        photo_url:   q.photo_url || '',
-        year:        q.year || null,
-        caption:     q.caption || null,
-        description: q.description || null,
-        sort_order:  q.sort_order ? parseInt(q.sort_order) : 0,
-        published: false, archived: false,
-      };
-      if (isNew) await supabase.from('portfolio_photos').insert(payload);
-      else       await supabase.from('portfolio_photos').update(payload).eq('portfolio_photo_id', q.portfolio_photo_id);
-    }
-    await loadPhotos(); setShowForm(false);
-  };
-
-  const publishAll = async () => {
-    for (const q of queue) {
-      const isNew = !q.portfolio_photo_id || q.portfolio_photo_id.startsWith('PPH-');
-      const payload = {
-        photo_url:   q.photo_url || '',
-        year:        q.year || null,
-        caption:     q.caption || null,
-        description: q.description || null,
-        sort_order:  q.sort_order ? parseInt(q.sort_order) : 0,
-        published: true, archived: false,
-      };
-      if (isNew) await supabase.from('portfolio_photos').insert(payload);
-      else       await supabase.from('portfolio_photos').update(payload).eq('portfolio_photo_id', q.portfolio_photo_id);
-    }
-    await loadPhotos(); setShowForm(false); setTab('published');
-  };
-
-  const archiveOne = async (id: string) => {
-    await supabase.from('portfolio_photos')
-      .update({ archived: true, published: false })
-      .eq('portfolio_photo_id', id);
-    await loadPhotos(); setShowForm(false);
-  };
-
+  // ── Select / Bulk ─────────────────────────────────────────────────────────
   const toggleSelect = (id: string, e: any) => {
     e.stopPropagation();
     setSelected(prev => {
@@ -204,17 +210,14 @@ export function useAdminPortfolio(): AdminPortfolioData {
     setSelected(new Set()); setSelectMode(false); await loadPhotos();
   };
 
-  const closeForm = () => setShowForm(false);
-
   return {
     tab, photos, filtered, loading,
-    showForm, isEdit, queue, curIdx,
-    selectMode, selected,
-    setTab, setCurIdx, setQueue, setSelectMode, setSelected,
-    openAdd, openEdit, updateCurrent, addToQueue,
-    saveDrafts, publishAll, archiveOne,
+    selectMode, selected, currentTabPhotos,
+    setTab, setSelectMode, setSelected,
+    loadPhotos,
+    addSingle, updateSingle,
+    publishOne, unpublishOne, archiveOne,
     toggleSelect, bulkPublish, bulkUnpublish, bulkArchive,
-    handleSortCommit, closeForm, loadPhotos,
-    currentTabPhotos,
+    handleSortCommit,
   };
 }

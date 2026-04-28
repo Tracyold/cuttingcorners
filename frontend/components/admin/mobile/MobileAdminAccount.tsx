@@ -102,7 +102,7 @@ export default function MobileAdminAccount() {
     <>
       <style>{adminMobileStyles}</style>
 
-      <div className="mobile-shell">
+      <div className="adm mobile-shell">
 
         {/* ── Nav ── */}
         <div className="nav">
