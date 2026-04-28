@@ -154,17 +154,6 @@ export default function MobileAdminAccount() {
               </button>
             ))}
 
-            {/* Quick link to user detail pages */}
-            <button
-              className="tile wide admin-tile"
-              onClick={() => router.push('/admin/users')}
-              style={{ borderColor: 'rgba(var(--gold-rgb),0.2)' }}
-            >
-              <div className="admin-tile-icon" style={{ color: 'var(--text-mob-muted)' }}>⇥</div>
-              <div className="admin-tile-label" style={{ color: 'var(--text-mob-muted)' }}>User Detail Pages</div>
-              <div className="admin-tile-sub">Full chat · work orders · invoices</div>
-              <div className="admin-tile-arrow" style={{ color: 'var(--text-mob-muted)' }}>→</div>
-            </button>
           </div>
 
         </div>{/* end feed */}
