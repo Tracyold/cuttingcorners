@@ -3,7 +3,8 @@ import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { ThemeProvider } from '../components/theme-provider';
 import type { AppProps } from 'next/app';
-import '../styles/globals.css';
+import '../styles/globals.css'
+import '../styles/Admin.css';
 import '../styles/shopCardEffect.css';
 import '../styles/home.css';
 import '../components/account/mobile/css/WizardShell.css'
