@@ -88,11 +88,11 @@ export default function Home() {
             <p style={{ fontFamily: 'var(--font-subdisplay)', fontWeight: 900, fontSize: '13px', letterSpacing: '0.35em', textTransform: 'uppercase', color: 'var(--text)', marginBottom: '24px' }}>
               Tempe, Arizona
             </p>
-            <h1 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(53px, 68vw, 71px)', color: 'var(--text)', lineHeight: 1.05, marginBottom: '28px', fontWeight: 200 }}>
+            <h1 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(53px, 68vw, 97px)', color: 'var(--text)', minWidth:'560px', lineHeight: 1.05, marginBottom: '28px', fontWeight: 200 }}>
               <span style={{ color: 'var(--gold)' }}>Cutting</span> Corners —{' '}
               Not the <span style={{ color: 'var(--gold)' }}>Quality</span>
             </h1>
-            <p style={{ fontFamily: 'var(--font-subdisplay)', fontSize: 'clamp(17px, 2.5vw, 21px)', color: 'var(--text)', lineHeight: 1.7, marginBottom: '40px', maxWidth: '560px', margin: '0 auto 40px' }}>
+            <p style={{ fontFamily: 'var(--font-ui)', fontSize: 'clamp(17px, 2.5vw, 21px)', fontWeight:'500', color: 'var(--text)', lineHeight: 1.7, marginBottom: '40px', maxWidth: '560px', margin: '0 auto 40px' }}>
               Professional gemstone cutter focused on color, yield, and stone potential for jewelry professionals nationwide.
             </p>
             <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'wrap' }}>
