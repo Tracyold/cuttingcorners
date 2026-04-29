@@ -242,7 +242,7 @@ export default function SaveToAccountButton({ payload, isLoggedIn }: SaveToAccou
         onClick={handleSave}
         disabled={status === 'saving' || status === 'saved'}
         style={{
-          width: '100%',
+          width: 'flex',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
@@ -257,7 +257,7 @@ export default function SaveToAccountButton({ payload, isLoggedIn }: SaveToAccou
           letterSpacing: '0.1em',
           textTransform: 'uppercase',
           cursor: status === 'saving' || status === 'saved' ? 'default' : 'pointer',
-          borderRadius: 14,
+          borderRadius: 999,
           transition: 'all 220ms ease',
           opacity: status === 'saving' ? 0.6 : 1,
           boxShadow: status === 'saved' ? '0 0 16px rgba(163,196,168,0.12)' : 'none',
