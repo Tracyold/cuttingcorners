@@ -141,27 +141,27 @@
 /* ── Light Theme ── */
 :root[data-theme="light"] {
   --bg:              #ebebeb;
-  --bg-card:         #aeaeae;
-  --bg-deep:         #adadad;
+  --bg-card:         #dbdbdb;
+  --bg-deep:         #cbcbcb;
   --bg-button:       #1b63bb;
   --bg-button-hover: #dededee0;
-  --button-text:     #575450;
-  --accent:          #1b63bbc4;
+  --button-text:     #dcdcdc;
+  --accent:          #1b6dd2e9;
   --text:            #212223;
-  --text-muted:      #888;
+  --text-muted:      #c9c9c9;
   --shadow:          #111111;
   --border:          #afafaf;
   --bdr2:            #d0d0d0;
   --gold:            #0c70b8f3;
   --background:      #dddddd;
   --foreground:      #adadad;
-  --primary:         #354d67;
+  --primary:         #4a6d93;
   --opposite:         linear-gradient(var(--fixed-angle,#2c2c2c 50, #cccbcb 50);)
   --primary-foreground: #888888;
   --muted:           #a7a7a7;
   --muted-foreground: #bababa;
   --input:           #212223;
-  --ring:            #1b63bb72;
+  --ring:            #1b63bbdb;
   --bg-gradient:     linear-gradient(var(--scroll-angle, #ebebeb 0%, #eceff7 15%, #ebeff8 28%, #ecf0f8 40%, #eef1f4 52%, #ecf0f8 64%, #e4e6ec 76%, #edf0f8 88%, #d6d7dc 100%));
 
   /* ── Tile colors ── */
@@ -173,7 +173,7 @@
   --tile-est:     #b030d8;
 
   /* ── Chat ── */
-  --bubble-them:  rgba(120,120,120,0.8);
+  --bubble-them:  rgba(230, 230, 230, 0.8);
 }
 
 /* ── Base Resets ── */
