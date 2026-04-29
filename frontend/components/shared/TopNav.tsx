@@ -63,19 +63,31 @@ const css = `
   text-transform: uppercase;
   color: var(--text);
   text-decoration: none;
-  transition: color 200ms ease;
+  transition: all 150ms ease;
   position: relative;
+  padding: 6px 14px;
+  border-radius: 999px;
+  border: 0.5px solid transparent;
 }
-.tnav-link::after {
-  content: '';
-  position: absolute;
-  bottom: -3px; left: 0; right: 100%;
-  height: 0.5px;
-  background: var(--bg-button-hover);
-  transition: right 220ms ease;
+.tnav-link:hover {
+  border-color: rgba(var(--gold-rgb), 0.4);
+  background: rgba(var(--gold-rgb), 0.08);
+  color: var(--gold);
 }
-.tnav-link:hover { color: var(--text); }
-.tnav-link:hover::after { right: 0; }
+.tnav-link:active {
+  background: rgba(0,0,0,0.4);
+  border-color: rgba(0,0,0,0.6);
+  border-top-color: rgba(0,0,0,0.8);
+  box-shadow:
+    inset 0 4px 10px rgba(0,0,0,0.7),
+    inset 0 2px 4px rgba(0,0,0,0.5),
+    inset 0 -1px 0 rgba(255,255,255,0.06);
+  transform: scale(0.95) translateY(1px);
+  color: var(--text-muted);
+  transition: all 60ms ease;
+}
+
+
 .tnav-auth {
   font-family: var(--font-body);
   font-size: 0.625rem;
