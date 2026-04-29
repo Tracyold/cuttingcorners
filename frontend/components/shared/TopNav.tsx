@@ -53,7 +53,7 @@ const css = `
 .tnav-links {
   display: flex;
   align-items: center;
-  gap: 32px;
+  gap: 20px;
 }
 .tnav-link {
   font-family: var(--font-body);
