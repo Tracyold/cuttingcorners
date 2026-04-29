@@ -222,10 +222,10 @@ export default function SaveToAccountButton({ payload, isLoggedIn }: SaveToAccou
   }[status]
 
   const borderColor = {
-    idle:   'rgba(255,211,105,0.45)',
-    saving: 'rgba(255,211,105,0.25)',
-    saved:  'rgba(163,196,168,0.6)',
-    error:  'rgba(248,113,113,0.5)',
+    idle:   'rgba(238, 241, 50, 1)',
+    saving: 'rgba(216, 164, 42, 0.97)',
+    saved:  'rgba(33, 201, 58, 0.99)',
+    error:  'rgba(234, 28, 28, 0.5)',
   }[status]
 
   const textColor = {
