@@ -115,9 +115,9 @@ export default function LoginPage() {
   return (
     <>
     <TopNav />
-    <div style={{ background: 'transparent', minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '24px' }}>
-      <div style={{ background: 'var(--bg-card)', border: '0.5px solid var(--border)', padding: '40px', maxWidth: '480px', width: '100%', position: 'relative', display: 'flex', flexDirection: 'column' }}>
-        <button onClick={() => router.push('/')} style={{ position: 'absolute', top: '16px', right: '16px', background: 'none', border: 'none', color: 'var(--text-muted)', fontSize: '20px', cursor: 'pointer', lineHeight: 1, padding: '4px' }}>✕</button>
+    <div style={{ background: 'var(--accent)', minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '24px' }}>
+      <div style={{ background: 'var(--bg)', border: '0.5px solid var(--border)', padding: '40px', maxWidth: '480px', width: '100%', position: 'relative', display: 'flex', flexDirection: 'column' }}>
+        <button onClick={() => router.push('/')} style={{ position: 'absolute', top: '16px', right: '16px', background: 'white', border: 'none', color: 'var(--text)', fontSize: '20px', cursor: 'pointer', lineHeight: 1, padding: '4px' }}>✕</button>
         <p style={{ fontFamily: 'var(--font-ui)', fontSize: '11px', letterSpacing: '0.25em', textTransform: 'uppercase', color: 'var(--text-muted)', marginBottom: '12px' }}>
           CUTTING CORNERS GEMS
         </p>
@@ -156,14 +156,14 @@ export default function LoginPage() {
               </>
             )}
             <label style={labelStyle}>PHONE NUMBER</label>
-            <div style={{ display: 'flex', gap: '8px', marginBottom: '12px' }}>
+            <div style={{ display: 'flex', gap: '8px', marginBottom: '12px', background:'var(--bg-card' }}>
               <input 
                 name="countryCode"
                 autoComplete="tel-country-code"
                 value={countryCode} 
                 onChange={e => setCountryCode(e.target.value)} 
                 placeholder="+1" 
-                style={{ ...inputStyle, width: '90px', marginBottom: 0, textAlign: 'center' }}
+                style={{ ...inputStyle, width: '90px', marginBottom: 0, textAlign: 'center', color:'var(--gold)' }}
                 onFocus={e => { e.target.style.borderColor = 'var(--gold)'; }}
                 onBlur={e => { e.target.style.borderColor = 'var(--border)'; }} 
               />

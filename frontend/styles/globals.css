@@ -121,8 +121,8 @@
   --primary:         #b8b89c;
   --primary-foreground: #aeaeae;
   --muted-foreground: #aaaaaa;
-  --input:           #e5e5e5;
-  --opposite:         #e0e0e0;
+  --input:           #ffffff;
+  --opposite:         #2e2e2e;
   --ring:            rgba(204, 218, 73, 0.622);
   --bg-gradient:     linear-gradient(var(--scroll-angle), #212223 3%, #1e1f21 16%, #202021 37%, #242425 58%, #202021 79%, #212223 100%, #171818 35%, #212223 40%, #171818 45%);
 
@@ -141,16 +141,16 @@
 /* ── Light Theme ── */
 :root[data-theme="light"] {
   --bg:              #ebebeb;
-  --bg-card:         #dbdbdb;
-  --bg-deep:         #cbcbcb;
+  --bg-card:         #ebebeb;
+  --bg-deep:         #cecece;
   --bg-button:       #1b63bb;
   --bg-button-hover: #dededee0;
   --button-text:     #dcdcdc;
   --accent:          #1b6dd2e9;
   --text:            #212223;
-  --text-muted:      #c9c9c9;
+  --text-muted:      #787878;
   --shadow:          #111111;
-  --border:          #afafaf;
+  --border:          #616161;
   --bdr2:            #d0d0d0;
   --gold:            #0c70b8f3;
   --background:      #dddddd;
