@@ -34,7 +34,8 @@ export default function IntroScreen({
         {/* Info lines */}
         {(introPhase === 'line1' || introPhase === 'line1exit') && (
           <p key={introPhase} className={`intro-line${introPhase === 'line1exit' ? ' fly-out' : ' fly-in'}`}>
-            This tool provides a preliminary assessment for cut gemstones using industry standard metrics.
+            This tool provides a preliminary assessment for cut 
+            <p></p>gemstones using industry standard metrics.
           </p>
         )}
         {(introPhase === 'line2' || introPhase === 'line2exit') && (
