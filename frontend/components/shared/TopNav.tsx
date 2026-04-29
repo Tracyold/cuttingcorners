@@ -292,6 +292,7 @@ export default function TopNav() {
         <div style={{ width: 80 }} />
         {/* Desktop links */}
         <div className="tnav-links">
+          <Link href="/" className="tnav-link" style={{ fontFamily: 'var(--font-sig)', fontSize: '1.25rem', letterSpacing: '0.04em', textTransform: 'none', fontWeight: 300 }}>Home</Link>
           {NAV_LINKS.map(l => (
             <Link key={l.href} href={l.href} className="tnav-link">{l.label}</Link>
           ))}
