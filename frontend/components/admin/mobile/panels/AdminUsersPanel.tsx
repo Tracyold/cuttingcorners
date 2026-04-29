@@ -3,20 +3,32 @@
 // Users panel — consumes useAdminUsers hook.
 // Tapping a user navigates to /admin/users/[id] (existing detail page).
 
-import { useRouter } from 'next/router';
+import { useState } from 'react';
 import { useSwipeDownToClose } from '../../../account/shared/hooks/useSwipeDownToClose';
 import { useAdminUsers } from '../../hooks/useAdminUsers';
 import { fmtDate, fmtTime } from '../../../../lib/utils';
+import AdminUserMobileAccount from './users/AdminUsersAccountShell';
 
 interface Props {
   open:    boolean;
+  session: any;
   onClose: () => void;
 }
 
-export default function AdminUsersPanel({ open, onClose }: Props) {
-  const router = useRouter();
+export default function AdminUsersPanel({ open, session, onClose }: Props) {
   const u = useAdminUsers();
   const { elementRef, touchHandlers } = useSwipeDownToClose({ onClose });
+  const [selectedUserId, setSelectedUserId] = useState<string | null>(null);
+
+  if (selectedUserId) {
+    return (
+      <AdminUserMobileAccount
+        id={selectedUserId}
+        session={session}
+        onBack={() => setSelectedUserId(null)}
+      />
+    );
+  }
 
   return (
     <div ref={elementRef} className={`slide-panel${open ? ' open' : ''}`}>
@@ -85,7 +97,7 @@ export default function AdminUsersPanel({ open, onClose }: Props) {
         {/* Guest account */}
         {u.activeTab === 'active' && u.guestUser && (
           <div
-            onClick={() => { onClose(); router.push(`/admin/users/${u.guestUser.account_user_id}`); }}
+            onClick={() => setSelectedUserId(u.guestUser.account_user_id)}
             style={{
               padding: 'clamp(12px,3.5vw,16px) clamp(1rem,4.5vw,1.25rem)',
               borderBottom: '0.5px solid var(--bdr2-mob)',
@@ -135,7 +147,7 @@ export default function AdminUsersPanel({ open, onClose }: Props) {
             return (
               <div
                 key={user.account_user_id}
-                onClick={() => { onClose(); router.push(`/admin/users/${user.account_user_id}`); }}
+                onClick={() => setSelectedUserId(user.account_user_id)}
                 style={{
                   padding: 'clamp(12px,3.5vw,16px) clamp(1rem,4.5vw,1.25rem)',
                   borderBottom: '0.5px solid var(--bdr2-mob)',

@@ -3,7 +3,7 @@
 // Extracted from pages/admin/users/[id].tsx — markSRRead.
 // Receives setSR from useAdminUserDetail so state lives in one place.
 
-import { supabase } from '../../../../lib/supabase';
+import { supabase } from '../../../../../../lib/supabase';
 
 export interface AdminUserServiceRequestsData {
   markSRRead: (item: any) => Promise<void>;
