@@ -1,6 +1,8 @@
 // comp/admin/mobile/panels/users/AdminUserMobileAccount.tsx
-// Thin shell. Manages which panel is open. Mounts all panels.
-// Each panel owns its hook, its data, and its drawer.
+// Renders as a slide-panel (position: fixed, z-index: 10001) so it fully
+// covers the admin shell when a user is selected from AdminUsersPanel.
+// Each child panel is also a slide-panel that layers on top of this one.
+// Drawers (wo-drawer, overlay) sit at z-index 10101 — above everything.
 
 import { useState } from 'react';
 import AdminUserDashboardPanel       from './panels/AdminUserDashboardPanel';
@@ -33,25 +35,35 @@ export default function AdminUserMobileAccount({ id, session, onBack }: Props) {
   ];
 
   return (
-    <div className="mobile-shell">
+    // Renders as slide-panel open — covers the admin shell completely
+    <div className="slide-panel open" style={{ display: 'flex', flexDirection: 'column', overflowY: 'auto' }}>
 
-      {/* Top bar */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: 12, padding: 'clamp(10px,3vw,14px) clamp(1rem,4.5vw,1.25rem)', borderBottom: '0.5px solid var(--bdr2-mob)', background: 'var(--bg-mob)', flexShrink: 0, position: 'sticky', top: 0, zIndex: 10 }}>
-        <button onClick={onBack} style={{ background: 'none', border: 'none', color: 'var(--text-mob-muted)', fontFamily: 'var(--font-mono-mob)', fontSize: 11, letterSpacing: '0.15em', textTransform: 'uppercase', cursor: 'pointer', padding: 0 }}>
+      {/* Top bar — back button */}
+      <div className="panel-header" style={{ flexShrink: 0 }}>
+        <button
+          onClick={onBack}
+          className="panel-close"
+          style={{ fontSize: 13, letterSpacing: '0.15em', textTransform: 'uppercase', fontFamily: 'var(--font-mono-mob)' }}
+        >
           ← Users
         </button>
       </div>
 
       {/* Tab bar */}
-      <div style={{ display: 'flex', overflowX: 'auto', flexShrink: 0, borderBottom: '0.5px solid var(--bdr2-mob)', background: 'var(--bg-mob)', WebkitOverflowScrolling: 'touch' as any }}>
+      <div className="sr-tab-bar" style={{ overflowX: 'auto', flexWrap: 'nowrap', WebkitOverflowScrolling: 'touch' as any }}>
         {TABS.map(t => (
-          <button key={t.id} onClick={() => openPanel(t.id)} style={{ flex: '0 0 auto', padding: 'clamp(10px,2.5vw,13px) clamp(12px,3.5vw,16px)', fontFamily: 'var(--font-mono-mob)', fontSize: 10, letterSpacing: '0.15em', textTransform: 'uppercase', background: 'none', border: 'none', borderBottom: activePanel === t.id ? '1.5px solid var(--gold)' : '1.5px solid transparent', color: activePanel === t.id ? 'var(--gold)' : 'var(--text-mob-muted)', cursor: 'pointer', whiteSpace: 'nowrap' }}>
+          <button
+            key={t.id}
+            className={`sr-tab${activePanel === t.id ? ' active' : ''}`}
+            onClick={() => openPanel(t.id)}
+            style={{ whiteSpace: 'nowrap', flex: '0 0 auto' }}
+          >
             {t.label}
           </button>
         ))}
       </div>
 
-      {/* Panels — each self-contained with its own hook and drawer */}
+      {/* Panels — each is also a slide-panel, layers above this one */}
       <AdminUserDashboardPanel       open={activePanel === 'dashboard'}  id={id} session={session} onClose={closePanel} />
       <AdminUserInquiriesPanel       open={activePanel === 'inquiries'}  id={id} session={session} onClose={closePanel} />
       <AdminUserServiceRequestsPanel open={activePanel === 'servicereq'} id={id} session={session} onClose={closePanel} />

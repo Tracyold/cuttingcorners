@@ -1,6 +1,6 @@
 // comp/admin/mobile/panels/users/panels/AdminUserInquiriesPanel.tsx
-// Imports useAdminUserDetail + useAdminUserInquiries.
-// Mounts AdminUserInquiryDrawer internally — drawer opens when inquiry is tapped.
+// Calls useAdminUserInquiries once. Passes selectedInq and all state
+// to AdminUserInquiryDrawer as props — drawer has no hook of its own.
 
 import { fmtDate, fmtTime } from '../../../../../../lib/utils';
 import { useSwipeDownToClose } from '../../../../../account/shared/hooks/useSwipeDownToClose';
@@ -17,8 +17,13 @@ interface Props {
 
 export default function AdminUserInquiriesPanel({ open, id, session, onClose }: Props) {
   const { elementRef, touchHandlers } = useSwipeDownToClose({ onClose });
-  const { inquiries, guestInquiries, setInquiries } = useAdminUserDetail(id, session);
-  const { markInqRead, openInquiry, selectedInq, setSelectedInq, isGuest, closeInquiry } = useAdminUserInquiries(id, setInquiries);
+  const { inquiries, guestInquiries, setInquiries, user } = useAdminUserDetail(id, session);
+  const {
+    selectedInq, setSelectedInq,
+    selectedInqProduct, setSelectedInqProduct,
+    productUrl, isGuest,
+    markInqRead, openInquiry, closeInquiry,
+  } = useAdminUserInquiries(id, setInquiries);
 
   const unread = inquiries.filter(i => !i.is_read).length;
 
@@ -84,11 +89,13 @@ export default function AdminUserInquiriesPanel({ open, id, session, onClose }: 
         </div>
       </div>
 
-      {/* Drawer lives inside the panel — opens when selectedInq is set */}
+      {/* Drawer receives all state from the hook called above — no hook inside drawer */}
       <AdminUserInquiryDrawer
         open={!!selectedInq}
-        id={id}
-        session={session}
+        selectedInq={selectedInq}
+        selectedInqProduct={selectedInqProduct}
+        productUrl={productUrl}
+        user={user}
         onClose={closeInquiry}
       />
     </>
