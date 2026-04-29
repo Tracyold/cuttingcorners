@@ -265,7 +265,7 @@ export default function FeasibilityWizard({ onRequestQuote }: FeasibilityWizardP
           font-family: var(--font-ui);
           font-size: 1.0625rem;
           padding: 25px 37px;
-          border-radius: 53px;
+          border-radius: 21px;
           transition: border-color 200ms ease;
           outline: none;
         }
@@ -283,6 +283,7 @@ export default function FeasibilityWizard({ onRequestQuote }: FeasibilityWizardP
         .wiz-btn-primary:hover:not(:disabled) {
           transform: translateY(-2px);
           box-shadow: 0 8px 28px rgba(255,211,105,0.28);
+          border-radius:999px;
         }
         .wiz-btn-primary:disabled { opacity: 0.25; cursor: not-allowed; }
 
@@ -292,9 +293,9 @@ export default function FeasibilityWizard({ onRequestQuote }: FeasibilityWizardP
           border: 1px solid var(--border); padding: 18px 20px;
           font-family: var(--font-ui); font-size: 0.8125rem; font-weight: 500;
           letter-spacing: 0.15em; text-transform: uppercase;
-          cursor: pointer; border-radius: 32px; transition: all 220ms ease;
+          cursor: pointer; border-radius: 999px; transition: all 220ms ease;
         }
-        .wiz-btn-secondary:hover { border-color: var(--text-muted); color: var(--text); }
+        .wiz-btn-secondary:hover { border-color: var(--text-muted); color: var(--text); border-radius:999px;}
 
         /* Tool title inside modal */
     
