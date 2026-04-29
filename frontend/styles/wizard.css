@@ -326,6 +326,8 @@
 /* ── RESULTS ── */
 .results-wrap {
   width: 100%;
+  max-width: 640px;
+  margin: 0 auto;
   padding: clamp(16px, 4vw, 40px) 0;
 }
 .stone-block {
@@ -381,68 +383,19 @@
 .results-actions {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: clamp(12px, 2vw, 16px);
   margin-top: clamp(24px, 4vw, 40px);
 }
-.btn-export,
-.btn-quote,
-.btn-restart {
-  width: 100%;
-  background: transparent;
-  border-radius: 21px;
-  padding: clamp(14px, 2.5vw, 20px);
-  font-family: var(--font-body);
-  font-size: clamp(0.875rem, 1.5vw, 1.125rem);
-  font-weight: 500;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
-  position: relative;
-  overflow: hidden;
-}
-.btn-export {
-  color: var(--gold);
-  border: 0.8px solid color-mix(in srgb, var(--gold) 35%, rgba(255,255,255,0.08));
-  box-shadow:
-    0 4px 16px rgba(0,0,0,0.3),
-    0 0 12px color-mix(in srgb, var(--gold) 10%, transparent);
-}
-.btn-export::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 0.5px;
-  background: var(--gold);
-  opacity: 0.6;
-}
-.btn-export:hover {
-  transform: translateY(-3px) scale(1.01);
-  box-shadow:
-    0 12px 28px rgba(0,0,0,0.35),
-    0 0 20px color-mix(in srgb, var(--gold) 15%, transparent);
-}
-.btn-quote {
-  color: var(--text);
-  border: 0.8px solid rgba(255,255,255,0.08);
-  box-shadow: inset 0 2px 6px rgba(0,0,0,0.35);
-}
-.btn-quote:hover {
-  transform: translateY(-3px) scale(1.01);
-  border-color: color-mix(in srgb, var(--gold) 45%, transparent);
-  color: var(--gold);
-  box-shadow:
-    0 8px 24px rgba(0,0,0,0.3),
-    0 0 16px color-mix(in srgb, var(--gold) 12%, transparent);
-}
-.btn-restart {
-  color: var(--text-muted);
-  border: none;
-  opacity: 0.5;
-}
-.btn-restart:hover { opacity: 1; }
-.btn-export:active,
-.btn-quote:active { transform: scale(0.97); }
+
+
+
+
+
+
+
+
+
 
 /* ── KEYFRAMES ── */
 @keyframes wizFlyIn {
@@ -958,6 +911,8 @@
 /* ── RESULTS PAGE ── */
 .results-wrap {
   width: 100%;
+  max-width: 640px;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   gap: clamp(16px, 3vw, 28px);
@@ -1027,158 +982,32 @@
 .results-actions {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: clamp(10px, 2vw, 16px);
   width: 100%;
 }
 
 /* Save button */
-.btn-save {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  background: transparent;
-  border-radius: 21px;
-  padding: clamp(14px, 2.5vw, 20px) clamp(20px, 4vw, 32px);
-  font-family: var(--font-body);
-  font-size: clamp(0.875rem, 1.8vw, 1.125rem);
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
-  position: relative;
-  overflow: hidden;
-}
-.btn-save::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 0.5px;
-  background: var(--gold);
-  opacity: 0.6;
-}
-.btn-save-idle {
-  color: var(--gold);
-  border: 0.8px solid color-mix(in srgb, var(--gold) 35%, rgba(255,255,255,0.08));
-  box-shadow:
-    0 4px 16px rgba(0,0,0,0.3),
-    0 0 12px color-mix(in srgb, var(--gold) 10%, transparent);
-}
-.btn-save-idle:hover {
-  transform: translateY(-3px) scale(1.01);
-  box-shadow:
-    0 12px 28px rgba(0,0,0,0.35),
-    0 0 20px color-mix(in srgb, var(--gold) 15%, transparent);
-}
-.btn-save-saving {
-  color: var(--text-muted);
-  border: 0.8px solid rgba(255,255,255,0.06);
-  opacity: 0.6;
-  cursor: default;
-}
-.btn-save-saved {
-  color: #a3c4a8;
-  border: 0.8px solid rgba(163,196,168,0.4);
-  box-shadow: 0 0 16px rgba(163,196,168,0.12);
-  cursor: default;
-}
-.btn-save-error {
-  color: #f87171;
-  border: 0.8px solid rgba(248,113,113,0.4);
-}
+
+
+
+
+
+
+
 
 /* Export, Quote, Restart */
-.btn-export {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  background: transparent;
-  color: var(--gold);
-  border: 0.8px solid color-mix(in srgb, var(--gold) 35%, rgba(255,255,255,0.08));
-  padding: clamp(14px, 2.5vw, 20px) clamp(20px, 4vw, 32px);
-  font-family: var(--font-body);
-  font-size: clamp(0.875rem, 1.8vw, 1.125rem);
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  cursor: pointer;
-  border-radius: 21px;
-  transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
-  position: relative;
-  overflow: hidden;
-  box-shadow:
-    0 4px 16px rgba(0,0,0,0.3),
-    0 0 12px color-mix(in srgb, var(--gold) 10%, transparent);
-}
-.btn-export::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 0.5px;
-  background: var(--gold);
-  opacity: 0.6;
-}
-.btn-export:hover {
-  transform: translateY(-3px) scale(1.01);
-  box-shadow:
-    0 12px 28px rgba(0,0,0,0.35),
-    0 0 20px color-mix(in srgb, var(--gold) 15%, transparent);
-}
-.btn-export:active { transform: scale(0.97); }
 
-.btn-quote {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--gold);
-  color: #1b1b1c;
-  border: none;
-  padding: clamp(14px, 2.5vw, 20px) clamp(20px, 4vw, 32px);
-  font-family: var(--font-body);
-  font-size: clamp(0.875rem, 1.8vw, 1.125rem);
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  cursor: pointer;
-  border-radius: 21px;
-  transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow:
-    0 4px 16px rgba(0,0,0,0.3),
-    0 0 16px color-mix(in srgb, var(--gold) 20%, transparent);
-}
-.btn-quote:hover {
-  transform: translateY(-3px) scale(1.01);
-  box-shadow:
-    0 12px 28px rgba(0,0,0,0.35),
-    0 0 24px color-mix(in srgb, var(--gold) 25%, transparent);
-}
-.btn-quote:active { transform: scale(0.97); }
 
-.btn-restart {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: transparent;
-  color: var(--text-muted);
-  border: none;
-  padding: clamp(14px, 2.5vw, 20px) clamp(20px, 4vw, 32px);
-  font-family: var(--font-body);
-  font-size: clamp(0.875rem, 1.8vw, 1.125rem);
-  font-weight: 500;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  cursor: pointer;
-  border-radius: 21px;
-  transition: all 200ms ease;
-  opacity: 0.6;
-}
-.btn-restart:hover { opacity: 1; color: var(--text); }
+
+
+
+
+
+
+
+
+
 
 /* Print styles */
 @media print {
@@ -1192,3 +1021,74 @@
   .ccg-no-print { display: none !important; }
   * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
 }
+
+/* ── Results action buttons ── */
+.results-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(12px, 2vw, 16px);
+  margin-top: clamp(24px, 4vw, 40px);
+}
+.btn-export,
+.btn-quote,
+.btn-restart,
+.btn-save {
+  width: auto;
+  min-width: clamp(200px, 40vw, 340px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: transparent;
+  border-radius: 999px;
+  padding: clamp(14px, 2.5vw, 20px) clamp(20px, 4vw, 32px);
+  font-family: var(--font-body);
+  font-size: clamp(0.875rem, 1.8vw, 1.125rem);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+.btn-export {
+  color: var(--gold);
+  border: 0.8px solid color-mix(in srgb, var(--gold) 35%, rgba(255,255,255,0.08));
+  box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+}
+.btn-quote {
+  color: var(--text);
+  border: 0.8px solid var(--border);
+}
+.btn-restart {
+  color: var(--text-muted);
+  border: none;
+  opacity: 0.5;
+}
+.btn-save {
+  color: var(--gold);
+  border: 0.8px solid color-mix(in srgb, var(--gold) 35%, rgba(255,255,255,0.08));
+}
+
+
+.btn-export:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(0,0,0,0.35);
+}
+
+.btn-quote:hover {
+  border-color: color-mix(in srgb, var(--gold) 45%, transparent);
+  color: var(--gold);
+}
+
+.btn-restart:hover { opacity: 1; }
+
+.btn-save:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(0,0,0,0.35);
+}
+.btn-export:active,
+.btn-quote:active,
+.btn-save:active { transform: scale(0.97); }
