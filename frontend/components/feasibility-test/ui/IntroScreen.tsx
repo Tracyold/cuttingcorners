@@ -40,7 +40,8 @@ export default function IntroScreen({
         )}
         {(introPhase === 'line2' || introPhase === 'line2exit') && (
           <p key={introPhase} className={`intro-line${introPhase === 'line2exit' ? ' fly-out' : ' fly-in'}`}>
-            It is designed to assist both cutters and clients in and outside the jewelry industry.
+            It is designed to assist both cutters and clients <p></p>
+            in and outside the jewelry industry.
           </p>
         )}
 
