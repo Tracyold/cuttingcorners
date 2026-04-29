@@ -8,7 +8,7 @@
   font-family: var(--font-display);
   margin-top: 30px;
   text-align: center;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.02em;
   text-transform: uppercase;
   color: var(--text);
 }
