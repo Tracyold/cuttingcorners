@@ -56,19 +56,20 @@ const TILES = [
 export default function MobileAdminAccount() {
   const router = useRouter();
   const [checking,     setChecking]     = useState(true);
+  const [session,      setSession]      = useState<any>(null);
   const [adminName,    setAdminName]    = useState('');
   const [activePanel,  setActivePanel]  = useState<AdminPanel>(null);
 
   // ── Auth guard ────────────────────────────────────────────────────────────
   useEffect(() => {
     (async () => {
-      const { data: { session } } = await supabase.auth.getSession();
-      if (!session) { router.replace('/admin/login'); return; }
+      const { data: { session: s } } = await supabase.auth.getSession();
+      if (!s) { router.replace('/admin/login'); return; }
 
       const { data: adminCheck } = await supabase
         .from('admin_users')
         .select('full_name')
-        .eq('admin_user_id', session.user.id)
+        .eq('admin_user_id', s.user.id)
         .single();
 
       if (!adminCheck) {
@@ -77,6 +78,7 @@ export default function MobileAdminAccount() {
         return;
       }
 
+      setSession(s);
       setAdminName(adminCheck.full_name || 'Admin');
       setChecking(false);
     })();
@@ -176,6 +178,7 @@ export default function MobileAdminAccount() {
 
         <AdminUsersPanel
           open={activePanel === 'users'}
+          session={session}
           onClose={() => setActivePanel(null)}
         />
 

@@ -1,4 +1,4 @@
-import MobileAdminAccount from '../../components/admin/mobile/MobileAdminAccount';
+import MobileAdminAccount from '../../components/admin/mobile/MobileAdminAccountShell';
 
 export default function AdminMobilePage() {
   return <MobileAdminAccount />;
