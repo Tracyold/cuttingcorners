@@ -164,7 +164,7 @@ export default function FeasibilityCheckPage() {
         </a>
 
         <p className={`tool-title ${inWizard ? 'wizard-size' : 'intro-size'}`}>
-          The Cut Feasibility Wizard
+          Cut Feasibility Wizard
         </p>
         <div className={`tool-rule ${inWizard ? 'wizard-rule' : 'intro-rule'}`} />
 
