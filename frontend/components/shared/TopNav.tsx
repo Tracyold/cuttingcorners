@@ -96,14 +96,27 @@ const css = `
   text-transform: uppercase;
   color: var(--text);
   text-decoration: none;
-  border: 0.5px solid var(--primary);
+  border: 0.5px solid var(--border);
   padding: 6px 14px;
-  transition: all 200ms ease;
+  border-radius: 999px;
+  transition: all 150ms ease;
 }
 .tnav-auth:hover {
-  background: var(--bg);
-  border-color: var(--accent);
-  color: var(--accent);
+  border-color: rgba(var(--gold-rgb), 0.4);
+  background: rgba(var(--gold-rgb), 0.08);
+  color: var(--gold);
+}
+.tnav-auth:active {
+  background: rgba(0,0,0,0.4);
+  border-color: rgba(0,0,0,0.6);
+  border-top-color: rgba(0,0,0,0.8);
+  box-shadow:
+    inset 0 4px 10px rgba(0,0,0,0.7),
+    inset 0 2px 4px rgba(0,0,0,0.5),
+    inset 0 -1px 0 rgba(255,255,255,0.06);
+  transform: scale(0.95) translateY(1px);
+  color: var(--text-muted);
+  transition: all 60ms ease;
 }
 .tnav-burger {
   display: none;
@@ -304,7 +317,7 @@ export default function TopNav() {
         <div style={{ width: 80 }} />
         {/* Desktop links */}
         <div className="tnav-links">
-          <Link href="/" className="tnav-link" style={{ fontFamily: 'var(--font-sig)', fontSize: '1.25rem', letterSpacing: '0.04em', textTransform: 'none', fontWeight: 300 }}>Home</Link>
+          <Link href="/" className="tnav-link" style={{ fontFamily: 'var(--font-sig)', fontSize: '1.25rem', letterSpacing: '0.04em', textTransform: 'none', fontWeight: 300 }}>Cutting Corners</Link>
           {NAV_LINKS.map(l => (
             <Link key={l.href} href={l.href} className="tnav-link">{l.label}</Link>
           ))}
