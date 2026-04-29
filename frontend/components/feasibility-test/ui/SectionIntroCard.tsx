@@ -1,3 +1,4 @@
+
 interface SectionIntroCardStep {
   type: 'category-complete'
   phase: number
@@ -20,7 +21,7 @@ export default function SectionIntroCard({ step, stepIndex, onContinue }: Sectio
 
   if (step.isLastBeforeResults) {
     return (
-      <div key={`cc-last-${stepIndex}`} className="wiz-almost-done">
+      <div key={`cc-last-${stepIndex}`} className="wiz-almost-done" > 
         <div className="wiz-almost-done-icon">✦</div>
         <p className="wiz-almost-done-title">{step.title}</p>
         {step.message && (
@@ -35,19 +36,19 @@ export default function SectionIntroCard({ step, stepIndex, onContinue }: Sectio
     )
   }
 
+
   return (
-    <div key={`cc-${stepIndex}`} className="wiz-section-intro">
-      <div className="wiz-section-card">
-        <p className="wiz-section-card-phase">{step.title}</p>
-        <p className="wiz-section-card-title">{step.sectionName ?? step.nextTitle}</p>
-        <p className="wiz-section-card-desc">{step.description ?? step.nextDescription}</p>
-      </div>
-      <p className="wiz-section-select-hint">Select ALL that CURRENTLY apply</p>
-      <div className="wiz-section-btn-row">
-        <button type="button" onClick={onContinue} className="wiz-section-btn">
-          Begin Section →
-        </button>
-      </div>
+  <div key={`cc-${stepIndex}`} className="wiz-section-intro">
+    <div className="wiz-section-card">
+      <p className="wiz-section-card-phase">{step.title}</p>
+      <p className="wiz-section-card-title">{step.sectionName ?? step.nextTitle}</p>
+      <p className="wiz-section-card-desc">{step.description ?? step.nextDescription}</p>
     </div>
-  )
-}
+    <p className="wiz-section-select-hint">Select ALL that CURRENTLY apply</p>
+    <div className="wiz-section-btn-row">
+      <button type="button" onClick={onContinue} className="wiz-section-btn">
+        Begin Section →
+      </button>
+    </div>
+  </div>
+)}
