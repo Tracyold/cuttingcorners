@@ -74,15 +74,17 @@ export default function Footer() {
         <div className="ccg-footer-links">
           <Link href="/legal" className="ccg-footer-link">legal</Link>
           <span className="ccg-footer-separator">|</span>
-          <Link href="/about" className="ccg-footer-link">about</Link>
+          <Link href="/company-model" className="ccg-footer-link">about</Link>
           <span className="ccg-footer-separator">|</span>
           <Link href="/social" className="ccg-footer-link">social</Link>
           <span className="ccg-footer-separator">|</span>
-          <Link href="/contact" className="ccg-footer-link">contact</Link>
+          <Link href="mailto:admin@cuttingcornersgems.com" className="ccg-footer-link">contact</Link>
         </div>
         <a href="mailto:admin@cuttingcornersgems.com" className="ccg-footer-email">
           admin@cuttingcornersgems.com
         </a>
+
+      
       </footer>
     </>
   );

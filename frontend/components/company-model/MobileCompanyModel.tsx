@@ -132,7 +132,7 @@ export default function MobileCompanyModel() {
             </div>
 
             {((ch as any).link || (ch as any).link2) && (
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', padding: '24px 0 0' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', padding: '24px 0 0' }}>
                 {(ch as any).link && (
                   <a href={(ch as any).link.href} style={{
                     display: 'inline-flex', alignItems: 'center', gap: '8px',
@@ -172,11 +172,6 @@ export default function MobileCompanyModel() {
           </div>
         ))}
 
-        <div id="mob-cta" className="mob-cta">
-          <h3 className="mob-cta-heading">Ready to find out what your stone is worth?</h3>
-          <p className="mob-cta-sub">Every estimate path is designed for a different level of commitment. Start wherever feels right.</p>
-          <a href="/estimates" className="mob-cta-btn">Choose Your Estimate Path →</a>
-        </div>
       </div>
     </>
   );

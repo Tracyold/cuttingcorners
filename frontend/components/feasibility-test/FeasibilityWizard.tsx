@@ -258,26 +258,26 @@ export default function FeasibilityWizard({ onRequestQuote }: FeasibilityWizardP
         .wiz-complete { animation: completePop 420ms cubic-bezier(0.16,1,0.3,1) both; }
 
         .wiz-input {
-          width: 100%;
+          width: 70%;
           background: var(--bg);
           border: 1px solid var(--border);
           color: var(--text);
-          font-family: var(--font-body);
+          font-family: var(--font-ui);
           font-size: 1.0625rem;
-          padding: 15px 18px;
-          border-radius: 32px;
+          padding: 25px 37px;
+          border-radius: 53px;
           transition: border-color 200ms ease;
           outline: none;
         }
-        .wiz-input::placeholder { color: var(--text-muted); opacity: 0.4; }
+        .wiz-input::placeholder { color: var(--text-muted); opacity: 0.9; }
         .wiz-input:focus { border-color: var(--accent); }
 
         .wiz-btn-primary {
-          flex: 1; display: flex; align-items: center; justify-content: center; gap: 8px;
+          flex: 1; display: flex; align-items: center; justify-content: center; gap: 11px;
           background: var(--accent); color: var(--bg); border: none;
           padding: 18px 20px; font-family: var(--font-ui); font-size: 0.8125rem;
           font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase;
-          cursor: pointer; border-radius: 32px; transition: all 220ms ease;
+          cursor: pointer; border-radius: 999px; transition: all 220ms ease;
           box-shadow: 0 4px 16px rgba(255,211,105,0.18);
         }
         .wiz-btn-primary:hover:not(:disabled) {
@@ -297,22 +297,7 @@ export default function FeasibilityWizard({ onRequestQuote }: FeasibilityWizardP
         .wiz-btn-secondary:hover { border-color: var(--text-muted); color: var(--text); }
 
         /* Tool title inside modal */
-        .wiz-tool-title {
-          font-family: var(--font-display);
-          font-size: clamp(1.125rem, 4vw, 1.75rem);
-          font-weight: 400;
-          color: var(--text);
-          letter-spacing: 0.04em;
-          text-align: center;
-          margin: 0 0 6px;
-          padding-top: 28px;
-        }
-        .wiz-tool-rule {
-          width: 32px;
-          height: 1px;
-          background: var(--accent);
-          margin: 0 auto 28px;
-        }
+    
       `}</style>
 
       <div style={{ padding: '0 0 56px' }}>
@@ -320,8 +305,8 @@ export default function FeasibilityWizard({ onRequestQuote }: FeasibilityWizardP
         {/* ── Tool title (persistent, top of modal) ── */}
         {!isResults && (
           <>
-            <p className="wiz-tool-title">The Cut Feasibility Tool</p>
-            <div className="wiz-tool-rule" />
+            <p className="intro-line">The Cut Feasibility Tool</p>
+            <div className="intro-line" />
           </>
         )}
 
