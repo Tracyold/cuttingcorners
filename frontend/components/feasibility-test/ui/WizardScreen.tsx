@@ -10,6 +10,7 @@ import SectionIntroCard from './SectionIntroCard'
 import type { StepKind, StoneInfo } from '../logic/feasibility-types'
 import { PHASES } from '../logic/feasibility-types'
 import { autoSelectAll } from '../logic/autoSelect'
+import { getCenterPosition } from 'react-zoom-pan-pinch'
 
 function groupBy<T extends { group: string }>(items: T[]): Record<string, T[]> {
   return items.reduce((acc, item) => {
@@ -159,9 +160,9 @@ export default function WizardScreen({
 
       {/* ── Stone info ── */}
       {currentStep.type === 'stone-info' && (
-        <div key={`si-${stepIndex}`} style={{
-          display: 'flex', flexDirection: 'column', gap: 'clamp(16px, 3vw, 24px)',
-          animation: 'wizFlyIn 300ms cubic-bezier(0.16,1,0.3,1) both',
+        <div key={`si-${stepIndex}`} className="wiz-input" style={{ 
+          display: 'flex', flexDirection: 'column', gap: 'clamp(14px, 3vw, 70px)',
+          animation: 'wizFlyIn 300ms cubic-bezier(0.40,9,2,4) both',
         }}>
           {[
             { key: 'species',    label: 'Species',             placeholder: 'e.g. Corundum'       },

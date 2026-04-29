@@ -7,10 +7,9 @@
 .tool-title {
   font-family: var(--font-display);
   text-align: center;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--text);
-  margin: 0;
 }
 .tool-title.intro-size {
   font-size: clamp(2rem, 6vw, 4rem);
@@ -18,7 +17,8 @@
 }
 .tool-title.wizard-size {
   font-size: clamp(0.875rem, 2vw, 1.125rem);
-  padding-top: clamp(16px, 3vh, 28px);
+  padding-top: clamp(80px, 3vh, 280px);
+  margin-top: 70;
   opacity: 0.7;
 }
 .tool-rule {
@@ -36,7 +36,7 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  overflow-y: auto;
+  overflow-y: hidden;
   flex: 1;
   width: 100%;
 }
@@ -237,12 +237,14 @@
 .wiz-input {
   width: 100%;
   background: transparent;
+  align-items: stretch;
+  padding-left: 300;
   border: 0.8px solid var(--border);
   border-radius: 21px;
   color: var(--text);
-  font-family: var(--font-body);
-  font-size: clamp(1rem, 2vw, 1.25rem);
-  padding: clamp(14px, 2.5vw, 20px) clamp(18px, 3vw, 28px);
+  font-family: var(--font-ui);
+  font-size: clamp(1.3rem, 2vw, 1.8rem);
+  padding: clamp(19px, 2.5vw, 20px) clamp(18px, 3vw, 28px);
   outline: none;
   transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
   box-sizing: border-box;
@@ -258,7 +260,8 @@
 }
 .wiz-input::placeholder {
   color: var(--text-muted);
-  opacity: 0.45;
+  opacity: 0.24;
+
 }
 
 /* ── NAV BUTTONS ── */
@@ -453,7 +456,7 @@
 
 /* ── CHECK ITEMS ── */
 .wiz-check-item {
-  display: flex;
+  display: 70%;
   align-items: center;
   gap: clamp(12px, 2.5vw, 20px);
   padding: clamp(16px, 3vw, 24px) clamp(18px, 3.5vw, 28px);

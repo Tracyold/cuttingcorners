@@ -120,6 +120,7 @@ export default function PortfolioPage() {
               {modalPhoto.description && (
                 <p style={{ fontFamily: 'var(--font-eight)', fontSize: '1.5em', lineHeight: 1., color: 'var(--text)', margin: 0 }}>{modalPhoto.description}</p>
               )}
+              
             </div>
           </div>
         </div>

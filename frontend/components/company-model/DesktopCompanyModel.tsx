@@ -237,12 +237,9 @@ export default function DesktopCompanyModel() {
             </div>
           ))}
           <div className="dtop-cta">
-            <h3 className="dtop-cta-heading">Ready to find out what your stone is worth?</h3>
-            <p className="dtop-cta-sub">
-              Every estimate path is designed for a different level of commitment.<br />
-              Start wherever feels right.
-            </p>
-            <a href="/estimate" className="dtop-cta-btn">Choose Your Estimate Path →</a>
+            <h3 className="dtop-cta-heading">Want to see more?</h3>
+          
+            <a href="/portfolio" className="dtop-cta-btn">Surprise me</a>
           </div>
         </div>
       </div>
