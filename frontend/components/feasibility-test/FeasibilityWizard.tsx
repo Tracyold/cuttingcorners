@@ -307,6 +307,7 @@ export default function FeasibilityWizard({ onRequestQuote }: FeasibilityWizardP
         {!isResults && (
           <>
             <p className="intro-line">Cut Feasibility Wizard</p>
+            <br></br>
             <div className="intro-line" />
           </>
         )}
