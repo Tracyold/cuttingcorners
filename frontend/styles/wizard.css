@@ -13,12 +13,12 @@
 }
 .tool-title.intro-size {
   font-size: clamp(2rem, 6vw, 4rem);
-  padding-top: clamp(40px, 8vh, 80px);
+  padding-top: clamp(80px, 18vh, 180px);
 }
 .tool-title.wizard-size {
   font-size: clamp(0.875rem, 2vw, 1.125rem);
-  padding-top: clamp(80px, 3vh, 280px);
-  margin-top: 70;
+  padding-top: clamp(16px, 2vh, 28px);
+  margin-top: 0;
   opacity: 0.7;
 }
 .tool-rule {
