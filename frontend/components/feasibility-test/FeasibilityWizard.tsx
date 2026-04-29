@@ -306,7 +306,7 @@ export default function FeasibilityWizard({ onRequestQuote }: FeasibilityWizardP
         {/* ── Tool title (persistent, top of modal) ── */}
         {!isResults && (
           <>
-            <p className="intro-line">The Cut Feasibility Tool</p>
+            <p className="intro-line">Cut Feasibility Wizard</p>
             <div className="intro-line" />
           </>
         )}
