@@ -301,17 +301,7 @@ export default function FeasibilityWizard({ onRequestQuote }: FeasibilityWizardP
     
       `}</style>
 
-      <div style={{ padding: '0 0 56px' }}>
-
-        {/* ── Tool title (persistent, top of modal) ── */}
-        {!isResults && (
-          <>
-            <p className="intro-line">Cut Feasibility Wizard</p>
-            <br></br>
-            <div className="intro-line" />
-          </>
-        )}
-
+     
         {/* ── Phase progress bar ── */}
         {!isResults && (
           <div style={{ marginBottom: 32, padding: '0 20px' }}>

@@ -17,7 +17,7 @@
 }
 .tool-title.wizard-size {
   font-size: clamp(0.875rem, 2vw, 1.125rem);
-  padding-top: clamp(16px, 2vh, 28px);
+  padding-top: 72px;
   margin-top: 0;
   opacity: 0.7;
 }
