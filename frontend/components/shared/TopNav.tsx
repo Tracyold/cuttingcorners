@@ -288,8 +288,8 @@ export default function TopNav() {
       <style dangerouslySetInnerHTML={{ __html: css }} />
 
       <nav className={`tnav${scrolled ? ' scrolled' : ''}${isAccount ? ' tnav-account-hidden' : ''}`}>
-        {/* Brand */}
-        <Link href={authHref} className="tnav-auth tnav-auth-desktop">{authLabel}</Link>
+        {/* Left spacer to balance flex layout */}
+        <div style={{ width: 80 }} />
         {/* Desktop links */}
         <div className="tnav-links">
           {NAV_LINKS.map(l => (
