@@ -7,7 +7,7 @@ import { useSwipeDownToClose } from '../../../../../account/shared/hooks/useSwip
 import { useAdminUserDetail } from '../hooks/useAdminUserDetail';
 import { useAdminUserWorkOrders } from '../hooks/useAdminUserWorkOrders';
 import AdminUserWorkOrderDrawer from '../drawers/AdminUserWorkOrderDrawer';
-import AddWorkOrderModal from '../../../../users/AddWorkOrderModal';
+import AdminUserAddWorkOrderDrawer from '../drawers/AdminUserAddWorkOrderDrawer';
 
 const STATUS_STYLE: Record<string, { bg: string; color: string }> = {
   CREATED:   { bg: 'rgba(207,221,78,0.12)',  color: 'var(--gold)'  },
@@ -35,9 +35,10 @@ export default function AdminUserWorkOrdersPanel({ open, id, session, onClose }:
     woAdminAddrEdit, setWoAdminAddrEdit,
     woClientAddrEdit, setWoClientAddrEdit,
     openAddressEdit,
+    createWO,
     confirmWO, completeWO, cancelWO,
     saveAddresses, savePaymentLink, markPaidOutside,
-  } = useAdminUserWorkOrders(id, setWO);
+  } = useAdminUserWorkOrders(id, setWO, setWoCount, user, session);
 
   const unread = workOrders.filter(w => w.status === 'CREATED').length;
 
@@ -104,14 +105,12 @@ export default function AdminUserWorkOrdersPanel({ open, id, session, onClose }:
         onClose={closeWO}
       />
 
-      <AddWorkOrderModal
-        showAddWO={showAddWO}
-        setShowAddWO={setShowAddWO}
+      <AdminUserAddWorkOrderDrawer
+        open={showAddWO}
         user={user}
-        id={id}
-        session={session}
-        setWO={setWO}
-        setWoCount={setWoCount}
+        onClose={() => setShowAddWO(false)}
+        onSaved={() => setShowAddWO(false)}
+        createWO={createWO}
       />
     </>
   );

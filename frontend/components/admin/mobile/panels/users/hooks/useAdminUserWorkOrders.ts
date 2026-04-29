@@ -7,13 +7,15 @@ import { useState } from 'react';
 import { supabase } from '../../../../../../lib/supabase';
 
 export function useAdminUserWorkOrders(
-  id: string,
-  setWO: (fn: (prev: any[]) => any[]) => void,
+  id:         string,
+  setWO:      (fn: (prev: any[]) => any[]) => void,
+  setWoCount: (n: number) => void,
+  user:       any,
+  session:    any,
 ) {
   const [selectedWO,        setSelectedWO]        = useState<any>(null);
   const [showAddWO,         setShowAddWO]         = useState(false);
-  const [editingWOAddr,     setEditingWOAddr]     = useState(false);
-  const [woAdminAddrEdit,   setWoAdminAddrEdit]   = useState('');
+  const [editingWOAddr,     setEditingWOAddr]     = useState(false);  const [woAdminAddrEdit,   setWoAdminAddrEdit]   = useState('');
   const [woClientAddrEdit,  setWoClientAddrEdit]  = useState('');
 
   const isGuest = id === process.env.NEXT_PUBLIC_GUEST_ACCOUNT_USER_ID;
@@ -114,6 +116,36 @@ export function useAdminUserWorkOrders(
     setEditingWOAddr(false);
   };
 
+  // Exact from AddWorkOrderModal.tsx createWO()
+  const createWO = async (woForm: {
+    title: string; description: string; service_type: string;
+    gem_type: string; estimated_price: string; estimated_turnaround: string; notes: string;
+  }) => {
+    if (!woForm.title || !woForm.description || !session || !id) return { error: 'Missing required fields' };
+    await supabase.from('work_orders').insert({
+      account_user_id:      id,
+      created_by_admin_id:  session.user.id,
+      title:                woForm.title,
+      description:          woForm.description,
+      service_type:         woForm.service_type || null,
+      gem_type:             woForm.gem_type || null,
+      estimated_price:      woForm.estimated_price ? parseFloat(woForm.estimated_price) : null,
+      estimated_turnaround: woForm.estimated_turnaround || null,
+      notes:                woForm.notes || null,
+      wo_shipping_address:  user?.shipping_address || null,
+      edit_history:         [{ action: 'CREATED', by: 'admin', at: new Date().toISOString() }],
+      status:               'CREATED',
+    });
+    // DB triggers fire automatically — do NOT call edge functions
+    const { data: wo } = await supabase
+      .from('work_orders').select('*')
+      .eq('account_user_id', id)
+      .order('created_at', { ascending: false });
+    setWO(() => wo || []);
+    setWoCount(wo?.length || 0);
+    return { error: null };
+  };
+
   return {
     selectedWO, setSelectedWO,
     showAddWO, setShowAddWO,
@@ -123,6 +155,7 @@ export function useAdminUserWorkOrders(
     isGuest,
     openAddressEdit,
     closeWO,
+    createWO,
     confirmWO, completeWO, cancelWO,
     saveAddresses, savePaymentLink, markPaidOutside,
   };
