@@ -1,29 +1,27 @@
 // comp/admin/mobile/panels/users/drawers/AdminUserInquiryDrawer.tsx
-// Pure UI. Imports useAdminUserInquiries + useAdminUserDetail for data.
-// No logic lives here.
+// Pure UI. Receives all state as props from AdminUserInquiriesPanel.
+// No hooks called here.
 
 import { fmtDate, fmtTime } from '../../../../../../lib/utils';
 import { useSwipeToClose } from '../../../../../account/shared/hooks/useSwipeToClose';
-import { useAdminUserDetail } from '../hooks/useAdminUserDetail';
-import { useAdminUserInquiries } from '../hooks/useAdminUserInquiries';
 
 interface Props {
-  open:    boolean;
-  id:      string;
-  session: any;
-  onClose: () => void;
+  open:               boolean;
+  selectedInq:        any;
+  selectedInqProduct: any;
+  productUrl:         string | null;
+  user:               any;
+  onClose:            () => void;
 }
 
-export default function AdminUserInquiryDrawer({ open, id, session, onClose }: Props) {
+export default function AdminUserInquiryDrawer({ open, selectedInq, selectedInqProduct, productUrl, user, onClose }: Props) {
   const { elementRef, touchHandlers } = useSwipeToClose({ onClose });
-  const { user, inquiries, guestInquiries, setInquiries } = useAdminUserDetail(id, session);
-  const { selectedInq, selectedInqProduct, productUrl, isGuest, closeInquiry } = useAdminUserInquiries(id, setInquiries);
 
   if (!selectedInq) return null;
 
   return (
     <>
-      <div className={`overlay${open ? ' open' : ''}`} onClick={closeInquiry} />
+      <div className={`overlay${open ? ' open' : ''}`} onClick={onClose} />
 
       <div ref={elementRef} className={`wo-drawer${open ? ' open' : ''}`} {...touchHandlers}>
         <div className="wo-handle" />
@@ -36,7 +34,7 @@ export default function AdminUserInquiryDrawer({ open, id, session, onClose }: P
             <span style={{ fontFamily: 'var(--font-mono-mob)', fontSize: 'clamp(0.8125rem,3.5vw,0.9375rem)', letterSpacing: '0.16em', textTransform: 'uppercase', color: 'var(--text-mob-muted)', flex: 1, marginLeft: 10 }}>
               {selectedInq.name || user?.name || 'Inquiry'}
             </span>
-            <button className="wo-close" onClick={closeInquiry}>✕</button>
+            <button className="wo-close" onClick={onClose}>✕</button>
           </div>
 
           <div className="wo-scroll">

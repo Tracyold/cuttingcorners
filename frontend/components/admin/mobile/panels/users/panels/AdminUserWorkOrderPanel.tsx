@@ -1,7 +1,6 @@
 // comp/admin/mobile/panels/users/panels/AdminUserWorkOrdersPanel.tsx
-// Imports useAdminUserDetail + useAdminUserWorkOrders.
-// List only. Mounts AdminUserWorkOrderDrawer internally — opens when WO is tapped.
-// Also mounts AddWorkOrderModal for the + Add button.
+// Calls useAdminUserWorkOrders once. Passes selectedWO and all actions
+// to AdminUserWorkOrderDrawer as props — drawer has no hook of its own.
 
 import { formatMoney, fmtDate, fmtTime } from '../../../../../../lib/utils';
 import { useSwipeDownToClose } from '../../../../../account/shared/hooks/useSwipeDownToClose';
@@ -28,7 +27,17 @@ interface Props {
 export default function AdminUserWorkOrdersPanel({ open, id, session, onClose }: Props) {
   const { elementRef, touchHandlers } = useSwipeDownToClose({ onClose });
   const { user, workOrders, setWO, setWoCount } = useAdminUserDetail(id, session);
-  const { setSelectedWO, showAddWO, setShowAddWO, isGuest, completeWO, cancelWO, closeWO } = useAdminUserWorkOrders(id, setWO);
+  const {
+    selectedWO, setSelectedWO,
+    showAddWO, setShowAddWO,
+    isGuest, closeWO,
+    editingWOAddr, setEditingWOAddr,
+    woAdminAddrEdit, setWoAdminAddrEdit,
+    woClientAddrEdit, setWoClientAddrEdit,
+    openAddressEdit,
+    confirmWO, completeWO, cancelWO,
+    saveAddresses, savePaymentLink, markPaidOutside,
+  } = useAdminUserWorkOrders(id, setWO);
 
   const unread = workOrders.filter(w => w.status === 'CREATED').length;
 
@@ -72,15 +81,29 @@ export default function AdminUserWorkOrdersPanel({ open, id, session, onClose }:
         </div>
       </div>
 
-      {/* Drawer lives inside the panel — opens when selectedWO is set */}
+      {/* Drawer receives all state and actions from the hook called above */}
       <AdminUserWorkOrderDrawer
-        open={true}
-        id={id}
+        open={!!selectedWO}
+        wo={selectedWO}
+        user={user}
+        adminInfo={null}
         session={session}
+        editingWOAddr={editingWOAddr}
+        setEditingWOAddr={setEditingWOAddr}
+        woAdminAddrEdit={woAdminAddrEdit}
+        setWoAdminAddrEdit={setWoAdminAddrEdit}
+        woClientAddrEdit={woClientAddrEdit}
+        setWoClientAddrEdit={setWoClientAddrEdit}
+        openAddressEdit={openAddressEdit}
+        onConfirm={confirmWO}
+        onComplete={completeWO}
+        onCancel={cancelWO}
+        onSaveAddresses={saveAddresses}
+        onSavePaymentLink={savePaymentLink}
+        onMarkPaidOutside={markPaidOutside}
         onClose={closeWO}
       />
 
-      {/* Add WO modal */}
       <AddWorkOrderModal
         showAddWO={showAddWO}
         setShowAddWO={setShowAddWO}
