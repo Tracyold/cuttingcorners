@@ -18,13 +18,15 @@ const STATUS_STYLE: Record<string, { bg: string; color: string }> = {
 };
 
 interface Props {
-  open:    boolean;
-  id:      string;
-  session: any;
-  onClose: () => void;
+  open:      boolean;
+  id:        string;
+  session:   any;
+  onClose:   () => void;
+  onBack:    () => void;
+  onDashboard: () => void;
 }
 
-export default function AdminUserWorkOrdersPanel({ open, id, session, onClose }: Props) {
+export default function AdminUserWorkOrdersPanel({ open, id, session, onClose, onBack, onDashboard }: Props) {
   const { elementRef, touchHandlers } = useSwipeDownToClose({ onClose });
   const { user, workOrders, setWO, setWoCount } = useAdminUserDetail(id, session);
   const {
@@ -55,14 +57,20 @@ export default function AdminUserWorkOrdersPanel({ open, id, session, onClose }:
           </div>
         </div>
 
-        <div className="orders-list" style={{ padding: 'clamp(1rem,4.5vw,1.25rem)', display: 'flex', flexDirection: 'column', gap: 'clamp(0.875rem,4vw,1.125rem)', flex: 1, overflowY: 'auto' }}>
+        {/* Nav pills */}
+        <div className="sr-tab-bar" style={{ borderBottom: '0.5px solid var(--bdr2-mob)' }}>
+          <button className="sr-tab" onClick={onBack}>← Users</button>
+          <button className="sr-tab" onClick={onDashboard} style={{ marginLeft: 'auto' }}>Account Info</button>
+        </div>
+
+        <div className="orders-list" style={{ padding: 'clamp(1rem,4.5vw,1.25rem)', display: 'flex', flexDirection: 'column', gap: 'clamp(0.875rem,4vw,1.125rem)', flex: 1, overflowY: 'auto', minHeight: 0 }}>
           {workOrders.length === 0
             ? <div className="sr-empty">No work orders yet.</div>
             : workOrders.map(wo => {
               const s = STATUS_STYLE[wo.status] ?? STATUS_STYLE.CREATED;
               const isLit = wo.status === 'CREATED' || wo.status === 'ACCEPTED';
               return (
-                <div key={wo.work_order_id} className={`order-tile ${isLit ? 'lit' : 'dim'}`} onClick={() => setSelectedWO(wo)}>
+                <div key={wo.work_order_id} className={`order-tile ${isLit ? 'lit' : 'dim'}`} onClick={() => setSelectedWO(wo)} style={{ minHeight: 120 }}>
                   <div className="order-status" style={{ background: s.bg, color: s.color }}>{wo.status}</div>
                   <div className="order-title">{wo.title}</div>
                   <div className="order-meta">#{String(wo.work_order_id).slice(-4)} · {fmtDate(wo.created_at)} · {fmtTime(wo.created_at)}</div>

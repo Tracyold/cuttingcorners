@@ -29,7 +29,7 @@ function PhotoSection({ value, onChange }: { value: string; onChange: (f: string
     }
   };
   return (
-    <div className="photo-blk">
+    <div className="">
       <div className="photo-l">Photo</div>
       <div className="photo-mr">
         {[['upload', 'Upload'], ['url', 'URL']].map(([m, l]) => (

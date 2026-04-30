@@ -7,13 +7,15 @@ import { useSwipeDownToClose } from '../../../../../account/shared/hooks/useSwip
 import { useAdminUserDetail } from '../hooks/useAdminUserDetail';
 
 interface Props {
-  open:    boolean;
-  id:      string;
-  session: any;
-  onClose: () => void;
+  open:      boolean;
+  id:        string;
+  session:   any;
+  onClose:   () => void;
+  onBack:    () => void;
+  onDashboard: () => void;
 }
 
-export default function AdminUserInvoicesPanel({ open, id, session, onClose }: Props) {
+export default function AdminUserInvoicesPanel({ open, id, session, onClose, onBack, onDashboard }: Props) {
   const { elementRef, touchHandlers } = useSwipeDownToClose({ onClose });
   const { invoices } = useAdminUserDetail(id, session);
   const [dateFrom, setDateFrom] = useState('');
@@ -34,6 +36,12 @@ export default function AdminUserInvoicesPanel({ open, id, session, onClose }: P
       <div className="panel-header" {...touchHandlers}>
         <span className="panel-title">Invoices</span>
         <button className="panel-close" onClick={onClose}>✕</button>
+      </div>
+
+      {/* Nav pills */}
+      <div className="sr-tab-bar" style={{ borderBottom: '0.5px solid var(--bdr2-mob)' }}>
+        <button className="sr-tab" onClick={onBack}>← Users</button>
+        <button className="sr-tab" onClick={onDashboard} style={{ marginLeft: 'auto' }}>Account Info</button>
       </div>
 
       <div style={{ padding: '20px 24px', borderBottom: '1px solid var(--bdr2-mob)', display: 'flex', flexDirection: 'column', gap: 16, background: 'var(--bg-deep)' }}>
