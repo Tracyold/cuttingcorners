@@ -60,6 +60,7 @@ export function useChat(
   session: any,
   chatThread: any,
   setMessages: (fn: any) => void,
+  setChatThread?: (fn: any) => void,
 ) {
   const [chatInput,      setChatInput]      = useState('');
   const [chatSending,    setChatSending]    = useState(false);
@@ -116,6 +117,8 @@ export function useChat(
   const openChatDrawer = async () => {
     setChatOpen(true);
     if (chatThread) {
+      // Optimistically clear the unread dot in local state immediately
+      setChatThread?.((prev: any) => ({ ...prev, account_has_unread: false }));
       await supabase.from('chat_threads')
         .update({ account_has_unread: false })
         .eq('chat_thread_id', chatThread.chat_thread_id);

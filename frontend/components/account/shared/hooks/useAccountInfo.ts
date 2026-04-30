@@ -201,7 +201,7 @@ export function useAccountData(session: any) {
     inquiries, setInquiries,
     serviceRequests, setServiceRequests,
     adminInfo,
-    chatThread,
+    chatThread, setChatThread,
     messages, setMessages,
     latestWizardResult,
     loading,
