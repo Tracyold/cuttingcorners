@@ -17,6 +17,7 @@ import {
 } from '../../hooks/useAdminProducts';
 import { formatMoney, fmtDate, fmtTime } from '../../../../lib/utils';
 import AdminProductAddDrawer from '../drawers/AdminProductAddDrawer';
+import AdminProductDetailDrawer from '../drawers/AdminProductDetailDrawer';
 
 // ── GIASection ────────────────────────────────────────────────────────────────
 function GIASection({ value, onChange }: { value: string; onChange: (f: string, v: string) => void }) {
@@ -158,6 +159,7 @@ export default function AdminProductsPanel({ open, onClose }: Props) {
   const [curIdx,   setCurIdx]   = useState(0);
   const [saving,   setSaving]   = useState(false);
   const [addDrawerOpen, setAddDrawerOpen] = useState(false);
+  const [detailProduct, setDetailProduct] = useState<any>(null);
 
   const handleOpenAdd = async () => {
     const product_id = genProductId();
@@ -169,9 +171,7 @@ export default function AdminProductsPanel({ open, onClose }: Props) {
   };
 
   const handleOpenEdit = (product: any) => {
-    setQueue([{ ...product, _saved: true }]);
-    setCurIdx(0);
-    setShowForm(true);
+    setDetailProduct(product);
   };
 
   const updateCurrent = (updated: any) => {
@@ -304,6 +304,13 @@ export default function AdminProductsPanel({ open, onClose }: Props) {
           )}
         </div>
       </div>
+
+      <AdminProductDetailDrawer
+        open={!!detailProduct}
+        product={detailProduct}
+        onClose={() => setDetailProduct(null)}
+        onSaved={() => { setDetailProduct(null); hook.loadProducts(); }}
+      />
 
       <AdminProductAddDrawer
         open={addDrawerOpen}
