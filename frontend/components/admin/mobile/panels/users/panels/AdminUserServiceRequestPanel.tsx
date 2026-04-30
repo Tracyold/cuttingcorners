@@ -60,9 +60,9 @@ function ArchivedSRCard({ sr, onTap }: { sr: any; onTap: () => void }) {
   );
 }
 
-interface Props { open: boolean; id: string; session: any; onClose: () => void; }
+interface Props { open: boolean; id: string; session: any; onClose: () => void; onBack: () => void; onDashboard: () => void; }
 
-export default function AdminUserServiceRequestsPanel({ open, id, session, onClose }: Props) {
+export default function AdminUserServiceRequestsPanel({ open, id, session, onClose, onBack, onDashboard }: Props) {
   const { elementRef, touchHandlers } = useSwipeDownToClose({ onClose });
   const { serviceRequests, setSR } = useAdminUserDetail(id, session);
   const { markSRRead, selectedArchivedSR, setSelectedArchivedSR, unarchiveSR } = useAdminUserServiceRequests(setSR);
@@ -88,6 +88,12 @@ export default function AdminUserServiceRequestsPanel({ open, id, session, onClo
           <button className="panel-close" onClick={onClose}>✕</button>
         </div>
 
+        {/* Nav pills */}
+        <div className="sr-tab-bar" style={{ borderBottom: '0.5px solid var(--bdr2-mob)' }}>
+          <button className="sr-tab" onClick={onBack}>← Users</button>
+          <button className="sr-tab" onClick={onDashboard} style={{ marginLeft: 'auto' }}>Account Info</button>
+        </div>
+
         {/* Active / Archive tabs */}
         <div className="sr-tab-bar">
           <button className={`sr-tab${activeTab === 'active' ? ' active' : ''}`} onClick={() => setActiveTab('active')}>
@@ -98,7 +104,7 @@ export default function AdminUserServiceRequestsPanel({ open, id, session, onClo
           </button>
         </div>
 
-        <div className="sr-list">
+        <div className="sr-list" style={{ flex: 1, overflowY: "auto", minHeight: 0 }}>
           {activeTab === 'active' ? (
             activeList.length === 0
               ? <div className="sr-empty">No active service requests.</div>

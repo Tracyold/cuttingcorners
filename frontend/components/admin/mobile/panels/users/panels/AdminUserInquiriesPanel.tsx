@@ -65,9 +65,9 @@ function ArchivedInquiryCard({ inq, onTap }: { inq: any; onTap: () => void }) {
   );
 }
 
-interface Props { open: boolean; id: string; session: any; onClose: () => void; }
+interface Props { open: boolean; id: string; session: any; onClose: () => void; onBack: () => void; onDashboard: () => void; }
 
-export default function AdminUserInquiriesPanel({ open, id, session, onClose }: Props) {
+export default function AdminUserInquiriesPanel({ open, id, session, onClose, onBack, onDashboard }: Props) {
   const { elementRef, touchHandlers } = useSwipeDownToClose({ onClose });
   const { inquiries, guestInquiries, setInquiries, user } = useAdminUserDetail(id, session);
   const { markInqRead, openInquiry, selectedInq, setSelectedInq, selectedInqProduct, setSelectedInqProduct, selectedArchivedInq, setSelectedArchivedInq, productUrl, isGuest, closeInquiry, sendReply, unarchiveInquiry } = useAdminUserInquiries(id, setInquiries);
@@ -94,6 +94,12 @@ export default function AdminUserInquiriesPanel({ open, id, session, onClose }: 
           <button className="panel-close" onClick={onClose}>✕</button>
         </div>
 
+        {/* Nav pills */}
+        <div className="sr-tab-bar" style={{ borderBottom: '0.5px solid var(--bdr2-mob)' }}>
+          <button className="sr-tab" onClick={onBack}>← Users</button>
+          <button className="sr-tab" onClick={onDashboard} style={{ marginLeft: 'auto' }}>Account Info</button>
+        </div>
+
         {/* Active / Archive tabs */}
         <div className="sr-tab-bar">
           <button className={`sr-tab${activeTab === 'active' ? ' active' : ''}`} onClick={() => setActiveTab('active')}>
@@ -104,7 +110,7 @@ export default function AdminUserInquiriesPanel({ open, id, session, onClose }: 
           </button>
         </div>
 
-        <div className="sr-list">
+        <div className="sr-list" style={{ flex: 1, overflowY: "auto", minHeight: 0 }}>
           {activeTab === 'active' ? (
             <>
               {/* Guest inquiries — active tab only */}

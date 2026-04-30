@@ -124,10 +124,10 @@ export default function AdminUserMobileAccount({ id, session, onBack }: Props) {
 
       {/* Panels */}
       <AdminUserDashboardPanel       open={activePanel === 'dashboard'}  id={id} session={session} onClose={closePanel} />
-      <AdminUserInquiriesPanel       open={activePanel === 'inquiries'}  id={id} session={session} onClose={closePanel} />
-      <AdminUserServiceRequestsPanel open={activePanel === 'servicereq'} id={id} session={session} onClose={closePanel} />
-      <AdminUserWorkOrdersPanel      open={activePanel === 'workorders'} id={id} session={session} onClose={closePanel} />
-      <AdminUserInvoicesPanel        open={activePanel === 'invoices'}   id={id} session={session} onClose={closePanel} />
+      <AdminUserInquiriesPanel       open={activePanel === 'inquiries'}  id={id} session={session} onClose={closePanel} onBack={onBack} onDashboard={() => openPanel('dashboard')} />
+      <AdminUserServiceRequestsPanel open={activePanel === 'servicereq'} id={id} session={session} onClose={closePanel} onBack={onBack} onDashboard={() => openPanel('dashboard')} />
+      <AdminUserWorkOrdersPanel      open={activePanel === 'workorders'} id={id} session={session} onClose={closePanel} onBack={onBack} onDashboard={() => openPanel('dashboard')} />
+      <AdminUserInvoicesPanel        open={activePanel === 'invoices'}   id={id} session={session} onClose={closePanel} onBack={onBack} onDashboard={() => openPanel('dashboard')} />
       <AdminUserChatPanel            open={activePanel === 'chat'}       id={id} session={session} onClose={closePanel} />
 
     </div>
