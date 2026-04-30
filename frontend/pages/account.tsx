@@ -29,7 +29,7 @@ export default function AccountPage() {
 
   // ── Business logic hooks ──
   const profileHook = useProfile(session, data.profile, data.setProfile, data.setSmsPrefs);
-  const chatHook    = useChat(session, data.chatThread, data.setMessages);
+  const chatHook    = useChat(session, data.chatThread, data.setMessages, data.setChatThread);
   const woHook      = useWorkOrders(session, data.setWorkOrders);
   const srHook      = useServiceRequest(session, data.setServiceRequests);
   const deleteHook  = useDeleteAccount(session);

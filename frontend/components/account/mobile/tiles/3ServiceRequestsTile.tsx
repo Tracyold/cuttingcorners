@@ -1,59 +1,62 @@
 // frontend/components/account/mobile/tiles/3ServiceRequestsTile.tsx
-//
-// Changed this revision: count filters out archived rows so the tile
-// reflects only active (non-archived) service requests. The number
-// updates in realtime because Supabase realtime UPDATEs flow through
-// useAccountInfo → MobileAccount → this tile's `serviceRequests` prop.
-
 interface ServiceRequestsTileProps {
   serviceRequests: any[];
   onClick:         () => void;
 }
 
 export default function ServiceRequestsTile3({ serviceRequests, onClick }: ServiceRequestsTileProps) {
-  // Active-only count — archived rows live on the Archive tab inside the panel.
-  const activeCount = serviceRequests.filter(sr => !sr.is_archived).length;
-
+  const active    = serviceRequests.filter(sr => !sr.is_archived);
+  const unread    = active.filter(sr => !sr.is_read).length;
+  const hasUnread = unread > 0;
 
   return (
     <div
-      className="tile dim"
+      className={`tile wide ${hasUnread ? 'lit' : 'dim'}`}
       style={{
         '--tc': 'var(--muted)',
-        minHeight: 2, padding: '2em',
+        minHeight: 90, padding: '20px 22px',
         flexDirection: 'row', alignItems: 'center', gap: 20, cursor: 'pointer',
+        background: hasUnread ? 'rgba(207,221,78,0.05)' : 'var(--bg-card)',
       } as React.CSSProperties}
       onClick={onClick}
     >
-      <div style={{ flex: 2 }}>
+      {hasUnread && <div className="t-badge" />}
+      <div style={{ fontSize: '2rem', lineHeight: 1, flexShrink: 0,
+        color: hasUnread ? 'var(--gold)' : 'rgba(255,255,255,0.85)',
+        textShadow: '0 2px 4px rgba(0,0,0,0.3)'
+      }}>◈</div>
+      <div style={{ flex: 1 }}>
         <div style={{
-          fontFamily: 'var(--font-ui)', fontSize: '1.33rem', letterSpacing: '0.1em',
-          textTransform: 'uppercase', color: 'var(--background)', marginBottom: 8,
-          fontWeight: 600, opacity: 0.9
-        }}>
-          New Service Requests
-        </div>
-        <div style={{
-          fontFamily: 'var(--font-ui)',
-          fontSize: '1.2rem',
-          color: '0 4px 5px var(--text)',
-          textTransform: 'uppercase',
-          letterSpacing: '.1em',
-          lineHeight: 1.5,
-          border: '.1px',
-          borderColor: '0 .1px .1px var(--bg-card)',
-          opacity: .9
-        }}>
-          Active Service Requests
-        </div>
+          fontFamily: 'var(--font-display-mob)', fontSize: '1.125rem',
+          color: 'var(--text)', fontWeight: 500,
+        }}>Service Requests</div>
+        {hasUnread ? (
+          <span style={{
+            fontFamily: 'var(--font-mono-mob)', fontSize: '0.75rem', fontWeight: 700,
+            color: 'var(--gold)', letterSpacing: '0.18em', textTransform: 'uppercase',
+            padding: '2px 8px', borderRadius: 999,
+            background: 'rgba(207,221,78,0.12)',
+            marginTop: 4, display: 'inline-block',
+          }}>
+            {unread} new
+          </span>
+        ) : (
+          <div style={{
+            fontFamily: 'var(--font-mono-mob)', fontSize: '0.75rem',
+            color: 'var(--text-mob-muted)', letterSpacing: '0.1em',
+            marginTop: 4,
+          }}>
+            {active.length} active
+          </div>
+        )}
       </div>
       <div style={{
-        fontFamily: 'var(--font-mono-mob)', fontSize: '3.5rem', fontWeight: 800,
-        color: 'var(--gold)', letterSpacing: '-0.02em', lineHeight: 1,
-        textShadow: '0 4px 12px rgba(0,0,0,0.4)',
-        opacity: 0.9
+        fontFamily: 'var(--font-mono-mob)', fontSize: '3rem', fontWeight: 800,
+        color: hasUnread ? 'var(--gold)' : 'var(--text-mob-muted)',
+        letterSpacing: '-0.02em', lineHeight: 1,
+        textShadow: '0 4px 12px rgba(0,0,0,0.4)', opacity: 0.9,
       }}>
-        {activeCount}
+        {active.length}
       </div>
     </div>
   );
