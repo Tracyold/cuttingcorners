@@ -22,7 +22,7 @@ export default function AdminLoginPage() {
           .eq('admin_user_id', session.user.id)
           .single();
         if (adminCheck) {
-          router.push('/admin/index');
+          router.push('/admin/mobile');
           return;
         }
       }
