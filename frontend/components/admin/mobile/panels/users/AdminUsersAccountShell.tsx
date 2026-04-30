@@ -1,17 +1,9 @@
-// comp/admin/mobile/panels/users/AdminUserMobileAccount.tsx
+// comp/admin/mobile/panels/users/AdminUsersAccountShell.tsx
 // Renders as slide-panel open — covers the admin shell.
-// Feed of tiles (same pattern as MobileAccount.tsx) with unread notifications.
-// Each tile opens its panel. Panels own their hooks and drawers.
+// Wide tiles matching main admin home screen style.
 
 import { useState } from 'react';
 import { useAdminUserDetail } from './hooks/useAdminUserDetail';
-
-// Tiles
-import AdminUserMessagesTile       from './tiles/AdminUserMessageTile';
-import AdminUserWorkOrdersTile     from './tiles/AdminUserWorkOrderTile';
-import AdminUserInvoicesTile       from './tiles/AdminUserInvoiceTile';
-import AdminUserInquiriesTile      from './tiles/AdminUserInquiryTile';
-import AdminUserServiceRequestsTile from './tiles/AdminUserServiceRequestTile';
 
 // Panels
 import AdminUserDashboardPanel       from './panels/AdminUserDashboardPanel';
@@ -34,7 +26,6 @@ export default function AdminUserMobileAccount({ id, session, onBack }: Props) {
   const openPanel  = (name: PanelName) => setActivePanel(name);
   const closePanel = ()                => setActivePanel(null);
 
-  // Detail hook called once here for tile data — panels call their own hooks internally
   const {
     user, workOrders, invoices, invTotal,
     inquiries, guestInquiries,
@@ -42,30 +33,59 @@ export default function AdminUserMobileAccount({ id, session, onBack }: Props) {
   } = useAdminUserDetail(id, session);
 
   const isGuest = id === process.env.NEXT_PUBLIC_GUEST_ACCOUNT_USER_ID;
-
-  // Greeting
-  const hour      = new Date().getHours();
-  const greeting  = hour < 12 ? 'Good morning' : hour < 18 ? 'Good afternoon' : 'Good evening';
   const dateLabel = new Date().toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' });
 
+  const unreadInq = inquiries.filter(i => !i.is_read).length + (guestInquiries?.filter((i: any) => !i.is_read).length ?? 0);
+  const unreadSR  = serviceRequests.filter(s => !s.is_read).length;
+  const unreadWO  = workOrders.filter(w => w.status === 'CREATED').length;
+  const unreadMsg = messages.filter((m: any) => !m.is_read && m.sender_role !== 'admin').length;
+
+  const TILES = [
+    {
+      id:    'chat' as PanelName,
+      icon:  '◻',
+      label: 'Messages',
+      sub:   unreadMsg > 0 ? `${unreadMsg} unread` : 'Chat thread',
+      color: '#38bdf8',
+    },
+    {
+      id:    'workorders' as PanelName,
+      icon:  '◇',
+      label: 'Work Orders',
+      sub:   unreadWO > 0 ? `${unreadWO} new · ${workOrders.length} total` : `${workOrders.length} total`,
+      color: 'var(--gold)',
+    },
+    {
+      id:    'invoices' as PanelName,
+      icon:  '◈',
+      label: 'Invoices',
+      sub:   `${invoices.length} paid`,
+      color: '#4ec994',
+    },
+    {
+      id:    'inquiries' as PanelName,
+      icon:  '✉',
+      label: 'Inquiries',
+      sub:   unreadInq > 0 ? `${unreadInq} unread · ${inquiries.length} total` : `${inquiries.length} total`,
+      color: '#a3e635',
+    },
+    {
+      id:    'servicereq' as PanelName,
+      icon:  '⬡',
+      label: 'Service Requests',
+      sub:   unreadSR > 0 ? `${unreadSR} new · ${serviceRequests.length} total` : `${serviceRequests.length} total`,
+      color: '#c084fc',
+    },
+  ];
+
   return (
-    // slide-panel open — position: fixed, z-index: 10001, covers admin shell
     <div className="slide-panel open" style={{ display: 'flex', flexDirection: 'column', overflowY: 'auto' }}>
 
-      {/* Top bar */}
+      {/* Top bar — CCG Admin label only, no nav links */}
       <div className="nav" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-        <button
-          onClick={onBack}
-          style={{ background: 'none', border: 'none', color: 'var(--text-mob-muted)', fontFamily: 'var(--font-mono-mob)', fontSize: 11, letterSpacing: '0.15em', textTransform: 'uppercase', cursor: 'pointer', padding: 0 }}
-        >
-          ← Users
-        </button>
-        <button
-          onClick={() => openPanel('dashboard')}
-          style={{ background: 'none', border: '0.5px solid var(--bdr2-mob)', color: 'var(--text-mob-muted)', fontFamily: 'var(--font-mono-mob)', fontSize: 10, letterSpacing: '0.14em', textTransform: 'uppercase', padding: '6px 12px', cursor: 'pointer', borderRadius: 6 }}
-        >
-          Account Info
-        </button>
+        <div style={{ fontFamily: 'var(--font-display-mob)', fontSize: 'clamp(0.9375rem,4vw,1.125rem)', color: 'var(--gold)', letterSpacing: '0.07em' }}>
+          CCG · Admin
+        </div>
       </div>
 
       {/* Feed */}
@@ -82,42 +102,42 @@ export default function AdminUserMobileAccount({ id, session, onBack }: Props) {
           )}
         </div>
 
-        {/* Tile grid */}
+        {/* Tile grid — wide tiles matching main admin home */}
         <div className="feed-block">
 
-          {/* Messages tile — full width */}
-          <AdminUserMessagesTile
-            chatThread={chatThread}
-            messages={messages}
-            onClick={() => openPanel('chat')}
-          />
-
-          {/* Work Orders + Invoices — two column */}
-          <div className="tile-row">
-            <AdminUserWorkOrdersTile
-              workOrders={workOrders}
-              onClick={() => openPanel('workorders')}
-            />
-            <AdminUserInvoicesTile
-              invoices={invoices}
-              invTotal={invTotal}
-              onClick={() => openPanel('invoices')}
-            />
+          {/* ← Users + Account Info as first two pills */}
+          <div style={{ display: 'flex', gap: 8, marginBottom: 4 }}>
+            <button
+              onClick={onBack}
+              className="admin-tile"
+              style={{ flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', padding: '10px 16px', gap: 6 }}
+            >
+              <span style={{ fontFamily: 'var(--font-mono-mob)', fontSize: 11, letterSpacing: '0.15em', textTransform: 'uppercase', color: 'var(--text-mob-muted)' }}>← Users</span>
+            </button>
+            <button
+              onClick={() => openPanel('dashboard')}
+              className="admin-tile"
+              style={{ flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', padding: '10px 16px', gap: 6 }}
+            >
+              <span style={{ fontFamily: 'var(--font-mono-mob)', fontSize: 11, letterSpacing: '0.15em', textTransform: 'uppercase', color: 'var(--gold)' }}>Account Info</span>
+            </button>
           </div>
 
-          {/* Inquiries + Service Requests — two column */}
-          <div className="tile-row">
-            <AdminUserInquiriesTile
-              inquiries={inquiries}
-              guestInquiries={guestInquiries}
-              isGuest={isGuest}
-              onClick={() => openPanel('inquiries')}
-            />
-            <AdminUserServiceRequestsTile
-              serviceRequests={serviceRequests}
-              onClick={() => openPanel('servicereq')}
-            />
-          </div>
+          {/* Section tiles */}
+          {TILES.map(tile => (
+            <button
+              key={tile.id}
+              className="admin-tile"
+              onClick={() => openPanel(tile.id)}
+            >
+              <div className="admin-tile-icon" style={{ color: tile.color }}>{tile.icon}</div>
+              <div style={{ flex: 1 }}>
+                <div className="admin-tile-label">{tile.label}</div>
+                <div className="admin-tile-sub">{tile.sub}</div>
+              </div>
+              <div className="admin-tile-arrow" style={{ color: tile.color }}>→</div>
+            </button>
+          ))}
 
         </div>
       </div>
