@@ -6,6 +6,7 @@
 // Usage:
 //   import { sendMessage, notifyAdmin, acceptWorkOrder } from '../handlers'
 //   import { getPublicUrl } from '../handlers/storageHandler'
+//   import { archiveInquiry, archiveServiceRequest } from '../handlers/archiveHandler'
 
 export * from './supabaseCrud'
 export * from './realtimeSubscription'
@@ -20,3 +21,7 @@ export * from './checkoutHandler'
 export * from './authHandler'
 export * from './storageHandler'
 export * from './formatHandler'
+export * from './archiveHandler'
+export * from './wizardFolderHandler'
+export { uploadPhoto, removePhoto, buildStoragePath, safeExtension, isAllowedExtension } from './photoUploadHandler'
+export * from './consentHandler'

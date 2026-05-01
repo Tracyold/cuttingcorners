@@ -8,19 +8,23 @@ import WizardResultDrawer3 from '../drawers/3WizardResultDrawer';
 import WizardFolderGrid from '../grids/WizardFolderGrid';
 import { WizardFolderTextModal } from '../modals/WizardFolderModal';
 import { useSwipeDownToClose } from '../../shared/hooks/useSwipeDownToClose';
+import { archiveWizardResult } from '../../../../handlers/archiveHandler';
+import {
+  fetchFolders as fetchFoldersHandler,
+  ensureDefaultFolder as ensureDefaultFolderHandler,
+  createFolder,
+  renameFolder,
+  deleteFolder,
+  moveResultToFolder,
+  assignUnfolderedResults,
+} from '../../../../handlers/wizardFolderHandler';
+import type { WizardFolder } from '../../../../handlers/wizardFolderHandler';
 import FirstTimeTips from '../ui/FirstTimeTips';
 
 interface WizardResultsPanelProps {
   open:                    boolean;
   onClose:                 () => void;
   onCreateServiceRequest?: (result: WizardResult) => void;
-}
-
-interface WizardFolder {
-  id:         string;
-  name:       string;
-  is_default: boolean;
-  created_at: string;
 }
 
 const BAND_COLOR: Record<string, string> = {
@@ -50,38 +54,6 @@ function ScoreRing({ pct, color }: { pct: number; color: string }) {
       {pct}
     </div>
   );
-}
-
-// ── Helpers ───────────────────────────────────────────────────
-
-async function fetchFolders(userId: string): Promise<WizardFolder[]> {
-  const { data, error } = await supabase
-    .from('wizard_folders')
-    .select('*')
-    .eq('user_id', userId)
-    .order('created_at', { ascending: true });
-  if (error) { console.error('fetchFolders:', error); return []; }
-  return data ?? [];
-}
-
-async function ensureDefaultFolder(userId: string): Promise<WizardFolder | null> {
-  // Check if default folder already exists
-  const { data: existing } = await supabase
-    .from('wizard_folders')
-    .select('*')
-    .eq('user_id', userId)
-    .eq('is_default', true)
-    .single();
-  if (existing) return existing;
-
-  // Create it
-  const { data, error } = await supabase
-    .from('wizard_folders')
-    .insert({ user_id: userId, name: 'New Results', is_default: true })
-    .select()
-    .single();
-  if (error) { console.error('ensureDefaultFolder:', error); return null; }
-  return data;
 }
 
 // ── Component ─────────────────────────────────────────────────
@@ -120,11 +92,11 @@ export default function WizardResultsPanel3({
       if (!user || cancelled) return;
 
       // Ensure default folder exists
-      await ensureDefaultFolder(user.id);
+      await ensureDefaultFolderHandler(user.id);
 
       // Fetch folders + results in parallel
       const [folderData, resultData] = await Promise.all([
-        fetchFolders(user.id),
+        fetchFoldersHandler(user.id),
         getUserWizardResults().catch(() => []),
       ]);
 
@@ -135,10 +107,10 @@ export default function WizardResultsPanel3({
       if (defaultFolder) {
         const unfoldered = resultData.filter((r: any) => !r.folder_id);
         if (unfoldered.length > 0) {
-          await supabase
-            .from('wizard_results')
-            .update({ folder_id: defaultFolder.id })
-            .in('id', unfoldered.map((r: any) => r.id));
+          await assignUnfolderedResults(
+            unfoldered.map((r: any) => r.id),
+            defaultFolder.id,
+          );
           unfoldered.forEach((r: any) => { r.folder_id = defaultFolder.id; });
         }
       }
@@ -165,24 +137,16 @@ export default function WizardResultsPanel3({
     const { data: { user } } = await supabase.auth.getUser();
     if (!user) return;
 
-    const { data, error } = await supabase
-      .from('wizard_folders')
-      .insert({ user_id: user.id, name, is_default: false })
-      .select()
-      .single();
-    if (error) { console.error('addFolder:', error); alert('Could not create folder.'); return; }
-    setFolders(prev => [...prev, data]);
+    const { success, folder, error } = await createFolder(user.id, name);
+    if (!success || !folder) { alert(error || 'Could not create folder.'); return; }
+    setFolders(prev => [...prev, folder]);
     setShowAddFolder(false);
   };
 
   const handleRenameFolder = async (id: string, newName: string) => {
     setFolders(prev => prev.map(f => f.id === id ? { ...f, name: newName } : f));
-    const { error } = await supabase
-      .from('wizard_folders')
-      .update({ name: newName })
-      .eq('id', id);
+    const { error } = await renameFolder(id, newName);
     if (error) {
-      console.error('renameFolder:', error);
       // Revert
       setFolders(prev => prev.map(f => f.id === id ? { ...f, name: f.name } : f));
       alert('Could not rename folder.');
@@ -190,21 +154,18 @@ export default function WizardResultsPanel3({
   };
 
   const handleDeleteFolder = async (id: string) => {
-    // Move its results to the default folder first
     const defaultFolder = folders.find(f => f.is_default);
+
+    // Move results to default folder in local state
     if (defaultFolder) {
-      await supabase
-        .from('wizard_results')
-        .update({ folder_id: defaultFolder.id })
-        .eq('folder_id', id);
       setResults(prev => prev.map(r =>
         (r as any).folder_id === id ? { ...r, folder_id: defaultFolder.id } : r
       ));
     }
 
     setFolders(prev => prev.filter(f => f.id !== id));
-    const { error } = await supabase.from('wizard_folders').delete().eq('id', id);
-    if (error) { console.error('deleteFolder:', error); alert('Could not delete folder.'); }
+    const { error } = await deleteFolder(id, defaultFolder?.id ?? null);
+    if (error) { alert('Could not delete folder.'); }
   };
 
   // ── Archive action (called from drawer) ────────────────────
@@ -218,12 +179,9 @@ export default function WizardResultsPanel3({
     ));
     setSelectedResult(null);
 
-    const { error } = await supabase
-      .from('wizard_results')
-      .update({ is_archived: true })
-      .eq('id', id);
+    const { success, error } = await archiveWizardResult(id);
 
-    if (error) {
+    if (!success) {
       console.error('Archive write failed:', error);
       setResults(list => list.map(r =>
         r.id === id ? { ...r, is_archived: prevArchived } : r
@@ -241,13 +199,8 @@ export default function WizardResultsPanel3({
     // Update selected result so drawer reflects new folder immediately
     setSelectedResult(prev => prev ? { ...prev, folder_id: folderId } as any : prev);
 
-    const { error } = await supabase
-      .from('wizard_results')
-      .update({ folder_id: folderId })
-      .eq('id', resultId);
-
+    const { error } = await moveResultToFolder(resultId, folderId);
     if (error) {
-      console.error('moveToFolder:', error);
       alert('Could not move result. Please try again.');
     }
   };

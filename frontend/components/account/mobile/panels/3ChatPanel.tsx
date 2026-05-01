@@ -1,8 +1,9 @@
 // components/account/mobile/panels/3ChatPanel.tsx
 
 import { useEffect, useState } from 'react';
-import { supabase } from '../../../../lib/supabase';
 import { fmtTime } from '../../../../lib/utils';
+import { getChatAttachmentUrl } from '../../../../handlers/storageHandler';
+import { formatChatDate } from '../../../../handlers/formatHandler';
 import { useSwipeDownToClose } from '../../shared/hooks/useSwipeDownToClose';
 import FirstTimeTips from '../ui/FirstTimeTips';
 import type { PendingUpload } from '../../shared/hooks/useChat';
@@ -27,20 +28,9 @@ interface ChatPanelProps {
   onOpen:               () => void;
 }
 
+/** Resolve a chat attachment URL — delegates to storageHandler */
 function getAttachmentUrl(url: string): string {
-  return url.startsWith('http')
-    ? url
-    : supabase.storage.from('ChatUploads').getPublicUrl(url).data.publicUrl;
-}
-
-function formatDate(iso: string): string {
-  const d = new Date(iso);
-  const today = new Date();
-  const yesterday = new Date();
-  yesterday.setDate(today.getDate() - 1);
-  if (d.toDateString() === today.toDateString()) return 'Today';
-  if (d.toDateString() === yesterday.toDateString()) return 'Yesterday';
-  return d.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+  return getChatAttachmentUrl(url) ?? url;
 }
 
 export default function ChatPanel3({
@@ -88,7 +78,7 @@ export default function ChatPanel3({
         )}
 
         {messages.map(m => {
-          const msgDate     = formatDate(m.created_at);
+          const msgDate     = formatChatDate(m.created_at);
           const showDivider = msgDate !== lastDate;
           lastDate = msgDate;
           const isMe = m.actor === 'ACCOUNT';

@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { fmtDate } from '../../../../lib/utils';
 import { useSwipeDownToClose } from '../../shared/hooks/useSwipeDownToClose';
-import { supabase } from '../../../../lib/supabase';
+import { archiveInquiry } from '../../../../handlers/archiveHandler';
 import FirstTimeTips from '../ui/FirstTimeTips';
 import InquiryDrawer3 from '../drawers/3InquiryDrawer';
 
@@ -140,11 +140,12 @@ export default function InquiriesPanel3({ open, inquiries, onClose, refreshInqui
     setArchiveError(null);
     const prev = localInquiries.find(i => i.account_inquiry_id === id);
     const prevArchived = prev?.is_archived ?? false;
+    // Optimistic update
     setLocalInquiries(list => list.map(i => i.account_inquiry_id === id ? { ...i, is_archived: true } : i));
-    const { error } = await supabase.from('account_inquiries').update({ is_archived: true }).eq('account_inquiry_id', id);
-    if (error) {
+    const { success, error } = await archiveInquiry(id);
+    if (!success) {
       setLocalInquiries(list => list.map(i => i.account_inquiry_id === id ? { ...i, is_archived: prevArchived } : i));
-      setArchiveError('Could not archive this inquiry. Please try again.');
+      setArchiveError(error || 'Could not archive this inquiry. Please try again.');
       return;
     }
     if (refreshInquiries) { try { await refreshInquiries(); } catch (e) { console.warn('refreshInquiries failed', e); } }

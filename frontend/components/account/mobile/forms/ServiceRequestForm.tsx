@@ -37,6 +37,9 @@
 import { useState, useRef, useEffect } from 'react';
 import { useSwipeDownToClose } from '../../shared/hooks/useSwipeDownToClose';
 import { supabase } from '../../../../lib/supabase';
+import { uploadPhoto, removePhoto as removeStoragePhoto, buildStoragePath } from '../../../../handlers/photoUploadHandler';
+import { recordWorkOrderConsent } from '../../../../handlers/consentHandler';
+import { notifyAdmin } from '../../../../handlers/notificationHandler';
 import { SERVICE_TYPES } from '../../shared/1InquiryList';
 import FirstTimeTips from '../ui/FirstTimeTips';
 
@@ -205,7 +208,7 @@ export default function ServiceRequestForm({
 
       const tempId      = uid();
       const objectUrl   = URL.createObjectURL(file);
-      const storagePath = `${session.user.id}/${tempId}.${ext}`;
+      const storagePath = buildStoragePath(session.user.id, file.name);
 
       setPhotos(prev => [...prev, {
         tempId, fileName: file.name, objectUrl,
@@ -217,42 +220,23 @@ export default function ServiceRequestForm({
       (async () => {
         let settled = false;
         try {
-          // 60s timeout so a hung request can't freeze the submit button forever.
-          const uploadRace = Promise.race([
-            supabase.storage
-              .from('service-request-photos')
-              .upload(storagePath, file, { cacheControl: '3600', upsert: false }),
-            new Promise<{ data: null; error: { message: string } }>((resolve) =>
-              setTimeout(() => resolve({
-                data: null,
-                error: { message: 'Upload timed out after 60 seconds. Please try again.' },
-              }), 60_000),
-            ),
-          ]);
+          const result = await uploadPhoto({
+            bucket: 'service-request-photos',
+            storagePath,
+            file,
+          });
 
-          const result = await uploadRace;
-          const upErr = (result as any)?.error;
-          if (upErr) {
+          if (!result.success) {
             settled = true;
             setPhotos(prev => prev.map(p => p.tempId === tempId
-              ? { ...p, uploading: false, error: upErr.message ?? 'Upload failed' }
+              ? { ...p, uploading: false, error: result.error ?? 'Upload failed' }
               : p));
             return;
           }
 
-          let publicUrl: string | null = null;
-          try {
-            const { data: pub } = supabase.storage
-              .from('service-request-photos')
-              .getPublicUrl(storagePath);
-            publicUrl = pub?.publicUrl ?? null;
-          } catch (urlErr) {
-            console.warn('getPublicUrl threw (non-fatal):', urlErr);
-          }
-
           settled = true;
           setPhotos(prev => prev.map(p => p.tempId === tempId
-            ? { ...p, uploading: false, uploaded: true, publicUrl, showSuccessPill: true, error: null }
+            ? { ...p, uploading: false, uploaded: true, publicUrl: result.publicUrl ?? null, showSuccessPill: true, error: null }
             : p));
 
           setTimeout(() => {
@@ -267,7 +251,6 @@ export default function ServiceRequestForm({
             ? { ...p, uploading: false, error: err?.message ?? 'Upload failed' }
             : p));
         } finally {
-          // Belt-and-suspenders: never leave a photo stuck in "uploading".
           if (!settled) {
             setPhotos(prev => prev.map(p => p.tempId === tempId
               ? { ...p, uploading: false, error: 'Upload did not complete.' }
@@ -286,8 +269,8 @@ export default function ServiceRequestForm({
     try { URL.revokeObjectURL(target.objectUrl); } catch {}
     setPhotos(prev => prev.filter(p => p.tempId !== tempId));
     if (target.uploaded && target.storagePath) {
-      try { await supabase.storage.from('service-request-photos').remove([target.storagePath]); }
-      catch (e) { console.warn('Photo storage removal failed (non-blocking):', e); }
+      const { error } = await removeStoragePhoto('service-request-photos', target.storagePath);
+      if (error) console.warn('Photo storage removal failed (non-blocking):', error);
     }
   };
 
@@ -394,23 +377,12 @@ export default function ServiceRequestForm({
 
       // SMS prefs upsert on first consent (best-effort)
       if (consentChecked && !existingConsent.consented) {
-        const { error: prefErr } = await supabase
-          .from('user_sms_preferences')
-          .upsert(
-            { user_id: session.user.id, opt_in_work_orders: true },
-            { onConflict: 'user_id' },
-          );
+        const { error: prefErr } = await recordWorkOrderConsent(session.user.id);
         if (prefErr) console.warn('SMS prefs upsert failed (non-blocking):', prefErr);
       }
 
       // Admin notification (best-effort)
-      try {
-        await supabase.functions.invoke('send-admin-notification', {
-          body: { event_type: 'service_requests', user_id: session.user.id },
-        });
-      } catch (notifyErr) {
-        console.warn('Admin notification edge function failed (non-blocking):', notifyErr);
-      }
+      await notifyAdmin({ event_type: 'service_requests', user_id: session.user.id });
 
       await onSubmitted();
     } catch (err: any) {

@@ -19,7 +19,8 @@
 import { useState, useEffect } from 'react';
 import { fmtDate, fmtTime } from '../../../../lib/utils';
 import { useSwipeDownToClose } from '../../shared/hooks/useSwipeDownToClose';
-import { supabase } from '../../../../lib/supabase';
+import { archiveServiceRequest } from '../../../../handlers/archiveHandler';
+import { fetchConsentState } from '../../../../handlers/consentHandler';
 import FirstTimeTips from '../ui/FirstTimeTips';
 import ServiceRequestForm from '../forms/ServiceRequestForm';
 
@@ -71,34 +72,9 @@ export default function ServiceRequestPanel3({
     if (!open || !session?.user?.id) return;
     let cancelled = false;
     (async () => {
-      // Current SMS prefs — did they ever opt into work-order SMS?
-      const { data: prefs } = await supabase
-        .from('user_sms_preferences')
-        .select('opt_in_work_orders')
-        .eq('user_id', session.user.id)
-        .maybeSingle();
-
-      // If yes, find the earliest SR that recorded the consent so we
-      // can show the date ("consented on ...").
-      let consentedAt: string | null = null;
-      if (prefs?.opt_in_work_orders) {
-        const { data: firstSR } = await supabase
-          .from('service_requests')
-          .select('workorder_sms_consent_at')
-          .eq('account_user_id', session.user.id)
-          .eq('workorder_sms_consent', true)
-          .not('workorder_sms_consent_at', 'is', null)
-          .order('workorder_sms_consent_at', { ascending: true })
-          .limit(1)
-          .maybeSingle();
-        consentedAt = firstSR?.workorder_sms_consent_at ?? null;
-      }
-
+      const state = await fetchConsentState(session.user.id);
       if (cancelled) return;
-      setExistingConsent({
-        consented:   !!prefs?.opt_in_work_orders,
-        consentedAt,
-      });
+      setExistingConsent(state);
     })();
     return () => { cancelled = true; };
   }, [open, session?.user?.id]);
@@ -213,12 +189,9 @@ export default function ServiceRequestPanel3({
       s.service_request_id === id ? { ...s, is_archived: true } : s
     ));
 
-    const { error } = await supabase
-      .from('service_requests')
-      .update({ is_archived: true })
-      .eq('service_request_id', id);
+    const { success, error } = await archiveServiceRequest(id);
 
-    if (error) {
+    if (!success) {
       console.error('Archive write failed:', error);
       // Revert.
       setLocalSRs(list => list.map(s =>
