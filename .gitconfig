@@ -1,4 +1,6 @@
 [user]
 	email = tracy.old.gold@gmail.com
 	name = Tracy Young
-	
+
+[alias]
+	go = !git add -A && git commit -m
