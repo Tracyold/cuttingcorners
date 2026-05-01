@@ -58,7 +58,13 @@ export default function WorkOrderDrawer3({
     ];
     await supabase
       .from('work_orders')
-      .update({ wo_shipping_address: tempAddr.trim(), edit_history: log })
+      .update({
+        wo_shipping_address: tempAddr.trim(),
+        wo_client_name:  profile?.name  || null,
+        wo_client_phone: profile?.phone || null,
+        wo_client_email: profile?.email || null,
+        edit_history: log,
+      })
       .eq('work_order_id', wo.work_order_id);
     setAddrConfirmed(true);
   };
@@ -132,11 +138,10 @@ export default function WorkOrderDrawer3({
                     padding: 14, fontFamily: 'var(--font-ui-mob)', fontSize: 'clamp(0.875rem, 3.8vw, 1.0rem)',
                     color: 'var(--text-mob-muted)', lineHeight: 2,
                   }}>
-                    <div style={{ color: 'var(--gold)', fontSize: 'clamp(0.9375rem, 4vw, 1.0625rem)' }}>{adminInfo.business_name}</div>
-                    <div>{adminInfo.full_name}</div>
-                    <div>{adminInfo.address}</div>
-                    <div>{adminInfo.contact_email}</div>
-                    <div>{adminInfo.phone}</div>
+                    <div style={{ color: 'var(--gold)', fontSize: 'clamp(0.9375rem, 4vw, 1.0625rem)' }}>{wo.wo_admin_name || adminInfo.business_name || adminInfo.full_name}</div>
+                    <div style={{ fontWeight: 600 }}>{wo.wo_admin_address || adminInfo.address}</div>
+                    <div>{wo.wo_admin_email || adminInfo.contact_email}</div>
+                    <div>{wo.wo_admin_phone || adminInfo.phone}</div>
                   </div>
                 </div>
               )}
@@ -169,10 +174,10 @@ export default function WorkOrderDrawer3({
                     padding: 14, fontFamily: 'var(--font-ui-mob)', fontSize: 'clamp(0.875rem, 3.8vw, 1.0rem)',
                     color: 'var(--text-mob-muted)', lineHeight: 2,
                   }}>
-                    <div style={{ color: 'var(--text-mob)', fontSize: 'clamp(0.9375rem, 4vw, 1.0625rem)' }}>{profile.name}</div>
-                    <div>{profile.email}</div>
-                    {profile.phone && <div>{profile.phone}</div>}
-                    <div>{wo.wo_shipping_address || profile.shipping_address || 'No address on file'}</div>
+                    <div style={{ color: 'var(--text-mob)', fontSize: 'clamp(0.9375rem, 4vw, 1.0625rem)' }}>{wo.wo_client_name || profile.name}</div>
+                    <div>{wo.wo_client_email || profile.email}</div>
+                    <div>{wo.wo_client_phone || profile.phone}</div>
+                    <div style={{ fontWeight: 600 }}>{wo.wo_shipping_address || profile.shipping_address || 'No address on file'}</div>
                     {wo.wo_shipping_address && wo.wo_shipping_address !== profile.shipping_address && (
                       <div style={{ fontSize: 'clamp(0.8125rem, 3.5vw, 0.9375rem)', color: 'var(--accent)', marginTop: 4, fontStyle: 'italic' }}>
                         * Custom address for this work order only
