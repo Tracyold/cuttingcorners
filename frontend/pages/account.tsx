@@ -15,7 +15,6 @@ import { useAccountData }    from '../components/account/shared/hooks/useAccount
 import { useProfile }        from '../components/account/shared/hooks/useProfile';
 import { useChat }           from '../components/account/shared/hooks/useChat';
 import { useWorkOrders }     from '../components/account/shared/hooks/useWorkOrders';
-import { useServiceRequest } from '../components/account/shared/hooks/useServiceRequest';
 import { useDeleteAccount }  from '../components/account/shared/hooks/useDeleteAccount';
 
 export default function AccountPage() {
@@ -31,7 +30,6 @@ export default function AccountPage() {
   const profileHook = useProfile(session, data.profile, data.setProfile, data.setSmsPrefs);
   const chatHook    = useChat(session, data.chatThread, data.setMessages, data.setChatThread);
   const woHook      = useWorkOrders(session, data.setWorkOrders);
-  const srHook      = useServiceRequest(session, data.setServiceRequests);
   const deleteHook  = useDeleteAccount(session);
 
   // ── Loading guard ──
