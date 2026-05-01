@@ -28,7 +28,7 @@ interface Props {
 
 export default function AdminUserWorkOrdersPanel({ open, id, session, onClose, onBack, onDashboard }: Props) {
   const { elementRef, touchHandlers } = useSwipeDownToClose({ onClose });
-  const { user, workOrders, setWO, setWoCount } = useAdminUserDetail(id, session);
+  const { user, adminInfo, workOrders, setWO, setWoCount } = useAdminUserDetail(id, session);
   const {
     selectedWO, setSelectedWO,
     showAddWO, setShowAddWO,
@@ -49,17 +49,15 @@ export default function AdminUserWorkOrdersPanel({ open, id, session, onClose, o
       <div ref={elementRef} className={`slide-panel${open ? ' open' : ''}`}>
         <div className="panel-header" {...touchHandlers}>
           <span className="panel-title">Work Orders{unread > 0 ? ` · ${unread} new` : ''}</span>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-            {!isGuest && (
-              <button onClick={() => setShowAddWO(true)} className="order-accept" style={{ borderRadius: 4, padding: '5px 12px', fontSize: 11 }}>+ Add</button>
-            )}
-            <button className="panel-close" onClick={onClose}>✕</button>
-          </div>
+          <button className="panel-close" onClick={onClose}>✕</button>
         </div>
 
         {/* Nav pills */}
         <div className="sr-tab-bar" style={{ borderBottom: '0.5px solid var(--bdr2-mob)' }}>
           <button className="sr-tab" onClick={onBack}>← Users</button>
+          {!isGuest && (
+            <button className="sr-tab" onClick={() => setShowAddWO(true)} style={{ color: 'var(--gold)', borderColor: 'rgba(var(--gold-rgb),0.3)' }}>+ Add</button>
+          )}
           <button className="sr-tab" onClick={onDashboard} style={{ marginLeft: 'auto' }}>Account Info</button>
         </div>
 
@@ -95,7 +93,7 @@ export default function AdminUserWorkOrdersPanel({ open, id, session, onClose, o
         open={!!selectedWO}
         wo={selectedWO}
         user={user}
-        adminInfo={null}
+        adminInfo={adminInfo}
         session={session}
         editingWOAddr={editingWOAddr}
         setEditingWOAddr={setEditingWOAddr}
