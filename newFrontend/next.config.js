@@ -4,9 +4,7 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
-  // Ensure API routes can handle raw body for Stripe webhook
   experimental: {},
-};
+}
 
-module.exports = nextConfig;
-
+module.exports = nextConfig

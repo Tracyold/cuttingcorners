@@ -1,8 +1,8 @@
 /**
- * AUTH MODULE - TYPE DEFINITIONS
+ * SERVICE REQUESTS MODULE - TYPE DEFINITIONS
  *
  * RULES:
- * - Domain-specific auth types ONLY
+ * - Domain-specific types ONLY
  * - Import shared primitives from @/src/types/common
  * - NO runtime code, NO functions
  */
@@ -10,63 +10,60 @@
 import type { ID, Timestamp } from '@/src/types/common'
 
 // ============================================================================
-// SESSION & USER TYPES
+// CORE ENTITY
 // ============================================================================
 
-export interface AuthUser {
-  id: ID
-  email?: string
-  phone?: string
+export interface ServiceRequest {
+  service_request_id: ID
+  account_user_id: ID
+  service_type: string
+  description: string
+  photo_url?: string
+  status: ServiceRequestStatus
+  admin_notes?: string
   created_at: Timestamp
-}
-
-export interface AuthSession {
-  user: AuthUser
-  access_token: string
-  refresh_token: string
-  expires_at?: number
-  expires_in?: number
-  token_type: string
+  updated_at?: Timestamp
 }
 
 // ============================================================================
-// ADMIN TYPES
+// DOMAIN ENUMS
 // ============================================================================
 
-export interface AdminUserRecord {
-  admin_user_id: ID
-}
-
-// ============================================================================
-// STATE TYPES
-// ============================================================================
-
-export type AuthStatus = 'loading' | 'authenticated' | 'unauthenticated'
-
-export interface AuthState {
-  session: AuthSession | null
-  status: AuthStatus
-}
+export type ServiceRequestStatus =
+  | 'PENDING'
+  | 'REVIEWING'
+  | 'IN_PROGRESS'
+  | 'COMPLETED'
+  | 'CANCELLED'
 
 // ============================================================================
 // INPUT TYPES
 // ============================================================================
 
-export interface SignInInput {
-  email: string
-  password: string
-}
-
-export interface SignUpInput {
-  email: string
-  password: string
+export interface CreateServiceRequestInput {
+  account_user_id: ID
+  service_type: string
+  description: string
+  photo_url?: string
 }
 
 // ============================================================================
-// SESSION TIMEOUT CONFIG (re-exported for use in hooks/components)
+// GATE CHECK RESULT
 // ============================================================================
 
-export interface SessionTimeoutConfig {
-  inactivityMs: number
-  activityEvents: string[]
+export interface ServiceRequestGateResult {
+  allowed: boolean
+  reason?: string
+}
+
+// ============================================================================
+// WIZARD PREFILL (from feasibility wizard result)
+// ============================================================================
+
+export interface WizardPrefillData {
+  recommendation: string
+  stone_variety?: string
+  stone_species?: string
+  feasibility_percent: number
+  weight_loss: string
 }

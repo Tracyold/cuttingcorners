@@ -1,32 +1,30 @@
 /**
  * INVOICES MODULE - TYPE DEFINITIONS
- * 
+ *
  * RULES:
  * - Domain-specific types ONLY
- * - Import shared primitives from /types/
- * - NO runtime code
- * - NO functions
+ * - Import shared primitives from @/src/types/common
+ * - NO runtime code, NO functions
  */
 
-import type { ID, Timestamp } from '@/types/common'
+import type { ID, Timestamp } from '@/src/types/common'
 
 // ============================================================================
 // CORE DOMAIN ENTITIES
 // ============================================================================
 
 export interface Invoice {
-  id: ID
-  invoice_number: string
-  customer_id: ID
-  amount: number
-  tax: number
-  total: number
+  invoice_id: ID
+  account_user_id: ID
+  invoice_number?: string
+  total_amount: number
   status: InvoiceStatus
-  due_date: string
-  issued_date: string
+  paid_at?: Timestamp
+  due_date?: string
+  issued_date?: string
+  notes?: string
   created_at: Timestamp
-  updated_at: Timestamp
-  created_by: ID
+  updated_at?: Timestamp
 }
 
 export interface InvoiceLineItem {
@@ -45,7 +43,7 @@ export interface InvoiceLineItem {
 // DOMAIN ENUMS
 // ============================================================================
 
-export type InvoiceStatus = 
+export type InvoiceStatus =
   | 'draft'
   | 'pending'
   | 'sent'
@@ -62,23 +60,22 @@ export type PaymentMethod =
   | 'paypal'
 
 // ============================================================================
-// INPUT TYPES (FOR CREATION/UPDATE)
+// INPUT TYPES
 // ============================================================================
 
 export interface InvoiceCreateInput {
-  customer_id: ID
-  due_date: string
-  line_items: InvoiceLineItemInput[]
+  account_user_id: ID
+  total_amount: number
+  due_date?: string
   notes?: string
-  payment_terms?: string
 }
 
 export interface InvoiceUpdateInput {
-  customer_id?: ID
-  due_date?: string
+  total_amount?: number
   status?: InvoiceStatus
+  due_date?: string
   notes?: string
-  payment_terms?: string
+  paid_at?: Timestamp
 }
 
 export interface InvoiceLineItemInput {
@@ -89,32 +86,28 @@ export interface InvoiceLineItemInput {
 }
 
 // ============================================================================
-// QUERY TYPES (FOR FILTERING/SEARCHING)
+// QUERY TYPES
 // ============================================================================
 
 export interface InvoiceFilters {
   status?: InvoiceStatus | InvoiceStatus[]
-  customer_id?: ID
+  account_user_id?: ID
   date_from?: string
   date_to?: string
   min_amount?: number
   max_amount?: number
-  search?: string
 }
 
+export type InvoiceSortField = 'issued_date' | 'due_date' | 'total_amount' | 'status' | 'paid_at'
+
 export interface InvoiceSortOptions {
-  field: 'invoice_number' | 'issued_date' | 'due_date' | 'total' | 'status'
+  field: InvoiceSortField
   direction: 'asc' | 'desc'
 }
 
 // ============================================================================
-// COMPUTED/VIEW TYPES
+// COMPUTED / VIEW TYPES
 // ============================================================================
-
-export interface InvoiceWithCustomer extends Invoice {
-  customer_name: string
-  customer_email: string
-}
 
 export interface InvoiceWithLineItems extends Invoice {
   line_items: InvoiceLineItem[]

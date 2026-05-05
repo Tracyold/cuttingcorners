@@ -1,6 +1,6 @@
 /**
  * SHARED TYPE PRIMITIVES
- * 
+ *
  * RULES:
  * - ONLY shared primitives used across multiple modules
  * - NO domain concepts (Invoice, Product, etc.)
@@ -19,8 +19,8 @@ export type UUID = string
 // TIME PRIMITIVES
 // ============================================================================
 
-export type Timestamp = string // ISO 8601 format
-export type DateString = string // YYYY-MM-DD format
+export type Timestamp = string    // ISO 8601 format
+export type DateString = string   // YYYY-MM-DD format
 
 export interface DateRange {
   from: DateString
@@ -56,6 +56,7 @@ export type ErrorCode =
   | 'FORBIDDEN'
   | 'SERVER_ERROR'
   | 'NETWORK_ERROR'
+  | 'TIMEOUT_ERROR'
 
 export interface ErrorDetail {
   code: ErrorCode
@@ -76,8 +77,8 @@ export interface PaginationParams {
   page_size: number
 }
 
-export interface SortParams<T extends string = string> {
-  field: T
+export interface SortParams<TField extends string = string> {
+  field: TField
   direction: 'asc' | 'desc'
 }
 
@@ -86,3 +87,18 @@ export interface SortParams<T extends string = string> {
 // ============================================================================
 
 export type ActiveStatus = 'active' | 'inactive' | 'archived'
+
+// ============================================================================
+// REALTIME EVENT TYPES
+// ============================================================================
+
+export type RealtimeEventType = 'INSERT' | 'UPDATE' | 'DELETE'
+
+export interface RealtimePayload<TRow extends Record<string, unknown>> {
+  eventType: RealtimeEventType
+  new: TRow
+  old: Partial<TRow>
+  schema: string
+  table: string
+  commit_timestamp: string
+}

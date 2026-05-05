@@ -12,4 +12,3 @@ frontend/node_modules/@next/swc-linux-arm64-gnu/next-swc.linux-arm64-gnu.node
 .env.local
 frontend/out
 newFrontend/node_modules/
-newFrontend/node_modules/

@@ -1,31 +1,24 @@
 /**
  * INVOICES MODULE - ACTIONS LAYER
- * 
+ *
  * RULES:
- * - Thin wrappers ONLY
- * - Entry points for UI
- * - MUST call service layer only
- * - NO business logic
- * - NO validation (done in service)
- * - NO data access (done in data layer)
+ * - Thin wrappers ONLY — no business logic
+ * - UI entry points that call the service layer
+ * - 'use server' for Next.js server actions
  */
 
 'use server'
 
 import {
   getInvoicesService,
-  getInvoiceServiceById,
-  getInvoiceWithCustomerService,
-  getInvoiceWithLineItemsService,
-  getInvoicesByCustomerService,
-  getOverdueInvoicesService,
+  getInvoiceByIdService,
+  getInvoicesByUserService,
   getInvoiceSummaryService,
+  getInvoiceWithLineItemsService,
   createInvoiceService,
-  sendInvoiceService,
   recordPaymentService,
   updateInvoiceService,
   cancelInvoiceService,
-  refundInvoiceService,
   deleteInvoiceService,
 } from './invoices.service'
 import type {
@@ -34,30 +27,19 @@ import type {
   InvoiceUpdateInput,
   InvoiceFilters,
   InvoiceSortOptions,
-  InvoiceWithCustomer,
   InvoiceWithLineItems,
   InvoiceSummary,
   InvoicePaymentInput,
 } from './invoices.types'
-import type { ID } from '../../types/common'
-
-// ============================================================================
-// HELPER: Get User ID from Session
-// ============================================================================
+import type { ID } from '@/src/types/common'
 
 async function getCurrentUserId(): Promise<ID> {
-  // TODO: Implement session/auth logic
-  // For now, return placeholder
-  // import { getServerSession } from '@/lib/auth'
-  // const session = await getServerSession()
-  // return session.user.id
-  
-  return 'user_placeholder_id'
+  // Wire to auth module when session is available
+  // import { getAccountSessionAction } from '@/src/modules/auth/auth.actions'
+  // const session = await getAccountSessionAction()
+  // return session?.user.id ?? ''
+  return ''
 }
-
-// ============================================================================
-// READ ACTIONS
-// ============================================================================
 
 export async function getInvoicesAction(
   filters?: InvoiceFilters,
@@ -67,43 +49,26 @@ export async function getInvoicesAction(
 }
 
 export async function getInvoiceAction(id: ID): Promise<Invoice> {
-  return getInvoiceServiceById(id)
+  return getInvoiceByIdService(id)
 }
 
-export async function getInvoiceWithCustomerAction(id: ID): Promise<InvoiceWithCustomer> {
-  return getInvoiceWithCustomerService(id)
+export async function getInvoicesByUserAction(userId: ID): Promise<Invoice[]> {
+  return getInvoicesByUserService(userId)
+}
+
+export async function getInvoiceSummaryAction(userId: ID): Promise<InvoiceSummary> {
+  return getInvoiceSummaryService(userId)
 }
 
 export async function getInvoiceWithLineItemsAction(id: ID): Promise<InvoiceWithLineItems> {
   return getInvoiceWithLineItemsService(id)
 }
 
-export async function getInvoicesByCustomerAction(customerId: ID): Promise<Invoice[]> {
-  return getInvoicesByCustomerService(customerId)
-}
-
-export async function getOverdueInvoicesAction(): Promise<Invoice[]> {
-  return getOverdueInvoicesService()
-}
-
-export async function getInvoiceSummaryAction(filters?: InvoiceFilters): Promise<InvoiceSummary> {
-  return getInvoiceSummaryService(filters)
-}
-
-// ============================================================================
-// CREATE ACTIONS
-// ============================================================================
-
 export async function createInvoiceAction(
   input: InvoiceCreateInput
-): Promise<InvoiceWithLineItems> {
+): Promise<Invoice> {
   const userId = await getCurrentUserId()
   return createInvoiceService(input, userId)
-}
-
-export async function sendInvoiceAction(id: ID): Promise<Invoice> {
-  const userId = await getCurrentUserId()
-  return sendInvoiceService(id, userId)
 }
 
 export async function recordPaymentAction(
@@ -113,68 +78,17 @@ export async function recordPaymentAction(
   return recordPaymentService(input, userId)
 }
 
-// ============================================================================
-// UPDATE ACTIONS
-// ============================================================================
-
 export async function updateInvoiceAction(
   id: ID,
   input: InvoiceUpdateInput
 ): Promise<Invoice> {
-  const userId = await getCurrentUserId()
-  return updateInvoiceService(id, input, userId)
+  return updateInvoiceService(id, input)
 }
 
 export async function cancelInvoiceAction(id: ID): Promise<Invoice> {
-  const userId = await getCurrentUserId()
-  return cancelInvoiceService(id, userId)
+  return cancelInvoiceService(id)
 }
-
-export async function refundInvoiceAction(id: ID): Promise<Invoice> {
-  const userId = await getCurrentUserId()
-  return refundInvoiceService(id, userId)
-}
-
-// ============================================================================
-// DELETE ACTIONS
-// ============================================================================
 
 export async function deleteInvoiceAction(id: ID): Promise<void> {
-  const userId = await getCurrentUserId()
-  return deleteInvoiceService(id, userId)
-}
-
-// ============================================================================
-// COMPOUND ACTIONS (orchestrate multiple service calls)
-// ============================================================================
-
-/**
- * Create and immediately send invoice
- */
-export async function createAndSendInvoiceAction(
-  input: InvoiceCreateInput
-): Promise<Invoice> {
-  const userId = await getCurrentUserId()
-  
-  // Create invoice
-  const invoice = await createInvoiceService(input, userId)
-  
-  // Send it
-  return sendInvoiceService(invoice.id, userId)
-}
-
-/**
- * Get customer's invoice summary
- */
-export async function getCustomerInvoiceSummaryAction(customerId: ID): Promise<{
-  invoices: Invoice[]
-  summary: InvoiceSummary
-}> {
-  const invoices = await getInvoicesByCustomerService(customerId)
-  const summary = await getInvoiceSummaryService({ customer_id: customerId })
-  
-  return {
-    invoices,
-    summary,
-  }
+  return deleteInvoiceService(id)
 }

@@ -1,48 +1,35 @@
 /**
  * INVOICES MODULE - DATA LAYER
- * 
+ *
  * RULES:
  * - ONLY Supabase queries
  * - NO business logic
  * - NO validation
- * - NO transformations beyond minimal mapping
- * - Return raw or minimally shaped data
+ * - Return raw data only
  */
 
-import { createClient } from 'frontend/lib/supabase/server'
+import { supabase, withTimeout, TIMEOUT_MS } from '@/src/lib/supabase'
 import type {
   Invoice,
-  InvoiceWithCustomer,
   InvoiceWithLineItems,
   InvoiceLineItem,
-  InvoiceCreateInput,
-  InvoiceUpdateInput,
   InvoiceFilters,
   InvoiceSortOptions,
   InvoicePayment,
-  InvoicePaymentInput,
   InvoiceSummary,
 } from './invoices.types'
-import type { ID } from '@/types/common'
+import type { ID } from '@/src/types/common'
 
 // ============================================================================
 // READ OPERATIONS
 // ============================================================================
 
-/**
- * Get all invoices with optional filtering and sorting
- */
 export async function getInvoices(
   filters?: InvoiceFilters,
   sort?: InvoiceSortOptions
 ): Promise<Invoice[]> {
-  const supabase = createClient()
-  
-  let query = supabase
-    .from('invoices')
-    .select('*')
-  
-  // Apply filters
+  let query = supabase.from('invoices').select('*')
+
   if (filters?.status) {
     if (Array.isArray(filters.status)) {
       query = query.in('status', filters.status)
@@ -50,235 +37,150 @@ export async function getInvoices(
       query = query.eq('status', filters.status)
     }
   }
-  
-  if (filters?.customer_id) {
-    query = query.eq('customer_id', filters.customer_id)
+
+  if (filters?.account_user_id) {
+    query = query.eq('account_user_id', filters.account_user_id)
   }
-  
+
   if (filters?.date_from) {
     query = query.gte('issued_date', filters.date_from)
   }
-  
+
   if (filters?.date_to) {
     query = query.lte('issued_date', filters.date_to)
   }
-  
+
   if (filters?.min_amount) {
-    query = query.gte('total', filters.min_amount)
+    query = query.gte('total_amount', filters.min_amount)
   }
-  
+
   if (filters?.max_amount) {
-    query = query.lte('total', filters.max_amount)
+    query = query.lte('total_amount', filters.max_amount)
   }
-  
-  if (filters?.search) {
-    query = query.or(`invoice_number.ilike.%${filters.search}%,notes.ilike.%${filters.search}%`)
-  }
-  
-  // Apply sorting
+
   if (sort) {
     query = query.order(sort.field, { ascending: sort.direction === 'asc' })
   } else {
     query = query.order('created_at', { ascending: false })
   }
-  
-  const { data, error } = await query
-  
+
+  const { data, error } = await withTimeout(
+    query,
+    TIMEOUT_MS.REQUEST,
+    'getInvoices'
+  )
   if (error) throw error
   return data as Invoice[]
 }
 
-/**
- * Get single invoice by ID
- */
 export async function getInvoiceById(id: ID): Promise<Invoice> {
-  const supabase = createClient()
-  
-  const { data, error } = await supabase
-    .from('invoices')
-    .select('*')
-    .eq('id', id)
-    .single()
-  
+  const { data, error } = await withTimeout(
+    supabase.from('invoices').select('*').eq('invoice_id', id).single(),
+    TIMEOUT_MS.REQUEST,
+    'getInvoiceById'
+  )
   if (error) throw error
   return data as Invoice
 }
 
-/**
- * Get invoice with customer details
- */
-export async function getInvoiceWithCustomer(id: ID): Promise<InvoiceWithCustomer> {
-  const supabase = createClient()
-  
-  const { data, error } = await supabase
-    .from('invoices')
-    .select(`
-      *,
-      customer:customers(name, email)
-    `)
-    .eq('id', id)
-    .single()
-  
+export async function getInvoicesByUser(userId: ID): Promise<Invoice[]> {
+  const { data, error } = await withTimeout(
+    supabase
+      .from('invoices')
+      .select('*')
+      .eq('account_user_id', userId)
+      .order('paid_at', { ascending: false }),
+    TIMEOUT_MS.REQUEST,
+    'getInvoicesByUser'
+  )
   if (error) throw error
-  
+  return data as Invoice[]
+}
+
+export async function getInvoiceSummaryForUser(userId: ID): Promise<{
+  count: number
+  total: number
+}> {
+  const { data, error } = await withTimeout(
+    supabase
+      .from('invoices')
+      .select('invoice_id, total_amount')
+      .eq('account_user_id', userId),
+    TIMEOUT_MS.REQUEST,
+    'getInvoiceSummaryForUser'
+  )
+  if (error) throw error
+  const rows = data as Array<{ invoice_id: ID; total_amount: number }>
   return {
-    ...data,
-    customer_name: data.customer.name,
-    customer_email: data.customer.email,
-  } as InvoiceWithCustomer
+    count: rows.length,
+    total: rows.reduce((s, row) => s + Number(row.total_amount || 0), 0),
+  }
 }
 
-/**
- * Get invoice with line items
- */
 export async function getInvoiceWithLineItems(id: ID): Promise<InvoiceWithLineItems> {
-  const supabase = createClient()
-  
-  const { data, error } = await supabase
-    .from('invoices')
-    .select(`
-      *,
-      line_items:invoice_line_items(*)
-    `)
-    .eq('id', id)
-    .single()
-  
+  const { data, error } = await withTimeout(
+    supabase
+      .from('invoices')
+      .select('*, invoice_line_items(*)')
+      .eq('invoice_id', id)
+      .single(),
+    TIMEOUT_MS.REQUEST,
+    'getInvoiceWithLineItems'
+  )
   if (error) throw error
-  return data as InvoiceWithLineItems
+  return data as unknown as InvoiceWithLineItems
 }
 
-/**
- * Get invoices by customer ID
- */
-export async function getInvoicesByCustomer(customerId: ID): Promise<Invoice[]> {
-  const supabase = createClient()
-  
-  const { data, error } = await supabase
-    .from('invoices')
-    .select('*')
-    .eq('customer_id', customerId)
-    .order('created_at', { ascending: false })
-  
+export async function getInvoicePayments(invoiceId: ID): Promise<InvoicePayment[]> {
+  const { data, error } = await withTimeout(
+    supabase
+      .from('invoice_payments')
+      .select('*')
+      .eq('invoice_id', invoiceId)
+      .order('payment_date', { ascending: false }),
+    TIMEOUT_MS.REQUEST,
+    'getInvoicePayments'
+  )
   if (error) throw error
-  return data as Invoice[]
-}
-
-/**
- * Get overdue invoices
- */
-export async function getOverdueInvoices(): Promise<Invoice[]> {
-  const supabase = createClient()
-  
-  const today = new Date().toISOString().split('T')[0]
-  
-  const { data, error } = await supabase
-    .from('invoices')
-    .select('*')
-    .eq('status', 'sent')
-    .lt('due_date', today)
-  
-  if (error) throw error
-  return data as Invoice[]
-}
-
-/**
- * Get invoice summary statistics
- */
-export async function getInvoiceSummary(filters?: InvoiceFilters): Promise<InvoiceSummary> {
-  const supabase = createClient()
-  
-  let query = supabase
-    .from('invoices')
-    .select('total, status')
-  
-  // Apply same filters as getInvoices
-  if (filters?.customer_id) {
-    query = query.eq('customer_id', filters.customer_id)
-  }
-  
-  if (filters?.date_from) {
-    query = query.gte('issued_date', filters.date_from)
-  }
-  
-  if (filters?.date_to) {
-    query = query.lte('issued_date', filters.date_to)
-  }
-  
-  const { data, error } = await query
-  
-  if (error) throw error
-  
-  // Calculate totals (minimal processing only)
-  const summary: InvoiceSummary = {
-    total_invoices: data.length,
-    total_amount: data.reduce((sum, inv) => sum + inv.total, 0),
-    paid_amount: data
-      .filter(inv => inv.status === 'paid')
-      .reduce((sum, inv) => sum + inv.total, 0),
-    pending_amount: data
-      .filter(inv => inv.status === 'pending' || inv.status === 'sent')
-      .reduce((sum, inv) => sum + inv.total, 0),
-    overdue_amount: data
-      .filter(inv => inv.status === 'overdue')
-      .reduce((sum, inv) => sum + inv.total, 0),
-  }
-  
-  return summary
+  return data as InvoicePayment[]
 }
 
 // ============================================================================
 // CREATE OPERATIONS
 // ============================================================================
 
-/**
- * Create new invoice
- */
 export async function createInvoice(
-  invoice: Omit<Invoice, 'id' | 'created_at' | 'updated_at'>
+  invoice: Omit<Invoice, 'invoice_id' | 'created_at' | 'updated_at'>
 ): Promise<Invoice> {
-  const supabase = createClient()
-  
-  const { data, error } = await supabase
-    .from('invoices')
-    .insert(invoice)
-    .select()
-    .single()
-  
+  const { data, error } = await withTimeout(
+    supabase.from('invoices').insert(invoice).select().single(),
+    TIMEOUT_MS.REQUEST,
+    'createInvoice'
+  )
   if (error) throw error
   return data as Invoice
 }
 
-/**
- * Create invoice line items
- */
 export async function createInvoiceLineItems(
-  lineItems: Omit<InvoiceLineItem, 'id' | 'created_at'>[]
+  items: Omit<InvoiceLineItem, 'id' | 'created_at'>[]
 ): Promise<InvoiceLineItem[]> {
-  const supabase = createClient()
-  
-  const { data, error } = await supabase
-    .from('invoice_line_items')
-    .insert(lineItems)
-    .select()
-  
+  const { data, error } = await withTimeout(
+    supabase.from('invoice_line_items').insert(items).select(),
+    TIMEOUT_MS.REQUEST,
+    'createInvoiceLineItems'
+  )
   if (error) throw error
   return data as InvoiceLineItem[]
 }
 
-/**
- * Record invoice payment
- */
 export async function createInvoicePayment(
   payment: Omit<InvoicePayment, 'id' | 'created_at'>
 ): Promise<InvoicePayment> {
-  const supabase = createClient()
-  
-  const { data, error } = await supabase
-    .from('invoice_payments')
-    .insert(payment)
-    .select()
-    .single()
-  
+  const { data, error } = await withTimeout(
+    supabase.from('invoice_payments').insert(payment).select().single(),
+    TIMEOUT_MS.REQUEST,
+    'createInvoicePayment'
+  )
   if (error) throw error
   return data as InvoicePayment
 }
@@ -287,42 +189,38 @@ export async function createInvoicePayment(
 // UPDATE OPERATIONS
 // ============================================================================
 
-/**
- * Update invoice
- */
 export async function updateInvoice(
   id: ID,
   updates: Partial<Invoice>
 ): Promise<Invoice> {
-  const supabase = createClient()
-  
-  const { data, error } = await supabase
-    .from('invoices')
-    .update(updates)
-    .eq('id', id)
-    .select()
-    .single()
-  
+  const { data, error } = await withTimeout(
+    supabase
+      .from('invoices')
+      .update(updates)
+      .eq('invoice_id', id)
+      .select()
+      .single(),
+    TIMEOUT_MS.REQUEST,
+    'updateInvoice'
+  )
   if (error) throw error
   return data as Invoice
 }
 
-/**
- * Update invoice status
- */
 export async function updateInvoiceStatus(
   id: ID,
   status: Invoice['status']
 ): Promise<Invoice> {
-  const supabase = createClient()
-  
-  const { data, error } = await supabase
-    .from('invoices')
-    .update({ status, updated_at: new Date().toISOString() })
-    .eq('id', id)
-    .select()
-    .single()
-  
+  const { data, error } = await withTimeout(
+    supabase
+      .from('invoices')
+      .update({ status, updated_at: new Date().toISOString() })
+      .eq('invoice_id', id)
+      .select()
+      .single(),
+    TIMEOUT_MS.REQUEST,
+    'updateInvoiceStatus'
+  )
   if (error) throw error
   return data as Invoice
 }
@@ -331,30 +229,14 @@ export async function updateInvoiceStatus(
 // DELETE OPERATIONS
 // ============================================================================
 
-/**
- * Delete invoice (soft delete - set status to cancelled)
- */
-export async function deleteInvoice(id: ID): Promise<void> {
-  const supabase = createClient()
-  
-  const { error } = await supabase
-    .from('invoices')
-    .update({ status: 'cancelled', updated_at: new Date().toISOString() })
-    .eq('id', id)
-  
-  if (error) throw error
-}
-
-/**
- * Hard delete invoice line item
- */
-export async function deleteInvoiceLineItem(id: ID): Promise<void> {
-  const supabase = createClient()
-  
-  const { error } = await supabase
-    .from('invoice_line_items')
-    .delete()
-    .eq('id', id)
-  
+export async function softDeleteInvoice(id: ID): Promise<void> {
+  const { error } = await withTimeout(
+    supabase
+      .from('invoices')
+      .update({ status: 'cancelled', updated_at: new Date().toISOString() })
+      .eq('invoice_id', id),
+    TIMEOUT_MS.REQUEST,
+    'softDeleteInvoice'
+  )
   if (error) throw error
 }
