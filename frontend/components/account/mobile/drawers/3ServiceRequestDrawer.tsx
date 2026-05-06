@@ -16,10 +16,9 @@
 // Each section is conditional — if the field is empty/null, the section
 // is hidden. Old SRs without the new columns still render gracefully.
 
-import { useEffect, useState } from 'react';
 import { fmtDate, fmtTime } from '../../../../lib/utils';
 import { useSwipeToClose } from '../../shared/hooks/useSwipeToClose';
-import { supabase } from '../../../../lib/supabase';
+import { useServiceRequestCustomFields } from '../../shared/hooks/useServiceRequestCustomFields';
 import FirstTimeTips from '../ui/FirstTimeTips';
 
 interface ServiceRequestRow {
@@ -54,45 +53,15 @@ interface ServiceRequestDrawerProps {
   onClose: () => void;
 }
 
-interface CustomFieldRow {
-  id:         string;
-  label:      string;
-  value:      string | null;
-  sort_order: number;
-}
-
 export default function ServiceRequestDrawer3({ open, sr, onClose }: ServiceRequestDrawerProps) {
 
   const { elementRef, touchHandlers } = useSwipeToClose({ onClose });
 
   // ── Fetch custom fields when a new SR is displayed ──
-  const [customFields,     setCustomFields]     = useState<CustomFieldRow[]>([]);
-  const [loadingCFs,       setLoadingCFs]       = useState(false);
-
-  useEffect(() => {
-    if (!open || !sr?.service_request_id) {
-      setCustomFields([]);
-      return;
-    }
-    let cancelled = false;
-    setLoadingCFs(true);
-    (async () => {
-      const { data, error } = await supabase
-        .from('service_request_custom_fields')
-        .select('id, label, value, sort_order')
-        .eq('service_request_id', sr.service_request_id)
-        .order('sort_order', { ascending: true });
-      if (cancelled) return;
-      if (error) {
-        console.warn('Custom fields fetch failed (non-blocking):', error);
-        setCustomFields([]);
-      } else {
-        setCustomFields(data ?? []);
-      }
-      setLoadingCFs(false);
-    })();
-    return () => { cancelled = true; };
-  }, [open, sr?.service_request_id]);
+  const { customFields, loading: loadingCFs } = useServiceRequestCustomFields(
+    sr?.service_request_id ?? null,
+    open,
+  );
 
   if (!sr) return null;
 

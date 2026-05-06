@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import type { Session } from '@supabase/supabase-js';
-import { supabase } from '../../../../lib/supabase';
 import { formatMoney } from '../../../../lib/utils';
+import { submitInquiry } from '../../../../lib/inquiryService';
 import { getPhotoUrl } from '../../shared/utils/photoUrl';
 import { useSwipeToClose } from '../../shared/hooks/useSwipeToClose';
 import FirstTimeTips from '../ui/FirstTimeTips';
@@ -61,28 +61,18 @@ export default function ShopItemDrawer3({ open, item, session, onClose, refreshI
     setInquiryError(null);
 
     try {
-      // Direct await — no timeout race. Supabase's own network layer will
-      // surface errors in the error field. A race-timeout was masking real
-      // errors (trigger failures, RLS messages, etc.) behind a generic
-      // "timed out" string.
-      const { data, error } = await supabase
-        .from('account_inquiries')
-        .insert({
-          account_user_id: session.user.id,
-          product_id:      item.product_id,
-          description:     inquiryText.trim(),
-          status:          'pending',
-        })
-        .select('account_inquiry_id')
-        .maybeSingle();
+      const { inquiryId, error } = await submitInquiry({
+        accountUserId: session.user.id,
+        productId:     item.product_id,
+        description:   inquiryText.trim(),
+      });
 
       if (error) {
         console.error('Inquiry insert error:', error);
-        setInquiryError(error.message || 'Could not send inquiry. Please try again.');
+        setInquiryError(error);
         return;
       }
-      if (!data) {
-        // Insert succeeded but no row returned — unusual, but not fatal.
+      if (!inquiryId) {
         console.warn('Inquiry insert returned no row');
       }
 

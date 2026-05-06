@@ -12,8 +12,8 @@
 //   style="..." → style={{ camelCase }}
 
 import { useState, useEffect } from 'react';
-import { supabase } from '../../../../lib/supabase';
 import { formatMoney, fmtDate, fmtTime } from '../../../../lib/utils';
+import { updateWorkOrderReturnAddress } from '../../../../lib/workOrderService';
 import { useSwipeToClose } from '../../shared/hooks/useSwipeToClose';
 import FirstTimeTips from '../ui/FirstTimeTips';
 
@@ -99,20 +99,7 @@ export default function WorkOrderDrawer3({
 
   const saveAddress = async () => {
     if (!tempAddr.trim() || !wo) return;
-    const log = [
-      ...(Array.isArray(wo.edit_history) ? wo.edit_history : []),
-      { action: 'Return address updated by user', by: 'user', at: new Date().toISOString() },
-    ];
-    await supabase
-      .from('work_orders')
-      .update({
-        wo_shipping_address: tempAddr.trim(),
-        wo_client_name:  profile?.name  || null,
-        wo_client_phone: profile?.phone || null,
-        wo_client_email: profile?.email || null,
-        edit_history: log,
-      })
-      .eq('work_order_id', wo.work_order_id);
+    await updateWorkOrderReturnAddress(wo, tempAddr, profile);
     setAddrConfirmed(true);
   };
 
