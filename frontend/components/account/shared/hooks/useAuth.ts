@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
+import type { Session } from '@supabase/supabase-js';
 import { supabase } from '../../../../lib/supabase';
 
 export function useAuth() {
   const router = useRouter();
-  const [session, setSession] = useState<any>(null);
+  const [session, setSession] = useState<Session | null>(null);
   const [loading, setLoading] = useState(true);
 
   const signOut = async () => {
@@ -15,7 +16,7 @@ export function useAuth() {
   useEffect(() => {
     // Session timeout logic (2 hours of inactivity)
     const TIMEOUT_MS = 2 * 60 * 60 * 1000;
-    let timeoutId: any;
+    let timeoutId: ReturnType<typeof setTimeout> | null = null;
 
     const resetTimeout = () => {
       if (timeoutId) clearTimeout(timeoutId);

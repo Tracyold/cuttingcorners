@@ -1,7 +1,18 @@
 import { formatMoney, fmtDate } from '../../lib/utils';
 
+interface InvoiceLineItem {
+  title?: string;
+}
+
+interface InvoiceListItem {
+  invoice_id:   string;
+  paid_at:      string;
+  total_amount: number;
+  line_items:   InvoiceLineItem[] | null;
+}
+
 interface Props {
-  invoices: any[];
+  invoices: InvoiceListItem[];
 }
 
 export default function InvoiceList({ invoices }: Props) {

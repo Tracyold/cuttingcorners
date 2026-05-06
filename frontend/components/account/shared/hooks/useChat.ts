@@ -19,10 +19,33 @@
 //   • sendChat is unchanged in behavior — only touched to coexist with
 //     the new return surface.
 
-import { useState, useRef } from 'react';
+import { useState, useRef, Dispatch, SetStateAction } from 'react';
+import type { Session } from '@supabase/supabase-js';
 import { supabase } from '../../../../lib/supabase';
 
 // ── Types ────────────────────────────────────────────────────────────────────
+
+type ActorType = 'ADMIN' | 'ACCOUNT' | 'SYSTEM';
+
+// chat_messages row (full select('*'))
+interface ChatMessage {
+  chat_message_id: string;
+  created_at:      string;
+  chat_thread_id:  string;
+  actor:           ActorType;
+  actor_id:        string;
+  body:            string | null;
+  attachment_url:  string | null;
+  attachment_type: string | null;
+}
+
+// chat_threads row (subset used by this hook)
+interface ChatThread {
+  chat_thread_id:     string;
+  account_user_id:    string;
+  account_has_unread: boolean;
+  admin_has_unread:   boolean;
+}
 
 // A client-side placeholder for an upload currently in flight. The chat
 // renderer merges these with the real messages list so the user sees
@@ -57,10 +80,10 @@ function extForMimeType(mime: string): string {
 // ── Hook ─────────────────────────────────────────────────────────────────────
 
 export function useChat(
-  session: any,
-  chatThread: any,
-  setMessages: (fn: any) => void,
-  setChatThread?: (fn: any) => void,
+  session: Session | null,
+  chatThread: ChatThread | null,
+  setMessages: Dispatch<SetStateAction<ChatMessage[]>>,
+  setChatThread?: Dispatch<SetStateAction<ChatThread | null>>,
 ) {
   const [chatInput,      setChatInput]      = useState('');
   const [chatSending,    setChatSending]    = useState(false);
@@ -78,7 +101,7 @@ export function useChat(
     setChatInput('');
     setChatSending(true);
 
-    const optimisticMsg = {
+    const optimisticMsg: ChatMessage = {
       chat_message_id: 'opt-' + Date.now(),
       chat_thread_id:  chatThread.chat_thread_id,
       actor:           'ACCOUNT',
@@ -88,7 +111,7 @@ export function useChat(
       attachment_type: null,
       created_at:      new Date().toISOString(),
     };
-    setMessages((prev: any[]) => [...prev, optimisticMsg]);
+    setMessages((prev) => [...prev, optimisticMsg]);
 
     const { error } = await supabase.from('chat_messages').insert({
       chat_thread_id:  chatThread.chat_thread_id,
@@ -99,7 +122,7 @@ export function useChat(
       attachment_type: null,
     });
     if (error) {
-      setMessages((prev: any[]) => prev.filter(m => m.chat_message_id !== optimisticMsg.chat_message_id));
+      setMessages((prev) => prev.filter(m => m.chat_message_id !== optimisticMsg.chat_message_id));
       setChatInput(msgText);
       setChatSending(false);
       setChatError(error.message || 'Could not send message. Please try again.');
@@ -118,7 +141,7 @@ export function useChat(
     setChatOpen(true);
     if (chatThread) {
       // Optimistically clear the unread dot in local state immediately
-      setChatThread?.((prev: any) => ({ ...prev, account_has_unread: false }));
+      setChatThread?.((prev) => (prev ? { ...prev, account_has_unread: false } : prev));
       await supabase.from('chat_threads')
         .update({ account_has_unread: false })
         .eq('chat_thread_id', chatThread.chat_thread_id);
@@ -177,7 +200,7 @@ export function useChat(
       ]);
 
       const result = await uploadRace;
-      const upErr = (result as any)?.error;
+      const upErr = (result as { error?: { message?: string } | null }).error;
       if (upErr) {
         settled = true;
         console.error(`[chat upload ${tempId}] upload error`, upErr);
@@ -228,13 +251,14 @@ export function useChat(
         return prev.filter(p => p.tempId !== tempId);
       });
       console.log(`[chat upload ${tempId}] success`);
-    } catch (err: any) {
+    } catch (err) {
       settled = true;
+      const message = err instanceof Error ? err.message : 'Upload failed';
       console.error(`[chat upload ${tempId}] exception`, err);
       setPendingUploads(prev => prev.map(p => p.tempId === tempId
-        ? { ...p, uploading: false, error: err?.message ?? 'Upload failed' }
+        ? { ...p, uploading: false, error: message }
         : p));
-      setChatError(err?.message || 'Photo upload failed. Please try again.');
+      setChatError(message || 'Photo upload failed. Please try again.');
     } finally {
       // Belt-and-suspenders: whatever happens, make sure the button
       // can be tapped again.

@@ -1,15 +1,48 @@
-import { useState } from 'react';
+import { useState, Dispatch, SetStateAction } from 'react';
+import type { Session } from '@supabase/supabase-js';
 import { supabase } from '../../../../lib/supabase';
 
-export function useServiceRequest(session: any, setServiceRequests: (fn: any) => void) {
+// service_requests row (full select('*'))
+interface ServiceRequest {
+  service_request_id: string;
+  created_at:         string;
+  account_user_id:    string;
+  description:        string;
+  photo_url:          string | null;
+  is_read:            boolean;
+  read_at:            string | null;
+  updated_at:         string;
+  subject:            string | null;
+  service_type:       string | null;
+  wizard_result_id:   string | null;
+  is_archived:        boolean;
+  gem_type:           string | null;
+  gem_color:          string | null;
+  weight_ct:          number | null;
+  dim_length_mm:      number | null;
+  photo_urls:         string[] | null;
+}
+
+// wizard_results (subset used by handleWizardServiceRequest)
+interface WizardResultPrefill {
+  id?:                  string;
+  recommendation:       string;
+  stone_variety:        string | null;
+  stone_species:        string | null;
+  feasibility_percent:  number;
+  weight_loss:          string;
+}
+
+export function useServiceRequest(session: Session | null, setServiceRequests: Dispatch<SetStateAction<ServiceRequest[]>>) {
   const [showSRForm, setShowSRForm] = useState(false);
   const [srType, setSrType] = useState('');
   const [srDesc, setSrDesc] = useState('');
   const [srSubmitting, setSrSubmitting] = useState(false);
   const [srGateMsg, setSrGateMsg] = useState('');
-  const [wizardPrefill, setWizardPrefill] = useState<any>(null);
+  const [wizardPrefill, setWizardPrefill] = useState<WizardResultPrefill | null>(null);
 
   const openSRForm = async () => {
+    if (!session) return;
     const { data: prefs } = await supabase.from('user_sms_preferences').select('opt_in_work_orders').eq('user_id', session.user.id).single();
     const { data: p } = await supabase.from('account_users').select('phone').eq('account_user_id', session.user.id).single();
     if (!p?.phone || !prefs?.opt_in_work_orders) {
@@ -21,6 +54,7 @@ export function useServiceRequest(session: any, setServiceRequests: (fn: any) =>
   };
 
   const submitSR = async () => {
+    if (!session) return;
     if (!srType || !srDesc.trim()) return;
     setSrSubmitting(true);
     await supabase.from('service_requests').insert({
@@ -39,11 +73,11 @@ export function useServiceRequest(session: any, setServiceRequests: (fn: any) =>
     setWizardPrefill(null);
     const { data: sr } = await supabase.from('service_requests').select('*')
       .eq('account_user_id', session.user.id).order('created_at', { ascending: false });
-    setServiceRequests(sr || []);
+    setServiceRequests((sr ?? []) as ServiceRequest[]);
   };
 
   const handleWizardServiceRequest = (
-    result: any,
+    result: WizardResultPrefill,
     setActiveTab: (tab: string) => void,
     setInquiryTab: (tab: 'inquiries' | 'service') => void
   ) => {

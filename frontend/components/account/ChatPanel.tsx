@@ -2,8 +2,19 @@ import { useRef, useEffect, useState } from 'react';
 import { supabase } from '../../lib/supabase';
 import { fmtTime } from '../../lib/utils';
 
+type ActorType = 'ADMIN' | 'ACCOUNT' | 'SYSTEM';
+
+interface ChatPanelMessage {
+  chat_message_id: string;
+  created_at:      string;
+  actor:           ActorType;
+  body:            string | null;
+  attachment_url:  string | null;
+  attachment_type: string | null;
+}
+
 interface Props {
-  messages: any[];
+  messages: ChatPanelMessage[];
   chatInput: string;
   chatSending: boolean;
   chatUploading: boolean;
@@ -47,7 +58,7 @@ function DateDivider({ label }: { label: string }) {
   );
 }
 
-function MessageBubble({ m }: { m: any }) {
+function MessageBubble({ m }: { m: ChatPanelMessage }) {
   const isMe = m.actor === 'ACCOUNT';
   return (
     <div style={{

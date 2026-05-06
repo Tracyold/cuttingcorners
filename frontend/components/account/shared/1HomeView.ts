@@ -26,17 +26,33 @@ export const SMS_FOOTER_TEXT =
 
 // ── Types ──────────────────────────────────────────────────────────────────
 
+export interface HomeProfile {
+  name:             string;
+  email:            string;
+  phone:            string | null;
+  shipping_address: string | null;
+  business_name:    string | null;
+}
+
+export interface HomeSmsPrefs {
+  opt_in_work_orders:  boolean | null;
+  opt_in_tracking:     boolean | null;
+  opt_in_chat:         boolean | null;
+  opt_in_purchases:    boolean | null;
+  opt_in_new_listings: boolean | null;
+}
+
 export interface HomeViewProps {
-  editProfile:       any;
-  profile:           any;
+  editProfile:       HomeProfile | null;
+  profile:           HomeProfile | null;
   profileSaving:     boolean;
   profileFlash:      boolean;
   hasProfileChanges: boolean;
   invoiceCount:      number;
   invoiceTotal:      number;
-  smsPrefs:          any;
+  smsPrefs:          HomeSmsPrefs | null;
   hasOpenWorkOrder?: boolean;
-  setEditProfile:    (v: any) => void;
+  setEditProfile:    (v: HomeProfile) => void;
   saveProfile:       () => void;
   toggleSms:         (col: string, val: boolean) => void;
 }
@@ -60,7 +76,11 @@ export function useHomeView({
 }: Pick<HomeViewProps, 'smsPrefs' | 'invoiceTotal' | 'toggleSms'>): UseHomeView {
   const [pendingToggle, setPendingToggle] = useState<SmsToggle | null>(null);
 
-  const isSmsOn = (col: string): boolean => !!smsPrefs?.[col];
+  const isSmsOn = (col: string): boolean => {
+    if (!smsPrefs) return false;
+    const value = (smsPrefs as Record<string, boolean | null>)[col];
+    return !!value;
+  };
 
   const handleSmsClick = (toggle: SmsToggle) => {
     if (isSmsOn(toggle.col)) {

@@ -1,5 +1,18 @@
 import { fmtDate } from '../../lib/utils';
 
+interface InquiryListItem {
+  account_inquiry_id: string;
+  description:        string;
+  created_at:         string;
+}
+
+interface ServiceRequestListItem {
+  service_request_id: string;
+  service_type:       string | null;
+  description:        string;
+  created_at:         string;
+}
+
 const SERVICE_TYPES = [
   'Custom Rough Cut',
   'Re-Cut & Re-Polish — Starting Price: $249',
@@ -11,8 +24,8 @@ const SERVICE_TYPES = [
 ];
 
 interface Props {
-  inquiries: any[];
-  serviceRequests: any[];
+  inquiries: InquiryListItem[];
+  serviceRequests: ServiceRequestListItem[];
   inquiryTab: 'inquiries' | 'service';
   setInquiryTab: (tab: 'inquiries' | 'service') => void;
   showSRForm: boolean;

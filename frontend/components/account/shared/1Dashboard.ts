@@ -2,15 +2,47 @@ import { useMemo } from 'react'
 
 // ── Types ──────────────────────────────────────────────────────────────────
 
+export interface DashboardProfile {
+  name: string
+}
+
+export interface DashboardWorkOrder {
+  status: 'CREATED' | 'ACCEPTED' | 'COMPLETE' | 'CANCELLED' | 'CONFIRMED'
+}
+
+export interface DashboardMessage {
+  actor: 'ADMIN' | 'ACCOUNT' | 'SYSTEM'
+}
+
+export interface DashboardChatThread {
+  account_has_unread: boolean
+}
+
+export interface DashboardInvoice {
+  paid_at: string | null
+}
+
+export interface DashboardSmsPrefs {
+  opt_in_work_orders:  boolean | null
+  opt_in_tracking:     boolean | null
+  opt_in_chat:         boolean | null
+  opt_in_purchases:    boolean | null
+  opt_in_new_listings: boolean | null
+}
+
+export interface DashboardWizardResult {
+  feasibility_percent: number
+}
+
 export interface DashboardInput {
-  profile:             any
-  workOrders:          any[]
-  messages:            any[]
-  chatThread:          any
-  invoices:            any[]
+  profile:             DashboardProfile | null
+  workOrders:          DashboardWorkOrder[]
+  messages:            DashboardMessage[]
+  chatThread:          DashboardChatThread | null
+  invoices:            DashboardInvoice[]
   invoiceTotal:        number
-  smsPrefs:            any
-  latestWizardResult?: any
+  smsPrefs:            DashboardSmsPrefs | null
+  latestWizardResult?: DashboardWizardResult | null
 }
 
 export interface DashboardState {
@@ -25,8 +57,8 @@ export interface DashboardState {
   updateCount:   number
 
   // Derived data
-  recentWO:      any | null
-  recentInv:     any | null
+  recentWO:      DashboardWorkOrder | null
+  recentInv:     DashboardInvoice | null
   wizPct:        number | null
   firstName:     string
   greeting:      string
@@ -82,7 +114,7 @@ export function getGreeting(): string {
   return 'Good evening'
 }
 
-export function getFirstName(profile: any): string {
+export function getFirstName(profile: DashboardProfile | null): string {
   return profile?.name?.split(' ')[0] || 'there'
 }
 

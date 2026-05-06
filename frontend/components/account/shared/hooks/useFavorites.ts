@@ -8,9 +8,14 @@
 // the future), favorites fall back to an in-memory set that does not persist.
 
 import { useCallback, useEffect, useRef, useState } from 'react';
+import type { Session, PostgrestError } from '@supabase/supabase-js';
 import { supabase } from '../../../../lib/supabase';
 
-export function useFavorites(session: any) {
+interface UserFavoriteRow {
+  product_id: string;
+}
+
+export function useFavorites(session: Session | null) {
   const [favorites, setFavorites] = useState<Set<string>>(() => new Set());
   const [loading,   setLoading]   = useState(true);
 
@@ -46,7 +51,8 @@ export function useFavorites(session: any) {
         console.error('useFavorites load error:', error);
         setFavorites(new Set());
       } else {
-        setFavorites(new Set((data || []).map(r => r.product_id as string)));
+        const rows: UserFavoriteRow[] = data ?? [];
+        setFavorites(new Set(rows.map(r => r.product_id)));
       }
       setLoading(false);
     })();
@@ -92,7 +98,7 @@ export function useFavorites(session: any) {
           .from('user_favorites')
           .insert({ user_id: uid, product_id: productId });
         // Duplicate PK (23505) means the row already exists on the server — treat as success.
-        if (error && (error as any).code !== '23505') throw error;
+        if (error && (error as PostgrestError).code !== '23505') throw error;
       }
     } catch (err) {
       console.error('useFavorites toggle failed, reverting:', err);

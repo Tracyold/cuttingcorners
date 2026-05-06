@@ -1,13 +1,42 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Dispatch, SetStateAction } from 'react';
+import type { Session } from '@supabase/supabase-js';
 import { supabase } from '../../../../lib/supabase';
 
+// account_users (subset accessed by this hook)
+interface AccountProfile {
+  account_user_id:        string;
+  name:                   string;
+  email:                  string;
+  phone:                  string | null;
+  shipping_address:       string | null;
+  business_name:          string | null;
+}
+
+// user_sms_preferences (subset accessed by this hook)
+interface SmsPrefs {
+  user_id:               string | null;
+  phone:                 string;
+  opt_in_work_orders:    boolean | null;
+  opt_in_tracking:       boolean | null;
+  opt_in_chat:           boolean | null;
+  opt_in_purchases:      boolean | null;
+  opt_in_new_listings:   boolean | null;
+}
+
+type EditableProfileFields = Pick<
+  AccountProfile,
+  'name' | 'email' | 'phone' | 'shipping_address' | 'business_name'
+>;
+
+type ProfileUpdate = Partial<EditableProfileFields>;
+
 export function useProfile(
-  session: any,
-  profile: any,
-  setProfile: (p: any) => void,
-  setSmsPrefs: (fn: any) => void
+  session: Session | null,
+  profile: AccountProfile | null,
+  setProfile: (p: AccountProfile) => void,
+  setSmsPrefs: Dispatch<SetStateAction<SmsPrefs | null>>
 ) {
-  const [editProfile, setEditProfile] = useState<any>(null);
+  const [editProfile, setEditProfile] = useState<AccountProfile | null>(null);
   const [profileSaving, setProfileSaving] = useState(false);
   const [profileFlash, setProfileFlash] = useState(false);
 
@@ -19,9 +48,9 @@ export function useProfile(
   }, [profile]);
 
   const saveProfile = async () => {
-    if (!editProfile || !session) return;
+    if (!editProfile || !profile || !session) return;
     setProfileSaving(true);
-    const updates: any = {};
+    const updates: ProfileUpdate = {};
     if (editProfile.name !== profile.name) updates.name = editProfile.name;
     if (editProfile.email !== profile.email) updates.email = editProfile.email;
     if (editProfile.phone !== profile.phone) updates.phone = editProfile.phone;
@@ -49,7 +78,7 @@ export function useProfile(
       { user_id: session.user.id, phone: profile?.phone || '', [col]: val },
       { onConflict: 'user_id' }
     );
-    setSmsPrefs((prev: any) => ({ ...prev, [col]: val }));
+    setSmsPrefs((prev) => (prev ? { ...prev, [col]: val } : prev));
   };
 
   return {

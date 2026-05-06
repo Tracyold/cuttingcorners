@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { formatMoney } from '../../lib/utils';
 import SmsConsentModal from './SmsConsentModal';
 
 const smToggles = [
@@ -10,17 +9,33 @@ const smToggles = [
   { label: 'New Gem Listings', col: 'opt_in_new_listings', description: 'Notify me when new gems are listed' },
 ];
 
+interface HomeTabProfile {
+  name:             string;
+  email:            string;
+  phone:            string | null;
+  shipping_address: string | null;
+  business_name:    string | null;
+}
+
+interface HomeTabSmsPrefs {
+  opt_in_work_orders:  boolean | null;
+  opt_in_tracking:     boolean | null;
+  opt_in_chat:         boolean | null;
+  opt_in_purchases:    boolean | null;
+  opt_in_new_listings: boolean | null;
+}
+
 interface Props {
-  editProfile: any;
-  profile: any;
+  editProfile: HomeTabProfile | null;
+  profile: HomeTabProfile | null;
   profileSaving: boolean;
   profileFlash: boolean;
   hasProfileChanges: boolean;
   invoiceCount: number;
   invoiceTotal: number;
-  smsPrefs: any;
+  smsPrefs: HomeTabSmsPrefs | null;
   hasOpenWorkOrder?: boolean;
-  setEditProfile: (v: any) => void;
+  setEditProfile: (v: HomeTabProfile) => void;
   saveProfile: () => void;
   toggleSms: (col: string, val: boolean) => void;
 }
@@ -86,13 +101,13 @@ export default function HomeTab({
 
       {editProfile && (
         <div style={{ display: 'grid', gap: '12px', maxWidth: '500px' }}>
-          {[
+          {([
             { label: 'Name', key: 'name', placeholder: 'Full name' },
             { label: 'Email', key: 'email', placeholder: 'Email' },
             { label: 'Phone', key: 'phone', placeholder: 'Phone' },
             { label: 'Shipping Address', key: 'shipping_address', placeholder: 'Address' },
             { label: 'Business Name', key: 'business_name', placeholder: 'Add business name' },
-          ].map(f => (
+          ] as const).map(f => (
             <div key={f.key}>
               <label className="acc-label">{f.label}</label>
               <input
@@ -103,7 +118,7 @@ export default function HomeTab({
               />
             </div>
           ))}
-          {hasProfileChanges && (
+          {hasProfileChanges && profile && (
             <div style={{ display: 'flex', gap: '8px', marginTop: '8px' }}>
               <button className="acc-btn-gold" onClick={saveProfile} disabled={profileSaving}>
                 {profileSaving ? 'Saving...' : 'Save'}
@@ -143,7 +158,7 @@ export default function HomeTab({
           gap: '10px',
         }}>
           {smToggles.map(t => {
-            const isOn = !!smsPrefs?.[t.col];
+            const isOn = !!smsPrefs?.[t.col as keyof HomeTabSmsPrefs];
             return (
               <div
                 key={t.col}

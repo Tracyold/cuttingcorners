@@ -1,5 +1,16 @@
 import { formatMoney, fmtDate } from '../../lib/utils';
 
+type WorkOrderStatus = 'CREATED' | 'ACCEPTED' | 'COMPLETE' | 'CANCELLED' | 'CONFIRMED';
+
+interface WorkOrderListItem {
+  work_order_id:   string;
+  title:           string;
+  status:          WorkOrderStatus;
+  service_type:    string | null;
+  estimated_price: number | null;
+  created_at:      string;
+}
+
 const STATUS_COLORS: Record<string, { bg: string; color: string }> = {
   CREATED: { bg: 'rgba(var(--gold-rgb), 0.12)', color: 'var(--gold)' },
   ACCEPTED: { bg: 'rgba(45,212,191,0.12)', color: 'var(--accent)' },
@@ -9,9 +20,9 @@ const STATUS_COLORS: Record<string, { bg: string; color: string }> = {
 };
 
 interface Props {
-  workOrders: any[];
-  onSelect: (wo: any) => void;
-  onAccept: (wo: any) => void;
+  workOrders: WorkOrderListItem[];
+  onSelect: (wo: WorkOrderListItem) => void;
+  onAccept: (wo: WorkOrderListItem) => void;
 }
 
 export default function WorkOrderList({ workOrders, onSelect, onAccept }: Props) {

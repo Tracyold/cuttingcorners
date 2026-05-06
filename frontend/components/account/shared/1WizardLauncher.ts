@@ -1,4 +1,5 @@
 import { useState, useEffect, useMemo } from 'react'
+import type { Session } from '@supabase/supabase-js'
 import { supabase } from '../../../lib/supabase'
 import type { StepKind, StoneInfo } from '../../feasibility-test/logic/feasibility-types'
 import { positiveItems, limitingItems, structuralItems, correctableRows } from '../../feasibility-test/data/questions'
@@ -9,7 +10,7 @@ import { autoSelectAll } from '../../feasibility-test/logic/autoSelect'
 // ── Types ────────────────────────────────────────────────────────────
 
 export interface WizardLauncherProps {
-  session: any
+  session: Session | null
   onClose?: () => void
 }
 
@@ -85,7 +86,7 @@ export interface UseWizardLauncher {
   handleRequestQuote: () => void
 }
 
-export function useWizardLauncher(session: any, onClose?: () => void): UseWizardLauncher {
+export function useWizardLauncher(session: Session | null, onClose?: () => void): UseWizardLauncher {
   const [status, setStatus]                               = useState<LauncherStatus>('loading')
   const STEPS                                             = useMemo(() => buildSteps(), [])
   const [stepIndex, setStepIndex]                         = useState(0)

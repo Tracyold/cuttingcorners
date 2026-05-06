@@ -1,5 +1,49 @@
+import { Dispatch, SetStateAction } from 'react';
 import { supabase } from '../../lib/supabase';
 import { formatMoney, fmtDate, fmtTime } from '../../lib/utils';
+
+type WorkOrderStatus = 'CREATED' | 'ACCEPTED' | 'COMPLETE' | 'CANCELLED' | 'CONFIRMED';
+
+interface EditHistoryEntry {
+  action: string;
+  by:     string;
+  at:     string;
+}
+
+interface WorkOrderDetail {
+  work_order_id:        string;
+  title:                string;
+  description:          string;
+  service_type:         string | null;
+  gem_type:             string | null;
+  estimated_turnaround: string | null;
+  estimated_price:      number | null;
+  notes:                string | null;
+  status:               WorkOrderStatus;
+  accepted_at:          string | null;
+  confirmed_at:         string | null;
+  completed_at:         string | null;
+  created_at:           string;
+  wo_shipping_address:  string | null;
+  stripe_payment_link:  string | null;
+  paid_outside_site:    boolean | null;
+  edit_history:         EditHistoryEntry[];
+}
+
+interface AdminInfoView {
+  business_name: string | null;
+  full_name:     string | null;
+  address:       string | null;
+  phone:         string | null;
+  contact_email: string | null;
+}
+
+interface ProfileView {
+  name:             string;
+  email:            string;
+  phone:            string | null;
+  shipping_address: string | null;
+}
 
 const STATUS_COLORS: Record<string, { bg: string; color: string }> = {
   CREATED: { bg: 'rgba(var(--gold-rgb), 0.12)', color: 'var(--gold)' },
@@ -10,18 +54,18 @@ const STATUS_COLORS: Record<string, { bg: string; color: string }> = {
 };
 
 interface Props {
-  selectedWO: any;
-  adminInfo: any;
-  profile: any;
+  selectedWO: WorkOrderDetail | null;
+  adminInfo: AdminInfoView | null;
+  profile: ProfileView | null;
   showAddressEdit: boolean;
   tempAddress: string;
   addressConfirmed: boolean;
-  setSelectedWO: (fn: any) => void;
+  setSelectedWO: Dispatch<SetStateAction<WorkOrderDetail | null>>;
   setShowAddressEdit: (v: boolean) => void;
   setTempAddress: (v: string) => void;
   setAddressConfirmed: (v: boolean) => void;
-  setWorkOrders: (fn: any) => void;
-  acceptWO: (wo: any) => void;
+  setWorkOrders: Dispatch<SetStateAction<WorkOrderDetail[]>>;
+  acceptWO: (wo: WorkOrderDetail) => void;
 }
 
 export default function WorkOrderDetailModal({
@@ -105,10 +149,10 @@ export default function WorkOrderDetailModal({
                 <div style={{ display: 'flex', gap: '8px' }}>
                   <button onClick={async () => {
                     if (!tempAddress.trim()) return;
-                    const log = [...(Array.isArray(selectedWO.edit_history) ? selectedWO.edit_history : []), { action: 'Return address updated by user', by: 'user', at: new Date().toISOString() }];
+                    const log: EditHistoryEntry[] = [...(Array.isArray(selectedWO.edit_history) ? selectedWO.edit_history : []), { action: 'Return address updated by user', by: 'user', at: new Date().toISOString() }];
                     await supabase.from('work_orders').update({ wo_shipping_address: tempAddress.trim(), edit_history: log }).eq('work_order_id', selectedWO.work_order_id);
-                    setSelectedWO((prev: any) => ({ ...prev, wo_shipping_address: tempAddress.trim(), edit_history: log }));
-                    setWorkOrders((prev: any[]) => prev.map(w => w.work_order_id === selectedWO.work_order_id ? { ...w, wo_shipping_address: tempAddress.trim(), edit_history: log } : w));
+                    setSelectedWO((prev) => prev ? ({ ...prev, wo_shipping_address: tempAddress.trim(), edit_history: log }) : prev);
+                    setWorkOrders((prev) => prev.map(w => w.work_order_id === selectedWO.work_order_id ? { ...w, wo_shipping_address: tempAddress.trim(), edit_history: log } : w));
                     setAddressConfirmed(true);
                   }}
                     style={{ fontFamily: 'var(--font-ui)', fontSize: '0.625rem', fontWeight: 600, letterSpacing: '0.15em', textTransform: 'uppercase', background: 'var(--gold)', color: 'var(--bg)', border: 'none', padding: '10px 16px', cursor: 'pointer' }}>
@@ -164,7 +208,7 @@ export default function WorkOrderDetailModal({
         )}
 
         {/* Payment — show stripe link if completed */}
-        {selectedWO.status === 'COMPLETED' && selectedWO.stripe_payment_link && (
+        {selectedWO.status === 'COMPLETE' && selectedWO.stripe_payment_link && (
           <div style={{ marginTop: '16px', padding: '16px', background: 'var(--gold)', border: '1px solid var(--gold)' }}>
             <div style={{ fontFamily: 'var(--font-ui)', fontSize: '0.625rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--text-muted)', marginBottom: '10px' }}>Payment</div>
             <a href={selectedWO.stripe_payment_link} target="_blank" rel="noopener noreferrer"
@@ -173,7 +217,7 @@ export default function WorkOrderDetailModal({
             </a>
           </div>
         )}
-        {selectedWO.status === 'COMPLETED' && selectedWO.paid_outside_site && (
+        {selectedWO.status === 'COMPLETE' && selectedWO.paid_outside_site && (
           <div style={{ marginTop: '16px', padding: '14px', background: 'rgba(var(--gold-rgb), 0.06)', border: '1px solid var(--border)' }}>
             <span style={{ fontFamily: 'var(--font-body)', fontSize: '0.8125rem', color: 'var(--accent)' }}>✓ Payment received — thank you!</span>
           </div>
@@ -202,7 +246,7 @@ export default function WorkOrderDetailModal({
         {selectedWO.edit_history && selectedWO.edit_history.length > 0 && (
           <div style={{ marginTop: '28px', borderTop: '1px solid var(--border)', paddingTop: '16px' }}>
             <div style={{ fontFamily: 'var(--font-ui)', fontSize: '0.625rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--text-muted)', marginBottom: '10px' }}>Activity Log</div>
-            {[...selectedWO.edit_history].reverse().map((entry: any, i: number) => (
+            {[...selectedWO.edit_history].reverse().map((entry: EditHistoryEntry, i: number) => (
               <div key={i} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', padding: '8px 0', borderBottom: '1px solid var(--border)', gap: '12px' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
                   <span style={{ fontFamily: 'var(--font-ui)', fontSize: '0.625rem', fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase', padding: '2px 6px', background: entry.by === 'admin' ? 'var(--gold)' : 'rgba(45,212,191,0.1)', color: entry.by === 'admin' ? 'var(--gold)' : 'rgba(45,212,191,0.9)' }}>{entry.by}</span>
