@@ -25,12 +25,59 @@ const STATUS_CLASS: Record<string, string> = {
   CANCELLED: 'wo-s-cancelled',
 };
 
+interface EditHistoryEntry {
+  action: string;
+  by:     string;
+  at:     string;
+}
+
+interface WorkOrderRow {
+  work_order_id:        string;
+  status:               'CREATED' | 'ACCEPTED' | 'COMPLETE' | 'CANCELLED' | 'CONFIRMED';
+  service_type:         string | null;
+  gem_type:             string | null;
+  estimated_price:      number | null;
+  estimated_turnaround: string | null;
+  description:          string;
+  notes:                string | null;
+  created_at:           string;
+  accepted_at:          string | null;
+  confirmed_at:         string | null;
+  completed_at:         string | null;
+  edit_history:         EditHistoryEntry[];
+  wo_shipping_address:  string | null;
+  wo_admin_name:        string | null;
+  wo_admin_address:     string | null;
+  wo_admin_email:       string | null;
+  wo_admin_phone:       string | null;
+  wo_client_name:       string | null;
+  wo_client_email:      string | null;
+  wo_client_phone:      string | null;
+  stripe_payment_link:  string | null;
+  paid_outside_site:    boolean | null;
+}
+
+interface WorkOrderAdminInfo {
+  business_name: string | null;
+  full_name:     string | null;
+  address:       string | null;
+  phone:         string | null;
+  contact_email: string | null;
+}
+
+interface WorkOrderProfile {
+  name:             string | null;
+  email:            string | null;
+  phone:            string | null;
+  shipping_address: string | null;
+}
+
 interface WorkOrderDrawerProps {
   open:       boolean;
-  wo:         any;
-  adminInfo:  any;
-  profile:    any;
-  onAccept:   (wo: any) => void;
+  wo:         WorkOrderRow | null;
+  adminInfo:  WorkOrderAdminInfo | null;
+  profile:    WorkOrderProfile | null;
+  onAccept:   (wo: WorkOrderRow) => void;
   onClose:    () => void;
 }
 
@@ -318,8 +365,8 @@ export default function WorkOrderDrawer3({
                 </button>
               )}
 
-              {/* Stripe payment link -- only on COMPLETED status */}
-              {wo.status === 'COMPLETED' && wo.stripe_payment_link && (
+              {/* Stripe payment link -- only on COMPLETE status */}
+              {wo.status === 'COMPLETE' && wo.stripe_payment_link && (
                 <a
                   href={wo.stripe_payment_link}
                   target="_blank"
@@ -336,7 +383,7 @@ export default function WorkOrderDrawer3({
               )}
 
               {/* Paid outside site notice */}
-              {wo.status === 'COMPLETED' && wo.paid_outside_site && (
+              {wo.status === 'COMPLETE' && wo.paid_outside_site && (
                 <div style={{ padding: 14, background: 'rgba(207,221,78,0.06)', border: '0.5px solid var(--bdr2-mob)', marginBottom: 16 }}>
                   <span style={{ fontFamily: 'var(--font-ui-mob)', fontSize: 'clamp(0.9375rem, 4vw, 1.0625rem)', color: 'var(--accent)' }}>
                     ✓ Payment received -- thank you!
@@ -351,7 +398,7 @@ export default function WorkOrderDrawer3({
                   <div style={{ fontFamily: 'var(--font-mono-mob)', fontSize: 'clamp(0.75rem, 3.2vw, 0.875rem)', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--text-mob-muted)', marginBottom: 10 }}>
                     Activity Log
                   </div>
-                  {[...wo.edit_history].reverse().map((entry: any, i: number) => (
+                  {[...wo.edit_history].reverse().map((entry: EditHistoryEntry, i: number) => (
                     // wo-log-entry class + admin/user variant class for dot color
                     <div key={i} className={`wo-log-entry ${entry.by === 'admin' ? 'admin' : 'user'}`}>
                       <div className="wo-log-stamp">

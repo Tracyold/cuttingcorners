@@ -28,7 +28,15 @@ export default function AccountPage() {
   const data = useAccountData(session);
 
   // ── Business logic hooks ──
-  const profileHook = useProfile(session, data.profile, data.setProfile, data.setSmsPrefs);
+  // useProfile and useAccountData each declare their own AccountProfile shape
+  // (subset vs. full account_users row). Bridge with a setter adapter so the
+  // narrow shape useProfile passes back is merged into the full row state.
+  const profileHook = useProfile(
+    session,
+    data.profile,
+    (p) => data.setProfile(prev => (prev ? { ...prev, ...p } : prev)),
+    data.setSmsPrefs,
+  );
   const chatHook    = useChat(session, data.chatThread, data.setMessages, data.setChatThread);
   const woHook      = useWorkOrders(session, data.setWorkOrders);
   const srHook      = useServiceRequest(session, data.setServiceRequests);

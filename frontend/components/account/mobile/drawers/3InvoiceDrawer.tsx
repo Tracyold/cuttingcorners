@@ -15,11 +15,35 @@ import { formatMoney, fmtDate, fmtTime } from '../../../../lib/utils';
 import { useSwipeToClose } from '../../shared/hooks/useSwipeToClose';
 import FirstTimeTips from '../ui/FirstTimeTips';
 
+interface LineItem {
+  title:    string | null;
+  quantity: number | null;
+  price:    number | null;
+}
+
+interface InvoiceRow {
+  invoice_id:      string;
+  paid_at:         string | null;
+  line_items:      LineItem[] | null;
+  total_amount:    number;
+  invoice_number?: string | null;
+}
+
+interface InvoiceProfile {
+  name:             string | null;
+  email:            string | null;
+  shipping_address: string | null;
+}
+
+interface AdminInfo {
+  contact_email: string | null;
+}
+
 interface InvoiceDrawerProps {
   open:      boolean;
-  invoice:   any;
-  profile:   any;
-  adminInfo: any;
+  invoice:   InvoiceRow;
+  profile:   InvoiceProfile | null;
+  adminInfo: AdminInfo | null;
   onClose:   () => void;
 }
 
@@ -95,7 +119,7 @@ export default function InvoiceDrawer3({
                 </tr>
               </thead>
               <tbody>
-                {invoice.line_items?.map((li: any, i: number) => (
+                {invoice.line_items?.map((li: LineItem, i: number) => (
                   <tr key={i}>
                     <td>{li.title || 'Product'}</td>
                     <td>{li.quantity || 1}</td>

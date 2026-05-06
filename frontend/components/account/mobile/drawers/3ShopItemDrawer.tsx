@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import type { Session } from '@supabase/supabase-js';
 import { supabase } from '../../../../lib/supabase';
 import { formatMoney } from '../../../../lib/utils';
 import { getPhotoUrl } from '../../shared/utils/photoUrl';
@@ -24,7 +25,7 @@ interface ShopProduct {
 interface ShopItemDrawerProps {
   open:    boolean;
   item:    ShopProduct | null;
-  session: any;
+  session: Session | null;
   onClose: () => void;
   // Called after a successful inquiry insert so the inquiries panel shows
   // the new row immediately even when realtime events lag or are missing.
@@ -95,9 +96,9 @@ export default function ShopItemDrawer3({ open, item, session, onClose, refreshI
         try { await refreshInquiries(); }
         catch (e) { console.warn('refreshInquiries failed', e); }
       }
-    } catch (err: any) {
+    } catch (err) {
       console.error('Inquiry exception:', err);
-      setInquiryError(err?.message || 'An unexpected error occurred.');
+      setInquiryError((err as Error)?.message || 'An unexpected error occurred.');
     } finally {
       setInquirySending(false);
     }

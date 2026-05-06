@@ -78,7 +78,7 @@ export function useHomeView({
 
   const isSmsOn = (col: string): boolean => {
     if (!smsPrefs) return false;
-    const value = (smsPrefs as Record<string, boolean | null>)[col];
+    const value = (smsPrefs as unknown as Record<string, boolean | null>)[col];
     return !!value;
   };
 

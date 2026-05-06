@@ -97,7 +97,7 @@ export default function WizardResultDrawer3({
   const limiting:   string[] = Array.isArray(result.limiting_selections)   ? result.limiting_selections   : [];
   const structural: string[] = Array.isArray(result.structural_selections) ? result.structural_selections : [];
 
-  const currentFolderId = (result as any).folder_id ?? null;
+  const currentFolderId = result.folder_id ?? null;
   const currentFolder   = folders.find(f => f.id === currentFolderId);
   const folderName      = currentFolder
     ? (currentFolder.is_default ? 'New Results' : currentFolder.name)

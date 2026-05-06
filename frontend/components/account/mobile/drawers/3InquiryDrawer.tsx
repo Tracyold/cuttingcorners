@@ -6,9 +6,35 @@ import { fmtDate, fmtTime } from '../../../../lib/utils';
 import { useSwipeToClose } from '../../shared/hooks/useSwipeToClose';
 import { formatMoney } from '../../../../lib/utils';
 
+// products join from useAccountInfo currently fetches title/weight/shape/total_price.
+// Other product columns exist in Supabase `products` but are not selected by the
+// hook's query, so they're optional here (rendered conditionally below).
+interface InquiryProduct {
+  title:              string | null;
+  weight:             number | null;
+  shape:              string | null;
+  total_price:        number | null;
+  photo_url?:         string | null;
+  gem_type?:          string | null;
+  color?:             string | null;
+  origin?:            string | null;
+  treatment?:         string | null;
+  gia_report_number?: string | null;
+  description?:       string | null;
+}
+
+interface InquiryRow {
+  account_inquiry_id:  string;
+  created_at:          string;
+  description:         string;
+  reply:               string | null;
+  replied_at:          string | null;
+  products:            InquiryProduct | null;
+}
+
 interface Props {
   open:    boolean;
-  inq:     any;
+  inq:     InquiryRow;
   onClose: () => void;
 }
 
@@ -52,7 +78,7 @@ export default function InquiryDrawer3({ open, inq, onClose }: Props) {
                   src={product.photo_url}
                   alt={product.title || ''}
                   style={{ width: '100%', aspectRatio: '1/1', objectFit: 'cover', borderRadius: 10, border: '0.5px solid var(--bdr2-mob)', display: 'block', marginBottom: 16 }}
-                  onError={(e: any) => (e.target.style.display = 'none')}
+                  onError={(e) => ((e.target as HTMLImageElement).style.display = 'none')}
                 />
               )}
 

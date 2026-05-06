@@ -22,9 +22,35 @@ import { useSwipeToClose } from '../../shared/hooks/useSwipeToClose';
 import { supabase } from '../../../../lib/supabase';
 import FirstTimeTips from '../ui/FirstTimeTips';
 
+interface ServiceRequestRow {
+  service_request_id:       string;
+  created_at:               string;
+  description:              string;
+  service_type:             string | null;
+  gem_type:                 string | null;
+  gem_color:                string | null;
+  weight_ct:                number | null;
+  dim_length_mm:            number | null;
+  photo_url:                string | null;
+  photo_urls:               string[] | null;
+  wizard_result_id:         string | null;
+  is_archived:              boolean;
+  // Fields beyond current schema snapshot — present in running application
+  status?:                  string | null;
+  contact_name?:            string | null;
+  contact_email?:           string | null;
+  contact_phone?:           string | null;
+  contact_address?:         string | null;
+  dim_width_mm?:            number | null;
+  dim_depth_mm?:            number | null;
+  quantity?:                number | null;
+  workorder_sms_consent?:   boolean | null;
+  workorder_sms_consent_at?: string | null;
+}
+
 interface ServiceRequestDrawerProps {
   open:    boolean;
-  sr:      any;
+  sr:      ServiceRequestRow;
   onClose: () => void;
 }
 
@@ -99,7 +125,7 @@ export default function ServiceRequestDrawer3({ open, sr, onClose }: ServiceRequ
 
   // Photos — new column wins; fall back to legacy single photo_url
   const photos: string[] = Array.isArray(sr.photo_urls) && sr.photo_urls.length > 0
-    ? sr.photo_urls.filter((u: any) => typeof u === 'string' && u.length > 0)
+    ? sr.photo_urls.filter((u: string) => u.length > 0)
     : (sr.photo_url ? [sr.photo_url] : []);
 
   const submitted = sr.created_at ? `${fmtDate(sr.created_at)} · ${fmtTime(sr.created_at)}` : '--';
