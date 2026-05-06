@@ -24,6 +24,9 @@ yarn-error.log*
 # Next.js build output
 .next/
 
+# TypeScript incremental build cache
+tsconfig.tsbuildinfo
+
 # Environment files
 .env
 .env.local
