@@ -133,13 +133,13 @@ export default function WizardResultsPanel3({
       // Assign any unfoldered results to the default folder
       const defaultFolder = folderData.find(f => f.is_default);
       if (defaultFolder) {
-        const unfoldered = resultData.filter((r: any) => !r.folder_id);
+        const unfoldered = resultData.filter((r: WizardResult) => !r.folder_id);
         if (unfoldered.length > 0) {
           await supabase
             .from('wizard_results')
             .update({ folder_id: defaultFolder.id })
-            .in('id', unfoldered.map((r: any) => r.id));
-          unfoldered.forEach((r: any) => { r.folder_id = defaultFolder.id; });
+            .in('id', unfoldered.map((r: WizardResult) => r.id));
+          unfoldered.forEach((r: WizardResult) => { r.folder_id = defaultFolder.id; });
         }
       }
 
@@ -198,7 +198,7 @@ export default function WizardResultsPanel3({
         .update({ folder_id: defaultFolder.id })
         .eq('folder_id', id);
       setResults(prev => prev.map(r =>
-        (r as any).folder_id === id ? { ...r, folder_id: defaultFolder.id } : r
+        r.folder_id === id ? { ...r, folder_id: defaultFolder.id } : r
       ));
     }
 
@@ -211,7 +211,7 @@ export default function WizardResultsPanel3({
 
   const handleArchive = async (id: string) => {
     const prev         = results.find(r => r.id === id);
-    const prevArchived = (prev as any)?.is_archived ?? false;
+    const prevArchived = prev?.is_archived ?? false;
 
     setResults(list => list.map(r =>
       r.id === id ? { ...r, is_archived: true } : r
@@ -239,7 +239,7 @@ export default function WizardResultsPanel3({
       r.id === resultId ? { ...r, folder_id: folderId } : r
     ));
     // Update selected result so drawer reflects new folder immediately
-    setSelectedResult(prev => prev ? { ...prev, folder_id: folderId } as any : prev);
+    setSelectedResult(prev => prev ? { ...prev, folder_id: folderId } : prev);
 
     const { error } = await supabase
       .from('wizard_results')
@@ -254,12 +254,12 @@ export default function WizardResultsPanel3({
 
   // ── Derived lists ──────────────────────────────────────────
 
-  const activeResults   = results.filter(r => !(r as any).is_archived);
-  const archivedResults = results.filter(r =>  (r as any).is_archived);
+  const activeResults   = results.filter(r => !r.is_archived);
+  const archivedResults = results.filter(r =>  r.is_archived);
 
   // Results shown inside an open folder (active only)
   const folderResults = openFolder
-    ? activeResults.filter(r => (r as any).folder_id === openFolder.id)
+    ? activeResults.filter(r => r.folder_id === openFolder.id)
     : [];
 
   // ── Render ─────────────────────────────────────────────────
@@ -386,7 +386,7 @@ export default function WizardResultsPanel3({
             ) : (
               <WizardFolderGrid
                 folders={folders}
-                results={activeResults as any}
+                results={activeResults}
                 onOpenFolder={setOpenFolder}
                 onRenameFolder={handleRenameFolder}
                 onDeleteFolder={handleDeleteFolder}

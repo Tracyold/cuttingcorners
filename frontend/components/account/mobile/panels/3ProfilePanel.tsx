@@ -27,20 +27,42 @@ const SMS_TOGGLES = [
   { label: 'Purchase Confirmations', col: 'opt_in_purchases',    desc: 'Confirmations when a purchase completes'     },
 ];
 
+interface ProfilePanelProfile {
+  name:             string;
+  email:            string;
+  phone:            string | null;
+  shipping_address: string | null;
+  business_name:    string | null;
+}
+
+interface ProfilePanelSmsPrefs {
+  opt_in_work_orders:  boolean | null;
+  opt_in_chat:         boolean | null;
+  opt_in_tracking:     boolean | null;
+  opt_in_new_listings: boolean | null;
+  opt_in_purchases:    boolean | null;
+}
+
+interface ProfilePanelSmsToggle {
+  label: string;
+  col:   string;
+  desc:  string;
+}
+
 interface ProfilePanelProps {
   open:              boolean;
-  profile:           any;
-  editProfile:       any;
-  smsPrefs:          any;
+  profile:           ProfilePanelProfile | null;
+  editProfile:       ProfilePanelProfile | null;
+  smsPrefs:          ProfilePanelSmsPrefs | null;
   profileSaving:     boolean;
   profileFlash:      boolean;
   hasProfileChanges: boolean;
   invoiceCount:      number;
   invoiceTotal:      number;
   hasOpenWorkOrder:  boolean;
-  setEditProfile:    (v: any) => void;
+  setEditProfile:    (v: ProfilePanelProfile) => void;
   saveProfile:       () => void;
-  onSmsToggle:       (toggle: any) => void;
+  onSmsToggle:       (toggle: ProfilePanelSmsToggle) => void;
   onClose:           () => void;
   // Delete account logic from useDeleteAccount hook
   showDeleteModal:       boolean;
@@ -201,7 +223,7 @@ export default function ProfilePanel3({
           </div>
 
           {SMS_TOGGLES.map((t, i) => {
-            const isOn = !!smsPrefs?.[t.col];
+            const isOn = !!smsPrefs?.[t.col as keyof ProfilePanelSmsPrefs];
             return (
               // Each row: label on left, pill on right
               // Tapping anywhere on the row toggles it (or opens consent modal via onSmsToggle)

@@ -14,10 +14,21 @@ import { formatMoney, fmtDate, fmtTime } from '../../../../lib/utils';
 import { useSwipeDownToClose } from '../../shared/hooks/useSwipeDownToClose';
 import FirstTimeTips from '../ui/FirstTimeTips';
 
+interface InvoicesLineItem {
+  title?: string;
+}
+
+interface InvoicesPanelInvoice {
+  invoice_id:   string;
+  paid_at:      string | null;
+  total_amount: number;
+  line_items:   InvoicesLineItem[] | null;
+}
+
 interface InvoicesPanelProps {
   open:            boolean;
-  invoices:        any[];
-  onSelectInvoice: (inv: any) => void;
+  invoices:        InvoicesPanelInvoice[];
+  onSelectInvoice: (inv: InvoicesPanelInvoice) => void;
   onClose:         () => void;
 }
 

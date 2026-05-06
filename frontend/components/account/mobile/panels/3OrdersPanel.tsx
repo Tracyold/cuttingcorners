@@ -12,13 +12,38 @@ const STATUS_STYLE: Record<string, { bg: string; color: string }> = {
   CANCELLED: { bg: 'rgba(248,113,113,0.12)', color: '#f87171' },
 };
 
+type WorkOrderStatus = 'CREATED' | 'ACCEPTED' | 'COMPLETE' | 'CANCELLED' | 'CONFIRMED';
+
+interface OrdersPanelWorkOrder {
+  work_order_id:   string;
+  title:           string;
+  status:          WorkOrderStatus;
+  created_at:      string;
+  estimated_price: number | null;
+}
+
+interface OrdersPanelAdminInfo {
+  business_name: string | null;
+  full_name:     string | null;
+  address:       string | null;
+  phone:         string | null;
+  contact_email: string | null;
+}
+
+interface OrdersPanelProfile {
+  name:             string;
+  email:            string;
+  phone:            string | null;
+  shipping_address: string | null;
+}
+
 interface OrdersPanelProps {
   open:       boolean;
-  workOrders: any[];
-  adminInfo:  any;
-  profile:    any;
-  onSelectWO: (wo: any) => void;
-  onAcceptWO: (wo: any) => void;
+  workOrders: OrdersPanelWorkOrder[];
+  adminInfo:  OrdersPanelAdminInfo | null;
+  profile:    OrdersPanelProfile | null;
+  onSelectWO: (wo: OrdersPanelWorkOrder) => void;
+  onAcceptWO: (wo: OrdersPanelWorkOrder) => void;
   onClose:    () => void;
 }
 

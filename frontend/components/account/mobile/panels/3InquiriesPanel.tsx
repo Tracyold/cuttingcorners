@@ -7,16 +7,33 @@ import { supabase } from '../../../../lib/supabase';
 import FirstTimeTips from '../ui/FirstTimeTips';
 import InquiryDrawer3 from '../drawers/3InquiryDrawer';
 
+interface InquiryProductJoin {
+  title:       string;
+  weight:      number | null;
+  shape:       string | null;
+  total_price: number;
+}
+
+interface InquiryPanelItem {
+  account_inquiry_id: string;
+  description:        string;
+  reply:              string | null;
+  replied_at:         string | null;
+  created_at:         string;
+  is_archived:        boolean;
+  products:           InquiryProductJoin | null;
+}
+
 interface InquiriesPanelProps {
   open:              boolean;
-  inquiries:         any[];
+  inquiries:         InquiryPanelItem[];
   onClose:           () => void;
   refreshInquiries?: () => Promise<void>;
 }
 
 type InqTab = 'active' | 'archive';
 
-function InquiryBody({ inq, archived = false }: { inq: any; archived?: boolean }) {
+function InquiryBody({ inq, archived = false }: { inq: InquiryPanelItem; archived?: boolean }) {
   const isPending = !inq.reply;
   const productTitle = inq.products?.title;
   const productMetaParts: string[] = [];
@@ -74,7 +91,7 @@ function InquiryBody({ inq, archived = false }: { inq: any; archived?: boolean }
   );
 }
 
-function SwipeableInquiry({ inq, onArchive, onTap }: { inq: any; onArchive: (id: string) => void; onTap: () => void }) {
+function SwipeableInquiry({ inq, onArchive, onTap }: { inq: InquiryPanelItem; onArchive: (id: string) => void; onTap: () => void }) {
   const [startX,    setStartX]    = useState(0);
   const [offsetX,   setOffsetX]   = useState(0);
   const [isSwiping, setIsSwiping] = useState(false);
@@ -111,7 +128,7 @@ function SwipeableInquiry({ inq, onArchive, onTap }: { inq: any; onArchive: (id:
   );
 }
 
-function ArchivedInquiry({ inq, onTap }: { inq: any; onTap: () => void }) {
+function ArchivedInquiry({ inq, onTap }: { inq: InquiryPanelItem; onTap: () => void }) {
   return (
     <div className="sr-card-wrap" onClick={onTap} style={{ cursor: 'pointer' }}>
       <div style={{
@@ -129,7 +146,7 @@ function ArchivedInquiry({ inq, onTap }: { inq: any; onTap: () => void }) {
 export default function InquiriesPanel3({ open, inquiries, onClose, refreshInquiries }: InquiriesPanelProps) {
   const { elementRef, touchHandlers } = useSwipeDownToClose({ onClose });
   const [activeTab,      setActiveTab]      = useState<InqTab>('active');
-  const [selectedInq,    setSelectedInq]    = useState<any>(null);
+  const [selectedInq,    setSelectedInq]    = useState<InquiryPanelItem | null>(null);
   const [localInquiries, setLocalInquiries] = useState(inquiries);
   const [archiveError,   setArchiveError]   = useState<string | null>(null);
 

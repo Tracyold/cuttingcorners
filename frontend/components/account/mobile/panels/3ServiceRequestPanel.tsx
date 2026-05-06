@@ -17,18 +17,33 @@
 // working version — those parts are preserved byte-for-byte.
 
 import { useState, useEffect } from 'react';
+import type { Session } from '@supabase/supabase-js';
 import { fmtDate, fmtTime } from '../../../../lib/utils';
 import { useSwipeDownToClose } from '../../shared/hooks/useSwipeDownToClose';
 import { supabase } from '../../../../lib/supabase';
 import FirstTimeTips from '../ui/FirstTimeTips';
 import ServiceRequestForm from '../forms/ServiceRequestForm';
 
+interface ServiceRequestItem {
+  service_request_id: string;
+  service_type:       string | null;
+  created_at:         string;
+  is_archived:        boolean;
+}
+
+interface ServiceRequestPanelProfile {
+  name:             string;
+  email:            string;
+  phone:            string | null;
+  shipping_address: string | null;
+}
+
 interface ServiceRequestPanelProps {
   open:                   boolean;
-  serviceRequests:        any[];
-  session:                any;
-  profile:                any;
-  onSelectSR:             (sr: any) => void;
+  serviceRequests:        ServiceRequestItem[];
+  session:                Session | null;
+  profile:                ServiceRequestPanelProfile | null;
+  onSelectSR:             (sr: ServiceRequestItem) => void;
   onClose:                () => void;
   refreshServiceRequests: () => Promise<void>;
   // Wizard prefill handshake — MobileAccount holds these so the wizard
@@ -109,8 +124,8 @@ export default function ServiceRequestPanel3({
     onSelect,
     onArchive,
   }: {
-    sr: any;
-    onSelect: (sr: any) => void;
+    sr: ServiceRequestItem;
+    onSelect: (sr: ServiceRequestItem) => void;
     onArchive: (id: string) => void;
   }) {
     const [startX,    setStartX]    = useState(0);
@@ -169,7 +184,7 @@ export default function ServiceRequestPanel3({
   }
 
   // ── Static (archived) card — no swipe, no click, fully grayed-out ──
-  function ArchivedSR({ sr }: { sr: any }) {
+  function ArchivedSR({ sr }: { sr: ServiceRequestItem }) {
     return (
       <div className="sr-card-wrap">
         <div

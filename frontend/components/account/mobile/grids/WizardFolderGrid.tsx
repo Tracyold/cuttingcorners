@@ -25,7 +25,6 @@ interface WizardFolder {
 interface WizardResult {
   id:        string;
   folder_id: string | null;
-  [key: string]: any;
 }
 
 interface Props {
