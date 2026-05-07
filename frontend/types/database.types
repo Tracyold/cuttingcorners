@@ -1,0 +1,289 @@
+// types/database.types.ts
+// Auto-generated from CCG Supabase schema — do not hand-edit.
+// Regenerate by running: supabase gen types typescript --project-id <id> > types/database.types.ts
+
+export type Json =
+  | string
+  | number
+  | boolean
+  | null
+  | { [key: string]: Json | undefined }
+  | Json[]
+
+// ── Enums ────────────────────────────────────────────────────────────────────
+
+export type AccountStatus   = 'ACTIVE' | 'INACTIVE' | 'BANNED'
+export type ActorType       = 'ADMIN' | 'ACCOUNT' | 'SYSTEM'
+export type InvoiceState    = 'PAID' | 'ARCHIVED'
+export type ProductState    = 'DRAFT' | 'ACTIVE' | 'INACTIVE'
+export type WorkOrderStatus = 'CREATED' | 'ACCEPTED' | 'COMPLETE' | 'CANCELLED' | 'CONFIRMED'
+
+// ── Table row types ──────────────────────────────────────────────────────────
+
+export interface AccountInquiryRow {
+  account_inquiry_id:  string
+  created_at:          string
+  account_user_id:     string
+  description:         string
+  photo_url:           string | null
+  is_read:             boolean
+  read_at:             string | null
+  updated_at:          string
+  product_id:          string | null
+  reply:               string | null
+  replied_at:          string | null
+  replied_by_admin_id: string | null
+  status:              string | null
+  is_archived:         boolean
+}
+
+export interface AccountUserRow {
+  account_user_id:       string
+  created_at:            string
+  name:                  string
+  email:                 string
+  phone:                 string | null
+  shipping_address:      string | null
+  status:                AccountStatus
+  updated_at:            string
+  business_name:         string | null
+  auth_user_id:          string | null
+  deleted_at:            string | null
+  deleted_reason:        string | null
+  wizard_terms_accepted: boolean | null
+}
+
+export interface AdminUserRow {
+  admin_user_id:  string
+  created_at:     string
+  email:          string
+  name:           string
+  updated_at:     string
+  business_name:  string | null
+  full_name:      string | null
+  address:        string | null
+  phone:          string | null
+  contact_email:  string | null
+}
+
+export interface ChatMessageRow {
+  chat_message_id:  string
+  created_at:       string
+  chat_thread_id:   string
+  actor:            ActorType
+  actor_id:         string
+  body:             string | null
+  attachment_url:   string | null
+  attachment_type:  string | null
+}
+
+export interface ChatThreadRow {
+  chat_thread_id:       string
+  created_at:           string
+  account_user_id:      string
+  admin_has_unread:     boolean
+  account_has_unread:   boolean
+  last_message_at:      string | null
+  last_message_preview: string | null
+  updated_at:           string
+  auth_user_id:         string | null
+}
+
+export interface InvoiceRow {
+  invoice_id:               string
+  created_at:               string
+  account_user_id:          string
+  stripe_session_id:        string
+  stripe_payment_intent_id: string | null
+  invoice_state:            InvoiceState
+  paid_at:                  string
+  line_items:               Json
+  total_amount:             number
+  account_snapshot:         Json
+  admin_snapshot:           Json
+  archived_at:              string | null
+  updated_at:               string
+}
+
+export interface ProductRow {
+  product_id:          string
+  created_at:          string
+  title:               string
+  total_price:         number
+  gem_type:            string | null
+  shape:               string | null
+  weight:              number | null
+  color:               string | null
+  origin:              string | null
+  treatment:           string | null
+  description:         string | null
+  price_per_carat:     number | null
+  gia_report_number:   string | null
+  gia_report_pdf_url:  string | null
+  photo_url:           string | null
+  product_state:       ProductState
+  updated_at:          string
+}
+
+export interface ReviewRow {
+  review_id:         string   // uuid, NOT NULL
+  account_user_id:   string   // uuid, NOT NULL
+  stars:             number   // int4, NOT NULL
+  review_text:       string   // text, NOT NULL
+  consent_public:    boolean  // bool, NOT NULL
+  use_real_name:     boolean  // bool, NOT NULL
+  display_name:      string | null  // text, nullable
+  is_approved:       boolean  // bool, NOT NULL
+  is_hidden_by_user: boolean  // bool, NOT NULL
+  created_at:        string   // timestamptz, NOT NULL
+  updated_at:        string   // timestamptz, NOT NULL
+}
+
+export interface ServiceRequestRow {
+  service_request_id: string
+  created_at:         string
+  account_user_id:    string
+  description:        string
+  photo_url:          string | null
+  photo_urls:         string[] | null
+  is_read:            boolean
+  read_at:            string | null
+  updated_at:         string
+  subject:            string | null
+  service_type:       string | null
+  wizard_result_id:   string | null
+  is_archived:        boolean
+  gem_type:           string | null
+  gem_color:          string | null
+  weight_ct:          number | null
+  dim_length_mm:      number | null
+}
+
+export interface UserFavoriteRow {
+  user_id:    string
+  product_id: string
+  created_at: string
+}
+
+export interface UserSmsPreferenceRow {
+  id:                   string
+  user_id:              string | null
+  phone:                string
+  opt_in_work_orders:   boolean | null
+  opt_in_tracking:      boolean | null
+  opt_in_chat:          boolean | null
+  opt_in_purchases:     boolean | null
+  created_at:           string | null
+  opt_in_new_listings:  boolean | null
+}
+
+export interface WizardResultRow {
+  id:                        string
+  user_id:                   string
+  created_at:                string
+  stone_species:             string | null
+  stone_variety:             string | null
+  stone_weight_ct:           string | null
+  stone_dimensions:          string | null
+  stone_cut:                 string | null
+  feasibility_percent:       number
+  band:                      string
+  recommendation:            string
+  weight_loss:               string
+  positive_selections:       Json | null
+  limiting_selections:       Json | null
+  structural_selections:     Json | null
+  correctable_selections:    Json | null
+  raw_scores:                Json | null
+  disclaimer1_confirmed_at:  string | null
+  disclaimer2_confirmed_at:  string | null
+  is_archived:               boolean
+  folder_id:                 string | null
+}
+
+export interface WorkOrderRow {
+  work_order_id:         string
+  created_at:            string
+  account_user_id:       string
+  created_by_admin_id:   string
+  title:                 string
+  description:           string
+  service_type:          string | null
+  gem_type:              string | null
+  estimated_price:       number | null
+  notes:                 string | null
+  status:                WorkOrderStatus
+  accepted_at:           string | null
+  completed_at:          string | null
+  edit_history:          Json
+  updated_at:            string
+  cancelled_at:          string | null
+  cancel_reason:         string | null
+  estimated_turnaround:  string | null
+  wo_shipping_address:   string | null
+  stripe_payment_link:   string | null
+  paid_outside_site:     boolean | null
+  confirmed_at:          string | null
+  wo_recipient_name:     string | null
+  wo_admin_name:         string | null
+  wo_admin_address:      string | null
+  wo_admin_phone:        string | null
+  wo_admin_email:        string | null
+  wo_client_name:        string | null
+  wo_client_phone:       string | null
+  wo_client_email:       string | null
+}
+
+// ── Shop view (read-only) ────────────────────────────────────────────────────
+
+export interface ShopActiveProductRow {
+  product_id:         string | null
+  created_at:         string | null
+  title:              string | null
+  total_price:        number | null
+  gem_type:           string | null
+  shape:              string | null
+  weight:             number | null
+  color:              string | null
+  origin:             string | null
+  treatment:          string | null
+  description:        string | null
+  price_per_carat:    number | null
+  gia_report_number:  string | null
+  gia_report_pdf_url: string | null
+  photo_url:          string | null
+  product_state:      ProductState | null
+  updated_at:         string | null
+}
+
+// ── Database shape (matches Supabase client generic) ─────────────────────────
+
+export interface Database {
+  public: {
+    Tables: {
+      account_inquiries:    { Row: AccountInquiryRow }
+      account_users:        { Row: AccountUserRow }
+      admin_users:          { Row: AdminUserRow }
+      chat_messages:        { Row: ChatMessageRow }
+      chat_threads:         { Row: ChatThreadRow }
+      invoices:             { Row: InvoiceRow }
+      products:             { Row: ProductRow }
+      reviews:              { Row: ReviewRow }
+      service_requests:     { Row: ServiceRequestRow }
+      user_favorites:       { Row: UserFavoriteRow }
+      user_sms_preferences: { Row: UserSmsPreferenceRow }
+      wizard_results:       { Row: WizardResultRow }
+      work_orders:          { Row: WorkOrderRow }
+    }
+    Views: {
+      shop_active_products: { Row: ShopActiveProductRow }
+    }
+    Enums: {
+      account_status:    AccountStatus
+      actor_type:        ActorType
+      invoice_state:     InvoiceState
+      product_state:     ProductState
+      work_order_status: WorkOrderStatus
+    }
+  }
+}

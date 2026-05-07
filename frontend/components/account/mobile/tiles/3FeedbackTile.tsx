@@ -15,30 +15,16 @@
 // un-consent from an existing review (admin can remove for you if needed).
 
 import { useEffect, useState } from 'react';
+import type { Session } from '@supabase/supabase-js';
 import { supabase } from '../../../../lib/supabase';
-
-interface ReviewRow {
-  review_id:         string;
-  account_user_id:   string;
-  stars:             number;
-  review_text:       string;
-  consent_public:    boolean;
-  use_real_name:     boolean;
-  display_name:      string | null;
-  is_approved:       boolean;
-  is_hidden_by_user: boolean;
-  created_at:        string;
-  updated_at:        string;
-}
+import type { ReviewRow } from '../../../../types/database.types';
 
 interface FeedbackTileProps {
-  session: any;
+  session: Session | null;
 }
 
 // ── Stars renderer ──────────────────────────────────────────────────────────
-// Two modes:
-//   interactive: tap to set rating. Filled gold for n <= stars, faded otherwise.
-//   display:     gold outline, thicker borders. No interaction.
+
 function StarsInteractive({ value, onChange }: { value: number; onChange: (n: number) => void }) {
   return (
     <div className="fb-stars">
@@ -55,6 +41,7 @@ function StarsInteractive({ value, onChange }: { value: number; onChange: (n: nu
     </div>
   );
 }
+
 function StarsDisplay({ value }: { value: number }) {
   return (
     <div className="fb-stars-display" style={{ display: 'flex', gap: 'clamp(0.25rem, 1.5vw, 0.5rem)' }}>
@@ -75,15 +62,15 @@ export default function FeedbackTile3({ session }: FeedbackTileProps) {
   const [loading, setLoading] = useState(true);
 
   // ── Form state (used for new and edit) ──
-  const [formOpen,       setFormOpen]       = useState(false);
-  const [editingId,      setEditingId]      = useState<string | null>(null);
-  const [fStars,         setFStars]         = useState(0);
-  const [fText,          setFText]          = useState('');
-  const [fConsent,       setFConsent]       = useState(false);
-  const [fUseReal,       setFUseReal]       = useState(true);
-  const [fDisplayName,   setFDisplayName]   = useState('');
-  const [submitting,     setSubmitting]     = useState(false);
-  const [submitError,    setSubmitError]    = useState<string | null>(null);
+  const [formOpen,     setFormOpen]     = useState(false);
+  const [editingId,    setEditingId]    = useState<string | null>(null);
+  const [fStars,       setFStars]       = useState(0);
+  const [fText,        setFText]        = useState('');
+  const [fConsent,     setFConsent]     = useState(false);
+  const [fUseReal,     setFUseReal]     = useState(true);
+  const [fDisplayName, setFDisplayName] = useState('');
+  const [submitting,   setSubmitting]   = useState(false);
+  const [submitError,  setSubmitError]  = useState<string | null>(null);
 
   // ── Fetch the user's existing review on mount ──
   useEffect(() => {
@@ -116,16 +103,18 @@ export default function FeedbackTile3({ session }: FeedbackTileProps) {
     setSubmitError(null);
     setFormOpen(true);
   };
+
   const openForEdit = (r: ReviewRow) => {
     setEditingId(r.review_id);
     setFStars(r.stars);
     setFText(r.review_text);
-    setFConsent(r.consent_public);     // locked in UI but kept for display
+    setFConsent(r.consent_public);
     setFUseReal(r.use_real_name);
     setFDisplayName(r.display_name ?? '');
     setSubmitError(null);
     setFormOpen(true);
   };
+
   const cancelForm = () => {
     setFormOpen(false);
     setSubmitError(null);
@@ -145,8 +134,8 @@ export default function FeedbackTile3({ session }: FeedbackTileProps) {
       setSubmitError('Session missing. Please log in again.');
       return;
     }
-    if (fStars < 1) { setSubmitError('Please pick a star rating.'); return; }
-    if (!fText.trim()) { setSubmitError('Please write a short review.'); return; }
+    if (fStars < 1)       { setSubmitError('Please pick a star rating.'); return; }
+    if (!fText.trim())    { setSubmitError('Please write a short review.'); return; }
     if (!editingId && !fConsent) {
       setSubmitError('Please check the consent box to submit.');
       return;
@@ -159,7 +148,6 @@ export default function FeedbackTile3({ session }: FeedbackTileProps) {
     setSubmitting(true);
     try {
       if (editingId) {
-        // UPDATE (is_approved flips to false via trigger)
         const { data, error } = await supabase
           .from('reviews')
           .update({
@@ -172,12 +160,11 @@ export default function FeedbackTile3({ session }: FeedbackTileProps) {
           .select('*')
           .maybeSingle();
         if (error || !data) {
-          setSubmitError(error?.message || 'Could not save changes. Please try again.');
+          setSubmitError(error?.message ?? 'Could not save changes. Please try again.');
           return;
         }
         setReview(data);
       } else {
-        // INSERT
         const { data, error } = await supabase
           .from('reviews')
           .insert({
@@ -191,21 +178,19 @@ export default function FeedbackTile3({ session }: FeedbackTileProps) {
           .select('*')
           .maybeSingle();
         if (error || !data) {
-          setSubmitError(error?.message || 'Could not submit review. Please try again.');
+          setSubmitError(error?.message ?? 'Could not submit review. Please try again.');
           return;
         }
         setReview(data);
       }
       setFormOpen(false);
       setEditingId(null);
-    } catch (err: any) {
-      setSubmitError(err?.message || 'An unexpected error occurred.');
     } finally {
       setSubmitting(false);
     }
   };
 
-  // ── Delete (actual delete, not soft) ──
+  // ── Delete ──
   const handleDelete = async () => {
     if (!review) return;
     if (!confirm('Delete this review? You can always leave a new one.')) return;
@@ -223,7 +208,7 @@ export default function FeedbackTile3({ session }: FeedbackTileProps) {
   // ── Render ──
   if (loading) return null;
 
-  const hasReview = !!review;
+  const hasReview      = !!review;
   const showGoldPrompt = !hasReview && !formOpen;
 
   return (
@@ -241,7 +226,7 @@ export default function FeedbackTile3({ session }: FeedbackTileProps) {
             <div style={{ fontFamily: 'var(--font-display-mob)', fontSize: 'clamp(16px, 4.2vw, 18px)', color: '#000', marginBottom: 4, fontWeight: 500 }}>
               How was your experience?
             </div>
-            <div style={{ fontFamily: 'var(--font-ui-mob)', fontSize: 'clamp(13vem, 3.5vw, 14vem)', color: '#000', opacity: 0.75 }}>
+            <div style={{ fontFamily: 'var(--font-ui-mob)', fontSize: 'clamp(13px, 3.5vw, 14px)', color: '#000', opacity: 0.75 }}>
               Tap to leave a review
             </div>
           </div>

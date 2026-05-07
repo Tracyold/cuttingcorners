@@ -477,3 +477,45 @@ input, textarea, select { border-radius: 0; }
 .hover-lift { transition: transform 0.3s ease; }
 
 
+/* ── CLOSE BUTTON — universal ── */
+.close-btn {
+  background:      var(--gold);
+  border:          0.2px solid var(--opposite);
+  border-radius:   50%;
+  width:           clamp(30px, 8vw, 36px);
+  height:          clamp(30px, 8vw, 36px);
+  display:         flex;
+  align-items:     center;
+  justify-content: center;
+  cursor:          pointer;
+  color:           var(--bg);
+  font-size:       clamp(0.875rem, 3.7vw, 1rem);
+  font-weight:     700;
+  transition:      all 200ms ease;
+  flex-shrink:     0;
+}
+.close-btn:hover {
+  background: var(--muted);
+}
+
+/* ── IMAGE MODAL — universal ── */
+.img-modal-overlay {
+  position:        fixed;
+  inset:           0;
+  background:      rgba(0,0,0,0.75);
+  z-index:         200;
+  display:         flex;
+  align-items:     center;
+  justify-content: center;
+  animation:       modalFadeIn 220ms ease-out;
+}
+.img-modal {
+  background:    var(--bg);
+  border:        1px solid var(--border);
+  border-radius: 21px;
+  max-width:     789px;
+  width:         90%;
+  position:      relative;
+  overflow:      hidden;
+  animation:     modalScaleIn 220ms ease-out;
+}
