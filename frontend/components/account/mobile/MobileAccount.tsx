@@ -1,31 +1,25 @@
 // components/account/mobile/MobileAccount.tsx
 //
-// This is the ROOT COMPONENT for the mobile account page.
-// It is the only file imported by pages/account.tsx for mobile.
-//
-// What this file does:
-//   1. Imports MobileShell.css (must be first -- all CSS classes live here)
-//   2. Imports all panels, drawers, tiles, and UI components
-//   3. Manages ALL panel/drawer open-close state (nothing else manages this)
-//   4. Receives ALL data from pages/account.tsx as props (no Supabase calls here)
-//   5. Renders the full mobile layout: nav, feed, tab bar, panels, drawers
-//
-// The welcome block at the top of the feed and the data wiring
-// are all done here. Tiles, panels, and drawers just receive what they need.
-
+// Final mobile composition root.
+// All data and types originate from the existing hooks and panel prop
+// interfaces — this file holds only UI state (panel/drawer visibility +
+// selection) and wires the panels and drawers together.
 
 import { useState } from 'react';
-import { WizardResult } from '@/components/account/mobile/tiles/3FeasibilityTile';
+import type { Session } from '@supabase/supabase-js';
+import { WizardResult as FeasibilityWizardResult } from '@/components/account/mobile/tiles/3FeasibilityTile';
+import type { WizardResult } from '../../../lib/wizardResultsService';
+import type { PendingUpload } from '../shared/hooks/useChat';
 
-import { useAuth } from '../shared/hooks/useAuth';
+import { useAuth }          from '../shared/hooks/useAuth';
 import { useDeleteAccount } from '../shared/hooks/useDeleteAccount';
 
 // ── UI components ──
-import Nav3           from './ui/3Nav';
-import TabBar3        from './ui/3TabBar';
-import MenuDrawer3    from './ui/3MenuDrawer';
-import SmsConsent3    from './ui/3SmsConsentModal';
-import ShopFeed3      from './ui/3ShopFeed';
+import Nav3            from './ui/3Nav';
+import TabBar3         from './ui/3TabBar';
+import MenuDrawer3     from './ui/3MenuDrawer';
+import SmsConsent3     from './ui/3SmsConsentModal';
+import ShopFeed3       from './ui/3ShopFeed';
 import ShopItemDrawer3 from './drawers/3ShopItemDrawer';
 
 // ── Tiles ──
@@ -54,75 +48,140 @@ import WorkOrderDrawer3      from './drawers/3WorkOrderDrawer';
 import InvoiceDrawer3        from './drawers/3InvoiceDrawer';
 import ServiceRequestDrawer3 from './drawers/3ServiceRequestDrawer';
 
+// ── Panel & drawer prop derivation ──
+// Every prop type below is derived directly from the consuming component's
+// public prop contract. We never invent a shape; we mirror what each panel
+// and drawer already declares.
+type OrdersPanelProps         = React.ComponentProps<typeof OrdersPanel3>;
+type InvoicesPanelProps       = React.ComponentProps<typeof InvoicesPanel3>;
+type ServiceRequestPanelProps = React.ComponentProps<typeof ServiceRequestPanel3>;
+type InquiriesPanelProps      = React.ComponentProps<typeof InquiriesPanel3>;
+type ChatPanelProps           = React.ComponentProps<typeof ChatPanel3>;
+type ProfilePanelProps        = React.ComponentProps<typeof ProfilePanel3>;
 
-// ── Prop types ──
-// These are ALL the values that pages/account.tsx passes down.
-// Every piece of data the mobile UI needs comes through here.
+type WorkOrderDrawerProps      = React.ComponentProps<typeof WorkOrderDrawer3>;
+type InvoiceDrawerProps        = React.ComponentProps<typeof InvoiceDrawer3>;
+type ServiceRequestDrawerProps = React.ComponentProps<typeof ServiceRequestDrawer3>;
+type ShopItemDrawerProps       = React.ComponentProps<typeof ShopItemDrawer3>;
+type SmsConsentProps           = React.ComponentProps<typeof SmsConsent3>;
+type MenuDrawerProps           = React.ComponentProps<typeof MenuDrawer3>;
+
+// Drawer-side row types are the wider/full shapes (drawer-required fields).
+type FullWorkOrder      = NonNullable<WorkOrderDrawerProps['wo']>;
+type FullInvoice        = InvoiceDrawerProps['invoice'];
+type FullServiceRequest = ServiceRequestDrawerProps['sr'];
+type FullShopItem       = NonNullable<ShopItemDrawerProps['item']>;
+
+// MobileWorkOrder — the intersection that satisfies BOTH the panel contract
+// (requires title) and the drawer contract (requires account_user_id for the
+// acceptWO hook call). The hook's WorkOrderRow has all of these; pages/account.tsx
+// passes the hook array, so the structural assignment compiles.
+type MobileWorkOrder = FullWorkOrder & { account_user_id: string; title: string };
+
+// MobileInvoice — the hook types line_items as `unknown` (JSONB column).
+// We carry that through as `unknown` so pages/account.tsx can pass the hook
+// array unmodified. Panel / drawer receive converted versions via helpers below.
+type MobileInvoice = Omit<FullInvoice, 'line_items'> & { line_items: unknown };
+
+// Items as the panels emit them in their onSelect* callbacks.
+type OrdersPanelWorkOrder    = Parameters<OrdersPanelProps['onSelectWO']>[0];
+type InvoicesPanelInvoice    = Parameters<InvoicesPanelProps['onSelectInvoice']>[0];
+type ServiceRequestPanelItem = Parameters<ServiceRequestPanelProps['onSelectSR']>[0];
+
+// Profile / SMS prefs / admin info shapes come from the panel contracts.
+type ProfilePanelProfile         = NonNullable<ProfilePanelProps['profile']>;
+type ProfilePanelSmsPrefs        = NonNullable<ProfilePanelProps['smsPrefs']>;
+type ProfilePanelEditableProfile = Parameters<ProfilePanelProps['setEditProfile']>[0];
+type ProfilePanelSmsToggle       = Parameters<ProfilePanelProps['onSmsToggle']>[0];
+type ServiceRequestPanelProfile  = NonNullable<ServiceRequestPanelProps['profile']>;
+
+type OrdersPanelAdminInfo = NonNullable<OrdersPanelProps['adminInfo']>;
+
+// SmsConsent3 toggle descriptor.
+type SmsConsentToggle = SmsConsentProps['toggle'];
+
+// MenuDrawer3 navigation target — the canonical PanelName used by all panels.
+type PanelName = Parameters<MenuDrawerProps['onNavigate']>[0];
+
+// Right-side drawer visibility names. Local to this composition root.
+type DrawerName = 'workorder' | 'invoice' | 'servicereq' | 'shopitem' | null;
+
+// ── line_items bridge helpers ──
+// The hook types line_items as `unknown` (JSONB). Both panel and drawer need
+// concrete array shapes. These helpers do a safe runtime check, then use one
+// bounded assertion to satisfy each consumer's declared interface.
+// No `any` is introduced; the assertion is scoped to the specific array type.
+
+function toPanelLineItems(v: unknown): InvoicesPanelInvoice['line_items'] {
+  if (!Array.isArray(v)) return null;
+  return v as InvoicesPanelInvoice['line_items'];
+}
+
+function toDrawerLineItems(v: unknown): FullInvoice['line_items'] {
+  if (!Array.isArray(v)) return null;
+  return v as FullInvoice['line_items'];
+}
+
+// ── Public props ──
+// Wired from pages/account.tsx. Each list / value type is the upstream panel
+// contract; pages/account.tsx already passes the matching hook output.
 export interface MobileAccountProps {
   // Auth
-  session:           any;
+  session:           Session | null;
   // Profile
-  profile:           any;
-  editProfile:       any;
-  smsPrefs:          any;
-  adminInfo:         any;
+  profile:           ProfilePanelProfile | null;
+  editProfile:       ProfilePanelEditableProfile | null;
+  smsPrefs:          ProfilePanelSmsPrefs | null;
+  adminInfo:         OrdersPanelAdminInfo | null;
   profileSaving:     boolean;
   profileFlash:      boolean;
   hasProfileChanges: boolean;
   // Counts + lists
   invoiceCount:      number;
   invoiceTotal:      number;
-  workOrders:        any[];
-  invoices:          any[];
-  inquiries:         any[];
-  serviceRequests:   any[];
+  workOrders:        MobileWorkOrder[];
+  invoices:          MobileInvoice[];
+  inquiries:         InquiriesPanelProps['inquiries'];
+  serviceRequests:   FullServiceRequest[];
   // Chat
-  chatThread:        any;
-  messages:          any[];
+  chatThread:        { account_has_unread: boolean } | null;
+  messages:          ChatPanelProps['messages'];
   chatInput:         string;
   chatSending:       boolean;
   chatUploading:     boolean;
-  chatError?:           string | null;
-  clearChatError?:      () => void;
-  pendingUploads?:      any[];
+  chatError?:        string | null;
+  clearChatError?:   () => void;
+  pendingUploads?:   PendingUpload[];
   dismissPendingUpload?: (tempId: string) => void;
   chatEndRef:        React.RefObject<HTMLDivElement>;
   chatFileRef:       React.RefObject<HTMLInputElement>;
-  // Wizard
-latestWizardResult?: WizardResult;
+  // Wizard tile feed (FeasibilityTile3 only consumes the narrow tile type)
+  latestWizardResult?: FeasibilityWizardResult;
   // Setters
-  setEditProfile:    (v: any) => void;
+  // useProfile's useState holds AccountProfile which includes account_user_id.
+  // We require it here so the setter stays compatible with that state type.
+  setEditProfile:    (v: ProfilePanelEditableProfile & { account_user_id: string }) => void;
   setChatInput:      (v: string) => void;
   // Actions
   saveProfile:       () => void;
   toggleSms:         (col: string, val: boolean) => void;
-  acceptWO:          (wo: any) => void;
+  acceptWO:          (wo: MobileWorkOrder) => void;
   sendChat:          () => void;
   openChatDrawer:    () => void;
   handleChatFile:    (e: React.ChangeEvent<HTMLInputElement>) => void;
-  // Fallback refreshers for realtime-less tables. Child components call
-  // these after a successful write so the list updates even when the
-  // Supabase realtime channel misses the event.
+  // Fallback refreshers for realtime-less tables.
   refreshInquiries:       () => Promise<void>;
   refreshServiceRequests: () => Promise<void>;
   deleteAccount:     (confirmText: string) => Promise<{ error?: string }>;
 }
 
-// Panel names -- which slide-up panel is open
-type PanelName =
-  | 'chat' | 'orders' | 'invoices' | 'servicereq'
-  | 'inquiries' | 'wizard' | 'profile' | 'feasibility' | null;
-
-// Drawer names -- which right-slide drawer is open
-type DrawerName = 'workorder' | 'invoice' | 'servicereq' | 'shopitem' | null;
-
 export default function MobileAccount(props: MobileAccountProps) {
 
   // ── Shared hooks ──
   const { signOut } = useAuth();
-  const deleteHook = useDeleteAccount(props.session);
+  const deleteHook  = useDeleteAccount(props.session);
 
-  // ── All account data ──
+  // ── Pull-throughs ──
   const inquiries       = props.inquiries;
   const serviceRequests = props.serviceRequests;
   const workOrders      = props.workOrders;
@@ -131,53 +190,89 @@ export default function MobileAccount(props: MobileAccountProps) {
   const invoiceCount    = props.invoiceCount;
 
   // ── Panel state ──
-  // Only one panel can be open at a time.
-  // Panels slide up from the bottom.
-  const [activePanel,  setActivePanel]  = useState<PanelName>(null);
+  // Only one panel can be open at a time. Panels slide up from the bottom.
+  const [activePanel, setActivePanel] = useState<PanelName>(null);
+
   // ── Drawer state ──
-  // Only one drawer can be open at a time.
-  // Drawers slide in from the right.
-  // drawerData holds the specific item (WO, invoice, SR) that was tapped.
-  const [activeDrawer, setActiveDrawer] = useState<DrawerName>(null);
-  const [drawerData,   setDrawerData]   = useState<any>(null);
+  // One slot per drawer type. The matching slot is filled when the user
+  // selects an item from the corresponding panel; the drawer reads the slot
+  // directly with the type the drawer already declares.
+  const [activeDrawer,    setActiveDrawer]    = useState<DrawerName>(null);
+  const [selectedWO,      setSelectedWO]      = useState<MobileWorkOrder | null>(null);
+  const [selectedInvoice, setSelectedInvoice] = useState<MobileInvoice | null>(null);
+  const [selectedSR,      setSelectedSR]      = useState<FullServiceRequest | null>(null);
+  const [selectedShopItem, setSelectedShopItem] = useState<FullShopItem | null>(null);
 
   // ── Menu state ──
   const [menuOpen, setMenuOpen] = useState(false);
 
   // ── SMS consent state ──
-  // When the user taps a SMS toggle to enable it, we show a consent modal first.
+  // When a user taps an SMS toggle to enable it, we show a consent modal first.
   // pendingSmsConsent holds which toggle is waiting for confirmation.
-  const [pendingSmsConsent, setPendingSmsConsent] = useState<any>(null);
+  const [pendingSmsConsent, setPendingSmsConsent] = useState<SmsConsentToggle | null>(null);
 
   // ── Service Request form state (mobile) ──
-  // These are kept in MobileAccount ONLY so the wizard-results flow can
-  // pre-fill the form before opening the sheet (handleWizardServiceRequest).
-  // Submission, gate check, and submitting-boolean all live inside
-  // ServiceRequestPanel3 itself.
+  // Held here so the wizard-results flow can pre-fill the form before opening
+  // the sheet (handleWizardServiceRequest). Submission, gate check, and
+  // submitting-boolean all live inside ServiceRequestPanel3 itself.
   const [showSRForm, setShowSRForm] = useState(false);
   const [srType,     setSrType]     = useState('');
   const [srDesc,     setSrDesc]     = useState('');
 
-
   // ── Panel helpers ──
   const openPanel  = (name: PanelName) => setActivePanel(name);
-  const closePanel = ()                 => setActivePanel(null);
+  const closePanel = ()                => setActivePanel(null);
 
-  // ── Drawer helpers ──
-  const openDrawer  = (name: DrawerName, data?: any) => {
-    setDrawerData(data ?? null);
-    setActiveDrawer(name);
-  };
+  // ── Drawer close ──
   const closeDrawer = () => {
     setActiveDrawer(null);
-    setDrawerData(null);
+    setSelectedWO(null);
+    setSelectedInvoice(null);
+    setSelectedSR(null);
+    setSelectedShopItem(null);
+  };
+
+  // ── Drawer-open handlers ──
+  // Each callback receives the panel's narrow item shape and looks up the
+  // corresponding full row in the source list by id, so the drawer always
+  // gets the upstream row exactly as its prop contract requires.
+  const handleSelectWO = (wo: OrdersPanelWorkOrder) => {
+    const full = workOrders.find(w => w.work_order_id === wo.work_order_id);
+    if (!full) return;
+    setSelectedWO(full);
+    setActiveDrawer('workorder');
+  };
+  const handleSelectInvoice = (inv: InvoicesPanelInvoice) => {
+    const full = invoices.find(i => i.invoice_id === inv.invoice_id);
+    if (!full) return;
+    setSelectedInvoice(full);
+    setActiveDrawer('invoice');
+  };
+  const handleSelectSR = (sr: ServiceRequestPanelItem) => {
+    const full = serviceRequests.find(s => s.service_request_id === sr.service_request_id);
+    if (!full) return;
+    setSelectedSR(full);
+    setActiveDrawer('servicereq');
+  };
+  const handleSelectShopItem = (item: FullShopItem) => {
+    setSelectedShopItem(item);
+    setActiveDrawer('shopitem');
+  };
+
+  // ── Accept WO helper ──
+  // Looks up the full MobileWorkOrder by id so both panel and drawer callbacks
+  // can resolve to the same typed value without narrowing casts.
+  const handleAcceptWO = (wo: { work_order_id: string }) => {
+    const full = workOrders.find(w => w.work_order_id === wo.work_order_id);
+    if (full) props.acceptWO(full);
   };
 
   // ── SMS toggle handler ──
-  // Turning OFF: call toggleSms directly (no consent needed)
-  // Turning ON: show consent modal first, then call toggleSms on confirm
-  const handleSmsClick = (toggle: any) => {
-    const isOn = !!props.smsPrefs?.[toggle.col];
+  // Turning OFF: call toggleSms directly (no consent needed).
+  // Turning ON:  show consent modal first, then call toggleSms on confirm.
+  const handleSmsClick = (toggle: ProfilePanelSmsToggle) => {
+    const current = props.smsPrefs;
+    const isOn = !!(current && (current as ProfilePanelSmsPrefs & Record<string, boolean | null | undefined>)[toggle.col]);
     if (isOn) {
       props.toggleSms(toggle.col, false);
     } else {
@@ -204,7 +299,7 @@ export default function MobileAccount(props: MobileAccountProps) {
   // We populate the form state, then flip showSRForm=true to open the sheet.
   // The ServiceRequestPanel3 sees the pre-filled values and lets the user
   // edit them before submitting.
-  const handleWizardServiceRequest = (result: any) => {
+  const handleWizardServiceRequest = (result: WizardResult) => {
     setSrType(result.recommendation ?? '');
     const stone = [result.stone_variety, result.stone_species].filter(Boolean).join(' ');
     setSrDesc(
@@ -216,10 +311,10 @@ export default function MobileAccount(props: MobileAccountProps) {
   };
 
   // ── Derived values used in the welcome block ──
-  const hour       = new Date().getHours();
-  const greeting   = hour < 12 ? 'Good morning' : hour < 18 ? 'Good afternoon' : 'Good evening';
-  const firstName  = props.profile?.name?.split(' ')[0] || 'there';
-  const dateLabel  = new Date().toLocaleDateString('en-US', {
+  const hour      = new Date().getHours();
+  const greeting  = hour < 12 ? 'Good morning' : hour < 18 ? 'Good afternoon' : 'Good evening';
+  const firstName = props.profile?.name?.split(' ')[0] || 'there';
+  const dateLabel = new Date().toLocaleDateString('en-US', {
     weekday: 'long', month: 'long', day: 'numeric',
   });
   // Count how many notification categories have something new
@@ -235,8 +330,6 @@ export default function MobileAccount(props: MobileAccountProps) {
   );
 
   // ── Wizard results for the feasibility tile ──
-  // In production: fetch from Supabase. For now pass empty array
-  // and the tile handles the empty state gracefully.
   const wizardResults = props.latestWizardResult ? [props.latestWizardResult] : [];
 
   return (
@@ -266,7 +359,6 @@ export default function MobileAccount(props: MobileAccountProps) {
       <div className="feed">
 
         {/* Welcome block -- greeting + date + update count */}
-        {/* Converted from the .welcome div in the HTML */}
         <div className="welcome">
           <div className="welcome-name">{greeting}, {firstName}.</div>
           <div className="welcome-meta">
@@ -274,7 +366,7 @@ export default function MobileAccount(props: MobileAccountProps) {
             {updateCount > 0 ? (
               <span>{updateCount} update{updateCount !== 1 ? 's' : ''}</span>
             ) : (
-              <span style={{ 
+              <span style={{
                 color: 'var(--text-mob-muted)' }}>All caught up</span>
             )}
           </div>
@@ -296,7 +388,6 @@ export default function MobileAccount(props: MobileAccountProps) {
         </div>
 
         {/* ── Notification tiles ── */}
-        {/* feed-block groups tiles with 8px gap */}
         <div className="feed-block">
 
           {/* Messages tile -- full width, wide variant */}
@@ -342,7 +433,7 @@ export default function MobileAccount(props: MobileAccountProps) {
             serviceRequests={serviceRequests}
             onClick={() => openPanel('servicereq')}
           />
- 
+
           {/* Profile -- slim bar */}
           <ProfileTile3
             profile={props.profile}
@@ -355,16 +446,14 @@ export default function MobileAccount(props: MobileAccountProps) {
         </div>{/* end feed-block */}
 
         {/* ── Shop feed ── */}
-        {/* Divider + 2-column grid of shop items */}
         <ShopFeed3
           session={props.session}
-          onItemClick={(item) => openDrawer('shopitem', item)}
+          onItemClick={handleSelectShopItem}
         />
 
       </div>{/* end feed */}
 
       {/* ── Tab bar ── */}
-      {/* Fixed at bottom -- Menu · Chat · Invoices · Theme */}
       <TabBar3
         onMenuOpen={() => setMenuOpen(true)}
         onChatOpen={() => openPanel('chat')}
@@ -374,8 +463,6 @@ export default function MobileAccount(props: MobileAccountProps) {
       />
 
       {/* ── Panels ── */}
-      {/* Each panel slides up from the bottom. Only one is open at a time.
-          The open prop controls whether className includes 'open'. */}
 
       <ChatPanel3
         open={activePanel === 'chat'}
@@ -401,15 +488,20 @@ export default function MobileAccount(props: MobileAccountProps) {
         workOrders={workOrders}
         adminInfo={props.adminInfo}
         profile={props.profile}
-        onSelectWO={(wo) => openDrawer('workorder', wo)}
-        onAcceptWO={props.acceptWO}
+        onSelectWO={handleSelectWO}
+        onAcceptWO={handleAcceptWO}
         onClose={closePanel}
       />
 
       <InvoicesPanel3
         open={activePanel === 'invoices'}
-        invoices={invoices}
-        onSelectInvoice={(inv) => openDrawer('invoice', inv)}
+        invoices={invoices.map(inv => ({
+          invoice_id:   inv.invoice_id,
+          paid_at:      inv.paid_at,
+          total_amount: inv.total_amount,
+          line_items:   toPanelLineItems(inv.line_items),
+        }))}
+        onSelectInvoice={handleSelectInvoice}
         onClose={closePanel}
       />
 
@@ -418,10 +510,9 @@ export default function MobileAccount(props: MobileAccountProps) {
         serviceRequests={serviceRequests}
         session={props.session}
         profile={props.profile}
-        onSelectSR={(sr) => openDrawer('servicereq', sr)}
+        onSelectSR={handleSelectSR}
         onClose={closePanel}
         refreshServiceRequests={props.refreshServiceRequests}
-        // Wizard-prefill handshake stays exactly as before.
         showSRForm={showSRForm}
         setShowSRForm={setShowSRForm}
         srType={srType}
@@ -462,7 +553,7 @@ export default function MobileAccount(props: MobileAccountProps) {
         invoiceCount={invoiceCount}
         invoiceTotal={invoiceTotal}
         hasOpenWorkOrder={hasOpenWorkOrder}
-        setEditProfile={props.setEditProfile}
+        setEditProfile={(v) => props.setEditProfile({ ...v, account_user_id: props.session?.user.id ?? '' })}
         saveProfile={props.saveProfile}
         onSmsToggle={handleSmsClick}
         onClose={closePanel}
@@ -479,42 +570,45 @@ export default function MobileAccount(props: MobileAccountProps) {
 
       {/* ── Drawers ── */}
       {/* Each drawer slides in from the right. Only one is open at a time.
-          drawerData holds the selected item (wo, invoice, sr). 
-          RENDERED LAST TO ENSURE THEY ARE ON TOP. */}
+          Each drawer reads its own typed selection slot. RENDERED LAST. */}
 
       <MenuDrawer3
         open={menuOpen}
         onClose={() => setMenuOpen(false)}
-        onNavigate={(panel: any) => { setMenuOpen(false); openPanel(panel); }}
+        onNavigate={(panel) => { setMenuOpen(false); openPanel(panel); }}
         onSignOut={signOut}
       />
 
       <WorkOrderDrawer3
         open={activeDrawer === 'workorder'}
-        wo={drawerData}
+        wo={selectedWO}
         adminInfo={props.adminInfo}
         profile={props.profile}
-        onAccept={props.acceptWO}
+        onAccept={handleAcceptWO}
         onClose={closeDrawer}
       />
 
-      <InvoiceDrawer3
-        open={activeDrawer === 'invoice'}
-        invoice={drawerData}
-        profile={props.profile}
-        adminInfo={props.adminInfo}
-        onClose={closeDrawer}
-      />
+      {selectedInvoice && (
+        <InvoiceDrawer3
+          open={activeDrawer === 'invoice'}
+          invoice={{ ...selectedInvoice, line_items: toDrawerLineItems(selectedInvoice.line_items) }}
+          profile={props.profile}
+          adminInfo={props.adminInfo}
+          onClose={closeDrawer}
+        />
+      )}
 
-      <ServiceRequestDrawer3
-        open={activeDrawer === 'servicereq'}
-        sr={drawerData}
-        onClose={closeDrawer}
-      />
+      {selectedSR && (
+        <ServiceRequestDrawer3
+          open={activeDrawer === 'servicereq'}
+          sr={selectedSR}
+          onClose={closeDrawer}
+        />
+      )}
 
       <ShopItemDrawer3
         open={activeDrawer === 'shopitem'}
-        item={drawerData}
+        item={selectedShopItem}
         session={props.session}
         onClose={closeDrawer}
         refreshInquiries={props.refreshInquiries}
