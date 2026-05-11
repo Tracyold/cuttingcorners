@@ -1,4 +1,4 @@
-
+@use '../../../src/css/shared' as *;
 /* ══════════════════════════════════════════════════════════════
    MODALS / OVERLAYS — scope all fixed overlays to right column
    ══════════════════════════════════════════════════════════════ */
@@ -6,14 +6,16 @@
 .desktop-shell .sms-overlay,
 .desktop-shell .sms-modal,
 .desktop-shell .nr-overlay,
-.desktop-shell .nr-sheet {
-  left: 50% !important;
-  right: 0 !important;
-  width: 50% !important;
-}
+.desktop-shell 
 
 .desktop-shell .profile-delete-backdrop {
   left: 50% !important;
   right: 0 !important;
   width: 50% !important;
+}
+
+// Extended from .desktop in shared.scss
+.nr-sheet {
+  @extend .desktop;
+  // Add DesktopAccount-specific styles below
 }

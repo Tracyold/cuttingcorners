@@ -1,0 +1,267 @@
+
+
+// ── Skeleton (tier 5) from:
+  //   frontend/components/account/mobile/MobileShell.scss → .wiz-empty
+  //   frontend/components/account/mobile/css/WizardShell.scss → .wiz-folder-tile-inner
+  //   frontend/styles/wizard.scss → .wiz-almost-done
+// ───────────────────────────────────
+.mw-skeleton {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+
+// ── Skeleton (tier 4) from:
+  //   frontend/components/account/mobile/MobileShell.scss → .chat-send
+  //   frontend/components/account/mobile/css/WizardShell.scss → .wiz-back-btn
+  //   frontend/components/account/mobile/MobileShell.scss → .sr-archive-btn
+  //   frontend/components/account/mobile/MobileShell.scss → .panel-close
+  //   frontend/components/account/mobile/MobileShell.scss → .nr-photo-rm
+  //   frontend/components/account/mobile/MobileShell.scss → .wo-close
+  //   frontend/components/account/mobile/MobileShell.scss → .res-close
+  //   frontend/components/account/mobile/MobileShell.scss → .srf-photo-remove
+  //   frontend/styles/Admin.scss → .ni
+// ───────────────────────────────────
+.mwa-skeleton {
+  align-items: center;
+  border: none;
+  cursor: pointer;
+  display: flex;
+}
+
+
+// ── Skeleton (tier 4) from:
+  //   frontend/components/account/mobile/MobileShell.scss → .heart-btn
+  //   frontend/styles/Admin.scss → .btn-add
+  //   frontend/styles/Admin.scss → .btn-sel
+  //   frontend/styles/Admin.scss → .bn
+  //   frontend/styles/Admin.scss → .bp
+  //   frontend/styles/globals.scss → .btn-primary
+// ───────────────────────────────────
+.mag-skeleton {
+  -webkit-tap-highlight-color: transparent;
+  align-items: center;
+  cursor: pointer;
+  justify-content: center;
+}
+
+
+// ── Skeleton (tier 4) from:
+  //   frontend/components/account/mobile/MobileShell.scss → .chat-attach
+  //   frontend/styles/Admin.scss → .btn-sel
+  //   frontend/styles/Admin.scss → .bn
+  //   frontend/components/account/mobile/MobileShell.scss → .srf-custom-remove
+  //   frontend/components/account/mobile/css/WizardShell.scss → .wiz-folder-tile-inner
+// ───────────────────────────────────
+.maw-skeleton {
+  align-items: center;
+  background: transparent;
+  cursor: pointer;
+  justify-content: center;
+}
+
+
+// ── Skeleton (tier 3) from:
+  //   frontend/components/account/desktop/DesktopShell.scss → .desktop-shell
+  //   frontend/components/account/mobile/MobileShell.scss → .wiz-thumb
+  //   frontend/components/account/mobile/MobileShell.scss → .shop-thumb
+  //   frontend/components/account/mobile/TilesShell.scss → .tile
+// ───────────────────────────────────
+.dmt-skeleton {
+  display: flex;
+  overflow: hidden;
+  position: relative;
+}
+
+
+// ── Skeleton (tier 3) from:
+  //   frontend/components/account/desktop/DesktopShell.scss → .desktop-shell
+  //   frontend/styles/Admin.scss → .ni
+  //   frontend/styles/wizard.scss → .full-screen
+// ───────────────────────────────────
+.daw-skeleton {
+  display: flex;
+  position: relative;
+  width: 100%;
+}
+
+
+// ── Skeleton (tier 3) from:
+  //   frontend/components/account/mobile/MobileShell.scss → .shop-thumb
+  //   frontend/components/account/mobile/css/WizardShell.scss → .wiz-folder-tile-inner
+  //   frontend/components/account/mobile/TilesShell.scss → .tile
+// ───────────────────────────────────
+.mwt-skeleton {
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+}
+
+
+// ── Skeleton (tier 3) from:
+  //   frontend/components/account/mobile/MobileShell.scss → .shop-thumb
+  //   frontend/components/account/mobile/css/WizardShell.scss → .wiz-folder-action-btn
+  //   frontend/components/account/mobile/css/WizardShell.scss → .wiz-modal-folder-item
+  //   frontend/components/account/mobile/TilesShell.scss → .tile
+// ───────────────────────────────────
+.mwt-skeleton-2 {
+  background: var(--bg-mob-card);
+  cursor: pointer;
+  display: flex;
+}
+
+
+// ── Skeleton (tier 3) from:
+  //   frontend/components/account/mobile/MobileShell.scss → .profile-save
+  //   frontend/components/account/mobile/css/WizardShell.scss → .wiz-folder-tile-inner
+  //   frontend/components/account/mobile/MobileShell.scss → .wo-accept-btn
+  //   frontend/styles/Admin.scss → .mob-dropdown-signout
+// ───────────────────────────────────
+.mwa-skeleton-2 {
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
+
+
+// ── Skeleton (tier 3) from:
+  //   frontend/components/account/mobile/MobileShell.scss → .heart-btn
+  //   frontend/styles/Admin.scss → .mob-dropdown-signout
+  //   frontend/styles/Admin.scss → .tab
+  //   frontend/styles/wizard.scss → .wiz-nav-btn-ghost
+// ───────────────────────────────────
+.maw-skeleton-2 {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+
+// ── Skeleton (tier 3) from:
+  //   frontend/components/account/mobile/MobileShell.scss → .sr-archive-btn
+  //   frontend/styles/Admin.scss → .mob-dropdown-signout
+  //   frontend/styles/Admin.scss → .tab
+  //   frontend/components/account/mobile/MobileShell.scss → .profile-save
+  //   frontend/components/account/mobile/MobileShell.scss → .wo-accept-btn
+  //   frontend/styles/wizard.scss → .wiz-nav-btn-ghost
+  //   frontend/styles/wizard.scss → .intro-skip-btn
+// ───────────────────────────────────
+.maw-skeleton-3 {
+  border: none;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+
+// ── Skeleton (tier 3) from:
+  //   frontend/components/account/mobile/MobileShell.scss → .shop-thumb
+  //   frontend/styles/Admin.scss → .ni
+  //   frontend/components/account/mobile/TilesShell.scss → .tile
+// ───────────────────────────────────
+.mat-skeleton {
+  cursor: pointer;
+  display: flex;
+  position: relative;
+}
+
+
+// ── Skeleton (tier 3) from:
+  //   frontend/components/account/mobile/MobileShell.scss → .profile-delete-btn
+  //   frontend/styles/Admin.scss → .ab
+  //   frontend/styles/Admin.scss → .bg
+  //   frontend/styles/Admin.scss → .bb
+  //   frontend/styles/wizard.scss → .wiz-nav-btn-ghost
+// ───────────────────────────────────
+.maw-skeleton-4 {
+  background: none;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+
+// ── Skeleton (tier 3) from:
+  //   frontend/components/account/mobile/MobileShell.scss → .profile-delete-btn
+  //   frontend/styles/globals.scss → .btn-primary
+  //   frontend/styles/Admin.scss → .tab
+// ───────────────────────────────────
+.mga-skeleton {
+  cursor: pointer;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+}
+
+
+// ── Skeleton (tier 3) from:
+  //   frontend/components/account/mobile/MobileShell.scss → .heart-btn
+  //   frontend/styles/wizard.scss → .center-stage
+  //   frontend/components/account/mobile/css/WizardShell.scss → .wiz-back-btn
+// ───────────────────────────────────
+.mw-skeleton-2 {
+  align-items: center;
+  display: flex;
+  padding: 0;
+}
+
+
+// ── Skeleton (tier 3) from:
+  //   frontend/components/account/mobile/MobileShell.scss → .wiz-thumb
+  //   frontend/styles/wizard.scss → .full-screen
+  //   frontend/components/account/mobile/MobileShell.scss → .tab
+  //   frontend/components/account/mobile/MobileShell.scss → .shop-thumb
+  //   frontend/components/account/mobile/TilesShell.scss → .tile
+// ───────────────────────────────────
+.mwt-skeleton-3 {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+
+// ── Skeleton (tier 3) from:
+  //   frontend/components/account/mobile/MobileShell.scss → .wiz-thumb
+  //   frontend/styles/wizard.scss → .wiz-correctable-btn
+  //   frontend/components/account/mobile/MobileShell.scss → .shop-thumb
+  //   frontend/styles/wizard.scss → .begin-btn
+  //   frontend/styles/wizard.scss → .wiz-nav-btn-next
+  //   frontend/styles/wizard.scss → .wiz-section-btn
+  //   frontend/styles/wizard.scss → .wiz-check-item
+  //   frontend/components/account/mobile/TilesShell.scss → .tile
+// ───────────────────────────────────
+.mwt-skeleton-4 {
+  cursor: pointer;
+  overflow: hidden;
+  position: relative;
+}
+
+
+// ── Skeleton (tier 3) from:
+  //   frontend/components/account/mobile/MobileShell.scss → .tab
+  //   frontend/styles/wizard.scss → .wiz-check-item
+  //   frontend/styles/Admin.scss → .ni
+// ───────────────────────────────────
+.mwa-skeleton-3 {
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+}
+
+
+// ── Skeleton (tier 3) from:
+  //   frontend/styles/Admin.scss → .btn-add
+  //   frontend/styles/wizard.scss → .disc-checkbox
+  //   frontend/styles/Admin.scss → .btn-sel
+  //   frontend/styles/Admin.scss → .bn
+  //   frontend/styles/Admin.scss → .bp
+  //   frontend/styles/Admin.scss → .ab
+  //   frontend/styles/Admin.scss → .bg
+  //   frontend/styles/Admin.scss → .bb
+  //   frontend/styles/globals.scss → .btn-primary
+// ───────────────────────────────────
+.awg-skeleton {
+  align-items: center;
+  border-radius: 999px;
+  justify-content: center;
+}

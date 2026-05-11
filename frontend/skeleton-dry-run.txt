@@ -1,0 +1,1732 @@
+
+══════════════════════════════════════════════════════════════════
+  FIND SKELETONS (DRY RUN) 
+  Root: /workspaces/cuttingcorners/frontend  |  Tiers: 7 → 3  |  Min files: 3
+══════════════════════════════════════════════════════════════════
+Found 10 component style file(s)
+
+  Loading 10 component files...
+
+  [1/10] components/account/desktop/DesktopAccount.scss
+  [2/10] components/account/desktop/DesktopShell.scss
+  [3/10] components/account/mobile/MobileShell.scss
+  [4/10] components/account/mobile/TilesShell.scss
+  [5/10] components/account/mobile/css/WizardShell.scss
+  [6/10] styles/Admin.scss
+  [7/10] styles/globals.scss
+  [8/10] styles/home.scss
+  [9/10] styles/shopCardEffect.scss
+  [10/10] styles/wizard.scss
+
+──────────────────────────────────────────────────────────────────
+  TIER 7 — searching for 7-property skeletons across 3+ files
+──────────────────────────────────────────────────────────────────
+
+  Checked 45 file pairs
+
+  Tier 7 complete: 0 skeleton(s) found
+
+──────────────────────────────────────────────────────────────────
+  TIER 6 — searching for 6-property skeletons across 3+ files
+──────────────────────────────────────────────────────────────────
+
+  Checked 45 file pairs
+
+  Tier 6 complete: 0 skeleton(s) found
+
+──────────────────────────────────────────────────────────────────
+  TIER 5 — searching for 5-property skeletons across 3+ files
+──────────────────────────────────────────────────────────────────
+
+  Checked 45 file pairs
+
+  ⚡ SKELETON [5 props]: .mw-skeleton
+     Props: align-items, display, flex-direction, justify-content, text-align
+     • .wiz-empty  →  components/account/mobile/MobileShell.scss
+     • .wiz-folder-tile-inner  →  components/account/mobile/css/WizardShell.scss
+     • .wiz-almost-done  →  styles/wizard.scss
+
+  Tier 5 complete: 1 skeleton(s) found
+
+──────────────────────────────────────────────────────────────────
+  TIER 4 — searching for 4-property skeletons across 3+ files
+──────────────────────────────────────────────────────────────────
+    ~ Skipping .wiz-thumb/.intro-middle — subset of higher-tier skeleton
+    ~ Skipping .wiz-thumb/.wiz-section-intro — subset of higher-tier skeleton
+    ~ Skipping .wiz-thumb/.wiz-almost-done — subset of higher-tier skeleton
+    ~ Skipping .wiz-thumb/.wiz-section-card — subset of higher-tier skeleton
+
+  Checked 45 file pairs
+
+  ⚡ SKELETON [4 props]: .mwa-skeleton
+     Props: align-items, cursor, display, justify-content
+     • .heart-btn  →  components/account/mobile/MobileShell.scss
+     • .wiz-folder-action-btn  →  components/account/mobile/css/WizardShell.scss
+     • .chat-send  →  components/account/mobile/MobileShell.scss
+     • .menu-drawer-close  →  components/account/mobile/MobileShell.scss
+     • .wiz-folder-tile-inner  →  components/account/mobile/css/WizardShell.scss
+     • .nr-info-btn  →  components/account/mobile/MobileShell.scss
+     • .inv-drawer-close  →  components/account/mobile/MobileShell.scss
+     • .sr-archive-btn  →  components/account/mobile/MobileShell.scss
+     • .panel-close  →  components/account/mobile/MobileShell.scss
+     • .xb  →  styles/Admin.scss
+     • .chat-attach  →  components/account/mobile/MobileShell.scss
+     • .nr-photo-rm  →  components/account/mobile/MobileShell.scss
+     • .wo-close  →  components/account/mobile/MobileShell.scss
+     • .wiz-thumb  →  components/account/mobile/MobileShell.scss
+     • .res-close  →  components/account/mobile/MobileShell.scss
+     • .srf-custom-remove  →  components/account/mobile/MobileShell.scss
+     • .srf-photo-remove  →  components/account/mobile/MobileShell.scss
+
+  ⚡ SKELETON [4 props]: .mwa-skeleton-2
+     Props: align-items, border, cursor, display
+     • .panel-close  →  components/account/mobile/MobileShell.scss
+     • .wiz-back-btn  →  components/account/mobile/css/WizardShell.scss
+     • .chat-send  →  components/account/mobile/MobileShell.scss
+     • .nr-photo-rm  →  components/account/mobile/MobileShell.scss
+     • .wo-close  →  components/account/mobile/MobileShell.scss
+     • .res-close  →  components/account/mobile/MobileShell.scss
+     • .sr-archive-btn  →  components/account/mobile/MobileShell.scss
+     • .srf-photo-remove  →  components/account/mobile/MobileShell.scss
+     • .ni  →  styles/Admin.scss
+
+  ⚡ SKELETON [4 props]: .mwh-skeleton
+     Props: align-items, cursor, display, flex-direction
+     • .tab  →  components/account/mobile/MobileShell.scss
+     • .wiz-folder-tile-inner  →  components/account/mobile/css/WizardShell.scss
+     • .wiz-thumb  →  components/account/mobile/MobileShell.scss
+     • .svc-slot  →  styles/home.scss
+
+  ⚡ SKELETON [4 props]: .mag-skeleton
+     Props: -webkit-tap-highlight-color, align-items, cursor, justify-content
+     • .heart-btn  →  components/account/mobile/MobileShell.scss
+     • .btn-add  →  styles/Admin.scss
+     • .btn-sel  →  styles/Admin.scss
+     • .bn  →  styles/Admin.scss
+     • .bp  →  styles/Admin.scss
+     • .btn-primary  →  styles/globals.scss
+
+  ⚡ SKELETON [4 props]: .maw-skeleton
+     Props: align-items, background, cursor, justify-content
+     • .chat-attach  →  components/account/mobile/MobileShell.scss
+     • .btn-sel  →  styles/Admin.scss
+     • .bn  →  styles/Admin.scss
+     • .srf-custom-remove  →  components/account/mobile/MobileShell.scss
+     • .wiz-folder-tile-inner  →  components/account/mobile/css/WizardShell.scss
+
+  ⚡ SKELETON [4 props]: .maw-skeleton-2
+     Props: cursor, display, flex-direction, justify-content
+     • .wiz-thumb  →  components/account/mobile/MobileShell.scss
+     • .mob-burger  →  styles/Admin.scss
+     • .wiz-folder-tile-inner  →  components/account/mobile/css/WizardShell.scss
+
+  ⚡ SKELETON [4 props]: .wa-skeleton
+     Props: align-items, display, justify-content, width
+     • .wiz-folder-tile-inner  →  components/account/mobile/css/WizardShell.scss
+     • .qi-thumb-empty  →  styles/Admin.scss
+     • .photo-preview-empty  →  styles/Admin.scss
+     • .card-thumb-empty  →  styles/Admin.scss
+     • .intro-begin-row  →  styles/wizard.scss
+     • .intro-middle  →  styles/wizard.scss
+     • .wiz-section-intro  →  styles/wizard.scss
+     • .wiz-section-card  →  styles/wizard.scss
+
+  Tier 4 complete: 7 skeleton(s) found
+
+──────────────────────────────────────────────────────────────────
+  TIER 3 — searching for 3-property skeletons across 3+ files
+──────────────────────────────────────────────────────────────────
+    ~ Skipping .dr-item/.wiz-back-btn — subset of higher-tier skeleton
+    ~ Skipping .dr-item/.wiz-folder-tile-inner — subset of higher-tier skeleton
+    ~ Skipping .dr-item/.wiz-folder-action-btn — subset of higher-tier skeleton
+    ~ Skipping .dr-item/.wiz-modal-folder-item — subset of higher-tier skeleton
+    ~ Skipping .shop-thumb/.wiz-folder-tile-inner — subset of higher-tier skeleton
+    ~ Skipping .shop-img/.wiz-folder-tile-inner — subset of higher-tier skeleton
+    ~ Skipping .shop-img/.wiz-folder-action-btn — subset of higher-tier skeleton
+    ~ Skipping .heart-btn/.wiz-modal-folder-item — subset of higher-tier skeleton
+    ~ Skipping .panel-close/.wiz-modal-folder-item — subset of higher-tier skeleton
+    ~ Skipping .chat-attach/.wiz-modal-folder-item — subset of higher-tier skeleton
+    ~ Skipping .chat-send/.wiz-modal-folder-item — subset of higher-tier skeleton
+    ~ Skipping .menu-drawer-close/.wiz-modal-folder-item — subset of higher-tier skeleton
+    ~ Skipping .menu-item/.wiz-back-btn — subset of higher-tier skeleton
+    ~ Skipping .menu-item/.wiz-folder-tile-inner — subset of higher-tier skeleton
+    ~ Skipping .menu-item/.wiz-folder-action-btn — subset of higher-tier skeleton
+    ~ Skipping .menu-item/.wiz-modal-folder-item — subset of higher-tier skeleton
+    ~ Skipping .sms-row/.wiz-back-btn — subset of higher-tier skeleton
+    ~ Skipping .sms-row/.wiz-folder-tile-inner — subset of higher-tier skeleton
+    ~ Skipping .sms-row/.wiz-folder-action-btn — subset of higher-tier skeleton
+    ~ Skipping .sms-row/.wiz-modal-folder-item — subset of higher-tier skeleton
+    ~ Skipping .nr-info-btn/.wiz-back-btn — subset of higher-tier skeleton
+    ~ Skipping .nr-info-btn/.wiz-modal-folder-item — subset of higher-tier skeleton
+    ~ Skipping .nr-photo-thumb/.wiz-folder-tile-inner — subset of higher-tier skeleton
+    ~ Skipping .nr-photo-thumb/.wiz-folder-action-btn — subset of higher-tier skeleton
+    ~ Skipping .nr-photo-rm/.wiz-modal-folder-item — subset of higher-tier skeleton
+    ~ Skipping .wo-close/.wiz-modal-folder-item — subset of higher-tier skeleton
+    ~ Skipping .inv-drawer-close/.wiz-back-btn — subset of higher-tier skeleton
+    ~ Skipping .inv-drawer-close/.wiz-modal-folder-item — subset of higher-tier skeleton
+    ~ Skipping .wiz-thumb/.wiz-back-btn — subset of higher-tier skeleton
+    ~ Skipping .wiz-score-num/.wiz-folder-tile-inner — subset of higher-tier skeleton
+    ~ Skipping .wiz-score-num/.wiz-folder-action-btn — subset of higher-tier skeleton
+    ~ Skipping .wiz-empty/.wiz-folder-action-btn — subset of higher-tier skeleton
+    ~ Skipping .res-close/.wiz-modal-folder-item — subset of higher-tier skeleton
+    ~ Skipping .res-ring-num/.wiz-folder-tile-inner — subset of higher-tier skeleton
+    ~ Skipping .res-ring-num/.wiz-folder-action-btn — subset of higher-tier skeleton
+    ~ Skipping .tab/.wiz-back-btn — subset of higher-tier skeleton
+    ~ Skipping .tab/.wiz-folder-action-btn — subset of higher-tier skeleton
+    ~ Skipping .tab/.wiz-modal-folder-item — subset of higher-tier skeleton
+    ~ Skipping .sr-archive-btn/.wiz-modal-folder-item — subset of higher-tier skeleton
+    ~ Skipping .srf-size-row/.wiz-folder-tile-inner — subset of higher-tier skeleton
+    ~ Skipping .srf-size-row/.wiz-folder-action-btn — subset of higher-tier skeleton
+    ~ Skipping .srf-size-box/.wiz-folder-tile-inner — subset of higher-tier skeleton
+    ~ Skipping .srf-custom-remove/.wiz-modal-folder-item — subset of higher-tier skeleton
+    ~ Skipping .srf-photo-uploading/.wiz-folder-tile-inner — subset of higher-tier skeleton
+    ~ Skipping .srf-photo-uploading/.wiz-folder-action-btn — subset of higher-tier skeleton
+    ~ Skipping .srf-photo-remove/.wiz-modal-folder-item — subset of higher-tier skeleton
+    ~ Skipping .dr-item/.ni — subset of higher-tier skeleton
+    ~ Skipping .dr-item/.xb — subset of higher-tier skeleton
+    ~ Skipping .dr-item/.notif-row — subset of higher-tier skeleton
+    ~ Skipping .shop-thumb/.mob-burger — subset of higher-tier skeleton
+    ~ Skipping .shop-img/.ni-badge — subset of higher-tier skeleton
+    ~ Skipping .shop-img/.loading — subset of higher-tier skeleton
+    ~ Skipping .shop-img/.qi-thumb-empty — subset of higher-tier skeleton
+    ~ Skipping .shop-img/.xb — subset of higher-tier skeleton
+    ~ Skipping .shop-img/.photo-preview-empty — subset of higher-tier skeleton
+    ~ Skipping .shop-img/.card-thumb-empty — subset of higher-tier skeleton
+    ~ Skipping .heart-btn/.loading — subset of higher-tier skeleton
+    ~ Skipping .heart-btn/.qi-thumb-empty — subset of higher-tier skeleton
+    ~ Skipping .heart-btn/.photo-preview-empty — subset of higher-tier skeleton
+    ~ Skipping .heart-btn/.card-thumb-empty — subset of higher-tier skeleton
+    ~ Skipping .heart-btn/.notif-row — subset of higher-tier skeleton
+    ~ Skipping .panel-close/.btn-add — subset of higher-tier skeleton
+    ~ Skipping .panel-close/.btn-sel — subset of higher-tier skeleton
+    ~ Skipping .panel-close/.loading — subset of higher-tier skeleton
+    ~ Skipping .panel-close/.ab — subset of higher-tier skeleton
+    ~ Skipping .panel-close/.qi-thumb-empty — subset of higher-tier skeleton
+    ~ Skipping .panel-close/.bg — subset of higher-tier skeleton
+    ~ Skipping .panel-close/.bn — subset of higher-tier skeleton
+    ~ Skipping .panel-close/.bp — subset of higher-tier skeleton
+    ~ Skipping .panel-close/.photo-preview-empty — subset of higher-tier skeleton
+    ~ Skipping .panel-close/.card-thumb-empty — subset of higher-tier skeleton
+    ~ Skipping .panel-close/.bb — subset of higher-tier skeleton
+    ~ Skipping .panel-close/.notif-row — subset of higher-tier skeleton
+    ~ Skipping .panel-close/.mob-burger — subset of higher-tier skeleton
+    ~ Skipping .chat-attach/.ni — subset of higher-tier skeleton
+    ~ Skipping .chat-attach/.ni-badge — subset of higher-tier skeleton
+    ~ Skipping .chat-attach/.btn-add — subset of higher-tier skeleton
+    ~ Skipping .chat-attach/.loading — subset of higher-tier skeleton
+    ~ Skipping .chat-attach/.ab — subset of higher-tier skeleton
+    ~ Skipping .chat-attach/.qi-thumb-empty — subset of higher-tier skeleton
+    ~ Skipping .chat-attach/.bg — subset of higher-tier skeleton
+    ~ Skipping .chat-attach/.bp — subset of higher-tier skeleton
+    ~ Skipping .chat-attach/.photo-preview-empty — subset of higher-tier skeleton
+    ~ Skipping .chat-attach/.card-thumb-empty — subset of higher-tier skeleton
+    ~ Skipping .chat-attach/.bb — subset of higher-tier skeleton
+    ~ Skipping .chat-attach/.notif-row — subset of higher-tier skeleton
+    ~ Skipping .chat-attach/.mob-burger — subset of higher-tier skeleton
+    ~ Skipping .chat-send/.btn-add — subset of higher-tier skeleton
+    ~ Skipping .chat-send/.btn-sel — subset of higher-tier skeleton
+    ~ Skipping .chat-send/.loading — subset of higher-tier skeleton
+    ~ Skipping .chat-send/.ab — subset of higher-tier skeleton
+    ~ Skipping .chat-send/.qi-thumb-empty — subset of higher-tier skeleton
+    ~ Skipping .chat-send/.bg — subset of higher-tier skeleton
+    ~ Skipping .chat-send/.bn — subset of higher-tier skeleton
+    ~ Skipping .chat-send/.bp — subset of higher-tier skeleton
+    ~ Skipping .chat-send/.photo-preview-empty — subset of higher-tier skeleton
+    ~ Skipping .chat-send/.card-thumb-empty — subset of higher-tier skeleton
+    ~ Skipping .chat-send/.bb — subset of higher-tier skeleton
+    ~ Skipping .chat-send/.notif-row — subset of higher-tier skeleton
+    ~ Skipping .chat-send/.mob-burger — subset of higher-tier skeleton
+    ~ Skipping .menu-drawer-close/.btn-add — subset of higher-tier skeleton
+    ~ Skipping .menu-drawer-close/.btn-sel — subset of higher-tier skeleton
+    ~ Skipping .menu-drawer-close/.loading — subset of higher-tier skeleton
+    ~ Skipping .menu-drawer-close/.qi-thumb-empty — subset of higher-tier skeleton
+    ~ Skipping .menu-drawer-close/.bn — subset of higher-tier skeleton
+    ~ Skipping .menu-drawer-close/.bp — subset of higher-tier skeleton
+    ~ Skipping .menu-drawer-close/.photo-preview-empty — subset of higher-tier skeleton
+    ~ Skipping .menu-drawer-close/.card-thumb-empty — subset of higher-tier skeleton
+    ~ Skipping .menu-drawer-close/.notif-row — subset of higher-tier skeleton
+    ~ Skipping .menu-item/.ni — subset of higher-tier skeleton
+    ~ Skipping .menu-item/.xb — subset of higher-tier skeleton
+    ~ Skipping .menu-item/.notif-row — subset of higher-tier skeleton
+    ~ Skipping .sms-row/.ni — subset of higher-tier skeleton
+    ~ Skipping .sms-row/.xb — subset of higher-tier skeleton
+    ~ Skipping .sms-row/.notif-row — subset of higher-tier skeleton
+    ~ Skipping .nr-info-btn/.btn-add — subset of higher-tier skeleton
+    ~ Skipping .nr-info-btn/.btn-sel — subset of higher-tier skeleton
+    ~ Skipping .nr-info-btn/.loading — subset of higher-tier skeleton
+    ~ Skipping .nr-info-btn/.qi-thumb-empty — subset of higher-tier skeleton
+    ~ Skipping .nr-info-btn/.bn — subset of higher-tier skeleton
+    ~ Skipping .nr-info-btn/.bp — subset of higher-tier skeleton
+    ~ Skipping .nr-info-btn/.photo-preview-empty — subset of higher-tier skeleton
+    ~ Skipping .nr-info-btn/.card-thumb-empty — subset of higher-tier skeleton
+    ~ Skipping .nr-info-btn/.notif-row — subset of higher-tier skeleton
+    ~ Skipping .nr-photo-thumb/.ni-badge — subset of higher-tier skeleton
+    ~ Skipping .nr-photo-thumb/.loading — subset of higher-tier skeleton
+    ~ Skipping .nr-photo-thumb/.qi-thumb-empty — subset of higher-tier skeleton
+    ~ Skipping .nr-photo-thumb/.xb — subset of higher-tier skeleton
+    ~ Skipping .nr-photo-thumb/.photo-preview-empty — subset of higher-tier skeleton
+    ~ Skipping .nr-photo-thumb/.card-thumb-empty — subset of higher-tier skeleton
+    ~ Skipping .nr-photo-rm/.btn-add — subset of higher-tier skeleton
+    ~ Skipping .nr-photo-rm/.btn-sel — subset of higher-tier skeleton
+    ~ Skipping .nr-photo-rm/.loading — subset of higher-tier skeleton
+    ~ Skipping .nr-photo-rm/.ab — subset of higher-tier skeleton
+    ~ Skipping .nr-photo-rm/.qi-thumb-empty — subset of higher-tier skeleton
+    ~ Skipping .nr-photo-rm/.bg — subset of higher-tier skeleton
+    ~ Skipping .nr-photo-rm/.bn — subset of higher-tier skeleton
+    ~ Skipping .nr-photo-rm/.bp — subset of higher-tier skeleton
+    ~ Skipping .nr-photo-rm/.photo-preview-empty — subset of higher-tier skeleton
+    ~ Skipping .nr-photo-rm/.card-thumb-empty — subset of higher-tier skeleton
+    ~ Skipping .nr-photo-rm/.bb — subset of higher-tier skeleton
+    ~ Skipping .nr-photo-rm/.notif-row — subset of higher-tier skeleton
+    ~ Skipping .nr-photo-rm/.mob-burger — subset of higher-tier skeleton
+    ~ Skipping .wo-close/.btn-add — subset of higher-tier skeleton
+    ~ Skipping .wo-close/.btn-sel — subset of higher-tier skeleton
+    ~ Skipping .wo-close/.loading — subset of higher-tier skeleton
+    ~ Skipping .wo-close/.ab — subset of higher-tier skeleton
+    ~ Skipping .wo-close/.qi-thumb-empty — subset of higher-tier skeleton
+    ~ Skipping .wo-close/.bg — subset of higher-tier skeleton
+    ~ Skipping .wo-close/.bn — subset of higher-tier skeleton
+    ~ Skipping .wo-close/.bp — subset of higher-tier skeleton
+    ~ Skipping .wo-close/.photo-preview-empty — subset of higher-tier skeleton
+    ~ Skipping .wo-close/.card-thumb-empty — subset of higher-tier skeleton
+    ~ Skipping .wo-close/.bb — subset of higher-tier skeleton
+    ~ Skipping .wo-close/.notif-row — subset of higher-tier skeleton
+    ~ Skipping .wo-close/.mob-burger — subset of higher-tier skeleton
+    ~ Skipping .inv-drawer-close/.btn-add — subset of higher-tier skeleton
+    ~ Skipping .inv-drawer-close/.btn-sel — subset of higher-tier skeleton
+    ~ Skipping .inv-drawer-close/.loading — subset of higher-tier skeleton
+    ~ Skipping .inv-drawer-close/.qi-thumb-empty — subset of higher-tier skeleton
+    ~ Skipping .inv-drawer-close/.bn — subset of higher-tier skeleton
+    ~ Skipping .inv-drawer-close/.bp — subset of higher-tier skeleton
+    ~ Skipping .inv-drawer-close/.photo-preview-empty — subset of higher-tier skeleton
+    ~ Skipping .inv-drawer-close/.card-thumb-empty — subset of higher-tier skeleton
+    ~ Skipping .inv-drawer-close/.notif-row — subset of higher-tier skeleton
+    ~ Skipping .wiz-thumb/.ni-badge — subset of higher-tier skeleton
+    ~ Skipping .wiz-thumb/.btn-add — subset of higher-tier skeleton
+    ~ Skipping .wiz-thumb/.btn-sel — subset of higher-tier skeleton
+    ~ Skipping .wiz-thumb/.loading — subset of higher-tier skeleton
+    ~ Skipping .wiz-thumb/.ab — subset of higher-tier skeleton
+    ~ Skipping .wiz-thumb/.qi-thumb-empty — subset of higher-tier skeleton
+    ~ Skipping .wiz-thumb/.bg — subset of higher-tier skeleton
+    ~ Skipping .wiz-thumb/.bn — subset of higher-tier skeleton
+    ~ Skipping .wiz-thumb/.bp — subset of higher-tier skeleton
+    ~ Skipping .wiz-thumb/.photo-preview-empty — subset of higher-tier skeleton
+    ~ Skipping .wiz-thumb/.card-thumb-empty — subset of higher-tier skeleton
+    ~ Skipping .wiz-thumb/.bb — subset of higher-tier skeleton
+    ~ Skipping .wiz-thumb/.notif-row — subset of higher-tier skeleton
+    ~ Skipping .wiz-score-num/.loading — subset of higher-tier skeleton
+    ~ Skipping .wiz-score-num/.qi-thumb-empty — subset of higher-tier skeleton
+    ~ Skipping .wiz-score-num/.xb — subset of higher-tier skeleton
+    ~ Skipping .wiz-score-num/.photo-preview-empty — subset of higher-tier skeleton
+    ~ Skipping .wiz-score-num/.card-thumb-empty — subset of higher-tier skeleton
+    ~ Skipping .wiz-empty/.ni-badge — subset of higher-tier skeleton
+    ~ Skipping .wiz-empty/.loading — subset of higher-tier skeleton
+    ~ Skipping .wiz-empty/.qi-thumb-empty — subset of higher-tier skeleton
+    ~ Skipping .wiz-empty/.xb — subset of higher-tier skeleton
+    ~ Skipping .wiz-empty/.photo-preview-empty — subset of higher-tier skeleton
+    ~ Skipping .wiz-empty/.card-thumb-empty — subset of higher-tier skeleton
+    ~ Skipping .wiz-empty/.mob-burger — subset of higher-tier skeleton
+    ~ Skipping .res-close/.btn-add — subset of higher-tier skeleton
+    ~ Skipping .res-close/.btn-sel — subset of higher-tier skeleton
+    ~ Skipping .res-close/.loading — subset of higher-tier skeleton
+    ~ Skipping .res-close/.ab — subset of higher-tier skeleton
+    ~ Skipping .res-close/.qi-thumb-empty — subset of higher-tier skeleton
+    ~ Skipping .res-close/.bg — subset of higher-tier skeleton
+    ~ Skipping .res-close/.bn — subset of higher-tier skeleton
+    ~ Skipping .res-close/.bp — subset of higher-tier skeleton
+    ~ Skipping .res-close/.photo-preview-empty — subset of higher-tier skeleton
+    ~ Skipping .res-close/.card-thumb-empty — subset of higher-tier skeleton
+    ~ Skipping .res-close/.bb — subset of higher-tier skeleton
+    ~ Skipping .res-close/.notif-row — subset of higher-tier skeleton
+    ~ Skipping .res-close/.mob-burger — subset of higher-tier skeleton
+    ~ Skipping .res-ring-num/.loading — subset of higher-tier skeleton
+    ~ Skipping .res-ring-num/.qi-thumb-empty — subset of higher-tier skeleton
+    ~ Skipping .res-ring-num/.xb — subset of higher-tier skeleton
+    ~ Skipping .res-ring-num/.photo-preview-empty — subset of higher-tier skeleton
+    ~ Skipping .res-ring-num/.card-thumb-empty — subset of higher-tier skeleton
+    ~ Skipping .tab/.xb — subset of higher-tier skeleton
+    ~ Skipping .tab/.notif-row — subset of higher-tier skeleton
+    ~ Skipping .tab/.mob-burger — subset of higher-tier skeleton
+    ~ Skipping .sr-archive-btn/.qi-thumb-empty — subset of higher-tier skeleton
+    ~ Skipping .sr-archive-btn/.photo-preview-empty — subset of higher-tier skeleton
+    ~ Skipping .sr-archive-btn/.card-thumb-empty — subset of higher-tier skeleton
+    ~ Skipping .sr-archive-btn/.notif-row — subset of higher-tier skeleton
+    ~ Skipping .sr-archive-btn/.mob-burger — subset of higher-tier skeleton
+    ~ Skipping .srf-size-row/.ni-badge — subset of higher-tier skeleton
+    ~ Skipping .srf-size-row/.loading — subset of higher-tier skeleton
+    ~ Skipping .srf-size-row/.qi-thumb-empty — subset of higher-tier skeleton
+    ~ Skipping .srf-size-row/.xb — subset of higher-tier skeleton
+    ~ Skipping .srf-size-row/.photo-preview-empty — subset of higher-tier skeleton
+    ~ Skipping .srf-size-row/.card-thumb-empty — subset of higher-tier skeleton
+    ~ Skipping .srf-custom-remove/.ni — subset of higher-tier skeleton
+    ~ Skipping .srf-custom-remove/.btn-add — subset of higher-tier skeleton
+    ~ Skipping .srf-custom-remove/.loading — subset of higher-tier skeleton
+    ~ Skipping .srf-custom-remove/.ab — subset of higher-tier skeleton
+    ~ Skipping .srf-custom-remove/.qi-thumb-empty — subset of higher-tier skeleton
+    ~ Skipping .srf-custom-remove/.bg — subset of higher-tier skeleton
+    ~ Skipping .srf-custom-remove/.bp — subset of higher-tier skeleton
+    ~ Skipping .srf-custom-remove/.photo-preview-empty — subset of higher-tier skeleton
+    ~ Skipping .srf-custom-remove/.card-thumb-empty — subset of higher-tier skeleton
+    ~ Skipping .srf-custom-remove/.bb — subset of higher-tier skeleton
+    ~ Skipping .srf-custom-remove/.notif-row — subset of higher-tier skeleton
+    ~ Skipping .srf-custom-remove/.mob-burger — subset of higher-tier skeleton
+    ~ Skipping .srf-photo-uploading/.qi-thumb-empty — subset of higher-tier skeleton
+    ~ Skipping .srf-photo-uploading/.xb — subset of higher-tier skeleton
+    ~ Skipping .srf-photo-uploading/.photo-preview-empty — subset of higher-tier skeleton
+    ~ Skipping .srf-photo-uploading/.card-thumb-empty — subset of higher-tier skeleton
+    ~ Skipping .srf-photo-remove/.btn-add — subset of higher-tier skeleton
+    ~ Skipping .srf-photo-remove/.btn-sel — subset of higher-tier skeleton
+    ~ Skipping .srf-photo-remove/.loading — subset of higher-tier skeleton
+    ~ Skipping .srf-photo-remove/.ab — subset of higher-tier skeleton
+    ~ Skipping .srf-photo-remove/.qi-thumb-empty — subset of higher-tier skeleton
+    ~ Skipping .srf-photo-remove/.bg — subset of higher-tier skeleton
+    ~ Skipping .srf-photo-remove/.bn — subset of higher-tier skeleton
+    ~ Skipping .srf-photo-remove/.bp — subset of higher-tier skeleton
+    ~ Skipping .srf-photo-remove/.photo-preview-empty — subset of higher-tier skeleton
+    ~ Skipping .srf-photo-remove/.card-thumb-empty — subset of higher-tier skeleton
+    ~ Skipping .srf-photo-remove/.bb — subset of higher-tier skeleton
+    ~ Skipping .srf-photo-remove/.notif-row — subset of higher-tier skeleton
+    ~ Skipping .srf-photo-remove/.mob-burger — subset of higher-tier skeleton
+    ~ Skipping .panel-close/.btn-primary — subset of higher-tier skeleton
+    ~ Skipping .chat-attach/.btn-primary — subset of higher-tier skeleton
+    ~ Skipping .chat-send/.btn-primary — subset of higher-tier skeleton
+    ~ Skipping .menu-drawer-close/.btn-primary — subset of higher-tier skeleton
+    ~ Skipping .nr-info-btn/.btn-primary — subset of higher-tier skeleton
+    ~ Skipping .nr-photo-rm/.btn-primary — subset of higher-tier skeleton
+    ~ Skipping .wo-close/.btn-primary — subset of higher-tier skeleton
+    ~ Skipping .inv-drawer-close/.btn-primary — subset of higher-tier skeleton
+    ~ Skipping .wiz-thumb/.btn-primary — subset of higher-tier skeleton
+    ~ Skipping .res-close/.btn-primary — subset of higher-tier skeleton
+    ~ Skipping .srf-custom-remove/.btn-primary — subset of higher-tier skeleton
+    ~ Skipping .srf-photo-remove/.btn-primary — subset of higher-tier skeleton
+    ~ Skipping .dr-item/.svc-slot — subset of higher-tier skeleton
+    ~ Skipping .shop-thumb/.svc-slot — subset of higher-tier skeleton
+    ~ Skipping .heart-btn/.svc-slot — subset of higher-tier skeleton
+    ~ Skipping .panel-close/.svc-slot — subset of higher-tier skeleton
+    ~ Skipping .chat-attach/.svc-slot — subset of higher-tier skeleton
+    ~ Skipping .chat-send/.svc-slot — subset of higher-tier skeleton
+    ~ Skipping .menu-drawer-close/.svc-slot — subset of higher-tier skeleton
+    ~ Skipping .menu-item/.svc-slot — subset of higher-tier skeleton
+    ~ Skipping .sms-row/.svc-slot — subset of higher-tier skeleton
+    ~ Skipping .nr-info-btn/.svc-slot — subset of higher-tier skeleton
+    ~ Skipping .nr-photo-rm/.svc-slot — subset of higher-tier skeleton
+    ~ Skipping .wo-close/.svc-slot — subset of higher-tier skeleton
+    ~ Skipping .inv-drawer-close/.svc-slot — subset of higher-tier skeleton
+    ~ Skipping .wiz-empty/.svc-slot — subset of higher-tier skeleton
+    ~ Skipping .res-close/.svc-slot — subset of higher-tier skeleton
+    ~ Skipping .sr-archive-btn/.svc-slot — subset of higher-tier skeleton
+    ~ Skipping .srf-size-box/.svc-slot — subset of higher-tier skeleton
+    ~ Skipping .srf-custom-remove/.svc-slot — subset of higher-tier skeleton
+    ~ Skipping .srf-photo-remove/.svc-slot — subset of higher-tier skeleton
+    ~ Skipping .dr-item/.disc-check-row — subset of higher-tier skeleton
+    ~ Skipping .shop-img/.disc-checkbox — subset of higher-tier skeleton
+    ~ Skipping .shop-img/.wiz-warning-overlay — subset of higher-tier skeleton
+    ~ Skipping .shop-img/.intro-begin-row — subset of higher-tier skeleton
+    ~ Skipping .heart-btn/.disc-check-row — subset of higher-tier skeleton
+    ~ Skipping .heart-btn/.disc-checkbox — subset of higher-tier skeleton
+    ~ Skipping .heart-btn/.wiz-check-item — subset of higher-tier skeleton
+    ~ Skipping .heart-btn/.wiz-warning-overlay — subset of higher-tier skeleton
+    ~ Skipping .heart-btn/.intro-middle — subset of higher-tier skeleton
+    ~ Skipping .heart-btn/.intro-begin-row — subset of higher-tier skeleton
+    ~ Skipping .heart-btn/.wiz-section-intro — subset of higher-tier skeleton
+    ~ Skipping .heart-btn/.wiz-almost-done — subset of higher-tier skeleton
+    ~ Skipping .heart-btn/.wiz-section-card — subset of higher-tier skeleton
+    ~ Skipping .panel-close/.disc-check-row — subset of higher-tier skeleton
+    ~ Skipping .panel-close/.disc-checkbox — subset of higher-tier skeleton
+    ~ Skipping .panel-close/.wiz-warning-overlay — subset of higher-tier skeleton
+    ~ Skipping .panel-close/.intro-middle — subset of higher-tier skeleton
+    ~ Skipping .panel-close/.intro-begin-row — subset of higher-tier skeleton
+    ~ Skipping .panel-close/.wiz-section-intro — subset of higher-tier skeleton
+    ~ Skipping .panel-close/.wiz-almost-done — subset of higher-tier skeleton
+    ~ Skipping .panel-close/.wiz-section-card — subset of higher-tier skeleton
+    ~ Skipping .chat-attach/.disc-check-row — subset of higher-tier skeleton
+    ~ Skipping .chat-attach/.wiz-check-item — subset of higher-tier skeleton
+    ~ Skipping .chat-attach/.wiz-warning-overlay — subset of higher-tier skeleton
+    ~ Skipping .chat-attach/.intro-middle — subset of higher-tier skeleton
+    ~ Skipping .chat-attach/.wiz-section-intro — subset of higher-tier skeleton
+    ~ Skipping .chat-attach/.wiz-almost-done — subset of higher-tier skeleton
+    ~ Skipping .chat-attach/.wiz-section-card — subset of higher-tier skeleton
+    ~ Skipping .chat-send/.disc-check-row — subset of higher-tier skeleton
+    ~ Skipping .chat-send/.wiz-warning-overlay — subset of higher-tier skeleton
+    ~ Skipping .chat-send/.intro-middle — subset of higher-tier skeleton
+    ~ Skipping .chat-send/.wiz-section-intro — subset of higher-tier skeleton
+    ~ Skipping .chat-send/.wiz-almost-done — subset of higher-tier skeleton
+    ~ Skipping .chat-send/.wiz-section-card — subset of higher-tier skeleton
+    ~ Skipping .menu-drawer-close/.disc-check-row — subset of higher-tier skeleton
+    ~ Skipping .menu-drawer-close/.disc-checkbox — subset of higher-tier skeleton
+    ~ Skipping .menu-drawer-close/.wiz-warning-overlay — subset of higher-tier skeleton
+    ~ Skipping .menu-drawer-close/.intro-middle — subset of higher-tier skeleton
+    ~ Skipping .menu-drawer-close/.intro-begin-row — subset of higher-tier skeleton
+    ~ Skipping .menu-drawer-close/.wiz-section-intro — subset of higher-tier skeleton
+    ~ Skipping .menu-drawer-close/.wiz-almost-done — subset of higher-tier skeleton
+    ~ Skipping .menu-drawer-close/.wiz-section-card — subset of higher-tier skeleton
+    ~ Skipping .menu-item/.disc-check-row — subset of higher-tier skeleton
+    ~ Skipping .sms-row/.disc-check-row — subset of higher-tier skeleton
+    ~ Skipping .nr-info-btn/.disc-check-row — subset of higher-tier skeleton
+    ~ Skipping .nr-info-btn/.wiz-warning-overlay — subset of higher-tier skeleton
+    ~ Skipping .nr-info-btn/.intro-middle — subset of higher-tier skeleton
+    ~ Skipping .nr-info-btn/.wiz-section-intro — subset of higher-tier skeleton
+    ~ Skipping .nr-info-btn/.wiz-almost-done — subset of higher-tier skeleton
+    ~ Skipping .nr-info-btn/.wiz-section-card — subset of higher-tier skeleton
+    ~ Skipping .nr-photo-thumb/.disc-checkbox — subset of higher-tier skeleton
+    ~ Skipping .nr-photo-thumb/.wiz-warning-overlay — subset of higher-tier skeleton
+    ~ Skipping .nr-photo-thumb/.intro-middle — subset of higher-tier skeleton
+    ~ Skipping .nr-photo-thumb/.intro-begin-row — subset of higher-tier skeleton
+    ~ Skipping .nr-photo-thumb/.wiz-section-intro — subset of higher-tier skeleton
+    ~ Skipping .nr-photo-thumb/.wiz-almost-done — subset of higher-tier skeleton
+    ~ Skipping .nr-photo-thumb/.wiz-section-card — subset of higher-tier skeleton
+    ~ Skipping .nr-photo-rm/.disc-check-row — subset of higher-tier skeleton
+    ~ Skipping .nr-photo-rm/.disc-checkbox — subset of higher-tier skeleton
+    ~ Skipping .nr-photo-rm/.intro-middle — subset of higher-tier skeleton
+    ~ Skipping .nr-photo-rm/.intro-begin-row — subset of higher-tier skeleton
+    ~ Skipping .nr-photo-rm/.wiz-section-intro — subset of higher-tier skeleton
+    ~ Skipping .nr-photo-rm/.wiz-almost-done — subset of higher-tier skeleton
+    ~ Skipping .nr-photo-rm/.wiz-section-card — subset of higher-tier skeleton
+    ~ Skipping .wo-close/.disc-check-row — subset of higher-tier skeleton
+    ~ Skipping .wo-close/.disc-checkbox — subset of higher-tier skeleton
+    ~ Skipping .wo-close/.wiz-warning-overlay — subset of higher-tier skeleton
+    ~ Skipping .wo-close/.intro-middle — subset of higher-tier skeleton
+    ~ Skipping .wo-close/.intro-begin-row — subset of higher-tier skeleton
+    ~ Skipping .wo-close/.wiz-section-intro — subset of higher-tier skeleton
+    ~ Skipping .wo-close/.wiz-almost-done — subset of higher-tier skeleton
+    ~ Skipping .wo-close/.wiz-section-card — subset of higher-tier skeleton
+    ~ Skipping .inv-drawer-close/.disc-check-row — subset of higher-tier skeleton
+    ~ Skipping .inv-drawer-close/.disc-checkbox — subset of higher-tier skeleton
+    ~ Skipping .inv-drawer-close/.wiz-warning-overlay — subset of higher-tier skeleton
+    ~ Skipping .inv-drawer-close/.intro-middle — subset of higher-tier skeleton
+    ~ Skipping .inv-drawer-close/.intro-begin-row — subset of higher-tier skeleton
+    ~ Skipping .inv-drawer-close/.wiz-section-intro — subset of higher-tier skeleton
+    ~ Skipping .inv-drawer-close/.wiz-almost-done — subset of higher-tier skeleton
+    ~ Skipping .inv-drawer-close/.wiz-section-card — subset of higher-tier skeleton
+    ~ Skipping .wiz-thumb/.center-stage — subset of higher-tier skeleton
+    ~ Skipping .wiz-thumb/.disc-check-row — subset of higher-tier skeleton
+    ~ Skipping .wiz-thumb/.disc-checkbox — subset of higher-tier skeleton
+    ~ Skipping .wiz-thumb/.results-actions — subset of higher-tier skeleton
+    ~ Skipping .wiz-thumb/.wiz-warning-overlay — subset of higher-tier skeleton
+    ~ Skipping .wiz-thumb/.intro-begin-row — subset of higher-tier skeleton
+    ~ Skipping .wiz-thumb/.wiz-checks-wrapper — subset of higher-tier skeleton
+    ~ Skipping .wiz-score-num/.disc-checkbox — subset of higher-tier skeleton
+    ~ Skipping .wiz-score-num/.intro-middle — subset of higher-tier skeleton
+    ~ Skipping .wiz-score-num/.intro-begin-row — subset of higher-tier skeleton
+    ~ Skipping .wiz-score-num/.wiz-section-intro — subset of higher-tier skeleton
+    ~ Skipping .wiz-score-num/.wiz-almost-done — subset of higher-tier skeleton
+    ~ Skipping .wiz-score-num/.wiz-section-card — subset of higher-tier skeleton
+    ~ Skipping .wiz-empty/.disc-checkbox — subset of higher-tier skeleton
+    ~ Skipping .wiz-empty/.results-actions — subset of higher-tier skeleton
+    ~ Skipping .wiz-empty/.wiz-warning-overlay — subset of higher-tier skeleton
+    ~ Skipping .wiz-empty/.intro-begin-row — subset of higher-tier skeleton
+    ~ Skipping .res-close/.disc-check-row — subset of higher-tier skeleton
+    ~ Skipping .res-close/.disc-checkbox — subset of higher-tier skeleton
+    ~ Skipping .res-close/.wiz-warning-overlay — subset of higher-tier skeleton
+    ~ Skipping .res-close/.intro-middle — subset of higher-tier skeleton
+    ~ Skipping .res-close/.intro-begin-row — subset of higher-tier skeleton
+    ~ Skipping .res-close/.wiz-section-intro — subset of higher-tier skeleton
+    ~ Skipping .res-close/.wiz-almost-done — subset of higher-tier skeleton
+    ~ Skipping .res-close/.wiz-section-card — subset of higher-tier skeleton
+    ~ Skipping .res-ring-num/.disc-checkbox — subset of higher-tier skeleton
+    ~ Skipping .res-ring-num/.intro-middle — subset of higher-tier skeleton
+    ~ Skipping .res-ring-num/.intro-begin-row — subset of higher-tier skeleton
+    ~ Skipping .res-ring-num/.wiz-section-intro — subset of higher-tier skeleton
+    ~ Skipping .res-ring-num/.wiz-almost-done — subset of higher-tier skeleton
+    ~ Skipping .res-ring-num/.wiz-section-card — subset of higher-tier skeleton
+    ~ Skipping .tab/.center-stage — subset of higher-tier skeleton
+    ~ Skipping .tab/.disc-check-row — subset of higher-tier skeleton
+    ~ Skipping .tab/.results-actions — subset of higher-tier skeleton
+    ~ Skipping .tab/.intro-middle — subset of higher-tier skeleton
+    ~ Skipping .tab/.wiz-section-intro — subset of higher-tier skeleton
+    ~ Skipping .tab/.wiz-almost-done — subset of higher-tier skeleton
+    ~ Skipping .tab/.wiz-section-card — subset of higher-tier skeleton
+    ~ Skipping .sr-archive-btn/.disc-check-row — subset of higher-tier skeleton
+    ~ Skipping .sr-archive-btn/.disc-checkbox — subset of higher-tier skeleton
+    ~ Skipping .sr-archive-btn/.wiz-warning-overlay — subset of higher-tier skeleton
+    ~ Skipping .sr-archive-btn/.intro-middle — subset of higher-tier skeleton
+    ~ Skipping .sr-archive-btn/.intro-begin-row — subset of higher-tier skeleton
+    ~ Skipping .sr-archive-btn/.wiz-section-intro — subset of higher-tier skeleton
+    ~ Skipping .sr-archive-btn/.wiz-almost-done — subset of higher-tier skeleton
+    ~ Skipping .sr-archive-btn/.wiz-section-card — subset of higher-tier skeleton
+    ~ Skipping .srf-size-row/.disc-checkbox — subset of higher-tier skeleton
+    ~ Skipping .srf-size-row/.wiz-warning-overlay — subset of higher-tier skeleton
+    ~ Skipping .srf-size-row/.intro-middle — subset of higher-tier skeleton
+    ~ Skipping .srf-size-row/.intro-begin-row — subset of higher-tier skeleton
+    ~ Skipping .srf-size-row/.wiz-section-intro — subset of higher-tier skeleton
+    ~ Skipping .srf-size-row/.wiz-almost-done — subset of higher-tier skeleton
+    ~ Skipping .srf-size-row/.wiz-section-card — subset of higher-tier skeleton
+    ~ Skipping .srf-size-box/.center-stage — subset of higher-tier skeleton
+    ~ Skipping .srf-size-box/.results-actions — subset of higher-tier skeleton
+    ~ Skipping .srf-size-box/.intro-middle — subset of higher-tier skeleton
+    ~ Skipping .srf-size-box/.wiz-section-intro — subset of higher-tier skeleton
+    ~ Skipping .srf-size-box/.wiz-almost-done — subset of higher-tier skeleton
+    ~ Skipping .srf-size-box/.wiz-section-card — subset of higher-tier skeleton
+    ~ Skipping .srf-custom-remove/.disc-check-row — subset of higher-tier skeleton
+    ~ Skipping .srf-custom-remove/.wiz-check-item — subset of higher-tier skeleton
+    ~ Skipping .srf-custom-remove/.wiz-warning-overlay — subset of higher-tier skeleton
+    ~ Skipping .srf-custom-remove/.intro-middle — subset of higher-tier skeleton
+    ~ Skipping .srf-custom-remove/.wiz-section-intro — subset of higher-tier skeleton
+    ~ Skipping .srf-custom-remove/.wiz-almost-done — subset of higher-tier skeleton
+    ~ Skipping .srf-custom-remove/.wiz-section-card — subset of higher-tier skeleton
+    ~ Skipping .srf-photo-uploading/.disc-checkbox — subset of higher-tier skeleton
+    ~ Skipping .srf-photo-uploading/.intro-middle — subset of higher-tier skeleton
+    ~ Skipping .srf-photo-uploading/.intro-begin-row — subset of higher-tier skeleton
+    ~ Skipping .srf-photo-uploading/.wiz-section-intro — subset of higher-tier skeleton
+    ~ Skipping .srf-photo-uploading/.wiz-almost-done — subset of higher-tier skeleton
+    ~ Skipping .srf-photo-uploading/.wiz-section-card — subset of higher-tier skeleton
+    ~ Skipping .srf-photo-remove/.disc-check-row — subset of higher-tier skeleton
+    ~ Skipping .srf-photo-remove/.disc-checkbox — subset of higher-tier skeleton
+    ~ Skipping .srf-photo-remove/.wiz-warning-overlay — subset of higher-tier skeleton
+    ~ Skipping .srf-photo-remove/.intro-middle — subset of higher-tier skeleton
+    ~ Skipping .srf-photo-remove/.intro-begin-row — subset of higher-tier skeleton
+    ~ Skipping .srf-photo-remove/.wiz-section-intro — subset of higher-tier skeleton
+    ~ Skipping .srf-photo-remove/.wiz-almost-done — subset of higher-tier skeleton
+    ~ Skipping .srf-photo-remove/.wiz-section-card — subset of higher-tier skeleton
+    ~ Skipping .tile/.wiz-folder-tile-inner — subset of higher-tier skeleton
+    ~ Skipping .tile/.mob-burger — subset of higher-tier skeleton
+    ~ Skipping .tile/.svc-slot — subset of higher-tier skeleton
+    ~ Skipping .wiz-back-btn/.btn-sel — subset of higher-tier skeleton
+    ~ Skipping .wiz-back-btn/.xb — subset of higher-tier skeleton
+    ~ Skipping .wiz-back-btn/.bn — subset of higher-tier skeleton
+    ~ Skipping .wiz-back-btn/.notif-row — subset of higher-tier skeleton
+    ~ Skipping .wiz-folder-tile-inner/.ni-badge — subset of higher-tier skeleton
+    ~ Skipping .wiz-folder-tile-inner/.btn-add — subset of higher-tier skeleton
+    ~ Skipping .wiz-folder-tile-inner/.loading — subset of higher-tier skeleton
+    ~ Skipping .wiz-folder-tile-inner/.ab — subset of higher-tier skeleton
+    ~ Skipping .wiz-folder-tile-inner/.bg — subset of higher-tier skeleton
+    ~ Skipping .wiz-folder-tile-inner/.bp — subset of higher-tier skeleton
+    ~ Skipping .wiz-folder-tile-inner/.bb — subset of higher-tier skeleton
+    ~ Skipping .wiz-folder-tile-inner/.notif-row — subset of higher-tier skeleton
+    ~ Skipping .wiz-folder-action-btn/.ni — subset of higher-tier skeleton
+    ~ Skipping .wiz-folder-action-btn/.ni-badge — subset of higher-tier skeleton
+    ~ Skipping .wiz-folder-action-btn/.btn-add — subset of higher-tier skeleton
+    ~ Skipping .wiz-folder-action-btn/.btn-sel — subset of higher-tier skeleton
+    ~ Skipping .wiz-folder-action-btn/.loading — subset of higher-tier skeleton
+    ~ Skipping .wiz-folder-action-btn/.ab — subset of higher-tier skeleton
+    ~ Skipping .wiz-folder-action-btn/.qi-thumb-empty — subset of higher-tier skeleton
+    ~ Skipping .wiz-folder-action-btn/.bg — subset of higher-tier skeleton
+    ~ Skipping .wiz-folder-action-btn/.bn — subset of higher-tier skeleton
+    ~ Skipping .wiz-folder-action-btn/.bp — subset of higher-tier skeleton
+    ~ Skipping .wiz-folder-action-btn/.photo-preview-empty — subset of higher-tier skeleton
+    ~ Skipping .wiz-folder-action-btn/.card-thumb-empty — subset of higher-tier skeleton
+    ~ Skipping .wiz-folder-action-btn/.bb — subset of higher-tier skeleton
+    ~ Skipping .wiz-folder-action-btn/.notif-row — subset of higher-tier skeleton
+    ~ Skipping .wiz-folder-action-btn/.mob-burger — subset of higher-tier skeleton
+    ~ Skipping .wiz-modal-folder-item/.xb — subset of higher-tier skeleton
+    ~ Skipping .wiz-modal-folder-item/.notif-row — subset of higher-tier skeleton
+    ~ Skipping .wiz-folder-tile-inner/.btn-primary — subset of higher-tier skeleton
+    ~ Skipping .wiz-folder-action-btn/.btn-primary — subset of higher-tier skeleton
+    ~ Skipping .wiz-back-btn/.svc-slot — subset of higher-tier skeleton
+    ~ Skipping .wiz-folder-action-btn/.svc-slot — subset of higher-tier skeleton
+    ~ Skipping .wiz-modal-folder-item/.svc-slot — subset of higher-tier skeleton
+    ~ Skipping .wiz-back-btn/.disc-check-row — subset of higher-tier skeleton
+    ~ Skipping .wiz-back-btn/.wiz-check-item — subset of higher-tier skeleton
+    ~ Skipping .wiz-folder-tile-inner/.disc-check-row — subset of higher-tier skeleton
+    ~ Skipping .wiz-folder-tile-inner/.disc-checkbox — subset of higher-tier skeleton
+    ~ Skipping .wiz-folder-tile-inner/.results-actions — subset of higher-tier skeleton
+    ~ Skipping .wiz-folder-tile-inner/.wiz-check-item — subset of higher-tier skeleton
+    ~ Skipping .wiz-folder-tile-inner/.wiz-warning-overlay — subset of higher-tier skeleton
+    ~ Skipping .wiz-folder-tile-inner/.wiz-section-btn-row — subset of higher-tier skeleton
+    ~ Skipping .wiz-folder-tile-inner/.wiz-almost-done-btn-row — subset of higher-tier skeleton
+    ~ Skipping .wiz-folder-action-btn/.disc-check-row — subset of higher-tier skeleton
+    ~ Skipping .wiz-folder-action-btn/.disc-checkbox — subset of higher-tier skeleton
+    ~ Skipping .wiz-folder-action-btn/.wiz-warning-overlay — subset of higher-tier skeleton
+    ~ Skipping .wiz-folder-action-btn/.intro-middle — subset of higher-tier skeleton
+    ~ Skipping .wiz-folder-action-btn/.intro-begin-row — subset of higher-tier skeleton
+    ~ Skipping .wiz-folder-action-btn/.wiz-section-intro — subset of higher-tier skeleton
+    ~ Skipping .wiz-folder-action-btn/.wiz-almost-done — subset of higher-tier skeleton
+    ~ Skipping .wiz-folder-action-btn/.wiz-section-card — subset of higher-tier skeleton
+    ~ Skipping .wiz-modal-folder-item/.disc-check-row — subset of higher-tier skeleton
+    ~ Skipping .xb/.btn-primary — subset of higher-tier skeleton
+    ~ Skipping .ni/.svc-slot — subset of higher-tier skeleton
+    ~ Skipping .xb/.svc-slot — subset of higher-tier skeleton
+    ~ Skipping .notif-row/.svc-slot — subset of higher-tier skeleton
+    ~ Skipping .mob-burger/.svc-slot — subset of higher-tier skeleton
+    ~ Skipping .ni/.center-stage — subset of higher-tier skeleton
+    ~ Skipping .ni/.disc-check-row — subset of higher-tier skeleton
+    ~ Skipping .ni/.intro-middle — subset of higher-tier skeleton
+    ~ Skipping .ni/.intro-begin-row — subset of higher-tier skeleton
+    ~ Skipping .ni/.wiz-section-intro — subset of higher-tier skeleton
+    ~ Skipping .ni/.wiz-section-card — subset of higher-tier skeleton
+    ~ Skipping .ni-badge/.disc-checkbox — subset of higher-tier skeleton
+    ~ Skipping .ni-badge/.wiz-warning-overlay — subset of higher-tier skeleton
+    ~ Skipping .ni-badge/.intro-middle — subset of higher-tier skeleton
+    ~ Skipping .ni-badge/.intro-begin-row — subset of higher-tier skeleton
+    ~ Skipping .ni-badge/.wiz-section-intro — subset of higher-tier skeleton
+    ~ Skipping .ni-badge/.wiz-almost-done — subset of higher-tier skeleton
+    ~ Skipping .ni-badge/.wiz-section-card — subset of higher-tier skeleton
+    ~ Skipping .btn-add/.wiz-check-item — subset of higher-tier skeleton
+    ~ Skipping .loading/.disc-checkbox — subset of higher-tier skeleton
+    ~ Skipping .loading/.wiz-warning-overlay — subset of higher-tier skeleton
+    ~ Skipping .loading/.intro-middle — subset of higher-tier skeleton
+    ~ Skipping .loading/.intro-begin-row — subset of higher-tier skeleton
+    ~ Skipping .loading/.wiz-section-intro — subset of higher-tier skeleton
+    ~ Skipping .loading/.wiz-almost-done — subset of higher-tier skeleton
+    ~ Skipping .loading/.wiz-section-card — subset of higher-tier skeleton
+    ~ Skipping .ab/.wiz-check-item — subset of higher-tier skeleton
+    ~ Skipping .qi-thumb-empty/.center-stage — subset of higher-tier skeleton
+    ~ Skipping .qi-thumb-empty/.disc-checkbox — subset of higher-tier skeleton
+    ~ Skipping .qi-thumb-empty/.wiz-warning-overlay — subset of higher-tier skeleton
+    ~ Skipping .qi-thumb-empty/.wiz-section-btn-row — subset of higher-tier skeleton
+    ~ Skipping .qi-thumb-empty/.wiz-almost-done — subset of higher-tier skeleton
+    ~ Skipping .qi-thumb-empty/.wiz-almost-done-btn-row — subset of higher-tier skeleton
+    ~ Skipping .qi-thumb-empty/.wiz-checks-wrapper — subset of higher-tier skeleton
+    ~ Skipping .xb/.disc-check-row — subset of higher-tier skeleton
+    ~ Skipping .xb/.disc-checkbox — subset of higher-tier skeleton
+    ~ Skipping .xb/.wiz-warning-overlay — subset of higher-tier skeleton
+    ~ Skipping .xb/.intro-middle — subset of higher-tier skeleton
+    ~ Skipping .xb/.intro-begin-row — subset of higher-tier skeleton
+    ~ Skipping .xb/.wiz-section-intro — subset of higher-tier skeleton
+    ~ Skipping .xb/.wiz-almost-done — subset of higher-tier skeleton
+    ~ Skipping .xb/.wiz-section-card — subset of higher-tier skeleton
+    ~ Skipping .bg/.wiz-check-item — subset of higher-tier skeleton
+    ~ Skipping .bp/.wiz-check-item — subset of higher-tier skeleton
+    ~ Skipping .photo-preview-empty/.center-stage — subset of higher-tier skeleton
+    ~ Skipping .photo-preview-empty/.disc-checkbox — subset of higher-tier skeleton
+    ~ Skipping .photo-preview-empty/.wiz-warning-overlay — subset of higher-tier skeleton
+    ~ Skipping .photo-preview-empty/.wiz-section-btn-row — subset of higher-tier skeleton
+    ~ Skipping .photo-preview-empty/.wiz-almost-done — subset of higher-tier skeleton
+    ~ Skipping .photo-preview-empty/.wiz-almost-done-btn-row — subset of higher-tier skeleton
+    ~ Skipping .photo-preview-empty/.wiz-checks-wrapper — subset of higher-tier skeleton
+    ~ Skipping .card-thumb-empty/.center-stage — subset of higher-tier skeleton
+    ~ Skipping .card-thumb-empty/.disc-checkbox — subset of higher-tier skeleton
+    ~ Skipping .card-thumb-empty/.wiz-warning-overlay — subset of higher-tier skeleton
+    ~ Skipping .card-thumb-empty/.wiz-section-btn-row — subset of higher-tier skeleton
+    ~ Skipping .card-thumb-empty/.wiz-almost-done — subset of higher-tier skeleton
+    ~ Skipping .card-thumb-empty/.wiz-almost-done-btn-row — subset of higher-tier skeleton
+    ~ Skipping .card-thumb-empty/.wiz-checks-wrapper — subset of higher-tier skeleton
+    ~ Skipping .bb/.wiz-check-item — subset of higher-tier skeleton
+    ~ Skipping .notif-row/.disc-check-row — subset of higher-tier skeleton
+    ~ Skipping .mob-burger/.intro-middle — subset of higher-tier skeleton
+    ~ Skipping .mob-burger/.wiz-section-intro — subset of higher-tier skeleton
+    ~ Skipping .mob-burger/.wiz-almost-done — subset of higher-tier skeleton
+    ~ Skipping .mob-burger/.wiz-checks-wrapper — subset of higher-tier skeleton
+    ~ Skipping .mob-burger/.wiz-section-card — subset of higher-tier skeleton
+    ~ Skipping .svc-slot/.center-stage — subset of higher-tier skeleton
+    ~ Skipping .svc-slot/.disc-check-row — subset of higher-tier skeleton
+    ~ Skipping .svc-slot/.results-actions — subset of higher-tier skeleton
+    ~ Skipping .svc-slot/.intro-middle — subset of higher-tier skeleton
+    ~ Skipping .svc-slot/.wiz-section-intro — subset of higher-tier skeleton
+    ~ Skipping .svc-slot/.wiz-almost-done — subset of higher-tier skeleton
+    ~ Skipping .svc-slot/.wiz-section-card — subset of higher-tier skeleton
+
+  Checked 45 file pairs
+
+  ⚡ SKELETON [3 props]: .dmt-skeleton
+     Props: display, overflow, position
+     • .desktop-shell  →  components/account/desktop/DesktopShell.scss
+     • .shop-thumb  →  components/account/mobile/MobileShell.scss
+     • .wiz-thumb  →  components/account/mobile/MobileShell.scss
+     • .tile  →  components/account/mobile/TilesShell.scss
+
+  ⚡ SKELETON [3 props]: .dmw-skeleton
+     Props: display, flex-direction, overflow-y
+     • .desktop-left  →  components/account/desktop/DesktopShell.scss
+     • .chat-msgs  →  components/account/mobile/MobileShell.scss
+     • .orders-list  →  components/account/mobile/MobileShell.scss
+     • .sr-list  →  components/account/mobile/MobileShell.scss
+     • .wiz-modal-folder-list  →  components/account/mobile/css/WizardShell.scss
+
+  ⚡ SKELETON [3 props]: .daw-skeleton
+     Props: display, position, width
+     • .desktop-shell  →  components/account/desktop/DesktopShell.scss
+     • .ni  →  styles/Admin.scss
+     • .full-screen  →  styles/wizard.scss
+
+  ⚡ SKELETON [3 props]: .dhw-skeleton
+     Props: overflow, position, width
+     • .desktop-shell  →  components/account/desktop/DesktopShell.scss
+     • .machine-feature  →  styles/home.scss
+     • .disc-card  →  styles/wizard.scss
+
+  ⚡ SKELETON [3 props]: .mwt-skeleton
+     Props: background, cursor, display
+     • .shop-thumb  →  components/account/mobile/MobileShell.scss
+     • .wiz-folder-action-btn  →  components/account/mobile/css/WizardShell.scss
+     • .wiz-modal-folder-item  →  components/account/mobile/css/WizardShell.scss
+     • .tile  →  components/account/mobile/TilesShell.scss
+
+  ⚡ SKELETON [3 props]: .mw-skeleton-2
+     Props: border, cursor, padding
+     • .heart-btn  →  components/account/mobile/MobileShell.scss
+     • .wiz-drawer-folder-change  →  components/account/mobile/css/WizardShell.scss
+     • .intro-skip-btn  →  styles/wizard.scss
+
+  ⚡ SKELETON [3 props]: .mwa-skeleton-3
+     Props: border, cursor, width
+     • .profile-save  →  components/account/mobile/MobileShell.scss
+     • .wiz-folder-tile-inner  →  components/account/mobile/css/WizardShell.scss
+     • .wo-accept-btn  →  components/account/mobile/MobileShell.scss
+     • .mob-dropdown-signout  →  styles/Admin.scss
+
+  ⚡ SKELETON [3 props]: .mwa-skeleton-4
+     Props: align-items, display, gap
+     • .res-topbar  →  components/account/mobile/MobileShell.scss
+     • .wiz-modal-folder-item  →  components/account/mobile/css/WizardShell.scss
+     • .bulk-bar  →  styles/Admin.scss
+
+  ⚡ SKELETON [3 props]: .maw-skeleton-3
+     Props: background, border, cursor
+     • .dr-close  →  components/account/mobile/MobileShell.scss
+     • .ni  →  styles/Admin.scss
+     • .tab  →  styles/Admin.scss
+     • .mob-dropdown-signout  →  styles/Admin.scss
+     • .heart-btn  →  components/account/mobile/MobileShell.scss
+     • .sms-mclose  →  components/account/mobile/MobileShell.scss
+     • .nr-close  →  components/account/mobile/MobileShell.scss
+     • .wiz-nav-btn-ghost  →  styles/wizard.scss
+
+  ⚡ SKELETON [3 props]: .mat-skeleton
+     Props: cursor, display, position
+     • .shop-thumb  →  components/account/mobile/MobileShell.scss
+     • .ni  →  styles/Admin.scss
+     • .tile  →  components/account/mobile/TilesShell.scss
+
+  ⚡ SKELETON [3 props]: .maw-skeleton-4
+     Props: display, flex, flex-direction
+     • .chat-msgs  →  components/account/mobile/MobileShell.scss
+     • .fp  →  styles/Admin.scss
+     • .orders-list  →  components/account/mobile/MobileShell.scss
+     • .wo-body  →  components/account/mobile/MobileShell.scss
+     • .inv-drawer-body  →  components/account/mobile/MobileShell.scss
+     • .wiz-empty  →  components/account/mobile/MobileShell.scss
+     • .res-body  →  components/account/mobile/MobileShell.scss
+     • .full-screen  →  styles/wizard.scss
+     • .center-stage  →  styles/wizard.scss
+     • .intro-middle  →  styles/wizard.scss
+     • .wiz-section-intro  →  styles/wizard.scss
+     • .wiz-almost-done  →  styles/wizard.scss
+     • .wiz-checks-wrapper  →  styles/wizard.scss
+     • .wiz-section-card  →  styles/wizard.scss
+
+  ⚡ SKELETON [3 props]: .maw-skeleton-5
+     Props: align-items, display, flex-shrink
+     • .chat-input-bar  →  components/account/mobile/MobileShell.scss
+     • .ff  →  styles/Admin.scss
+     • .chat-attach  →  components/account/mobile/MobileShell.scss
+     • .chat-send  →  components/account/mobile/MobileShell.scss
+     • .nr-info-btn  →  components/account/mobile/MobileShell.scss
+     • .inv-drawer-topbar  →  components/account/mobile/MobileShell.scss
+     • .res-topbar  →  components/account/mobile/MobileShell.scss
+     • .srf-custom-remove  →  components/account/mobile/MobileShell.scss
+     • .panel-header  →  components/account/mobile/MobileShell.scss
+     • .disc-checkbox  →  styles/wizard.scss
+     • .intro-begin-row  →  styles/wizard.scss
+     • .nr-head  →  components/account/mobile/MobileShell.scss
+     • .wo-topbar  →  components/account/mobile/MobileShell.scss
+
+  ⚡ SKELETON [3 props]: .magw-skeleton
+     Props: -webkit-tap-highlight-color, border-radius, cursor
+     • .pill-action-btn  →  components/account/mobile/MobileShell.scss
+     • .btn-add  →  styles/Admin.scss
+     • .btn-sel  →  styles/Admin.scss
+     • .ab  →  styles/Admin.scss
+     • .bg  →  styles/Admin.scss
+     • .bn  →  styles/Admin.scss
+     • .bp  →  styles/Admin.scss
+     • .bb  →  styles/Admin.scss
+     • .btn-primary  →  styles/globals.scss
+     • .wiz-correctable-btn  →  styles/wizard.scss
+
+  ⚡ SKELETON [3 props]: .maw-skeleton-6
+     Props: border, cursor, text-transform
+     • .order-accept  →  components/account/mobile/MobileShell.scss
+     • .ni  →  styles/Admin.scss
+     • .tab  →  styles/Admin.scss
+     • .mob-dropdown-signout  →  styles/Admin.scss
+     • .profile-save  →  components/account/mobile/MobileShell.scss
+     • .wo-accept-btn  →  components/account/mobile/MobileShell.scss
+     • .sr-archive-btn  →  components/account/mobile/MobileShell.scss
+     • .wiz-nav-btn-ghost  →  styles/wizard.scss
+     • .intro-skip-btn  →  styles/wizard.scss
+
+  ⚡ SKELETON [3 props]: .maw-skeleton-7
+     Props: background, cursor, text-transform
+     • .profile-delete-btn  →  components/account/mobile/MobileShell.scss
+     • .ab  →  styles/Admin.scss
+     • .gmb  →  styles/Admin.scss
+     • .bg  →  styles/Admin.scss
+     • .bb  →  styles/Admin.scss
+     • .wiz-nav-btn-ghost  →  styles/wizard.scss
+
+  ⚡ SKELETON [3 props]: .mag-skeleton-2
+     Props: cursor, font-size, text-transform
+     • .wiz-btn-pill  →  components/account/mobile/MobileShell.scss
+     • .tab  →  styles/Admin.scss
+     • .profile-delete-btn  →  components/account/mobile/MobileShell.scss
+     • .btn-primary  →  styles/globals.scss
+
+  ⚡ SKELETON [3 props]: .maw-skeleton-8
+     Props: background, border-radius, cursor
+     • .sr-tab  →  components/account/mobile/MobileShell.scss
+     • .btn-sel  →  styles/Admin.scss
+     • .bn  →  styles/Admin.scss
+     • .srf-custom-add  →  components/account/mobile/MobileShell.scss
+     • .begin-btn  →  styles/wizard.scss
+     • .wiz-nav-btn-next  →  styles/wizard.scss
+     • .wiz-correctable-btn  →  styles/wizard.scss
+     • .wiz-section-btn  →  styles/wizard.scss
+
+  ⚡ SKELETON [3 props]: .magw-skeleton-2
+     Props: border-radius, cursor, text-transform
+     • .srf-custom-label-btn  →  components/account/mobile/MobileShell.scss
+     • .btn-add  →  styles/Admin.scss
+     • .btn-sel  →  styles/Admin.scss
+     • .ab  →  styles/Admin.scss
+     • .bg  →  styles/Admin.scss
+     • .bn  →  styles/Admin.scss
+     • .bp  →  styles/Admin.scss
+     • .bb  →  styles/Admin.scss
+     • .btn-primary  →  styles/globals.scss
+     • .begin-btn  →  styles/wizard.scss
+     • .wiz-nav-btn-next  →  styles/wizard.scss
+     • .wiz-section-btn  →  styles/wizard.scss
+
+  ⚡ SKELETON [3 props]: .mag-skeleton-3
+     Props: align-items, justify-content, text-transform
+     • .srf-photo-uploading  →  components/account/mobile/MobileShell.scss
+     • .btn-add  →  styles/Admin.scss
+     • .btn-sel  →  styles/Admin.scss
+     • .ab  →  styles/Admin.scss
+     • .bg  →  styles/Admin.scss
+     • .bn  →  styles/Admin.scss
+     • .bp  →  styles/Admin.scss
+     • .bb  →  styles/Admin.scss
+     • .btn-primary  →  styles/globals.scss
+     • .loading  →  styles/Admin.scss
+
+  ⚡ SKELETON [3 props]: .mwt-skeleton-2
+     Props: display, flex-direction, position
+     • .shop-thumb  →  components/account/mobile/MobileShell.scss
+     • .full-screen  →  styles/wizard.scss
+     • .wiz-thumb  →  components/account/mobile/MobileShell.scss
+     • .tab  →  components/account/mobile/MobileShell.scss
+     • .tile  →  components/account/mobile/TilesShell.scss
+
+  ⚡ SKELETON [3 props]: .mwt-skeleton-3
+     Props: cursor, overflow, position
+     • .shop-thumb  →  components/account/mobile/MobileShell.scss
+     • .begin-btn  →  styles/wizard.scss
+     • .wiz-nav-btn-next  →  styles/wizard.scss
+     • .wiz-check-item  →  styles/wizard.scss
+     • .wiz-correctable-btn  →  styles/wizard.scss
+     • .wiz-section-btn  →  styles/wizard.scss
+     • .order-tile  →  components/account/mobile/MobileShell.scss
+     • .sr-card  →  components/account/mobile/MobileShell.scss
+     • .wiz-thumb  →  components/account/mobile/MobileShell.scss
+     • .tile  →  components/account/mobile/TilesShell.scss
+
+  ⚡ SKELETON [3 props]: .mw-skeleton-3
+     Props: align-items, display, padding
+     • .heart-btn  →  components/account/mobile/MobileShell.scss
+     • .center-stage  →  styles/wizard.scss
+     • .wiz-back-btn  →  components/account/mobile/css/WizardShell.scss
+
+  ⚡ SKELETON [3 props]: .mwa-skeleton-5
+     Props: align-items, cursor, position
+     • .tab  →  components/account/mobile/MobileShell.scss
+     • .wiz-check-item  →  styles/wizard.scss
+     • .ni  →  styles/Admin.scss
+
+  ⚡ SKELETON [3 props]: .mwa-skeleton-6
+     Props: align-items, display, position
+     • .slide-tip  →  components/account/mobile/MobileShell.scss
+     • .wiz-warning-overlay  →  styles/wizard.scss
+     • .mob-topbar  →  styles/Admin.scss
+
+  ⚡ SKELETON [3 props]: .mwt-skeleton-4
+     Props: letter-spacing, opacity, text-transform
+     • .srf-section-title  →  components/account/mobile/MobileShell.scss
+     • .disc-label  →  styles/wizard.scss
+     • .stone-eyebrow  →  styles/wizard.scss
+     • .wiz-section-card-phase  →  styles/wizard.scss
+     • .tile-label  →  components/account/mobile/TilesShell.scss
+
+  ⚡ SKELETON [3 props]: .awg-skeleton
+     Props: align-items, border-radius, cursor
+     • .btn-add  →  styles/Admin.scss
+     • .disc-check-row  →  styles/wizard.scss
+     • .btn-sel  →  styles/Admin.scss
+     • .ab  →  styles/Admin.scss
+     • .bg  →  styles/Admin.scss
+     • .bn  →  styles/Admin.scss
+     • .bp  →  styles/Admin.scss
+     • .bb  →  styles/Admin.scss
+     • .btn-primary  →  styles/globals.scss
+
+  ⚡ SKELETON [3 props]: .awg-skeleton-2
+     Props: align-items, border-radius, justify-content
+     • .btn-add  →  styles/Admin.scss
+     • .disc-checkbox  →  styles/wizard.scss
+     • .btn-sel  →  styles/Admin.scss
+     • .ab  →  styles/Admin.scss
+     • .bg  →  styles/Admin.scss
+     • .bn  →  styles/Admin.scss
+     • .bp  →  styles/Admin.scss
+     • .bb  →  styles/Admin.scss
+     • .btn-primary  →  styles/globals.scss
+
+  Tier 3 complete: 27 skeleton(s) found
+
+──────────────────────────────────────────────────────────────────
+  SKELETON SUMMARY
+──────────────────────────────────────────────────────────────────
+
+  35 skeleton(s) across tiers 3–7:
+
+  [5 props] .mw-skeleton  (3 files)
+    • .wiz-empty  →  components/account/mobile/MobileShell.scss
+    • .wiz-folder-tile-inner  →  components/account/mobile/css/WizardShell.scss
+    • .wiz-almost-done  →  styles/wizard.scss
+  [4 props] .mwa-skeleton  (17 files)
+    • .heart-btn  →  components/account/mobile/MobileShell.scss
+    • .wiz-folder-action-btn  →  components/account/mobile/css/WizardShell.scss
+    • .chat-send  →  components/account/mobile/MobileShell.scss
+    • .menu-drawer-close  →  components/account/mobile/MobileShell.scss
+    • .wiz-folder-tile-inner  →  components/account/mobile/css/WizardShell.scss
+    • .nr-info-btn  →  components/account/mobile/MobileShell.scss
+    • .inv-drawer-close  →  components/account/mobile/MobileShell.scss
+    • .sr-archive-btn  →  components/account/mobile/MobileShell.scss
+    • .panel-close  →  components/account/mobile/MobileShell.scss
+    • .xb  →  styles/Admin.scss
+    • .chat-attach  →  components/account/mobile/MobileShell.scss
+    • .nr-photo-rm  →  components/account/mobile/MobileShell.scss
+    • .wo-close  →  components/account/mobile/MobileShell.scss
+    • .wiz-thumb  →  components/account/mobile/MobileShell.scss
+    • .res-close  →  components/account/mobile/MobileShell.scss
+    • .srf-custom-remove  →  components/account/mobile/MobileShell.scss
+    • .srf-photo-remove  →  components/account/mobile/MobileShell.scss
+  [4 props] .mwa-skeleton-2  (9 files)
+    • .panel-close  →  components/account/mobile/MobileShell.scss
+    • .wiz-back-btn  →  components/account/mobile/css/WizardShell.scss
+    • .chat-send  →  components/account/mobile/MobileShell.scss
+    • .nr-photo-rm  →  components/account/mobile/MobileShell.scss
+    • .wo-close  →  components/account/mobile/MobileShell.scss
+    • .res-close  →  components/account/mobile/MobileShell.scss
+    • .sr-archive-btn  →  components/account/mobile/MobileShell.scss
+    • .srf-photo-remove  →  components/account/mobile/MobileShell.scss
+    • .ni  →  styles/Admin.scss
+  [4 props] .mwh-skeleton  (4 files)
+    • .tab  →  components/account/mobile/MobileShell.scss
+    • .wiz-folder-tile-inner  →  components/account/mobile/css/WizardShell.scss
+    • .wiz-thumb  →  components/account/mobile/MobileShell.scss
+    • .svc-slot  →  styles/home.scss
+  [4 props] .mag-skeleton  (6 files)
+    • .heart-btn  →  components/account/mobile/MobileShell.scss
+    • .btn-add  →  styles/Admin.scss
+    • .btn-sel  →  styles/Admin.scss
+    • .bn  →  styles/Admin.scss
+    • .bp  →  styles/Admin.scss
+    • .btn-primary  →  styles/globals.scss
+  [4 props] .maw-skeleton  (5 files)
+    • .chat-attach  →  components/account/mobile/MobileShell.scss
+    • .btn-sel  →  styles/Admin.scss
+    • .bn  →  styles/Admin.scss
+    • .srf-custom-remove  →  components/account/mobile/MobileShell.scss
+    • .wiz-folder-tile-inner  →  components/account/mobile/css/WizardShell.scss
+  [4 props] .maw-skeleton-2  (3 files)
+    • .wiz-thumb  →  components/account/mobile/MobileShell.scss
+    • .mob-burger  →  styles/Admin.scss
+    • .wiz-folder-tile-inner  →  components/account/mobile/css/WizardShell.scss
+  [4 props] .wa-skeleton  (8 files)
+    • .wiz-folder-tile-inner  →  components/account/mobile/css/WizardShell.scss
+    • .qi-thumb-empty  →  styles/Admin.scss
+    • .photo-preview-empty  →  styles/Admin.scss
+    • .card-thumb-empty  →  styles/Admin.scss
+    • .intro-begin-row  →  styles/wizard.scss
+    • .intro-middle  →  styles/wizard.scss
+    • .wiz-section-intro  →  styles/wizard.scss
+    • .wiz-section-card  →  styles/wizard.scss
+  [3 props] .dmt-skeleton  (4 files)
+    • .desktop-shell  →  components/account/desktop/DesktopShell.scss
+    • .shop-thumb  →  components/account/mobile/MobileShell.scss
+    • .wiz-thumb  →  components/account/mobile/MobileShell.scss
+    • .tile  →  components/account/mobile/TilesShell.scss
+  [3 props] .dmw-skeleton  (5 files)
+    • .desktop-left  →  components/account/desktop/DesktopShell.scss
+    • .chat-msgs  →  components/account/mobile/MobileShell.scss
+    • .orders-list  →  components/account/mobile/MobileShell.scss
+    • .sr-list  →  components/account/mobile/MobileShell.scss
+    • .wiz-modal-folder-list  →  components/account/mobile/css/WizardShell.scss
+  [3 props] .daw-skeleton  (3 files)
+    • .desktop-shell  →  components/account/desktop/DesktopShell.scss
+    • .ni  →  styles/Admin.scss
+    • .full-screen  →  styles/wizard.scss
+  [3 props] .dhw-skeleton  (3 files)
+    • .desktop-shell  →  components/account/desktop/DesktopShell.scss
+    • .machine-feature  →  styles/home.scss
+    • .disc-card  →  styles/wizard.scss
+  [3 props] .mwt-skeleton  (4 files)
+    • .shop-thumb  →  components/account/mobile/MobileShell.scss
+    • .wiz-folder-action-btn  →  components/account/mobile/css/WizardShell.scss
+    • .wiz-modal-folder-item  →  components/account/mobile/css/WizardShell.scss
+    • .tile  →  components/account/mobile/TilesShell.scss
+  [3 props] .mw-skeleton-2  (3 files)
+    • .heart-btn  →  components/account/mobile/MobileShell.scss
+    • .wiz-drawer-folder-change  →  components/account/mobile/css/WizardShell.scss
+    • .intro-skip-btn  →  styles/wizard.scss
+  [3 props] .mwa-skeleton-3  (4 files)
+    • .profile-save  →  components/account/mobile/MobileShell.scss
+    • .wiz-folder-tile-inner  →  components/account/mobile/css/WizardShell.scss
+    • .wo-accept-btn  →  components/account/mobile/MobileShell.scss
+    • .mob-dropdown-signout  →  styles/Admin.scss
+  [3 props] .mwa-skeleton-4  (3 files)
+    • .res-topbar  →  components/account/mobile/MobileShell.scss
+    • .wiz-modal-folder-item  →  components/account/mobile/css/WizardShell.scss
+    • .bulk-bar  →  styles/Admin.scss
+  [3 props] .maw-skeleton-3  (8 files)
+    • .dr-close  →  components/account/mobile/MobileShell.scss
+    • .ni  →  styles/Admin.scss
+    • .tab  →  styles/Admin.scss
+    • .mob-dropdown-signout  →  styles/Admin.scss
+    • .heart-btn  →  components/account/mobile/MobileShell.scss
+    • .sms-mclose  →  components/account/mobile/MobileShell.scss
+    • .nr-close  →  components/account/mobile/MobileShell.scss
+    • .wiz-nav-btn-ghost  →  styles/wizard.scss
+  [3 props] .mat-skeleton  (3 files)
+    • .shop-thumb  →  components/account/mobile/MobileShell.scss
+    • .ni  →  styles/Admin.scss
+    • .tile  →  components/account/mobile/TilesShell.scss
+  [3 props] .maw-skeleton-4  (14 files)
+    • .chat-msgs  →  components/account/mobile/MobileShell.scss
+    • .fp  →  styles/Admin.scss
+    • .orders-list  →  components/account/mobile/MobileShell.scss
+    • .wo-body  →  components/account/mobile/MobileShell.scss
+    • .inv-drawer-body  →  components/account/mobile/MobileShell.scss
+    • .wiz-empty  →  components/account/mobile/MobileShell.scss
+    • .res-body  →  components/account/mobile/MobileShell.scss
+    • .full-screen  →  styles/wizard.scss
+    • .center-stage  →  styles/wizard.scss
+    • .intro-middle  →  styles/wizard.scss
+    • .wiz-section-intro  →  styles/wizard.scss
+    • .wiz-almost-done  →  styles/wizard.scss
+    • .wiz-checks-wrapper  →  styles/wizard.scss
+    • .wiz-section-card  →  styles/wizard.scss
+  [3 props] .maw-skeleton-5  (13 files)
+    • .chat-input-bar  →  components/account/mobile/MobileShell.scss
+    • .ff  →  styles/Admin.scss
+    • .chat-attach  →  components/account/mobile/MobileShell.scss
+    • .chat-send  →  components/account/mobile/MobileShell.scss
+    • .nr-info-btn  →  components/account/mobile/MobileShell.scss
+    • .inv-drawer-topbar  →  components/account/mobile/MobileShell.scss
+    • .res-topbar  →  components/account/mobile/MobileShell.scss
+    • .srf-custom-remove  →  components/account/mobile/MobileShell.scss
+    • .panel-header  →  components/account/mobile/MobileShell.scss
+    • .disc-checkbox  →  styles/wizard.scss
+    • .intro-begin-row  →  styles/wizard.scss
+    • .nr-head  →  components/account/mobile/MobileShell.scss
+    • .wo-topbar  →  components/account/mobile/MobileShell.scss
+  [3 props] .magw-skeleton  (10 files)
+    • .pill-action-btn  →  components/account/mobile/MobileShell.scss
+    • .btn-add  →  styles/Admin.scss
+    • .btn-sel  →  styles/Admin.scss
+    • .ab  →  styles/Admin.scss
+    • .bg  →  styles/Admin.scss
+    • .bn  →  styles/Admin.scss
+    • .bp  →  styles/Admin.scss
+    • .bb  →  styles/Admin.scss
+    • .btn-primary  →  styles/globals.scss
+    • .wiz-correctable-btn  →  styles/wizard.scss
+  [3 props] .maw-skeleton-6  (9 files)
+    • .order-accept  →  components/account/mobile/MobileShell.scss
+    • .ni  →  styles/Admin.scss
+    • .tab  →  styles/Admin.scss
+    • .mob-dropdown-signout  →  styles/Admin.scss
+    • .profile-save  →  components/account/mobile/MobileShell.scss
+    • .wo-accept-btn  →  components/account/mobile/MobileShell.scss
+    • .sr-archive-btn  →  components/account/mobile/MobileShell.scss
+    • .wiz-nav-btn-ghost  →  styles/wizard.scss
+    • .intro-skip-btn  →  styles/wizard.scss
+  [3 props] .maw-skeleton-7  (6 files)
+    • .profile-delete-btn  →  components/account/mobile/MobileShell.scss
+    • .ab  →  styles/Admin.scss
+    • .gmb  →  styles/Admin.scss
+    • .bg  →  styles/Admin.scss
+    • .bb  →  styles/Admin.scss
+    • .wiz-nav-btn-ghost  →  styles/wizard.scss
+  [3 props] .mag-skeleton-2  (4 files)
+    • .wiz-btn-pill  →  components/account/mobile/MobileShell.scss
+    • .tab  →  styles/Admin.scss
+    • .profile-delete-btn  →  components/account/mobile/MobileShell.scss
+    • .btn-primary  →  styles/globals.scss
+  [3 props] .maw-skeleton-8  (8 files)
+    • .sr-tab  →  components/account/mobile/MobileShell.scss
+    • .btn-sel  →  styles/Admin.scss
+    • .bn  →  styles/Admin.scss
+    • .srf-custom-add  →  components/account/mobile/MobileShell.scss
+    • .begin-btn  →  styles/wizard.scss
+    • .wiz-nav-btn-next  →  styles/wizard.scss
+    • .wiz-correctable-btn  →  styles/wizard.scss
+    • .wiz-section-btn  →  styles/wizard.scss
+  [3 props] .magw-skeleton-2  (12 files)
+    • .srf-custom-label-btn  →  components/account/mobile/MobileShell.scss
+    • .btn-add  →  styles/Admin.scss
+    • .btn-sel  →  styles/Admin.scss
+    • .ab  →  styles/Admin.scss
+    • .bg  →  styles/Admin.scss
+    • .bn  →  styles/Admin.scss
+    • .bp  →  styles/Admin.scss
+    • .bb  →  styles/Admin.scss
+    • .btn-primary  →  styles/globals.scss
+    • .begin-btn  →  styles/wizard.scss
+    • .wiz-nav-btn-next  →  styles/wizard.scss
+    • .wiz-section-btn  →  styles/wizard.scss
+  [3 props] .mag-skeleton-3  (10 files)
+    • .srf-photo-uploading  →  components/account/mobile/MobileShell.scss
+    • .btn-add  →  styles/Admin.scss
+    • .btn-sel  →  styles/Admin.scss
+    • .ab  →  styles/Admin.scss
+    • .bg  →  styles/Admin.scss
+    • .bn  →  styles/Admin.scss
+    • .bp  →  styles/Admin.scss
+    • .bb  →  styles/Admin.scss
+    • .btn-primary  →  styles/globals.scss
+    • .loading  →  styles/Admin.scss
+  [3 props] .mwt-skeleton-2  (5 files)
+    • .shop-thumb  →  components/account/mobile/MobileShell.scss
+    • .full-screen  →  styles/wizard.scss
+    • .wiz-thumb  →  components/account/mobile/MobileShell.scss
+    • .tab  →  components/account/mobile/MobileShell.scss
+    • .tile  →  components/account/mobile/TilesShell.scss
+  [3 props] .mwt-skeleton-3  (10 files)
+    • .shop-thumb  →  components/account/mobile/MobileShell.scss
+    • .begin-btn  →  styles/wizard.scss
+    • .wiz-nav-btn-next  →  styles/wizard.scss
+    • .wiz-check-item  →  styles/wizard.scss
+    • .wiz-correctable-btn  →  styles/wizard.scss
+    • .wiz-section-btn  →  styles/wizard.scss
+    • .order-tile  →  components/account/mobile/MobileShell.scss
+    • .sr-card  →  components/account/mobile/MobileShell.scss
+    • .wiz-thumb  →  components/account/mobile/MobileShell.scss
+    • .tile  →  components/account/mobile/TilesShell.scss
+  [3 props] .mw-skeleton-3  (3 files)
+    • .heart-btn  →  components/account/mobile/MobileShell.scss
+    • .center-stage  →  styles/wizard.scss
+    • .wiz-back-btn  →  components/account/mobile/css/WizardShell.scss
+  [3 props] .mwa-skeleton-5  (3 files)
+    • .tab  →  components/account/mobile/MobileShell.scss
+    • .wiz-check-item  →  styles/wizard.scss
+    • .ni  →  styles/Admin.scss
+  [3 props] .mwa-skeleton-6  (3 files)
+    • .slide-tip  →  components/account/mobile/MobileShell.scss
+    • .wiz-warning-overlay  →  styles/wizard.scss
+    • .mob-topbar  →  styles/Admin.scss
+  [3 props] .mwt-skeleton-4  (5 files)
+    • .srf-section-title  →  components/account/mobile/MobileShell.scss
+    • .disc-label  →  styles/wizard.scss
+    • .stone-eyebrow  →  styles/wizard.scss
+    • .wiz-section-card-phase  →  styles/wizard.scss
+    • .tile-label  →  components/account/mobile/TilesShell.scss
+  [3 props] .awg-skeleton  (9 files)
+    • .btn-add  →  styles/Admin.scss
+    • .disc-check-row  →  styles/wizard.scss
+    • .btn-sel  →  styles/Admin.scss
+    • .ab  →  styles/Admin.scss
+    • .bg  →  styles/Admin.scss
+    • .bn  →  styles/Admin.scss
+    • .bp  →  styles/Admin.scss
+    • .bb  →  styles/Admin.scss
+    • .btn-primary  →  styles/globals.scss
+  [3 props] .awg-skeleton-2  (9 files)
+    • .btn-add  →  styles/Admin.scss
+    • .disc-checkbox  →  styles/wizard.scss
+    • .btn-sel  →  styles/Admin.scss
+    • .ab  →  styles/Admin.scss
+    • .bg  →  styles/Admin.scss
+    • .bn  →  styles/Admin.scss
+    • .bp  →  styles/Admin.scss
+    • .bb  →  styles/Admin.scss
+    • .btn-primary  →  styles/globals.scss
+
+──────────────────────────────────────────────────────────────────
+  APPLYING SKELETONS
+──────────────────────────────────────────────────────────────────
+
+▶ Applying: .mw-skeleton  (tier 5)
+    → Adding .mw-skeleton to shared.scss...  ~ dry run
+    → Removing .wiz-empty from MobileShell.scss...  ~ dry run
+    → Adding @extend for .wiz-empty...  ~ dry run
+    → Removing .wiz-folder-tile-inner from WizardShell.scss...  ~ dry run
+    → Adding @use to WizardShell.scss...  ~ dry run
+    → Adding @extend for .wiz-folder-tile-inner...  ~ dry run
+    → Removing .wiz-almost-done from wizard.scss...  ~ dry run
+    → Adding @use to wizard.scss...  ~ dry run
+    → Adding @extend for .wiz-almost-done...  ~ dry run
+
+▶ Applying: .mwa-skeleton  (tier 4)
+    → Adding .mwa-skeleton to shared.scss...  ~ dry run
+    → Removing .heart-btn from MobileShell.scss...  ~ dry run
+    → Adding @extend for .heart-btn...  ~ dry run
+    → Removing .wiz-folder-action-btn from WizardShell.scss...  ~ dry run
+    → Adding @use to WizardShell.scss...  ~ dry run
+    → Adding @extend for .wiz-folder-action-btn...  ~ dry run
+    → Removing .chat-send from MobileShell.scss...  ~ dry run
+    → Adding @extend for .chat-send...  ~ dry run
+    → Removing .menu-drawer-close from MobileShell.scss...  ~ dry run
+    → Adding @extend for .menu-drawer-close...  ~ dry run
+    → Appending .mwa-skeleton props to existing .wiz-folder-tile-inner block...  ~ dry run
+    → Removing .nr-info-btn from MobileShell.scss...  ~ dry run
+    → Adding @extend for .nr-info-btn...  ~ dry run
+    → Removing .inv-drawer-close from MobileShell.scss...  ~ dry run
+    → Adding @extend for .inv-drawer-close...  ~ dry run
+    → Removing .sr-archive-btn from MobileShell.scss...  ~ dry run
+    → Adding @extend for .sr-archive-btn...  ~ dry run
+    → Removing .panel-close from MobileShell.scss...  ~ dry run
+    → Adding @extend for .panel-close...  ~ dry run
+    → Removing .xb from Admin.scss...  ~ dry run
+    → Adding @use to Admin.scss...  ~ dry run
+    → Adding @extend for .xb...  ~ dry run
+    → Removing .chat-attach from MobileShell.scss...  ~ dry run
+    → Adding @extend for .chat-attach...  ~ dry run
+    → Removing .nr-photo-rm from MobileShell.scss...  ~ dry run
+    → Adding @extend for .nr-photo-rm...  ~ dry run
+    → Removing .wo-close from MobileShell.scss...  ~ dry run
+    → Adding @extend for .wo-close...  ~ dry run
+    → Removing .wiz-thumb from MobileShell.scss...  ~ dry run
+    → Adding @extend for .wiz-thumb...  ~ dry run
+    → Removing .res-close from MobileShell.scss...  ~ dry run
+    → Adding @extend for .res-close...  ~ dry run
+    → Removing .srf-custom-remove from MobileShell.scss...  ~ dry run
+    → Adding @extend for .srf-custom-remove...  ~ dry run
+    → Removing .srf-photo-remove from MobileShell.scss...  ~ dry run
+    → Adding @extend for .srf-photo-remove...  ~ dry run
+
+▶ Applying: .mwa-skeleton-2  (tier 4)
+    → Adding .mwa-skeleton-2 to shared.scss...  ~ dry run
+    → Appending .mwa-skeleton-2 props to existing .panel-close block...  ~ dry run
+    → Removing .wiz-back-btn from WizardShell.scss...  ~ dry run
+    → Adding @use to WizardShell.scss...  ~ dry run
+    → Adding @extend for .wiz-back-btn...  ~ dry run
+    → Appending .mwa-skeleton-2 props to existing .chat-send block...  ~ dry run
+    → Appending .mwa-skeleton-2 props to existing .nr-photo-rm block...  ~ dry run
+    → Appending .mwa-skeleton-2 props to existing .wo-close block...  ~ dry run
+    → Appending .mwa-skeleton-2 props to existing .res-close block...  ~ dry run
+    → Appending .mwa-skeleton-2 props to existing .sr-archive-btn block...  ~ dry run
+    → Appending .mwa-skeleton-2 props to existing .srf-photo-remove block...  ~ dry run
+    → Removing .ni from Admin.scss...  ~ dry run
+    → Adding @use to Admin.scss...  ~ dry run
+    → Adding @extend for .ni...  ~ dry run
+
+▶ Applying: .mwh-skeleton  (tier 4)
+    → Adding .mwh-skeleton to shared.scss...  ~ dry run
+    → Removing .tab from MobileShell.scss...  ~ dry run
+    → Adding @extend for .tab...  ~ dry run
+    → Appending .mwh-skeleton props to existing .wiz-folder-tile-inner block...  ~ dry run
+    → Appending .mwh-skeleton props to existing .wiz-thumb block...  ~ dry run
+    → Removing .svc-slot from home.scss...  ~ dry run
+    → Adding @use to home.scss...  ~ dry run
+    → Adding @extend for .svc-slot...  ~ dry run
+
+▶ Applying: .mag-skeleton  (tier 4)
+    → Adding .mag-skeleton to shared.scss...  ~ dry run
+    → Appending .mag-skeleton props to existing .heart-btn block...  ~ dry run
+    → Removing .btn-add from Admin.scss...  ~ dry run
+    → Adding @use to Admin.scss...  ~ dry run
+    → Adding @extend for .btn-add...  ~ dry run
+    → Removing .btn-sel from Admin.scss...  ~ dry run
+    → Adding @use to Admin.scss...  ~ dry run
+    → Adding @extend for .btn-sel...  ~ dry run
+    → Removing .bn from Admin.scss...  ~ dry run
+    → Adding @use to Admin.scss...  ~ dry run
+    → Adding @extend for .bn...  ~ dry run
+    → Removing .bp from Admin.scss...  ~ dry run
+    → Adding @use to Admin.scss...  ~ dry run
+    → Adding @extend for .bp...  ~ dry run
+    → Removing .btn-primary from globals.scss...  ~ dry run
+    → Adding @use to globals.scss...  ~ dry run
+    → Adding @extend for .btn-primary...  ~ dry run
+
+▶ Applying: .maw-skeleton  (tier 4)
+    → Adding .maw-skeleton to shared.scss...  ~ dry run
+    → Appending .maw-skeleton props to existing .chat-attach block...  ~ dry run
+    → Appending .maw-skeleton props to existing .btn-sel block...  ~ dry run
+    → Appending .maw-skeleton props to existing .bn block...  ~ dry run
+    → Appending .maw-skeleton props to existing .srf-custom-remove block...  ~ dry run
+    → Appending .maw-skeleton props to existing .wiz-folder-tile-inner block...  ~ dry run
+
+▶ Applying: .maw-skeleton-2  (tier 4)
+    → Adding .maw-skeleton-2 to shared.scss...  ~ dry run
+    → Appending .maw-skeleton-2 props to existing .wiz-thumb block...  ~ dry run
+    → Removing .mob-burger from Admin.scss...  ~ dry run
+    → Adding @use to Admin.scss...  ~ dry run
+    → Adding @extend for .mob-burger...  ~ dry run
+    → Appending .maw-skeleton-2 props to existing .wiz-folder-tile-inner block...  ~ dry run
+
+▶ Applying: .wa-skeleton  (tier 4)
+    → Adding .wa-skeleton to shared.scss...  ~ dry run
+    → Appending .wa-skeleton props to existing .wiz-folder-tile-inner block...  ~ dry run
+    → Removing .qi-thumb-empty from Admin.scss...  ~ dry run
+    → Adding @use to Admin.scss...  ~ dry run
+    → Adding @extend for .qi-thumb-empty...  ~ dry run
+    → Removing .photo-preview-empty from Admin.scss...  ~ dry run
+    → Adding @use to Admin.scss...  ~ dry run
+    → Adding @extend for .photo-preview-empty...  ~ dry run
+    → Removing .card-thumb-empty from Admin.scss...  ~ dry run
+    → Adding @use to Admin.scss...  ~ dry run
+    → Adding @extend for .card-thumb-empty...  ~ dry run
+    → Removing .intro-begin-row from wizard.scss...  ~ dry run
+    → Adding @use to wizard.scss...  ~ dry run
+    → Adding @extend for .intro-begin-row...  ~ dry run
+    → Removing .intro-middle from wizard.scss...  ~ dry run
+    → Adding @use to wizard.scss...  ~ dry run
+    → Adding @extend for .intro-middle...  ~ dry run
+    → Removing .wiz-section-intro from wizard.scss...  ~ dry run
+    → Adding @use to wizard.scss...  ~ dry run
+    → Adding @extend for .wiz-section-intro...  ~ dry run
+    → Removing .wiz-section-card from wizard.scss...  ~ dry run
+    → Adding @use to wizard.scss...  ~ dry run
+    → Adding @extend for .wiz-section-card...  ~ dry run
+
+▶ Applying: .dmt-skeleton  (tier 3)
+    → Adding .dmt-skeleton to shared.scss...  ~ dry run
+    → Removing .desktop-shell from DesktopShell.scss...  ~ dry run
+    → Adding @extend for .desktop-shell...  ~ dry run
+    → Removing .shop-thumb from MobileShell.scss...  ~ dry run
+    → Adding @extend for .shop-thumb...  ~ dry run
+    → Appending .dmt-skeleton props to existing .wiz-thumb block...  ~ dry run
+    → Removing .tile from TilesShell.scss...  ~ dry run
+    → Adding @extend for .tile...  ~ dry run
+
+▶ Applying: .dmw-skeleton  (tier 3)
+    → Adding .dmw-skeleton to shared.scss...  ~ dry run
+    → Removing .desktop-left from DesktopShell.scss...  ~ dry run
+    → Adding @extend for .desktop-left...  ~ dry run
+    → Removing .chat-msgs from MobileShell.scss...  ~ dry run
+    → Adding @extend for .chat-msgs...  ~ dry run
+    → Removing .orders-list from MobileShell.scss...  ~ dry run
+    → Adding @extend for .orders-list...  ~ dry run
+    → Removing .sr-list from MobileShell.scss...  ~ dry run
+    → Adding @extend for .sr-list...  ~ dry run
+    → Removing .wiz-modal-folder-list from WizardShell.scss...  ~ dry run
+    → Adding @use to WizardShell.scss...  ~ dry run
+    → Adding @extend for .wiz-modal-folder-list...  ~ dry run
+
+▶ Applying: .daw-skeleton  (tier 3)
+    → Adding .daw-skeleton to shared.scss...  ~ dry run
+    → Appending .daw-skeleton props to existing .desktop-shell block...  ~ dry run
+    → Appending .daw-skeleton props to existing .ni block...  ~ dry run
+    → Removing .full-screen from wizard.scss...  ~ dry run
+    → Adding @use to wizard.scss...  ~ dry run
+    → Adding @extend for .full-screen...  ~ dry run
+
+▶ Applying: .dhw-skeleton  (tier 3)
+    → Adding .dhw-skeleton to shared.scss...  ~ dry run
+    → Appending .dhw-skeleton props to existing .desktop-shell block...  ~ dry run
+    → Removing .machine-feature from home.scss...  ~ dry run
+    → Adding @use to home.scss...  ~ dry run
+    → Adding @extend for .machine-feature...  ~ dry run
+    → Removing .disc-card from wizard.scss...  ~ dry run
+    → Adding @use to wizard.scss...  ~ dry run
+    → Adding @extend for .disc-card...  ~ dry run
+
+▶ Applying: .mwt-skeleton  (tier 3)
+    → Adding .mwt-skeleton to shared.scss...  ~ dry run
+    → Appending .mwt-skeleton props to existing .shop-thumb block...  ~ dry run
+    → Appending .mwt-skeleton props to existing .wiz-folder-action-btn block...  ~ dry run
+    → Removing .wiz-modal-folder-item from WizardShell.scss...  ~ dry run
+    → Adding @use to WizardShell.scss...  ~ dry run
+    → Adding @extend for .wiz-modal-folder-item...  ~ dry run
+    → Appending .mwt-skeleton props to existing .tile block...  ~ dry run
+
+▶ Applying: .mw-skeleton-2  (tier 3)
+    → Adding .mw-skeleton-2 to shared.scss...  ~ dry run
+    → Appending .mw-skeleton-2 props to existing .heart-btn block...  ~ dry run
+    → Removing .wiz-drawer-folder-change from WizardShell.scss...  ~ dry run
+    → Adding @use to WizardShell.scss...  ~ dry run
+    → Adding @extend for .wiz-drawer-folder-change...  ~ dry run
+    → Removing .intro-skip-btn from wizard.scss...  ~ dry run
+    → Adding @use to wizard.scss...  ~ dry run
+    → Adding @extend for .intro-skip-btn...  ~ dry run
+
+▶ Applying: .mwa-skeleton-3  (tier 3)
+    → Adding .mwa-skeleton-3 to shared.scss...  ~ dry run
+    → Removing .profile-save from MobileShell.scss...  ~ dry run
+    → Adding @extend for .profile-save...  ~ dry run
+    → Appending .mwa-skeleton-3 props to existing .wiz-folder-tile-inner block...  ~ dry run
+    → Removing .wo-accept-btn from MobileShell.scss...  ~ dry run
+    → Adding @extend for .wo-accept-btn...  ~ dry run
+    → Removing .mob-dropdown-signout from Admin.scss...  ~ dry run
+    → Adding @use to Admin.scss...  ~ dry run
+    → Adding @extend for .mob-dropdown-signout...  ~ dry run
+
+▶ Applying: .mwa-skeleton-4  (tier 3)
+    → Adding .mwa-skeleton-4 to shared.scss...  ~ dry run
+    → Removing .res-topbar from MobileShell.scss...  ~ dry run
+    → Adding @extend for .res-topbar...  ~ dry run
+    → Appending .mwa-skeleton-4 props to existing .wiz-modal-folder-item block...  ~ dry run
+    → Removing .bulk-bar from Admin.scss...  ~ dry run
+    → Adding @use to Admin.scss...  ~ dry run
+    → Adding @extend for .bulk-bar...  ~ dry run
+
+▶ Applying: .maw-skeleton-3  (tier 3)
+    → Adding .maw-skeleton-3 to shared.scss...  ~ dry run
+    → Removing .dr-close from MobileShell.scss...  ~ dry run
+    → Adding @extend for .dr-close...  ~ dry run
+    → Appending .maw-skeleton-3 props to existing .ni block...  ~ dry run
+    → Removing .tab from Admin.scss...  ~ dry run
+    → Adding @use to Admin.scss...  ~ dry run
+    → Adding @extend for .tab...  ~ dry run
+    → Appending .maw-skeleton-3 props to existing .mob-dropdown-signout block...  ~ dry run
+    → Appending .maw-skeleton-3 props to existing .heart-btn block...  ~ dry run
+    → Removing .sms-mclose from MobileShell.scss...  ~ dry run
+    → Adding @extend for .sms-mclose...  ~ dry run
+    → Removing .nr-close from MobileShell.scss...  ~ dry run
+    → Adding @extend for .nr-close...  ~ dry run
+    → Removing .wiz-nav-btn-ghost from wizard.scss...  ~ dry run
+    → Adding @use to wizard.scss...  ~ dry run
+    → Adding @extend for .wiz-nav-btn-ghost...  ~ dry run
+
+▶ Applying: .mat-skeleton  (tier 3)
+    → Adding .mat-skeleton to shared.scss...  ~ dry run
+    → Appending .mat-skeleton props to existing .shop-thumb block...  ~ dry run
+    → Appending .mat-skeleton props to existing .ni block...  ~ dry run
+    → Appending .mat-skeleton props to existing .tile block...  ~ dry run
+
+▶ Applying: .maw-skeleton-4  (tier 3)
+    → Adding .maw-skeleton-4 to shared.scss...  ~ dry run
+    → Appending .maw-skeleton-4 props to existing .chat-msgs block...  ~ dry run
+    → Removing .fp from Admin.scss...  ~ dry run
+    → Adding @use to Admin.scss...  ~ dry run
+    → Adding @extend for .fp...  ~ dry run
+    → Appending .maw-skeleton-4 props to existing .orders-list block...  ~ dry run
+    → Removing .wo-body from MobileShell.scss...  ~ dry run
+    → Adding @extend for .wo-body...  ~ dry run
+    → Removing .inv-drawer-body from MobileShell.scss...  ~ dry run
+    → Adding @extend for .inv-drawer-body...  ~ dry run
+    → Appending .maw-skeleton-4 props to existing .wiz-empty block...  ~ dry run
+    → Removing .res-body from MobileShell.scss...  ~ dry run
+    → Adding @extend for .res-body...  ~ dry run
+    → Appending .maw-skeleton-4 props to existing .full-screen block...  ~ dry run
+    → Removing .center-stage from wizard.scss...  ~ dry run
+    → Adding @use to wizard.scss...  ~ dry run
+    → Adding @extend for .center-stage...  ~ dry run
+    → Appending .maw-skeleton-4 props to existing .intro-middle block...  ~ dry run
+    → Appending .maw-skeleton-4 props to existing .wiz-section-intro block...  ~ dry run
+    → Appending .maw-skeleton-4 props to existing .wiz-almost-done block...  ~ dry run
+    → Removing .wiz-checks-wrapper from wizard.scss...  ~ dry run
+    → Adding @use to wizard.scss...  ~ dry run
+    → Adding @extend for .wiz-checks-wrapper...  ~ dry run
+    → Appending .maw-skeleton-4 props to existing .wiz-section-card block...  ~ dry run
+
+▶ Applying: .maw-skeleton-5  (tier 3)
+    → Adding .maw-skeleton-5 to shared.scss...  ~ dry run
+    → Removing .chat-input-bar from MobileShell.scss...  ~ dry run
+    → Adding @extend for .chat-input-bar...  ~ dry run
+    → Removing .ff from Admin.scss...  ~ dry run
+    → Adding @use to Admin.scss...  ~ dry run
+    → Adding @extend for .ff...  ~ dry run
+    → Appending .maw-skeleton-5 props to existing .chat-attach block...  ~ dry run
+    → Appending .maw-skeleton-5 props to existing .chat-send block...  ~ dry run
+    → Appending .maw-skeleton-5 props to existing .nr-info-btn block...  ~ dry run
+    → Removing .inv-drawer-topbar from MobileShell.scss...  ~ dry run
+    → Adding @extend for .inv-drawer-topbar...  ~ dry run
+    → Appending .maw-skeleton-5 props to existing .res-topbar block...  ~ dry run
+    → Appending .maw-skeleton-5 props to existing .srf-custom-remove block...  ~ dry run
+    → Removing .panel-header from MobileShell.scss...  ~ dry run
+    → Adding @extend for .panel-header...  ~ dry run
+    → Removing .disc-checkbox from wizard.scss...  ~ dry run
+    → Adding @use to wizard.scss...  ~ dry run
+    → Adding @extend for .disc-checkbox...  ~ dry run
+    → Appending .maw-skeleton-5 props to existing .intro-begin-row block...  ~ dry run
+    → Removing .nr-head from MobileShell.scss...  ~ dry run
+    → Adding @extend for .nr-head...  ~ dry run
+    → Removing .wo-topbar from MobileShell.scss...  ~ dry run
+    → Adding @extend for .wo-topbar...  ~ dry run
+
+▶ Applying: .magw-skeleton  (tier 3)
+    → Adding .magw-skeleton to shared.scss...  ~ dry run
+    → Removing .pill-action-btn from MobileShell.scss...  ~ dry run
+    → Adding @extend for .pill-action-btn...  ~ dry run
+    → Appending .magw-skeleton props to existing .btn-add block...  ~ dry run
+    → Appending .magw-skeleton props to existing .btn-sel block...  ~ dry run
+    → Removing .ab from Admin.scss...  ~ dry run
+    → Adding @use to Admin.scss...  ~ dry run
+    → Adding @extend for .ab...  ~ dry run
+    → Removing .bg from Admin.scss...  ~ dry run
+    → Adding @use to Admin.scss...  ~ dry run
+    → Adding @extend for .bg...  ~ dry run
+    → Appending .magw-skeleton props to existing .bn block...  ~ dry run
+    → Appending .magw-skeleton props to existing .bp block...  ~ dry run
+    → Removing .bb from Admin.scss...  ~ dry run
+    → Adding @use to Admin.scss...  ~ dry run
+    → Adding @extend for .bb...  ~ dry run
+    → Appending .magw-skeleton props to existing .btn-primary block...  ~ dry run
+    → Removing .wiz-correctable-btn from wizard.scss...  ~ dry run
+    → Adding @use to wizard.scss...  ~ dry run
+    → Adding @extend for .wiz-correctable-btn...  ~ dry run
+
+▶ Applying: .maw-skeleton-6  (tier 3)
+    → Adding .maw-skeleton-6 to shared.scss...  ~ dry run
+    → Removing .order-accept from MobileShell.scss...  ~ dry run
+    → Adding @extend for .order-accept...  ~ dry run
+    → Appending .maw-skeleton-6 props to existing .ni block...  ~ dry run
+    → Appending .maw-skeleton-6 props to existing .tab block...  ~ dry run
+    → Appending .maw-skeleton-6 props to existing .mob-dropdown-signout block...  ~ dry run
+    → Appending .maw-skeleton-6 props to existing .profile-save block...  ~ dry run
+    → Appending .maw-skeleton-6 props to existing .wo-accept-btn block...  ~ dry run
+    → Appending .maw-skeleton-6 props to existing .sr-archive-btn block...  ~ dry run
+    → Appending .maw-skeleton-6 props to existing .wiz-nav-btn-ghost block...  ~ dry run
+    → Appending .maw-skeleton-6 props to existing .intro-skip-btn block...  ~ dry run
+
+▶ Applying: .maw-skeleton-7  (tier 3)
+    → Adding .maw-skeleton-7 to shared.scss...  ~ dry run
+    → Removing .profile-delete-btn from MobileShell.scss...  ~ dry run
+    → Adding @extend for .profile-delete-btn...  ~ dry run
+    → Appending .maw-skeleton-7 props to existing .ab block...  ~ dry run
+    → Removing .gmb from Admin.scss...  ~ dry run
+    → Adding @use to Admin.scss...  ~ dry run
+    → Adding @extend for .gmb...  ~ dry run
+    → Appending .maw-skeleton-7 props to existing .bg block...  ~ dry run
+    → Appending .maw-skeleton-7 props to existing .bb block...  ~ dry run
+    → Appending .maw-skeleton-7 props to existing .wiz-nav-btn-ghost block...  ~ dry run
+
+▶ Applying: .mag-skeleton-2  (tier 3)
+    → Adding .mag-skeleton-2 to shared.scss...  ~ dry run
+    → Removing .wiz-btn-pill from MobileShell.scss...  ~ dry run
+    → Adding @extend for .wiz-btn-pill...  ~ dry run
+    → Appending .mag-skeleton-2 props to existing .tab block...  ~ dry run
+    → Appending .mag-skeleton-2 props to existing .profile-delete-btn block...  ~ dry run
+    → Appending .mag-skeleton-2 props to existing .btn-primary block...  ~ dry run
+
+▶ Applying: .maw-skeleton-8  (tier 3)
+    → Adding .maw-skeleton-8 to shared.scss...  ~ dry run
+    → Removing .sr-tab from MobileShell.scss...  ~ dry run
+    → Adding @extend for .sr-tab...  ~ dry run
+    → Appending .maw-skeleton-8 props to existing .btn-sel block...  ~ dry run
+    → Appending .maw-skeleton-8 props to existing .bn block...  ~ dry run
+    → Removing .srf-custom-add from MobileShell.scss...  ~ dry run
+    → Adding @extend for .srf-custom-add...  ~ dry run
+    → Removing .begin-btn from wizard.scss...  ~ dry run
+    → Adding @use to wizard.scss...  ~ dry run
+    → Adding @extend for .begin-btn...  ~ dry run
+    → Removing .wiz-nav-btn-next from wizard.scss...  ~ dry run
+    → Adding @use to wizard.scss...  ~ dry run
+    → Adding @extend for .wiz-nav-btn-next...  ~ dry run
+    → Appending .maw-skeleton-8 props to existing .wiz-correctable-btn block...  ~ dry run
+    → Removing .wiz-section-btn from wizard.scss...  ~ dry run
+    → Adding @use to wizard.scss...  ~ dry run
+    → Adding @extend for .wiz-section-btn...  ~ dry run
+
+▶ Applying: .magw-skeleton-2  (tier 3)
+    → Adding .magw-skeleton-2 to shared.scss...  ~ dry run
+    → Removing .srf-custom-label-btn from MobileShell.scss...  ~ dry run
+    → Adding @extend for .srf-custom-label-btn...  ~ dry run
+    → Appending .magw-skeleton-2 props to existing .btn-add block...  ~ dry run
+    → Appending .magw-skeleton-2 props to existing .btn-sel block...  ~ dry run
+    → Appending .magw-skeleton-2 props to existing .ab block...  ~ dry run
+    → Appending .magw-skeleton-2 props to existing .bg block...  ~ dry run
+    → Appending .magw-skeleton-2 props to existing .bn block...  ~ dry run
+    → Appending .magw-skeleton-2 props to existing .bp block...  ~ dry run
+    → Appending .magw-skeleton-2 props to existing .bb block...  ~ dry run
+    → Appending .magw-skeleton-2 props to existing .btn-primary block...  ~ dry run
+    → Appending .magw-skeleton-2 props to existing .begin-btn block...  ~ dry run
+    → Appending .magw-skeleton-2 props to existing .wiz-nav-btn-next block...  ~ dry run
+    → Appending .magw-skeleton-2 props to existing .wiz-section-btn block...  ~ dry run
+
+▶ Applying: .mag-skeleton-3  (tier 3)
+    → Adding .mag-skeleton-3 to shared.scss...  ~ dry run
+    → Removing .srf-photo-uploading from MobileShell.scss...  ~ dry run
+    → Adding @extend for .srf-photo-uploading...  ~ dry run
+    → Appending .mag-skeleton-3 props to existing .btn-add block...  ~ dry run
+    → Appending .mag-skeleton-3 props to existing .btn-sel block...  ~ dry run
+    → Appending .mag-skeleton-3 props to existing .ab block...  ~ dry run
+    → Appending .mag-skeleton-3 props to existing .bg block...  ~ dry run
+    → Appending .mag-skeleton-3 props to existing .bn block...  ~ dry run
+    → Appending .mag-skeleton-3 props to existing .bp block...  ~ dry run
+    → Appending .mag-skeleton-3 props to existing .bb block...  ~ dry run
+    → Appending .mag-skeleton-3 props to existing .btn-primary block...  ~ dry run
+    → Removing .loading from Admin.scss...  ~ dry run
+    → Adding @use to Admin.scss...  ~ dry run
+    → Adding @extend for .loading...  ~ dry run
+
+▶ Applying: .mwt-skeleton-2  (tier 3)
+    → Adding .mwt-skeleton-2 to shared.scss...  ~ dry run
+    → Appending .mwt-skeleton-2 props to existing .shop-thumb block...  ~ dry run
+    → Appending .mwt-skeleton-2 props to existing .full-screen block...  ~ dry run
+    → Appending .mwt-skeleton-2 props to existing .wiz-thumb block...  ~ dry run
+    → Appending .mwt-skeleton-2 props to existing .tab block...  ~ dry run
+    → Appending .mwt-skeleton-2 props to existing .tile block...  ~ dry run
+
+▶ Applying: .mwt-skeleton-3  (tier 3)
+    → Adding .mwt-skeleton-3 to shared.scss...  ~ dry run
+    → Appending .mwt-skeleton-3 props to existing .shop-thumb block...  ~ dry run
+    → Appending .mwt-skeleton-3 props to existing .begin-btn block...  ~ dry run
+    → Appending .mwt-skeleton-3 props to existing .wiz-nav-btn-next block...  ~ dry run
+    → Removing .wiz-check-item from wizard.scss...  ~ dry run
+    → Adding @use to wizard.scss...  ~ dry run
+    → Adding @extend for .wiz-check-item...  ~ dry run
+    → Appending .mwt-skeleton-3 props to existing .wiz-correctable-btn block...  ~ dry run
+    → Appending .mwt-skeleton-3 props to existing .wiz-section-btn block...  ~ dry run
+    → Removing .order-tile from MobileShell.scss...  ~ dry run
+    → Adding @extend for .order-tile...  ~ dry run
+    → Removing .sr-card from MobileShell.scss...  ~ dry run
+    → Adding @extend for .sr-card...  ~ dry run
+    → Appending .mwt-skeleton-3 props to existing .wiz-thumb block...  ~ dry run
+    → Appending .mwt-skeleton-3 props to existing .tile block...  ~ dry run
+
+▶ Applying: .mw-skeleton-3  (tier 3)
+    → Adding .mw-skeleton-3 to shared.scss...  ~ dry run
+    → Appending .mw-skeleton-3 props to existing .heart-btn block...  ~ dry run
+    → Appending .mw-skeleton-3 props to existing .center-stage block...  ~ dry run
+    → Appending .mw-skeleton-3 props to existing .wiz-back-btn block...  ~ dry run
+
+▶ Applying: .mwa-skeleton-5  (tier 3)
+    → Adding .mwa-skeleton-5 to shared.scss...  ~ dry run
+    → Appending .mwa-skeleton-5 props to existing .tab block...  ~ dry run
+    → Appending .mwa-skeleton-5 props to existing .wiz-check-item block...  ~ dry run
+    → Appending .mwa-skeleton-5 props to existing .ni block...  ~ dry run
+
+▶ Applying: .mwa-skeleton-6  (tier 3)
+    → Adding .mwa-skeleton-6 to shared.scss...  ~ dry run
+    → Removing .slide-tip from MobileShell.scss...  ~ dry run
+    → Adding @extend for .slide-tip...  ~ dry run
+    → Removing .wiz-warning-overlay from wizard.scss...  ~ dry run
+    → Adding @use to wizard.scss...  ~ dry run
+    → Adding @extend for .wiz-warning-overlay...  ~ dry run
+    → Removing .mob-topbar from Admin.scss...  ~ dry run
+    → Adding @use to Admin.scss...  ~ dry run
+    → Adding @extend for .mob-topbar...  ~ dry run
+
+▶ Applying: .mwt-skeleton-4  (tier 3)
+    → Adding .mwt-skeleton-4 to shared.scss...  ~ dry run
+    → Removing .srf-section-title from MobileShell.scss...  ~ dry run
+    → Adding @extend for .srf-section-title...  ~ dry run
+    → Removing .disc-label from wizard.scss...  ~ dry run
+    → Adding @use to wizard.scss...  ~ dry run
+    → Adding @extend for .disc-label...  ~ dry run
+    → Removing .stone-eyebrow from wizard.scss...  ~ dry run
+    → Adding @use to wizard.scss...  ~ dry run
+    → Adding @extend for .stone-eyebrow...  ~ dry run
+    → Removing .wiz-section-card-phase from wizard.scss...  ~ dry run
+    → Adding @use to wizard.scss...  ~ dry run
+    → Adding @extend for .wiz-section-card-phase...  ~ dry run
+    → Removing .tile-label from TilesShell.scss...  ~ dry run
+    → Adding @extend for .tile-label...  ~ dry run
+
+▶ Applying: .awg-skeleton  (tier 3)
+    → Adding .awg-skeleton to shared.scss...  ~ dry run
+    → Appending .awg-skeleton props to existing .btn-add block...  ~ dry run
+    → Removing .disc-check-row from wizard.scss...  ~ dry run
+    → Adding @use to wizard.scss...  ~ dry run
+    → Adding @extend for .disc-check-row...  ~ dry run
+    → Appending .awg-skeleton props to existing .btn-sel block...  ~ dry run
+    → Appending .awg-skeleton props to existing .ab block...  ~ dry run
+    → Appending .awg-skeleton props to existing .bg block...  ~ dry run
+    → Appending .awg-skeleton props to existing .bn block...  ~ dry run
+    → Appending .awg-skeleton props to existing .bp block...  ~ dry run
+    → Appending .awg-skeleton props to existing .bb block...  ~ dry run
+    → Appending .awg-skeleton props to existing .btn-primary block...  ~ dry run
+
+▶ Applying: .awg-skeleton-2  (tier 3)
+    → Adding .awg-skeleton-2 to shared.scss...  ~ dry run
+    → Appending .awg-skeleton-2 props to existing .btn-add block...  ~ dry run
+    → Appending .awg-skeleton-2 props to existing .disc-checkbox block...  ~ dry run
+    → Appending .awg-skeleton-2 props to existing .btn-sel block...  ~ dry run
+    → Appending .awg-skeleton-2 props to existing .ab block...  ~ dry run
+    → Appending .awg-skeleton-2 props to existing .bg block...  ~ dry run
+    → Appending .awg-skeleton-2 props to existing .bn block...  ~ dry run
+    → Appending .awg-skeleton-2 props to existing .bp block...  ~ dry run
+    → Appending .awg-skeleton-2 props to existing .bb block...  ~ dry run
+    → Appending .awg-skeleton-2 props to existing .btn-primary block...  ~ dry run
+
+══════════════════════════════════════════════════════════════════
+  DONE
+══════════════════════════════════════════════════════════════════
+Skeletons applied: 35
+

@@ -1,3 +1,5 @@
+@import '../desktop/DesktopShell.scss';
+@import '../desktop/DesktopAccount.scss';
 /* ═══════════════════════════════════════════════════════════════
    CCG Mobile Account Shell — Responsive Web Application
    All sizing uses fluid units:
@@ -82,17 +84,7 @@ button, [role="button"] { touch-action: manipulation; }
 }
 
 /* ── NAV ── */
-.nav {
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: clamp(0.75rem, 3.5vw, 1rem) clamp(1rem, 4.5vw, 1.25rem);
-  background: var(--bg-mob-deep);
-  border-bottom: 0.5px solid var(--bdr2-mob);
-}
+
 .nav-logo {
   font-family: var(--font-mob-display);
   font-size: clamp(0.875rem, 3.5vw, 1.0rem);
@@ -738,15 +730,7 @@ button, [role="button"] { touch-action: manipulation; }
   z-index: 20000; opacity: 0; pointer-events: none; transition: opacity 260ms ease;
 }
 .nr-overlay.open { opacity: 1; pointer-events: all; }
-.nr-sheet {
-  position: fixed; bottom: 0; left: 0; right: 0;
-  width: 100%;
-  transform: translateY(100%);
-  background: var(--bg-mob-deep); border-top: 0.5px solid var(--bdr2-mob);
-  border-radius: 0.875rem 0.875rem 0 0; z-index: 20001;
-  transition: transform 750ms cubic-bezier(0.16, 1, 0.3, 1);
-  max-height: 93dvh; display: flex; flex-direction: column;
-}
+
 .nr-sheet.open { transform: translateY(0); }
 .nr-handle {
   width: clamp(28px, 8vw, 36px); height: 4px;

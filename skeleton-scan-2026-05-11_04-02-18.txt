@@ -1,0 +1,279 @@
+
+══════════════════════════════════════════════════════════════════
+  FIND SKELETONS (SCAN ONLY) 
+  Root: /workspaces/cuttingcorners  |  Tiers: 7 → 3  |  Min files: 3
+══════════════════════════════════════════════════════════════════
+Found 10 component style file(s)
+
+  Loading 10 component files...
+
+  [1/10] frontend/components/account/desktop/DesktopAccount.scss
+  [2/10] frontend/components/account/desktop/DesktopShell.scss
+  [3/10] frontend/components/account/mobile/MobileShell.scss
+  [4/10] frontend/components/account/mobile/TilesShell.scss
+  [5/10] frontend/components/account/mobile/css/WizardShell.scss
+  [6/10] frontend/styles/Admin.scss
+  [7/10] frontend/styles/globals.scss
+  [8/10] frontend/styles/home.scss
+  [9/10] frontend/styles/shopCardEffect.scss
+  [10/10] frontend/styles/wizard.scss
+
+──────────────────────────────────────────────────────────────────
+  TIER 7 — searching for 7-property skeletons across 3+ files
+──────────────────────────────────────────────────────────────────
+
+  Checked 45 file pairs
+
+  Tier 7 complete: 0 skeleton(s) found
+
+──────────────────────────────────────────────────────────────────
+  TIER 6 — searching for 6-property skeletons across 3+ files
+──────────────────────────────────────────────────────────────────
+
+  Checked 45 file pairs
+
+  Tier 6 complete: 0 skeleton(s) found
+
+──────────────────────────────────────────────────────────────────
+  TIER 5 — searching for 5-property skeletons across 3+ files
+──────────────────────────────────────────────────────────────────
+
+  Checked 45 file pairs
+
+  Tier 5 complete: 0 skeleton(s) found
+
+──────────────────────────────────────────────────────────────────
+  TIER 4 — searching for 4-property skeletons across 3+ files
+──────────────────────────────────────────────────────────────────
+
+  Checked 45 file pairs
+
+  ⚡ SKELETON [4 props]: .mag-skeleton
+     Props: -webkit-tap-highlight-color, align-items, cursor, justify-content
+     • .heart-btn  →  frontend/components/account/mobile/MobileShell.scss
+     • .btn-add  →  frontend/styles/Admin.scss
+     • .btn-sel  →  frontend/styles/Admin.scss
+     • .bn  →  frontend/styles/Admin.scss
+     • .bp  →  frontend/styles/Admin.scss
+     • .btn-primary  →  frontend/styles/globals.scss
+
+  Tier 4 complete: 1 skeleton(s) found
+
+──────────────────────────────────────────────────────────────────
+  TIER 3 — searching for 3-property skeletons across 3+ files
+──────────────────────────────────────────────────────────────────
+    ~ Skipping .nr-info-btn/.btn-add — subset of higher-tier skeleton
+    ~ Skipping .nr-info-btn/.btn-sel — subset of higher-tier skeleton
+    ~ Skipping .nr-info-btn/.bn — subset of higher-tier skeleton
+    ~ Skipping .nr-info-btn/.bp — subset of higher-tier skeleton
+    ~ Skipping .wiz-thumb/.btn-add — subset of higher-tier skeleton
+    ~ Skipping .wiz-thumb/.btn-sel — subset of higher-tier skeleton
+    ~ Skipping .wiz-thumb/.bn — subset of higher-tier skeleton
+    ~ Skipping .wiz-thumb/.bp — subset of higher-tier skeleton
+    ~ Skipping .wiz-thumb/.ab — subset of higher-tier skeleton
+    ~ Skipping .wiz-thumb/.bg — subset of higher-tier skeleton
+    ~ Skipping .wiz-thumb/.bb — subset of higher-tier skeleton
+    ~ Skipping .nr-info-btn/.btn-primary — subset of higher-tier skeleton
+    ~ Skipping .wiz-thumb/.btn-primary — subset of higher-tier skeleton
+    ~ Skipping .heart-btn/.wiz-check-item — subset of higher-tier skeleton
+    ~ Skipping .wiz-folder-tile-inner/.btn-add — subset of higher-tier skeleton
+    ~ Skipping .wiz-folder-tile-inner/.bp — subset of higher-tier skeleton
+    ~ Skipping .wiz-folder-tile-inner/.ab — subset of higher-tier skeleton
+    ~ Skipping .wiz-folder-tile-inner/.bg — subset of higher-tier skeleton
+    ~ Skipping .wiz-folder-tile-inner/.bb — subset of higher-tier skeleton
+    ~ Skipping .wiz-folder-tile-inner/.btn-primary — subset of higher-tier skeleton
+    ~ Skipping .btn-add/.wiz-check-item — subset of higher-tier skeleton
+    ~ Skipping .bp/.wiz-check-item — subset of higher-tier skeleton
+    ~ Skipping .ab/.wiz-check-item — subset of higher-tier skeleton
+    ~ Skipping .bg/.wiz-check-item — subset of higher-tier skeleton
+    ~ Skipping .bb/.wiz-check-item — subset of higher-tier skeleton
+
+  Checked 45 file pairs
+
+  ⚡ SKELETON [3 props]: .mwa-skeleton
+     Props: align-items, cursor, display
+     • .dr-item  →  frontend/components/account/mobile/MobileShell.scss
+     • .wiz-folder-tile-inner  →  frontend/components/account/mobile/css/WizardShell.scss
+     • .menu-item  →  frontend/components/account/mobile/MobileShell.scss
+     • .sms-row  →  frontend/components/account/mobile/MobileShell.scss
+     • .notif-row  →  frontend/styles/Admin.scss
+     • .ni  →  frontend/styles/Admin.scss
+     • .nr-info-btn  →  frontend/components/account/mobile/MobileShell.scss
+     • .sr-archive-btn  →  frontend/components/account/mobile/MobileShell.scss
+     • .heart-btn  →  frontend/components/account/mobile/MobileShell.scss
+     • .wiz-thumb  →  frontend/components/account/mobile/MobileShell.scss
+
+  ⚡ SKELETON [3 props]: .mwa-skeleton-2
+     Props: align-items, display, justify-content
+     • .shop-img  →  frontend/components/account/mobile/MobileShell.scss
+     • .wiz-folder-tile-inner  →  frontend/components/account/mobile/css/WizardShell.scss
+     • .nr-photo-thumb  →  frontend/components/account/mobile/MobileShell.scss
+     • .wiz-score-num  →  frontend/components/account/mobile/MobileShell.scss
+     • .res-ring-num  →  frontend/components/account/mobile/MobileShell.scss
+     • .srf-size-row  →  frontend/components/account/mobile/MobileShell.scss
+     • .ni-badge  →  frontend/styles/Admin.scss
+     • .wiz-thumb  →  frontend/components/account/mobile/MobileShell.scss
+     • .intro-begin-row  →  frontend/styles/wizard.scss
+     • .intro-middle  →  frontend/styles/wizard.scss
+     • .wiz-section-intro  →  frontend/styles/wizard.scss
+     • .wiz-section-card  →  frontend/styles/wizard.scss
+     • .nr-info-btn  →  frontend/components/account/mobile/MobileShell.scss
+     • .sr-archive-btn  →  frontend/components/account/mobile/MobileShell.scss
+     • .heart-btn  →  frontend/components/account/mobile/MobileShell.scss
+
+  ⚡ SKELETON [3 props]: .mw-skeleton
+     Props: align-items, display, flex-direction
+     • .srf-size-box  →  frontend/components/account/mobile/MobileShell.scss
+     • .wiz-folder-tile-inner  →  frontend/components/account/mobile/css/WizardShell.scss
+     • .results-actions  →  frontend/styles/wizard.scss
+     • .intro-middle  →  frontend/styles/wizard.scss
+     • .wiz-section-intro  →  frontend/styles/wizard.scss
+     • .wiz-section-card  →  frontend/styles/wizard.scss
+     • .wiz-thumb  →  frontend/components/account/mobile/MobileShell.scss
+
+  ⚡ SKELETON [3 props]: .mwt-skeleton
+     Props: cursor, display, flex-direction
+     • .shop-thumb  →  frontend/components/account/mobile/MobileShell.scss
+     • .wiz-folder-tile-inner  →  frontend/components/account/mobile/css/WizardShell.scss
+     • .tile  →  frontend/components/account/mobile/TilesShell.scss
+
+  ⚡ SKELETON [3 props]: .mwa-skeleton-3
+     Props: border, cursor, width
+     • .profile-save  →  frontend/components/account/mobile/MobileShell.scss
+     • .wiz-folder-tile-inner  →  frontend/components/account/mobile/css/WizardShell.scss
+     • .wo-accept-btn  →  frontend/components/account/mobile/MobileShell.scss
+     • .mob-dropdown-signout  →  frontend/styles/Admin.scss
+
+  ⚡ SKELETON [3 props]: .maw-skeleton
+     Props: border, cursor, text-transform
+     • .sr-archive-btn  →  frontend/components/account/mobile/MobileShell.scss
+     • .mob-dropdown-signout  →  frontend/styles/Admin.scss
+     • .tab  →  frontend/styles/Admin.scss
+     • .profile-save  →  frontend/components/account/mobile/MobileShell.scss
+     • .wo-accept-btn  →  frontend/components/account/mobile/MobileShell.scss
+     • .wiz-nav-btn-ghost  →  frontend/styles/wizard.scss
+
+  ⚡ SKELETON [3 props]: .maw-skeleton-2
+     Props: background, border, cursor
+     • .heart-btn  →  frontend/components/account/mobile/MobileShell.scss
+     • .mob-dropdown-signout  →  frontend/styles/Admin.scss
+     • .tab  →  frontend/styles/Admin.scss
+     • .wiz-nav-btn-ghost  →  frontend/styles/wizard.scss
+
+  ⚡ SKELETON [3 props]: .mat-skeleton
+     Props: cursor, display, position
+     • .shop-thumb  →  frontend/components/account/mobile/MobileShell.scss
+     • .ni  →  frontend/styles/Admin.scss
+     • .tile  →  frontend/components/account/mobile/TilesShell.scss
+
+  ⚡ SKELETON [3 props]: .maw-skeleton-3
+     Props: background, cursor, text-transform
+     • .profile-delete-btn  →  frontend/components/account/mobile/MobileShell.scss
+     • .ab  →  frontend/styles/Admin.scss
+     • .bg  →  frontend/styles/Admin.scss
+     • .bb  →  frontend/styles/Admin.scss
+     • .wiz-nav-btn-ghost  →  frontend/styles/wizard.scss
+
+  ⚡ SKELETON [3 props]: .mga-skeleton
+     Props: cursor, font-size, text-transform
+     • .profile-delete-btn  →  frontend/components/account/mobile/MobileShell.scss
+     • .btn-primary  →  frontend/styles/globals.scss
+     • .tab  →  frontend/styles/Admin.scss
+
+  ⚡ SKELETON [3 props]: .mwt-skeleton-2
+     Props: display, flex-direction, position
+     • .wiz-thumb  →  frontend/components/account/mobile/MobileShell.scss
+     • .full-screen  →  frontend/styles/wizard.scss
+     • .shop-thumb  →  frontend/components/account/mobile/MobileShell.scss
+     • .tile  →  frontend/components/account/mobile/TilesShell.scss
+
+  Tier 3 complete: 11 skeleton(s) found
+
+──────────────────────────────────────────────────────────────────
+  SKELETON SUMMARY
+──────────────────────────────────────────────────────────────────
+
+  12 skeleton(s) across tiers 3–7:
+
+  [4 props] .mag-skeleton  (6 files)
+    • .heart-btn  →  frontend/components/account/mobile/MobileShell.scss
+    • .btn-add  →  frontend/styles/Admin.scss
+    • .btn-sel  →  frontend/styles/Admin.scss
+    • .bn  →  frontend/styles/Admin.scss
+    • .bp  →  frontend/styles/Admin.scss
+    • .btn-primary  →  frontend/styles/globals.scss
+  [3 props] .mwa-skeleton  (10 files)
+    • .dr-item  →  frontend/components/account/mobile/MobileShell.scss
+    • .wiz-folder-tile-inner  →  frontend/components/account/mobile/css/WizardShell.scss
+    • .menu-item  →  frontend/components/account/mobile/MobileShell.scss
+    • .sms-row  →  frontend/components/account/mobile/MobileShell.scss
+    • .notif-row  →  frontend/styles/Admin.scss
+    • .ni  →  frontend/styles/Admin.scss
+    • .nr-info-btn  →  frontend/components/account/mobile/MobileShell.scss
+    • .sr-archive-btn  →  frontend/components/account/mobile/MobileShell.scss
+    • .heart-btn  →  frontend/components/account/mobile/MobileShell.scss
+    • .wiz-thumb  →  frontend/components/account/mobile/MobileShell.scss
+  [3 props] .mwa-skeleton-2  (15 files)
+    • .shop-img  →  frontend/components/account/mobile/MobileShell.scss
+    • .wiz-folder-tile-inner  →  frontend/components/account/mobile/css/WizardShell.scss
+    • .nr-photo-thumb  →  frontend/components/account/mobile/MobileShell.scss
+    • .wiz-score-num  →  frontend/components/account/mobile/MobileShell.scss
+    • .res-ring-num  →  frontend/components/account/mobile/MobileShell.scss
+    • .srf-size-row  →  frontend/components/account/mobile/MobileShell.scss
+    • .ni-badge  →  frontend/styles/Admin.scss
+    • .wiz-thumb  →  frontend/components/account/mobile/MobileShell.scss
+    • .intro-begin-row  →  frontend/styles/wizard.scss
+    • .intro-middle  →  frontend/styles/wizard.scss
+    • .wiz-section-intro  →  frontend/styles/wizard.scss
+    • .wiz-section-card  →  frontend/styles/wizard.scss
+    • .nr-info-btn  →  frontend/components/account/mobile/MobileShell.scss
+    • .sr-archive-btn  →  frontend/components/account/mobile/MobileShell.scss
+    • .heart-btn  →  frontend/components/account/mobile/MobileShell.scss
+  [3 props] .mw-skeleton  (7 files)
+    • .srf-size-box  →  frontend/components/account/mobile/MobileShell.scss
+    • .wiz-folder-tile-inner  →  frontend/components/account/mobile/css/WizardShell.scss
+    • .results-actions  →  frontend/styles/wizard.scss
+    • .intro-middle  →  frontend/styles/wizard.scss
+    • .wiz-section-intro  →  frontend/styles/wizard.scss
+    • .wiz-section-card  →  frontend/styles/wizard.scss
+    • .wiz-thumb  →  frontend/components/account/mobile/MobileShell.scss
+  [3 props] .mwt-skeleton  (3 files)
+    • .shop-thumb  →  frontend/components/account/mobile/MobileShell.scss
+    • .wiz-folder-tile-inner  →  frontend/components/account/mobile/css/WizardShell.scss
+    • .tile  →  frontend/components/account/mobile/TilesShell.scss
+  [3 props] .mwa-skeleton-3  (4 files)
+    • .profile-save  →  frontend/components/account/mobile/MobileShell.scss
+    • .wiz-folder-tile-inner  →  frontend/components/account/mobile/css/WizardShell.scss
+    • .wo-accept-btn  →  frontend/components/account/mobile/MobileShell.scss
+    • .mob-dropdown-signout  →  frontend/styles/Admin.scss
+  [3 props] .maw-skeleton  (6 files)
+    • .sr-archive-btn  →  frontend/components/account/mobile/MobileShell.scss
+    • .mob-dropdown-signout  →  frontend/styles/Admin.scss
+    • .tab  →  frontend/styles/Admin.scss
+    • .profile-save  →  frontend/components/account/mobile/MobileShell.scss
+    • .wo-accept-btn  →  frontend/components/account/mobile/MobileShell.scss
+    • .wiz-nav-btn-ghost  →  frontend/styles/wizard.scss
+  [3 props] .maw-skeleton-2  (4 files)
+    • .heart-btn  →  frontend/components/account/mobile/MobileShell.scss
+    • .mob-dropdown-signout  →  frontend/styles/Admin.scss
+    • .tab  →  frontend/styles/Admin.scss
+    • .wiz-nav-btn-ghost  →  frontend/styles/wizard.scss
+  [3 props] .mat-skeleton  (3 files)
+    • .shop-thumb  →  frontend/components/account/mobile/MobileShell.scss
+    • .ni  →  frontend/styles/Admin.scss
+    • .tile  →  frontend/components/account/mobile/TilesShell.scss
+  [3 props] .maw-skeleton-3  (5 files)
+    • .profile-delete-btn  →  frontend/components/account/mobile/MobileShell.scss
+    • .ab  →  frontend/styles/Admin.scss
+    • .bg  →  frontend/styles/Admin.scss
+    • .bb  →  frontend/styles/Admin.scss
+    • .wiz-nav-btn-ghost  →  frontend/styles/wizard.scss
+  [3 props] .mga-skeleton  (3 files)
+    • .profile-delete-btn  →  frontend/components/account/mobile/MobileShell.scss
+    • .btn-primary  →  frontend/styles/globals.scss
+    • .tab  →  frontend/styles/Admin.scss
+  [3 props] .mwt-skeleton-2  (4 files)
+    • .wiz-thumb  →  frontend/components/account/mobile/MobileShell.scss
+    • .full-screen  →  frontend/styles/wizard.scss
+    • .shop-thumb  →  frontend/components/account/mobile/MobileShell.scss
+    • .tile  →  frontend/components/account/mobile/TilesShell.scss

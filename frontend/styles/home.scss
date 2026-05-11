@@ -1,3 +1,4 @@
+@use '../../../src/css/shared' as *;
 /* ── home.css — Index page specific styles ── */
 
 /* ── Background blueprint image overlay ── */
@@ -48,14 +49,7 @@
 }
 
 /* Machine feature section */
-.machine-feature {
-  width: 100%;
-  max-width: 900px;
-  margin: 0 auto;
-  height: 480px;
-  position: relative;
-  overflow: hidden;
-}
+
 .machine-feature-img {
   position: absolute;
   inset: 0;
@@ -111,15 +105,7 @@
   gap: 32px;
   align-items: end;
 }
-.svc-slot {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-decoration: none;
-  gap: 20px;
-  cursor: pointer;
-  transition: transform 300ms ease;
-}
+
 .svc-slot:hover { transform: translateY(-6px); }
 .svc-slot__img-wrap {
   position: relative;
@@ -155,4 +141,20 @@
   .svc-slot--normal .svc-slot__img-wrap { height: 220px; }
   .svc-slot--large  .svc-slot__img-wrap { height: 300px; }
   .svc-slot--large { order: -1; }
+}
+
+// Skeleton: .mwh-skeleton (tier 4, 4 shared props)
+.svc-slot {
+  @extend .mwh-skeleton;
+  gap: 20px;
+  text-decoration: none;
+  transition: transform 300ms ease;
+}
+
+// Skeleton: .dhw-skeleton (tier 3, 3 shared props)
+.machine-feature {
+  @extend .dhw-skeleton;
+  height: 480px;
+  margin: 0 auto;
+  max-width: 900px;
 }

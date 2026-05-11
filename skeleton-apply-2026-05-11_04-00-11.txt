@@ -1,0 +1,2704 @@
+
+══════════════════════════════════════════════════════════════════
+  FIND SKELETONS 
+  Root: /workspaces/cuttingcorners  |  Tiers: 7 → 3  |  Min files: 3
+══════════════════════════════════════════════════════════════════
+Backup: /workspaces/cuttingcorners/scripts/current/backups/2026-05-11_04-00-11
+
+Found 10 component style file(s)
+
+  Loading 10 component files...
+
+  [1/10] frontend/components/account/desktop/DesktopAccount.scss
+  [2/10] frontend/components/account/desktop/DesktopShell.scss
+  [3/10] frontend/components/account/mobile/MobileShell.scss
+  [4/10] frontend/components/account/mobile/TilesShell.scss
+  [5/10] frontend/components/account/mobile/css/WizardShell.scss
+  [6/10] frontend/styles/Admin.scss
+  [7/10] frontend/styles/globals.scss
+  [8/10] frontend/styles/home.scss
+  [9/10] frontend/styles/shopCardEffect.scss
+  [10/10] frontend/styles/wizard.scss
+
+──────────────────────────────────────────────────────────────────
+  TIER 7 — searching for 7-property skeletons across 3+ files
+──────────────────────────────────────────────────────────────────
+
+  Checked 45 file pairs
+
+  Tier 7 complete: 0 skeleton(s) found
+
+──────────────────────────────────────────────────────────────────
+  TIER 6 — searching for 6-property skeletons across 3+ files
+──────────────────────────────────────────────────────────────────
+
+  Checked 45 file pairs
+
+  Tier 6 complete: 0 skeleton(s) found
+
+──────────────────────────────────────────────────────────────────
+  TIER 5 — searching for 5-property skeletons across 3+ files
+──────────────────────────────────────────────────────────────────
+
+  Checked 45 file pairs
+
+  ⚡ SKELETON [5 props]: .mw-skeleton
+     Props: align-items, display, flex-direction, justify-content, text-align
+     • .wiz-empty  →  frontend/components/account/mobile/MobileShell.scss
+     • .wiz-folder-tile-inner  →  frontend/components/account/mobile/css/WizardShell.scss
+     • .wiz-almost-done  →  frontend/styles/wizard.scss
+
+  Tier 5 complete: 1 skeleton(s) found
+
+──────────────────────────────────────────────────────────────────
+  TIER 4 — searching for 4-property skeletons across 3+ files
+──────────────────────────────────────────────────────────────────
+    ~ Skipping .wiz-thumb/.wiz-almost-done — subset of higher-tier skeleton
+    ~ Skipping .wiz-thumb/.intro-middle — subset of higher-tier skeleton
+    ~ Skipping .wiz-thumb/.wiz-section-intro — subset of higher-tier skeleton
+    ~ Skipping .wiz-thumb/.wiz-section-card — subset of higher-tier skeleton
+
+  Checked 45 file pairs
+
+  ⚡ SKELETON [4 props]: .mwa-skeleton
+     Props: align-items, border, cursor, display
+     • .chat-send  →  frontend/components/account/mobile/MobileShell.scss
+     • .wiz-back-btn  →  frontend/components/account/mobile/css/WizardShell.scss
+     • .sr-archive-btn  →  frontend/components/account/mobile/MobileShell.scss
+     • .panel-close  →  frontend/components/account/mobile/MobileShell.scss
+     • .nr-photo-rm  →  frontend/components/account/mobile/MobileShell.scss
+     • .wo-close  →  frontend/components/account/mobile/MobileShell.scss
+     • .res-close  →  frontend/components/account/mobile/MobileShell.scss
+     • .srf-photo-remove  →  frontend/components/account/mobile/MobileShell.scss
+     • .ni  →  frontend/styles/Admin.scss
+
+  ⚡ SKELETON [4 props]: .mag-skeleton
+     Props: -webkit-tap-highlight-color, align-items, cursor, justify-content
+     • .heart-btn  →  frontend/components/account/mobile/MobileShell.scss
+     • .btn-add  →  frontend/styles/Admin.scss
+     • .btn-sel  →  frontend/styles/Admin.scss
+     • .bn  →  frontend/styles/Admin.scss
+     • .bp  →  frontend/styles/Admin.scss
+     • .btn-primary  →  frontend/styles/globals.scss
+
+  ⚡ SKELETON [4 props]: .maw-skeleton
+     Props: align-items, background, cursor, justify-content
+     • .chat-attach  →  frontend/components/account/mobile/MobileShell.scss
+     • .btn-sel  →  frontend/styles/Admin.scss
+     • .bn  →  frontend/styles/Admin.scss
+     • .srf-custom-remove  →  frontend/components/account/mobile/MobileShell.scss
+     • .wiz-folder-tile-inner  →  frontend/components/account/mobile/css/WizardShell.scss
+
+  Tier 4 complete: 3 skeleton(s) found
+
+──────────────────────────────────────────────────────────────────
+  TIER 3 — searching for 3-property skeletons across 3+ files
+──────────────────────────────────────────────────────────────────
+    ~ Skipping .dr-item/.wiz-folder-tile-inner — subset of higher-tier skeleton
+    ~ Skipping .dr-item/.wiz-folder-action-btn — subset of higher-tier skeleton
+    ~ Skipping .dr-item/.wiz-back-btn — subset of higher-tier skeleton
+    ~ Skipping .dr-item/.wiz-modal-folder-item — subset of higher-tier skeleton
+    ~ Skipping .shop-img/.wiz-folder-tile-inner — subset of higher-tier skeleton
+    ~ Skipping .shop-img/.wiz-folder-action-btn — subset of higher-tier skeleton
+    ~ Skipping .menu-item/.wiz-folder-tile-inner — subset of higher-tier skeleton
+    ~ Skipping .menu-item/.wiz-folder-action-btn — subset of higher-tier skeleton
+    ~ Skipping .menu-item/.wiz-back-btn — subset of higher-tier skeleton
+    ~ Skipping .menu-item/.wiz-modal-folder-item — subset of higher-tier skeleton
+    ~ Skipping .sms-row/.wiz-folder-tile-inner — subset of higher-tier skeleton
+    ~ Skipping .sms-row/.wiz-folder-action-btn — subset of higher-tier skeleton
+    ~ Skipping .sms-row/.wiz-back-btn — subset of higher-tier skeleton
+    ~ Skipping .sms-row/.wiz-modal-folder-item — subset of higher-tier skeleton
+    ~ Skipping .nr-photo-thumb/.wiz-folder-tile-inner — subset of higher-tier skeleton
+    ~ Skipping .nr-photo-thumb/.wiz-folder-action-btn — subset of higher-tier skeleton
+    ~ Skipping .wiz-score-num/.wiz-folder-tile-inner — subset of higher-tier skeleton
+    ~ Skipping .wiz-score-num/.wiz-folder-action-btn — subset of higher-tier skeleton
+    ~ Skipping .res-ring-num/.wiz-folder-tile-inner — subset of higher-tier skeleton
+    ~ Skipping .res-ring-num/.wiz-folder-action-btn — subset of higher-tier skeleton
+    ~ Skipping .srf-size-row/.wiz-folder-tile-inner — subset of higher-tier skeleton
+    ~ Skipping .srf-size-row/.wiz-folder-action-btn — subset of higher-tier skeleton
+    ~ Skipping .srf-size-box/.wiz-folder-tile-inner — subset of higher-tier skeleton
+    ~ Skipping .wiz-empty/.wiz-folder-action-btn — subset of higher-tier skeleton
+    ~ Skipping .heart-btn/.wiz-modal-folder-item — subset of higher-tier skeleton
+    ~ Skipping .chat-send/.wiz-modal-folder-item — subset of higher-tier skeleton
+    ~ Skipping .nr-info-btn/.wiz-back-btn — subset of higher-tier skeleton
+    ~ Skipping .nr-info-btn/.wiz-modal-folder-item — subset of higher-tier skeleton
+    ~ Skipping .sr-archive-btn/.wiz-modal-folder-item — subset of higher-tier skeleton
+    ~ Skipping .panel-close/.wiz-modal-folder-item — subset of higher-tier skeleton
+    ~ Skipping .chat-attach/.wiz-modal-folder-item — subset of higher-tier skeleton
+    ~ Skipping .nr-photo-rm/.wiz-modal-folder-item — subset of higher-tier skeleton
+    ~ Skipping .wo-close/.wiz-modal-folder-item — subset of higher-tier skeleton
+    ~ Skipping .wiz-thumb/.wiz-back-btn — subset of higher-tier skeleton
+    ~ Skipping .res-close/.wiz-modal-folder-item — subset of higher-tier skeleton
+    ~ Skipping .srf-custom-remove/.wiz-modal-folder-item — subset of higher-tier skeleton
+    ~ Skipping .srf-photo-remove/.wiz-modal-folder-item — subset of higher-tier skeleton
+    ~ Skipping .tab/.wiz-folder-action-btn — subset of higher-tier skeleton
+    ~ Skipping .tab/.wiz-back-btn — subset of higher-tier skeleton
+    ~ Skipping .tab/.wiz-modal-folder-item — subset of higher-tier skeleton
+    ~ Skipping .dr-item/.notif-row — subset of higher-tier skeleton
+    ~ Skipping .dr-item/.ni — subset of higher-tier skeleton
+    ~ Skipping .shop-img/.ni-badge — subset of higher-tier skeleton
+    ~ Skipping .menu-item/.notif-row — subset of higher-tier skeleton
+    ~ Skipping .menu-item/.ni — subset of higher-tier skeleton
+    ~ Skipping .sms-row/.notif-row — subset of higher-tier skeleton
+    ~ Skipping .sms-row/.ni — subset of higher-tier skeleton
+    ~ Skipping .nr-photo-thumb/.ni-badge — subset of higher-tier skeleton
+    ~ Skipping .srf-size-row/.ni-badge — subset of higher-tier skeleton
+    ~ Skipping .wiz-empty/.ni-badge — subset of higher-tier skeleton
+    ~ Skipping .heart-btn/.notif-row — subset of higher-tier skeleton
+    ~ Skipping .chat-send/.notif-row — subset of higher-tier skeleton
+    ~ Skipping .chat-send/.btn-add — subset of higher-tier skeleton
+    ~ Skipping .chat-send/.btn-sel — subset of higher-tier skeleton
+    ~ Skipping .chat-send/.bn — subset of higher-tier skeleton
+    ~ Skipping .chat-send/.bp — subset of higher-tier skeleton
+    ~ Skipping .chat-send/.ab — subset of higher-tier skeleton
+    ~ Skipping .chat-send/.bg — subset of higher-tier skeleton
+    ~ Skipping .chat-send/.bb — subset of higher-tier skeleton
+    ~ Skipping .nr-info-btn/.notif-row — subset of higher-tier skeleton
+    ~ Skipping .nr-info-btn/.btn-add — subset of higher-tier skeleton
+    ~ Skipping .nr-info-btn/.btn-sel — subset of higher-tier skeleton
+    ~ Skipping .nr-info-btn/.bn — subset of higher-tier skeleton
+    ~ Skipping .nr-info-btn/.bp — subset of higher-tier skeleton
+    ~ Skipping .sr-archive-btn/.notif-row — subset of higher-tier skeleton
+    ~ Skipping .panel-close/.notif-row — subset of higher-tier skeleton
+    ~ Skipping .panel-close/.btn-add — subset of higher-tier skeleton
+    ~ Skipping .panel-close/.btn-sel — subset of higher-tier skeleton
+    ~ Skipping .panel-close/.bn — subset of higher-tier skeleton
+    ~ Skipping .panel-close/.bp — subset of higher-tier skeleton
+    ~ Skipping .panel-close/.ab — subset of higher-tier skeleton
+    ~ Skipping .panel-close/.bg — subset of higher-tier skeleton
+    ~ Skipping .panel-close/.bb — subset of higher-tier skeleton
+    ~ Skipping .chat-attach/.ni-badge — subset of higher-tier skeleton
+    ~ Skipping .chat-attach/.notif-row — subset of higher-tier skeleton
+    ~ Skipping .chat-attach/.ni — subset of higher-tier skeleton
+    ~ Skipping .chat-attach/.btn-add — subset of higher-tier skeleton
+    ~ Skipping .chat-attach/.bp — subset of higher-tier skeleton
+    ~ Skipping .chat-attach/.ab — subset of higher-tier skeleton
+    ~ Skipping .chat-attach/.bg — subset of higher-tier skeleton
+    ~ Skipping .chat-attach/.bb — subset of higher-tier skeleton
+    ~ Skipping .nr-photo-rm/.notif-row — subset of higher-tier skeleton
+    ~ Skipping .nr-photo-rm/.btn-add — subset of higher-tier skeleton
+    ~ Skipping .nr-photo-rm/.btn-sel — subset of higher-tier skeleton
+    ~ Skipping .nr-photo-rm/.bn — subset of higher-tier skeleton
+    ~ Skipping .nr-photo-rm/.bp — subset of higher-tier skeleton
+    ~ Skipping .nr-photo-rm/.ab — subset of higher-tier skeleton
+    ~ Skipping .nr-photo-rm/.bg — subset of higher-tier skeleton
+    ~ Skipping .nr-photo-rm/.bb — subset of higher-tier skeleton
+    ~ Skipping .wo-close/.notif-row — subset of higher-tier skeleton
+    ~ Skipping .wo-close/.btn-add — subset of higher-tier skeleton
+    ~ Skipping .wo-close/.btn-sel — subset of higher-tier skeleton
+    ~ Skipping .wo-close/.bn — subset of higher-tier skeleton
+    ~ Skipping .wo-close/.bp — subset of higher-tier skeleton
+    ~ Skipping .wo-close/.ab — subset of higher-tier skeleton
+    ~ Skipping .wo-close/.bg — subset of higher-tier skeleton
+    ~ Skipping .wo-close/.bb — subset of higher-tier skeleton
+    ~ Skipping .wiz-thumb/.ni-badge — subset of higher-tier skeleton
+    ~ Skipping .wiz-thumb/.notif-row — subset of higher-tier skeleton
+    ~ Skipping .wiz-thumb/.btn-add — subset of higher-tier skeleton
+    ~ Skipping .wiz-thumb/.btn-sel — subset of higher-tier skeleton
+    ~ Skipping .wiz-thumb/.bn — subset of higher-tier skeleton
+    ~ Skipping .wiz-thumb/.bp — subset of higher-tier skeleton
+    ~ Skipping .wiz-thumb/.ab — subset of higher-tier skeleton
+    ~ Skipping .wiz-thumb/.bg — subset of higher-tier skeleton
+    ~ Skipping .wiz-thumb/.bb — subset of higher-tier skeleton
+    ~ Skipping .res-close/.notif-row — subset of higher-tier skeleton
+    ~ Skipping .res-close/.btn-add — subset of higher-tier skeleton
+    ~ Skipping .res-close/.btn-sel — subset of higher-tier skeleton
+    ~ Skipping .res-close/.bn — subset of higher-tier skeleton
+    ~ Skipping .res-close/.bp — subset of higher-tier skeleton
+    ~ Skipping .res-close/.ab — subset of higher-tier skeleton
+    ~ Skipping .res-close/.bg — subset of higher-tier skeleton
+    ~ Skipping .res-close/.bb — subset of higher-tier skeleton
+    ~ Skipping .srf-custom-remove/.notif-row — subset of higher-tier skeleton
+    ~ Skipping .srf-custom-remove/.ni — subset of higher-tier skeleton
+    ~ Skipping .srf-custom-remove/.btn-add — subset of higher-tier skeleton
+    ~ Skipping .srf-custom-remove/.bp — subset of higher-tier skeleton
+    ~ Skipping .srf-custom-remove/.ab — subset of higher-tier skeleton
+    ~ Skipping .srf-custom-remove/.bg — subset of higher-tier skeleton
+    ~ Skipping .srf-custom-remove/.bb — subset of higher-tier skeleton
+    ~ Skipping .srf-photo-remove/.notif-row — subset of higher-tier skeleton
+    ~ Skipping .srf-photo-remove/.btn-add — subset of higher-tier skeleton
+    ~ Skipping .srf-photo-remove/.btn-sel — subset of higher-tier skeleton
+    ~ Skipping .srf-photo-remove/.bn — subset of higher-tier skeleton
+    ~ Skipping .srf-photo-remove/.bp — subset of higher-tier skeleton
+    ~ Skipping .srf-photo-remove/.ab — subset of higher-tier skeleton
+    ~ Skipping .srf-photo-remove/.bg — subset of higher-tier skeleton
+    ~ Skipping .srf-photo-remove/.bb — subset of higher-tier skeleton
+    ~ Skipping .tab/.notif-row — subset of higher-tier skeleton
+    ~ Skipping .chat-send/.btn-primary — subset of higher-tier skeleton
+    ~ Skipping .nr-info-btn/.btn-primary — subset of higher-tier skeleton
+    ~ Skipping .panel-close/.btn-primary — subset of higher-tier skeleton
+    ~ Skipping .chat-attach/.btn-primary — subset of higher-tier skeleton
+    ~ Skipping .nr-photo-rm/.btn-primary — subset of higher-tier skeleton
+    ~ Skipping .wo-close/.btn-primary — subset of higher-tier skeleton
+    ~ Skipping .wiz-thumb/.btn-primary — subset of higher-tier skeleton
+    ~ Skipping .res-close/.btn-primary — subset of higher-tier skeleton
+    ~ Skipping .srf-custom-remove/.btn-primary — subset of higher-tier skeleton
+    ~ Skipping .srf-photo-remove/.btn-primary — subset of higher-tier skeleton
+    ~ Skipping .shop-img/.intro-begin-row — subset of higher-tier skeleton
+    ~ Skipping .shop-img/.disc-checkbox — subset of higher-tier skeleton
+    ~ Skipping .nr-photo-thumb/.wiz-almost-done — subset of higher-tier skeleton
+    ~ Skipping .nr-photo-thumb/.intro-begin-row — subset of higher-tier skeleton
+    ~ Skipping .nr-photo-thumb/.intro-middle — subset of higher-tier skeleton
+    ~ Skipping .nr-photo-thumb/.wiz-section-intro — subset of higher-tier skeleton
+    ~ Skipping .nr-photo-thumb/.wiz-section-card — subset of higher-tier skeleton
+    ~ Skipping .nr-photo-thumb/.disc-checkbox — subset of higher-tier skeleton
+    ~ Skipping .wiz-score-num/.wiz-almost-done — subset of higher-tier skeleton
+    ~ Skipping .wiz-score-num/.intro-begin-row — subset of higher-tier skeleton
+    ~ Skipping .wiz-score-num/.intro-middle — subset of higher-tier skeleton
+    ~ Skipping .wiz-score-num/.wiz-section-intro — subset of higher-tier skeleton
+    ~ Skipping .wiz-score-num/.wiz-section-card — subset of higher-tier skeleton
+    ~ Skipping .wiz-score-num/.disc-checkbox — subset of higher-tier skeleton
+    ~ Skipping .res-ring-num/.wiz-almost-done — subset of higher-tier skeleton
+    ~ Skipping .res-ring-num/.intro-begin-row — subset of higher-tier skeleton
+    ~ Skipping .res-ring-num/.intro-middle — subset of higher-tier skeleton
+    ~ Skipping .res-ring-num/.wiz-section-intro — subset of higher-tier skeleton
+    ~ Skipping .res-ring-num/.wiz-section-card — subset of higher-tier skeleton
+    ~ Skipping .res-ring-num/.disc-checkbox — subset of higher-tier skeleton
+    ~ Skipping .srf-size-row/.wiz-almost-done — subset of higher-tier skeleton
+    ~ Skipping .srf-size-row/.intro-begin-row — subset of higher-tier skeleton
+    ~ Skipping .srf-size-row/.intro-middle — subset of higher-tier skeleton
+    ~ Skipping .srf-size-row/.wiz-section-intro — subset of higher-tier skeleton
+    ~ Skipping .srf-size-row/.wiz-section-card — subset of higher-tier skeleton
+    ~ Skipping .srf-size-row/.disc-checkbox — subset of higher-tier skeleton
+    ~ Skipping .srf-size-box/.results-actions — subset of higher-tier skeleton
+    ~ Skipping .srf-size-box/.wiz-almost-done — subset of higher-tier skeleton
+    ~ Skipping .srf-size-box/.intro-middle — subset of higher-tier skeleton
+    ~ Skipping .srf-size-box/.wiz-section-intro — subset of higher-tier skeleton
+    ~ Skipping .srf-size-box/.wiz-section-card — subset of higher-tier skeleton
+    ~ Skipping .srf-size-box/.center-stage — subset of higher-tier skeleton
+    ~ Skipping .wiz-empty/.results-actions — subset of higher-tier skeleton
+    ~ Skipping .wiz-empty/.intro-begin-row — subset of higher-tier skeleton
+    ~ Skipping .wiz-empty/.disc-checkbox — subset of higher-tier skeleton
+    ~ Skipping .heart-btn/.wiz-almost-done — subset of higher-tier skeleton
+    ~ Skipping .heart-btn/.intro-begin-row — subset of higher-tier skeleton
+    ~ Skipping .heart-btn/.intro-middle — subset of higher-tier skeleton
+    ~ Skipping .heart-btn/.wiz-section-intro — subset of higher-tier skeleton
+    ~ Skipping .heart-btn/.wiz-section-card — subset of higher-tier skeleton
+    ~ Skipping .heart-btn/.disc-checkbox — subset of higher-tier skeleton
+    ~ Skipping .heart-btn/.wiz-check-item — subset of higher-tier skeleton
+    ~ Skipping .chat-send/.wiz-almost-done — subset of higher-tier skeleton
+    ~ Skipping .chat-send/.intro-middle — subset of higher-tier skeleton
+    ~ Skipping .chat-send/.wiz-section-intro — subset of higher-tier skeleton
+    ~ Skipping .chat-send/.wiz-section-card — subset of higher-tier skeleton
+    ~ Skipping .nr-info-btn/.wiz-almost-done — subset of higher-tier skeleton
+    ~ Skipping .nr-info-btn/.intro-middle — subset of higher-tier skeleton
+    ~ Skipping .nr-info-btn/.wiz-section-intro — subset of higher-tier skeleton
+    ~ Skipping .nr-info-btn/.wiz-section-card — subset of higher-tier skeleton
+    ~ Skipping .sr-archive-btn/.wiz-almost-done — subset of higher-tier skeleton
+    ~ Skipping .sr-archive-btn/.intro-begin-row — subset of higher-tier skeleton
+    ~ Skipping .sr-archive-btn/.intro-middle — subset of higher-tier skeleton
+    ~ Skipping .sr-archive-btn/.wiz-section-intro — subset of higher-tier skeleton
+    ~ Skipping .sr-archive-btn/.wiz-section-card — subset of higher-tier skeleton
+    ~ Skipping .sr-archive-btn/.disc-checkbox — subset of higher-tier skeleton
+    ~ Skipping .panel-close/.wiz-almost-done — subset of higher-tier skeleton
+    ~ Skipping .panel-close/.intro-begin-row — subset of higher-tier skeleton
+    ~ Skipping .panel-close/.intro-middle — subset of higher-tier skeleton
+    ~ Skipping .panel-close/.wiz-section-intro — subset of higher-tier skeleton
+    ~ Skipping .panel-close/.wiz-section-card — subset of higher-tier skeleton
+    ~ Skipping .panel-close/.disc-checkbox — subset of higher-tier skeleton
+    ~ Skipping .chat-attach/.wiz-almost-done — subset of higher-tier skeleton
+    ~ Skipping .chat-attach/.intro-middle — subset of higher-tier skeleton
+    ~ Skipping .chat-attach/.wiz-section-intro — subset of higher-tier skeleton
+    ~ Skipping .chat-attach/.wiz-section-card — subset of higher-tier skeleton
+    ~ Skipping .chat-attach/.wiz-check-item — subset of higher-tier skeleton
+    ~ Skipping .nr-photo-rm/.wiz-almost-done — subset of higher-tier skeleton
+    ~ Skipping .nr-photo-rm/.intro-begin-row — subset of higher-tier skeleton
+    ~ Skipping .nr-photo-rm/.intro-middle — subset of higher-tier skeleton
+    ~ Skipping .nr-photo-rm/.wiz-section-intro — subset of higher-tier skeleton
+    ~ Skipping .nr-photo-rm/.wiz-section-card — subset of higher-tier skeleton
+    ~ Skipping .nr-photo-rm/.disc-checkbox — subset of higher-tier skeleton
+    ~ Skipping .wo-close/.wiz-almost-done — subset of higher-tier skeleton
+    ~ Skipping .wo-close/.intro-begin-row — subset of higher-tier skeleton
+    ~ Skipping .wo-close/.intro-middle — subset of higher-tier skeleton
+    ~ Skipping .wo-close/.wiz-section-intro — subset of higher-tier skeleton
+    ~ Skipping .wo-close/.wiz-section-card — subset of higher-tier skeleton
+    ~ Skipping .wo-close/.disc-checkbox — subset of higher-tier skeleton
+    ~ Skipping .wiz-thumb/.results-actions — subset of higher-tier skeleton
+    ~ Skipping .wiz-thumb/.intro-begin-row — subset of higher-tier skeleton
+    ~ Skipping .wiz-thumb/.center-stage — subset of higher-tier skeleton
+    ~ Skipping .wiz-thumb/.disc-checkbox — subset of higher-tier skeleton
+    ~ Skipping .res-close/.wiz-almost-done — subset of higher-tier skeleton
+    ~ Skipping .res-close/.intro-begin-row — subset of higher-tier skeleton
+    ~ Skipping .res-close/.intro-middle — subset of higher-tier skeleton
+    ~ Skipping .res-close/.wiz-section-intro — subset of higher-tier skeleton
+    ~ Skipping .res-close/.wiz-section-card — subset of higher-tier skeleton
+    ~ Skipping .res-close/.disc-checkbox — subset of higher-tier skeleton
+    ~ Skipping .srf-custom-remove/.wiz-almost-done — subset of higher-tier skeleton
+    ~ Skipping .srf-custom-remove/.intro-middle — subset of higher-tier skeleton
+    ~ Skipping .srf-custom-remove/.wiz-section-intro — subset of higher-tier skeleton
+    ~ Skipping .srf-custom-remove/.wiz-section-card — subset of higher-tier skeleton
+    ~ Skipping .srf-custom-remove/.wiz-check-item — subset of higher-tier skeleton
+    ~ Skipping .srf-photo-remove/.wiz-almost-done — subset of higher-tier skeleton
+    ~ Skipping .srf-photo-remove/.intro-begin-row — subset of higher-tier skeleton
+    ~ Skipping .srf-photo-remove/.intro-middle — subset of higher-tier skeleton
+    ~ Skipping .srf-photo-remove/.wiz-section-intro — subset of higher-tier skeleton
+    ~ Skipping .srf-photo-remove/.wiz-section-card — subset of higher-tier skeleton
+    ~ Skipping .srf-photo-remove/.disc-checkbox — subset of higher-tier skeleton
+    ~ Skipping .tab/.results-actions — subset of higher-tier skeleton
+    ~ Skipping .tab/.wiz-almost-done — subset of higher-tier skeleton
+    ~ Skipping .tab/.intro-middle — subset of higher-tier skeleton
+    ~ Skipping .tab/.wiz-section-intro — subset of higher-tier skeleton
+    ~ Skipping .tab/.wiz-section-card — subset of higher-tier skeleton
+    ~ Skipping .tab/.center-stage — subset of higher-tier skeleton
+    ~ Skipping .wiz-folder-tile-inner/.ni-badge — subset of higher-tier skeleton
+    ~ Skipping .wiz-folder-tile-inner/.notif-row — subset of higher-tier skeleton
+    ~ Skipping .wiz-folder-tile-inner/.btn-add — subset of higher-tier skeleton
+    ~ Skipping .wiz-folder-tile-inner/.bp — subset of higher-tier skeleton
+    ~ Skipping .wiz-folder-tile-inner/.ab — subset of higher-tier skeleton
+    ~ Skipping .wiz-folder-tile-inner/.bg — subset of higher-tier skeleton
+    ~ Skipping .wiz-folder-tile-inner/.bb — subset of higher-tier skeleton
+    ~ Skipping .wiz-folder-action-btn/.ni-badge — subset of higher-tier skeleton
+    ~ Skipping .wiz-folder-action-btn/.notif-row — subset of higher-tier skeleton
+    ~ Skipping .wiz-folder-action-btn/.ni — subset of higher-tier skeleton
+    ~ Skipping .wiz-folder-action-btn/.btn-add — subset of higher-tier skeleton
+    ~ Skipping .wiz-folder-action-btn/.btn-sel — subset of higher-tier skeleton
+    ~ Skipping .wiz-folder-action-btn/.bn — subset of higher-tier skeleton
+    ~ Skipping .wiz-folder-action-btn/.bp — subset of higher-tier skeleton
+    ~ Skipping .wiz-folder-action-btn/.ab — subset of higher-tier skeleton
+    ~ Skipping .wiz-folder-action-btn/.bg — subset of higher-tier skeleton
+    ~ Skipping .wiz-folder-action-btn/.bb — subset of higher-tier skeleton
+    ~ Skipping .wiz-back-btn/.notif-row — subset of higher-tier skeleton
+    ~ Skipping .wiz-back-btn/.btn-sel — subset of higher-tier skeleton
+    ~ Skipping .wiz-back-btn/.bn — subset of higher-tier skeleton
+    ~ Skipping .wiz-modal-folder-item/.notif-row — subset of higher-tier skeleton
+    ~ Skipping .wiz-folder-tile-inner/.btn-primary — subset of higher-tier skeleton
+    ~ Skipping .wiz-folder-action-btn/.btn-primary — subset of higher-tier skeleton
+    ~ Skipping .wiz-folder-tile-inner/.results-actions — subset of higher-tier skeleton
+    ~ Skipping .wiz-folder-tile-inner/.disc-checkbox — subset of higher-tier skeleton
+    ~ Skipping .wiz-folder-tile-inner/.wiz-check-item — subset of higher-tier skeleton
+    ~ Skipping .wiz-folder-action-btn/.wiz-almost-done — subset of higher-tier skeleton
+    ~ Skipping .wiz-folder-action-btn/.intro-begin-row — subset of higher-tier skeleton
+    ~ Skipping .wiz-folder-action-btn/.intro-middle — subset of higher-tier skeleton
+    ~ Skipping .wiz-folder-action-btn/.wiz-section-intro — subset of higher-tier skeleton
+    ~ Skipping .wiz-folder-action-btn/.wiz-section-card — subset of higher-tier skeleton
+    ~ Skipping .wiz-folder-action-btn/.disc-checkbox — subset of higher-tier skeleton
+    ~ Skipping .wiz-back-btn/.wiz-check-item — subset of higher-tier skeleton
+    ~ Skipping .ni-badge/.wiz-almost-done — subset of higher-tier skeleton
+    ~ Skipping .ni-badge/.intro-begin-row — subset of higher-tier skeleton
+    ~ Skipping .ni-badge/.intro-middle — subset of higher-tier skeleton
+    ~ Skipping .ni-badge/.wiz-section-intro — subset of higher-tier skeleton
+    ~ Skipping .ni-badge/.wiz-section-card — subset of higher-tier skeleton
+    ~ Skipping .ni-badge/.disc-checkbox — subset of higher-tier skeleton
+    ~ Skipping .btn-add/.wiz-check-item — subset of higher-tier skeleton
+    ~ Skipping .bp/.wiz-check-item — subset of higher-tier skeleton
+    ~ Skipping .ab/.wiz-check-item — subset of higher-tier skeleton
+    ~ Skipping .bg/.wiz-check-item — subset of higher-tier skeleton
+    ~ Skipping .bb/.wiz-check-item — subset of higher-tier skeleton
+
+  Checked 45 file pairs
+
+  ⚡ SKELETON [3 props]: .dmt-skeleton
+     Props: display, overflow, position
+     • .desktop-shell  →  frontend/components/account/desktop/DesktopShell.scss
+     • .wiz-thumb  →  frontend/components/account/mobile/MobileShell.scss
+     • .shop-thumb  →  frontend/components/account/mobile/MobileShell.scss
+     • .tile  →  frontend/components/account/mobile/TilesShell.scss
+
+  ⚡ SKELETON [3 props]: .daw-skeleton
+     Props: display, position, width
+     • .desktop-shell  →  frontend/components/account/desktop/DesktopShell.scss
+     • .ni  →  frontend/styles/Admin.scss
+     • .full-screen  →  frontend/styles/wizard.scss
+
+  ⚡ SKELETON [3 props]: .mwt-skeleton
+     Props: cursor, display, flex-direction
+     • .shop-thumb  →  frontend/components/account/mobile/MobileShell.scss
+     • .wiz-folder-tile-inner  →  frontend/components/account/mobile/css/WizardShell.scss
+     • .tile  →  frontend/components/account/mobile/TilesShell.scss
+
+  ⚡ SKELETON [3 props]: .mwt-skeleton-2
+     Props: background, cursor, display
+     • .shop-thumb  →  frontend/components/account/mobile/MobileShell.scss
+     • .wiz-folder-action-btn  →  frontend/components/account/mobile/css/WizardShell.scss
+     • .wiz-modal-folder-item  →  frontend/components/account/mobile/css/WizardShell.scss
+     • .tile  →  frontend/components/account/mobile/TilesShell.scss
+
+  ⚡ SKELETON [3 props]: .mwa-skeleton-2
+     Props: border, cursor, width
+     • .profile-save  →  frontend/components/account/mobile/MobileShell.scss
+     • .wiz-folder-tile-inner  →  frontend/components/account/mobile/css/WizardShell.scss
+     • .wo-accept-btn  →  frontend/components/account/mobile/MobileShell.scss
+     • .mob-dropdown-signout  →  frontend/styles/Admin.scss
+
+  ⚡ SKELETON [3 props]: .maw-skeleton-2
+     Props: background, border, cursor
+     • .heart-btn  →  frontend/components/account/mobile/MobileShell.scss
+     • .mob-dropdown-signout  →  frontend/styles/Admin.scss
+     • .tab  →  frontend/styles/Admin.scss
+     • .wiz-nav-btn-ghost  →  frontend/styles/wizard.scss
+
+  ⚡ SKELETON [3 props]: .maw-skeleton-3
+     Props: border, cursor, text-transform
+     • .sr-archive-btn  →  frontend/components/account/mobile/MobileShell.scss
+     • .mob-dropdown-signout  →  frontend/styles/Admin.scss
+     • .tab  →  frontend/styles/Admin.scss
+     • .profile-save  →  frontend/components/account/mobile/MobileShell.scss
+     • .wo-accept-btn  →  frontend/components/account/mobile/MobileShell.scss
+     • .wiz-nav-btn-ghost  →  frontend/styles/wizard.scss
+     • .intro-skip-btn  →  frontend/styles/wizard.scss
+
+  ⚡ SKELETON [3 props]: .mat-skeleton
+     Props: cursor, display, position
+     • .shop-thumb  →  frontend/components/account/mobile/MobileShell.scss
+     • .ni  →  frontend/styles/Admin.scss
+     • .tile  →  frontend/components/account/mobile/TilesShell.scss
+
+  ⚡ SKELETON [3 props]: .maw-skeleton-4
+     Props: background, cursor, text-transform
+     • .profile-delete-btn  →  frontend/components/account/mobile/MobileShell.scss
+     • .ab  →  frontend/styles/Admin.scss
+     • .bg  →  frontend/styles/Admin.scss
+     • .bb  →  frontend/styles/Admin.scss
+     • .wiz-nav-btn-ghost  →  frontend/styles/wizard.scss
+
+  ⚡ SKELETON [3 props]: .mga-skeleton
+     Props: cursor, font-size, text-transform
+     • .profile-delete-btn  →  frontend/components/account/mobile/MobileShell.scss
+     • .btn-primary  →  frontend/styles/globals.scss
+     • .tab  →  frontend/styles/Admin.scss
+
+  ⚡ SKELETON [3 props]: .mw-skeleton-2
+     Props: align-items, display, padding
+     • .heart-btn  →  frontend/components/account/mobile/MobileShell.scss
+     • .center-stage  →  frontend/styles/wizard.scss
+     • .wiz-back-btn  →  frontend/components/account/mobile/css/WizardShell.scss
+
+  ⚡ SKELETON [3 props]: .mwt-skeleton-3
+     Props: display, flex-direction, position
+     • .wiz-thumb  →  frontend/components/account/mobile/MobileShell.scss
+     • .full-screen  →  frontend/styles/wizard.scss
+     • .tab  →  frontend/components/account/mobile/MobileShell.scss
+     • .shop-thumb  →  frontend/components/account/mobile/MobileShell.scss
+     • .tile  →  frontend/components/account/mobile/TilesShell.scss
+
+  ⚡ SKELETON [3 props]: .mwt-skeleton-4
+     Props: cursor, overflow, position
+     • .wiz-thumb  →  frontend/components/account/mobile/MobileShell.scss
+     • .wiz-correctable-btn  →  frontend/styles/wizard.scss
+     • .shop-thumb  →  frontend/components/account/mobile/MobileShell.scss
+     • .begin-btn  →  frontend/styles/wizard.scss
+     • .wiz-nav-btn-next  →  frontend/styles/wizard.scss
+     • .wiz-section-btn  →  frontend/styles/wizard.scss
+     • .wiz-check-item  →  frontend/styles/wizard.scss
+     • .tile  →  frontend/components/account/mobile/TilesShell.scss
+
+  ⚡ SKELETON [3 props]: .mwa-skeleton-3
+     Props: align-items, cursor, position
+     • .tab  →  frontend/components/account/mobile/MobileShell.scss
+     • .wiz-check-item  →  frontend/styles/wizard.scss
+     • .ni  →  frontend/styles/Admin.scss
+
+  ⚡ SKELETON [3 props]: .awg-skeleton
+     Props: align-items, border-radius, justify-content
+     • .btn-add  →  frontend/styles/Admin.scss
+     • .disc-checkbox  →  frontend/styles/wizard.scss
+     • .btn-sel  →  frontend/styles/Admin.scss
+     • .bn  →  frontend/styles/Admin.scss
+     • .bp  →  frontend/styles/Admin.scss
+     • .ab  →  frontend/styles/Admin.scss
+     • .bg  →  frontend/styles/Admin.scss
+     • .bb  →  frontend/styles/Admin.scss
+     • .btn-primary  →  frontend/styles/globals.scss
+
+  ⚡ SKELETON [3 props]: .awg-skeleton-2
+     Props: -webkit-tap-highlight-color, border-radius, cursor
+     • .btn-add  →  frontend/styles/Admin.scss
+     • .wiz-correctable-btn  →  frontend/styles/wizard.scss
+     • .bp  →  frontend/styles/Admin.scss
+     • .ab  →  frontend/styles/Admin.scss
+     • .bg  →  frontend/styles/Admin.scss
+     • .bb  →  frontend/styles/Admin.scss
+     • .btn-primary  →  frontend/styles/globals.scss
+
+  Tier 3 complete: 16 skeleton(s) found
+
+──────────────────────────────────────────────────────────────────
+  SKELETON SUMMARY
+──────────────────────────────────────────────────────────────────
+
+  20 skeleton(s) across tiers 3–7:
+
+  [5 props] .mw-skeleton  (3 files)
+    • .wiz-empty  →  frontend/components/account/mobile/MobileShell.scss
+    • .wiz-folder-tile-inner  →  frontend/components/account/mobile/css/WizardShell.scss
+    • .wiz-almost-done  →  frontend/styles/wizard.scss
+  [4 props] .mwa-skeleton  (9 files)
+    • .chat-send  →  frontend/components/account/mobile/MobileShell.scss
+    • .wiz-back-btn  →  frontend/components/account/mobile/css/WizardShell.scss
+    • .sr-archive-btn  →  frontend/components/account/mobile/MobileShell.scss
+    • .panel-close  →  frontend/components/account/mobile/MobileShell.scss
+    • .nr-photo-rm  →  frontend/components/account/mobile/MobileShell.scss
+    • .wo-close  →  frontend/components/account/mobile/MobileShell.scss
+    • .res-close  →  frontend/components/account/mobile/MobileShell.scss
+    • .srf-photo-remove  →  frontend/components/account/mobile/MobileShell.scss
+    • .ni  →  frontend/styles/Admin.scss
+  [4 props] .mag-skeleton  (6 files)
+    • .heart-btn  →  frontend/components/account/mobile/MobileShell.scss
+    • .btn-add  →  frontend/styles/Admin.scss
+    • .btn-sel  →  frontend/styles/Admin.scss
+    • .bn  →  frontend/styles/Admin.scss
+    • .bp  →  frontend/styles/Admin.scss
+    • .btn-primary  →  frontend/styles/globals.scss
+  [4 props] .maw-skeleton  (5 files)
+    • .chat-attach  →  frontend/components/account/mobile/MobileShell.scss
+    • .btn-sel  →  frontend/styles/Admin.scss
+    • .bn  →  frontend/styles/Admin.scss
+    • .srf-custom-remove  →  frontend/components/account/mobile/MobileShell.scss
+    • .wiz-folder-tile-inner  →  frontend/components/account/mobile/css/WizardShell.scss
+  [3 props] .dmt-skeleton  (4 files)
+    • .desktop-shell  →  frontend/components/account/desktop/DesktopShell.scss
+    • .wiz-thumb  →  frontend/components/account/mobile/MobileShell.scss
+    • .shop-thumb  →  frontend/components/account/mobile/MobileShell.scss
+    • .tile  →  frontend/components/account/mobile/TilesShell.scss
+  [3 props] .daw-skeleton  (3 files)
+    • .desktop-shell  →  frontend/components/account/desktop/DesktopShell.scss
+    • .ni  →  frontend/styles/Admin.scss
+    • .full-screen  →  frontend/styles/wizard.scss
+  [3 props] .mwt-skeleton  (3 files)
+    • .shop-thumb  →  frontend/components/account/mobile/MobileShell.scss
+    • .wiz-folder-tile-inner  →  frontend/components/account/mobile/css/WizardShell.scss
+    • .tile  →  frontend/components/account/mobile/TilesShell.scss
+  [3 props] .mwt-skeleton-2  (4 files)
+    • .shop-thumb  →  frontend/components/account/mobile/MobileShell.scss
+    • .wiz-folder-action-btn  →  frontend/components/account/mobile/css/WizardShell.scss
+    • .wiz-modal-folder-item  →  frontend/components/account/mobile/css/WizardShell.scss
+    • .tile  →  frontend/components/account/mobile/TilesShell.scss
+  [3 props] .mwa-skeleton-2  (4 files)
+    • .profile-save  →  frontend/components/account/mobile/MobileShell.scss
+    • .wiz-folder-tile-inner  →  frontend/components/account/mobile/css/WizardShell.scss
+    • .wo-accept-btn  →  frontend/components/account/mobile/MobileShell.scss
+    • .mob-dropdown-signout  →  frontend/styles/Admin.scss
+  [3 props] .maw-skeleton-2  (4 files)
+    • .heart-btn  →  frontend/components/account/mobile/MobileShell.scss
+    • .mob-dropdown-signout  →  frontend/styles/Admin.scss
+    • .tab  →  frontend/styles/Admin.scss
+    • .wiz-nav-btn-ghost  →  frontend/styles/wizard.scss
+  [3 props] .maw-skeleton-3  (7 files)
+    • .sr-archive-btn  →  frontend/components/account/mobile/MobileShell.scss
+    • .mob-dropdown-signout  →  frontend/styles/Admin.scss
+    • .tab  →  frontend/styles/Admin.scss
+    • .profile-save  →  frontend/components/account/mobile/MobileShell.scss
+    • .wo-accept-btn  →  frontend/components/account/mobile/MobileShell.scss
+    • .wiz-nav-btn-ghost  →  frontend/styles/wizard.scss
+    • .intro-skip-btn  →  frontend/styles/wizard.scss
+  [3 props] .mat-skeleton  (3 files)
+    • .shop-thumb  →  frontend/components/account/mobile/MobileShell.scss
+    • .ni  →  frontend/styles/Admin.scss
+    • .tile  →  frontend/components/account/mobile/TilesShell.scss
+  [3 props] .maw-skeleton-4  (5 files)
+    • .profile-delete-btn  →  frontend/components/account/mobile/MobileShell.scss
+    • .ab  →  frontend/styles/Admin.scss
+    • .bg  →  frontend/styles/Admin.scss
+    • .bb  →  frontend/styles/Admin.scss
+    • .wiz-nav-btn-ghost  →  frontend/styles/wizard.scss
+  [3 props] .mga-skeleton  (3 files)
+    • .profile-delete-btn  →  frontend/components/account/mobile/MobileShell.scss
+    • .btn-primary  →  frontend/styles/globals.scss
+    • .tab  →  frontend/styles/Admin.scss
+  [3 props] .mw-skeleton-2  (3 files)
+    • .heart-btn  →  frontend/components/account/mobile/MobileShell.scss
+    • .center-stage  →  frontend/styles/wizard.scss
+    • .wiz-back-btn  →  frontend/components/account/mobile/css/WizardShell.scss
+  [3 props] .mwt-skeleton-3  (5 files)
+    • .wiz-thumb  →  frontend/components/account/mobile/MobileShell.scss
+    • .full-screen  →  frontend/styles/wizard.scss
+    • .tab  →  frontend/components/account/mobile/MobileShell.scss
+    • .shop-thumb  →  frontend/components/account/mobile/MobileShell.scss
+    • .tile  →  frontend/components/account/mobile/TilesShell.scss
+  [3 props] .mwt-skeleton-4  (8 files)
+    • .wiz-thumb  →  frontend/components/account/mobile/MobileShell.scss
+    • .wiz-correctable-btn  →  frontend/styles/wizard.scss
+    • .shop-thumb  →  frontend/components/account/mobile/MobileShell.scss
+    • .begin-btn  →  frontend/styles/wizard.scss
+    • .wiz-nav-btn-next  →  frontend/styles/wizard.scss
+    • .wiz-section-btn  →  frontend/styles/wizard.scss
+    • .wiz-check-item  →  frontend/styles/wizard.scss
+    • .tile  →  frontend/components/account/mobile/TilesShell.scss
+  [3 props] .mwa-skeleton-3  (3 files)
+    • .tab  →  frontend/components/account/mobile/MobileShell.scss
+    • .wiz-check-item  →  frontend/styles/wizard.scss
+    • .ni  →  frontend/styles/Admin.scss
+  [3 props] .awg-skeleton  (9 files)
+    • .btn-add  →  frontend/styles/Admin.scss
+    • .disc-checkbox  →  frontend/styles/wizard.scss
+    • .btn-sel  →  frontend/styles/Admin.scss
+    • .bn  →  frontend/styles/Admin.scss
+    • .bp  →  frontend/styles/Admin.scss
+    • .ab  →  frontend/styles/Admin.scss
+    • .bg  →  frontend/styles/Admin.scss
+    • .bb  →  frontend/styles/Admin.scss
+    • .btn-primary  →  frontend/styles/globals.scss
+  [3 props] .awg-skeleton-2  (7 files)
+    • .btn-add  →  frontend/styles/Admin.scss
+    • .wiz-correctable-btn  →  frontend/styles/wizard.scss
+    • .bp  →  frontend/styles/Admin.scss
+    • .ab  →  frontend/styles/Admin.scss
+    • .bg  →  frontend/styles/Admin.scss
+    • .bb  →  frontend/styles/Admin.scss
+    • .btn-primary  →  frontend/styles/globals.scss
+
+──────────────────────────────────────────────────────────────────
+  APPLYING SKELETONS
+──────────────────────────────────────────────────────────────────
+
+▶ Applying: .mw-skeleton  (tier 5)
+    → Adding .mw-skeleton to shared.scss...  ✓
+    → Removing .wiz-empty from MobileShell.scss...  ✓
+    → Adding @use to MobileShell.scss...  ✓
+    → Adding @extend for .wiz-empty...  ✓
+    │  Will write:
+    │    // Skeleton: .mw-skeleton (tier 5, 5 shared props)
+    │    .wiz-empty {
+    │      @extend .mw-skeleton;
+    │      flex: 1;
+    │      padding: clamp(2rem, 9vw, 3rem) clamp(1.25rem, 5.5vw, 1.75rem);
+    │    }
+    │
+    → Writing MobileShell.scss...  ✓
+    ✓ frontend/components/account/mobile/MobileShell.scss
+    → Removing .wiz-folder-tile-inner from WizardShell.scss...  ✓
+    → Adding @use to WizardShell.scss...  ✓
+    → Adding @extend for .wiz-folder-tile-inner...  ✓
+    │  Will write:
+    │    // Skeleton: .mw-skeleton (tier 5, 5 shared props)
+    │    .wiz-folder-tile-inner {
+    │      @extend .mw-skeleton;
+    │      background: transparent;
+    │      border: none;
+    │      cursor: pointer;
+    │      gap: 6px;
+    │      height: 100%;
+    │      padding: clamp(10px, 3vw, 16px);
+    │      width: 100%;
+    │    }
+    │
+    → Writing WizardShell.scss...  ✓
+    ✓ frontend/components/account/mobile/css/WizardShell.scss
+    → Removing .wiz-almost-done from wizard.scss...  ✓
+    → Adding @extend for .wiz-almost-done...  ✓
+    │  Will write:
+    │    // Skeleton: .mw-skeleton (tier 5, 5 shared props)
+    │    .wiz-almost-done {
+    │      @extend .mw-skeleton;
+    │      animation: wizFlyIn 300ms cubic-bezier(0.16,1,0.3,1) both;
+    │      flex: 1;
+    │      gap: clamp(16px, 3vw, 28px);
+    │      min-height: 100%;
+    │      padding: clamp(24px, 5vw, 60px) clamp(20px, 5vw, 56px);
+    │    }
+    │
+    → Writing wizard.scss...  ✓
+    ✓ frontend/styles/wizard.scss
+
+▶ Applying: .mwa-skeleton  (tier 4)
+    → Adding .mwa-skeleton to shared.scss...  ✓
+    → Removing .chat-send from MobileShell.scss...  ✓
+    → Adding @extend for .chat-send...  ✓
+    │  Will write:
+    │    // Skeleton: .mwa-skeleton (tier 4, 4 shared props)
+    │    .chat-send {
+    │      @extend .mwa-skeleton;
+    │      background: var(--gold);
+    │      color: var(--bg-mob-deep);
+    │      flex-shrink: 0;
+    │      font-size: clamp(0.875rem, 3.7vw, 1.0625rem);
+    │      font-weight: 700;
+    │      height: clamp(32px, 8.5vw, 38px);
+    │      justify-content: center;
+    │      width: clamp(32px, 8.5vw, 38px);
+    │    }
+    │
+    → Writing MobileShell.scss...  ✓
+    ✓ frontend/components/account/mobile/MobileShell.scss
+    → Removing .wiz-back-btn from WizardShell.scss...  ✓
+    → Adding @extend for .wiz-back-btn...  ✓
+    │  Will write:
+    │    // Skeleton: .mwa-skeleton (tier 4, 4 shared props)
+    │    .wiz-back-btn {
+    │      @extend .mwa-skeleton;
+    │      background: transparent;
+    │      color: var(--text-mob-muted);
+    │      font-family: var(--font-ui-mob);
+    │      font-size: 0.8125rem;
+    │      gap: 6px;
+    │      padding: 0;
+    │    }
+    │
+    → Writing WizardShell.scss...  ✓
+    ✓ frontend/components/account/mobile/css/WizardShell.scss
+    → Removing .sr-archive-btn from MobileShell.scss...  ✓
+    → Adding @extend for .sr-archive-btn...  ✓
+    │  Will write:
+    │    // Skeleton: .mwa-skeleton (tier 4, 4 shared props)
+    │    .sr-archive-btn {
+    │      @extend .mwa-skeleton;
+    │      background: var(--archive);
+    │      bottom: 0;
+    │      color: #ffffff;
+    │      font-family: var(--font-mob-mono);
+    │      font-size: clamp(0.5625rem, 2.5vw, 0.6875rem);
+    │      font-weight: 700;
+    │      justify-content: center;
+    │      letter-spacing: 0.1em;
+    │      position: absolute;
+    │      right: 0;
+    │      text-transform: uppercase;
+    │      top: 0;
+    │      width: 80px;
+    │      z-index: 1;
+    │    }
+    │
+    → Writing MobileShell.scss...  ✓
+    ✓ frontend/components/account/mobile/MobileShell.scss
+    → Removing .panel-close from MobileShell.scss...  ✓
+    → Adding @extend for .panel-close...  ✓
+    │  Will write:
+    │    // Skeleton: .mwa-skeleton (tier 4, 4 shared props)
+    │    .panel-close {
+    │      @extend .mwa-skeleton;
+    │      background: rgba(0,0,0,0.15);
+    │      border-radius: 4px;
+    │      color: var(--bg-mob-deep);
+    │      font-size: clamp(1.0625rem, 4.5vw, 1.3125rem);
+    │      font-weight: 700;
+    │      justify-content: center;
+    │      line-height: 1;
+    │      min-height: 2em;
+    │      min-width: 2em;
+    │      padding: 0.2em 0.45em;
+    │    }
+    │
+    → Writing MobileShell.scss...  ✓
+    ✓ frontend/components/account/mobile/MobileShell.scss
+    → Removing .nr-photo-rm from MobileShell.scss...  ✓
+    → Adding @extend for .nr-photo-rm...  ✓
+    │  Will write:
+    │    // Skeleton: .mwa-skeleton (tier 4, 4 shared props)
+    │    .nr-photo-rm {
+    │      @extend .mwa-skeleton;
+    │      background: rgba(0,0,0,0.6);
+    │      border-radius: 50%;
+    │      color: #fff;
+    │      font-size: clamp(0.5625rem, 2.3vw, 0.625rem);
+    │      height: clamp(15px, 4vw, 19px);
+    │      justify-content: center;
+    │      line-height: 1;
+    │      position: absolute;
+    │      right: 3px;
+    │      top: 3px;
+    │      width: clamp(15px, 4vw, 19px);
+    │    }
+    │
+    → Writing MobileShell.scss...  ✓
+    ✓ frontend/components/account/mobile/MobileShell.scss
+    → Removing .wo-close from MobileShell.scss...  ✓
+    → Adding @extend for .wo-close...  ✓
+    │  Will write:
+    │    // Skeleton: .mwa-skeleton (tier 4, 4 shared props)
+    │    .wo-close {
+    │      @extend .mwa-skeleton;
+    │      background: rgba(0,0,0,0.15);
+    │      border-radius: 4px;
+    │      color: var(--bg-mob-deep);
+    │      font-size: clamp(1.0625rem, 4.5vw, 1.3125rem);
+    │      font-weight: 700;
+    │      height: clamp(30px, 8vw, 36px);
+    │      justify-content: center;
+    │      width: clamp(30px, 8vw, 36px);
+    │    }
+    │
+    → Writing MobileShell.scss...  ✓
+    ✓ frontend/components/account/mobile/MobileShell.scss
+    → Removing .res-close from MobileShell.scss...  ✓
+    → Adding @extend for .res-close...  ✓
+    │  Will write:
+    │    // Skeleton: .mwa-skeleton (tier 4, 4 shared props)
+    │    .res-close {
+    │      @extend .mwa-skeleton;
+    │      background: rgba(0,0,0,0.15);
+    │      border-radius: 4px;
+    │      color: var(--bg-mob-deep);
+    │      font-size: clamp(1.0625rem, 4.5vw, 1.3125rem);
+    │      font-weight: 700;
+    │      height: clamp(30px, 8vw, 36px);
+    │      justify-content: center;
+    │      width: clamp(30px, 8vw, 36px);
+    │    }
+    │
+    → Writing MobileShell.scss...  ✓
+    ✓ frontend/components/account/mobile/MobileShell.scss
+    → Removing .srf-photo-remove from MobileShell.scss...  ✓
+    → Adding @extend for .srf-photo-remove...  ✓
+    │  Will write:
+    │    // Skeleton: .mwa-skeleton (tier 4, 4 shared props)
+    │    .srf-photo-remove {
+    │      @extend .mwa-skeleton;
+    │      background: rgba(0,0,0,0.55);
+    │      border-radius: 50%;
+    │      color: #fff;
+    │      font-size: clamp(0.6875rem, 2.8vw, 0.8125rem);
+    │      font-weight: 700;
+    │      height: clamp(22px, 6vw, 26px);
+    │      justify-content: center;
+    │      line-height: 1;
+    │      position: absolute;
+    │      right: 4px;
+    │      top: 4px;
+    │      width: clamp(22px, 6vw, 26px);
+    │    }
+    │
+    → Writing MobileShell.scss...  ✓
+    ✓ frontend/components/account/mobile/MobileShell.scss
+    → Removing .ni from Admin.scss...  ✓
+    → Adding @extend for .ni...  ✓
+    │  Will write:
+    │    // Skeleton: .mwa-skeleton (tier 4, 4 shared props)
+    │    .ni {
+    │      @extend .mwa-skeleton;
+    │      background: none;
+    │      color: var(--text-muted);
+    │      font-size: 0.8125rem;
+    │      font-weight: 400;
+    │      gap: 12px;
+    │      letter-spacing: .22em;
+    │      padding: 14px 24px;
+    │      position: relative;
+    │      text-align: left;
+    │      text-transform: uppercase;
+    │      transition: color .15s;
+    │      width: 100%;
+    │    }
+    │
+    → Writing Admin.scss...  ✓
+    ✓ frontend/styles/Admin.scss
+
+▶ Applying: .mag-skeleton  (tier 4)
+    → Adding .mag-skeleton to shared.scss...  ✓
+    → Removing .heart-btn from MobileShell.scss...  ✓
+    → Adding @extend for .heart-btn...  ✓
+    │  Will write:
+    │    // Skeleton: .mag-skeleton (tier 4, 4 shared props)
+    │    .heart-btn {
+    │      @extend .mag-skeleton;
+    │      background: none;
+    │      border: none;
+    │      display: flex;
+    │      outline: none;
+    │      padding: 0;
+    │      position: absolute;
+    │      right: clamp(0.25rem, 1.5vw, 0.5rem);
+    │      top: clamp(0.25rem, 1.5vw, 0.5rem);
+    │      transition: transform 200ms ease;
+    │      z-index: 10;
+    │    }
+    │
+    → Writing MobileShell.scss...  ✓
+    ✓ frontend/components/account/mobile/MobileShell.scss
+    → Removing .btn-add from Admin.scss...  ✓
+    → Adding @extend for .btn-add...  ✓
+    │  Will write:
+    │    // Skeleton: .mag-skeleton (tier 4, 4 shared props)
+    │    .btn-add {
+    │      @extend .mag-skeleton;
+    │      background: var(--gl);
+    │      border: 0.5px solid rgba(0,0,0,0.3);
+    │      border-radius: 999px;
+    │      box-shadow: inset 0 1px 0 rgba(255,255,255,0.18),inset 0 -1px 0 rgba(0,0,0,0.12),0 1px 3px rgba(0,0,0,0.15);
+    │      color: #000;
+    │      display: inline-flex;
+    │      font-family: var(--sans);
+    │      font-size: 0.75rem;
+    │      font-weight: 500;
+    │      gap: 8px;
+    │      letter-spacing: .2em;
+    │      padding: 11px 20px;
+    │      text-transform: uppercase;
+    │      transition: box-shadow .1s ease,transform .1s ease,filter .1s ease;
+    │    }
+    │
+    → Writing Admin.scss...  ✓
+    ✓ frontend/styles/Admin.scss
+    → Removing .btn-sel from Admin.scss...  ✓
+    → Adding @extend for .btn-sel...  ✓
+    │  Will write:
+    │    // Skeleton: .mag-skeleton (tier 4, 4 shared props)
+    │    .btn-sel {
+    │      @extend .mag-skeleton;
+    │      background: transparent;
+    │      border: 0.5px solid var(--ln2);
+    │      border-radius: 999px;
+    │      box-shadow: inset 0 1px 0 rgba(255,255,255,0.06),inset 0 -1px 0 rgba(0,0,0,0.06),0 1px 3px rgba(0,0,0,0.08);
+    │      color: var(--d1);
+    │      display: inline-flex;
+    │      font-family: var(--sans);
+    │      font-size: 0.75rem;
+    │      font-weight: 500;
+    │      letter-spacing: .2em;
+    │      padding: 11px 20px;
+    │      text-transform: uppercase;
+    │      transition: box-shadow .1s ease,transform .1s ease;
+    │    }
+    │
+    → Writing Admin.scss...  ✓
+    ✓ frontend/styles/Admin.scss
+    → Removing .bn from Admin.scss...  ✓
+    → Adding @extend for .bn...  ✓
+    │  Will write:
+    │    // Skeleton: .mag-skeleton (tier 4, 4 shared props)
+    │    .bn {
+    │      @extend .mag-skeleton;
+    │      background: transparent;
+    │      border: 0.5px solid var(--gl);
+    │      border-radius: 999px;
+    │      box-shadow: inset 0 1px 0 rgba(255,255,255,0.08),inset 0 -1px 0 rgba(0,0,0,0.08),0 1px 3px rgba(0,0,0,0.1);
+    │      color: var(--gl);
+    │      display: inline-flex;
+    │      font-family: var(--sans);
+    │      font-size: 0.75rem;
+    │      font-weight: 500;
+    │      letter-spacing: .15em;
+    │      padding: 10px 16px;
+    │      text-transform: uppercase;
+    │      transition: box-shadow .1s ease,transform .1s ease;
+    │    }
+    │
+    → Writing Admin.scss...  ✓
+    ✓ frontend/styles/Admin.scss
+    → Removing .bp from Admin.scss...  ✓
+    → Adding @extend for .bp...  ✓
+    │  Will write:
+    │    // Skeleton: .mag-skeleton (tier 4, 4 shared props)
+    │    .bp {
+    │      @extend .mag-skeleton;
+    │      background: var(--gl);
+    │      border: 0.5px solid rgba(0,0,0,0.3);
+    │      border-radius: 999px;
+    │      box-shadow: inset 0 1px 0 rgba(255,255,255,0.18),inset 0 -1px 0 rgba(0,0,0,0.12),0 1px 3px rgba(0,0,0,0.15);
+    │      color: #000;
+    │      display: inline-flex;
+    │      font-family: var(--sans);
+    │      font-size: 0.75rem;
+    │      font-weight: 500;
+    │      letter-spacing: .15em;
+    │      padding: 10px 20px;
+    │      text-transform: uppercase;
+    │      transition: box-shadow .1s ease,transform .1s ease,filter .1s ease;
+    │    }
+    │
+    → Writing Admin.scss...  ✓
+    ✓ frontend/styles/Admin.scss
+    → Removing .btn-primary from globals.scss...  ✓
+    → Adding @use to globals.scss...  ✓
+    → Adding @extend for .btn-primary...  ✓
+    │  Will write:
+    │    // Skeleton: .mag-skeleton (tier 4, 4 shared props)
+    │    .btn-primary {
+    │      @extend .mag-skeleton;
+    │      background-color: #b561479c;
+    │      border-radius: 999px;
+    │      color: #ffffff;
+    │      display: inline-flex;
+    │      font-family: var(--font-ui);
+    │      font-size: 0.875rem;
+    │      font-weight: 900;
+    │      gap: 0.5rem;
+    │      letter-spacing: 0.17em;
+    │      padding: 0.75rem 2.5rem;
+    │      text-decoration: none;
+    │      text-transform: uppercase;
+    │      touch-action: manipulation;
+    │      transition: box-shadow 0.1s ease, transform 0.1s ease, filter 0.1s ease;
+    │      user-select: none;
+    │      width: flex;
+    │    }
+    │
+    → Writing globals.scss...  ✓
+    ✓ frontend/styles/globals.scss
+
+▶ Applying: .maw-skeleton  (tier 4)
+    → Adding .maw-skeleton to shared.scss...  ✓
+    → Removing .chat-attach from MobileShell.scss...  ✓
+    → Adding @extend for .chat-attach...  ✓
+    │  Will write:
+    │    // Skeleton: .maw-skeleton (tier 4, 4 shared props)
+    │    .chat-attach {
+    │      @extend .maw-skeleton;
+    │      border: 0.5px solid var(--bdr2-mob);
+    │      color: var(--text-mob-muted);
+    │      display: flex;
+    │      flex-shrink: 0;
+    │      font-size: clamp(0.875rem, 3.7vw, 1.0625rem);
+    │      height: clamp(32px, 8.5vw, 38px);
+    │      width: clamp(32px, 8.5vw, 38px);
+    │    }
+    │
+    → Writing MobileShell.scss...  ✓
+    ✓ frontend/components/account/mobile/MobileShell.scss
+    → Appending .maw-skeleton props to existing .btn-sel block...  ~ ✓
+    │  Will append to .btn-sel:
+    │      -webkit-tap-highlight-color: transparent;
+    │      align-items: center;
+    │      background: transparent;
+    │      border: 0.5px solid var(--ln2);
+    │      border-radius: 999px;
+    │      box-shadow: inset 0 1px 0 rgba(255,255,255,0.06),inset 0 -1px 0 rgba(0,0,0,0.06),0 1px 3px rgba(0,0,0,0.08);
+    │      color: var(--d1);
+    │      cursor: pointer;
+    │      display: inline-flex;
+    │      font-family: var(--sans);
+    │      font-size: 0.75rem;
+    │      font-weight: 500;
+    │      justify-content: center;
+    │      letter-spacing: .2em;
+    │      padding: 11px 20px;
+    │      text-transform: uppercase;
+    │      transition: box-shadow .1s ease,transform .1s ease;
+    │
+  ✓
+    → Writing Admin.scss...  ✓
+    ✓ frontend/styles/Admin.scss
+    → Appending .maw-skeleton props to existing .bn block...  ~ ✓
+    │  Will append to .bn:
+    │      -webkit-tap-highlight-color: transparent;
+    │      align-items: center;
+    │      background: transparent;
+    │      border: 0.5px solid var(--gl);
+    │      border-radius: 999px;
+    │      box-shadow: inset 0 1px 0 rgba(255,255,255,0.08),inset 0 -1px 0 rgba(0,0,0,0.08),0 1px 3px rgba(0,0,0,0.1);
+    │      color: var(--gl);
+    │      cursor: pointer;
+    │      display: inline-flex;
+    │      font-family: var(--sans);
+    │      font-size: 0.75rem;
+    │      font-weight: 500;
+    │      justify-content: center;
+    │      letter-spacing: .15em;
+    │      padding: 10px 16px;
+    │      text-transform: uppercase;
+    │      transition: box-shadow .1s ease,transform .1s ease;
+    │
+  ✓
+    → Writing Admin.scss...  ✓
+    ✓ frontend/styles/Admin.scss
+    → Removing .srf-custom-remove from MobileShell.scss...  ✓
+    → Adding @extend for .srf-custom-remove...  ✓
+    │  Will write:
+    │    // Skeleton: .maw-skeleton (tier 4, 4 shared props)
+    │    .srf-custom-remove {
+    │      @extend .maw-skeleton;
+    │      border: 0.5px solid var(--bdr2-mob);
+    │      border-radius: 50%;
+    │      color: var(--text-mob-muted);
+    │      display: flex;
+    │      flex-shrink: 0;
+    │      font-size: clamp(0.6875rem, 2.8vw, 0.8125rem);
+    │      font-weight: 700;
+    │      height: clamp(26px, 7vw, 30px);
+    │      line-height: 1;
+    │      width: clamp(26px, 7vw, 30px);
+    │    }
+    │
+    → Writing MobileShell.scss...  ✓
+    ✓ frontend/components/account/mobile/MobileShell.scss
+    → Appending .maw-skeleton props to existing .wiz-folder-tile-inner block...  ~ ✓
+    │  Will append to .wiz-folder-tile-inner:
+    │      align-items: center;
+    │      background: transparent;
+    │      border: none;
+    │      cursor: pointer;
+    │      display: flex;
+    │      flex-direction: column;
+    │      gap: 6px;
+    │      height: 100%;
+    │      justify-content: center;
+    │      padding: clamp(10px, 3vw, 16px);
+    │      text-align: center;
+    │      width: 100%;
+    │
+  ✓
+    → Writing WizardShell.scss...  ✓
+    ✓ frontend/components/account/mobile/css/WizardShell.scss
+
+▶ Applying: .dmt-skeleton  (tier 3)
+    → Adding .dmt-skeleton to shared.scss...  ✓
+    → Removing .desktop-shell from DesktopShell.scss...  ✓
+    → Adding @use to DesktopShell.scss...  ✓
+    → Adding @extend for .desktop-shell...  ✓
+    │  Will write:
+    │    // Skeleton: .dmt-skeleton (tier 3, 3 shared props)
+    │    .desktop-shell {
+    │      @extend .dmt-skeleton;
+    │      background: var(--bg);
+    │      flex-direction: row;
+    │      height: 100dvh;
+    │      max-width: 100%;
+    │      width: 100%;
+    │    }
+    │
+    → Writing DesktopShell.scss...  ✓
+    ✓ frontend/components/account/desktop/DesktopShell.scss
+    → Removing .wiz-thumb from MobileShell.scss...  ✓
+    → Adding @extend for .wiz-thumb...  ✓
+    │  Will write:
+    │    // Skeleton: .dmt-skeleton (tier 3, 3 shared props)
+    │    .wiz-thumb {
+    │      @extend .dmt-skeleton;
+    │      align-items: center;
+    │      aspect-ratio: 1;
+    │      background: var(--bg-mob-card);
+    │      border: 0.5px solid var(--bdr2-mob);
+    │      border-radius: 12px !important;
+    │      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    │      cursor: pointer;
+    │      flex-direction: column;
+    │      gap: 0.4em;
+    │      justify-content: center;
+    │      padding: clamp(0.5rem, 3vw, 0.875rem);
+    │      transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
+    │    }
+    │
+    → Writing MobileShell.scss...  ✓
+    ✓ frontend/components/account/mobile/MobileShell.scss
+    → Removing .shop-thumb from MobileShell.scss...  ✓
+    → Adding @extend for .shop-thumb...  ✓
+    │  Will write:
+    │    // Skeleton: .dmt-skeleton (tier 3, 3 shared props)
+    │    .shop-thumb {
+    │      @extend .dmt-skeleton;
+    │      aspect-ratio: 3/4;
+    │      background: var(--bg-mob-card);
+    │      border: 0.5px solid var(--bdr2-mob);
+    │      cursor: pointer;
+    │      flex-direction: column;
+    │      transition: all 240ms ease;
+    │    }
+    │
+    → Writing MobileShell.scss...  ✓
+    ✓ frontend/components/account/mobile/MobileShell.scss
+    → Removing .tile from TilesShell.scss...  ✓
+    → Adding @use to TilesShell.scss...  ✓
+    → Adding @extend for .tile...  ✓
+    │  Will write:
+    │    // Skeleton: .dmt-skeleton (tier 3, 3 shared props)
+    │    .tile {
+    │      @extend .dmt-skeleton;
+    │      -webkit-tap-highlight-color: transparent;
+    │      background: var(--bg-mob-card);
+    │      border: .8px solid rgba(255,255,255,0.04);
+    │      border-radius: 21px !important;
+    │      box-shadow: inset 0 2px 6px rgba(0,0,0,0.35),
+    │        inset 0 1px 2px rgba(0,0,0,0.2),
+    │        0 1px 0 rgba(255,255,255,0.04);
+    │      cursor: pointer;
+    │      flex-direction: column;
+    │      min-height: clamp(110px, 30vw, 150px);
+    │      opacity: 0.55;
+    │      padding: clamp(1rem, 4.5vw, 1.5rem) clamp(2rem, 4vw, 3rem);
+    │      transform: translateY(1px);
+    │      transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1);
+    │    }
+    │
+    → Writing TilesShell.scss...  ✓
+    ✓ frontend/components/account/mobile/TilesShell.scss
+
+▶ Applying: .daw-skeleton  (tier 3)
+    → Adding .daw-skeleton to shared.scss...  ✓
+    → Appending .daw-skeleton props to existing .desktop-shell block...  ~ ✓
+    │  Will append to .desktop-shell:
+    │      background: var(--bg);
+    │      display: flex;
+    │      flex-direction: row;
+    │      height: 100dvh;
+    │      max-width: 100%;
+    │      overflow: hidden;
+    │      position: relative;
+    │      width: 100%;
+    │
+  ✓
+    → Writing DesktopShell.scss...  ✓
+    ✓ frontend/components/account/desktop/DesktopShell.scss
+    → Appending .daw-skeleton props to existing .ni block...  ~ ✓
+    │  Will append to .ni:
+    │      align-items: center;
+    │      background: none;
+    │      border: none;
+    │      color: var(--text-muted);
+    │      cursor: pointer;
+    │      display: flex;
+    │      font-size: 0.8125rem;
+    │      font-weight: 400;
+    │      gap: 12px;
+    │      letter-spacing: .22em;
+    │      padding: 14px 24px;
+    │      position: relative;
+    │      text-align: left;
+    │      text-transform: uppercase;
+    │      transition: color .15s;
+    │      width: 100%;
+    │
+  ✓
+    → Writing Admin.scss...  ✓
+    ✓ frontend/styles/Admin.scss
+    → Removing .full-screen from wizard.scss...  ✓
+    → Adding @extend for .full-screen...  ✓
+    │  Will write:
+    │    // Skeleton: .daw-skeleton (tier 3, 3 shared props)
+    │    .full-screen {
+    │      @extend .daw-skeleton;
+    │      flex: 1;
+    │      flex-direction: column;
+    │      overflow-y: hidden;
+    │    }
+    │
+    → Writing wizard.scss...  ✓
+    ✓ frontend/styles/wizard.scss
+
+▶ Applying: .mwt-skeleton  (tier 3)
+    → Adding .mwt-skeleton to shared.scss...  ✓
+    → Appending .mwt-skeleton props to existing .shop-thumb block...  ~ ✓
+    │  Will append to .shop-thumb:
+    │      aspect-ratio: 3/4;
+    │      background: var(--bg-mob-card);
+    │      border: 0.5px solid var(--bdr2-mob);
+    │      cursor: pointer;
+    │      display: flex;
+    │      flex-direction: column;
+    │      overflow: hidden;
+    │      position: relative;
+    │      transition: all 240ms ease;
+    │
+  ✓
+    → Writing MobileShell.scss...  ✓
+    ✓ frontend/components/account/mobile/MobileShell.scss
+    → Appending .mwt-skeleton props to existing .wiz-folder-tile-inner block...  ~ ✓
+    │  Will append to .wiz-folder-tile-inner:
+    │      align-items: center;
+    │      background: transparent;
+    │      border: none;
+    │      cursor: pointer;
+    │      display: flex;
+    │      flex-direction: column;
+    │      gap: 6px;
+    │      height: 100%;
+    │      justify-content: center;
+    │      padding: clamp(10px, 3vw, 16px);
+    │      text-align: center;
+    │      width: 100%;
+    │
+  ✓
+    → Writing WizardShell.scss...  ✓
+    ✓ frontend/components/account/mobile/css/WizardShell.scss
+    → Appending .mwt-skeleton props to existing .tile block...  ~ ✓
+    │  Will append to .tile:
+    │      -webkit-tap-highlight-color: transparent;
+    │      background: var(--bg-mob-card);
+    │      border: .8px solid rgba(255,255,255,0.04);
+    │      border-radius: 21px !important;
+    │      box-shadow: inset 0 2px 6px rgba(0,0,0,0.35),
+    │        inset 0 1px 2px rgba(0,0,0,0.2),
+    │        0 1px 0 rgba(255,255,255,0.04);
+    │      cursor: pointer;
+    │      display: flex;
+    │      flex-direction: column;
+    │      min-height: clamp(110px, 30vw, 150px);
+    │      opacity: 0.55;
+    │      overflow: hidden;
+    │      padding: clamp(1rem, 4.5vw, 1.5rem) clamp(2rem, 4vw, 3rem);
+    │      position: relative;
+    │      transform: translateY(1px);
+    │      transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1);
+    │
+  ✓
+    → Writing TilesShell.scss...  ✓
+    ✓ frontend/components/account/mobile/TilesShell.scss
+
+▶ Applying: .mwt-skeleton-2  (tier 3)
+    → Adding .mwt-skeleton-2 to shared.scss...  ✓
+    → Appending .mwt-skeleton-2 props to existing .shop-thumb block...  ~ ✓
+    │  Will append to .shop-thumb:
+    │      aspect-ratio: 3/4;
+    │      background: var(--bg-mob-card);
+    │      border: 0.5px solid var(--bdr2-mob);
+    │      cursor: pointer;
+    │      display: flex;
+    │      flex-direction: column;
+    │      overflow: hidden;
+    │      position: relative;
+    │      transition: all 240ms ease;
+    │
+  ✓
+    → Writing MobileShell.scss...  ✓
+    ✓ frontend/components/account/mobile/MobileShell.scss
+    → Removing .wiz-folder-action-btn from WizardShell.scss...  ✓
+    → Adding @extend for .wiz-folder-action-btn...  ✓
+    │  Will write:
+    │    // Skeleton: .mwt-skeleton-2 (tier 3, 3 shared props)
+    │    .wiz-folder-action-btn {
+    │      @extend .mwt-skeleton-2;
+    │      align-items: center;
+    │      border: 0.5px solid var(--border-mob);
+    │      border-radius: 4px;
+    │      color: var(--text-mob-muted);
+    │      font-size: 11px;
+    │      height: 22px;
+    │      justify-content: center;
+    │      line-height: 1;
+    │      width: 22px;
+    │    }
+    │
+    → Writing WizardShell.scss...  ✓
+    ✓ frontend/components/account/mobile/css/WizardShell.scss
+    → Removing .wiz-modal-folder-item from WizardShell.scss...  ✓
+    → Adding @extend for .wiz-modal-folder-item...  ✓
+    │  Will write:
+    │    // Skeleton: .mwt-skeleton-2 (tier 3, 3 shared props)
+    │    .wiz-modal-folder-item {
+    │      @extend .mwt-skeleton-2;
+    │      align-items: center;
+    │      border: 1px solid var(--border-mob);
+    │      border-radius: 8px;
+    │      color: var(--text-mob);
+    │      font-family: var(--font-ui-mob);
+    │      font-size: 0.875rem;
+    │      gap: 10px;
+    │      padding: 11px 14px;
+    │      text-align: left;
+    │      transition: border-color 150ms;
+    │    }
+    │
+    → Writing WizardShell.scss...  ✓
+    ✓ frontend/components/account/mobile/css/WizardShell.scss
+    → Appending .mwt-skeleton-2 props to existing .tile block...  ~ ✓
+    │  Will append to .tile:
+    │      -webkit-tap-highlight-color: transparent;
+    │      background: var(--bg-mob-card);
+    │      border: .8px solid rgba(255,255,255,0.04);
+    │      border-radius: 21px !important;
+    │      box-shadow: inset 0 2px 6px rgba(0,0,0,0.35),
+    │        inset 0 1px 2px rgba(0,0,0,0.2),
+    │        0 1px 0 rgba(255,255,255,0.04);
+    │      cursor: pointer;
+    │      display: flex;
+    │      flex-direction: column;
+    │      min-height: clamp(110px, 30vw, 150px);
+    │      opacity: 0.55;
+    │      overflow: hidden;
+    │      padding: clamp(1rem, 4.5vw, 1.5rem) clamp(2rem, 4vw, 3rem);
+    │      position: relative;
+    │      transform: translateY(1px);
+    │      transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1);
+    │
+  ✓
+    → Writing TilesShell.scss...  ✓
+    ✓ frontend/components/account/mobile/TilesShell.scss
+
+▶ Applying: .mwa-skeleton-2  (tier 3)
+    → Adding .mwa-skeleton-2 to shared.scss...  ✓
+    → Removing .profile-save from MobileShell.scss...  ✓
+    → Adding @extend for .profile-save...  ✓
+    │  Will write:
+    │    // Skeleton: .mwa-skeleton-2 (tier 3, 3 shared props)
+    │    .profile-save {
+    │      @extend .mwa-skeleton-2;
+    │      background: var(--gold);
+    │      border-radius: 999px !important;
+    │      color: var(--bg-mob-deep);
+    │      font-family: var(--font-mob-mono);
+    │      font-size: clamp(0.8125rem, 3.5vw, 0.9375rem);
+    │      letter-spacing: 0.2em;
+    │      margin-top: var(--sp-2);
+    │      padding: clamp(0.6875rem, 3vw, 0.9375rem);
+    │      text-transform: uppercase;
+    │    }
+    │
+    → Writing MobileShell.scss...  ✓
+    ✓ frontend/components/account/mobile/MobileShell.scss
+    → Appending .mwa-skeleton-2 props to existing .wiz-folder-tile-inner block...  ~ ✓
+    │  Will append to .wiz-folder-tile-inner:
+    │      align-items: center;
+    │      background: transparent;
+    │      border: none;
+    │      cursor: pointer;
+    │      display: flex;
+    │      flex-direction: column;
+    │      gap: 6px;
+    │      height: 100%;
+    │      justify-content: center;
+    │      padding: clamp(10px, 3vw, 16px);
+    │      text-align: center;
+    │      width: 100%;
+    │
+  ✓
+    → Writing WizardShell.scss...  ✓
+    ✓ frontend/components/account/mobile/css/WizardShell.scss
+    → Removing .wo-accept-btn from MobileShell.scss...  ✓
+    → Adding @extend for .wo-accept-btn...  ✓
+    │  Will write:
+    │    // Skeleton: .mwa-skeleton-2 (tier 3, 3 shared props)
+    │    .wo-accept-btn {
+    │      @extend .mwa-skeleton-2;
+    │      background: var(--gold);
+    │      color: var(--bg-mob-deep);
+    │      font-family: var(--font-mob-mono);
+    │      font-size: clamp(0.8125rem, 3.5vw, 0.9375rem);
+    │      letter-spacing: 0.2em;
+    │      margin-bottom: var(--sp-2);
+    │      padding: clamp(0.75rem, 3.5vw, 1rem);
+    │      text-transform: uppercase;
+    │    }
+    │
+    → Writing MobileShell.scss...  ✓
+    ✓ frontend/components/account/mobile/MobileShell.scss
+    → Removing .mob-dropdown-signout from Admin.scss...  ✓
+    → Adding @extend for .mob-dropdown-signout...  ✓
+    │  Will write:
+    │    // Skeleton: .mwa-skeleton-2 (tier 3, 3 shared props)
+    │    .mob-dropdown-signout {
+    │      @extend .mwa-skeleton-2;
+    │      background: none;
+    │      color: var(--d2);
+    │      display: block;
+    │      font-family: var(--sans);
+    │      font-size: 0.625rem;
+    │      font-weight: 400;
+    │      letter-spacing: .18em;
+    │      padding: 14px 20px;
+    │      text-align: left;
+    │      text-transform: uppercase;
+    │      transition: color .15s;
+    │    }
+    │
+    → Writing Admin.scss...  ✓
+    ✓ frontend/styles/Admin.scss
+
+▶ Applying: .maw-skeleton-2  (tier 3)
+    → Adding .maw-skeleton-2 to shared.scss...  ✓
+    → Appending .maw-skeleton-2 props to existing .heart-btn block...  ~ ✓
+    │  Will append to .heart-btn:
+    │      -webkit-tap-highlight-color: transparent;
+    │      align-items: center;
+    │      background: none;
+    │      border: none;
+    │      cursor: pointer;
+    │      display: flex;
+    │      justify-content: center;
+    │      outline: none;
+    │      padding: 0;
+    │      position: absolute;
+    │      right: clamp(0.25rem, 1.5vw, 0.5rem);
+    │      top: clamp(0.25rem, 1.5vw, 0.5rem);
+    │      transition: transform 200ms ease;
+    │      z-index: 10;
+    │
+  ✓
+    → Writing MobileShell.scss...  ✓
+    ✓ frontend/components/account/mobile/MobileShell.scss
+    → Appending .maw-skeleton-2 props to existing .mob-dropdown-signout block...  ~ ✓
+    │  Will append to .mob-dropdown-signout:
+    │      background: none;
+    │      border: none;
+    │      color: var(--d2);
+    │      cursor: pointer;
+    │      display: block;
+    │      font-family: var(--sans);
+    │      font-size: 0.625rem;
+    │      font-weight: 400;
+    │      letter-spacing: .18em;
+    │      padding: 14px 20px;
+    │      text-align: left;
+    │      text-transform: uppercase;
+    │      transition: color .15s;
+    │      width: 100%;
+    │
+  ✓
+    → Writing Admin.scss...  ✓
+    ✓ frontend/styles/Admin.scss
+    → Removing .tab from Admin.scss...  ✓
+    → Adding @extend for .tab...  ✓
+    │  Will write:
+    │    // Skeleton: .maw-skeleton-2 (tier 3, 3 shared props)
+    │    .tab {
+    │      @extend .maw-skeleton-2;
+    │      border-bottom: 1px solid transparent;
+    │      color: var(--d1);
+    │      font-size: 0.875rem;
+    │      font-weight: 400;
+    │      letter-spacing: 2.7px;
+    │      padding: 15px 0;
+    │      position: relative;
+    │      text-transform: uppercase;
+    │      top: 1px;
+    │      transition: color .15s;
+    │    }
+    │
+    → Writing Admin.scss...  ✓
+    ✓ frontend/styles/Admin.scss
+    → Removing .wiz-nav-btn-ghost from wizard.scss...  ✓
+    → Adding @extend for .wiz-nav-btn-ghost...  ✓
+    │  Will write:
+    │    // Skeleton: .maw-skeleton-2 (tier 3, 3 shared props)
+    │    .wiz-nav-btn-ghost {
+    │      @extend .maw-skeleton-2;
+    │      color: var(--text-muted);
+    │      font-family: var(--font-body);
+    │      font-size: clamp(0.875rem, 1.5vw, 1rem);
+    │      font-weight: 500;
+    │      letter-spacing: 0.15em;
+    │      opacity: 0.55;
+    │      padding: clamp(12px, 2vw, 16px) 0;
+    │      text-transform: uppercase;
+    │      transition: opacity 200ms ease;
+    │    }
+    │
+    → Writing wizard.scss...  ✓
+    ✓ frontend/styles/wizard.scss
+
+▶ Applying: .maw-skeleton-3  (tier 3)
+    → Adding .maw-skeleton-3 to shared.scss...  ✓
+    → Appending .maw-skeleton-3 props to existing .sr-archive-btn block...  ~ ✓
+    │  Will append to .sr-archive-btn:
+    │      align-items: center;
+    │      background: var(--archive);
+    │      border: none;
+    │      bottom: 0;
+    │      color: #ffffff;
+    │      cursor: pointer;
+    │      display: flex;
+    │      font-family: var(--font-mob-mono);
+    │      font-size: clamp(0.5625rem, 2.5vw, 0.6875rem);
+    │      font-weight: 700;
+    │      justify-content: center;
+    │      letter-spacing: 0.1em;
+    │      position: absolute;
+    │      right: 0;
+    │      text-transform: uppercase;
+    │      top: 0;
+    │      width: 80px;
+    │      z-index: 1;
+    │
+  ✓
+    → Writing MobileShell.scss...  ✓
+    ✓ frontend/components/account/mobile/MobileShell.scss
+    → Appending .maw-skeleton-3 props to existing .mob-dropdown-signout block...  ~ ✓
+    │  Will append to .mob-dropdown-signout:
+    │      background: none;
+    │      border: none;
+    │      color: var(--d2);
+    │      cursor: pointer;
+    │      display: block;
+    │      font-family: var(--sans);
+    │      font-size: 0.625rem;
+    │      font-weight: 400;
+    │      letter-spacing: .18em;
+    │      padding: 14px 20px;
+    │      text-align: left;
+    │      text-transform: uppercase;
+    │      transition: color .15s;
+    │      width: 100%;
+    │
+  ✓
+    → Writing Admin.scss...  ✓
+    ✓ frontend/styles/Admin.scss
+    → Appending .maw-skeleton-3 props to existing .tab block...  ~ ✓
+    │  Will append to .tab:
+    │      background: none;
+    │      border: none;
+    │      border-bottom: 1px solid transparent;
+    │      color: var(--d1);
+    │      cursor: pointer;
+    │      font-size: 0.875rem;
+    │      font-weight: 400;
+    │      letter-spacing: 2.7px;
+    │      padding: 15px 0;
+    │      position: relative;
+    │      text-transform: uppercase;
+    │      top: 1px;
+    │      transition: color .15s;
+    │
+  ✓
+    → Writing Admin.scss...  ✓
+    ✓ frontend/styles/Admin.scss
+    → Appending .maw-skeleton-3 props to existing .profile-save block...  ~ ✓
+    │  Will append to .profile-save:
+    │      background: var(--gold);
+    │      border: none;
+    │      border-radius: 999px !important;
+    │      color: var(--bg-mob-deep);
+    │      cursor: pointer;
+    │      font-family: var(--font-mob-mono);
+    │      font-size: clamp(0.8125rem, 3.5vw, 0.9375rem);
+    │      letter-spacing: 0.2em;
+    │      margin-top: var(--sp-2);
+    │      padding: clamp(0.6875rem, 3vw, 0.9375rem);
+    │      text-transform: uppercase;
+    │      width: 100%;
+    │
+  ✓
+    → Writing MobileShell.scss...  ✓
+    ✓ frontend/components/account/mobile/MobileShell.scss
+    → Appending .maw-skeleton-3 props to existing .wo-accept-btn block...  ~ ✓
+    │  Will append to .wo-accept-btn:
+    │      background: var(--gold);
+    │      border: none;
+    │      color: var(--bg-mob-deep);
+    │      cursor: pointer;
+    │      font-family: var(--font-mob-mono);
+    │      font-size: clamp(0.8125rem, 3.5vw, 0.9375rem);
+    │      letter-spacing: 0.2em;
+    │      margin-bottom: var(--sp-2);
+    │      padding: clamp(0.75rem, 3.5vw, 1rem);
+    │      text-transform: uppercase;
+    │      width: 100%;
+    │
+  ✓
+    → Writing MobileShell.scss...  ✓
+    ✓ frontend/components/account/mobile/MobileShell.scss
+    → Appending .maw-skeleton-3 props to existing .wiz-nav-btn-ghost block...  ~ ✓
+    │  Will append to .wiz-nav-btn-ghost:
+    │      background: none;
+    │      border: none;
+    │      color: var(--text-muted);
+    │      cursor: pointer;
+    │      font-family: var(--font-body);
+    │      font-size: clamp(0.875rem, 1.5vw, 1rem);
+    │      font-weight: 500;
+    │      letter-spacing: 0.15em;
+    │      opacity: 0.55;
+    │      padding: clamp(12px, 2vw, 16px) 0;
+    │      text-transform: uppercase;
+    │      transition: opacity 200ms ease;
+    │
+  ✓
+    → Writing wizard.scss...  ✓
+    ✓ frontend/styles/wizard.scss
+    → Removing .intro-skip-btn from wizard.scss...  ✓
+    → Adding @extend for .intro-skip-btn...  ✓
+    │  Will write:
+    │    // Skeleton: .maw-skeleton-3 (tier 3, 3 shared props)
+    │    .intro-skip-btn {
+    │      @extend .maw-skeleton-3;
+    │      background: transparent;
+    │      color: var(--text-muted);
+    │      font-family: var(--font-body);
+    │      font-size: clamp(0.875rem, 1.5vw, 1rem);
+    │      font-weight: 700;
+    │      letter-spacing: 0.18em;
+    │      opacity: 0.75;
+    │      padding: 0;
+    │      transition: opacity 200ms ease;
+    │    }
+    │
+    → Writing wizard.scss...  ✓
+    ✓ frontend/styles/wizard.scss
+
+▶ Applying: .mat-skeleton  (tier 3)
+    → Adding .mat-skeleton to shared.scss...  ✓
+    → Appending .mat-skeleton props to existing .shop-thumb block...  ~ ✓
+    │  Will append to .shop-thumb:
+    │      aspect-ratio: 3/4;
+    │      background: var(--bg-mob-card);
+    │      border: 0.5px solid var(--bdr2-mob);
+    │      cursor: pointer;
+    │      display: flex;
+    │      flex-direction: column;
+    │      overflow: hidden;
+    │      position: relative;
+    │      transition: all 240ms ease;
+    │
+  ✓
+    → Writing MobileShell.scss...  ✓
+    ✓ frontend/components/account/mobile/MobileShell.scss
+    → Appending .mat-skeleton props to existing .ni block...  ~ ✓
+    │  Will append to .ni:
+    │      align-items: center;
+    │      background: none;
+    │      border: none;
+    │      color: var(--text-muted);
+    │      cursor: pointer;
+    │      display: flex;
+    │      font-size: 0.8125rem;
+    │      font-weight: 400;
+    │      gap: 12px;
+    │      letter-spacing: .22em;
+    │      padding: 14px 24px;
+    │      position: relative;
+    │      text-align: left;
+    │      text-transform: uppercase;
+    │      transition: color .15s;
+    │      width: 100%;
+    │
+  ✓
+    → Writing Admin.scss...  ✓
+    ✓ frontend/styles/Admin.scss
+    → Appending .mat-skeleton props to existing .tile block...  ~ ✓
+    │  Will append to .tile:
+    │      -webkit-tap-highlight-color: transparent;
+    │      background: var(--bg-mob-card);
+    │      border: .8px solid rgba(255,255,255,0.04);
+    │      border-radius: 21px !important;
+    │      box-shadow: inset 0 2px 6px rgba(0,0,0,0.35),
+    │        inset 0 1px 2px rgba(0,0,0,0.2),
+    │        0 1px 0 rgba(255,255,255,0.04);
+    │      cursor: pointer;
+    │      display: flex;
+    │      flex-direction: column;
+    │      min-height: clamp(110px, 30vw, 150px);
+    │      opacity: 0.55;
+    │      overflow: hidden;
+    │      padding: clamp(1rem, 4.5vw, 1.5rem) clamp(2rem, 4vw, 3rem);
+    │      position: relative;
+    │      transform: translateY(1px);
+    │      transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1);
+    │
+  ✓
+    → Writing TilesShell.scss...  ✓
+    ✓ frontend/components/account/mobile/TilesShell.scss
+
+▶ Applying: .maw-skeleton-4  (tier 3)
+    → Adding .maw-skeleton-4 to shared.scss...  ✓
+    → Removing .profile-delete-btn from MobileShell.scss...  ✓
+    → Adding @extend for .profile-delete-btn...  ✓
+    │  Will write:
+    │    // Skeleton: .maw-skeleton-4 (tier 3, 3 shared props)
+    │    .profile-delete-btn {
+    │      @extend .maw-skeleton-4;
+    │      border: 0.5px solid rgba(248,113,113,0.3);
+    │      border-radius: 999px !important;
+    │      color: rgba(248,113,113,0.7);
+    │      font-family: var(--font-mono-mob);
+    │      font-size: 0.875rem;
+    │      letter-spacing: 0.18em;
+    │      padding: 16px 24px;
+    │      width: 100%;
+    │    }
+    │
+    → Writing MobileShell.scss...  ✓
+    ✓ frontend/components/account/mobile/MobileShell.scss
+    → Removing .ab from Admin.scss...  ✓
+    → Adding @extend for .ab...  ✓
+    │  Will write:
+    │    // Skeleton: .maw-skeleton-4 (tier 3, 3 shared props)
+    │    .ab {
+    │      @extend .maw-skeleton-4;
+    │      -webkit-tap-highlight-color: transparent;
+    │      align-items: center;
+    │      border: 0.5px solid var(--ln2);
+    │      border-radius: 999px;
+    │      box-shadow: inset 0 1px 0 rgba(255,255,255,0.06),inset 0 -1px 0 rgba(0,0,0,0.06),0 1px 2px rgba(0,0,0,0.08);
+    │      color: var(--d1);
+    │      display: inline-flex;
+    │      font-family: var(--sans);
+    │      font-size: 0.6875rem;
+    │      font-weight: 500;
+    │      justify-content: center;
+    │      letter-spacing: .14em;
+    │      padding: 6px 14px;
+    │      transition: box-shadow .1s ease,transform .1s ease;
+    │    }
+    │
+    → Writing Admin.scss...  ✓
+    ✓ frontend/styles/Admin.scss
+    → Removing .bg from Admin.scss...  ✓
+    → Adding @extend for .bg...  ✓
+    │  Will write:
+    │    // Skeleton: .maw-skeleton-4 (tier 3, 3 shared props)
+    │    .bg {
+    │      @extend .maw-skeleton-4;
+    │      -webkit-tap-highlight-color: transparent;
+    │      align-items: center;
+    │      border: 0.5px solid var(--ln2);
+    │      border-radius: 999px;
+    │      box-shadow: inset 0 1px 0 rgba(255,255,255,0.06),inset 0 -1px 0 rgba(0,0,0,0.06),0 1px 2px rgba(0,0,0,0.08);
+    │      color: var(--d1);
+    │      display: inline-flex;
+    │      font-family: var(--sans);
+    │      font-size: 0.75rem;
+    │      font-weight: 500;
+    │      justify-content: center;
+    │      letter-spacing: .15em;
+    │      padding: 10px 16px;
+    │      transition: box-shadow .1s ease,transform .1s ease;
+    │    }
+    │
+    → Writing Admin.scss...  ✓
+    ✓ frontend/styles/Admin.scss
+    → Removing .bb from Admin.scss...  ✓
+    → Adding @extend for .bb...  ✓
+    │  Will write:
+    │    // Skeleton: .maw-skeleton-4 (tier 3, 3 shared props)
+    │    .bb {
+    │      @extend .maw-skeleton-4;
+    │      -webkit-tap-highlight-color: transparent;
+    │      align-items: center;
+    │      border: 0.5px solid var(--ln2);
+    │      border-radius: 999px;
+    │      box-shadow: inset 0 1px 0 rgba(255,255,255,0.06),inset 0 -1px 0 rgba(0,0,0,0.06),0 1px 2px rgba(0,0,0,0.08);
+    │      color: var(--d1);
+    │      display: inline-flex;
+    │      font-family: var(--sans);
+    │      font-size: 0.5625rem;
+    │      font-weight: 500;
+    │      justify-content: center;
+    │      letter-spacing: .14em;
+    │      padding: 6px 14px;
+    │      transition: box-shadow .1s ease,transform .1s ease;
+    │    }
+    │
+    → Writing Admin.scss...  ✓
+    ✓ frontend/styles/Admin.scss
+    → Appending .maw-skeleton-4 props to existing .wiz-nav-btn-ghost block...  ~ ✓
+    │  Will append to .wiz-nav-btn-ghost:
+    │      background: none;
+    │      border: none;
+    │      color: var(--text-muted);
+    │      cursor: pointer;
+    │      font-family: var(--font-body);
+    │      font-size: clamp(0.875rem, 1.5vw, 1rem);
+    │      font-weight: 500;
+    │      letter-spacing: 0.15em;
+    │      opacity: 0.55;
+    │      padding: clamp(12px, 2vw, 16px) 0;
+    │      text-transform: uppercase;
+    │      transition: opacity 200ms ease;
+    │
+  ✓
+    → Writing wizard.scss...  ✓
+    ✓ frontend/styles/wizard.scss
+
+▶ Applying: .mga-skeleton  (tier 3)
+    → Adding .mga-skeleton to shared.scss...  ✓
+    → Appending .mga-skeleton props to existing .profile-delete-btn block...  ~ ✓
+    │  Will append to .profile-delete-btn:
+    │      background: none;
+    │      border: 0.5px solid rgba(248,113,113,0.3);
+    │      border-radius: 999px !important;
+    │      color: rgba(248,113,113,0.7);
+    │      cursor: pointer;
+    │      font-family: var(--font-mono-mob);
+    │      font-size: 0.875rem;
+    │      letter-spacing: 0.18em;
+    │      padding: 16px 24px;
+    │      text-transform: uppercase;
+    │      width: 100%;
+    │
+  ✓
+    → Writing MobileShell.scss...  ✓
+    ✓ frontend/components/account/mobile/MobileShell.scss
+    → Appending .mga-skeleton props to existing .btn-primary block...  ~ ✓
+    │  Will append to .btn-primary:
+    │      -webkit-tap-highlight-color: transparent;
+    │      align-items: center;
+    │      background-color: #b561479c;
+    │      border-radius: 999px;
+    │      color: #ffffff;
+    │      cursor: pointer;
+    │      display: inline-flex;
+    │      font-family: var(--font-ui);
+    │      font-size: 0.875rem;
+    │      font-weight: 900;
+    │      gap: 0.5rem;
+    │      justify-content: center;
+    │      letter-spacing: 0.17em;
+    │      padding: 0.75rem 2.5rem;
+    │      text-decoration: none;
+    │      text-transform: uppercase;
+    │      touch-action: manipulation;
+    │      transition: box-shadow 0.1s ease, transform 0.1s ease, filter 0.1s ease;
+    │      user-select: none;
+    │      width: flex;
+    │
+  ✓
+    → Writing globals.scss...  ✓
+    ✓ frontend/styles/globals.scss
+    → Appending .mga-skeleton props to existing .tab block...  ~ ✓
+    │  Will append to .tab:
+    │      background: none;
+    │      border: none;
+    │      border-bottom: 1px solid transparent;
+    │      color: var(--d1);
+    │      cursor: pointer;
+    │      font-size: 0.875rem;
+    │      font-weight: 400;
+    │      letter-spacing: 2.7px;
+    │      padding: 15px 0;
+    │      position: relative;
+    │      text-transform: uppercase;
+    │      top: 1px;
+    │      transition: color .15s;
+    │
+  ✓
+    → Writing Admin.scss...  ✓
+    ✓ frontend/styles/Admin.scss
+
+▶ Applying: .mw-skeleton-2  (tier 3)
+    → Adding .mw-skeleton-2 to shared.scss...  ✓
+    → Appending .mw-skeleton-2 props to existing .heart-btn block...  ~ ✓
+    │  Will append to .heart-btn:
+    │      -webkit-tap-highlight-color: transparent;
+    │      align-items: center;
+    │      background: none;
+    │      border: none;
+    │      cursor: pointer;
+    │      display: flex;
+    │      justify-content: center;
+    │      outline: none;
+    │      padding: 0;
+    │      position: absolute;
+    │      right: clamp(0.25rem, 1.5vw, 0.5rem);
+    │      top: clamp(0.25rem, 1.5vw, 0.5rem);
+    │      transition: transform 200ms ease;
+    │      z-index: 10;
+    │
+  ✓
+    → Writing MobileShell.scss...  ✓
+    ✓ frontend/components/account/mobile/MobileShell.scss
+    → Removing .center-stage from wizard.scss...  ✓
+    → Adding @extend for .center-stage...  ✓
+    │  Will write:
+    │    // Skeleton: .mw-skeleton-2 (tier 3, 3 shared props)
+    │    .center-stage {
+    │      @extend .mw-skeleton-2;
+    │      flex: 1;
+    │      flex-direction: column;
+    │      min-height: 100%;
+    │      text-align: center;
+    │      width: 100%;
+    │    }
+    │
+    → Writing wizard.scss...  ✓
+    ✓ frontend/styles/wizard.scss
+    → Appending .mw-skeleton-2 props to existing .wiz-back-btn block...  ~ ✓
+    │  Will append to .wiz-back-btn:
+    │      align-items: center;
+    │      background: transparent;
+    │      border: none;
+    │      color: var(--text-mob-muted);
+    │      cursor: pointer;
+    │      display: flex;
+    │      font-family: var(--font-ui-mob);
+    │      font-size: 0.8125rem;
+    │      gap: 6px;
+    │      padding: 0;
+    │
+  ✓
+    → Writing WizardShell.scss...  ✓
+    ✓ frontend/components/account/mobile/css/WizardShell.scss
+
+▶ Applying: .mwt-skeleton-3  (tier 3)
+    → Adding .mwt-skeleton-3 to shared.scss...  ✓
+    → Appending .mwt-skeleton-3 props to existing .wiz-thumb block...  ~ ✓
+    │  Will append to .wiz-thumb:
+    │      align-items: center;
+    │      aspect-ratio: 1;
+    │      background: var(--bg-mob-card);
+    │      border: 0.5px solid var(--bdr2-mob);
+    │      border-radius: 12px !important;
+    │      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    │      cursor: pointer;
+    │      display: flex;
+    │      flex-direction: column;
+    │      gap: 0.4em;
+    │      justify-content: center;
+    │      overflow: hidden;
+    │      padding: clamp(0.5rem, 3vw, 0.875rem);
+    │      position: relative;
+    │      transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
+    │
+  ✓
+    → Writing MobileShell.scss...  ✓
+    ✓ frontend/components/account/mobile/MobileShell.scss
+    → Appending .mwt-skeleton-3 props to existing .full-screen block...  ~ ✓
+    │  Will append to .full-screen:
+    │      display: flex;
+    │      flex: 1;
+    │      flex-direction: column;
+    │      overflow-y: hidden;
+    │      position: relative;
+    │      width: 100%;
+    │
+  ✓
+    → Writing wizard.scss...  ✓
+    ✓ frontend/styles/wizard.scss
+    → Removing .tab from MobileShell.scss...  ✓
+    → Adding @extend for .tab...  ✓
+    │  Will write:
+    │    // Skeleton: .mwt-skeleton-3 (tier 3, 3 shared props)
+    │    .tab {
+    │      @extend .mwt-skeleton-3;
+    │      align-items: center;
+    │      cursor: pointer;
+    │      gap: 0.25em;
+    │      padding: 0.125em clamp(0.625rem, 3.5vw, 1rem);
+    │    }
+    │
+    → Writing MobileShell.scss...  ✓
+    ✓ frontend/components/account/mobile/MobileShell.scss
+    → Appending .mwt-skeleton-3 props to existing .shop-thumb block...  ~ ✓
+    │  Will append to .shop-thumb:
+    │      aspect-ratio: 3/4;
+    │      background: var(--bg-mob-card);
+    │      border: 0.5px solid var(--bdr2-mob);
+    │      cursor: pointer;
+    │      display: flex;
+    │      flex-direction: column;
+    │      overflow: hidden;
+    │      position: relative;
+    │      transition: all 240ms ease;
+    │
+  ✓
+    → Writing MobileShell.scss...  ✓
+    ✓ frontend/components/account/mobile/MobileShell.scss
+    → Appending .mwt-skeleton-3 props to existing .tile block...  ~ ✓
+    │  Will append to .tile:
+    │      -webkit-tap-highlight-color: transparent;
+    │      background: var(--bg-mob-card);
+    │      border: .8px solid rgba(255,255,255,0.04);
+    │      border-radius: 21px !important;
+    │      box-shadow: inset 0 2px 6px rgba(0,0,0,0.35),
+    │        inset 0 1px 2px rgba(0,0,0,0.2),
+    │        0 1px 0 rgba(255,255,255,0.04);
+    │      cursor: pointer;
+    │      display: flex;
+    │      flex-direction: column;
+    │      min-height: clamp(110px, 30vw, 150px);
+    │      opacity: 0.55;
+    │      overflow: hidden;
+    │      padding: clamp(1rem, 4.5vw, 1.5rem) clamp(2rem, 4vw, 3rem);
+    │      position: relative;
+    │      transform: translateY(1px);
+    │      transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1);
+    │
+  ✓
+    → Writing TilesShell.scss...  ✓
+    ✓ frontend/components/account/mobile/TilesShell.scss
+
+▶ Applying: .mwt-skeleton-4  (tier 3)
+    → Adding .mwt-skeleton-4 to shared.scss...  ✓
+    → Appending .mwt-skeleton-4 props to existing .wiz-thumb block...  ~ ✓
+    │  Will append to .wiz-thumb:
+    │      align-items: center;
+    │      aspect-ratio: 1;
+    │      background: var(--bg-mob-card);
+    │      border: 0.5px solid var(--bdr2-mob);
+    │      border-radius: 12px !important;
+    │      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    │      cursor: pointer;
+    │      display: flex;
+    │      flex-direction: column;
+    │      gap: 0.4em;
+    │      justify-content: center;
+    │      overflow: hidden;
+    │      padding: clamp(0.5rem, 3vw, 0.875rem);
+    │      position: relative;
+    │      transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
+    │
+  ✓
+    → Writing MobileShell.scss...  ✓
+    ✓ frontend/components/account/mobile/MobileShell.scss
+    → Removing .wiz-correctable-btn from wizard.scss...  ✓
+    → Adding @extend for .wiz-correctable-btn...  ✓
+    │  Will write:
+    │    // Skeleton: .mwt-skeleton-4 (tier 3, 3 shared props)
+    │    .wiz-correctable-btn {
+    │      @extend .mwt-skeleton-4;
+    │      -webkit-tap-highlight-color: transparent;
+    │      background: transparent;
+    │      border: 0.8px solid var(--border);
+    │      border-radius: 999px;
+    │      box-shadow: none;
+    │      color: var(--text);
+    │      font-family: var(--font-body);
+    │      font-size: clamp(0.875rem, 1.8vw, 1.125rem);
+    │      font-weight: 400;
+    │      line-height: 1.4;
+    │      opacity: 1;
+    │      padding: clamp(16px, 3vw, 24px) clamp(12px, 2vw, 20px);
+    │      text-align: center;
+    │      transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    │    }
+    │
+    → Writing wizard.scss...  ✓
+    ✓ frontend/styles/wizard.scss
+    → Appending .mwt-skeleton-4 props to existing .shop-thumb block...  ~ ✓
+    │  Will append to .shop-thumb:
+    │      aspect-ratio: 3/4;
+    │      background: var(--bg-mob-card);
+    │      border: 0.5px solid var(--bdr2-mob);
+    │      cursor: pointer;
+    │      display: flex;
+    │      flex-direction: column;
+    │      overflow: hidden;
+    │      position: relative;
+    │      transition: all 240ms ease;
+    │
+  ✓
+    → Writing MobileShell.scss...  ✓
+    ✓ frontend/components/account/mobile/MobileShell.scss
+    → Removing .begin-btn from wizard.scss...  ✓
+    → Adding @extend for .begin-btn...  ✓
+    │  Will write:
+    │    // Skeleton: .mwt-skeleton-4 (tier 3, 3 shared props)
+    │    .begin-btn {
+    │      @extend .mwt-skeleton-4;
+    │      animation: wizFlyIn 600ms cubic-bezier(0.16, 1, 0.3, 1) both;
+    │      background: transparent;
+    │      border: 0.8px solid color-mix(in srgb, var(--gold) 35%, rgba(255,255,255,0.08));
+    │      border-radius: 999px;
+    │      box-shadow: 0 4px 16px rgba(0,0,0,0.3),
+    │        0 0 12px color-mix(in srgb, var(--gold) 10%, transparent);
+    │      color: var(--gold);
+    │      font-family: var(--font-body);
+    │      font-size: clamp(1.25rem, 3vw, 1.75rem);
+    │      font-weight: 500;
+    │      letter-spacing: 0.2em;
+    │      margin-bottom: clamp(40px, 8vh, 80px);
+    │      margin-top: auto;
+    │      padding: clamp(20px, 4vw, 32px) clamp(64px, 12vw, 120px);
+    │      text-transform: uppercase;
+    │      transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
+    │    }
+    │
+    → Writing wizard.scss...  ✓
+    ✓ frontend/styles/wizard.scss
+    → Removing .wiz-nav-btn-next from wizard.scss...  ✓
+    → Adding @extend for .wiz-nav-btn-next...  ✓
+    │  Will write:
+    │    // Skeleton: .mwt-skeleton-4 (tier 3, 3 shared props)
+    │    .wiz-nav-btn-next {
+    │      @extend .mwt-skeleton-4;
+    │      background: transparent;
+    │      border: 0.8px solid color-mix(in srgb, var(--gold) 35%, rgba(255,255,255,0.08));
+    │      border-radius: 999px;
+    │      box-shadow: 0 4px 16px rgba(0,0,0,0.3),
+    │        0 0 12px color-mix(in srgb, var(--gold) 10%, transparent);
+    │      color: var(--gold);
+    │      font-family: var(--font-body);
+    │      font-size: clamp(0.875rem, 1.5vw, 1.125rem);
+    │      font-weight: 500;
+    │      letter-spacing: 0.2em;
+    │      padding: clamp(14px, 2.5vw, 20px) clamp(32px, 5vw, 60px);
+    │      text-transform: uppercase;
+    │      transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
+    │    }
+    │
+    → Writing wizard.scss...  ✓
+    ✓ frontend/styles/wizard.scss
+    → Removing .wiz-section-btn from wizard.scss...  ✓
+    → Adding @extend for .wiz-section-btn...  ✓
+    │  Will write:
+    │    // Skeleton: .mwt-skeleton-4 (tier 3, 3 shared props)
+    │    .wiz-section-btn {
+    │      @extend .mwt-skeleton-4;
+    │      background: transparent;
+    │      border: 0.8px solid color-mix(in srgb, var(--gold) 35%, rgba(255,255,255,0.08));
+    │      border-radius: 999px;
+    │      box-shadow: 0 4px 16px rgba(0,0,0,0.3),
+    │        0 0 12px color-mix(in srgb, var(--gold) 10%, transparent);
+    │      color: var(--gold);
+    │      font-family: var(--font-body);
+    │      font-size: clamp(1rem, 2vw, 1.25rem);
+    │      font-weight: 500;
+    │      letter-spacing: 0.2em;
+    │      padding: clamp(14px, 2.5vw, 20px) clamp(40px, 8vw, 80px);
+    │      text-transform: uppercase;
+    │      transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
+    │    }
+    │
+    → Writing wizard.scss...  ✓
+    ✓ frontend/styles/wizard.scss
+    → Removing .wiz-check-item from wizard.scss...  ✓
+    → Adding @extend for .wiz-check-item...  ✓
+    │  Will write:
+    │    // Skeleton: .mwt-skeleton-4 (tier 3, 3 shared props)
+    │    .wiz-check-item {
+    │      @extend .mwt-skeleton-4;
+    │      -webkit-tap-highlight-color: transparent;
+    │      align-items: center;
+    │      background: transparent;
+    │      border: 0.8px solid var(--border);
+    │      border-radius: 21px;
+    │      box-shadow: none;
+    │      display: 70%;
+    │      gap: clamp(12px, 2.5vw, 20px);
+    │      margin-bottom: clamp(8px, 1.5vw, 12px);
+    │      opacity: 1;
+    │      padding: clamp(16px, 3vw, 24px) clamp(18px, 3.5vw, 28px);
+    │      transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    │      user-select: none;
+    │    }
+    │
+    → Writing wizard.scss...  ✓
+    ✓ frontend/styles/wizard.scss
+    → Appending .mwt-skeleton-4 props to existing .tile block...  ~ ✓
+    │  Will append to .tile:
+    │      -webkit-tap-highlight-color: transparent;
+    │      background: var(--bg-mob-card);
+    │      border: .8px solid rgba(255,255,255,0.04);
+    │      border-radius: 21px !important;
+    │      box-shadow: inset 0 2px 6px rgba(0,0,0,0.35),
+    │        inset 0 1px 2px rgba(0,0,0,0.2),
+    │        0 1px 0 rgba(255,255,255,0.04);
+    │      cursor: pointer;
+    │      display: flex;
+    │      flex-direction: column;
+    │      min-height: clamp(110px, 30vw, 150px);
+    │      opacity: 0.55;
+    │      overflow: hidden;
+    │      padding: clamp(1rem, 4.5vw, 1.5rem) clamp(2rem, 4vw, 3rem);
+    │      position: relative;
+    │      transform: translateY(1px);
+    │      transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1);
+    │
+  ✓
+    → Writing TilesShell.scss...  ✓
+    ✓ frontend/components/account/mobile/TilesShell.scss
+
+▶ Applying: .mwa-skeleton-3  (tier 3)
+    → Adding .mwa-skeleton-3 to shared.scss...  ✓
+    → Appending .mwa-skeleton-3 props to existing .tab block...  ~ ✓
+    │  Will append to .tab:
+    │      align-items: center;
+    │      cursor: pointer;
+    │      display: flex;
+    │      flex-direction: column;
+    │      gap: 0.25em;
+    │      padding: 0.125em clamp(0.625rem, 3.5vw, 1rem);
+    │      position: relative;
+    │
+  ✓
+    → Writing MobileShell.scss...  ✓
+    ✓ frontend/components/account/mobile/MobileShell.scss
+    → Appending .mwa-skeleton-3 props to existing .wiz-check-item block...  ~ ✓
+    │  Will append to .wiz-check-item:
+    │      -webkit-tap-highlight-color: transparent;
+    │      align-items: center;
+    │      background: transparent;
+    │      border: 0.8px solid var(--border);
+    │      border-radius: 21px;
+    │      box-shadow: none;
+    │      cursor: pointer;
+    │      display: 70%;
+    │      gap: clamp(12px, 2.5vw, 20px);
+    │      margin-bottom: clamp(8px, 1.5vw, 12px);
+    │      opacity: 1;
+    │      overflow: hidden;
+    │      padding: clamp(16px, 3vw, 24px) clamp(18px, 3.5vw, 28px);
+    │      position: relative;
+    │      transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    │      user-select: none;
+    │
+  ✓
+    → Writing wizard.scss...  ✓
+    ✓ frontend/styles/wizard.scss
+    → Appending .mwa-skeleton-3 props to existing .ni block...  ~ ✓
+    │  Will append to .ni:
+    │      align-items: center;
+    │      background: none;
+    │      border: none;
+    │      color: var(--text-muted);
+    │      cursor: pointer;
+    │      display: flex;
+    │      font-size: 0.8125rem;
+    │      font-weight: 400;
+    │      gap: 12px;
+    │      letter-spacing: .22em;
+    │      padding: 14px 24px;
+    │      position: relative;
+    │      text-align: left;
+    │      text-transform: uppercase;
+    │      transition: color .15s;
+    │      width: 100%;
+    │
+  ✓
+    → Writing Admin.scss...  ✓
+    ✓ frontend/styles/Admin.scss
+
+▶ Applying: .awg-skeleton  (tier 3)
+    → Adding .awg-skeleton to shared.scss...  ✓
+    → Appending .awg-skeleton props to existing .btn-add block...  ~ ✓
+    │  Will append to .btn-add:
+    │      -webkit-tap-highlight-color: transparent;
+    │      align-items: center;
+    │      background: var(--gl);
+    │      border: 0.5px solid rgba(0,0,0,0.3);
+    │      border-radius: 999px;
+    │      box-shadow: inset 0 1px 0 rgba(255,255,255,0.18),inset 0 -1px 0 rgba(0,0,0,0.12),0 1px 3px rgba(0,0,0,0.15);
+    │      color: #000;
+    │      cursor: pointer;
+    │      display: inline-flex;
+    │      font-family: var(--sans);
+    │      font-size: 0.75rem;
+    │      font-weight: 500;
+    │      gap: 8px;
+    │      justify-content: center;
+    │      letter-spacing: .2em;
+    │      padding: 11px 20px;
+    │      text-transform: uppercase;
+    │      transition: box-shadow .1s ease,transform .1s ease,filter .1s ease;
+    │
+  ✓
+    → Writing Admin.scss...  ✓
+    ✓ frontend/styles/Admin.scss
+    → Removing .disc-checkbox from wizard.scss...  ✓
+    → Adding @use to wizard.scss...  ✓
+    → Adding @extend for .disc-checkbox...  ✓
+    │  Will write:
+    │    // Skeleton: .awg-skeleton (tier 3, 3 shared props)
+    │    .disc-checkbox {
+    │      @extend .awg-skeleton;
+    │      background: var(--bg-card);
+    │      border: 0.8px solid var(--border);
+    │      color: var(--gold);
+    │      display: flex;
+    │      flex-shrink: 0;
+    │      font-size: clamp(0.75rem, 1.5vw, 1rem);
+    │      height: clamp(20px, 3vw, 26px);
+    │      transition: all 200ms ease;
+    │      width: clamp(20px, 3vw, 26px);
+    │    }
+    │
+    → Writing wizard.scss...  ✓
+    ✓ frontend/styles/wizard.scss
+    → Appending .awg-skeleton props to existing .btn-sel block...  ~ ✓
+    │  Will append to .btn-sel:
+    │      -webkit-tap-highlight-color: transparent;
+    │      align-items: center;
+    │      background: transparent;
+    │      border: 0.5px solid var(--ln2);
+    │      border-radius: 999px;
+    │      box-shadow: inset 0 1px 0 rgba(255,255,255,0.06),inset 0 -1px 0 rgba(0,0,0,0.06),0 1px 3px rgba(0,0,0,0.08);
+    │      color: var(--d1);
+    │      cursor: pointer;
+    │      display: inline-flex;
+    │      font-family: var(--sans);
+    │      font-size: 0.75rem;
+    │      font-weight: 500;
+    │      justify-content: center;
+    │      letter-spacing: .2em;
+    │      padding: 11px 20px;
+    │      text-transform: uppercase;
+    │      transition: box-shadow .1s ease,transform .1s ease;
+    │
+  ✓
+    → Writing Admin.scss...  ✓
+    ✓ frontend/styles/Admin.scss
+    → Appending .awg-skeleton props to existing .bn block...  ~ ✓
+    │  Will append to .bn:
+    │      -webkit-tap-highlight-color: transparent;
+    │      align-items: center;
+    │      background: transparent;
+    │      border: 0.5px solid var(--gl);
+    │      border-radius: 999px;
+    │      box-shadow: inset 0 1px 0 rgba(255,255,255,0.08),inset 0 -1px 0 rgba(0,0,0,0.08),0 1px 3px rgba(0,0,0,0.1);
+    │      color: var(--gl);
+    │      cursor: pointer;
+    │      display: inline-flex;
+    │      font-family: var(--sans);
+    │      font-size: 0.75rem;
+    │      font-weight: 500;
+    │      justify-content: center;
+    │      letter-spacing: .15em;
+    │      padding: 10px 16px;
+    │      text-transform: uppercase;
+    │      transition: box-shadow .1s ease,transform .1s ease;
+    │
+  ✓
+    → Writing Admin.scss...  ✓
+    ✓ frontend/styles/Admin.scss
+    → Appending .awg-skeleton props to existing .bp block...  ~ ✓
+    │  Will append to .bp:
+    │      -webkit-tap-highlight-color: transparent;
+    │      align-items: center;
+    │      background: var(--gl);
+    │      border: 0.5px solid rgba(0,0,0,0.3);
+    │      border-radius: 999px;
+    │      box-shadow: inset 0 1px 0 rgba(255,255,255,0.18),inset 0 -1px 0 rgba(0,0,0,0.12),0 1px 3px rgba(0,0,0,0.15);
+    │      color: #000;
+    │      cursor: pointer;
+    │      display: inline-flex;
+    │      font-family: var(--sans);
+    │      font-size: 0.75rem;
+    │      font-weight: 500;
+    │      justify-content: center;
+    │      letter-spacing: .15em;
+    │      padding: 10px 20px;
+    │      text-transform: uppercase;
+    │      transition: box-shadow .1s ease,transform .1s ease,filter .1s ease;
+    │
+  ✓
+    → Writing Admin.scss...  ✓
+    ✓ frontend/styles/Admin.scss
+    → Appending .awg-skeleton props to existing .ab block...  ~ ✓
+    │  Will append to .ab:
+    │      -webkit-tap-highlight-color: transparent;
+    │      align-items: center;
+    │      background: none;
+    │      border: 0.5px solid var(--ln2);
+    │      border-radius: 999px;
+    │      box-shadow: inset 0 1px 0 rgba(255,255,255,0.06),inset 0 -1px 0 rgba(0,0,0,0.06),0 1px 2px rgba(0,0,0,0.08);
+    │      color: var(--d1);
+    │      cursor: pointer;
+    │      display: inline-flex;
+    │      font-family: var(--sans);
+    │      font-size: 0.6875rem;
+    │      font-weight: 500;
+    │      justify-content: center;
+    │      letter-spacing: .14em;
+    │      padding: 6px 14px;
+    │      text-transform: uppercase;
+    │      transition: box-shadow .1s ease,transform .1s ease;
+    │
+  ✓
+    → Writing Admin.scss...  ✓
+    ✓ frontend/styles/Admin.scss
+    → Appending .awg-skeleton props to existing .bg block...  ~ ✓
+    │  Will append to .bg:
+    │      -webkit-tap-highlight-color: transparent;
+    │      align-items: center;
+    │      background: none;
+    │      border: 0.5px solid var(--ln2);
+    │      border-radius: 999px;
+    │      box-shadow: inset 0 1px 0 rgba(255,255,255,0.06),inset 0 -1px 0 rgba(0,0,0,0.06),0 1px 2px rgba(0,0,0,0.08);
+    │      color: var(--d1);
+    │      cursor: pointer;
+    │      display: inline-flex;
+    │      font-family: var(--sans);
+    │      font-size: 0.75rem;
+    │      font-weight: 500;
+    │      justify-content: center;
+    │      letter-spacing: .15em;
+    │      padding: 10px 16px;
+    │      text-transform: uppercase;
+    │      transition: box-shadow .1s ease,transform .1s ease;
+    │
+  ✓
+    → Writing Admin.scss...  ✓
+    ✓ frontend/styles/Admin.scss
+    → Appending .awg-skeleton props to existing .bb block...  ~ ✓
+    │  Will append to .bb:
+    │      -webkit-tap-highlight-color: transparent;
+    │      align-items: center;
+    │      background: none;
+    │      border: 0.5px solid var(--ln2);
+    │      border-radius: 999px;
+    │      box-shadow: inset 0 1px 0 rgba(255,255,255,0.06),inset 0 -1px 0 rgba(0,0,0,0.06),0 1px 2px rgba(0,0,0,0.08);
+    │      color: var(--d1);
+    │      cursor: pointer;
+    │      display: inline-flex;
+    │      font-family: var(--sans);
+    │      font-size: 0.5625rem;
+    │      font-weight: 500;
+    │      justify-content: center;
+    │      letter-spacing: .14em;
+    │      padding: 6px 14px;
+    │      text-transform: uppercase;
+    │      transition: box-shadow .1s ease,transform .1s ease;
+    │
+  ✓
+    → Writing Admin.scss...  ✓
+    ✓ frontend/styles/Admin.scss
+    → Appending .awg-skeleton props to existing .btn-primary block...  ~ ✓
+    │  Will append to .btn-primary:
+    │      -webkit-tap-highlight-color: transparent;
+    │      align-items: center;
+    │      background-color: #b561479c;
+    │      border-radius: 999px;
+    │      color: #ffffff;
+    │      cursor: pointer;
+    │      display: inline-flex;
+    │      font-family: var(--font-ui);
+    │      font-size: 0.875rem;
+    │      font-weight: 900;
+    │      gap: 0.5rem;
+    │      justify-content: center;
+    │      letter-spacing: 0.17em;
+    │      padding: 0.75rem 2.5rem;
+    │      text-decoration: none;
+    │      text-transform: uppercase;
+    │      touch-action: manipulation;
+    │      transition: box-shadow 0.1s ease, transform 0.1s ease, filter 0.1s ease;
+    │      user-select: none;
+    │      width: flex;
+    │
+  ✓
+    → Writing globals.scss...  ✓
+    ✓ frontend/styles/globals.scss
+
+▶ Applying: .awg-skeleton-2  (tier 3)
+    → Adding .awg-skeleton-2 to shared.scss...  ✓
+    → Appending .awg-skeleton-2 props to existing .btn-add block...  ~ ✓
+    │  Will append to .btn-add:
+    │      -webkit-tap-highlight-color: transparent;
+    │      align-items: center;
+    │      background: var(--gl);
+    │      border: 0.5px solid rgba(0,0,0,0.3);
+    │      border-radius: 999px;
+    │      box-shadow: inset 0 1px 0 rgba(255,255,255,0.18),inset 0 -1px 0 rgba(0,0,0,0.12),0 1px 3px rgba(0,0,0,0.15);
+    │      color: #000;
+    │      cursor: pointer;
+    │      display: inline-flex;
+    │      font-family: var(--sans);
+    │      font-size: 0.75rem;
+    │      font-weight: 500;
+    │      gap: 8px;
+    │      justify-content: center;
+    │      letter-spacing: .2em;
+    │      padding: 11px 20px;
+    │      text-transform: uppercase;
+    │      transition: box-shadow .1s ease,transform .1s ease,filter .1s ease;
+    │
+  ✓
+    → Writing Admin.scss...  ✓
+    ✓ frontend/styles/Admin.scss
+    → Appending .awg-skeleton-2 props to existing .wiz-correctable-btn block...  ~ ✓
+    │  Will append to .wiz-correctable-btn:
+    │      -webkit-tap-highlight-color: transparent;
+    │      background: transparent;
+    │      border: 0.8px solid var(--border);
+    │      border-radius: 999px;
+    │      box-shadow: none;
+    │      color: var(--text);
+    │      cursor: pointer;
+    │      font-family: var(--font-body);
+    │      font-size: clamp(0.875rem, 1.8vw, 1.125rem);
+    │      font-weight: 400;
+    │      line-height: 1.4;
+    │      opacity: 1;
+    │      overflow: hidden;
+    │      padding: clamp(16px, 3vw, 24px) clamp(12px, 2vw, 20px);
+    │      position: relative;
+    │      text-align: center;
+    │      transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    │
+  ✓
+    → Writing wizard.scss...  ✓
+    ✓ frontend/styles/wizard.scss
+    → Appending .awg-skeleton-2 props to existing .bp block...  ~ ✓
+    │  Will append to .bp:
+    │      -webkit-tap-highlight-color: transparent;
+    │      align-items: center;
+    │      background: var(--gl);
+    │      border: 0.5px solid rgba(0,0,0,0.3);
+    │      border-radius: 999px;
+    │      box-shadow: inset 0 1px 0 rgba(255,255,255,0.18),inset 0 -1px 0 rgba(0,0,0,0.12),0 1px 3px rgba(0,0,0,0.15);
+    │      color: #000;
+    │      cursor: pointer;
+    │      display: inline-flex;
+    │      font-family: var(--sans);
+    │      font-size: 0.75rem;
+    │      font-weight: 500;
+    │      justify-content: center;
+    │      letter-spacing: .15em;
+    │      padding: 10px 20px;
+    │      text-transform: uppercase;
+    │      transition: box-shadow .1s ease,transform .1s ease,filter .1s ease;
+    │
+  ✓
+    → Writing Admin.scss...  ✓
+    ✓ frontend/styles/Admin.scss
+    → Appending .awg-skeleton-2 props to existing .ab block...  ~ ✓
+    │  Will append to .ab:
+    │      -webkit-tap-highlight-color: transparent;
+    │      align-items: center;
+    │      background: none;
+    │      border: 0.5px solid var(--ln2);
+    │      border-radius: 999px;
+    │      box-shadow: inset 0 1px 0 rgba(255,255,255,0.06),inset 0 -1px 0 rgba(0,0,0,0.06),0 1px 2px rgba(0,0,0,0.08);
+    │      color: var(--d1);
+    │      cursor: pointer;
+    │      display: inline-flex;
+    │      font-family: var(--sans);
+    │      font-size: 0.6875rem;
+    │      font-weight: 500;
+    │      justify-content: center;
+    │      letter-spacing: .14em;
+    │      padding: 6px 14px;
+    │      text-transform: uppercase;
+    │      transition: box-shadow .1s ease,transform .1s ease;
+    │
+  ✓
+    → Writing Admin.scss...  ✓
+    ✓ frontend/styles/Admin.scss
+    → Appending .awg-skeleton-2 props to existing .bg block...  ~ ✓
+    │  Will append to .bg:
+    │      -webkit-tap-highlight-color: transparent;
+    │      align-items: center;
+    │      background: none;
+    │      border: 0.5px solid var(--ln2);
+    │      border-radius: 999px;
+    │      box-shadow: inset 0 1px 0 rgba(255,255,255,0.06),inset 0 -1px 0 rgba(0,0,0,0.06),0 1px 2px rgba(0,0,0,0.08);
+    │      color: var(--d1);
+    │      cursor: pointer;
+    │      display: inline-flex;
+    │      font-family: var(--sans);
+    │      font-size: 0.75rem;
+    │      font-weight: 500;
+    │      justify-content: center;
+    │      letter-spacing: .15em;
+    │      padding: 10px 16px;
+    │      text-transform: uppercase;
+    │      transition: box-shadow .1s ease,transform .1s ease;
+    │
+  ✓
+    → Writing Admin.scss...  ✓
+    ✓ frontend/styles/Admin.scss
+    → Appending .awg-skeleton-2 props to existing .bb block...  ~ ✓
+    │  Will append to .bb:
+    │      -webkit-tap-highlight-color: transparent;
+    │      align-items: center;
+    │      background: none;
+    │      border: 0.5px solid var(--ln2);
+    │      border-radius: 999px;
+    │      box-shadow: inset 0 1px 0 rgba(255,255,255,0.06),inset 0 -1px 0 rgba(0,0,0,0.06),0 1px 2px rgba(0,0,0,0.08);
+    │      color: var(--d1);
+    │      cursor: pointer;
+    │      display: inline-flex;
+    │      font-family: var(--sans);
+    │      font-size: 0.5625rem;
+    │      font-weight: 500;
+    │      justify-content: center;
+    │      letter-spacing: .14em;
+    │      padding: 6px 14px;
+    │      text-transform: uppercase;
+    │      transition: box-shadow .1s ease,transform .1s ease;
+    │
+  ✓
+    → Writing Admin.scss...  ✓
+    ✓ frontend/styles/Admin.scss
+    → Appending .awg-skeleton-2 props to existing .btn-primary block...  ~ ✓
+    │  Will append to .btn-primary:
+    │      -webkit-tap-highlight-color: transparent;
+    │      align-items: center;
+    │      background-color: #b561479c;
+    │      border-radius: 999px;
+    │      color: #ffffff;
+    │      cursor: pointer;
+    │      display: inline-flex;
+    │      font-family: var(--font-ui);
+    │      font-size: 0.875rem;
+    │      font-weight: 900;
+    │      gap: 0.5rem;
+    │      justify-content: center;
+    │      letter-spacing: 0.17em;
+    │      padding: 0.75rem 2.5rem;
+    │      text-decoration: none;
+    │      text-transform: uppercase;
+    │      touch-action: manipulation;
+    │      transition: box-shadow 0.1s ease, transform 0.1s ease, filter 0.1s ease;
+    │      user-select: none;
+    │      width: flex;
+    │
+  ✓
+    → Writing globals.scss...  ✓
+    ✓ frontend/styles/globals.scss
+
+  [log] Changes written → /workspaces/cuttingcorners/fix-log.json
+
+══════════════════════════════════════════════════════════════════
+  DONE
+══════════════════════════════════════════════════════════════════
+Skeletons applied: 20
+Backup:  /workspaces/cuttingcorners/scripts/current/backups/2026-05-11_04-00-11
+Recover: skeleton --recover
+Output:  /workspaces/cuttingcorners/skeleton-apply-2026-05-11_04-00-11.txt
+

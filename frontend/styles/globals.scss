@@ -1,3 +1,5 @@
+@use '../../../../src/css/shared' as *;
+@use '../../../src/css/shared' as *;
 @font-face {
   font-family: 'Qt Display';
   src: url('/fonts/ktquantum-semibold.otf') format('opentype');
@@ -316,26 +318,7 @@ input, textarea, select { border-radius: 0; }
 }
 
 /* ── Primary -- gold fill, dark border, raised emboss ── */
-.btn-primary {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center; background-color:#b561479c; color: #ffffff;
-  gap: 0.5rem;
-  padding: 0.75rem 2.5rem;
-  border-radius: 999px;
-  font-family: var(--font-ui);
-  font-size: 0.875rem;
-  font-weight: 900;
-  width: flex;
-  letter-spacing: 0.17em;
-  text-transform: uppercase;
-  text-decoration: none;
-  cursor: pointer;
-  transition: box-shadow 0.1s ease, transform 0.1s ease, filter 0.1s ease;
-  -webkit-tap-highlight-color: transparent;
-  touch-action: manipulation;
-  user-select: none;
-}
+
 
 .btn-secondary{
   display: inline-flex;
@@ -476,4 +459,63 @@ input, textarea, select { border-radius: 0; }
 
 .hover-lift { transition: transform 0.3s ease; }
 
-
+// Skeleton: .mag-skeleton (tier 4, 4 shared props)
+.btn-primary {
+  @extend .mag-skeleton;
+  background-color: #b561479c;
+  border-radius: 999px;
+  color: #ffffff;
+  display: inline-flex;
+  font-family: var(--font-ui);
+  font-size: 0.875rem;
+  font-weight: 900;
+  gap: 0.5rem;
+  letter-spacing: 0.17em;
+  padding: 0.75rem 2.5rem;
+  text-decoration: none;
+  text-transform: uppercase;
+  touch-action: manipulation;
+  transition: box-shadow 0.1s ease, transform 0.1s ease, filter 0.1s ease;
+  user-select: none;
+  width: flex;
+  -webkit-tap-highlight-color: transparent;
+  align-items: center;
+  background-color: #b561479c;
+  border-radius: 999px;
+  color: #ffffff;
+  cursor: pointer;
+  display: inline-flex;
+  font-family: var(--font-ui);
+  font-size: 0.875rem;
+  font-weight: 900;
+  gap: 0.5rem;
+  justify-content: center;
+  letter-spacing: 0.17em;
+  padding: 0.75rem 2.5rem;
+  text-decoration: none;
+  text-transform: uppercase;
+  touch-action: manipulation;
+  transition: box-shadow 0.1s ease, transform 0.1s ease, filter 0.1s ease;
+  user-select: none;
+  width: flex;
+  -webkit-tap-highlight-color: transparent;
+  align-items: center;
+  background-color: #b561479c;
+  border-radius: 999px;
+  color: #ffffff;
+  cursor: pointer;
+  display: inline-flex;
+  font-family: var(--font-ui);
+  font-size: 0.875rem;
+  font-weight: 900;
+  gap: 0.5rem;
+  justify-content: center;
+  letter-spacing: 0.17em;
+  padding: 0.75rem 2.5rem;
+  text-decoration: none;
+  text-transform: uppercase;
+  touch-action: manipulation;
+  transition: box-shadow 0.1s ease, transform 0.1s ease, filter 0.1s ease;
+  user-select: none;
+  width: flex;
+}

@@ -1,3 +1,7 @@
+@use '../../src/css/shared' as *;
+@use '../src/css/shared' as *;
+@use '../../../../src/css/shared' as *;
+@use '../../../src/css/shared' as *;
 /* ═══════════════════════════════════════════════════════════════
    CCG Feasibility Wizard
    Matches dashboard tile system — all colors via CSS custom props
@@ -34,26 +38,10 @@
 .tool-rule.wizard-rule { margin: 0 auto clamp(16px, 3vh, 28px); }
 
 /* ── FULL SCREEN ── */
-.full-screen {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  overflow-y: hidden;
-  flex: 1;
-  width: 100%;
-}
+
 
 /* ── INTRO SCREEN ── */
-.center-stage {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  flex: 1;
-  min-height: 100%;
-  padding: clamp(24px, 5vw, 60px) clamp(20px, 5vw, 56px) 0;
-  text-align: center;
-}
+
 .intro-line {
   font-family: var(--font-display);
   font-size: clamp(1.25rem, 3vw, 2rem);
@@ -70,17 +58,7 @@
 }
 
 /* ── DISCLAIMER CARD ── */
-.disc-card {
-  width: 100%;
-  max-width: 560px;
-  background: transparent;
-  border: 0.8px solid var(--border);
-  border-radius: 21px;
-  padding: clamp(24px, 4vw, 40px) clamp(20px, 4vw, 36px);
-  box-shadow: none;
-  position: relative;
-  overflow: hidden;
-}
+
 .disc-card::before {
   content: '';
   position: absolute;
@@ -95,15 +73,7 @@
 .disc-card.fly-out {
   animation: wizFlyOut 400ms cubic-bezier(0.4, 0, 1, 1) both;
 }
-.disc-label {
-  font-family: var(--font-body);
-  font-size: clamp(0.75rem, 1.5vw, 0.875rem);
-  letter-spacing: 0.24em;
-  text-transform: uppercase;
-  color: var(--gold);
-  opacity: 0.8;
-  margin: 0 0 clamp(12px, 2vw, 20px);
-}
+
 .disc-text {
   font-family: var(--font-body);
   font-size: clamp(1rem, 2vw, 1.125rem);
@@ -111,22 +81,7 @@
   line-height: 1.7;
   margin: 0 0 clamp(20px, 3vw, 32px);
 }
-.disc-check-row {
-  display: flex;
-  align-items: center;
-  gap: clamp(12px, 2.5vw, 20px);
-  padding: clamp(14px, 2.5vw, 20px) clamp(16px, 3vw, 24px);
-  margin-bottom: clamp(12px, 2vw, 20px);
-  background: var(--bg-card);
-  border: 0.8px solid rgba(255,255,255,0.04);
-  border-radius: 999px;
-  cursor: pointer;
-  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow:
-    inset 0 2px 6px rgba(0,0,0,0.35),
-    inset 0 1px 2px rgba(0,0,0,0.2);
-  opacity: 0.62;
-}
+
 .disc-check-row:hover {
   opacity: 1;
   transform: translateY(-2px);
@@ -135,20 +90,7 @@
     0 8px 24px rgba(0,0,0,0.3),
     0 0 16px color-mix(in srgb, var(--gold) 12%, transparent);
 }
-.disc-checkbox {
-  width: clamp(20px, 3vw, 26px);
-  height: clamp(20px, 3vw, 26px);
-  border-radius: 999px;
-  border: 0.8px solid var(--border);
-  background: var(--bg-card);
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 200ms ease;
-  font-size: clamp(0.75rem, 1.5vw, 1rem);
-  color: var(--gold);
-}
+
 .disc-checkbox.on {
   background: color-mix(in srgb, var(--gold) 15%, transparent);
   border-color: var(--gold);
@@ -196,28 +138,7 @@
 .disc-btn.on:active { transform: scale(0.97); }
 
 /* ── BEGIN BUTTON ── */
-.begin-btn {
-  background: transparent;
-  color: var(--gold);
-  border: 0.8px solid color-mix(in srgb, var(--gold) 35%, rgba(255,255,255,0.08));
-  padding: clamp(20px, 4vw, 32px) clamp(64px, 12vw, 120px);
-  font-family: var(--font-body);
-  font-size: clamp(1.25rem, 3vw, 1.75rem);
-  font-weight: 500;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  cursor: pointer;
-  border-radius: 999px;
-  transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
-  margin-top: auto;
-  margin-bottom: clamp(40px, 8vh, 80px);
-  position: relative;
-  overflow: hidden;
-  box-shadow:
-    0 4px 16px rgba(0,0,0,0.3),
-    0 0 12px color-mix(in srgb, var(--gold) 10%, transparent);
-  animation: wizFlyIn 600ms cubic-bezier(0.16, 1, 0.3, 1) both;
-}
+
 .begin-btn::before {
   content: '';
   position: absolute;
@@ -267,41 +188,10 @@
 }
 
 /* ── NAV BUTTONS ── */
-.wiz-nav-btn-ghost {
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-family: var(--font-body);
-  font-size: clamp(0.875rem, 1.5vw, 1rem);
-  font-weight: 500;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--text-muted);
-  opacity: 0.55;
-  padding: clamp(12px, 2vw, 16px) 0;
-  transition: opacity 200ms ease;
-}
+
 .wiz-nav-btn-ghost:hover { opacity: 1; }
 
-.wiz-nav-btn-next {
-  background: transparent;
-  color: var(--gold);
-  border: 0.8px solid color-mix(in srgb, var(--gold) 35%, rgba(255,255,255,0.08));
-  padding: clamp(14px, 2.5vw, 20px) clamp(32px, 5vw, 60px);
-  font-family: var(--font-body);
-  font-size: clamp(0.875rem, 1.5vw, 1.125rem);
-  font-weight: 500;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  cursor: pointer;
-  border-radius: 999px;
-  transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow:
-    0 4px 16px rgba(0,0,0,0.3),
-    0 0 12px color-mix(in srgb, var(--gold) 10%, transparent);
-  position: relative;
-  overflow: hidden;
-}
+
 .wiz-nav-btn-next::before {
   content: '';
   position: absolute;
@@ -343,15 +233,7 @@
     inset 0 2px 6px rgba(39, 39, 39, 0.35),
     inset 0 1px 2px rgba(0,0,0,0.2);
 }
-.stone-eyebrow {
-  font-family: var(--font-body);
-  font-size: clamp(0.75rem, 1.5vw, 0.875rem);
-  letter-spacing: 0.24em;
-  text-transform: uppercase;
-  color: var(--gold);
-  opacity: 0.8;
-  margin: 0 0 clamp(12px, 2vw, 20px);
-}
+
 .stone-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -411,24 +293,7 @@
 }
 
 /* ── CHECK ITEMS ── */
-.wiz-check-item {
-  display: 70%;
-  align-items: center;
-  gap: clamp(12px, 2.5vw, 20px);
-  padding: clamp(16px, 3vw, 24px) clamp(18px, 3.5vw, 28px);
-  margin-bottom: clamp(8px, 1.5vw, 12px);
-  background: transparent;
-  border: 0.8px solid var(--border);
-  border-radius: 21px;
-  cursor: pointer;
-  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: none;
-  opacity: 1;
-  user-select: none;
-  -webkit-tap-highlight-color: transparent;
-  position: relative;
-  overflow: hidden;
-}
+
 .wiz-check-item::before {
   content: '';
   position: absolute;
@@ -520,25 +385,7 @@
   grid-template-columns: 1fr 1fr;
   gap: clamp(8px, 1.5vw, 14px);
 }
-.wiz-correctable-btn {
-  font-family: var(--font-body);
-  font-size: clamp(0.875rem, 1.8vw, 1.125rem);
-  font-weight: 400;
-  color: var(--text);
-  padding: clamp(16px, 3vw, 24px) clamp(12px, 2vw, 20px);
-  background: transparent;
-  border: 0.8px solid var(--border);
-  border-radius: 999px;
-  cursor: pointer;
-  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
-  -webkit-tap-highlight-color: transparent;
-  text-align: center;
-  line-height: 1.4;
-  box-shadow: none;
-  opacity: 1;
-  position: relative;
-  overflow: hidden;
-}
+
 .wiz-correctable-btn::before {
   content: '';
   position: absolute;
@@ -587,16 +434,7 @@
 }
 
 /* ── WARNING MODAL ── */
-.wiz-warning-overlay {
-  position: fixed;
-  inset: 0;
-  z-index: 1000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(0,0,0,0.6);
-  backdrop-filter: blur(4px);
-}
+
 .wiz-warning-card {
   background: var(--bg-card);
   border: 0.8px solid rgba(255,255,255,0.04);
@@ -676,16 +514,7 @@
 .wiz-warning-btn-confirm:active { transform: scale(0.97); }
 
 /* ── INTRO LAYOUT ── */
-.center-stage {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  flex: 1;
-  min-height: 100%;
-  width: 100%;
-  padding: 0;
-  text-align: center;
-}
+
 .intro-skip-row {
   width: 100%;
   display: flex;
@@ -693,54 +522,13 @@
   padding: clamp(12px, 2vw, 20px) clamp(16px, 3vw, 28px);
   flex-shrink: 0;
 }
-.intro-skip-btn {
-  background: transparent;
-  border: none;
-  color: var(--text-muted);
-  font-family: var(--font-body);
-  font-size: clamp(0.875rem, 1.5vw, 1rem);
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.18em;
-  cursor: pointer;
-  opacity: 0.75;
-  transition: opacity 200ms ease;
-  padding: 0;
-}
+
 .intro-skip-btn:hover { opacity: 1; }
-.intro-middle {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  padding: clamp(24px, 5vw, 60px) clamp(20px, 5vw, 56px);
-}
-.intro-begin-row {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0 clamp(20px, 5vw, 56px) clamp(48px, 10vh, 80px);
-  flex-shrink: 0;
-}
+
+
 
 /* ── SECTION INTRO CARD ── */
-.wiz-section-intro {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  flex: 1;
-  width: 100%;
-  max-width: 640px;
-  margin: 0 auto;
-  gap: clamp(20px, 4vw, 36px);
-  padding: clamp(24px, 5vw, 48px) 0;
-  animation: wizFlyIn 300ms cubic-bezier(0.16,1,0.3,1) both;
-  text-align: center;
-}
+
 .wiz-section-select-hint {
   font-family: var(--font-body);
   font-size: clamp(1rem, 2vw, 1.25rem);
@@ -755,25 +543,7 @@
   justify-content: center;
   margin-top: clamp(8px, 2vw, 16px);
 }
-.wiz-section-btn {
-  background: transparent;
-  color: var(--gold);
-  border: 0.8px solid color-mix(in srgb, var(--gold) 35%, rgba(255,255,255,0.08));
-  padding: clamp(14px, 2.5vw, 20px) clamp(40px, 8vw, 80px);
-  font-family: var(--font-body);
-  font-size: clamp(1rem, 2vw, 1.25rem);
-  font-weight: 500;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  cursor: pointer;
-  border-radius: 999px;
-  transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow:
-    0 4px 16px rgba(0,0,0,0.3),
-    0 0 12px color-mix(in srgb, var(--gold) 10%, transparent);
-  position: relative;
-  overflow: hidden;
-}
+
 .wiz-section-btn::before {
   content: '';
   position: absolute;
@@ -792,18 +562,7 @@
 .wiz-section-btn:active { transform: scale(0.97); }
 
 /* ── ALMOST DONE SCREEN ── */
-.wiz-almost-done {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  flex: 1;
-  min-height: 100%;
-  text-align: center;
-  gap: clamp(16px, 3vw, 28px);
-  padding: clamp(24px, 5vw, 60px) clamp(20px, 5vw, 56px);
-  animation: wizFlyIn 300ms cubic-bezier(0.16,1,0.3,1) both;
-}
+
 .wiz-almost-done-icon {
   font-size: clamp(1.5rem, 3vw, 2.5rem);
   color: var(--gold);
@@ -834,30 +593,10 @@
 }
 
 /* ── CHECK ITEMS CENTERED WRAPPER ── */
-.wiz-checks-wrapper {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  flex: 1;
-}
+
 
 /* ── SECTION CARD INNER CONTENT FIX ── */
-.wiz-section-card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  flex: 1;
-  width: 100%;
-  max-width: 640px;
-  margin: 0 auto;
-  text-align: center;
-  gap: clamp(16px, 3vw, 28px);
-  padding: clamp(24px, 5vw, 60px) clamp(20px, 5vw, 56px);
-  animation: wizFlyIn 300ms cubic-bezier(0.16,1,0.3,1) both;
 
-}
 .wiz-section-card::before {
   content: '';
   position: absolute;
@@ -866,16 +605,7 @@
   background: var(--gold);
   opacity: 0.6;
 }
-.wiz-section-card-phase {
-  font-family: var(--font-ui);
-  font-size: clamp(0.75rem, 1.5vw, 0.875rem);
-  font-weight: 700;
-  letter-spacing: 0.24em;
-  text-transform: uppercase;
-  color: var(--gold);
-  opacity: 0.8;
-  margin: 0 0 clamp(8px, 1.5vw, 12px);
-}
+
 .wiz-section-card-title {
   font-family: var(--font-ui);
   font-size: clamp(1.125rem, 2.5vw, 1.5rem);
@@ -926,15 +656,7 @@
   background: var(--gold);
   opacity: 0.6;
 }
-.stone-eyebrow {
-  font-family: var(--font-body);
-  font-size: clamp(0.875rem, 1.5vw, 1rem);
-  letter-spacing: 0.24em;
-  text-transform: uppercase;
-  color: var(--gold);
-  opacity: 0.8;
-  margin: 0 0 clamp(12px, 2vw, 20px);
-}
+
 .stone-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -1081,3 +803,373 @@
 .btn-export:active,
 .btn-quote:active,
 .btn-save:active { transform: scale(0.97); }
+
+
+// Skeleton: .wa-skeleton (tier 4, 4 shared props)
+.intro-begin-row {
+  @extend .wa-skeleton;
+  flex-shrink: 0;
+  padding: 0 clamp(20px, 5vw, 56px) clamp(48px, 10vh, 80px);
+  align-items: center;
+  display: flex;
+  flex-shrink: 0;
+  justify-content: center;
+  padding: 0 clamp(20px, 5vw, 56px) clamp(48px, 10vh, 80px);
+  width: 100%;
+}
+
+// Skeleton: .wa-skeleton (tier 4, 4 shared props)
+.intro-middle {
+  @extend .wa-skeleton;
+  flex: 1;
+  flex-direction: column;
+  padding: clamp(24px, 5vw, 60px) clamp(20px, 5vw, 56px);
+  align-items: center;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(24px, 5vw, 60px) clamp(20px, 5vw, 56px);
+  width: 100%;
+}
+
+// Skeleton: .wa-skeleton (tier 4, 4 shared props)
+.wiz-section-intro {
+  @extend .wa-skeleton;
+  animation: wizFlyIn 300ms cubic-bezier(0.16,1,0.3,1) both;
+  flex: 1;
+  flex-direction: column;
+  gap: clamp(20px, 4vw, 36px);
+  margin: 0 auto;
+  max-width: 640px;
+  padding: clamp(24px, 5vw, 48px) 0;
+  text-align: center;
+  align-items: center;
+  animation: wizFlyIn 300ms cubic-bezier(0.16,1,0.3,1) both;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: clamp(20px, 4vw, 36px);
+  justify-content: center;
+  margin: 0 auto;
+  max-width: 640px;
+  padding: clamp(24px, 5vw, 48px) 0;
+  text-align: center;
+  width: 100%;
+}
+
+// Skeleton: .wa-skeleton (tier 4, 4 shared props)
+.wiz-section-card {
+  @extend .wa-skeleton;
+  animation: wizFlyIn 300ms cubic-bezier(0.16,1,0.3,1) both;
+  flex: 1;
+  flex-direction: column;
+  gap: clamp(16px, 3vw, 28px);
+  margin: 0 auto;
+  max-width: 640px;
+  padding: clamp(24px, 5vw, 60px) clamp(20px, 5vw, 56px);
+  text-align: center;
+  align-items: center;
+  animation: wizFlyIn 300ms cubic-bezier(0.16,1,0.3,1) both;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: clamp(16px, 3vw, 28px);
+  justify-content: center;
+  margin: 0 auto;
+  max-width: 640px;
+  padding: clamp(24px, 5vw, 60px) clamp(20px, 5vw, 56px);
+  text-align: center;
+  width: 100%;
+}
+
+
+// Skeleton: .dhw-skeleton (tier 3, 3 shared props)
+.disc-card {
+  @extend .dhw-skeleton;
+  background: transparent;
+  border: 0.8px solid var(--border);
+  border-radius: 21px;
+  box-shadow: none;
+  max-width: 560px;
+  padding: clamp(24px, 4vw, 40px) clamp(20px, 4vw, 36px);
+}
+
+
+
+
+// Skeleton: .maw-skeleton-4 (tier 3, 3 shared props)
+.wiz-checks-wrapper {
+  @extend .maw-skeleton-4;
+  justify-content: center;
+  width: 100%;
+}
+
+
+
+
+
+
+
+// Skeleton: .mwa-skeleton-6 (tier 3, 3 shared props)
+.wiz-warning-overlay {
+  @extend .mwa-skeleton-6;
+  backdrop-filter: blur(4px);
+  background: rgba(0,0,0,0.6);
+  inset: 0;
+  justify-content: center;
+  z-index: 1000;
+}
+
+// Skeleton: .mwt-skeleton-4 (tier 3, 3 shared props)
+.disc-label {
+  @extend .mwt-skeleton-4;
+  color: var(--gold);
+  font-family: var(--font-body);
+  font-size: clamp(0.75rem, 1.5vw, 0.875rem);
+  margin: 0 0 clamp(12px, 2vw, 20px);
+}
+
+// Skeleton: .mwt-skeleton-4 (tier 3, 3 shared props)
+.stone-eyebrow {
+  @extend .mwt-skeleton-4;
+  color: var(--gold);
+  font-family: var(--font-body);
+  font-size: clamp(0.875rem, 1.5vw, 1rem);
+  margin: 0 0 clamp(12px, 2vw, 20px);
+}
+
+// Skeleton: .mwt-skeleton-4 (tier 3, 3 shared props)
+.wiz-section-card-phase {
+  @extend .mwt-skeleton-4;
+  color: var(--gold);
+  font-family: var(--font-ui);
+  font-size: clamp(0.75rem, 1.5vw, 0.875rem);
+  font-weight: 700;
+  margin: 0 0 clamp(8px, 1.5vw, 12px);
+}
+
+// Skeleton: .awg-skeleton (tier 3, 3 shared props)
+.disc-check-row {
+  @extend .awg-skeleton;
+  background: var(--bg-card);
+  border: 0.8px solid rgba(255,255,255,0.04);
+  box-shadow: inset 0 2px 6px rgba(0,0,0,0.35),
+    inset 0 1px 2px rgba(0,0,0,0.2);
+  display: flex;
+  gap: clamp(12px, 2.5vw, 20px);
+  margin-bottom: clamp(12px, 2vw, 20px);
+  opacity: 0.62;
+  padding: clamp(14px, 2.5vw, 20px) clamp(16px, 3vw, 24px);
+  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+// Skeleton: .mw-skeleton (tier 5, 5 shared props)
+.wiz-almost-done {
+  @extend .mw-skeleton;
+  animation: wizFlyIn 300ms cubic-bezier(0.16,1,0.3,1) both;
+  flex: 1;
+  gap: clamp(16px, 3vw, 28px);
+  min-height: 100%;
+  padding: clamp(24px, 5vw, 60px) clamp(20px, 5vw, 56px);
+}
+
+// Skeleton: .daw-skeleton (tier 3, 3 shared props)
+.full-screen {
+  @extend .daw-skeleton;
+  flex: 1;
+  flex-direction: column;
+  overflow-y: hidden;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  overflow-y: hidden;
+  position: relative;
+  width: 100%;
+}
+
+// Skeleton: .maw-skeleton-2 (tier 3, 3 shared props)
+.wiz-nav-btn-ghost {
+  @extend .maw-skeleton-2;
+  color: var(--text-muted);
+  font-family: var(--font-body);
+  font-size: clamp(0.875rem, 1.5vw, 1rem);
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  opacity: 0.55;
+  padding: clamp(12px, 2vw, 16px) 0;
+  text-transform: uppercase;
+  transition: opacity 200ms ease;
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: clamp(0.875rem, 1.5vw, 1rem);
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  opacity: 0.55;
+  padding: clamp(12px, 2vw, 16px) 0;
+  text-transform: uppercase;
+  transition: opacity 200ms ease;
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: clamp(0.875rem, 1.5vw, 1rem);
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  opacity: 0.55;
+  padding: clamp(12px, 2vw, 16px) 0;
+  text-transform: uppercase;
+  transition: opacity 200ms ease;
+}
+
+// Skeleton: .maw-skeleton-3 (tier 3, 3 shared props)
+.intro-skip-btn {
+  @extend .maw-skeleton-3;
+  background: transparent;
+  color: var(--text-muted);
+  font-family: var(--font-body);
+  font-size: clamp(0.875rem, 1.5vw, 1rem);
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  opacity: 0.75;
+  padding: 0;
+  transition: opacity 200ms ease;
+}
+
+// Skeleton: .mw-skeleton-2 (tier 3, 3 shared props)
+.center-stage {
+  @extend .mw-skeleton-2;
+  flex: 1;
+  flex-direction: column;
+  min-height: 100%;
+  text-align: center;
+  width: 100%;
+}
+
+// Skeleton: .mwt-skeleton-4 (tier 3, 3 shared props)
+.wiz-correctable-btn {
+  @extend .mwt-skeleton-4;
+  -webkit-tap-highlight-color: transparent;
+  background: transparent;
+  border: 0.8px solid var(--border);
+  border-radius: 999px;
+  box-shadow: none;
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: clamp(0.875rem, 1.8vw, 1.125rem);
+  font-weight: 400;
+  line-height: 1.4;
+  opacity: 1;
+  padding: clamp(16px, 3vw, 24px) clamp(12px, 2vw, 20px);
+  text-align: center;
+  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+// Skeleton: .mwt-skeleton-4 (tier 3, 3 shared props)
+.begin-btn {
+  @extend .mwt-skeleton-4;
+  animation: wizFlyIn 600ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  background: transparent;
+  border: 0.8px solid color-mix(in srgb, var(--gold) 35%, rgba(255,255,255,0.08));
+  border-radius: 999px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.3),
+    0 0 12px color-mix(in srgb, var(--gold) 10%, transparent);
+  color: var(--gold);
+  font-family: var(--font-body);
+  font-size: clamp(1.25rem, 3vw, 1.75rem);
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  margin-bottom: clamp(40px, 8vh, 80px);
+  margin-top: auto;
+  padding: clamp(20px, 4vw, 32px) clamp(64px, 12vw, 120px);
+  text-transform: uppercase;
+  transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+// Skeleton: .mwt-skeleton-4 (tier 3, 3 shared props)
+.wiz-nav-btn-next {
+  @extend .mwt-skeleton-4;
+  background: transparent;
+  border: 0.8px solid color-mix(in srgb, var(--gold) 35%, rgba(255,255,255,0.08));
+  border-radius: 999px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.3),
+    0 0 12px color-mix(in srgb, var(--gold) 10%, transparent);
+  color: var(--gold);
+  font-family: var(--font-body);
+  font-size: clamp(0.875rem, 1.5vw, 1.125rem);
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  padding: clamp(14px, 2.5vw, 20px) clamp(32px, 5vw, 60px);
+  text-transform: uppercase;
+  transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+// Skeleton: .mwt-skeleton-4 (tier 3, 3 shared props)
+.wiz-section-btn {
+  @extend .mwt-skeleton-4;
+  background: transparent;
+  border: 0.8px solid color-mix(in srgb, var(--gold) 35%, rgba(255,255,255,0.08));
+  border-radius: 999px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.3),
+    0 0 12px color-mix(in srgb, var(--gold) 10%, transparent);
+  color: var(--gold);
+  font-family: var(--font-body);
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  padding: clamp(14px, 2.5vw, 20px) clamp(40px, 8vw, 80px);
+  text-transform: uppercase;
+  transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+// Skeleton: .mwt-skeleton-4 (tier 3, 3 shared props)
+.wiz-check-item {
+  @extend .mwt-skeleton-4;
+  -webkit-tap-highlight-color: transparent;
+  align-items: center;
+  background: transparent;
+  border: 0.8px solid var(--border);
+  border-radius: 21px;
+  box-shadow: none;
+  display: 70%;
+  gap: clamp(12px, 2.5vw, 20px);
+  margin-bottom: clamp(8px, 1.5vw, 12px);
+  opacity: 1;
+  padding: clamp(16px, 3vw, 24px) clamp(18px, 3.5vw, 28px);
+  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  align-items: center;
+  background: transparent;
+  border: 0.8px solid var(--border);
+  border-radius: 21px;
+  box-shadow: none;
+  cursor: pointer;
+  display: 70%;
+  gap: clamp(12px, 2.5vw, 20px);
+  margin-bottom: clamp(8px, 1.5vw, 12px);
+  opacity: 1;
+  overflow: hidden;
+  padding: clamp(16px, 3vw, 24px) clamp(18px, 3.5vw, 28px);
+  position: relative;
+  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  user-select: none;
+}
+
+// Skeleton: .awg-skeleton (tier 3, 3 shared props)
+.disc-checkbox {
+  @extend .awg-skeleton;
+  background: var(--bg-card);
+  border: 0.8px solid var(--border);
+  color: var(--gold);
+  display: flex;
+  flex-shrink: 0;
+  font-size: clamp(0.75rem, 1.5vw, 1rem);
+  height: clamp(20px, 3vw, 26px);
+  transition: all 200ms ease;
+  width: clamp(20px, 3vw, 26px);
+}

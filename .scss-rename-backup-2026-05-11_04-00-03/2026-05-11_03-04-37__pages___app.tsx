@@ -3,16 +3,16 @@ import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { ThemeProvider } from '../components/theme-provider';
 import type { AppProps } from 'next/app';
-import '../styles/globals.scss'
-import '../styles/Admin.scss';
-import '../styles/shopCardEffect.scss';
-import '../styles/home.scss';
-import '../components/account/mobile/css/WizardShell.scss'
-import '../styles/wizard.scss';
-import '../components/account/mobile/MobileShell.scss';
+import '../styles/globals.css'
+import '../styles/Admin.css';
+import '../styles/shopCardEffect.css';
+import '../styles/home.css';
+import '../components/account/mobile/css/WizardShell.css'
+import '../styles/wizard.css';
+import '../components/account/mobile/MobileShell.css';
 import { useAuth } from '../components/account/shared/hooks/useAuth';
-import '../components/account/desktop/DesktopShell.scss';
-import '../components/account/mobile/TilesShell.scss';
+import '../components/account/desktop/DesktopShell.css';
+import '../components/account/mobile/TilesShell.css';
 import { useEffect, useState } from 'react';
 
 export function useIsMobile() {

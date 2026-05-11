@@ -274,72 +274,23 @@ def find_clones(root: Path) -> list[dict]:
     decl_index: dict[frozenset, list[tuple[str, Path]]] = defaultdict(list)
 
     for i, f in enumerate(scss_files, 1):
-        rel = f.relative_to(root)
-        out(f"  [{i}/{len(scss_files)}] Scanning: {rel}")
+        bar(i, len(scss_files), f.name)
         text    = read_file(f)
         classes = parse_css_classes(text)
-        class_count = 0
         for name, data in classes.items():
             decls = data["declarations"]
             if not decls or len(decls) < 2:
                 continue
             decl_index[frozenset(decls.items())].append((name, f))
-            class_count += 1
-        out(f"           Found {class_count} indexable class(es)")
 
-    out(f"\n  ✓ Scan complete. Comparing files pairwise...\n")
+    print(flush=True)
 
-    # Build per-file class index for pairwise comparison
-    file_classes: dict[Path, dict[str, dict]] = {}
-    for f in scss_files:
-        text    = read_file(f)
-        classes = parse_css_classes(text)
-        file_classes[f] = {
-            name: data["declarations"]
-            for name, data in classes.items()
-            if data["declarations"] and len(data["declarations"]) >= 2
-        }
-
-    # Explicit pairwise comparison
-    pairs = [(scss_files[i], scss_files[j])
-             for i in range(len(scss_files))
-             for j in range(i + 1, len(scss_files))]
-
-    out(f"  {len(pairs)} file pair(s) to compare\n")
-
-    match_map: dict[frozenset, list[tuple[str, Path]]] = defaultdict(list)
-    seen_keys: set[frozenset] = set()
-
-    for fa, fb in pairs:
-        rel_a = fa.relative_to(root)
-        rel_b = fb.relative_to(root)
-        classes_a = file_classes.get(fa, {})
-        classes_b = file_classes.get(fb, {})
-
-        matches_found = []
-        for name_a, decls_a in classes_a.items():
-            for name_b, decls_b in classes_b.items():
-                if name_a == name_b:
-                    continue
-                if decls_a == decls_b:  # exact match — same props, same values, same count
-                    matches_found.append((name_a, name_b, decls_a))
-
-        status = f"{len(matches_found)} match(es)" if matches_found else "no matches"
-        out(f"  Comparing: {rel_a.name:<40} ↔  {rel_b.name:<40} → {status}")
-
-        for name_a, name_b, decls in matches_found:
-            out(f"             ✓ {name_a}  ↔  {name_b}  ({', '.join(sorted(decls.keys()))})", 1)
-            key = frozenset(decls.items())
-            if key not in seen_keys:
-                seen_keys.add(key)
-            match_map[key].append((name_a, fa))
-            match_map[key].append((name_b, fb))
-
-    out(f"\n  ✓ Pairwise comparison complete.\n")
-
-    # Build families from match_map
     families = []
-    for decl_key, entries in match_map.items():
+    for decl_key, entries in decl_index.items():
+        decls = dict(decl_key)
+        if len(decls) < 2 or len(entries) < 2:
+            continue
+        # Deduplicate by class name
         unique, seen = [], set()
         for name, f in entries:
             if name not in seen:
@@ -350,7 +301,7 @@ def find_clones(root: Path) -> list[dict]:
         families.append({
             "names":        [e[0] for e in unique],
             "files":        [e[1] for e in unique],
-            "declarations": dict(decl_key),
+            "declarations": decls,
             "count":        len(unique),
         })
 

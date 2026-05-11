@@ -1,0 +1,2178 @@
+{
+  "runs": [
+    {
+      "run_id": "2026-05-11 03:04:38",
+      "script": "fix_css_doubles",
+      "dry_run": false,
+      "entries": [
+        {
+          "ts": "2026-05-11T03:04:38.913274+00:00",
+          "action": "add_to_shared",
+          "file": "/workspaces/cuttingcorners/frontend/src/css/shared.scss",
+          "detail": "Added .desktop from .nr-sheet, .tab-bar, .profile-delete-backdrop",
+          "before": "",
+          "after": ""
+        },
+        {
+          "ts": "2026-05-11T03:04:38.914503+00:00",
+          "action": "extend_shared",
+          "file": "components/account/desktop/DesktopAccount.scss",
+          "detail": ".nr-sheet now @extends .desktop",
+          "before": ".nr-sheet",
+          "after": "@extend .desktop"
+        },
+        {
+          "ts": "2026-05-11T03:04:38.915566+00:00",
+          "action": "extend_shared",
+          "file": "components/account/desktop/DesktopShell.scss",
+          "detail": ".tab-bar now @extends .desktop",
+          "before": ".tab-bar",
+          "after": "@extend .desktop"
+        },
+        {
+          "ts": "2026-05-11T03:04:38.916566+00:00",
+          "action": "extend_shared",
+          "file": "components/account/desktop/DesktopAccount.scss",
+          "detail": ".profile-delete-backdrop now @extends .desktop",
+          "before": ".profile-delete-backdrop",
+          "after": "@extend .desktop"
+        },
+        {
+          "ts": "2026-05-11T03:04:38.917688+00:00",
+          "action": "add_to_shared",
+          "file": "/workspaces/cuttingcorners/frontend/src/css/shared.scss",
+          "detail": "Added .mobile-tiles from .shop-grid, .tile-row",
+          "before": "",
+          "after": ""
+        },
+        {
+          "ts": "2026-05-11T03:04:38.919737+00:00",
+          "action": "extend_shared",
+          "file": "components/account/mobile/MobileShell.scss",
+          "detail": ".shop-grid now @extends .mobile-tiles",
+          "before": ".shop-grid",
+          "after": "@extend .mobile-tiles"
+        },
+        {
+          "ts": "2026-05-11T03:04:38.920873+00:00",
+          "action": "extend_shared",
+          "file": "components/account/mobile/TilesShell.scss",
+          "detail": ".tile-row now @extends .mobile-tiles",
+          "before": ".tile-row",
+          "after": "@extend .mobile-tiles"
+        }
+      ]
+    },
+    {
+      "run_id": "2026-05-11 03:51:04",
+      "script": "find_skeletons",
+      "dry_run": false,
+      "entries": [
+        {
+          "ts": "2026-05-11T03:51:02.759447+00:00",
+          "action": "add_skeleton",
+          "file": "/workspaces/cuttingcorners/frontend/src/css/shared.scss",
+          "detail": "Added .mw-skeleton tier 5",
+          "before": "",
+          "after": ""
+        },
+        {
+          "ts": "2026-05-11T03:51:02.784884+00:00",
+          "action": "apply_skeleton",
+          "file": "components/account/mobile/MobileShell.scss",
+          "detail": ".wiz-empty @extends .mw-skeleton",
+          "before": ".wiz-empty",
+          "after": "@extend .mw-skeleton"
+        },
+        {
+          "ts": "2026-05-11T03:51:02.817490+00:00",
+          "action": "apply_skeleton",
+          "file": "components/account/mobile/css/WizardShell.scss",
+          "detail": ".wiz-folder-tile-inner @extends .mw-skeleton",
+          "before": ".wiz-folder-tile-inner",
+          "after": "@extend .mw-skeleton"
+        },
+        {
+          "ts": "2026-05-11T03:51:02.826869+00:00",
+          "action": "apply_skeleton",
+          "file": "styles/wizard.scss",
+          "detail": ".wiz-almost-done @extends .mw-skeleton",
+          "before": ".wiz-almost-done",
+          "after": "@extend .mw-skeleton"
+        },
+        {
+          "ts": "2026-05-11T03:51:02.829828+00:00",
+          "action": "add_skeleton",
+          "file": "/workspaces/cuttingcorners/frontend/src/css/shared.scss",
+          "detail": "Added .mwa-skeleton tier 4",
+          "before": "",
+          "after": ""
+        },
+        {
+          "ts": "2026-05-11T03:51:02.840856+00:00",
+          "action": "apply_skeleton",
+          "file": "components/account/mobile/MobileShell.scss",
+          "detail": ".heart-btn @extends .mwa-skeleton",
+          "before": ".heart-btn",
+          "after": "@extend .mwa-skeleton"
+        },
+        {
+          "ts": "2026-05-11T03:51:02.844797+00:00",
+          "action": "apply_skeleton",
+          "file": "components/account/mobile/css/WizardShell.scss",
+          "detail": ".wiz-folder-action-btn @extends .mwa-skeleton",
+          "before": ".wiz-folder-action-btn",
+          "after": "@extend .mwa-skeleton"
+        },
+        {
+          "ts": "2026-05-11T03:51:02.854095+00:00",
+          "action": "apply_skeleton",
+          "file": "components/account/mobile/MobileShell.scss",
+          "detail": ".chat-send @extends .mwa-skeleton",
+          "before": ".chat-send",
+          "after": "@extend .mwa-skeleton"
+        },
+        {
+          "ts": "2026-05-11T03:51:02.864155+00:00",
+          "action": "apply_skeleton",
+          "file": "components/account/mobile/MobileShell.scss",
+          "detail": ".menu-drawer-close @extends .mwa-skeleton",
+          "before": ".menu-drawer-close",
+          "after": "@extend .mwa-skeleton"
+        },
+        {
+          "ts": "2026-05-11T03:51:02.870386+00:00",
+          "action": "apply_skeleton",
+          "file": "components/account/mobile/css/WizardShell.scss",
+          "detail": ".wiz-folder-tile-inner @extends .mwa-skeleton",
+          "before": ".wiz-folder-tile-inner",
+          "after": "@extend .mwa-skeleton"
+        },
+        {
+          "ts": "2026-05-11T03:51:02.882109+00:00",
+          "action": "apply_skeleton",
+          "file": "components/account/mobile/MobileShell.scss",
+          "detail": ".nr-info-btn @extends .mwa-skeleton",
+          "before": ".nr-info-btn",
+          "after": "@extend .mwa-skeleton"
+        },
+        {
+          "ts": "2026-05-11T03:51:02.896983+00:00",
+          "action": "apply_skeleton",
+          "file": "components/account/mobile/MobileShell.scss",
+          "detail": ".inv-drawer-close @extends .mwa-skeleton",
+          "before": ".inv-drawer-close",
+          "after": "@extend .mwa-skeleton"
+        },
+        {
+          "ts": "2026-05-11T03:51:02.905269+00:00",
+          "action": "apply_skeleton",
+          "file": "components/account/mobile/MobileShell.scss",
+          "detail": ".sr-archive-btn @extends .mwa-skeleton",
+          "before": ".sr-archive-btn",
+          "after": "@extend .mwa-skeleton"
+        },
+        {
+          "ts": "2026-05-11T03:51:02.914624+00:00",
+          "action": "apply_skeleton",
+          "file": "components/account/mobile/MobileShell.scss",
+          "detail": ".panel-close @extends .mwa-skeleton",
+          "before": ".panel-close",
+          "after": "@extend .mwa-skeleton"
+        },
+        {
+          "ts": "2026-05-11T03:51:02.919868+00:00",
+          "action": "apply_skeleton",
+          "file": "styles/Admin.scss",
+          "detail": ".xb @extends .mwa-skeleton",
+          "before": ".xb",
+          "after": "@extend .mwa-skeleton"
+        },
+        {
+          "ts": "2026-05-11T03:51:02.928087+00:00",
+          "action": "apply_skeleton",
+          "file": "components/account/mobile/MobileShell.scss",
+          "detail": ".chat-attach @extends .mwa-skeleton",
+          "before": ".chat-attach",
+          "after": "@extend .mwa-skeleton"
+        },
+        {
+          "ts": "2026-05-11T03:51:02.938529+00:00",
+          "action": "apply_skeleton",
+          "file": "components/account/mobile/MobileShell.scss",
+          "detail": ".nr-photo-rm @extends .mwa-skeleton",
+          "before": ".nr-photo-rm",
+          "after": "@extend .mwa-skeleton"
+        },
+        {
+          "ts": "2026-05-11T03:51:02.947241+00:00",
+          "action": "apply_skeleton",
+          "file": "components/account/mobile/MobileShell.scss",
+          "detail": ".wo-close @extends .mwa-skeleton",
+          "before": ".wo-close",
+          "after": "@extend .mwa-skeleton"
+        },
+        {
+          "ts": "2026-05-11T03:51:02.953670+00:00",
+          "action": "apply_skeleton",
+          "file": "components/account/mobile/MobileShell.scss",
+          "detail": ".wiz-thumb @extends .mwa-skeleton",
+          "before": ".wiz-thumb",
+          "after": "@extend .mwa-skeleton"
+        },
+        {
+          "ts": "2026-05-11T03:51:02.957503+00:00",
+          "action": "apply_skeleton",
+          "file": "components/account/mobile/MobileShell.scss",
+          "detail": ".res-close @extends .mwa-skeleton",
+          "before": ".res-close",
+          "after": "@extend .mwa-skeleton"
+        },
+        {
+          "ts": "2026-05-11T03:51:02.964047+00:00",
+          "action": "apply_skeleton",
+          "file": "components/account/mobile/MobileShell.scss",
+          "detail": ".srf-custom-remove @extends .mwa-skeleton",
+          "before": ".srf-custom-remove",
+          "after": "@extend .mwa-skeleton"
+        },
+        {
+          "ts": "2026-05-11T03:51:02.974130+00:00",
+          "action": "apply_skeleton",
+          "file": "components/account/mobile/MobileShell.scss",
+          "detail": ".srf-photo-remove @extends .mwa-skeleton",
+          "before": ".srf-photo-remove",
+          "after": "@extend .mwa-skeleton"
+        },
+        {
+          "ts": "2026-05-11T03:51:02.978347+00:00",
+          "action": "add_skeleton",
+          "file": "/workspaces/cuttingcorners/frontend/src/css/shared.scss",
+          "detail": "Added .mwa-skeleton-2 tier 4",
+          "before": "",
+          "after": ""
+        },
+        {
+          "ts": "2026-05-11T03:51:02.987863+00:00",
+          "action": "apply_skeleton",
+          "file": "components/account/mobile/MobileShell.scss",
+          "detail": ".panel-close @extends .mwa-skeleton-2",
+          "before": ".panel-close",
+          "after": "@extend .mwa-skeleton-2"
+        },
+        {
+          "ts": "2026-05-11T03:51:02.993433+00:00",
+          "action": "apply_skeleton",
+          "file": "components/account/mobile/css/WizardShell.scss",
+          "detail": ".wiz-back-btn @extends .mwa-skeleton-2",
+          "before": ".wiz-back-btn",
+          "after": "@extend .mwa-skeleton-2"
+        },
+        {
+          "ts": "2026-05-11T03:51:02.997089+00:00",
+          "action": "apply_skeleton",
+          "file": "components/account/mobile/MobileShell.scss",
+          "detail": ".chat-send @extends .mwa-skeleton-2",
+          "before": ".chat-send",
+          "after": "@extend .mwa-skeleton-2"
+        },
+        {
+          "ts": "2026-05-11T03:51:03.003222+00:00",
+          "action": "apply_skeleton",
+          "file": "components/account/mobile/MobileShell.scss",
+          "detail": ".nr-photo-rm @extends .mwa-skeleton-2",
+          "before": ".nr-photo-rm",
+          "after": "@extend .mwa-skeleton-2"
+        },
+        {
+          "ts": "2026-05-11T03:51:03.009624+00:00",
+          "action": "apply_skeleton",
+          "file": "components/account/mobile/MobileShell.scss",
+          "detail": ".wo-close @extends .mwa-skeleton-2",
+          "before": ".wo-close",
+          "after": "@extend .mwa-skeleton-2"
+        },
+        {
+          "ts": "2026-05-11T03:51:03.014267+00:00",
+          "action": "apply_skeleton",
+          "file": "components/account/mobile/MobileShell.scss",
+          "detail": ".res-close @extends .mwa-skeleton-2",
+          "before": ".res-close",
+          "after": "@extend .mwa-skeleton-2"
+        },
+        {
+          "ts": "2026-05-11T03:51:03.021108+00:00",
+          "action": "apply_skeleton",
+          "file": "components/account/mobile/MobileShell.scss",
+          "detail": ".sr-archive-btn @extends .mwa-skeleton-2",
+          "before": ".sr-archive-btn",
+          "after": "@extend .mwa-skeleton-2"
+        },
+        {
+          "ts": "2026-05-11T03:51:03.028479+00:00",
+          "action": "apply_skeleton",
+          "file": "components/account/mobile/MobileShell.scss",
+          "detail": ".srf-photo-remove @extends .mwa-skeleton-2",
+          "before": ".srf-photo-remove",
+          "after": "@extend .mwa-skeleton-2"
+        },
+        {
+          "ts": "2026-05-11T03:51:03.035153+00:00",
+          "action": "apply_skeleton",
+          "file": "styles/Admin.scss",
+          "detail": ".ni @extends .mwa-skeleton-2",
+          "before": ".ni",
+          "after": "@extend .mwa-skeleton-2"
+        },
+        {
+          "ts": "2026-05-11T03:51:03.038038+00:00",
+          "action": "add_skeleton",
+          "file": "/workspaces/cuttingcorners/frontend/src/css/shared.scss",
+          "detail": "Added .mwh-skeleton tier 4",
+          "before": "",
+          "after": ""
+        },
+        {
+          "ts": "2026-05-11T03:51:03.046003+00:00",
+          "action": "apply_skeleton",
+          "file": "components/account/mobile/MobileShell.scss",
+          "detail": ".tab @extends .mwh-skeleton",
+          "before": ".tab",
+          "after": "@extend .mwh-skeleton"
+        },
+        {
+          "ts": "2026-05-11T03:51:03.048860+00:00",
+          "action": "apply_skeleton",
+          "file": "components/account/mobile/css/WizardShell.scss",
+          "detail": ".wiz-folder-tile-inner @extends .mwh-skeleton",
+          "before": ".wiz-folder-tile-inner",
+          "after": "@extend .mwh-skeleton"
+        },
+        {
+          "ts": "2026-05-11T03:51:03.052842+00:00",
+          "action": "apply_skeleton",
+          "file": "components/account/mobile/MobileShell.scss",
+          "detail": ".wiz-thumb @extends .mwh-skeleton",
+          "before": ".wiz-thumb",
+          "after": "@extend .mwh-skeleton"
+        },
+        {
+          "ts": "2026-05-11T03:51:03.058202+00:00",
+          "action": "apply_skeleton",
+          "file": "styles/home.scss",
+          "detail": ".svc-slot @extends .mwh-skeleton",
+          "before": ".svc-slot",
+          "after": "@extend .mwh-skeleton"
+        },
+        {
+          "ts": "2026-05-11T03:51:03.060534+00:00",
+          "action": "add_skeleton",
+          "file": "/workspaces/cuttingcorners/frontend/src/css/shared.scss",
+          "detail": "Added .mag-skeleton tier 4",
+          "before": "",
+          "after": ""
+        },
+        {
+          "ts": "2026-05-11T03:51:03.064908+00:00",
+          "action": "apply_skeleton",
+          "file": "components/account/mobile/MobileShell.scss",
+          "detail": ".heart-btn @extends .mag-skeleton",
+          "before": ".heart-btn",
+          "after": "@extend .mag-skeleton"
+        },
+        {
+          "ts": "2026-05-11T03:51:03.069923+00:00",
+          "action": "apply_skeleton",
+          "file": "styles/Admin.scss",
+          "detail": ".btn-add @extends .mag-skeleton",
+          "before": ".btn-add",
+          "after": "@extend .mag-skeleton"
+        },
+        {
+          "ts": "2026-05-11T03:51:03.076731+00:00",
+          "action": "apply_skeleton",
+          "file": "styles/Admin.scss",
+          "detail": ".btn-sel @extends .mag-skeleton",
+          "before": ".btn-sel",
+          "after": "@extend .mag-skeleton"
+        },
+        {
+          "ts": "2026-05-11T03:51:03.082400+00:00",
+          "action": "apply_skeleton",
+          "file": "styles/Admin.scss",
+          "detail": ".bn @extends .mag-skeleton",
+          "before": ".bn",
+          "after": "@extend .mag-skeleton"
+        },
+        {
+          "ts": "2026-05-11T03:51:03.086073+00:00",
+          "action": "apply_skeleton",
+          "file": "styles/Admin.scss",
+          "detail": ".bp @extends .mag-skeleton",
+          "before": ".bp",
+          "after": "@extend .mag-skeleton"
+        },
+        {
+          "ts": "2026-05-11T03:51:03.090687+00:00",
+          "action": "apply_skeleton",
+          "file": "styles/globals.scss",
+          "detail": ".btn-primary @extends .mag-skeleton",
+          "before": ".btn-primary",
+          "after": "@extend .mag-skeleton"
+        },
+        {
+          "ts": "2026-05-11T03:51:03.092402+00:00",
+          "action": "add_skeleton",
+          "file": "/workspaces/cuttingcorners/frontend/src/css/shared.scss",
+          "detail": "Added .maw-skeleton tier 4",
+          "before": "",
+          "after": ""
+        },
+        {
+          "ts": "2026-05-11T03:51:03.096789+00:00",
+          "action": "apply_skeleton",
+          "file": "components/account/mobile/MobileShell.scss",
+          "detail": ".chat-attach @extends .maw-skeleton",
+          "before": ".chat-attach",
+          "after": "@extend .maw-skeleton"
+        },
+        {
+          "ts": "2026-05-11T03:51:03.099692+00:00",
+          "action": "apply_skeleton",
+          "file": "styles/Admin.scss",
+          "detail": ".btn-sel @extends .maw-skeleton",
+          "before": ".btn-sel",
+          "after": "@extend .maw-skeleton"
+        },
+        {
+          "ts": "2026-05-11T03:51:03.102916+00:00",
+          "action": "apply_skeleton",
+          "file": "styles/Admin.scss",
+          "detail": ".bn @extends .maw-skeleton",
+          "before": ".bn",
+          "after": "@extend .maw-skeleton"
+        },
+        {
+          "ts": "2026-05-11T03:51:03.109866+00:00",
+          "action": "apply_skeleton",
+          "file": "components/account/mobile/MobileShell.scss",
+          "detail": ".srf-custom-remove @extends .maw-skeleton",
+          "before": ".srf-custom-remove",
+          "after": "@extend .maw-skeleton"
+        },
+        {
+          "ts": "2026-05-11T03:51:03.111895+00:00",
+          "action": "apply_skeleton",
+          "file": "components/account/mobile/css/WizardShell.scss",
+          "detail": ".wiz-folder-tile-inner @extends .maw-skeleton",
+          "before": ".wiz-folder-tile-inner",
+          "after": "@extend .maw-skeleton"
+        },
+        {
+          "ts": "2026-05-11T03:51:03.113361+00:00",
+          "action": "add_skeleton",
+          "file": "/workspaces/cuttingcorners/frontend/src/css/shared.scss",
+          "detail": "Added .maw-skeleton-2 tier 4",
+          "before": "",
+          "after": ""
+        },
+        {
+          "ts": "2026-05-11T03:51:03.117527+00:00",
+          "action": "apply_skeleton",
+          "file": "components/account/mobile/MobileShell.scss",
+          "detail": ".wiz-thumb @extends .maw-skeleton-2",
+          "before": ".wiz-thumb",
+          "after": "@extend .maw-skeleton-2"
+        },
+        {
+          "ts": "2026-05-11T03:51:03.121716+00:00",
+          "action": "apply_skeleton",
+          "file": "styles/Admin.scss",
+          "detail": ".mob-burger @extends .maw-skeleton-2",
+          "before": ".mob-burger",
+          "after": "@extend .maw-skeleton-2"
+        },
+        {
+          "ts": "2026-05-11T03:51:03.126056+00:00",
+          "action": "apply_skeleton",
+          "file": "components/account/mobile/css/WizardShell.scss",
+          "detail": ".wiz-folder-tile-inner @extends .maw-skeleton-2",
+          "before": ".wiz-folder-tile-inner",
+          "after": "@extend .maw-skeleton-2"
+        },
+        {
+          "ts": "2026-05-11T03:51:03.128563+00:00",
+          "action": "add_skeleton",
+          "file": "/workspaces/cuttingcorners/frontend/src/css/shared.scss",
+          "detail": "Added .wa-skeleton tier 4",
+          "before": "",
+          "after": ""
+        },
+        {
+          "ts": "2026-05-11T03:51:03.142696+00:00",
+          "action": "apply_skeleton",
+          "file": "components/account/mobile/css/WizardShell.scss",
+          "detail": ".wiz-folder-tile-inner @extends .wa-skeleton",
+          "before": ".wiz-folder-tile-inner",
+          "after": "@extend .wa-skeleton"
+        },
+        {
+          "ts": "2026-05-11T03:51:03.148497+00:00",
+          "action": "apply_skeleton",
+          "file": "styles/Admin.scss",
+          "detail": ".qi-thumb-empty @extends .wa-skeleton",
+          "before": ".qi-thumb-empty",
+          "after": "@extend .wa-skeleton"
+        },
+        {
+          "ts": "2026-05-11T03:51:03.154439+00:00",
+          "action": "apply_skeleton",
+          "file": "styles/Admin.scss",
+          "detail": ".photo-preview-empty @extends .wa-skeleton",
+          "before": ".photo-preview-empty",
+          "after": "@extend .wa-skeleton"
+        },
+        {
+          "ts": "2026-05-11T03:51:03.159935+00:00",
+          "action": "apply_skeleton",
+          "file": "styles/Admin.scss",
+          "detail": ".card-thumb-empty @extends .wa-skeleton",
+          "before": ".card-thumb-empty",
+          "after": "@extend .wa-skeleton"
+        },
+        {
+          "ts": "2026-05-11T03:51:03.166203+00:00",
+          "action": "apply_skeleton",
+          "file": "styles/wizard.scss",
+          "detail": ".intro-begin-row @extends .wa-skeleton",
+          "before": ".intro-begin-row",
+          "after": "@extend .wa-skeleton"
+        },
+        {
+          "ts": "2026-05-11T03:51:03.171640+00:00",
+          "action": "apply_skeleton",
+          "file": "styles/wizard.scss",
+          "detail": ".intro-middle @extends .wa-skeleton",
+          "before": ".intro-middle",
+          "after": "@extend .wa-skeleton"
+        },
+        {
+          "ts": "2026-05-11T03:51:03.178318+00:00",
+          "action": "apply_skeleton",
+          "file": "styles/wizard.scss",
+          "detail": ".wiz-section-intro @extends .wa-skeleton",
+          "before": ".wiz-section-intro",
+          "after": "@extend .wa-skeleton"
+        },
+        {
+          "ts": "2026-05-11T03:51:03.185255+00:00",
+          "action": "apply_skeleton",
+          "file": "styles/wizard.scss",
+          "detail": ".wiz-section-card @extends .wa-skeleton",
+          "before": ".wiz-section-card",
+          "after": "@extend .wa-skeleton"
+        },
+        {
+          "ts": "2026-05-11T03:51:03.186770+00:00",
+          "action": "add_skeleton",
+          "file": "/workspaces/cuttingcorners/frontend/src/css/shared.scss",
+          "detail": "Added .dmt-skeleton tier 3",
+          "before": "",
+          "after": ""
+        },
+        {
+          "ts": "2026-05-11T03:51:03.191973+00:00",
+          "action": "apply_skeleton",
+          "file": "components/account/desktop/DesktopShell.scss",
+          "detail": ".desktop-shell @extends .dmt-skeleton",
+          "before": ".desktop-shell",
+          "after": "@extend .dmt-skeleton"
+        },
+        {
+          "ts": "2026-05-11T03:51:03.202659+00:00",
+          "action": "apply_skeleton",
+          "file": "components/account/mobile/MobileShell.scss",
+          "detail": ".shop-thumb @extends .dmt-skeleton",
+          "before": ".shop-thumb",
+          "after": "@extend .dmt-skeleton"
+        },
+        {
+          "ts": "2026-05-11T03:51:03.210949+00:00",
+          "action": "apply_skeleton",
+          "file": "components/account/mobile/MobileShell.scss",
+          "detail": ".wiz-thumb @extends .dmt-skeleton",
+          "before": ".wiz-thumb",
+          "after": "@extend .dmt-skeleton"
+        },
+        {
+          "ts": "2026-05-11T03:51:03.218048+00:00",
+          "action": "apply_skeleton",
+          "file": "components/account/mobile/TilesShell.scss",
+          "detail": ".tile @extends .dmt-skeleton",
+          "before": ".tile",
+          "after": "@extend .dmt-skeleton"
+        },
+        {
+          "ts": "2026-05-11T03:51:03.220303+00:00",
+          "action": "add_skeleton",
+          "file": "/workspaces/cuttingcorners/frontend/src/css/shared.scss",
+          "detail": "Added .dmw-skeleton tier 3",
+          "before": "",
+          "after": ""
+        },
+        {
+          "ts": "2026-05-11T03:51:03.223748+00:00",
+          "action": "apply_skeleton",
+          "file": "components/account/desktop/DesktopShell.scss",
+          "detail": ".desktop-left @extends .dmw-skeleton",
+          "before": ".desktop-left",
+          "after": "@extend .dmw-skeleton"
+        },
+        {
+          "ts": "2026-05-11T03:51:03.234720+00:00",
+          "action": "apply_skeleton",
+          "file": "components/account/mobile/MobileShell.scss",
+          "detail": ".chat-msgs @extends .dmw-skeleton",
+          "before": ".chat-msgs",
+          "after": "@extend .dmw-skeleton"
+        },
+        {
+          "ts": "2026-05-11T03:51:03.247252+00:00",
+          "action": "apply_skeleton",
+          "file": "components/account/mobile/MobileShell.scss",
+          "detail": ".orders-list @extends .dmw-skeleton",
+          "before": ".orders-list",
+          "after": "@extend .dmw-skeleton"
+        },
+        {
+          "ts": "2026-05-11T03:51:03.253655+00:00",
+          "action": "apply_skeleton",
+          "file": "components/account/mobile/MobileShell.scss",
+          "detail": ".sr-list @extends .dmw-skeleton",
+          "before": ".sr-list",
+          "after": "@extend .dmw-skeleton"
+        },
+        {
+          "ts": "2026-05-11T03:51:03.257420+00:00",
+          "action": "apply_skeleton",
+          "file": "components/account/mobile/css/WizardShell.scss",
+          "detail": ".wiz-modal-folder-list @extends .dmw-skeleton",
+          "before": ".wiz-modal-folder-list",
+          "after": "@extend .dmw-skeleton"
+        },
+        {
+          "ts": "2026-05-11T03:51:03.259141+00:00",
+          "action": "add_skeleton",
+          "file": "/workspaces/cuttingcorners/frontend/src/css/shared.scss",
+          "detail": "Added .daw-skeleton tier 3",
+          "before": "",
+          "after": ""
+        },
+        {
+          "ts": "2026-05-11T03:51:03.261960+00:00",
+          "action": "apply_skeleton",
+          "file": "components/account/desktop/DesktopShell.scss",
+          "detail": ".desktop-shell @extends .daw-skeleton",
+          "before": ".desktop-shell",
+          "after": "@extend .daw-skeleton"
+        },
+        {
+          "ts": "2026-05-11T03:51:03.265115+00:00",
+          "action": "apply_skeleton",
+          "file": "styles/Admin.scss",
+          "detail": ".ni @extends .daw-skeleton",
+          "before": ".ni",
+          "after": "@extend .daw-skeleton"
+        },
+        {
+          "ts": "2026-05-11T03:51:03.269740+00:00",
+          "action": "apply_skeleton",
+          "file": "styles/wizard.scss",
+          "detail": ".full-screen @extends .daw-skeleton",
+          "before": ".full-screen",
+          "after": "@extend .daw-skeleton"
+        },
+        {
+          "ts": "2026-05-11T03:51:03.272036+00:00",
+          "action": "add_skeleton",
+          "file": "/workspaces/cuttingcorners/frontend/src/css/shared.scss",
+          "detail": "Added .dhw-skeleton tier 3",
+          "before": "",
+          "after": ""
+        },
+        {
+          "ts": "2026-05-11T03:51:03.275332+00:00",
+          "action": "apply_skeleton",
+          "file": "components/account/desktop/DesktopShell.scss",
+          "detail": ".desktop-shell @extends .dhw-skeleton",
+          "before": ".desktop-shell",
+          "after": "@extend .dhw-skeleton"
+        },
+        {
+          "ts": "2026-05-11T03:51:03.278191+00:00",
+          "action": "apply_skeleton",
+          "file": "styles/home.scss",
+          "detail": ".machine-feature @extends .dhw-skeleton",
+          "before": ".machine-feature",
+          "after": "@extend .dhw-skeleton"
+        },
+        {
+          "ts": "2026-05-11T03:51:03.284225+00:00",
+          "action": "apply_skeleton",
+          "file": "styles/wizard.scss",
+          "detail": ".disc-card @extends .dhw-skeleton",
+          "before": ".disc-card",
+          "after": "@extend .dhw-skeleton"
+        },
+        {
+          "ts": "2026-05-11T03:51:03.286560+00:00",
+          "action": "add_skeleton",
+          "file": "/workspaces/cuttingcorners/frontend/src/css/shared.scss",
+          "detail": "Added .mwt-skeleton tier 3",
+          "before": "",
+          "after": ""
+        },
+        {
+          "ts": "2026-05-11T03:51:03.291231+00:00",
+          "action": "apply_skeleton",
+          "file": "components/account/mobile/MobileShell.scss",
+          "detail": ".shop-thumb @extends .mwt-skeleton",
+          "before": ".shop-thumb",
+          "after": "@extend .mwt-skeleton"
+        },
+        {
+          "ts": "2026-05-11T03:51:03.295262+00:00",
+          "action": "apply_skeleton",
+          "file": "components/account/mobile/css/WizardShell.scss",
+          "detail": ".wiz-folder-action-btn @extends .mwt-skeleton",
+          "before": ".wiz-folder-action-btn",
+          "after": "@extend .mwt-skeleton"
+        },
+        {
+          "ts": "2026-05-11T03:51:03.300374+00:00",
+          "action": "apply_skeleton",
+          "file": "components/account/mobile/css/WizardShell.scss",
+          "detail": ".wiz-modal-folder-item @extends .mwt-skeleton",
+          "before": ".wiz-modal-folder-item",
+          "after": "@extend .mwt-skeleton"
+        },
+        {
+          "ts": "2026-05-11T03:51:03.304239+00:00",
+          "action": "apply_skeleton",
+          "file": "components/account/mobile/TilesShell.scss",
+          "detail": ".tile @extends .mwt-skeleton",
+          "before": ".tile",
+          "after": "@extend .mwt-skeleton"
+        },
+        {
+          "ts": "2026-05-11T03:51:03.306066+00:00",
+          "action": "add_skeleton",
+          "file": "/workspaces/cuttingcorners/frontend/src/css/shared.scss",
+          "detail": "Added .mw-skeleton-2 tier 3",
+          "before": "",
+          "after": ""
+        },
+        {
+          "ts": "2026-05-11T03:51:03.310155+00:00",
+          "action": "apply_skeleton",
+          "file": "components/account/mobile/MobileShell.scss",
+          "detail": ".heart-btn @extends .mw-skeleton-2",
+          "before": ".heart-btn",
+          "after": "@extend .mw-skeleton-2"
+        },
+        {
+          "ts": "2026-05-11T03:51:03.315198+00:00",
+          "action": "apply_skeleton",
+          "file": "components/account/mobile/css/WizardShell.scss",
+          "detail": ".wiz-drawer-folder-change @extends .mw-skeleton-2",
+          "before": ".wiz-drawer-folder-change",
+          "after": "@extend .mw-skeleton-2"
+        },
+        {
+          "ts": "2026-05-11T03:51:03.320005+00:00",
+          "action": "apply_skeleton",
+          "file": "styles/wizard.scss",
+          "detail": ".intro-skip-btn @extends .mw-skeleton-2",
+          "before": ".intro-skip-btn",
+          "after": "@extend .mw-skeleton-2"
+        },
+        {
+          "ts": "2026-05-11T03:51:03.322170+00:00",
+          "action": "add_skeleton",
+          "file": "/workspaces/cuttingcorners/frontend/src/css/shared.scss",
+          "detail": "Added .mwa-skeleton-3 tier 3",
+          "before": "",
+          "after": ""
+        },
+        {
+          "ts": "2026-05-11T03:51:03.332125+00:00",
+          "action": "apply_skeleton",
+          "file": "components/account/mobile/MobileShell.scss",
+          "detail": ".profile-save @extends .mwa-skeleton-3",
+          "before": ".profile-save",
+          "after": "@extend .mwa-skeleton-3"
+        },
+        {
+          "ts": "2026-05-11T03:51:03.336073+00:00",
+          "action": "apply_skeleton",
+          "file": "components/account/mobile/css/WizardShell.scss",
+          "detail": ".wiz-folder-tile-inner @extends .mwa-skeleton-3",
+          "before": ".wiz-folder-tile-inner",
+          "after": "@extend .mwa-skeleton-3"
+        },
+        {
+          "ts": "2026-05-11T03:51:03.352605+00:00",
+          "action": "apply_skeleton",
+          "file": "components/account/mobile/MobileShell.scss",
+          "detail": ".wo-accept-btn @extends .mwa-skeleton-3",
+          "before": ".wo-accept-btn",
+          "after": "@extend .mwa-skeleton-3"
+        },
+        {
+          "ts": "2026-05-11T03:51:03.367258+00:00",
+          "action": "apply_skeleton",
+          "file": "styles/Admin.scss",
+          "detail": ".mob-dropdown-signout @extends .mwa-skeleton-3",
+          "before": ".mob-dropdown-signout",
+          "after": "@extend .mwa-skeleton-3"
+        },
+        {
+          "ts": "2026-05-11T03:51:03.376174+00:00",
+          "action": "add_skeleton",
+          "file": "/workspaces/cuttingcorners/frontend/src/css/shared.scss",
+          "detail": "Added .mwa-skeleton-4 tier 3",
+          "before": "",
+          "after": ""
+        },
+        {
+          "ts": "2026-05-11T03:51:03.384732+00:00",
+          "action": "apply_skeleton",
+          "file": "components/account/mobile/MobileShell.scss",
+          "detail": ".res-topbar @extends .mwa-skeleton-4",
+          "before": ".res-topbar",
+          "after": "@extend .mwa-skeleton-4"
+        },
+        {
+          "ts": "2026-05-11T03:51:03.390072+00:00",
+          "action": "apply_skeleton",
+          "file": "components/account/mobile/css/WizardShell.scss",
+          "detail": ".wiz-modal-folder-item @extends .mwa-skeleton-4",
+          "before": ".wiz-modal-folder-item",
+          "after": "@extend .mwa-skeleton-4"
+        },
+        {
+          "ts": "2026-05-11T03:51:03.395308+00:00",
+          "action": "apply_skeleton",
+          "file": "styles/Admin.scss",
+          "detail": ".bulk-bar @extends .mwa-skeleton-4",
+          "before": ".bulk-bar",
+          "after": "@extend .mwa-skeleton-4"
+        },
+        {
+          "ts": "2026-05-11T03:51:03.397689+00:00",
+          "action": "add_skeleton",
+          "file": "/workspaces/cuttingcorners/frontend/src/css/shared.scss",
+          "detail": "Added .maw-skeleton-3 tier 3",
+          "before": "",
+          "after": ""
+        },
+        {
+          "ts": "2026-05-11T03:51:03.405967+00:00",
+          "action": "apply_skeleton",
+          "file": "components/account/mobile/MobileShell.scss",
+          "detail": ".dr-close @extends .maw-skeleton-3",
+          "before": ".dr-close",
+          "after": "@extend .maw-skeleton-3"
+        },
+        {
+          "ts": "2026-05-11T03:51:03.409878+00:00",
+          "action": "apply_skeleton",
+          "file": "styles/Admin.scss",
+          "detail": ".ni @extends .maw-skeleton-3",
+          "before": ".ni",
+          "after": "@extend .maw-skeleton-3"
+        },
+        {
+          "ts": "2026-05-11T03:51:03.423857+00:00",
+          "action": "apply_skeleton",
+          "file": "styles/Admin.scss",
+          "detail": ".tab @extends .maw-skeleton-3",
+          "before": ".tab",
+          "after": "@extend .maw-skeleton-3"
+        },
+        {
+          "ts": "2026-05-11T03:51:03.432364+00:00",
+          "action": "apply_skeleton",
+          "file": "styles/Admin.scss",
+          "detail": ".mob-dropdown-signout @extends .maw-skeleton-3",
+          "before": ".mob-dropdown-signout",
+          "after": "@extend .maw-skeleton-3"
+        },
+        {
+          "ts": "2026-05-11T03:51:03.438406+00:00",
+          "action": "apply_skeleton",
+          "file": "components/account/mobile/MobileShell.scss",
+          "detail": ".heart-btn @extends .maw-skeleton-3",
+          "before": ".heart-btn",
+          "after": "@extend .maw-skeleton-3"
+        },
+        {
+          "ts": "2026-05-11T03:51:03.450180+00:00",
+          "action": "apply_skeleton",
+          "file": "components/account/mobile/MobileShell.scss",
+          "detail": ".sms-mclose @extends .maw-skeleton-3",
+          "before": ".sms-mclose",
+          "after": "@extend .maw-skeleton-3"
+        },
+        {
+          "ts": "2026-05-11T03:51:03.459700+00:00",
+          "action": "apply_skeleton",
+          "file": "components/account/mobile/MobileShell.scss",
+          "detail": ".nr-close @extends .maw-skeleton-3",
+          "before": ".nr-close",
+          "after": "@extend .maw-skeleton-3"
+        },
+        {
+          "ts": "2026-05-11T03:51:03.464580+00:00",
+          "action": "apply_skeleton",
+          "file": "styles/wizard.scss",
+          "detail": ".wiz-nav-btn-ghost @extends .maw-skeleton-3",
+          "before": ".wiz-nav-btn-ghost",
+          "after": "@extend .maw-skeleton-3"
+        },
+        {
+          "ts": "2026-05-11T03:51:03.468469+00:00",
+          "action": "add_skeleton",
+          "file": "/workspaces/cuttingcorners/frontend/src/css/shared.scss",
+          "detail": "Added .mat-skeleton tier 3",
+          "before": "",
+          "after": ""
+        },
+        {
+          "ts": "2026-05-11T03:51:03.474827+00:00",
+          "action": "apply_skeleton",
+          "file": "components/account/mobile/MobileShell.scss",
+          "detail": ".shop-thumb @extends .mat-skeleton",
+          "before": ".shop-thumb",
+          "after": "@extend .mat-skeleton"
+        },
+        {
+          "ts": "2026-05-11T03:51:03.479652+00:00",
+          "action": "apply_skeleton",
+          "file": "styles/Admin.scss",
+          "detail": ".ni @extends .mat-skeleton",
+          "before": ".ni",
+          "after": "@extend .mat-skeleton"
+        },
+        {
+          "ts": "2026-05-11T03:51:03.485726+00:00",
+          "action": "apply_skeleton",
+          "file": "components/account/mobile/TilesShell.scss",
+          "detail": ".tile @extends .mat-skeleton",
+          "before": ".tile",
+          "after": "@extend .mat-skeleton"
+        },
+        {
+          "ts": "2026-05-11T03:51:03.489649+00:00",
+          "action": "add_skeleton",
+          "file": "/workspaces/cuttingcorners/frontend/src/css/shared.scss",
+          "detail": "Added .maw-skeleton-4 tier 3",
+          "before": "",
+          "after": ""
+        },
+        {
+          "ts": "2026-05-11T03:51:03.494537+00:00",
+          "action": "apply_skeleton",
+          "file": "components/account/mobile/MobileShell.scss",
+          "detail": ".chat-msgs @extends .maw-skeleton-4",
+          "before": ".chat-msgs",
+          "after": "@extend .maw-skeleton-4"
+        },
+        {
+          "ts": "2026-05-11T03:51:03.502520+00:00",
+          "action": "apply_skeleton",
+          "file": "styles/Admin.scss",
+          "detail": ".fp @extends .maw-skeleton-4",
+          "before": ".fp",
+          "after": "@extend .maw-skeleton-4"
+        },
+        {
+          "ts": "2026-05-11T03:51:03.508437+00:00",
+          "action": "apply_skeleton",
+          "file": "components/account/mobile/MobileShell.scss",
+          "detail": ".orders-list @extends .maw-skeleton-4",
+          "before": ".orders-list",
+          "after": "@extend .maw-skeleton-4"
+        },
+        {
+          "ts": "2026-05-11T03:51:03.518312+00:00",
+          "action": "apply_skeleton",
+          "file": "components/account/mobile/MobileShell.scss",
+          "detail": ".wo-body @extends .maw-skeleton-4",
+          "before": ".wo-body",
+          "after": "@extend .maw-skeleton-4"
+        },
+        {
+          "ts": "2026-05-11T03:51:03.532180+00:00",
+          "action": "apply_skeleton",
+          "file": "components/account/mobile/MobileShell.scss",
+          "detail": ".inv-drawer-body @extends .maw-skeleton-4",
+          "before": ".inv-drawer-body",
+          "after": "@extend .maw-skeleton-4"
+        },
+        {
+          "ts": "2026-05-11T03:51:03.536928+00:00",
+          "action": "apply_skeleton",
+          "file": "components/account/mobile/MobileShell.scss",
+          "detail": ".wiz-empty @extends .maw-skeleton-4",
+          "before": ".wiz-empty",
+          "after": "@extend .maw-skeleton-4"
+        },
+        {
+          "ts": "2026-05-11T03:51:03.544062+00:00",
+          "action": "apply_skeleton",
+          "file": "components/account/mobile/MobileShell.scss",
+          "detail": ".res-body @extends .maw-skeleton-4",
+          "before": ".res-body",
+          "after": "@extend .maw-skeleton-4"
+        },
+        {
+          "ts": "2026-05-11T03:51:03.547817+00:00",
+          "action": "apply_skeleton",
+          "file": "styles/wizard.scss",
+          "detail": ".full-screen @extends .maw-skeleton-4",
+          "before": ".full-screen",
+          "after": "@extend .maw-skeleton-4"
+        },
+        {
+          "ts": "2026-05-11T03:51:03.551094+00:00",
+          "action": "apply_skeleton",
+          "file": "styles/wizard.scss",
+          "detail": ".center-stage @extends .maw-skeleton-4",
+          "before": ".center-stage",
+          "after": "@extend .maw-skeleton-4"
+        },
+        {
+          "ts": "2026-05-11T03:51:03.553360+00:00",
+          "action": "apply_skeleton",
+          "file": "styles/wizard.scss",
+          "detail": ".intro-middle @extends .maw-skeleton-4",
+          "before": ".intro-middle",
+          "after": "@extend .maw-skeleton-4"
+        },
+        {
+          "ts": "2026-05-11T03:51:03.555552+00:00",
+          "action": "apply_skeleton",
+          "file": "styles/wizard.scss",
+          "detail": ".wiz-section-intro @extends .maw-skeleton-4",
+          "before": ".wiz-section-intro",
+          "after": "@extend .maw-skeleton-4"
+        },
+        {
+          "ts": "2026-05-11T03:51:03.558325+00:00",
+          "action": "apply_skeleton",
+          "file": "styles/wizard.scss",
+          "detail": ".wiz-almost-done @extends .maw-skeleton-4",
+          "before": ".wiz-almost-done",
+          "after": "@extend .maw-skeleton-4"
+        },
+        {
+          "ts": "2026-05-11T03:51:03.563988+00:00",
+          "action": "apply_skeleton",
+          "file": "styles/wizard.scss",
+          "detail": ".wiz-checks-wrapper @extends .maw-skeleton-4",
+          "before": ".wiz-checks-wrapper",
+          "after": "@extend .maw-skeleton-4"
+        },
+        {
+          "ts": "2026-05-11T03:51:03.570531+00:00",
+          "action": "apply_skeleton",
+          "file": "styles/wizard.scss",
+          "detail": ".wiz-section-card @extends .maw-skeleton-4",
+          "before": ".wiz-section-card",
+          "after": "@extend .maw-skeleton-4"
+        },
+        {
+          "ts": "2026-05-11T03:51:03.575234+00:00",
+          "action": "add_skeleton",
+          "file": "/workspaces/cuttingcorners/frontend/src/css/shared.scss",
+          "detail": "Added .maw-skeleton-5 tier 3",
+          "before": "",
+          "after": ""
+        },
+        {
+          "ts": "2026-05-11T03:51:03.584772+00:00",
+          "action": "apply_skeleton",
+          "file": "components/account/mobile/MobileShell.scss",
+          "detail": ".chat-input-bar @extends .maw-skeleton-5",
+          "before": ".chat-input-bar",
+          "after": "@extend .maw-skeleton-5"
+        },
+        {
+          "ts": "2026-05-11T03:51:03.591488+00:00",
+          "action": "apply_skeleton",
+          "file": "styles/Admin.scss",
+          "detail": ".ff @extends .maw-skeleton-5",
+          "before": ".ff",
+          "after": "@extend .maw-skeleton-5"
+        },
+        {
+          "ts": "2026-05-11T03:51:03.597960+00:00",
+          "action": "apply_skeleton",
+          "file": "components/account/mobile/MobileShell.scss",
+          "detail": ".chat-attach @extends .maw-skeleton-5",
+          "before": ".chat-attach",
+          "after": "@extend .maw-skeleton-5"
+        },
+        {
+          "ts": "2026-05-11T03:51:03.604259+00:00",
+          "action": "apply_skeleton",
+          "file": "components/account/mobile/MobileShell.scss",
+          "detail": ".chat-send @extends .maw-skeleton-5",
+          "before": ".chat-send",
+          "after": "@extend .maw-skeleton-5"
+        },
+        {
+          "ts": "2026-05-11T03:51:03.611082+00:00",
+          "action": "apply_skeleton",
+          "file": "components/account/mobile/MobileShell.scss",
+          "detail": ".nr-info-btn @extends .maw-skeleton-5",
+          "before": ".nr-info-btn",
+          "after": "@extend .maw-skeleton-5"
+        },
+        {
+          "ts": "2026-05-11T03:51:03.620801+00:00",
+          "action": "apply_skeleton",
+          "file": "components/account/mobile/MobileShell.scss",
+          "detail": ".inv-drawer-topbar @extends .maw-skeleton-5",
+          "before": ".inv-drawer-topbar",
+          "after": "@extend .maw-skeleton-5"
+        },
+        {
+          "ts": "2026-05-11T03:51:03.626598+00:00",
+          "action": "apply_skeleton",
+          "file": "components/account/mobile/MobileShell.scss",
+          "detail": ".res-topbar @extends .maw-skeleton-5",
+          "before": ".res-topbar",
+          "after": "@extend .maw-skeleton-5"
+        },
+        {
+          "ts": "2026-05-11T03:51:03.634532+00:00",
+          "action": "apply_skeleton",
+          "file": "components/account/mobile/MobileShell.scss",
+          "detail": ".srf-custom-remove @extends .maw-skeleton-5",
+          "before": ".srf-custom-remove",
+          "after": "@extend .maw-skeleton-5"
+        },
+        {
+          "ts": "2026-05-11T03:51:03.644103+00:00",
+          "action": "apply_skeleton",
+          "file": "components/account/mobile/MobileShell.scss",
+          "detail": ".panel-header @extends .maw-skeleton-5",
+          "before": ".panel-header",
+          "after": "@extend .maw-skeleton-5"
+        },
+        {
+          "ts": "2026-05-11T03:51:03.653473+00:00",
+          "action": "apply_skeleton",
+          "file": "styles/wizard.scss",
+          "detail": ".disc-checkbox @extends .maw-skeleton-5",
+          "before": ".disc-checkbox",
+          "after": "@extend .maw-skeleton-5"
+        },
+        {
+          "ts": "2026-05-11T03:51:03.657611+00:00",
+          "action": "apply_skeleton",
+          "file": "styles/wizard.scss",
+          "detail": ".intro-begin-row @extends .maw-skeleton-5",
+          "before": ".intro-begin-row",
+          "after": "@extend .maw-skeleton-5"
+        },
+        {
+          "ts": "2026-05-11T03:51:03.667391+00:00",
+          "action": "apply_skeleton",
+          "file": "components/account/mobile/MobileShell.scss",
+          "detail": ".nr-head @extends .maw-skeleton-5",
+          "before": ".nr-head",
+          "after": "@extend .maw-skeleton-5"
+        },
+        {
+          "ts": "2026-05-11T03:51:03.677011+00:00",
+          "action": "apply_skeleton",
+          "file": "components/account/mobile/MobileShell.scss",
+          "detail": ".wo-topbar @extends .maw-skeleton-5",
+          "before": ".wo-topbar",
+          "after": "@extend .maw-skeleton-5"
+        },
+        {
+          "ts": "2026-05-11T03:51:03.680025+00:00",
+          "action": "add_skeleton",
+          "file": "/workspaces/cuttingcorners/frontend/src/css/shared.scss",
+          "detail": "Added .magw-skeleton tier 3",
+          "before": "",
+          "after": ""
+        },
+        {
+          "ts": "2026-05-11T03:51:03.696140+00:00",
+          "action": "apply_skeleton",
+          "file": "components/account/mobile/MobileShell.scss",
+          "detail": ".pill-action-btn @extends .magw-skeleton",
+          "before": ".pill-action-btn",
+          "after": "@extend .magw-skeleton"
+        },
+        {
+          "ts": "2026-05-11T03:51:03.702570+00:00",
+          "action": "apply_skeleton",
+          "file": "styles/Admin.scss",
+          "detail": ".btn-add @extends .magw-skeleton",
+          "before": ".btn-add",
+          "after": "@extend .magw-skeleton"
+        },
+        {
+          "ts": "2026-05-11T03:51:03.711381+00:00",
+          "action": "apply_skeleton",
+          "file": "styles/Admin.scss",
+          "detail": ".btn-sel @extends .magw-skeleton",
+          "before": ".btn-sel",
+          "after": "@extend .magw-skeleton"
+        },
+        {
+          "ts": "2026-05-11T03:51:03.720363+00:00",
+          "action": "apply_skeleton",
+          "file": "styles/Admin.scss",
+          "detail": ".ab @extends .magw-skeleton",
+          "before": ".ab",
+          "after": "@extend .magw-skeleton"
+        },
+        {
+          "ts": "2026-05-11T03:51:03.728420+00:00",
+          "action": "apply_skeleton",
+          "file": "styles/Admin.scss",
+          "detail": ".bg @extends .magw-skeleton",
+          "before": ".bg",
+          "after": "@extend .magw-skeleton"
+        },
+        {
+          "ts": "2026-05-11T03:51:03.735403+00:00",
+          "action": "apply_skeleton",
+          "file": "styles/Admin.scss",
+          "detail": ".bn @extends .magw-skeleton",
+          "before": ".bn",
+          "after": "@extend .magw-skeleton"
+        },
+        {
+          "ts": "2026-05-11T03:51:03.743336+00:00",
+          "action": "apply_skeleton",
+          "file": "styles/Admin.scss",
+          "detail": ".bp @extends .magw-skeleton",
+          "before": ".bp",
+          "after": "@extend .magw-skeleton"
+        },
+        {
+          "ts": "2026-05-11T03:51:03.752343+00:00",
+          "action": "apply_skeleton",
+          "file": "styles/Admin.scss",
+          "detail": ".bb @extends .magw-skeleton",
+          "before": ".bb",
+          "after": "@extend .magw-skeleton"
+        },
+        {
+          "ts": "2026-05-11T03:51:03.760099+00:00",
+          "action": "apply_skeleton",
+          "file": "styles/globals.scss",
+          "detail": ".btn-primary @extends .magw-skeleton",
+          "before": ".btn-primary",
+          "after": "@extend .magw-skeleton"
+        },
+        {
+          "ts": "2026-05-11T03:51:03.767771+00:00",
+          "action": "apply_skeleton",
+          "file": "styles/wizard.scss",
+          "detail": ".wiz-correctable-btn @extends .magw-skeleton",
+          "before": ".wiz-correctable-btn",
+          "after": "@extend .magw-skeleton"
+        },
+        {
+          "ts": "2026-05-11T03:51:03.771760+00:00",
+          "action": "add_skeleton",
+          "file": "/workspaces/cuttingcorners/frontend/src/css/shared.scss",
+          "detail": "Added .maw-skeleton-6 tier 3",
+          "before": "",
+          "after": ""
+        },
+        {
+          "ts": "2026-05-11T03:51:03.789826+00:00",
+          "action": "apply_skeleton",
+          "file": "components/account/mobile/MobileShell.scss",
+          "detail": ".order-accept @extends .maw-skeleton-6",
+          "before": ".order-accept",
+          "after": "@extend .maw-skeleton-6"
+        },
+        {
+          "ts": "2026-05-11T03:51:03.800609+00:00",
+          "action": "apply_skeleton",
+          "file": "styles/Admin.scss",
+          "detail": ".ni @extends .maw-skeleton-6",
+          "before": ".ni",
+          "after": "@extend .maw-skeleton-6"
+        },
+        {
+          "ts": "2026-05-11T03:51:03.810202+00:00",
+          "action": "apply_skeleton",
+          "file": "styles/Admin.scss",
+          "detail": ".tab @extends .maw-skeleton-6",
+          "before": ".tab",
+          "after": "@extend .maw-skeleton-6"
+        },
+        {
+          "ts": "2026-05-11T03:51:03.817095+00:00",
+          "action": "apply_skeleton",
+          "file": "styles/Admin.scss",
+          "detail": ".mob-dropdown-signout @extends .maw-skeleton-6",
+          "before": ".mob-dropdown-signout",
+          "after": "@extend .maw-skeleton-6"
+        },
+        {
+          "ts": "2026-05-11T03:51:03.826549+00:00",
+          "action": "apply_skeleton",
+          "file": "components/account/mobile/MobileShell.scss",
+          "detail": ".profile-save @extends .maw-skeleton-6",
+          "before": ".profile-save",
+          "after": "@extend .maw-skeleton-6"
+        },
+        {
+          "ts": "2026-05-11T03:51:03.836204+00:00",
+          "action": "apply_skeleton",
+          "file": "components/account/mobile/MobileShell.scss",
+          "detail": ".wo-accept-btn @extends .maw-skeleton-6",
+          "before": ".wo-accept-btn",
+          "after": "@extend .maw-skeleton-6"
+        },
+        {
+          "ts": "2026-05-11T03:51:03.848139+00:00",
+          "action": "apply_skeleton",
+          "file": "components/account/mobile/MobileShell.scss",
+          "detail": ".sr-archive-btn @extends .maw-skeleton-6",
+          "before": ".sr-archive-btn",
+          "after": "@extend .maw-skeleton-6"
+        },
+        {
+          "ts": "2026-05-11T03:51:03.856307+00:00",
+          "action": "apply_skeleton",
+          "file": "styles/wizard.scss",
+          "detail": ".wiz-nav-btn-ghost @extends .maw-skeleton-6",
+          "before": ".wiz-nav-btn-ghost",
+          "after": "@extend .maw-skeleton-6"
+        },
+        {
+          "ts": "2026-05-11T03:51:03.860917+00:00",
+          "action": "apply_skeleton",
+          "file": "styles/wizard.scss",
+          "detail": ".intro-skip-btn @extends .maw-skeleton-6",
+          "before": ".intro-skip-btn",
+          "after": "@extend .maw-skeleton-6"
+        },
+        {
+          "ts": "2026-05-11T03:51:03.866745+00:00",
+          "action": "add_skeleton",
+          "file": "/workspaces/cuttingcorners/frontend/src/css/shared.scss",
+          "detail": "Added .maw-skeleton-7 tier 3",
+          "before": "",
+          "after": ""
+        },
+        {
+          "ts": "2026-05-11T03:51:03.879830+00:00",
+          "action": "apply_skeleton",
+          "file": "components/account/mobile/MobileShell.scss",
+          "detail": ".profile-delete-btn @extends .maw-skeleton-7",
+          "before": ".profile-delete-btn",
+          "after": "@extend .maw-skeleton-7"
+        },
+        {
+          "ts": "2026-05-11T03:51:03.886652+00:00",
+          "action": "apply_skeleton",
+          "file": "styles/Admin.scss",
+          "detail": ".ab @extends .maw-skeleton-7",
+          "before": ".ab",
+          "after": "@extend .maw-skeleton-7"
+        },
+        {
+          "ts": "2026-05-11T03:51:03.892215+00:00",
+          "action": "apply_skeleton",
+          "file": "styles/Admin.scss",
+          "detail": ".gmb @extends .maw-skeleton-7",
+          "before": ".gmb",
+          "after": "@extend .maw-skeleton-7"
+        },
+        {
+          "ts": "2026-05-11T03:51:03.898720+00:00",
+          "action": "apply_skeleton",
+          "file": "styles/Admin.scss",
+          "detail": ".bg @extends .maw-skeleton-7",
+          "before": ".bg",
+          "after": "@extend .maw-skeleton-7"
+        },
+        {
+          "ts": "2026-05-11T03:51:03.903411+00:00",
+          "action": "apply_skeleton",
+          "file": "styles/Admin.scss",
+          "detail": ".bb @extends .maw-skeleton-7",
+          "before": ".bb",
+          "after": "@extend .maw-skeleton-7"
+        },
+        {
+          "ts": "2026-05-11T03:51:03.910564+00:00",
+          "action": "apply_skeleton",
+          "file": "styles/wizard.scss",
+          "detail": ".wiz-nav-btn-ghost @extends .maw-skeleton-7",
+          "before": ".wiz-nav-btn-ghost",
+          "after": "@extend .maw-skeleton-7"
+        },
+        {
+          "ts": "2026-05-11T03:51:03.918537+00:00",
+          "action": "add_skeleton",
+          "file": "/workspaces/cuttingcorners/frontend/src/css/shared.scss",
+          "detail": "Added .mag-skeleton-2 tier 3",
+          "before": "",
+          "after": ""
+        },
+        {
+          "ts": "2026-05-11T03:51:03.931084+00:00",
+          "action": "apply_skeleton",
+          "file": "components/account/mobile/MobileShell.scss",
+          "detail": ".wiz-btn-pill @extends .mag-skeleton-2",
+          "before": ".wiz-btn-pill",
+          "after": "@extend .mag-skeleton-2"
+        },
+        {
+          "ts": "2026-05-11T03:51:03.936231+00:00",
+          "action": "apply_skeleton",
+          "file": "styles/Admin.scss",
+          "detail": ".tab @extends .mag-skeleton-2",
+          "before": ".tab",
+          "after": "@extend .mag-skeleton-2"
+        },
+        {
+          "ts": "2026-05-11T03:51:03.944211+00:00",
+          "action": "apply_skeleton",
+          "file": "components/account/mobile/MobileShell.scss",
+          "detail": ".profile-delete-btn @extends .mag-skeleton-2",
+          "before": ".profile-delete-btn",
+          "after": "@extend .mag-skeleton-2"
+        },
+        {
+          "ts": "2026-05-11T03:51:03.951123+00:00",
+          "action": "apply_skeleton",
+          "file": "styles/globals.scss",
+          "detail": ".btn-primary @extends .mag-skeleton-2",
+          "before": ".btn-primary",
+          "after": "@extend .mag-skeleton-2"
+        },
+        {
+          "ts": "2026-05-11T03:51:03.956353+00:00",
+          "action": "add_skeleton",
+          "file": "/workspaces/cuttingcorners/frontend/src/css/shared.scss",
+          "detail": "Added .maw-skeleton-8 tier 3",
+          "before": "",
+          "after": ""
+        },
+        {
+          "ts": "2026-05-11T03:51:03.969266+00:00",
+          "action": "apply_skeleton",
+          "file": "components/account/mobile/MobileShell.scss",
+          "detail": ".sr-tab @extends .maw-skeleton-8",
+          "before": ".sr-tab",
+          "after": "@extend .maw-skeleton-8"
+        },
+        {
+          "ts": "2026-05-11T03:51:03.974451+00:00",
+          "action": "apply_skeleton",
+          "file": "styles/Admin.scss",
+          "detail": ".btn-sel @extends .maw-skeleton-8",
+          "before": ".btn-sel",
+          "after": "@extend .maw-skeleton-8"
+        },
+        {
+          "ts": "2026-05-11T03:51:03.982517+00:00",
+          "action": "apply_skeleton",
+          "file": "styles/Admin.scss",
+          "detail": ".bn @extends .maw-skeleton-8",
+          "before": ".bn",
+          "after": "@extend .maw-skeleton-8"
+        },
+        {
+          "ts": "2026-05-11T03:51:03.994535+00:00",
+          "action": "apply_skeleton",
+          "file": "components/account/mobile/MobileShell.scss",
+          "detail": ".srf-custom-add @extends .maw-skeleton-8",
+          "before": ".srf-custom-add",
+          "after": "@extend .maw-skeleton-8"
+        },
+        {
+          "ts": "2026-05-11T03:51:04.001251+00:00",
+          "action": "apply_skeleton",
+          "file": "styles/wizard.scss",
+          "detail": ".begin-btn @extends .maw-skeleton-8",
+          "before": ".begin-btn",
+          "after": "@extend .maw-skeleton-8"
+        },
+        {
+          "ts": "2026-05-11T03:51:04.009942+00:00",
+          "action": "apply_skeleton",
+          "file": "styles/wizard.scss",
+          "detail": ".wiz-nav-btn-next @extends .maw-skeleton-8",
+          "before": ".wiz-nav-btn-next",
+          "after": "@extend .maw-skeleton-8"
+        },
+        {
+          "ts": "2026-05-11T03:51:04.020149+00:00",
+          "action": "apply_skeleton",
+          "file": "styles/wizard.scss",
+          "detail": ".wiz-correctable-btn @extends .maw-skeleton-8",
+          "before": ".wiz-correctable-btn",
+          "after": "@extend .maw-skeleton-8"
+        },
+        {
+          "ts": "2026-05-11T03:51:04.026979+00:00",
+          "action": "apply_skeleton",
+          "file": "styles/wizard.scss",
+          "detail": ".wiz-section-btn @extends .maw-skeleton-8",
+          "before": ".wiz-section-btn",
+          "after": "@extend .maw-skeleton-8"
+        },
+        {
+          "ts": "2026-05-11T03:51:04.032992+00:00",
+          "action": "add_skeleton",
+          "file": "/workspaces/cuttingcorners/frontend/src/css/shared.scss",
+          "detail": "Added .magw-skeleton-2 tier 3",
+          "before": "",
+          "after": ""
+        },
+        {
+          "ts": "2026-05-11T03:51:04.047028+00:00",
+          "action": "apply_skeleton",
+          "file": "components/account/mobile/MobileShell.scss",
+          "detail": ".srf-custom-label-btn @extends .magw-skeleton-2",
+          "before": ".srf-custom-label-btn",
+          "after": "@extend .magw-skeleton-2"
+        },
+        {
+          "ts": "2026-05-11T03:51:04.053913+00:00",
+          "action": "apply_skeleton",
+          "file": "styles/Admin.scss",
+          "detail": ".btn-add @extends .magw-skeleton-2",
+          "before": ".btn-add",
+          "after": "@extend .magw-skeleton-2"
+        },
+        {
+          "ts": "2026-05-11T03:51:04.060318+00:00",
+          "action": "apply_skeleton",
+          "file": "styles/Admin.scss",
+          "detail": ".btn-sel @extends .magw-skeleton-2",
+          "before": ".btn-sel",
+          "after": "@extend .magw-skeleton-2"
+        },
+        {
+          "ts": "2026-05-11T03:51:04.065769+00:00",
+          "action": "apply_skeleton",
+          "file": "styles/Admin.scss",
+          "detail": ".ab @extends .magw-skeleton-2",
+          "before": ".ab",
+          "after": "@extend .magw-skeleton-2"
+        },
+        {
+          "ts": "2026-05-11T03:51:04.069038+00:00",
+          "action": "apply_skeleton",
+          "file": "styles/Admin.scss",
+          "detail": ".bg @extends .magw-skeleton-2",
+          "before": ".bg",
+          "after": "@extend .magw-skeleton-2"
+        },
+        {
+          "ts": "2026-05-11T03:51:04.072757+00:00",
+          "action": "apply_skeleton",
+          "file": "styles/Admin.scss",
+          "detail": ".bn @extends .magw-skeleton-2",
+          "before": ".bn",
+          "after": "@extend .magw-skeleton-2"
+        },
+        {
+          "ts": "2026-05-11T03:51:04.079130+00:00",
+          "action": "apply_skeleton",
+          "file": "styles/Admin.scss",
+          "detail": ".bp @extends .magw-skeleton-2",
+          "before": ".bp",
+          "after": "@extend .magw-skeleton-2"
+        },
+        {
+          "ts": "2026-05-11T03:51:04.093920+00:00",
+          "action": "apply_skeleton",
+          "file": "styles/Admin.scss",
+          "detail": ".bb @extends .magw-skeleton-2",
+          "before": ".bb",
+          "after": "@extend .magw-skeleton-2"
+        },
+        {
+          "ts": "2026-05-11T03:51:04.113448+00:00",
+          "action": "apply_skeleton",
+          "file": "styles/globals.scss",
+          "detail": ".btn-primary @extends .magw-skeleton-2",
+          "before": ".btn-primary",
+          "after": "@extend .magw-skeleton-2"
+        },
+        {
+          "ts": "2026-05-11T03:51:04.119563+00:00",
+          "action": "apply_skeleton",
+          "file": "styles/wizard.scss",
+          "detail": ".begin-btn @extends .magw-skeleton-2",
+          "before": ".begin-btn",
+          "after": "@extend .magw-skeleton-2"
+        },
+        {
+          "ts": "2026-05-11T03:51:04.123690+00:00",
+          "action": "apply_skeleton",
+          "file": "styles/wizard.scss",
+          "detail": ".wiz-nav-btn-next @extends .magw-skeleton-2",
+          "before": ".wiz-nav-btn-next",
+          "after": "@extend .magw-skeleton-2"
+        },
+        {
+          "ts": "2026-05-11T03:51:04.129239+00:00",
+          "action": "apply_skeleton",
+          "file": "styles/wizard.scss",
+          "detail": ".wiz-section-btn @extends .magw-skeleton-2",
+          "before": ".wiz-section-btn",
+          "after": "@extend .magw-skeleton-2"
+        },
+        {
+          "ts": "2026-05-11T03:51:04.134556+00:00",
+          "action": "add_skeleton",
+          "file": "/workspaces/cuttingcorners/frontend/src/css/shared.scss",
+          "detail": "Added .mag-skeleton-3 tier 3",
+          "before": "",
+          "after": ""
+        },
+        {
+          "ts": "2026-05-11T03:51:04.146027+00:00",
+          "action": "apply_skeleton",
+          "file": "components/account/mobile/MobileShell.scss",
+          "detail": ".srf-photo-uploading @extends .mag-skeleton-3",
+          "before": ".srf-photo-uploading",
+          "after": "@extend .mag-skeleton-3"
+        },
+        {
+          "ts": "2026-05-11T03:51:04.154225+00:00",
+          "action": "apply_skeleton",
+          "file": "styles/Admin.scss",
+          "detail": ".btn-add @extends .mag-skeleton-3",
+          "before": ".btn-add",
+          "after": "@extend .mag-skeleton-3"
+        },
+        {
+          "ts": "2026-05-11T03:51:04.160723+00:00",
+          "action": "apply_skeleton",
+          "file": "styles/Admin.scss",
+          "detail": ".btn-sel @extends .mag-skeleton-3",
+          "before": ".btn-sel",
+          "after": "@extend .mag-skeleton-3"
+        },
+        {
+          "ts": "2026-05-11T03:51:04.171804+00:00",
+          "action": "apply_skeleton",
+          "file": "styles/Admin.scss",
+          "detail": ".ab @extends .mag-skeleton-3",
+          "before": ".ab",
+          "after": "@extend .mag-skeleton-3"
+        },
+        {
+          "ts": "2026-05-11T03:51:04.180098+00:00",
+          "action": "apply_skeleton",
+          "file": "styles/Admin.scss",
+          "detail": ".bg @extends .mag-skeleton-3",
+          "before": ".bg",
+          "after": "@extend .mag-skeleton-3"
+        },
+        {
+          "ts": "2026-05-11T03:51:04.185778+00:00",
+          "action": "apply_skeleton",
+          "file": "styles/Admin.scss",
+          "detail": ".bn @extends .mag-skeleton-3",
+          "before": ".bn",
+          "after": "@extend .mag-skeleton-3"
+        },
+        {
+          "ts": "2026-05-11T03:51:04.188844+00:00",
+          "action": "apply_skeleton",
+          "file": "styles/Admin.scss",
+          "detail": ".bp @extends .mag-skeleton-3",
+          "before": ".bp",
+          "after": "@extend .mag-skeleton-3"
+        },
+        {
+          "ts": "2026-05-11T03:51:04.197950+00:00",
+          "action": "apply_skeleton",
+          "file": "styles/Admin.scss",
+          "detail": ".bb @extends .mag-skeleton-3",
+          "before": ".bb",
+          "after": "@extend .mag-skeleton-3"
+        },
+        {
+          "ts": "2026-05-11T03:51:04.205729+00:00",
+          "action": "apply_skeleton",
+          "file": "styles/globals.scss",
+          "detail": ".btn-primary @extends .mag-skeleton-3",
+          "before": ".btn-primary",
+          "after": "@extend .mag-skeleton-3"
+        },
+        {
+          "ts": "2026-05-11T03:51:04.215702+00:00",
+          "action": "apply_skeleton",
+          "file": "styles/Admin.scss",
+          "detail": ".loading @extends .mag-skeleton-3",
+          "before": ".loading",
+          "after": "@extend .mag-skeleton-3"
+        },
+        {
+          "ts": "2026-05-11T03:51:04.221267+00:00",
+          "action": "add_skeleton",
+          "file": "/workspaces/cuttingcorners/frontend/src/css/shared.scss",
+          "detail": "Added .mwt-skeleton-2 tier 3",
+          "before": "",
+          "after": ""
+        },
+        {
+          "ts": "2026-05-11T03:51:04.224944+00:00",
+          "action": "apply_skeleton",
+          "file": "components/account/mobile/MobileShell.scss",
+          "detail": ".shop-thumb @extends .mwt-skeleton-2",
+          "before": ".shop-thumb",
+          "after": "@extend .mwt-skeleton-2"
+        },
+        {
+          "ts": "2026-05-11T03:51:04.233326+00:00",
+          "action": "apply_skeleton",
+          "file": "styles/wizard.scss",
+          "detail": ".full-screen @extends .mwt-skeleton-2",
+          "before": ".full-screen",
+          "after": "@extend .mwt-skeleton-2"
+        },
+        {
+          "ts": "2026-05-11T03:51:04.241454+00:00",
+          "action": "apply_skeleton",
+          "file": "components/account/mobile/MobileShell.scss",
+          "detail": ".wiz-thumb @extends .mwt-skeleton-2",
+          "before": ".wiz-thumb",
+          "after": "@extend .mwt-skeleton-2"
+        },
+        {
+          "ts": "2026-05-11T03:51:04.250582+00:00",
+          "action": "apply_skeleton",
+          "file": "components/account/mobile/MobileShell.scss",
+          "detail": ".tab @extends .mwt-skeleton-2",
+          "before": ".tab",
+          "after": "@extend .mwt-skeleton-2"
+        },
+        {
+          "ts": "2026-05-11T03:51:04.261215+00:00",
+          "action": "apply_skeleton",
+          "file": "components/account/mobile/TilesShell.scss",
+          "detail": ".tile @extends .mwt-skeleton-2",
+          "before": ".tile",
+          "after": "@extend .mwt-skeleton-2"
+        },
+        {
+          "ts": "2026-05-11T03:51:04.271938+00:00",
+          "action": "add_skeleton",
+          "file": "/workspaces/cuttingcorners/frontend/src/css/shared.scss",
+          "detail": "Added .mwt-skeleton-3 tier 3",
+          "before": "",
+          "after": ""
+        },
+        {
+          "ts": "2026-05-11T03:51:04.286215+00:00",
+          "action": "apply_skeleton",
+          "file": "components/account/mobile/MobileShell.scss",
+          "detail": ".shop-thumb @extends .mwt-skeleton-3",
+          "before": ".shop-thumb",
+          "after": "@extend .mwt-skeleton-3"
+        },
+        {
+          "ts": "2026-05-11T03:51:04.290880+00:00",
+          "action": "apply_skeleton",
+          "file": "styles/wizard.scss",
+          "detail": ".begin-btn @extends .mwt-skeleton-3",
+          "before": ".begin-btn",
+          "after": "@extend .mwt-skeleton-3"
+        },
+        {
+          "ts": "2026-05-11T03:51:04.293325+00:00",
+          "action": "apply_skeleton",
+          "file": "styles/wizard.scss",
+          "detail": ".wiz-nav-btn-next @extends .mwt-skeleton-3",
+          "before": ".wiz-nav-btn-next",
+          "after": "@extend .mwt-skeleton-3"
+        },
+        {
+          "ts": "2026-05-11T03:51:04.298863+00:00",
+          "action": "apply_skeleton",
+          "file": "styles/wizard.scss",
+          "detail": ".wiz-check-item @extends .mwt-skeleton-3",
+          "before": ".wiz-check-item",
+          "after": "@extend .mwt-skeleton-3"
+        },
+        {
+          "ts": "2026-05-11T03:51:04.302610+00:00",
+          "action": "apply_skeleton",
+          "file": "styles/wizard.scss",
+          "detail": ".wiz-correctable-btn @extends .mwt-skeleton-3",
+          "before": ".wiz-correctable-btn",
+          "after": "@extend .mwt-skeleton-3"
+        },
+        {
+          "ts": "2026-05-11T03:51:04.305438+00:00",
+          "action": "apply_skeleton",
+          "file": "styles/wizard.scss",
+          "detail": ".wiz-section-btn @extends .mwt-skeleton-3",
+          "before": ".wiz-section-btn",
+          "after": "@extend .mwt-skeleton-3"
+        },
+        {
+          "ts": "2026-05-11T03:51:04.313143+00:00",
+          "action": "apply_skeleton",
+          "file": "components/account/mobile/MobileShell.scss",
+          "detail": ".order-tile @extends .mwt-skeleton-3",
+          "before": ".order-tile",
+          "after": "@extend .mwt-skeleton-3"
+        },
+        {
+          "ts": "2026-05-11T03:51:04.321108+00:00",
+          "action": "apply_skeleton",
+          "file": "components/account/mobile/MobileShell.scss",
+          "detail": ".sr-card @extends .mwt-skeleton-3",
+          "before": ".sr-card",
+          "after": "@extend .mwt-skeleton-3"
+        },
+        {
+          "ts": "2026-05-11T03:51:04.324451+00:00",
+          "action": "apply_skeleton",
+          "file": "components/account/mobile/MobileShell.scss",
+          "detail": ".wiz-thumb @extends .mwt-skeleton-3",
+          "before": ".wiz-thumb",
+          "after": "@extend .mwt-skeleton-3"
+        },
+        {
+          "ts": "2026-05-11T03:51:04.328046+00:00",
+          "action": "apply_skeleton",
+          "file": "components/account/mobile/TilesShell.scss",
+          "detail": ".tile @extends .mwt-skeleton-3",
+          "before": ".tile",
+          "after": "@extend .mwt-skeleton-3"
+        },
+        {
+          "ts": "2026-05-11T03:51:04.330773+00:00",
+          "action": "add_skeleton",
+          "file": "/workspaces/cuttingcorners/frontend/src/css/shared.scss",
+          "detail": "Added .mw-skeleton-3 tier 3",
+          "before": "",
+          "after": ""
+        },
+        {
+          "ts": "2026-05-11T03:51:04.336476+00:00",
+          "action": "apply_skeleton",
+          "file": "components/account/mobile/MobileShell.scss",
+          "detail": ".heart-btn @extends .mw-skeleton-3",
+          "before": ".heart-btn",
+          "after": "@extend .mw-skeleton-3"
+        },
+        {
+          "ts": "2026-05-11T03:51:04.344518+00:00",
+          "action": "apply_skeleton",
+          "file": "styles/wizard.scss",
+          "detail": ".center-stage @extends .mw-skeleton-3",
+          "before": ".center-stage",
+          "after": "@extend .mw-skeleton-3"
+        },
+        {
+          "ts": "2026-05-11T03:51:04.351957+00:00",
+          "action": "apply_skeleton",
+          "file": "components/account/mobile/css/WizardShell.scss",
+          "detail": ".wiz-back-btn @extends .mw-skeleton-3",
+          "before": ".wiz-back-btn",
+          "after": "@extend .mw-skeleton-3"
+        },
+        {
+          "ts": "2026-05-11T03:51:04.354308+00:00",
+          "action": "add_skeleton",
+          "file": "/workspaces/cuttingcorners/frontend/src/css/shared.scss",
+          "detail": "Added .mwa-skeleton-5 tier 3",
+          "before": "",
+          "after": ""
+        },
+        {
+          "ts": "2026-05-11T03:51:04.358651+00:00",
+          "action": "apply_skeleton",
+          "file": "components/account/mobile/MobileShell.scss",
+          "detail": ".tab @extends .mwa-skeleton-5",
+          "before": ".tab",
+          "after": "@extend .mwa-skeleton-5"
+        },
+        {
+          "ts": "2026-05-11T03:51:04.363628+00:00",
+          "action": "apply_skeleton",
+          "file": "styles/wizard.scss",
+          "detail": ".wiz-check-item @extends .mwa-skeleton-5",
+          "before": ".wiz-check-item",
+          "after": "@extend .mwa-skeleton-5"
+        },
+        {
+          "ts": "2026-05-11T03:51:04.368800+00:00",
+          "action": "apply_skeleton",
+          "file": "styles/Admin.scss",
+          "detail": ".ni @extends .mwa-skeleton-5",
+          "before": ".ni",
+          "after": "@extend .mwa-skeleton-5"
+        },
+        {
+          "ts": "2026-05-11T03:51:04.371127+00:00",
+          "action": "add_skeleton",
+          "file": "/workspaces/cuttingcorners/frontend/src/css/shared.scss",
+          "detail": "Added .mwa-skeleton-6 tier 3",
+          "before": "",
+          "after": ""
+        },
+        {
+          "ts": "2026-05-11T03:51:04.380758+00:00",
+          "action": "apply_skeleton",
+          "file": "components/account/mobile/MobileShell.scss",
+          "detail": ".slide-tip @extends .mwa-skeleton-6",
+          "before": ".slide-tip",
+          "after": "@extend .mwa-skeleton-6"
+        },
+        {
+          "ts": "2026-05-11T03:51:04.386257+00:00",
+          "action": "apply_skeleton",
+          "file": "styles/wizard.scss",
+          "detail": ".wiz-warning-overlay @extends .mwa-skeleton-6",
+          "before": ".wiz-warning-overlay",
+          "after": "@extend .mwa-skeleton-6"
+        },
+        {
+          "ts": "2026-05-11T03:51:04.390905+00:00",
+          "action": "apply_skeleton",
+          "file": "styles/Admin.scss",
+          "detail": ".mob-topbar @extends .mwa-skeleton-6",
+          "before": ".mob-topbar",
+          "after": "@extend .mwa-skeleton-6"
+        },
+        {
+          "ts": "2026-05-11T03:51:04.393418+00:00",
+          "action": "add_skeleton",
+          "file": "/workspaces/cuttingcorners/frontend/src/css/shared.scss",
+          "detail": "Added .mwt-skeleton-4 tier 3",
+          "before": "",
+          "after": ""
+        },
+        {
+          "ts": "2026-05-11T03:51:04.403598+00:00",
+          "action": "apply_skeleton",
+          "file": "components/account/mobile/MobileShell.scss",
+          "detail": ".srf-section-title @extends .mwt-skeleton-4",
+          "before": ".srf-section-title",
+          "after": "@extend .mwt-skeleton-4"
+        },
+        {
+          "ts": "2026-05-11T03:51:04.410874+00:00",
+          "action": "apply_skeleton",
+          "file": "styles/wizard.scss",
+          "detail": ".disc-label @extends .mwt-skeleton-4",
+          "before": ".disc-label",
+          "after": "@extend .mwt-skeleton-4"
+        },
+        {
+          "ts": "2026-05-11T03:51:04.417028+00:00",
+          "action": "apply_skeleton",
+          "file": "styles/wizard.scss",
+          "detail": ".stone-eyebrow @extends .mwt-skeleton-4",
+          "before": ".stone-eyebrow",
+          "after": "@extend .mwt-skeleton-4"
+        },
+        {
+          "ts": "2026-05-11T03:51:04.424137+00:00",
+          "action": "apply_skeleton",
+          "file": "styles/wizard.scss",
+          "detail": ".wiz-section-card-phase @extends .mwt-skeleton-4",
+          "before": ".wiz-section-card-phase",
+          "after": "@extend .mwt-skeleton-4"
+        },
+        {
+          "ts": "2026-05-11T03:51:04.430320+00:00",
+          "action": "apply_skeleton",
+          "file": "components/account/mobile/TilesShell.scss",
+          "detail": ".tile-label @extends .mwt-skeleton-4",
+          "before": ".tile-label",
+          "after": "@extend .mwt-skeleton-4"
+        },
+        {
+          "ts": "2026-05-11T03:51:04.433042+00:00",
+          "action": "add_skeleton",
+          "file": "/workspaces/cuttingcorners/frontend/src/css/shared.scss",
+          "detail": "Added .awg-skeleton tier 3",
+          "before": "",
+          "after": ""
+        },
+        {
+          "ts": "2026-05-11T03:51:04.438218+00:00",
+          "action": "apply_skeleton",
+          "file": "styles/Admin.scss",
+          "detail": ".btn-add @extends .awg-skeleton",
+          "before": ".btn-add",
+          "after": "@extend .awg-skeleton"
+        },
+        {
+          "ts": "2026-05-11T03:51:04.445513+00:00",
+          "action": "apply_skeleton",
+          "file": "styles/wizard.scss",
+          "detail": ".disc-check-row @extends .awg-skeleton",
+          "before": ".disc-check-row",
+          "after": "@extend .awg-skeleton"
+        },
+        {
+          "ts": "2026-05-11T03:51:04.451653+00:00",
+          "action": "apply_skeleton",
+          "file": "styles/Admin.scss",
+          "detail": ".btn-sel @extends .awg-skeleton",
+          "before": ".btn-sel",
+          "after": "@extend .awg-skeleton"
+        },
+        {
+          "ts": "2026-05-11T03:51:04.455983+00:00",
+          "action": "apply_skeleton",
+          "file": "styles/Admin.scss",
+          "detail": ".ab @extends .awg-skeleton",
+          "before": ".ab",
+          "after": "@extend .awg-skeleton"
+        },
+        {
+          "ts": "2026-05-11T03:51:04.465015+00:00",
+          "action": "apply_skeleton",
+          "file": "styles/Admin.scss",
+          "detail": ".bg @extends .awg-skeleton",
+          "before": ".bg",
+          "after": "@extend .awg-skeleton"
+        },
+        {
+          "ts": "2026-05-11T03:51:04.479123+00:00",
+          "action": "apply_skeleton",
+          "file": "styles/Admin.scss",
+          "detail": ".bn @extends .awg-skeleton",
+          "before": ".bn",
+          "after": "@extend .awg-skeleton"
+        },
+        {
+          "ts": "2026-05-11T03:51:04.482034+00:00",
+          "action": "apply_skeleton",
+          "file": "styles/Admin.scss",
+          "detail": ".bp @extends .awg-skeleton",
+          "before": ".bp",
+          "after": "@extend .awg-skeleton"
+        },
+        {
+          "ts": "2026-05-11T03:51:04.483933+00:00",
+          "action": "apply_skeleton",
+          "file": "styles/Admin.scss",
+          "detail": ".bb @extends .awg-skeleton",
+          "before": ".bb",
+          "after": "@extend .awg-skeleton"
+        },
+        {
+          "ts": "2026-05-11T03:51:04.491207+00:00",
+          "action": "apply_skeleton",
+          "file": "styles/globals.scss",
+          "detail": ".btn-primary @extends .awg-skeleton",
+          "before": ".btn-primary",
+          "after": "@extend .awg-skeleton"
+        },
+        {
+          "ts": "2026-05-11T03:51:04.493853+00:00",
+          "action": "add_skeleton",
+          "file": "/workspaces/cuttingcorners/frontend/src/css/shared.scss",
+          "detail": "Added .awg-skeleton-2 tier 3",
+          "before": "",
+          "after": ""
+        },
+        {
+          "ts": "2026-05-11T03:51:04.498992+00:00",
+          "action": "apply_skeleton",
+          "file": "styles/Admin.scss",
+          "detail": ".btn-add @extends .awg-skeleton-2",
+          "before": ".btn-add",
+          "after": "@extend .awg-skeleton-2"
+        },
+        {
+          "ts": "2026-05-11T03:51:04.503402+00:00",
+          "action": "apply_skeleton",
+          "file": "styles/wizard.scss",
+          "detail": ".disc-checkbox @extends .awg-skeleton-2",
+          "before": ".disc-checkbox",
+          "after": "@extend .awg-skeleton-2"
+        },
+        {
+          "ts": "2026-05-11T03:51:04.507842+00:00",
+          "action": "apply_skeleton",
+          "file": "styles/Admin.scss",
+          "detail": ".btn-sel @extends .awg-skeleton-2",
+          "before": ".btn-sel",
+          "after": "@extend .awg-skeleton-2"
+        },
+        {
+          "ts": "2026-05-11T03:51:04.511764+00:00",
+          "action": "apply_skeleton",
+          "file": "styles/Admin.scss",
+          "detail": ".ab @extends .awg-skeleton-2",
+          "before": ".ab",
+          "after": "@extend .awg-skeleton-2"
+        },
+        {
+          "ts": "2026-05-11T03:51:04.516108+00:00",
+          "action": "apply_skeleton",
+          "file": "styles/Admin.scss",
+          "detail": ".bg @extends .awg-skeleton-2",
+          "before": ".bg",
+          "after": "@extend .awg-skeleton-2"
+        },
+        {
+          "ts": "2026-05-11T03:51:04.520848+00:00",
+          "action": "apply_skeleton",
+          "file": "styles/Admin.scss",
+          "detail": ".bn @extends .awg-skeleton-2",
+          "before": ".bn",
+          "after": "@extend .awg-skeleton-2"
+        },
+        {
+          "ts": "2026-05-11T03:51:04.525804+00:00",
+          "action": "apply_skeleton",
+          "file": "styles/Admin.scss",
+          "detail": ".bp @extends .awg-skeleton-2",
+          "before": ".bp",
+          "after": "@extend .awg-skeleton-2"
+        },
+        {
+          "ts": "2026-05-11T03:51:04.530564+00:00",
+          "action": "apply_skeleton",
+          "file": "styles/Admin.scss",
+          "detail": ".bb @extends .awg-skeleton-2",
+          "before": ".bb",
+          "after": "@extend .awg-skeleton-2"
+        },
+        {
+          "ts": "2026-05-11T03:51:04.534446+00:00",
+          "action": "apply_skeleton",
+          "file": "styles/globals.scss",
+          "detail": ".btn-primary @extends .awg-skeleton-2",
+          "before": ".btn-primary",
+          "after": "@extend .awg-skeleton-2"
+        }
+      ]
+    }
+  ]
+}
