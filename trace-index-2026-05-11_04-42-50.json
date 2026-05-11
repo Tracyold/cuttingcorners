@@ -1,0 +1,584 @@
+{
+  "root_file": "/workspaces/cuttingcorners/frontend/pages/index.tsx",
+  "nodes": {
+    "/workspaces/cuttingcorners/frontend/pages/index.tsx": {
+      "imports": [
+        {
+          "raw": "import ServicesShowcase from '../components/ServicesShowcase';",
+          "path": "../components/ServicesShowcase",
+          "resolved": "/workspaces/cuttingcorners/frontend/components/ServicesShowcase.tsx",
+          "names": [],
+          "default": "ServicesShowcase",
+          "namespace": null,
+          "is_type": false,
+          "line": 1
+        },
+        {
+          "raw": "import React, { useEffect } from 'react';",
+          "path": "react",
+          "resolved": null,
+          "names": [
+            {
+              "original": "useEffect",
+              "alias": "useEffect"
+            }
+          ],
+          "default": "React",
+          "namespace": null,
+          "is_type": false,
+          "line": 2
+        },
+        {
+          "raw": "import { ArrowRight } from 'lucide-react';",
+          "path": "lucide-react",
+          "resolved": null,
+          "names": [
+            {
+              "original": "ArrowRight",
+              "alias": "ArrowRight"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": false,
+          "line": 3
+        },
+        {
+          "raw": "import { services } from '../components/home/homeData';",
+          "path": "../components/home/homeData",
+          "resolved": "/workspaces/cuttingcorners/frontend/components/home/homeData.ts",
+          "names": [
+            {
+              "original": "services",
+              "alias": "services"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": false,
+          "line": 4
+        },
+        {
+          "raw": "import MobileServicesCarousel from '../components/home/MobileServicesCarousel';",
+          "path": "../components/home/MobileServicesCarousel",
+          "resolved": "/workspaces/cuttingcorners/frontend/components/home/MobileServicesCarousel.tsx",
+          "names": [],
+          "default": "MobileServicesCarousel",
+          "namespace": null,
+          "is_type": false,
+          "line": 5
+        },
+        {
+          "raw": "import DesktopServicesGrid from '../components/home/DesktopServicesGrid';",
+          "path": "../components/home/DesktopServicesGrid",
+          "resolved": "/workspaces/cuttingcorners/frontend/components/home/DesktopServicesGrid.tsx",
+          "names": [],
+          "default": "DesktopServicesGrid",
+          "namespace": null,
+          "is_type": false,
+          "line": 6
+        },
+        {
+          "raw": "import TopNav from '../components/shared/TopNav';",
+          "path": "../components/shared/TopNav",
+          "resolved": "/workspaces/cuttingcorners/frontend/components/shared/TopNav.tsx",
+          "names": [],
+          "default": "TopNav",
+          "namespace": null,
+          "is_type": false,
+          "line": 7
+        },
+        {
+          "raw": "import Footer from '../components/shared/Footer';",
+          "path": "../components/shared/Footer",
+          "resolved": "/workspaces/cuttingcorners/frontend/components/shared/Footer.tsx",
+          "names": [],
+          "default": "Footer",
+          "namespace": null,
+          "is_type": false,
+          "line": 8
+        }
+      ],
+      "exports": [
+        {
+          "name": "default",
+          "line": 55,
+          "kind": "default"
+        },
+        {
+          "name": "Home",
+          "line": 55,
+          "kind": "named"
+        }
+      ],
+      "depth": 0,
+      "imported_by": [],
+      "broken_imports": []
+    },
+    "/workspaces/cuttingcorners/frontend/components/ServicesShowcase.tsx": {
+      "imports": [
+        {
+          "raw": "import React, { useState, useEffect } from 'react';",
+          "path": "react",
+          "resolved": null,
+          "names": [
+            {
+              "original": "useState",
+              "alias": "useState"
+            },
+            {
+              "original": "useEffect",
+              "alias": "useEffect"
+            }
+          ],
+          "default": "React",
+          "namespace": null,
+          "is_type": false,
+          "line": 1
+        },
+        {
+          "raw": "import Link from 'next/link';",
+          "path": "next/link",
+          "resolved": null,
+          "names": [],
+          "default": "Link",
+          "namespace": null,
+          "is_type": false,
+          "line": 2
+        }
+      ],
+      "exports": [
+        {
+          "name": "default",
+          "line": 48,
+          "kind": "default"
+        },
+        {
+          "name": "ServicesShowcase",
+          "line": 48,
+          "kind": "named"
+        }
+      ],
+      "depth": 1,
+      "imported_by": [
+        "/workspaces/cuttingcorners/frontend/pages/index.tsx"
+      ],
+      "broken_imports": []
+    },
+    "/workspaces/cuttingcorners/frontend/components/home/homeData.ts": {
+      "imports": [
+        {
+          "raw": "import { Gem, RefreshCw, Briefcase, ShoppingBag, Package, Layers } from 'lucide-react';",
+          "path": "lucide-react",
+          "resolved": null,
+          "names": [
+            {
+              "original": "Gem",
+              "alias": "Gem"
+            },
+            {
+              "original": "RefreshCw",
+              "alias": "RefreshCw"
+            },
+            {
+              "original": "Briefcase",
+              "alias": "Briefcase"
+            },
+            {
+              "original": "ShoppingBag",
+              "alias": "ShoppingBag"
+            },
+            {
+              "original": "Package",
+              "alias": "Package"
+            },
+            {
+              "original": "Layers",
+              "alias": "Layers"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": false,
+          "line": 1
+        },
+        {
+          "raw": "import type { LucideIcon } from 'lucide-react';",
+          "path": "lucide-react",
+          "resolved": null,
+          "names": [
+            {
+              "original": "LucideIcon",
+              "alias": "LucideIcon"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": true,
+          "line": 2
+        }
+      ],
+      "exports": [
+        {
+          "name": "Service",
+          "line": 4,
+          "kind": "named"
+        },
+        {
+          "name": "services",
+          "line": 10,
+          "kind": "named"
+        }
+      ],
+      "depth": 1,
+      "imported_by": [
+        "/workspaces/cuttingcorners/frontend/pages/index.tsx"
+      ],
+      "broken_imports": []
+    },
+    "/workspaces/cuttingcorners/frontend/components/home/MobileServicesCarousel.tsx": {
+      "imports": [
+        {
+          "raw": "import { useEffect, useRef } from 'react';",
+          "path": "react",
+          "resolved": null,
+          "names": [
+            {
+              "original": "useEffect",
+              "alias": "useEffect"
+            },
+            {
+              "original": "useRef",
+              "alias": "useRef"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": false,
+          "line": 1
+        },
+        {
+          "raw": "import { services } from './homeData';",
+          "path": "./homeData",
+          "resolved": "/workspaces/cuttingcorners/frontend/components/home/homeData.ts",
+          "names": [
+            {
+              "original": "services",
+              "alias": "services"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": false,
+          "line": 2
+        }
+      ],
+      "exports": [
+        {
+          "name": "default",
+          "line": 10,
+          "kind": "default"
+        },
+        {
+          "name": "MobileServicesCarousel",
+          "line": 10,
+          "kind": "named"
+        }
+      ],
+      "depth": 1,
+      "imported_by": [
+        "/workspaces/cuttingcorners/frontend/pages/index.tsx"
+      ],
+      "broken_imports": []
+    },
+    "/workspaces/cuttingcorners/frontend/components/home/DesktopServicesGrid.tsx": {
+      "imports": [
+        {
+          "raw": "import { useEffect } from 'react';",
+          "path": "react",
+          "resolved": null,
+          "names": [
+            {
+              "original": "useEffect",
+              "alias": "useEffect"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": false,
+          "line": 1
+        },
+        {
+          "raw": "import { services } from './homeData';",
+          "path": "./homeData",
+          "resolved": "/workspaces/cuttingcorners/frontend/components/home/homeData.ts",
+          "names": [
+            {
+              "original": "services",
+              "alias": "services"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": false,
+          "line": 2
+        }
+      ],
+      "exports": [
+        {
+          "name": "default",
+          "line": 4,
+          "kind": "default"
+        },
+        {
+          "name": "DesktopServicesGrid",
+          "line": 4,
+          "kind": "named"
+        }
+      ],
+      "depth": 1,
+      "imported_by": [
+        "/workspaces/cuttingcorners/frontend/pages/index.tsx"
+      ],
+      "broken_imports": []
+    },
+    "/workspaces/cuttingcorners/frontend/components/shared/TopNav.tsx": {
+      "imports": [
+        {
+          "raw": "import { useTheme } from 'next-themes';",
+          "path": "next-themes",
+          "resolved": null,
+          "names": [
+            {
+              "original": "useTheme",
+              "alias": "useTheme"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": false,
+          "line": 1
+        },
+        {
+          "raw": "import { ModeToggle } from './ModeToggle';",
+          "path": "./ModeToggle",
+          "resolved": "/workspaces/cuttingcorners/frontend/components/shared/ModeToggle.tsx",
+          "names": [
+            {
+              "original": "ModeToggle",
+              "alias": "ModeToggle"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": false,
+          "line": 2
+        },
+        {
+          "raw": "import { useState, useEffect } from 'react';",
+          "path": "react",
+          "resolved": null,
+          "names": [
+            {
+              "original": "useState",
+              "alias": "useState"
+            },
+            {
+              "original": "useEffect",
+              "alias": "useEffect"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": false,
+          "line": 3
+        },
+        {
+          "raw": "import Link from 'next/link';",
+          "path": "next/link",
+          "resolved": null,
+          "names": [],
+          "default": "Link",
+          "namespace": null,
+          "is_type": false,
+          "line": 4
+        },
+        {
+          "raw": "import { useRouter } from 'next/router';",
+          "path": "next/router",
+          "resolved": null,
+          "names": [
+            {
+              "original": "useRouter",
+              "alias": "useRouter"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": false,
+          "line": 5
+        }
+      ],
+      "exports": [
+        {
+          "name": "default",
+          "line": 238,
+          "kind": "default"
+        },
+        {
+          "name": "TopNav",
+          "line": 238,
+          "kind": "named"
+        }
+      ],
+      "depth": 1,
+      "imported_by": [
+        "/workspaces/cuttingcorners/frontend/pages/index.tsx"
+      ],
+      "broken_imports": []
+    },
+    "/workspaces/cuttingcorners/frontend/components/shared/Footer.tsx": {
+      "imports": [
+        {
+          "raw": "import { useRouter } from 'next/router';",
+          "path": "next/router",
+          "resolved": null,
+          "names": [
+            {
+              "original": "useRouter",
+              "alias": "useRouter"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": false,
+          "line": 1
+        },
+        {
+          "raw": "import Link from 'next/link';",
+          "path": "next/link",
+          "resolved": null,
+          "names": [],
+          "default": "Link",
+          "namespace": null,
+          "is_type": false,
+          "line": 2
+        }
+      ],
+      "exports": [
+        {
+          "name": "default",
+          "line": 61,
+          "kind": "default"
+        },
+        {
+          "name": "Footer",
+          "line": 61,
+          "kind": "named"
+        }
+      ],
+      "depth": 1,
+      "imported_by": [
+        "/workspaces/cuttingcorners/frontend/pages/index.tsx"
+      ],
+      "broken_imports": []
+    },
+    "/workspaces/cuttingcorners/frontend/components/shared/ModeToggle.tsx": {
+      "imports": [
+        {
+          "raw": "import * as React from \"react\"",
+          "path": "react",
+          "resolved": null,
+          "names": [],
+          "default": null,
+          "namespace": "React",
+          "is_type": false,
+          "line": 1
+        },
+        {
+          "raw": "import { Moon, Sun } from \"lucide-react\"",
+          "path": "lucide-react",
+          "resolved": null,
+          "names": [
+            {
+              "original": "Moon",
+              "alias": "Moon"
+            },
+            {
+              "original": "Sun",
+              "alias": "Sun"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": false,
+          "line": 2
+        },
+        {
+          "raw": "import { useTheme } from \"next-themes\"",
+          "path": "next-themes",
+          "resolved": null,
+          "names": [
+            {
+              "original": "useTheme",
+              "alias": "useTheme"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": false,
+          "line": 3
+        },
+        {
+          "raw": "import { Button } from \"@/components/ui/button\"",
+          "path": "@/components/ui/button",
+          "resolved": null,
+          "names": [
+            {
+              "original": "Button",
+              "alias": "Button"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": false,
+          "line": 4
+        }
+      ],
+      "exports": [
+        {
+          "name": "ModeToggle",
+          "line": 6,
+          "kind": "named"
+        }
+      ],
+      "depth": 2,
+      "imported_by": [
+        "/workspaces/cuttingcorners/frontend/components/shared/TopNav.tsx"
+      ],
+      "broken_imports": []
+    }
+  },
+  "cycles": [
+    [
+      "/workspaces/cuttingcorners/frontend/components/home/MobileServicesCarousel.tsx",
+      "/workspaces/cuttingcorners/frontend/components/home/homeData.ts"
+    ],
+    [
+      "/workspaces/cuttingcorners/frontend/components/home/DesktopServicesGrid.tsx",
+      "/workspaces/cuttingcorners/frontend/components/home/homeData.ts"
+    ]
+  ],
+  "broken": [],
+  "order": [
+    "/workspaces/cuttingcorners/frontend/pages/index.tsx",
+    "/workspaces/cuttingcorners/frontend/components/ServicesShowcase.tsx",
+    "/workspaces/cuttingcorners/frontend/components/home/homeData.ts",
+    "/workspaces/cuttingcorners/frontend/components/home/MobileServicesCarousel.tsx",
+    "/workspaces/cuttingcorners/frontend/components/home/DesktopServicesGrid.tsx",
+    "/workspaces/cuttingcorners/frontend/components/shared/TopNav.tsx",
+    "/workspaces/cuttingcorners/frontend/components/shared/Footer.tsx",
+    "/workspaces/cuttingcorners/frontend/components/shared/ModeToggle.tsx"
+  ],
+  "generated": "2026-05-11 04:42:50.834236"
+}

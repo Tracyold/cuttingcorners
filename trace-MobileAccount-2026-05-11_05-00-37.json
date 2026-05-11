@@ -1,0 +1,4235 @@
+{
+  "root_file": "/workspaces/cuttingcorners/frontend/components/account/mobile/MobileAccount.tsx",
+  "nodes": {
+    "/workspaces/cuttingcorners/frontend/components/account/mobile/MobileAccount.tsx": {
+      "imports": [
+        {
+          "raw": "import { useState } from 'react';",
+          "path": "react",
+          "resolved": null,
+          "names": [
+            {
+              "original": "useState",
+              "alias": "useState"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": false,
+          "line": 17
+        },
+        {
+          "raw": "import { WizardResult } from '@/components/account/mobile/tiles/3FeasibilityTile';",
+          "path": "@/components/account/mobile/tiles/3FeasibilityTile",
+          "resolved": null,
+          "names": [
+            {
+              "original": "WizardResult",
+              "alias": "WizardResult"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": false,
+          "line": 18
+        },
+        {
+          "raw": "import { useAuth } from '../shared/hooks/useAuth';",
+          "path": "../shared/hooks/useAuth",
+          "resolved": "/workspaces/cuttingcorners/frontend/components/account/shared/hooks/useAuth.ts",
+          "names": [
+            {
+              "original": "useAuth",
+              "alias": "useAuth"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": false,
+          "line": 20
+        },
+        {
+          "raw": "import { useDeleteAccount } from '../shared/hooks/useDeleteAccount';",
+          "path": "../shared/hooks/useDeleteAccount",
+          "resolved": "/workspaces/cuttingcorners/frontend/components/account/shared/hooks/useDeleteAccount.ts",
+          "names": [
+            {
+              "original": "useDeleteAccount",
+              "alias": "useDeleteAccount"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": false,
+          "line": 21
+        },
+        {
+          "raw": "import Nav3           from './ui/3Nav';",
+          "path": "./ui/3Nav",
+          "resolved": "/workspaces/cuttingcorners/frontend/components/account/mobile/ui/3Nav.tsx",
+          "names": [],
+          "default": "Nav3",
+          "namespace": null,
+          "is_type": false,
+          "line": 24
+        },
+        {
+          "raw": "import TabBar3        from './ui/3TabBar';",
+          "path": "./ui/3TabBar",
+          "resolved": "/workspaces/cuttingcorners/frontend/components/account/mobile/ui/3TabBar.tsx",
+          "names": [],
+          "default": "TabBar3",
+          "namespace": null,
+          "is_type": false,
+          "line": 25
+        },
+        {
+          "raw": "import MenuDrawer3    from './ui/3MenuDrawer';",
+          "path": "./ui/3MenuDrawer",
+          "resolved": "/workspaces/cuttingcorners/frontend/components/account/mobile/ui/3MenuDrawer.tsx",
+          "names": [],
+          "default": "MenuDrawer3",
+          "namespace": null,
+          "is_type": false,
+          "line": 26
+        },
+        {
+          "raw": "import SmsConsent3    from './ui/3SmsConsentModal';",
+          "path": "./ui/3SmsConsentModal",
+          "resolved": "/workspaces/cuttingcorners/frontend/components/account/mobile/ui/3SmsConsentModal.tsx",
+          "names": [],
+          "default": "SmsConsent3",
+          "namespace": null,
+          "is_type": false,
+          "line": 27
+        },
+        {
+          "raw": "import ShopFeed3      from './ui/3ShopFeed';",
+          "path": "./ui/3ShopFeed",
+          "resolved": "/workspaces/cuttingcorners/frontend/components/account/mobile/ui/3ShopFeed.tsx",
+          "names": [],
+          "default": "ShopFeed3",
+          "namespace": null,
+          "is_type": false,
+          "line": 28
+        },
+        {
+          "raw": "import ShopItemDrawer3 from './drawers/3ShopItemDrawer';",
+          "path": "./drawers/3ShopItemDrawer",
+          "resolved": "/workspaces/cuttingcorners/frontend/components/account/mobile/drawers/3ShopItemDrawer.tsx",
+          "names": [],
+          "default": "ShopItemDrawer3",
+          "namespace": null,
+          "is_type": false,
+          "line": 29
+        },
+        {
+          "raw": "import MessagesTile3        from './tiles/3MessagesTile';",
+          "path": "./tiles/3MessagesTile",
+          "resolved": "/workspaces/cuttingcorners/frontend/components/account/mobile/tiles/3MessagesTile.tsx",
+          "names": [],
+          "default": "MessagesTile3",
+          "namespace": null,
+          "is_type": false,
+          "line": 32
+        },
+        {
+          "raw": "import WorkOrderTile3       from './tiles/3WorkOrderTile';",
+          "path": "./tiles/3WorkOrderTile",
+          "resolved": "/workspaces/cuttingcorners/frontend/components/account/mobile/tiles/3WorkOrderTile.tsx",
+          "names": [],
+          "default": "WorkOrderTile3",
+          "namespace": null,
+          "is_type": false,
+          "line": 33
+        },
+        {
+          "raw": "import InvoicesTile3        from './tiles/3InvoicesTile';",
+          "path": "./tiles/3InvoicesTile",
+          "resolved": "/workspaces/cuttingcorners/frontend/components/account/mobile/tiles/3InvoicesTile.tsx",
+          "names": [],
+          "default": "InvoicesTile3",
+          "namespace": null,
+          "is_type": false,
+          "line": 34
+        },
+        {
+          "raw": "import FeasibilityTile3     from './tiles/3FeasibilityTile';",
+          "path": "./tiles/3FeasibilityTile",
+          "resolved": "/workspaces/cuttingcorners/frontend/components/account/mobile/tiles/3FeasibilityTile.tsx",
+          "names": [],
+          "default": "FeasibilityTile3",
+          "namespace": null,
+          "is_type": false,
+          "line": 35
+        },
+        {
+          "raw": "import InquiriesTile3       from './tiles/3InquiriesTile';",
+          "path": "./tiles/3InquiriesTile",
+          "resolved": "/workspaces/cuttingcorners/frontend/components/account/mobile/tiles/3InquiriesTile.tsx",
+          "names": [],
+          "default": "InquiriesTile3",
+          "namespace": null,
+          "is_type": false,
+          "line": 36
+        },
+        {
+          "raw": "import SmsTile3             from './tiles/3SmsTile';",
+          "path": "./tiles/3SmsTile",
+          "resolved": "/workspaces/cuttingcorners/frontend/components/account/mobile/tiles/3SmsTile.tsx",
+          "names": [],
+          "default": "SmsTile3",
+          "namespace": null,
+          "is_type": false,
+          "line": 37
+        },
+        {
+          "raw": "import ServiceRequestsTile3 from './tiles/3ServiceRequestsTile';",
+          "path": "./tiles/3ServiceRequestsTile",
+          "resolved": "/workspaces/cuttingcorners/frontend/components/account/mobile/tiles/3ServiceRequestsTile.tsx",
+          "names": [],
+          "default": "ServiceRequestsTile3",
+          "namespace": null,
+          "is_type": false,
+          "line": 38
+        },
+        {
+          "raw": "import ProfileTile3         from './tiles/3ProfileTile';",
+          "path": "./tiles/3ProfileTile",
+          "resolved": "/workspaces/cuttingcorners/frontend/components/account/mobile/tiles/3ProfileTile.tsx",
+          "names": [],
+          "default": "ProfileTile3",
+          "namespace": null,
+          "is_type": false,
+          "line": 39
+        },
+        {
+          "raw": "import FeedbackTile3        from './tiles/3FeedbackTile';",
+          "path": "./tiles/3FeedbackTile",
+          "resolved": "/workspaces/cuttingcorners/frontend/components/account/mobile/tiles/3FeedbackTile.tsx",
+          "names": [],
+          "default": "FeedbackTile3",
+          "namespace": null,
+          "is_type": false,
+          "line": 40
+        },
+        {
+          "raw": "import ChatPanel3           from './panels/3ChatPanel';",
+          "path": "./panels/3ChatPanel",
+          "resolved": "/workspaces/cuttingcorners/frontend/components/account/mobile/panels/3ChatPanel.tsx",
+          "names": [],
+          "default": "ChatPanel3",
+          "namespace": null,
+          "is_type": false,
+          "line": 43
+        },
+        {
+          "raw": "import OrdersPanel3         from './panels/3OrdersPanel';",
+          "path": "./panels/3OrdersPanel",
+          "resolved": "/workspaces/cuttingcorners/frontend/components/account/mobile/panels/3OrdersPanel.tsx",
+          "names": [],
+          "default": "OrdersPanel3",
+          "namespace": null,
+          "is_type": false,
+          "line": 44
+        },
+        {
+          "raw": "import InvoicesPanel3       from './panels/3InvoicesPanel';",
+          "path": "./panels/3InvoicesPanel",
+          "resolved": "/workspaces/cuttingcorners/frontend/components/account/mobile/panels/3InvoicesPanel.tsx",
+          "names": [],
+          "default": "InvoicesPanel3",
+          "namespace": null,
+          "is_type": false,
+          "line": 45
+        },
+        {
+          "raw": "import ServiceRequestPanel3 from './panels/3ServiceRequestPanel';",
+          "path": "./panels/3ServiceRequestPanel",
+          "resolved": "/workspaces/cuttingcorners/frontend/components/account/mobile/panels/3ServiceRequestPanel.tsx",
+          "names": [],
+          "default": "ServiceRequestPanel3",
+          "namespace": null,
+          "is_type": false,
+          "line": 46
+        },
+        {
+          "raw": "import InquiriesPanel3      from './panels/3InquiriesPanel';",
+          "path": "./panels/3InquiriesPanel",
+          "resolved": "/workspaces/cuttingcorners/frontend/components/account/mobile/panels/3InquiriesPanel.tsx",
+          "names": [],
+          "default": "InquiriesPanel3",
+          "namespace": null,
+          "is_type": false,
+          "line": 47
+        },
+        {
+          "raw": "import WizardResultsPanel3  from './panels/3WizardResultsPanel';",
+          "path": "./panels/3WizardResultsPanel",
+          "resolved": "/workspaces/cuttingcorners/frontend/components/account/mobile/panels/3WizardResultsPanel.tsx",
+          "names": [],
+          "default": "WizardResultsPanel3",
+          "namespace": null,
+          "is_type": false,
+          "line": 48
+        },
+        {
+          "raw": "import ProfilePanel3        from './panels/3ProfilePanel';",
+          "path": "./panels/3ProfilePanel",
+          "resolved": "/workspaces/cuttingcorners/frontend/components/account/mobile/panels/3ProfilePanel.tsx",
+          "names": [],
+          "default": "ProfilePanel3",
+          "namespace": null,
+          "is_type": false,
+          "line": 49
+        },
+        {
+          "raw": "import FeasibilityPanel     from './panels/3FeasibilityPanel';",
+          "path": "./panels/3FeasibilityPanel",
+          "resolved": "/workspaces/cuttingcorners/frontend/components/account/mobile/panels/3FeasibilityPanel.tsx",
+          "names": [],
+          "default": "FeasibilityPanel",
+          "namespace": null,
+          "is_type": false,
+          "line": 50
+        },
+        {
+          "raw": "import WorkOrderDrawer3      from './drawers/3WorkOrderDrawer';",
+          "path": "./drawers/3WorkOrderDrawer",
+          "resolved": "/workspaces/cuttingcorners/frontend/components/account/mobile/drawers/3WorkOrderDrawer.tsx",
+          "names": [],
+          "default": "WorkOrderDrawer3",
+          "namespace": null,
+          "is_type": false,
+          "line": 53
+        },
+        {
+          "raw": "import InvoiceDrawer3        from './drawers/3InvoiceDrawer';",
+          "path": "./drawers/3InvoiceDrawer",
+          "resolved": "/workspaces/cuttingcorners/frontend/components/account/mobile/drawers/3InvoiceDrawer.tsx",
+          "names": [],
+          "default": "InvoiceDrawer3",
+          "namespace": null,
+          "is_type": false,
+          "line": 54
+        },
+        {
+          "raw": "import ServiceRequestDrawer3 from './drawers/3ServiceRequestDrawer';",
+          "path": "./drawers/3ServiceRequestDrawer",
+          "resolved": "/workspaces/cuttingcorners/frontend/components/account/mobile/drawers/3ServiceRequestDrawer.tsx",
+          "names": [],
+          "default": "ServiceRequestDrawer3",
+          "namespace": null,
+          "is_type": false,
+          "line": 55
+        }
+      ],
+      "exports": [
+        {
+          "name": "MobileAccountProps",
+          "line": 61,
+          "kind": "named"
+        },
+        {
+          "name": "default",
+          "line": 119,
+          "kind": "default"
+        },
+        {
+          "name": "MobileAccount",
+          "line": 119,
+          "kind": "named"
+        }
+      ],
+      "depth": 0,
+      "imported_by": [],
+      "broken_imports": []
+    },
+    "/workspaces/cuttingcorners/frontend/components/account/shared/hooks/useAuth.ts": {
+      "imports": [
+        {
+          "raw": "import { useState, useEffect } from 'react';",
+          "path": "react",
+          "resolved": null,
+          "names": [
+            {
+              "original": "useState",
+              "alias": "useState"
+            },
+            {
+              "original": "useEffect",
+              "alias": "useEffect"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": false,
+          "line": 1
+        },
+        {
+          "raw": "import { useRouter } from 'next/router';",
+          "path": "next/router",
+          "resolved": null,
+          "names": [
+            {
+              "original": "useRouter",
+              "alias": "useRouter"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": false,
+          "line": 2
+        },
+        {
+          "raw": "import { supabase } from '../../../../lib/supabase';",
+          "path": "../../../../lib/supabase",
+          "resolved": "/workspaces/cuttingcorners/frontend/lib/supabase.ts",
+          "names": [
+            {
+              "original": "supabase",
+              "alias": "supabase"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": false,
+          "line": 3
+        }
+      ],
+      "exports": [
+        {
+          "name": "useAuth",
+          "line": 5,
+          "kind": "named"
+        }
+      ],
+      "depth": 1,
+      "imported_by": [
+        "/workspaces/cuttingcorners/frontend/components/account/mobile/MobileAccount.tsx"
+      ],
+      "broken_imports": []
+    },
+    "/workspaces/cuttingcorners/frontend/components/account/shared/hooks/useDeleteAccount.ts": {
+      "imports": [
+        {
+          "raw": "import { useState } from 'react';",
+          "path": "react",
+          "resolved": null,
+          "names": [
+            {
+              "original": "useState",
+              "alias": "useState"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": false,
+          "line": 1
+        },
+        {
+          "raw": "import { useRouter } from 'next/router';",
+          "path": "next/router",
+          "resolved": null,
+          "names": [
+            {
+              "original": "useRouter",
+              "alias": "useRouter"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": false,
+          "line": 2
+        },
+        {
+          "raw": "import { supabase } from '../../../../lib/supabase';",
+          "path": "../../../../lib/supabase",
+          "resolved": "/workspaces/cuttingcorners/frontend/lib/supabase.ts",
+          "names": [
+            {
+              "original": "supabase",
+              "alias": "supabase"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": false,
+          "line": 3
+        }
+      ],
+      "exports": [
+        {
+          "name": "useDeleteAccount",
+          "line": 5,
+          "kind": "named"
+        }
+      ],
+      "depth": 1,
+      "imported_by": [
+        "/workspaces/cuttingcorners/frontend/components/account/mobile/MobileAccount.tsx"
+      ],
+      "broken_imports": []
+    },
+    "/workspaces/cuttingcorners/frontend/components/account/mobile/ui/3Nav.tsx": {
+      "imports": [],
+      "exports": [
+        {
+          "name": "default",
+          "line": 8,
+          "kind": "default"
+        },
+        {
+          "name": "Nav3",
+          "line": 8,
+          "kind": "named"
+        }
+      ],
+      "depth": 1,
+      "imported_by": [
+        "/workspaces/cuttingcorners/frontend/components/account/mobile/MobileAccount.tsx"
+      ],
+      "broken_imports": []
+    },
+    "/workspaces/cuttingcorners/frontend/components/account/mobile/ui/3TabBar.tsx": {
+      "imports": [],
+      "exports": [
+        {
+          "name": "default",
+          "line": 11,
+          "kind": "default"
+        },
+        {
+          "name": "TabBar3",
+          "line": 11,
+          "kind": "named"
+        }
+      ],
+      "depth": 1,
+      "imported_by": [
+        "/workspaces/cuttingcorners/frontend/components/account/mobile/MobileAccount.tsx"
+      ],
+      "broken_imports": []
+    },
+    "/workspaces/cuttingcorners/frontend/components/account/mobile/ui/3MenuDrawer.tsx": {
+      "imports": [
+        {
+          "raw": "import { useSwipeDownToClose } from '../../shared/hooks/useSwipeDownToClose';",
+          "path": "../../shared/hooks/useSwipeDownToClose",
+          "resolved": "/workspaces/cuttingcorners/frontend/components/account/shared/hooks/useSwipeDownToClose.ts",
+          "names": [
+            {
+              "original": "useSwipeDownToClose",
+              "alias": "useSwipeDownToClose"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": false,
+          "line": 2
+        },
+        {
+          "raw": "import FirstTimeTips from './FirstTimeTips';",
+          "path": "./FirstTimeTips",
+          "resolved": "/workspaces/cuttingcorners/frontend/components/account/mobile/ui/FirstTimeTips.tsx",
+          "names": [],
+          "default": "FirstTimeTips",
+          "namespace": null,
+          "is_type": false,
+          "line": 3
+        }
+      ],
+      "exports": [
+        {
+          "name": "default",
+          "line": 27,
+          "kind": "default"
+        },
+        {
+          "name": "MenuDrawer3",
+          "line": 27,
+          "kind": "named"
+        }
+      ],
+      "depth": 1,
+      "imported_by": [
+        "/workspaces/cuttingcorners/frontend/components/account/mobile/MobileAccount.tsx"
+      ],
+      "broken_imports": []
+    },
+    "/workspaces/cuttingcorners/frontend/components/account/mobile/ui/3SmsConsentModal.tsx": {
+      "imports": [],
+      "exports": [
+        {
+          "name": "default",
+          "line": 17,
+          "kind": "default"
+        },
+        {
+          "name": "SmsConsentModal3",
+          "line": 17,
+          "kind": "named"
+        }
+      ],
+      "depth": 1,
+      "imported_by": [
+        "/workspaces/cuttingcorners/frontend/components/account/mobile/MobileAccount.tsx"
+      ],
+      "broken_imports": []
+    },
+    "/workspaces/cuttingcorners/frontend/components/account/mobile/ui/3ShopFeed.tsx": {
+      "imports": [
+        {
+          "raw": "import SharedShopFeed from '../../../shared/ShopFeed';",
+          "path": "../../../shared/ShopFeed",
+          "resolved": "/workspaces/cuttingcorners/frontend/components/shared/ShopFeed.tsx",
+          "names": [],
+          "default": "SharedShopFeed",
+          "namespace": null,
+          "is_type": false,
+          "line": 5
+        }
+      ],
+      "exports": [
+        {
+          "name": "default",
+          "line": 12,
+          "kind": "default"
+        },
+        {
+          "name": "ShopFeed3",
+          "line": 12,
+          "kind": "named"
+        }
+      ],
+      "depth": 1,
+      "imported_by": [
+        "/workspaces/cuttingcorners/frontend/components/account/mobile/MobileAccount.tsx"
+      ],
+      "broken_imports": []
+    },
+    "/workspaces/cuttingcorners/frontend/components/account/mobile/drawers/3ShopItemDrawer.tsx": {
+      "imports": [
+        {
+          "raw": "import { useState, useEffect } from 'react';",
+          "path": "react",
+          "resolved": null,
+          "names": [
+            {
+              "original": "useState",
+              "alias": "useState"
+            },
+            {
+              "original": "useEffect",
+              "alias": "useEffect"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": false,
+          "line": 1
+        },
+        {
+          "raw": "import { supabase } from '../../../../lib/supabase';",
+          "path": "../../../../lib/supabase",
+          "resolved": "/workspaces/cuttingcorners/frontend/lib/supabase.ts",
+          "names": [
+            {
+              "original": "supabase",
+              "alias": "supabase"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": false,
+          "line": 2
+        },
+        {
+          "raw": "import { formatMoney } from '../../../../lib/utils';",
+          "path": "../../../../lib/utils",
+          "resolved": "/workspaces/cuttingcorners/frontend/lib/utils.ts",
+          "names": [
+            {
+              "original": "formatMoney",
+              "alias": "formatMoney"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": false,
+          "line": 3
+        },
+        {
+          "raw": "import { getPhotoUrl } from '../../shared/utils/photoUrl';",
+          "path": "../../shared/utils/photoUrl",
+          "resolved": "/workspaces/cuttingcorners/frontend/components/account/shared/utils/photoUrl.ts",
+          "names": [
+            {
+              "original": "getPhotoUrl",
+              "alias": "getPhotoUrl"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": false,
+          "line": 4
+        },
+        {
+          "raw": "import { useSwipeToClose } from '../../shared/hooks/useSwipeToClose';",
+          "path": "../../shared/hooks/useSwipeToClose",
+          "resolved": "/workspaces/cuttingcorners/frontend/components/account/shared/hooks/useSwipeToClose.ts",
+          "names": [
+            {
+              "original": "useSwipeToClose",
+              "alias": "useSwipeToClose"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": false,
+          "line": 5
+        },
+        {
+          "raw": "import FirstTimeTips from '../ui/FirstTimeTips';",
+          "path": "../ui/FirstTimeTips",
+          "resolved": "/workspaces/cuttingcorners/frontend/components/account/mobile/ui/FirstTimeTips.tsx",
+          "names": [],
+          "default": "FirstTimeTips",
+          "namespace": null,
+          "is_type": false,
+          "line": 6
+        }
+      ],
+      "exports": [
+        {
+          "name": "default",
+          "line": 34,
+          "kind": "default"
+        },
+        {
+          "name": "ShopItemDrawer3",
+          "line": 34,
+          "kind": "named"
+        }
+      ],
+      "depth": 1,
+      "imported_by": [
+        "/workspaces/cuttingcorners/frontend/components/account/mobile/MobileAccount.tsx"
+      ],
+      "broken_imports": []
+    },
+    "/workspaces/cuttingcorners/frontend/components/account/mobile/tiles/3MessagesTile.tsx": {
+      "imports": [],
+      "exports": [
+        {
+          "name": "default",
+          "line": 9,
+          "kind": "default"
+        },
+        {
+          "name": "MessagesTile3",
+          "line": 9,
+          "kind": "named"
+        }
+      ],
+      "depth": 1,
+      "imported_by": [
+        "/workspaces/cuttingcorners/frontend/components/account/mobile/MobileAccount.tsx"
+      ],
+      "broken_imports": []
+    },
+    "/workspaces/cuttingcorners/frontend/components/account/mobile/tiles/3WorkOrderTile.tsx": {
+      "imports": [],
+      "exports": [
+        {
+          "name": "default",
+          "line": 8,
+          "kind": "default"
+        },
+        {
+          "name": "WorkOrderTile3",
+          "line": 8,
+          "kind": "named"
+        }
+      ],
+      "depth": 1,
+      "imported_by": [
+        "/workspaces/cuttingcorners/frontend/components/account/mobile/MobileAccount.tsx"
+      ],
+      "broken_imports": []
+    },
+    "/workspaces/cuttingcorners/frontend/components/account/mobile/tiles/3InvoicesTile.tsx": {
+      "imports": [],
+      "exports": [
+        {
+          "name": "default",
+          "line": 9,
+          "kind": "default"
+        },
+        {
+          "name": "InvoicesTile3",
+          "line": 9,
+          "kind": "named"
+        }
+      ],
+      "depth": 1,
+      "imported_by": [
+        "/workspaces/cuttingcorners/frontend/components/account/mobile/MobileAccount.tsx"
+      ],
+      "broken_imports": []
+    },
+    "/workspaces/cuttingcorners/frontend/components/account/mobile/tiles/3FeasibilityTile.tsx": {
+      "imports": [],
+      "exports": [
+        {
+          "name": "WizardResult",
+          "line": 4,
+          "kind": "named"
+        },
+        {
+          "name": "FeasibilityTileProps",
+          "line": 13,
+          "kind": "named"
+        },
+        {
+          "name": "ScoreRing",
+          "line": 26,
+          "kind": "named"
+        },
+        {
+          "name": "default",
+          "line": 51,
+          "kind": "default"
+        },
+        {
+          "name": "FeasibilityTile3",
+          "line": 51,
+          "kind": "named"
+        }
+      ],
+      "depth": 1,
+      "imported_by": [
+        "/workspaces/cuttingcorners/frontend/components/account/mobile/MobileAccount.tsx"
+      ],
+      "broken_imports": []
+    },
+    "/workspaces/cuttingcorners/frontend/components/account/mobile/tiles/3InquiriesTile.tsx": {
+      "imports": [],
+      "exports": [
+        {
+          "name": "default",
+          "line": 7,
+          "kind": "default"
+        },
+        {
+          "name": "InquiriesTile3",
+          "line": 7,
+          "kind": "named"
+        }
+      ],
+      "depth": 1,
+      "imported_by": [
+        "/workspaces/cuttingcorners/frontend/components/account/mobile/MobileAccount.tsx"
+      ],
+      "broken_imports": []
+    },
+    "/workspaces/cuttingcorners/frontend/components/account/mobile/tiles/3SmsTile.tsx": {
+      "imports": [],
+      "exports": [
+        {
+          "name": "default",
+          "line": 8,
+          "kind": "default"
+        },
+        {
+          "name": "SmsTile3",
+          "line": 8,
+          "kind": "named"
+        }
+      ],
+      "depth": 1,
+      "imported_by": [
+        "/workspaces/cuttingcorners/frontend/components/account/mobile/MobileAccount.tsx"
+      ],
+      "broken_imports": []
+    },
+    "/workspaces/cuttingcorners/frontend/components/account/mobile/tiles/3ServiceRequestsTile.tsx": {
+      "imports": [],
+      "exports": [
+        {
+          "name": "default",
+          "line": 7,
+          "kind": "default"
+        },
+        {
+          "name": "ServiceRequestsTile3",
+          "line": 7,
+          "kind": "named"
+        }
+      ],
+      "depth": 1,
+      "imported_by": [
+        "/workspaces/cuttingcorners/frontend/components/account/mobile/MobileAccount.tsx"
+      ],
+      "broken_imports": []
+    },
+    "/workspaces/cuttingcorners/frontend/components/account/mobile/tiles/3ProfileTile.tsx": {
+      "imports": [],
+      "exports": [
+        {
+          "name": "default",
+          "line": 8,
+          "kind": "default"
+        },
+        {
+          "name": "ProfileTile3",
+          "line": 8,
+          "kind": "named"
+        }
+      ],
+      "depth": 1,
+      "imported_by": [
+        "/workspaces/cuttingcorners/frontend/components/account/mobile/MobileAccount.tsx"
+      ],
+      "broken_imports": []
+    },
+    "/workspaces/cuttingcorners/frontend/components/account/mobile/tiles/3FeedbackTile.tsx": {
+      "imports": [
+        {
+          "raw": "import { useEffect, useState } from 'react';",
+          "path": "react",
+          "resolved": null,
+          "names": [
+            {
+              "original": "useEffect",
+              "alias": "useEffect"
+            },
+            {
+              "original": "useState",
+              "alias": "useState"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": false,
+          "line": 17
+        },
+        {
+          "raw": "import { supabase } from '../../../../lib/supabase';",
+          "path": "../../../../lib/supabase",
+          "resolved": "/workspaces/cuttingcorners/frontend/lib/supabase.ts",
+          "names": [
+            {
+              "original": "supabase",
+              "alias": "supabase"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": false,
+          "line": 18
+        }
+      ],
+      "exports": [
+        {
+          "name": "default",
+          "line": 72,
+          "kind": "default"
+        },
+        {
+          "name": "FeedbackTile3",
+          "line": 72,
+          "kind": "named"
+        }
+      ],
+      "depth": 1,
+      "imported_by": [
+        "/workspaces/cuttingcorners/frontend/components/account/mobile/MobileAccount.tsx"
+      ],
+      "broken_imports": []
+    },
+    "/workspaces/cuttingcorners/frontend/components/account/mobile/panels/3ChatPanel.tsx": {
+      "imports": [
+        {
+          "raw": "import { useEffect, useState } from 'react';",
+          "path": "react",
+          "resolved": null,
+          "names": [
+            {
+              "original": "useEffect",
+              "alias": "useEffect"
+            },
+            {
+              "original": "useState",
+              "alias": "useState"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": false,
+          "line": 3
+        },
+        {
+          "raw": "import { supabase } from '../../../../lib/supabase';",
+          "path": "../../../../lib/supabase",
+          "resolved": "/workspaces/cuttingcorners/frontend/lib/supabase.ts",
+          "names": [
+            {
+              "original": "supabase",
+              "alias": "supabase"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": false,
+          "line": 4
+        },
+        {
+          "raw": "import { fmtTime } from '../../../../lib/utils';",
+          "path": "../../../../lib/utils",
+          "resolved": "/workspaces/cuttingcorners/frontend/lib/utils.ts",
+          "names": [
+            {
+              "original": "fmtTime",
+              "alias": "fmtTime"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": false,
+          "line": 5
+        },
+        {
+          "raw": "import { useSwipeDownToClose } from '../../shared/hooks/useSwipeDownToClose';",
+          "path": "../../shared/hooks/useSwipeDownToClose",
+          "resolved": "/workspaces/cuttingcorners/frontend/components/account/shared/hooks/useSwipeDownToClose.ts",
+          "names": [
+            {
+              "original": "useSwipeDownToClose",
+              "alias": "useSwipeDownToClose"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": false,
+          "line": 6
+        },
+        {
+          "raw": "import FirstTimeTips from '../ui/FirstTimeTips';",
+          "path": "../ui/FirstTimeTips",
+          "resolved": "/workspaces/cuttingcorners/frontend/components/account/mobile/ui/FirstTimeTips.tsx",
+          "names": [],
+          "default": "FirstTimeTips",
+          "namespace": null,
+          "is_type": false,
+          "line": 7
+        },
+        {
+          "raw": "import type { PendingUpload } from '../../shared/hooks/useChat';",
+          "path": "../../shared/hooks/useChat",
+          "resolved": "/workspaces/cuttingcorners/frontend/components/account/shared/hooks/useChat.ts",
+          "names": [
+            {
+              "original": "PendingUpload",
+              "alias": "PendingUpload"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": true,
+          "line": 8
+        },
+        {
+          "raw": "import ChatImageModal from '../modals/ChatImageModal';",
+          "path": "../modals/ChatImageModal",
+          "resolved": "/workspaces/cuttingcorners/frontend/components/account/mobile/modals/ChatImageModal.tsx",
+          "names": [],
+          "default": "ChatImageModal",
+          "namespace": null,
+          "is_type": false,
+          "line": 9
+        }
+      ],
+      "exports": [
+        {
+          "name": "default",
+          "line": 46,
+          "kind": "default"
+        },
+        {
+          "name": "ChatPanel3",
+          "line": 46,
+          "kind": "named"
+        }
+      ],
+      "depth": 1,
+      "imported_by": [
+        "/workspaces/cuttingcorners/frontend/components/account/mobile/MobileAccount.tsx"
+      ],
+      "broken_imports": []
+    },
+    "/workspaces/cuttingcorners/frontend/components/account/mobile/panels/3OrdersPanel.tsx": {
+      "imports": [
+        {
+          "raw": "import { formatMoney, fmtDate, fmtTime } from '../../../../lib/utils';",
+          "path": "../../../../lib/utils",
+          "resolved": "/workspaces/cuttingcorners/frontend/lib/utils.ts",
+          "names": [
+            {
+              "original": "formatMoney",
+              "alias": "formatMoney"
+            },
+            {
+              "original": "fmtDate",
+              "alias": "fmtDate"
+            },
+            {
+              "original": "fmtTime",
+              "alias": "fmtTime"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": false,
+          "line": 3
+        },
+        {
+          "raw": "import { useSwipeDownToClose } from '../../shared/hooks/useSwipeDownToClose';",
+          "path": "../../shared/hooks/useSwipeDownToClose",
+          "resolved": "/workspaces/cuttingcorners/frontend/components/account/shared/hooks/useSwipeDownToClose.ts",
+          "names": [
+            {
+              "original": "useSwipeDownToClose",
+              "alias": "useSwipeDownToClose"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": false,
+          "line": 4
+        },
+        {
+          "raw": "import FirstTimeTips from '../ui/FirstTimeTips';",
+          "path": "../ui/FirstTimeTips",
+          "resolved": "/workspaces/cuttingcorners/frontend/components/account/mobile/ui/FirstTimeTips.tsx",
+          "names": [],
+          "default": "FirstTimeTips",
+          "namespace": null,
+          "is_type": false,
+          "line": 5
+        }
+      ],
+      "exports": [
+        {
+          "name": "default",
+          "line": 25,
+          "kind": "default"
+        },
+        {
+          "name": "OrdersPanel3",
+          "line": 25,
+          "kind": "named"
+        }
+      ],
+      "depth": 1,
+      "imported_by": [
+        "/workspaces/cuttingcorners/frontend/components/account/mobile/MobileAccount.tsx"
+      ],
+      "broken_imports": []
+    },
+    "/workspaces/cuttingcorners/frontend/components/account/mobile/panels/3InvoicesPanel.tsx": {
+      "imports": [
+        {
+          "raw": "import { useState } from 'react';",
+          "path": "react",
+          "resolved": null,
+          "names": [
+            {
+              "original": "useState",
+              "alias": "useState"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": false,
+          "line": 12
+        },
+        {
+          "raw": "import { formatMoney, fmtDate, fmtTime } from '../../../../lib/utils';",
+          "path": "../../../../lib/utils",
+          "resolved": "/workspaces/cuttingcorners/frontend/lib/utils.ts",
+          "names": [
+            {
+              "original": "formatMoney",
+              "alias": "formatMoney"
+            },
+            {
+              "original": "fmtDate",
+              "alias": "fmtDate"
+            },
+            {
+              "original": "fmtTime",
+              "alias": "fmtTime"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": false,
+          "line": 13
+        },
+        {
+          "raw": "import { useSwipeDownToClose } from '../../shared/hooks/useSwipeDownToClose';",
+          "path": "../../shared/hooks/useSwipeDownToClose",
+          "resolved": "/workspaces/cuttingcorners/frontend/components/account/shared/hooks/useSwipeDownToClose.ts",
+          "names": [
+            {
+              "original": "useSwipeDownToClose",
+              "alias": "useSwipeDownToClose"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": false,
+          "line": 14
+        },
+        {
+          "raw": "import FirstTimeTips from '../ui/FirstTimeTips';",
+          "path": "../ui/FirstTimeTips",
+          "resolved": "/workspaces/cuttingcorners/frontend/components/account/mobile/ui/FirstTimeTips.tsx",
+          "names": [],
+          "default": "FirstTimeTips",
+          "namespace": null,
+          "is_type": false,
+          "line": 15
+        }
+      ],
+      "exports": [
+        {
+          "name": "default",
+          "line": 39,
+          "kind": "default"
+        },
+        {
+          "name": "InvoicesPanel3",
+          "line": 39,
+          "kind": "named"
+        }
+      ],
+      "depth": 1,
+      "imported_by": [
+        "/workspaces/cuttingcorners/frontend/components/account/mobile/MobileAccount.tsx"
+      ],
+      "broken_imports": []
+    },
+    "/workspaces/cuttingcorners/frontend/components/account/mobile/panels/3ServiceRequestPanel.tsx": {
+      "imports": [
+        {
+          "raw": "import { useState, useEffect } from 'react';",
+          "path": "react",
+          "resolved": null,
+          "names": [
+            {
+              "original": "useState",
+              "alias": "useState"
+            },
+            {
+              "original": "useEffect",
+              "alias": "useEffect"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": false,
+          "line": 19
+        },
+        {
+          "raw": "import { fmtDate, fmtTime } from '../../../../lib/utils';",
+          "path": "../../../../lib/utils",
+          "resolved": "/workspaces/cuttingcorners/frontend/lib/utils.ts",
+          "names": [
+            {
+              "original": "fmtDate",
+              "alias": "fmtDate"
+            },
+            {
+              "original": "fmtTime",
+              "alias": "fmtTime"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": false,
+          "line": 20
+        },
+        {
+          "raw": "import { useSwipeDownToClose } from '../../shared/hooks/useSwipeDownToClose';",
+          "path": "../../shared/hooks/useSwipeDownToClose",
+          "resolved": "/workspaces/cuttingcorners/frontend/components/account/shared/hooks/useSwipeDownToClose.ts",
+          "names": [
+            {
+              "original": "useSwipeDownToClose",
+              "alias": "useSwipeDownToClose"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": false,
+          "line": 21
+        },
+        {
+          "raw": "import { supabase } from '../../../../lib/supabase';",
+          "path": "../../../../lib/supabase",
+          "resolved": "/workspaces/cuttingcorners/frontend/lib/supabase.ts",
+          "names": [
+            {
+              "original": "supabase",
+              "alias": "supabase"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": false,
+          "line": 22
+        },
+        {
+          "raw": "import FirstTimeTips from '../ui/FirstTimeTips';",
+          "path": "../ui/FirstTimeTips",
+          "resolved": "/workspaces/cuttingcorners/frontend/components/account/mobile/ui/FirstTimeTips.tsx",
+          "names": [],
+          "default": "FirstTimeTips",
+          "namespace": null,
+          "is_type": false,
+          "line": 23
+        },
+        {
+          "raw": "import ServiceRequestForm from '../forms/ServiceRequestForm';",
+          "path": "../forms/ServiceRequestForm",
+          "resolved": "/workspaces/cuttingcorners/frontend/components/account/mobile/forms/ServiceRequestForm.tsx",
+          "names": [],
+          "default": "ServiceRequestForm",
+          "namespace": null,
+          "is_type": false,
+          "line": 24
+        }
+      ],
+      "exports": [
+        {
+          "name": "default",
+          "line": 47,
+          "kind": "default"
+        },
+        {
+          "name": "ServiceRequestPanel3",
+          "line": 47,
+          "kind": "named"
+        }
+      ],
+      "depth": 1,
+      "imported_by": [
+        "/workspaces/cuttingcorners/frontend/components/account/mobile/MobileAccount.tsx"
+      ],
+      "broken_imports": []
+    },
+    "/workspaces/cuttingcorners/frontend/components/account/mobile/panels/3InquiriesPanel.tsx": {
+      "imports": [
+        {
+          "raw": "import { useState, useEffect } from 'react';",
+          "path": "react",
+          "resolved": null,
+          "names": [
+            {
+              "original": "useState",
+              "alias": "useState"
+            },
+            {
+              "original": "useEffect",
+              "alias": "useEffect"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": false,
+          "line": 3
+        },
+        {
+          "raw": "import { fmtDate } from '../../../../lib/utils';",
+          "path": "../../../../lib/utils",
+          "resolved": "/workspaces/cuttingcorners/frontend/lib/utils.ts",
+          "names": [
+            {
+              "original": "fmtDate",
+              "alias": "fmtDate"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": false,
+          "line": 4
+        },
+        {
+          "raw": "import { useSwipeDownToClose } from '../../shared/hooks/useSwipeDownToClose';",
+          "path": "../../shared/hooks/useSwipeDownToClose",
+          "resolved": "/workspaces/cuttingcorners/frontend/components/account/shared/hooks/useSwipeDownToClose.ts",
+          "names": [
+            {
+              "original": "useSwipeDownToClose",
+              "alias": "useSwipeDownToClose"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": false,
+          "line": 5
+        },
+        {
+          "raw": "import { supabase } from '../../../../lib/supabase';",
+          "path": "../../../../lib/supabase",
+          "resolved": "/workspaces/cuttingcorners/frontend/lib/supabase.ts",
+          "names": [
+            {
+              "original": "supabase",
+              "alias": "supabase"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": false,
+          "line": 6
+        },
+        {
+          "raw": "import FirstTimeTips from '../ui/FirstTimeTips';",
+          "path": "../ui/FirstTimeTips",
+          "resolved": "/workspaces/cuttingcorners/frontend/components/account/mobile/ui/FirstTimeTips.tsx",
+          "names": [],
+          "default": "FirstTimeTips",
+          "namespace": null,
+          "is_type": false,
+          "line": 7
+        },
+        {
+          "raw": "import InquiryDrawer3 from '../drawers/3InquiryDrawer';",
+          "path": "../drawers/3InquiryDrawer",
+          "resolved": "/workspaces/cuttingcorners/frontend/components/account/mobile/drawers/3InquiryDrawer.tsx",
+          "names": [],
+          "default": "InquiryDrawer3",
+          "namespace": null,
+          "is_type": false,
+          "line": 8
+        }
+      ],
+      "exports": [
+        {
+          "name": "default",
+          "line": 129,
+          "kind": "default"
+        },
+        {
+          "name": "InquiriesPanel3",
+          "line": 129,
+          "kind": "named"
+        }
+      ],
+      "depth": 1,
+      "imported_by": [
+        "/workspaces/cuttingcorners/frontend/components/account/mobile/MobileAccount.tsx"
+      ],
+      "broken_imports": []
+    },
+    "/workspaces/cuttingcorners/frontend/components/account/mobile/panels/3WizardResultsPanel.tsx": {
+      "imports": [
+        {
+          "raw": "import { useState, useEffect } from 'react';",
+          "path": "react",
+          "resolved": null,
+          "names": [
+            {
+              "original": "useState",
+              "alias": "useState"
+            },
+            {
+              "original": "useEffect",
+              "alias": "useEffect"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": false,
+          "line": 3
+        },
+        {
+          "raw": "import { supabase } from '../../../../lib/supabase';",
+          "path": "../../../../lib/supabase",
+          "resolved": "/workspaces/cuttingcorners/frontend/lib/supabase.ts",
+          "names": [
+            {
+              "original": "supabase",
+              "alias": "supabase"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": false,
+          "line": 4
+        },
+        {
+          "raw": "import { getUserWizardResults } from '../../../../lib/wizardResultsService';",
+          "path": "../../../../lib/wizardResultsService",
+          "resolved": "/workspaces/cuttingcorners/frontend/lib/wizardResultsService.ts",
+          "names": [
+            {
+              "original": "getUserWizardResults",
+              "alias": "getUserWizardResults"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": false,
+          "line": 5
+        },
+        {
+          "raw": "import type { WizardResult } from '../../../../lib/wizardResultsService';",
+          "path": "../../../../lib/wizardResultsService",
+          "resolved": "/workspaces/cuttingcorners/frontend/lib/wizardResultsService.ts",
+          "names": [
+            {
+              "original": "WizardResult",
+              "alias": "WizardResult"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": true,
+          "line": 6
+        },
+        {
+          "raw": "import WizardResultDrawer3 from '../drawers/3WizardResultDrawer';",
+          "path": "../drawers/3WizardResultDrawer",
+          "resolved": "/workspaces/cuttingcorners/frontend/components/account/mobile/drawers/3WizardResultDrawer.tsx",
+          "names": [],
+          "default": "WizardResultDrawer3",
+          "namespace": null,
+          "is_type": false,
+          "line": 7
+        },
+        {
+          "raw": "import WizardFolderGrid from '../grids/WizardFolderGrid';",
+          "path": "../grids/WizardFolderGrid",
+          "resolved": "/workspaces/cuttingcorners/frontend/components/account/mobile/grids/WizardFolderGrid.tsx",
+          "names": [],
+          "default": "WizardFolderGrid",
+          "namespace": null,
+          "is_type": false,
+          "line": 8
+        },
+        {
+          "raw": "import { WizardFolderTextModal } from '../modals/WizardFolderModal';",
+          "path": "../modals/WizardFolderModal",
+          "resolved": "/workspaces/cuttingcorners/frontend/components/account/mobile/modals/WizardFolderModal.tsx",
+          "names": [
+            {
+              "original": "WizardFolderTextModal",
+              "alias": "WizardFolderTextModal"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": false,
+          "line": 9
+        },
+        {
+          "raw": "import { useSwipeDownToClose } from '../../shared/hooks/useSwipeDownToClose';",
+          "path": "../../shared/hooks/useSwipeDownToClose",
+          "resolved": "/workspaces/cuttingcorners/frontend/components/account/shared/hooks/useSwipeDownToClose.ts",
+          "names": [
+            {
+              "original": "useSwipeDownToClose",
+              "alias": "useSwipeDownToClose"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": false,
+          "line": 10
+        },
+        {
+          "raw": "import FirstTimeTips from '../ui/FirstTimeTips';",
+          "path": "../ui/FirstTimeTips",
+          "resolved": "/workspaces/cuttingcorners/frontend/components/account/mobile/ui/FirstTimeTips.tsx",
+          "names": [],
+          "default": "FirstTimeTips",
+          "namespace": null,
+          "is_type": false,
+          "line": 11
+        }
+      ],
+      "exports": [
+        {
+          "name": "default",
+          "line": 89,
+          "kind": "default"
+        },
+        {
+          "name": "WizardResultsPanel3",
+          "line": 89,
+          "kind": "named"
+        }
+      ],
+      "depth": 1,
+      "imported_by": [
+        "/workspaces/cuttingcorners/frontend/components/account/mobile/MobileAccount.tsx"
+      ],
+      "broken_imports": []
+    },
+    "/workspaces/cuttingcorners/frontend/components/account/mobile/panels/3ProfilePanel.tsx": {
+      "imports": [
+        {
+          "raw": "import { formatMoney } from '../../../../lib/utils';",
+          "path": "../../../../lib/utils",
+          "resolved": "/workspaces/cuttingcorners/frontend/lib/utils.ts",
+          "names": [
+            {
+              "original": "formatMoney",
+              "alias": "formatMoney"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": false,
+          "line": 10
+        },
+        {
+          "raw": "import { useSwipeDownToClose } from '../../shared/hooks/useSwipeDownToClose';",
+          "path": "../../shared/hooks/useSwipeDownToClose",
+          "resolved": "/workspaces/cuttingcorners/frontend/components/account/shared/hooks/useSwipeDownToClose.ts",
+          "names": [
+            {
+              "original": "useSwipeDownToClose",
+              "alias": "useSwipeDownToClose"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": false,
+          "line": 11
+        },
+        {
+          "raw": "import FirstTimeTips from '../ui/FirstTimeTips';",
+          "path": "../ui/FirstTimeTips",
+          "resolved": "/workspaces/cuttingcorners/frontend/components/account/mobile/ui/FirstTimeTips.tsx",
+          "names": [],
+          "default": "FirstTimeTips",
+          "namespace": null,
+          "is_type": false,
+          "line": 12
+        }
+      ],
+      "exports": [
+        {
+          "name": "default",
+          "line": 71,
+          "kind": "default"
+        },
+        {
+          "name": "ProfilePanel3",
+          "line": 71,
+          "kind": "named"
+        }
+      ],
+      "depth": 1,
+      "imported_by": [
+        "/workspaces/cuttingcorners/frontend/components/account/mobile/MobileAccount.tsx"
+      ],
+      "broken_imports": []
+    },
+    "/workspaces/cuttingcorners/frontend/components/account/mobile/panels/3FeasibilityPanel.tsx": {
+      "imports": [
+        {
+          "raw": "import { useState, useEffect, useMemo } from 'react'",
+          "path": "react",
+          "resolved": null,
+          "names": [
+            {
+              "original": "useState",
+              "alias": "useState"
+            },
+            {
+              "original": "useEffect",
+              "alias": "useEffect"
+            },
+            {
+              "original": "useMemo",
+              "alias": "useMemo"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": false,
+          "line": 1
+        },
+        {
+          "raw": "import IntroScreen from '../../../feasibility-test/ui/IntroScreen'",
+          "path": "../../../feasibility-test/ui/IntroScreen",
+          "resolved": "/workspaces/cuttingcorners/frontend/components/feasibility-test/ui/IntroScreen.tsx",
+          "names": [],
+          "default": "IntroScreen",
+          "namespace": null,
+          "is_type": false,
+          "line": 2
+        },
+        {
+          "raw": "import WizardScreen from '../../../feasibility-test/ui/WizardScreen'",
+          "path": "../../../feasibility-test/ui/WizardScreen",
+          "resolved": "/workspaces/cuttingcorners/frontend/components/feasibility-test/ui/WizardScreen.tsx",
+          "names": [],
+          "default": "WizardScreen",
+          "namespace": null,
+          "is_type": false,
+          "line": 3
+        },
+        {
+          "raw": "import type { IntroPhase, StepKind, StoneInfo } from '../../../feasibility-test/logic/feasibility-types'",
+          "path": "../../../feasibility-test/logic/feasibility-types",
+          "resolved": "/workspaces/cuttingcorners/frontend/components/feasibility-test/logic/feasibility-types.ts",
+          "names": [
+            {
+              "original": "IntroPhase",
+              "alias": "IntroPhase"
+            },
+            {
+              "original": "StepKind",
+              "alias": "StepKind"
+            },
+            {
+              "original": "StoneInfo",
+              "alias": "StoneInfo"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": true,
+          "line": 4
+        },
+        {
+          "raw": "import { positiveItems, limitingItems, structuralItems, correctableRows } from '../../../feasibility-test/data/questions'",
+          "path": "../../../feasibility-test/data/questions",
+          "resolved": "/workspaces/cuttingcorners/frontend/components/feasibility-test/data/questions.ts",
+          "names": [
+            {
+              "original": "positiveItems",
+              "alias": "positiveItems"
+            },
+            {
+              "original": "limitingItems",
+              "alias": "limitingItems"
+            },
+            {
+              "original": "structuralItems",
+              "alias": "structuralItems"
+            },
+            {
+              "original": "correctableRows",
+              "alias": "correctableRows"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": false,
+          "line": 5
+        },
+        {
+          "raw": "import { calculateAll } from '../../../feasibility-test/logic/calculator'",
+          "path": "../../../feasibility-test/logic/calculator",
+          "resolved": "/workspaces/cuttingcorners/frontend/components/feasibility-test/logic/calculator.ts",
+          "names": [
+            {
+              "original": "calculateAll",
+              "alias": "calculateAll"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": false,
+          "line": 6
+        },
+        {
+          "raw": "import type { CorrectableSelections, ScoreBreakdown } from '../../../feasibility-test/logic/calculator'",
+          "path": "../../../feasibility-test/logic/calculator",
+          "resolved": "/workspaces/cuttingcorners/frontend/components/feasibility-test/logic/calculator.ts",
+          "names": [
+            {
+              "original": "CorrectableSelections",
+              "alias": "CorrectableSelections"
+            },
+            {
+              "original": "ScoreBreakdown",
+              "alias": "ScoreBreakdown"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": true,
+          "line": 7
+        },
+        {
+          "raw": "import { autoSelectAll } from '../../../feasibility-test/logic/autoSelect'",
+          "path": "../../../feasibility-test/logic/autoSelect",
+          "resolved": "/workspaces/cuttingcorners/frontend/components/feasibility-test/logic/autoSelect.ts",
+          "names": [
+            {
+              "original": "autoSelectAll",
+              "alias": "autoSelectAll"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": false,
+          "line": 8
+        },
+        {
+          "raw": "import { trackWizardAnalytics } from '../../../../lib/wizardResultsService'",
+          "path": "../../../../lib/wizardResultsService",
+          "resolved": "/workspaces/cuttingcorners/frontend/lib/wizardResultsService.ts",
+          "names": [
+            {
+              "original": "trackWizardAnalytics",
+              "alias": "trackWizardAnalytics"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": false,
+          "line": 9
+        }
+      ],
+      "exports": [
+        {
+          "name": "default",
+          "line": 51,
+          "kind": "default"
+        },
+        {
+          "name": "FeasibilityPanel",
+          "line": 51,
+          "kind": "named"
+        }
+      ],
+      "depth": 1,
+      "imported_by": [
+        "/workspaces/cuttingcorners/frontend/components/account/mobile/MobileAccount.tsx"
+      ],
+      "broken_imports": []
+    },
+    "/workspaces/cuttingcorners/frontend/components/account/mobile/drawers/3WorkOrderDrawer.tsx": {
+      "imports": [
+        {
+          "raw": "import { useState, useEffect } from 'react';",
+          "path": "react",
+          "resolved": null,
+          "names": [
+            {
+              "original": "useState",
+              "alias": "useState"
+            },
+            {
+              "original": "useEffect",
+              "alias": "useEffect"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": false,
+          "line": 14
+        },
+        {
+          "raw": "import { supabase } from '../../../../lib/supabase';",
+          "path": "../../../../lib/supabase",
+          "resolved": "/workspaces/cuttingcorners/frontend/lib/supabase.ts",
+          "names": [
+            {
+              "original": "supabase",
+              "alias": "supabase"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": false,
+          "line": 15
+        },
+        {
+          "raw": "import { formatMoney, fmtDate, fmtTime } from '../../../../lib/utils';",
+          "path": "../../../../lib/utils",
+          "resolved": "/workspaces/cuttingcorners/frontend/lib/utils.ts",
+          "names": [
+            {
+              "original": "formatMoney",
+              "alias": "formatMoney"
+            },
+            {
+              "original": "fmtDate",
+              "alias": "fmtDate"
+            },
+            {
+              "original": "fmtTime",
+              "alias": "fmtTime"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": false,
+          "line": 16
+        },
+        {
+          "raw": "import { useSwipeToClose } from '../../shared/hooks/useSwipeToClose';",
+          "path": "../../shared/hooks/useSwipeToClose",
+          "resolved": "/workspaces/cuttingcorners/frontend/components/account/shared/hooks/useSwipeToClose.ts",
+          "names": [
+            {
+              "original": "useSwipeToClose",
+              "alias": "useSwipeToClose"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": false,
+          "line": 17
+        },
+        {
+          "raw": "import FirstTimeTips from '../ui/FirstTimeTips';",
+          "path": "../ui/FirstTimeTips",
+          "resolved": "/workspaces/cuttingcorners/frontend/components/account/mobile/ui/FirstTimeTips.tsx",
+          "names": [],
+          "default": "FirstTimeTips",
+          "namespace": null,
+          "is_type": false,
+          "line": 18
+        }
+      ],
+      "exports": [
+        {
+          "name": "default",
+          "line": 37,
+          "kind": "default"
+        },
+        {
+          "name": "WorkOrderDrawer3",
+          "line": 37,
+          "kind": "named"
+        }
+      ],
+      "depth": 1,
+      "imported_by": [
+        "/workspaces/cuttingcorners/frontend/components/account/mobile/MobileAccount.tsx"
+      ],
+      "broken_imports": []
+    },
+    "/workspaces/cuttingcorners/frontend/components/account/mobile/drawers/3InvoiceDrawer.tsx": {
+      "imports": [
+        {
+          "raw": "import { formatMoney, fmtDate, fmtTime } from '../../../../lib/utils';",
+          "path": "../../../../lib/utils",
+          "resolved": "/workspaces/cuttingcorners/frontend/lib/utils.ts",
+          "names": [
+            {
+              "original": "formatMoney",
+              "alias": "formatMoney"
+            },
+            {
+              "original": "fmtDate",
+              "alias": "fmtDate"
+            },
+            {
+              "original": "fmtTime",
+              "alias": "fmtTime"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": false,
+          "line": 14
+        },
+        {
+          "raw": "import { useSwipeToClose } from '../../shared/hooks/useSwipeToClose';",
+          "path": "../../shared/hooks/useSwipeToClose",
+          "resolved": "/workspaces/cuttingcorners/frontend/components/account/shared/hooks/useSwipeToClose.ts",
+          "names": [
+            {
+              "original": "useSwipeToClose",
+              "alias": "useSwipeToClose"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": false,
+          "line": 15
+        },
+        {
+          "raw": "import FirstTimeTips from '../ui/FirstTimeTips';",
+          "path": "../ui/FirstTimeTips",
+          "resolved": "/workspaces/cuttingcorners/frontend/components/account/mobile/ui/FirstTimeTips.tsx",
+          "names": [],
+          "default": "FirstTimeTips",
+          "namespace": null,
+          "is_type": false,
+          "line": 16
+        }
+      ],
+      "exports": [
+        {
+          "name": "default",
+          "line": 26,
+          "kind": "default"
+        },
+        {
+          "name": "InvoiceDrawer3",
+          "line": 26,
+          "kind": "named"
+        }
+      ],
+      "depth": 1,
+      "imported_by": [
+        "/workspaces/cuttingcorners/frontend/components/account/mobile/MobileAccount.tsx"
+      ],
+      "broken_imports": []
+    },
+    "/workspaces/cuttingcorners/frontend/components/account/mobile/drawers/3ServiceRequestDrawer.tsx": {
+      "imports": [
+        {
+          "raw": "import { useEffect, useState } from 'react';",
+          "path": "react",
+          "resolved": null,
+          "names": [
+            {
+              "original": "useEffect",
+              "alias": "useEffect"
+            },
+            {
+              "original": "useState",
+              "alias": "useState"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": false,
+          "line": 19
+        },
+        {
+          "raw": "import { fmtDate, fmtTime } from '../../../../lib/utils';",
+          "path": "../../../../lib/utils",
+          "resolved": "/workspaces/cuttingcorners/frontend/lib/utils.ts",
+          "names": [
+            {
+              "original": "fmtDate",
+              "alias": "fmtDate"
+            },
+            {
+              "original": "fmtTime",
+              "alias": "fmtTime"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": false,
+          "line": 20
+        },
+        {
+          "raw": "import { useSwipeToClose } from '../../shared/hooks/useSwipeToClose';",
+          "path": "../../shared/hooks/useSwipeToClose",
+          "resolved": "/workspaces/cuttingcorners/frontend/components/account/shared/hooks/useSwipeToClose.ts",
+          "names": [
+            {
+              "original": "useSwipeToClose",
+              "alias": "useSwipeToClose"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": false,
+          "line": 21
+        },
+        {
+          "raw": "import { supabase } from '../../../../lib/supabase';",
+          "path": "../../../../lib/supabase",
+          "resolved": "/workspaces/cuttingcorners/frontend/lib/supabase.ts",
+          "names": [
+            {
+              "original": "supabase",
+              "alias": "supabase"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": false,
+          "line": 22
+        },
+        {
+          "raw": "import FirstTimeTips from '../ui/FirstTimeTips';",
+          "path": "../ui/FirstTimeTips",
+          "resolved": "/workspaces/cuttingcorners/frontend/components/account/mobile/ui/FirstTimeTips.tsx",
+          "names": [],
+          "default": "FirstTimeTips",
+          "namespace": null,
+          "is_type": false,
+          "line": 23
+        }
+      ],
+      "exports": [
+        {
+          "name": "default",
+          "line": 38,
+          "kind": "default"
+        },
+        {
+          "name": "ServiceRequestDrawer3",
+          "line": 38,
+          "kind": "named"
+        }
+      ],
+      "depth": 1,
+      "imported_by": [
+        "/workspaces/cuttingcorners/frontend/components/account/mobile/MobileAccount.tsx"
+      ],
+      "broken_imports": []
+    },
+    "/workspaces/cuttingcorners/frontend/lib/supabase.ts": {
+      "imports": [
+        {
+          "raw": "import { createClient } from '@supabase/supabase-js';",
+          "path": "@supabase/supabase-js",
+          "resolved": null,
+          "names": [
+            {
+              "original": "createClient",
+              "alias": "createClient"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": false,
+          "line": 1
+        }
+      ],
+      "exports": [
+        {
+          "name": "supabase",
+          "line": 4,
+          "kind": "named"
+        },
+        {
+          "name": "createServiceClient",
+          "line": 19,
+          "kind": "named"
+        }
+      ],
+      "depth": 2,
+      "imported_by": [
+        "/workspaces/cuttingcorners/frontend/components/account/shared/hooks/useAuth.ts"
+      ],
+      "broken_imports": []
+    },
+    "/workspaces/cuttingcorners/frontend/components/account/shared/hooks/useSwipeDownToClose.ts": {
+      "imports": [
+        {
+          "raw": "import { useRef } from 'react';",
+          "path": "react",
+          "resolved": null,
+          "names": [
+            {
+              "original": "useRef",
+              "alias": "useRef"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": false,
+          "line": 1
+        }
+      ],
+      "exports": [
+        {
+          "name": "useSwipeDownToClose",
+          "line": 8,
+          "kind": "named"
+        }
+      ],
+      "depth": 2,
+      "imported_by": [
+        "/workspaces/cuttingcorners/frontend/components/account/mobile/ui/3MenuDrawer.tsx"
+      ],
+      "broken_imports": []
+    },
+    "/workspaces/cuttingcorners/frontend/components/account/mobile/ui/FirstTimeTips.tsx": {
+      "imports": [
+        {
+          "raw": "import { useState, useEffect } from 'react';",
+          "path": "react",
+          "resolved": null,
+          "names": [
+            {
+              "original": "useState",
+              "alias": "useState"
+            },
+            {
+              "original": "useEffect",
+              "alias": "useEffect"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": false,
+          "line": 1
+        }
+      ],
+      "exports": [
+        {
+          "name": "default",
+          "line": 10,
+          "kind": "default"
+        },
+        {
+          "name": "FirstTimeTips",
+          "line": 10,
+          "kind": "named"
+        }
+      ],
+      "depth": 2,
+      "imported_by": [
+        "/workspaces/cuttingcorners/frontend/components/account/mobile/ui/3MenuDrawer.tsx"
+      ],
+      "broken_imports": []
+    },
+    "/workspaces/cuttingcorners/frontend/components/shared/ShopFeed.tsx": {
+      "imports": [
+        {
+          "raw": "import { useEffect, useMemo, useState, useRef, useCallback } from 'react';",
+          "path": "react",
+          "resolved": null,
+          "names": [
+            {
+              "original": "useEffect",
+              "alias": "useEffect"
+            },
+            {
+              "original": "useMemo",
+              "alias": "useMemo"
+            },
+            {
+              "original": "useState",
+              "alias": "useState"
+            },
+            {
+              "original": "useRef",
+              "alias": "useRef"
+            },
+            {
+              "original": "useCallback",
+              "alias": "useCallback"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": false,
+          "line": 3
+        },
+        {
+          "raw": "import { getPhotoUrl } from '../account/shared/utils/photoUrl';",
+          "path": "../account/shared/utils/photoUrl",
+          "resolved": "/workspaces/cuttingcorners/frontend/components/account/shared/utils/photoUrl.ts",
+          "names": [
+            {
+              "original": "getPhotoUrl",
+              "alias": "getPhotoUrl"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": false,
+          "line": 4
+        },
+        {
+          "raw": "import { ShopProduct, formatPrice, fetchAvailableProducts } from '../account/shared/1ShopList';",
+          "path": "../account/shared/1ShopList",
+          "resolved": "/workspaces/cuttingcorners/frontend/components/account/shared/1ShopList.ts",
+          "names": [
+            {
+              "original": "ShopProduct",
+              "alias": "ShopProduct"
+            },
+            {
+              "original": "formatPrice",
+              "alias": "formatPrice"
+            },
+            {
+              "original": "fetchAvailableProducts",
+              "alias": "fetchAvailableProducts"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": false,
+          "line": 5
+        },
+        {
+          "raw": "import { useFavorites } from '../account/shared/hooks/useFavorites';",
+          "path": "../account/shared/hooks/useFavorites",
+          "resolved": "/workspaces/cuttingcorners/frontend/components/account/shared/hooks/useFavorites.ts",
+          "names": [
+            {
+              "original": "useFavorites",
+              "alias": "useFavorites"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": false,
+          "line": 6
+        }
+      ],
+      "exports": [
+        {
+          "name": "default",
+          "line": 144,
+          "kind": "default"
+        },
+        {
+          "name": "SharedShopFeed",
+          "line": 144,
+          "kind": "named"
+        }
+      ],
+      "depth": 2,
+      "imported_by": [
+        "/workspaces/cuttingcorners/frontend/components/account/mobile/ui/3ShopFeed.tsx"
+      ],
+      "broken_imports": []
+    },
+    "/workspaces/cuttingcorners/frontend/lib/utils.ts": {
+      "imports": [
+        {
+          "raw": "import { clsx, type ClassValue } from 'clsx';",
+          "path": "clsx",
+          "resolved": null,
+          "names": [
+            {
+              "original": "clsx",
+              "alias": "clsx"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": true,
+          "line": 1
+        },
+        {
+          "raw": "import { twMerge } from 'tailwind-merge';",
+          "path": "tailwind-merge",
+          "resolved": null,
+          "names": [
+            {
+              "original": "twMerge",
+              "alias": "twMerge"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": false,
+          "line": 2
+        }
+      ],
+      "exports": [
+        {
+          "name": "cn",
+          "line": 4,
+          "kind": "named"
+        },
+        {
+          "name": "formatMoney",
+          "line": 12,
+          "kind": "named"
+        },
+        {
+          "name": "fmtDate",
+          "line": 25,
+          "kind": "named"
+        },
+        {
+          "name": "fmtTime",
+          "line": 38,
+          "kind": "named"
+        },
+        {
+          "name": "relativeTime",
+          "line": 51,
+          "kind": "named"
+        }
+      ],
+      "depth": 2,
+      "imported_by": [
+        "/workspaces/cuttingcorners/frontend/components/account/mobile/drawers/3ShopItemDrawer.tsx"
+      ],
+      "broken_imports": []
+    },
+    "/workspaces/cuttingcorners/frontend/components/account/shared/utils/photoUrl.ts": {
+      "imports": [
+        {
+          "raw": "import { supabase } from '../../../../lib/supabase'",
+          "path": "../../../../lib/supabase",
+          "resolved": "/workspaces/cuttingcorners/frontend/lib/supabase.ts",
+          "names": [
+            {
+              "original": "supabase",
+              "alias": "supabase"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": false,
+          "line": 1
+        }
+      ],
+      "exports": [
+        {
+          "name": "getPhotoUrl",
+          "line": 11,
+          "kind": "named"
+        }
+      ],
+      "depth": 2,
+      "imported_by": [
+        "/workspaces/cuttingcorners/frontend/components/account/mobile/drawers/3ShopItemDrawer.tsx"
+      ],
+      "broken_imports": []
+    },
+    "/workspaces/cuttingcorners/frontend/components/account/shared/hooks/useSwipeToClose.ts": {
+      "imports": [
+        {
+          "raw": "import { useRef } from 'react';",
+          "path": "react",
+          "resolved": null,
+          "names": [
+            {
+              "original": "useRef",
+              "alias": "useRef"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": false,
+          "line": 1
+        }
+      ],
+      "exports": [
+        {
+          "name": "useSwipeToClose",
+          "line": 8,
+          "kind": "named"
+        }
+      ],
+      "depth": 2,
+      "imported_by": [
+        "/workspaces/cuttingcorners/frontend/components/account/mobile/drawers/3ShopItemDrawer.tsx"
+      ],
+      "broken_imports": []
+    },
+    "/workspaces/cuttingcorners/frontend/components/account/shared/hooks/useChat.ts": {
+      "imports": [
+        {
+          "raw": "import { useState, useRef } from 'react';",
+          "path": "react",
+          "resolved": null,
+          "names": [
+            {
+              "original": "useState",
+              "alias": "useState"
+            },
+            {
+              "original": "useRef",
+              "alias": "useRef"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": false,
+          "line": 22
+        },
+        {
+          "raw": "import { supabase } from '../../../../lib/supabase';",
+          "path": "../../../../lib/supabase",
+          "resolved": "/workspaces/cuttingcorners/frontend/lib/supabase.ts",
+          "names": [
+            {
+              "original": "supabase",
+              "alias": "supabase"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": false,
+          "line": 23
+        }
+      ],
+      "exports": [
+        {
+          "name": "PendingUpload",
+          "line": 30,
+          "kind": "named"
+        },
+        {
+          "name": "useChat",
+          "line": 59,
+          "kind": "named"
+        }
+      ],
+      "depth": 2,
+      "imported_by": [
+        "/workspaces/cuttingcorners/frontend/components/account/mobile/panels/3ChatPanel.tsx"
+      ],
+      "broken_imports": []
+    },
+    "/workspaces/cuttingcorners/frontend/components/account/mobile/modals/ChatImageModal.tsx": {
+      "imports": [
+        {
+          "raw": "import { useEffect, useRef, useState } from 'react';",
+          "path": "react",
+          "resolved": null,
+          "names": [
+            {
+              "original": "useEffect",
+              "alias": "useEffect"
+            },
+            {
+              "original": "useRef",
+              "alias": "useRef"
+            },
+            {
+              "original": "useState",
+              "alias": "useState"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": false,
+          "line": 16
+        },
+        {
+          "raw": "import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch';",
+          "path": "react-zoom-pan-pinch",
+          "resolved": null,
+          "names": [
+            {
+              "original": "TransformWrapper",
+              "alias": "TransformWrapper"
+            },
+            {
+              "original": "TransformComponent",
+              "alias": "TransformComponent"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": false,
+          "line": 17
+        }
+      ],
+      "exports": [
+        {
+          "name": "default",
+          "line": 25,
+          "kind": "default"
+        },
+        {
+          "name": "ChatImageModal",
+          "line": 25,
+          "kind": "named"
+        }
+      ],
+      "depth": 2,
+      "imported_by": [
+        "/workspaces/cuttingcorners/frontend/components/account/mobile/panels/3ChatPanel.tsx"
+      ],
+      "broken_imports": []
+    },
+    "/workspaces/cuttingcorners/frontend/components/account/mobile/forms/ServiceRequestForm.tsx": {
+      "imports": [
+        {
+          "raw": "import { useState, useRef, useEffect } from 'react';",
+          "path": "react",
+          "resolved": null,
+          "names": [
+            {
+              "original": "useState",
+              "alias": "useState"
+            },
+            {
+              "original": "useRef",
+              "alias": "useRef"
+            },
+            {
+              "original": "useEffect",
+              "alias": "useEffect"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": false,
+          "line": 37
+        },
+        {
+          "raw": "import { useSwipeDownToClose } from '../../shared/hooks/useSwipeDownToClose';",
+          "path": "../../shared/hooks/useSwipeDownToClose",
+          "resolved": "/workspaces/cuttingcorners/frontend/components/account/shared/hooks/useSwipeDownToClose.ts",
+          "names": [
+            {
+              "original": "useSwipeDownToClose",
+              "alias": "useSwipeDownToClose"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": false,
+          "line": 38
+        },
+        {
+          "raw": "import { supabase } from '../../../../lib/supabase';",
+          "path": "../../../../lib/supabase",
+          "resolved": "/workspaces/cuttingcorners/frontend/lib/supabase.ts",
+          "names": [
+            {
+              "original": "supabase",
+              "alias": "supabase"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": false,
+          "line": 39
+        },
+        {
+          "raw": "import { SERVICE_TYPES } from '../../shared/1InquiryList';",
+          "path": "../../shared/1InquiryList",
+          "resolved": "/workspaces/cuttingcorners/frontend/components/account/shared/1InquiryList.ts",
+          "names": [
+            {
+              "original": "SERVICE_TYPES",
+              "alias": "SERVICE_TYPES"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": false,
+          "line": 40
+        },
+        {
+          "raw": "import FirstTimeTips from '../ui/FirstTimeTips';",
+          "path": "../ui/FirstTimeTips",
+          "resolved": "/workspaces/cuttingcorners/frontend/components/account/mobile/ui/FirstTimeTips.tsx",
+          "names": [],
+          "default": "FirstTimeTips",
+          "namespace": null,
+          "is_type": false,
+          "line": 41
+        }
+      ],
+      "exports": [
+        {
+          "name": "ServiceRequestFormProps",
+          "line": 44,
+          "kind": "named"
+        },
+        {
+          "name": "default",
+          "line": 98,
+          "kind": "default"
+        },
+        {
+          "name": "ServiceRequestForm",
+          "line": 98,
+          "kind": "named"
+        }
+      ],
+      "depth": 2,
+      "imported_by": [
+        "/workspaces/cuttingcorners/frontend/components/account/mobile/panels/3ServiceRequestPanel.tsx"
+      ],
+      "broken_imports": []
+    },
+    "/workspaces/cuttingcorners/frontend/components/account/mobile/drawers/3InquiryDrawer.tsx": {
+      "imports": [
+        {
+          "raw": "import { fmtDate, fmtTime } from '../../../../lib/utils';",
+          "path": "../../../../lib/utils",
+          "resolved": "/workspaces/cuttingcorners/frontend/lib/utils.ts",
+          "names": [
+            {
+              "original": "fmtDate",
+              "alias": "fmtDate"
+            },
+            {
+              "original": "fmtTime",
+              "alias": "fmtTime"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": false,
+          "line": 5
+        },
+        {
+          "raw": "import { useSwipeToClose } from '../../shared/hooks/useSwipeToClose';",
+          "path": "../../shared/hooks/useSwipeToClose",
+          "resolved": "/workspaces/cuttingcorners/frontend/components/account/shared/hooks/useSwipeToClose.ts",
+          "names": [
+            {
+              "original": "useSwipeToClose",
+              "alias": "useSwipeToClose"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": false,
+          "line": 6
+        },
+        {
+          "raw": "import { formatMoney } from '../../../../lib/utils';",
+          "path": "../../../../lib/utils",
+          "resolved": "/workspaces/cuttingcorners/frontend/lib/utils.ts",
+          "names": [
+            {
+              "original": "formatMoney",
+              "alias": "formatMoney"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": false,
+          "line": 7
+        }
+      ],
+      "exports": [
+        {
+          "name": "default",
+          "line": 15,
+          "kind": "default"
+        },
+        {
+          "name": "InquiryDrawer3",
+          "line": 15,
+          "kind": "named"
+        }
+      ],
+      "depth": 2,
+      "imported_by": [
+        "/workspaces/cuttingcorners/frontend/components/account/mobile/panels/3InquiriesPanel.tsx"
+      ],
+      "broken_imports": []
+    },
+    "/workspaces/cuttingcorners/frontend/lib/wizardResultsService.ts": {
+      "imports": [
+        {
+          "raw": "import { supabase } from './supabase'",
+          "path": "./supabase",
+          "resolved": "/workspaces/cuttingcorners/frontend/lib/supabase.ts",
+          "names": [
+            {
+              "original": "supabase",
+              "alias": "supabase"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": false,
+          "line": 1
+        }
+      ],
+      "exports": [
+        {
+          "name": "WizardResultPayload",
+          "line": 3,
+          "kind": "named"
+        },
+        {
+          "name": "WizardResult",
+          "line": 31,
+          "kind": "named"
+        },
+        {
+          "name": "saveWizardResult",
+          "line": 55,
+          "kind": "named"
+        },
+        {
+          "name": "getUserWizardResults",
+          "line": 93,
+          "kind": "named"
+        },
+        {
+          "name": "deleteWizardResult",
+          "line": 103,
+          "kind": "named"
+        },
+        {
+          "name": "trackWizardAnalytics",
+          "line": 113,
+          "kind": "named"
+        }
+      ],
+      "depth": 2,
+      "imported_by": [
+        "/workspaces/cuttingcorners/frontend/components/account/mobile/panels/3WizardResultsPanel.tsx"
+      ],
+      "broken_imports": []
+    },
+    "/workspaces/cuttingcorners/frontend/components/account/mobile/drawers/3WizardResultDrawer.tsx": {
+      "imports": [
+        {
+          "raw": "import type { WizardResult } from '../../../../lib/wizardResultsService';",
+          "path": "../../../../lib/wizardResultsService",
+          "resolved": "/workspaces/cuttingcorners/frontend/lib/wizardResultsService.ts",
+          "names": [
+            {
+              "original": "WizardResult",
+              "alias": "WizardResult"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": true,
+          "line": 3
+        },
+        {
+          "raw": "import { useSwipeToClose } from '../../shared/hooks/useSwipeToClose';",
+          "path": "../../shared/hooks/useSwipeToClose",
+          "resolved": "/workspaces/cuttingcorners/frontend/components/account/shared/hooks/useSwipeToClose.ts",
+          "names": [
+            {
+              "original": "useSwipeToClose",
+              "alias": "useSwipeToClose"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": false,
+          "line": 4
+        },
+        {
+          "raw": "import FirstTimeTips from '../ui/FirstTimeTips';",
+          "path": "../ui/FirstTimeTips",
+          "resolved": "/workspaces/cuttingcorners/frontend/components/account/mobile/ui/FirstTimeTips.tsx",
+          "names": [],
+          "default": "FirstTimeTips",
+          "namespace": null,
+          "is_type": false,
+          "line": 5
+        },
+        {
+          "raw": "import { WizardFolderChangeModal } from '../modals/WizardFolderModal';",
+          "path": "../modals/WizardFolderModal",
+          "resolved": "/workspaces/cuttingcorners/frontend/components/account/mobile/modals/WizardFolderModal.tsx",
+          "names": [
+            {
+              "original": "WizardFolderChangeModal",
+              "alias": "WizardFolderChangeModal"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": false,
+          "line": 6
+        },
+        {
+          "raw": "import { useState } from 'react';",
+          "path": "react",
+          "resolved": null,
+          "names": [
+            {
+              "original": "useState",
+              "alias": "useState"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": false,
+          "line": 7
+        }
+      ],
+      "exports": [
+        {
+          "name": "default",
+          "line": 79,
+          "kind": "default"
+        },
+        {
+          "name": "WizardResultDrawer3",
+          "line": 79,
+          "kind": "named"
+        }
+      ],
+      "depth": 2,
+      "imported_by": [
+        "/workspaces/cuttingcorners/frontend/components/account/mobile/panels/3WizardResultsPanel.tsx"
+      ],
+      "broken_imports": []
+    },
+    "/workspaces/cuttingcorners/frontend/components/account/mobile/grids/WizardFolderGrid.tsx": {
+      "imports": [
+        {
+          "raw": "import { useState } from 'react';",
+          "path": "react",
+          "resolved": null,
+          "names": [
+            {
+              "original": "useState",
+              "alias": "useState"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": false,
+          "line": 15
+        },
+        {
+          "raw": "import { WizardFolderTextModal, WizardFolderDeleteModal } from '../modals/WizardFolderModal';",
+          "path": "../modals/WizardFolderModal",
+          "resolved": "/workspaces/cuttingcorners/frontend/components/account/mobile/modals/WizardFolderModal.tsx",
+          "names": [
+            {
+              "original": "WizardFolderTextModal",
+              "alias": "WizardFolderTextModal"
+            },
+            {
+              "original": "WizardFolderDeleteModal",
+              "alias": "WizardFolderDeleteModal"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": false,
+          "line": 16
+        }
+      ],
+      "exports": [
+        {
+          "name": "default",
+          "line": 39,
+          "kind": "default"
+        },
+        {
+          "name": "WizardFolderGrid",
+          "line": 39,
+          "kind": "named"
+        }
+      ],
+      "depth": 2,
+      "imported_by": [
+        "/workspaces/cuttingcorners/frontend/components/account/mobile/panels/3WizardResultsPanel.tsx"
+      ],
+      "broken_imports": []
+    },
+    "/workspaces/cuttingcorners/frontend/components/account/mobile/modals/WizardFolderModal.tsx": {
+      "imports": [
+        {
+          "raw": "import { useState } from 'react';",
+          "path": "react",
+          "resolved": null,
+          "names": [
+            {
+              "original": "useState",
+              "alias": "useState"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": false,
+          "line": 9
+        }
+      ],
+      "exports": [
+        {
+          "name": "WizardFolderTextModal",
+          "line": 26,
+          "kind": "named"
+        },
+        {
+          "name": "WizardFolderDeleteModal",
+          "line": 66,
+          "kind": "named"
+        },
+        {
+          "name": "WizardFolderChangeModal",
+          "line": 91,
+          "kind": "named"
+        }
+      ],
+      "depth": 2,
+      "imported_by": [
+        "/workspaces/cuttingcorners/frontend/components/account/mobile/panels/3WizardResultsPanel.tsx"
+      ],
+      "broken_imports": []
+    },
+    "/workspaces/cuttingcorners/frontend/components/feasibility-test/ui/IntroScreen.tsx": {
+      "imports": [
+        {
+          "raw": "import type { IntroPhase } from '../logic/feasibility-types'",
+          "path": "../logic/feasibility-types",
+          "resolved": "/workspaces/cuttingcorners/frontend/components/feasibility-test/logic/feasibility-types.ts",
+          "names": [
+            {
+              "original": "IntroPhase",
+              "alias": "IntroPhase"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": true,
+          "line": 1
+        }
+      ],
+      "exports": [
+        {
+          "name": "default",
+          "line": 15,
+          "kind": "default"
+        },
+        {
+          "name": "IntroScreen",
+          "line": 15,
+          "kind": "named"
+        }
+      ],
+      "depth": 2,
+      "imported_by": [
+        "/workspaces/cuttingcorners/frontend/components/account/mobile/panels/3FeasibilityPanel.tsx"
+      ],
+      "broken_imports": []
+    },
+    "/workspaces/cuttingcorners/frontend/components/feasibility-test/ui/WizardScreen.tsx": {
+      "imports": [
+        {
+          "raw": "import { Dispatch, SetStateAction, useCallback } from 'react'",
+          "path": "react",
+          "resolved": null,
+          "names": [
+            {
+              "original": "Dispatch",
+              "alias": "Dispatch"
+            },
+            {
+              "original": "SetStateAction",
+              "alias": "SetStateAction"
+            },
+            {
+              "original": "useCallback",
+              "alias": "useCallback"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": false,
+          "line": 2
+        },
+        {
+          "raw": "import { positiveItems, limitingItems, structuralItems, correctableRows } from '../data/questions'",
+          "path": "../data/questions",
+          "resolved": "/workspaces/cuttingcorners/frontend/components/feasibility-test/data/questions.ts",
+          "names": [
+            {
+              "original": "positiveItems",
+              "alias": "positiveItems"
+            },
+            {
+              "original": "limitingItems",
+              "alias": "limitingItems"
+            },
+            {
+              "original": "structuralItems",
+              "alias": "structuralItems"
+            },
+            {
+              "original": "correctableRows",
+              "alias": "correctableRows"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": false,
+          "line": 3
+        },
+        {
+          "raw": "import type { CorrectableOption } from '../data/questions'",
+          "path": "../data/questions",
+          "resolved": "/workspaces/cuttingcorners/frontend/components/feasibility-test/data/questions.ts",
+          "names": [
+            {
+              "original": "CorrectableOption",
+              "alias": "CorrectableOption"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": true,
+          "line": 4
+        },
+        {
+          "raw": "import type { CorrectableSelections, ScoreBreakdown } from '../logic/calculator'",
+          "path": "../logic/calculator",
+          "resolved": "/workspaces/cuttingcorners/frontend/components/feasibility-test/logic/calculator.ts",
+          "names": [
+            {
+              "original": "CorrectableSelections",
+              "alias": "CorrectableSelections"
+            },
+            {
+              "original": "ScoreBreakdown",
+              "alias": "ScoreBreakdown"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": true,
+          "line": 5
+        },
+        {
+          "raw": "import CheckItem from './CheckItem'",
+          "path": "./CheckItem",
+          "resolved": "/workspaces/cuttingcorners/frontend/components/feasibility-test/ui/CheckItem.tsx",
+          "names": [],
+          "default": "CheckItem",
+          "namespace": null,
+          "is_type": false,
+          "line": 6
+        },
+        {
+          "raw": "import CorrectableRowComponent from './CorrectableRow'",
+          "path": "./CorrectableRow",
+          "resolved": "/workspaces/cuttingcorners/frontend/components/feasibility-test/ui/CorrectableRow.tsx",
+          "names": [],
+          "default": "CorrectableRowComponent",
+          "namespace": null,
+          "is_type": false,
+          "line": 7
+        },
+        {
+          "raw": "import ResultsDisplay from './ResultsDisplay'",
+          "path": "./ResultsDisplay",
+          "resolved": "/workspaces/cuttingcorners/frontend/components/feasibility-test/ui/ResultsDisplay.tsx",
+          "names": [],
+          "default": "ResultsDisplay",
+          "namespace": null,
+          "is_type": false,
+          "line": 8
+        },
+        {
+          "raw": "import SectionIntroCard from './SectionIntroCard'",
+          "path": "./SectionIntroCard",
+          "resolved": "/workspaces/cuttingcorners/frontend/components/feasibility-test/ui/SectionIntroCard.tsx",
+          "names": [],
+          "default": "SectionIntroCard",
+          "namespace": null,
+          "is_type": false,
+          "line": 9
+        },
+        {
+          "raw": "import type { StepKind, StoneInfo } from '../logic/feasibility-types'",
+          "path": "../logic/feasibility-types",
+          "resolved": "/workspaces/cuttingcorners/frontend/components/feasibility-test/logic/feasibility-types.ts",
+          "names": [
+            {
+              "original": "StepKind",
+              "alias": "StepKind"
+            },
+            {
+              "original": "StoneInfo",
+              "alias": "StoneInfo"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": true,
+          "line": 10
+        },
+        {
+          "raw": "import { PHASES } from '../logic/feasibility-types'",
+          "path": "../logic/feasibility-types",
+          "resolved": "/workspaces/cuttingcorners/frontend/components/feasibility-test/logic/feasibility-types.ts",
+          "names": [
+            {
+              "original": "PHASES",
+              "alias": "PHASES"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": false,
+          "line": 11
+        },
+        {
+          "raw": "import { autoSelectAll } from '../logic/autoSelect'",
+          "path": "../logic/autoSelect",
+          "resolved": "/workspaces/cuttingcorners/frontend/components/feasibility-test/logic/autoSelect.ts",
+          "names": [
+            {
+              "original": "autoSelectAll",
+              "alias": "autoSelectAll"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": false,
+          "line": 12
+        },
+        {
+          "raw": "import { getCenterPosition } from 'react-zoom-pan-pinch'",
+          "path": "react-zoom-pan-pinch",
+          "resolved": null,
+          "names": [
+            {
+              "original": "getCenterPosition",
+              "alias": "getCenterPosition"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": false,
+          "line": 13
+        }
+      ],
+      "exports": [
+        {
+          "name": "default",
+          "line": 71,
+          "kind": "default"
+        },
+        {
+          "name": "WizardScreen",
+          "line": 71,
+          "kind": "named"
+        }
+      ],
+      "depth": 2,
+      "imported_by": [
+        "/workspaces/cuttingcorners/frontend/components/account/mobile/panels/3FeasibilityPanel.tsx"
+      ],
+      "broken_imports": []
+    },
+    "/workspaces/cuttingcorners/frontend/components/feasibility-test/logic/feasibility-types.ts": {
+      "imports": [],
+      "exports": [
+        {
+          "name": "IntroPhase",
+          "line": 1,
+          "kind": "named"
+        },
+        {
+          "name": "StepKind",
+          "line": 10,
+          "kind": "named"
+        },
+        {
+          "name": "StoneInfo",
+          "line": 19,
+          "kind": "named"
+        },
+        {
+          "name": "PHASES",
+          "line": 27,
+          "kind": "named"
+        }
+      ],
+      "depth": 2,
+      "imported_by": [
+        "/workspaces/cuttingcorners/frontend/components/account/mobile/panels/3FeasibilityPanel.tsx"
+      ],
+      "broken_imports": []
+    },
+    "/workspaces/cuttingcorners/frontend/components/feasibility-test/data/questions.ts": {
+      "imports": [],
+      "exports": [
+        {
+          "name": "QuestionItem",
+          "line": 1,
+          "kind": "named"
+        },
+        {
+          "name": "CorrectableOption",
+          "line": 12,
+          "kind": "named"
+        },
+        {
+          "name": "CorrectableRow",
+          "line": 14,
+          "kind": "named"
+        },
+        {
+          "name": "positiveItems",
+          "line": 20,
+          "kind": "named"
+        },
+        {
+          "name": "limitingItems",
+          "line": 34,
+          "kind": "named"
+        },
+        {
+          "name": "structuralItems",
+          "line": 49,
+          "kind": "named"
+        },
+        {
+          "name": "correctableRows",
+          "line": 57,
+          "kind": "named"
+        },
+        {
+          "name": "correctableOptions",
+          "line": 64,
+          "kind": "named"
+        }
+      ],
+      "depth": 2,
+      "imported_by": [
+        "/workspaces/cuttingcorners/frontend/components/account/mobile/panels/3FeasibilityPanel.tsx"
+      ],
+      "broken_imports": []
+    },
+    "/workspaces/cuttingcorners/frontend/components/feasibility-test/logic/calculator.ts": {
+      "imports": [
+        {
+          "raw": "import { CorrectableOption } from '../data/questions'",
+          "path": "../data/questions",
+          "resolved": "/workspaces/cuttingcorners/frontend/components/feasibility-test/data/questions.ts",
+          "names": [
+            {
+              "original": "CorrectableOption",
+              "alias": "CorrectableOption"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": false,
+          "line": 7
+        }
+      ],
+      "exports": [
+        {
+          "name": "CorrectableSelections",
+          "line": 9,
+          "kind": "named"
+        },
+        {
+          "name": "ScoreBand",
+          "line": 16,
+          "kind": "named"
+        },
+        {
+          "name": "ScoreBreakdown",
+          "line": 18,
+          "kind": "named"
+        },
+        {
+          "name": "BAND_DATA",
+          "line": 31,
+          "kind": "named"
+        },
+        {
+          "name": "calculatePositiveScore",
+          "line": 39,
+          "kind": "named"
+        },
+        {
+          "name": "calculateLimitingScore",
+          "line": 45,
+          "kind": "named"
+        },
+        {
+          "name": "calculateStructuralScore",
+          "line": 51,
+          "kind": "named"
+        },
+        {
+          "name": "calculateCorrectableScore",
+          "line": 57,
+          "kind": "named"
+        },
+        {
+          "name": "getBand",
+          "line": 65,
+          "kind": "named"
+        },
+        {
+          "name": "calculateAll",
+          "line": 73,
+          "kind": "named"
+        }
+      ],
+      "depth": 2,
+      "imported_by": [
+        "/workspaces/cuttingcorners/frontend/components/account/mobile/panels/3FeasibilityPanel.tsx"
+      ],
+      "broken_imports": []
+    },
+    "/workspaces/cuttingcorners/frontend/components/feasibility-test/logic/autoSelect.ts": {
+      "imports": [
+        {
+          "raw": "import type { CorrectableOption } from '../data/questions'",
+          "path": "../data/questions",
+          "resolved": "/workspaces/cuttingcorners/frontend/components/feasibility-test/data/questions.ts",
+          "names": [
+            {
+              "original": "CorrectableOption",
+              "alias": "CorrectableOption"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": true,
+          "line": 1
+        },
+        {
+          "raw": "import type { CorrectableSelections } from './calculator'",
+          "path": "./calculator",
+          "resolved": "/workspaces/cuttingcorners/frontend/components/feasibility-test/logic/calculator.ts",
+          "names": [
+            {
+              "original": "CorrectableSelections",
+              "alias": "CorrectableSelections"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": true,
+          "line": 2
+        }
+      ],
+      "exports": [
+        {
+          "name": "autoSelectCorrectable",
+          "line": 5,
+          "kind": "named"
+        },
+        {
+          "name": "autoSelectAll",
+          "line": 44,
+          "kind": "named"
+        }
+      ],
+      "depth": 2,
+      "imported_by": [
+        "/workspaces/cuttingcorners/frontend/components/account/mobile/panels/3FeasibilityPanel.tsx"
+      ],
+      "broken_imports": []
+    },
+    "/workspaces/cuttingcorners/frontend/components/account/shared/1ShopList.ts": {
+      "imports": [
+        {
+          "raw": "import { supabase } from '../../../lib/supabase'",
+          "path": "../../../lib/supabase",
+          "resolved": "/workspaces/cuttingcorners/frontend/lib/supabase.ts",
+          "names": [
+            {
+              "original": "supabase",
+              "alias": "supabase"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": false,
+          "line": 3
+        }
+      ],
+      "exports": [
+        {
+          "name": "ShopProduct",
+          "line": 6,
+          "kind": "named"
+        },
+        {
+          "name": "formatPrice",
+          "line": 17,
+          "kind": "named"
+        },
+        {
+          "name": "fetchAvailableProducts",
+          "line": 30,
+          "kind": "named"
+        }
+      ],
+      "depth": 3,
+      "imported_by": [
+        "/workspaces/cuttingcorners/frontend/components/shared/ShopFeed.tsx"
+      ],
+      "broken_imports": []
+    },
+    "/workspaces/cuttingcorners/frontend/components/account/shared/hooks/useFavorites.ts": {
+      "imports": [
+        {
+          "raw": "import { useCallback, useEffect, useRef, useState } from 'react';",
+          "path": "react",
+          "resolved": null,
+          "names": [
+            {
+              "original": "useCallback",
+              "alias": "useCallback"
+            },
+            {
+              "original": "useEffect",
+              "alias": "useEffect"
+            },
+            {
+              "original": "useRef",
+              "alias": "useRef"
+            },
+            {
+              "original": "useState",
+              "alias": "useState"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": false,
+          "line": 10
+        },
+        {
+          "raw": "import { supabase } from '../../../../lib/supabase';",
+          "path": "../../../../lib/supabase",
+          "resolved": "/workspaces/cuttingcorners/frontend/lib/supabase.ts",
+          "names": [
+            {
+              "original": "supabase",
+              "alias": "supabase"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": false,
+          "line": 11
+        }
+      ],
+      "exports": [
+        {
+          "name": "useFavorites",
+          "line": 13,
+          "kind": "named"
+        }
+      ],
+      "depth": 3,
+      "imported_by": [
+        "/workspaces/cuttingcorners/frontend/components/shared/ShopFeed.tsx"
+      ],
+      "broken_imports": []
+    },
+    "/workspaces/cuttingcorners/frontend/components/account/shared/1InquiryList.ts": {
+      "imports": [
+        {
+          "raw": "import { supabase } from '../../../lib/supabase'",
+          "path": "../../../lib/supabase",
+          "resolved": "/workspaces/cuttingcorners/frontend/lib/supabase.ts",
+          "names": [
+            {
+              "original": "supabase",
+              "alias": "supabase"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": false,
+          "line": 1
+        },
+        {
+          "raw": "import { fmtDate } from '../../../lib/utils'",
+          "path": "../../../lib/utils",
+          "resolved": "/workspaces/cuttingcorners/frontend/lib/utils.ts",
+          "names": [
+            {
+              "original": "fmtDate",
+              "alias": "fmtDate"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": false,
+          "line": 2
+        }
+      ],
+      "exports": [
+        {
+          "name": "SERVICE_TYPES",
+          "line": 6,
+          "kind": "named"
+        },
+        {
+          "name": "ServiceType",
+          "line": 16,
+          "kind": "named"
+        },
+        {
+          "name": "SERVICE_REQUEST_DISCLAIMER",
+          "line": 18,
+          "kind": "named"
+        },
+        {
+          "name": "InquiryTab",
+          "line": 21,
+          "kind": "named"
+        },
+        {
+          "name": "InquiryStatus",
+          "line": 23,
+          "kind": "named"
+        },
+        {
+          "name": "InquiryProduct",
+          "line": 27,
+          "kind": "named"
+        },
+        {
+          "name": "Inquiry",
+          "line": 34,
+          "kind": "named"
+        },
+        {
+          "name": "ServiceRequest",
+          "line": 47,
+          "kind": "named"
+        },
+        {
+          "name": "InquiryViewProps",
+          "line": 54,
+          "kind": "named"
+        },
+        {
+          "name": "getInquiryStatus",
+          "line": 73,
+          "kind": "named"
+        },
+        {
+          "name": "getStatusStyle",
+          "line": 77,
+          "kind": "named"
+        },
+        {
+          "name": "getStatusLabel",
+          "line": 83,
+          "kind": "named"
+        },
+        {
+          "name": "getProductSpecLine",
+          "line": 89,
+          "kind": "named"
+        },
+        {
+          "name": "formatInquiryDate",
+          "line": 101,
+          "kind": "named"
+        },
+        {
+          "name": "canSubmitSR",
+          "line": 105,
+          "kind": "named"
+        },
+        {
+          "name": "submitInquiryReply",
+          "line": 111,
+          "kind": "named"
+        },
+        {
+          "name": "fetchInquiries",
+          "line": 131,
+          "kind": "named"
+        },
+        {
+          "name": "fetchServiceRequests",
+          "line": 141,
+          "kind": "named"
+        }
+      ],
+      "depth": 3,
+      "imported_by": [
+        "/workspaces/cuttingcorners/frontend/components/account/mobile/forms/ServiceRequestForm.tsx"
+      ],
+      "broken_imports": []
+    },
+    "/workspaces/cuttingcorners/frontend/components/feasibility-test/ui/CheckItem.tsx": {
+      "imports": [
+        {
+          "raw": "import type { QuestionItem } from '../data/questions'",
+          "path": "../data/questions",
+          "resolved": "/workspaces/cuttingcorners/frontend/components/feasibility-test/data/questions.ts",
+          "names": [
+            {
+              "original": "QuestionItem",
+              "alias": "QuestionItem"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": true,
+          "line": 1
+        },
+        {
+          "raw": "import InfoDrawer from './InfoDrawer'",
+          "path": "./InfoDrawer",
+          "resolved": "/workspaces/cuttingcorners/frontend/components/feasibility-test/ui/InfoDrawer.tsx",
+          "names": [],
+          "default": "InfoDrawer",
+          "namespace": null,
+          "is_type": false,
+          "line": 2
+        }
+      ],
+      "exports": [
+        {
+          "name": "default",
+          "line": 10,
+          "kind": "default"
+        },
+        {
+          "name": "CheckItem",
+          "line": 10,
+          "kind": "named"
+        }
+      ],
+      "depth": 3,
+      "imported_by": [
+        "/workspaces/cuttingcorners/frontend/components/feasibility-test/ui/WizardScreen.tsx"
+      ],
+      "broken_imports": []
+    },
+    "/workspaces/cuttingcorners/frontend/components/feasibility-test/ui/CorrectableRow.tsx": {
+      "imports": [
+        {
+          "raw": "import { useState } from 'react'",
+          "path": "react",
+          "resolved": null,
+          "names": [
+            {
+              "original": "useState",
+              "alias": "useState"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": false,
+          "line": 1
+        },
+        {
+          "raw": "import type { CorrectableOption } from '../data/questions'",
+          "path": "../data/questions",
+          "resolved": "/workspaces/cuttingcorners/frontend/components/feasibility-test/data/questions.ts",
+          "names": [
+            {
+              "original": "CorrectableOption",
+              "alias": "CorrectableOption"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": true,
+          "line": 2
+        },
+        {
+          "raw": "import { correctableOptions, limitingItems, structuralItems } from '../data/questions'",
+          "path": "../data/questions",
+          "resolved": "/workspaces/cuttingcorners/frontend/components/feasibility-test/data/questions.ts",
+          "names": [
+            {
+              "original": "correctableOptions",
+              "alias": "correctableOptions"
+            },
+            {
+              "original": "limitingItems",
+              "alias": "limitingItems"
+            },
+            {
+              "original": "structuralItems",
+              "alias": "structuralItems"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": false,
+          "line": 3
+        }
+      ],
+      "exports": [
+        {
+          "name": "default",
+          "line": 28,
+          "kind": "default"
+        },
+        {
+          "name": "CorrectableRow",
+          "line": 28,
+          "kind": "named"
+        }
+      ],
+      "depth": 3,
+      "imported_by": [
+        "/workspaces/cuttingcorners/frontend/components/feasibility-test/ui/WizardScreen.tsx"
+      ],
+      "broken_imports": []
+    },
+    "/workspaces/cuttingcorners/frontend/components/feasibility-test/ui/ResultsDisplay.tsx": {
+      "imports": [
+        {
+          "raw": "import { useState, useEffect } from 'react'",
+          "path": "react",
+          "resolved": null,
+          "names": [
+            {
+              "original": "useState",
+              "alias": "useState"
+            },
+            {
+              "original": "useEffect",
+              "alias": "useEffect"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": false,
+          "line": 1
+        },
+        {
+          "raw": "import ScoreBox from './ScoreBox'",
+          "path": "./ScoreBox",
+          "resolved": "/workspaces/cuttingcorners/frontend/components/feasibility-test/ui/ScoreBox.tsx",
+          "names": [],
+          "default": "ScoreBox",
+          "namespace": null,
+          "is_type": false,
+          "line": 2
+        },
+        {
+          "raw": "import SaveToAccountButton from './SaveToAccountButton'",
+          "path": "./SaveToAccountButton",
+          "resolved": "/workspaces/cuttingcorners/frontend/components/feasibility-test/ui/SaveToAccountButton.tsx",
+          "names": [],
+          "default": "SaveToAccountButton",
+          "namespace": null,
+          "is_type": false,
+          "line": 3
+        },
+        {
+          "raw": "import { supabase } from '../../../lib/supabase'",
+          "path": "../../../lib/supabase",
+          "resolved": "/workspaces/cuttingcorners/frontend/lib/supabase.ts",
+          "names": [
+            {
+              "original": "supabase",
+              "alias": "supabase"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": false,
+          "line": 4
+        },
+        {
+          "raw": "import type { ScoreBreakdown } from '../logic/calculator'",
+          "path": "../logic/calculator",
+          "resolved": "/workspaces/cuttingcorners/frontend/components/feasibility-test/logic/calculator.ts",
+          "names": [
+            {
+              "original": "ScoreBreakdown",
+              "alias": "ScoreBreakdown"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": true,
+          "line": 5
+        }
+      ],
+      "exports": [
+        {
+          "name": "default",
+          "line": 27,
+          "kind": "default"
+        },
+        {
+          "name": "ResultsDisplay",
+          "line": 27,
+          "kind": "named"
+        }
+      ],
+      "depth": 3,
+      "imported_by": [
+        "/workspaces/cuttingcorners/frontend/components/feasibility-test/ui/WizardScreen.tsx"
+      ],
+      "broken_imports": []
+    },
+    "/workspaces/cuttingcorners/frontend/components/feasibility-test/ui/SectionIntroCard.tsx": {
+      "imports": [],
+      "exports": [
+        {
+          "name": "default",
+          "line": 20,
+          "kind": "default"
+        },
+        {
+          "name": "SectionIntroCard",
+          "line": 20,
+          "kind": "named"
+        }
+      ],
+      "depth": 3,
+      "imported_by": [
+        "/workspaces/cuttingcorners/frontend/components/feasibility-test/ui/WizardScreen.tsx"
+      ],
+      "broken_imports": []
+    },
+    "/workspaces/cuttingcorners/frontend/components/feasibility-test/ui/InfoDrawer.tsx": {
+      "imports": [
+        {
+          "raw": "import { useState } from 'react'",
+          "path": "react",
+          "resolved": null,
+          "names": [
+            {
+              "original": "useState",
+              "alias": "useState"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": false,
+          "line": 1
+        },
+        {
+          "raw": "import type { QuestionItem } from '../data/questions'",
+          "path": "../data/questions",
+          "resolved": "/workspaces/cuttingcorners/frontend/components/feasibility-test/data/questions.ts",
+          "names": [
+            {
+              "original": "QuestionItem",
+              "alias": "QuestionItem"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": true,
+          "line": 2
+        }
+      ],
+      "exports": [
+        {
+          "name": "default",
+          "line": 4,
+          "kind": "default"
+        },
+        {
+          "name": "InfoDrawer",
+          "line": 4,
+          "kind": "named"
+        }
+      ],
+      "depth": 4,
+      "imported_by": [
+        "/workspaces/cuttingcorners/frontend/components/feasibility-test/ui/CheckItem.tsx"
+      ],
+      "broken_imports": []
+    },
+    "/workspaces/cuttingcorners/frontend/components/feasibility-test/ui/ScoreBox.tsx": {
+      "imports": [
+        {
+          "raw": "import type { ScoreBreakdown } from '../logic/calculator'",
+          "path": "../logic/calculator",
+          "resolved": "/workspaces/cuttingcorners/frontend/components/feasibility-test/logic/calculator.ts",
+          "names": [
+            {
+              "original": "ScoreBreakdown",
+              "alias": "ScoreBreakdown"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": true,
+          "line": 1
+        }
+      ],
+      "exports": [
+        {
+          "name": "default",
+          "line": 15,
+          "kind": "default"
+        },
+        {
+          "name": "ScoreBox",
+          "line": 15,
+          "kind": "named"
+        }
+      ],
+      "depth": 4,
+      "imported_by": [
+        "/workspaces/cuttingcorners/frontend/components/feasibility-test/ui/ResultsDisplay.tsx"
+      ],
+      "broken_imports": []
+    },
+    "/workspaces/cuttingcorners/frontend/components/feasibility-test/ui/SaveToAccountButton.tsx": {
+      "imports": [
+        {
+          "raw": "import { useState, useEffect } from 'react'",
+          "path": "react",
+          "resolved": null,
+          "names": [
+            {
+              "original": "useState",
+              "alias": "useState"
+            },
+            {
+              "original": "useEffect",
+              "alias": "useEffect"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": false,
+          "line": 1
+        },
+        {
+          "raw": "import { supabase } from '../../../lib/supabase'",
+          "path": "../../../lib/supabase",
+          "resolved": "/workspaces/cuttingcorners/frontend/lib/supabase.ts",
+          "names": [
+            {
+              "original": "supabase",
+              "alias": "supabase"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": false,
+          "line": 2
+        },
+        {
+          "raw": "import { saveWizardResult } from '../../../lib/wizardResultsService'",
+          "path": "../../../lib/wizardResultsService",
+          "resolved": "/workspaces/cuttingcorners/frontend/lib/wizardResultsService.ts",
+          "names": [
+            {
+              "original": "saveWizardResult",
+              "alias": "saveWizardResult"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": false,
+          "line": 3
+        },
+        {
+          "raw": "import type { WizardResultPayload } from '../../../lib/wizardResultsService'",
+          "path": "../../../lib/wizardResultsService",
+          "resolved": "/workspaces/cuttingcorners/frontend/lib/wizardResultsService.ts",
+          "names": [
+            {
+              "original": "WizardResultPayload",
+              "alias": "WizardResultPayload"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": true,
+          "line": 4
+        }
+      ],
+      "exports": [
+        {
+          "name": "default",
+          "line": 130,
+          "kind": "default"
+        },
+        {
+          "name": "SaveToAccountButton",
+          "line": 130,
+          "kind": "named"
+        }
+      ],
+      "depth": 4,
+      "imported_by": [
+        "/workspaces/cuttingcorners/frontend/components/feasibility-test/ui/ResultsDisplay.tsx"
+      ],
+      "broken_imports": []
+    }
+  },
+  "cycles": [
+    [
+      "/workspaces/cuttingcorners/frontend/components/account/shared/utils/photoUrl.ts",
+      "/workspaces/cuttingcorners/frontend/lib/supabase.ts"
+    ],
+    [
+      "/workspaces/cuttingcorners/frontend/components/account/shared/hooks/useChat.ts",
+      "/workspaces/cuttingcorners/frontend/lib/supabase.ts"
+    ],
+    [
+      "/workspaces/cuttingcorners/frontend/components/account/mobile/forms/ServiceRequestForm.tsx",
+      "/workspaces/cuttingcorners/frontend/components/account/shared/hooks/useSwipeDownToClose.ts"
+    ],
+    [
+      "/workspaces/cuttingcorners/frontend/components/account/mobile/forms/ServiceRequestForm.tsx",
+      "/workspaces/cuttingcorners/frontend/lib/supabase.ts"
+    ],
+    [
+      "/workspaces/cuttingcorners/frontend/components/account/mobile/forms/ServiceRequestForm.tsx",
+      "/workspaces/cuttingcorners/frontend/components/account/mobile/ui/FirstTimeTips.tsx"
+    ],
+    [
+      "/workspaces/cuttingcorners/frontend/components/account/mobile/drawers/3InquiryDrawer.tsx",
+      "/workspaces/cuttingcorners/frontend/lib/utils.ts"
+    ],
+    [
+      "/workspaces/cuttingcorners/frontend/components/account/mobile/drawers/3InquiryDrawer.tsx",
+      "/workspaces/cuttingcorners/frontend/components/account/shared/hooks/useSwipeToClose.ts"
+    ],
+    [
+      "/workspaces/cuttingcorners/frontend/components/account/mobile/drawers/3InquiryDrawer.tsx",
+      "/workspaces/cuttingcorners/frontend/lib/utils.ts"
+    ],
+    [
+      "/workspaces/cuttingcorners/frontend/lib/wizardResultsService.ts",
+      "/workspaces/cuttingcorners/frontend/lib/supabase.ts"
+    ],
+    [
+      "/workspaces/cuttingcorners/frontend/components/account/mobile/drawers/3WizardResultDrawer.tsx",
+      "/workspaces/cuttingcorners/frontend/lib/wizardResultsService.ts"
+    ],
+    [
+      "/workspaces/cuttingcorners/frontend/components/account/mobile/drawers/3WizardResultDrawer.tsx",
+      "/workspaces/cuttingcorners/frontend/components/account/shared/hooks/useSwipeToClose.ts"
+    ],
+    [
+      "/workspaces/cuttingcorners/frontend/components/account/mobile/drawers/3WizardResultDrawer.tsx",
+      "/workspaces/cuttingcorners/frontend/components/account/mobile/ui/FirstTimeTips.tsx"
+    ],
+    [
+      "/workspaces/cuttingcorners/frontend/components/feasibility-test/logic/calculator.ts",
+      "/workspaces/cuttingcorners/frontend/components/feasibility-test/data/questions.ts"
+    ],
+    [
+      "/workspaces/cuttingcorners/frontend/components/feasibility-test/logic/autoSelect.ts",
+      "/workspaces/cuttingcorners/frontend/components/feasibility-test/data/questions.ts"
+    ],
+    [
+      "/workspaces/cuttingcorners/frontend/components/feasibility-test/logic/autoSelect.ts",
+      "/workspaces/cuttingcorners/frontend/components/feasibility-test/logic/calculator.ts"
+    ],
+    [
+      "/workspaces/cuttingcorners/frontend/components/account/shared/1ShopList.ts",
+      "/workspaces/cuttingcorners/frontend/lib/supabase.ts"
+    ],
+    [
+      "/workspaces/cuttingcorners/frontend/components/account/shared/hooks/useFavorites.ts",
+      "/workspaces/cuttingcorners/frontend/lib/supabase.ts"
+    ],
+    [
+      "/workspaces/cuttingcorners/frontend/components/account/shared/1InquiryList.ts",
+      "/workspaces/cuttingcorners/frontend/lib/supabase.ts"
+    ],
+    [
+      "/workspaces/cuttingcorners/frontend/components/account/shared/1InquiryList.ts",
+      "/workspaces/cuttingcorners/frontend/lib/utils.ts"
+    ],
+    [
+      "/workspaces/cuttingcorners/frontend/components/feasibility-test/ui/CheckItem.tsx",
+      "/workspaces/cuttingcorners/frontend/components/feasibility-test/data/questions.ts"
+    ],
+    [
+      "/workspaces/cuttingcorners/frontend/components/feasibility-test/ui/CorrectableRow.tsx",
+      "/workspaces/cuttingcorners/frontend/components/feasibility-test/data/questions.ts"
+    ],
+    [
+      "/workspaces/cuttingcorners/frontend/components/feasibility-test/ui/CorrectableRow.tsx",
+      "/workspaces/cuttingcorners/frontend/components/feasibility-test/data/questions.ts"
+    ],
+    [
+      "/workspaces/cuttingcorners/frontend/components/feasibility-test/ui/ResultsDisplay.tsx",
+      "/workspaces/cuttingcorners/frontend/lib/supabase.ts"
+    ],
+    [
+      "/workspaces/cuttingcorners/frontend/components/feasibility-test/ui/ResultsDisplay.tsx",
+      "/workspaces/cuttingcorners/frontend/components/feasibility-test/logic/calculator.ts"
+    ],
+    [
+      "/workspaces/cuttingcorners/frontend/components/feasibility-test/ui/InfoDrawer.tsx",
+      "/workspaces/cuttingcorners/frontend/components/feasibility-test/data/questions.ts"
+    ],
+    [
+      "/workspaces/cuttingcorners/frontend/components/feasibility-test/ui/ScoreBox.tsx",
+      "/workspaces/cuttingcorners/frontend/components/feasibility-test/logic/calculator.ts"
+    ],
+    [
+      "/workspaces/cuttingcorners/frontend/components/feasibility-test/ui/SaveToAccountButton.tsx",
+      "/workspaces/cuttingcorners/frontend/lib/supabase.ts"
+    ],
+    [
+      "/workspaces/cuttingcorners/frontend/components/feasibility-test/ui/SaveToAccountButton.tsx",
+      "/workspaces/cuttingcorners/frontend/lib/wizardResultsService.ts"
+    ],
+    [
+      "/workspaces/cuttingcorners/frontend/components/feasibility-test/ui/SaveToAccountButton.tsx",
+      "/workspaces/cuttingcorners/frontend/lib/wizardResultsService.ts"
+    ]
+  ],
+  "broken": [],
+  "order": [
+    "/workspaces/cuttingcorners/frontend/components/account/mobile/MobileAccount.tsx",
+    "/workspaces/cuttingcorners/frontend/components/account/shared/hooks/useAuth.ts",
+    "/workspaces/cuttingcorners/frontend/components/account/shared/hooks/useDeleteAccount.ts",
+    "/workspaces/cuttingcorners/frontend/components/account/mobile/ui/3Nav.tsx",
+    "/workspaces/cuttingcorners/frontend/components/account/mobile/ui/3TabBar.tsx",
+    "/workspaces/cuttingcorners/frontend/components/account/mobile/ui/3MenuDrawer.tsx",
+    "/workspaces/cuttingcorners/frontend/components/account/mobile/ui/3SmsConsentModal.tsx",
+    "/workspaces/cuttingcorners/frontend/components/account/mobile/ui/3ShopFeed.tsx",
+    "/workspaces/cuttingcorners/frontend/components/account/mobile/drawers/3ShopItemDrawer.tsx",
+    "/workspaces/cuttingcorners/frontend/components/account/mobile/tiles/3MessagesTile.tsx",
+    "/workspaces/cuttingcorners/frontend/components/account/mobile/tiles/3WorkOrderTile.tsx",
+    "/workspaces/cuttingcorners/frontend/components/account/mobile/tiles/3InvoicesTile.tsx",
+    "/workspaces/cuttingcorners/frontend/components/account/mobile/tiles/3FeasibilityTile.tsx",
+    "/workspaces/cuttingcorners/frontend/components/account/mobile/tiles/3InquiriesTile.tsx",
+    "/workspaces/cuttingcorners/frontend/components/account/mobile/tiles/3SmsTile.tsx",
+    "/workspaces/cuttingcorners/frontend/components/account/mobile/tiles/3ServiceRequestsTile.tsx",
+    "/workspaces/cuttingcorners/frontend/components/account/mobile/tiles/3ProfileTile.tsx",
+    "/workspaces/cuttingcorners/frontend/components/account/mobile/tiles/3FeedbackTile.tsx",
+    "/workspaces/cuttingcorners/frontend/components/account/mobile/panels/3ChatPanel.tsx",
+    "/workspaces/cuttingcorners/frontend/components/account/mobile/panels/3OrdersPanel.tsx",
+    "/workspaces/cuttingcorners/frontend/components/account/mobile/panels/3InvoicesPanel.tsx",
+    "/workspaces/cuttingcorners/frontend/components/account/mobile/panels/3ServiceRequestPanel.tsx",
+    "/workspaces/cuttingcorners/frontend/components/account/mobile/panels/3InquiriesPanel.tsx",
+    "/workspaces/cuttingcorners/frontend/components/account/mobile/panels/3WizardResultsPanel.tsx",
+    "/workspaces/cuttingcorners/frontend/components/account/mobile/panels/3ProfilePanel.tsx",
+    "/workspaces/cuttingcorners/frontend/components/account/mobile/panels/3FeasibilityPanel.tsx",
+    "/workspaces/cuttingcorners/frontend/components/account/mobile/drawers/3WorkOrderDrawer.tsx",
+    "/workspaces/cuttingcorners/frontend/components/account/mobile/drawers/3InvoiceDrawer.tsx",
+    "/workspaces/cuttingcorners/frontend/components/account/mobile/drawers/3ServiceRequestDrawer.tsx",
+    "/workspaces/cuttingcorners/frontend/lib/supabase.ts",
+    "/workspaces/cuttingcorners/frontend/components/account/shared/hooks/useSwipeDownToClose.ts",
+    "/workspaces/cuttingcorners/frontend/components/account/mobile/ui/FirstTimeTips.tsx",
+    "/workspaces/cuttingcorners/frontend/components/shared/ShopFeed.tsx",
+    "/workspaces/cuttingcorners/frontend/lib/utils.ts",
+    "/workspaces/cuttingcorners/frontend/components/account/shared/utils/photoUrl.ts",
+    "/workspaces/cuttingcorners/frontend/components/account/shared/hooks/useSwipeToClose.ts",
+    "/workspaces/cuttingcorners/frontend/components/account/shared/hooks/useChat.ts",
+    "/workspaces/cuttingcorners/frontend/components/account/mobile/modals/ChatImageModal.tsx",
+    "/workspaces/cuttingcorners/frontend/components/account/mobile/forms/ServiceRequestForm.tsx",
+    "/workspaces/cuttingcorners/frontend/components/account/mobile/drawers/3InquiryDrawer.tsx",
+    "/workspaces/cuttingcorners/frontend/lib/wizardResultsService.ts",
+    "/workspaces/cuttingcorners/frontend/components/account/mobile/drawers/3WizardResultDrawer.tsx",
+    "/workspaces/cuttingcorners/frontend/components/account/mobile/grids/WizardFolderGrid.tsx",
+    "/workspaces/cuttingcorners/frontend/components/account/mobile/modals/WizardFolderModal.tsx",
+    "/workspaces/cuttingcorners/frontend/components/feasibility-test/ui/IntroScreen.tsx",
+    "/workspaces/cuttingcorners/frontend/components/feasibility-test/ui/WizardScreen.tsx",
+    "/workspaces/cuttingcorners/frontend/components/feasibility-test/logic/feasibility-types.ts",
+    "/workspaces/cuttingcorners/frontend/components/feasibility-test/data/questions.ts",
+    "/workspaces/cuttingcorners/frontend/components/feasibility-test/logic/calculator.ts",
+    "/workspaces/cuttingcorners/frontend/components/feasibility-test/logic/autoSelect.ts",
+    "/workspaces/cuttingcorners/frontend/components/account/shared/1ShopList.ts",
+    "/workspaces/cuttingcorners/frontend/components/account/shared/hooks/useFavorites.ts",
+    "/workspaces/cuttingcorners/frontend/components/account/shared/1InquiryList.ts",
+    "/workspaces/cuttingcorners/frontend/components/feasibility-test/ui/CheckItem.tsx",
+    "/workspaces/cuttingcorners/frontend/components/feasibility-test/ui/CorrectableRow.tsx",
+    "/workspaces/cuttingcorners/frontend/components/feasibility-test/ui/ResultsDisplay.tsx",
+    "/workspaces/cuttingcorners/frontend/components/feasibility-test/ui/SectionIntroCard.tsx",
+    "/workspaces/cuttingcorners/frontend/components/feasibility-test/ui/InfoDrawer.tsx",
+    "/workspaces/cuttingcorners/frontend/components/feasibility-test/ui/ScoreBox.tsx",
+    "/workspaces/cuttingcorners/frontend/components/feasibility-test/ui/SaveToAccountButton.tsx"
+  ],
+  "generated": "2026-05-11 05:00:37.753610"
+}

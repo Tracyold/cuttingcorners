@@ -1,0 +1,431 @@
+{
+  "root_file": "/workspaces/cuttingcorners/frontend/components/account/mobile/panels/3ChatPanel.tsx",
+  "nodes": {
+    "/workspaces/cuttingcorners/frontend/components/account/mobile/panels/3ChatPanel.tsx": {
+      "imports": [
+        {
+          "raw": "import { useEffect, useState } from 'react';",
+          "path": "react",
+          "resolved": null,
+          "names": [
+            {
+              "original": "useEffect",
+              "alias": "useEffect"
+            },
+            {
+              "original": "useState",
+              "alias": "useState"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": false,
+          "line": 3
+        },
+        {
+          "raw": "import { supabase } from '../../../../lib/supabase';",
+          "path": "../../../../lib/supabase",
+          "resolved": "/workspaces/cuttingcorners/frontend/lib/supabase.ts",
+          "names": [
+            {
+              "original": "supabase",
+              "alias": "supabase"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": false,
+          "line": 4
+        },
+        {
+          "raw": "import { fmtTime } from '../../../../lib/utils';",
+          "path": "../../../../lib/utils",
+          "resolved": "/workspaces/cuttingcorners/frontend/lib/utils.ts",
+          "names": [
+            {
+              "original": "fmtTime",
+              "alias": "fmtTime"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": false,
+          "line": 5
+        },
+        {
+          "raw": "import { useSwipeDownToClose } from '../../shared/hooks/useSwipeDownToClose';",
+          "path": "../../shared/hooks/useSwipeDownToClose",
+          "resolved": "/workspaces/cuttingcorners/frontend/components/account/shared/hooks/useSwipeDownToClose.ts",
+          "names": [
+            {
+              "original": "useSwipeDownToClose",
+              "alias": "useSwipeDownToClose"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": false,
+          "line": 6
+        },
+        {
+          "raw": "import FirstTimeTips from '../ui/FirstTimeTips';",
+          "path": "../ui/FirstTimeTips",
+          "resolved": "/workspaces/cuttingcorners/frontend/components/account/mobile/ui/FirstTimeTips.tsx",
+          "names": [],
+          "default": "FirstTimeTips",
+          "namespace": null,
+          "is_type": false,
+          "line": 7
+        },
+        {
+          "raw": "import type { PendingUpload } from '../../shared/hooks/useChat';",
+          "path": "../../shared/hooks/useChat",
+          "resolved": "/workspaces/cuttingcorners/frontend/components/account/shared/hooks/useChat.ts",
+          "names": [
+            {
+              "original": "PendingUpload",
+              "alias": "PendingUpload"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": true,
+          "line": 8
+        },
+        {
+          "raw": "import ChatImageModal from '../modals/ChatImageModal';",
+          "path": "../modals/ChatImageModal",
+          "resolved": "/workspaces/cuttingcorners/frontend/components/account/mobile/modals/ChatImageModal.tsx",
+          "names": [],
+          "default": "ChatImageModal",
+          "namespace": null,
+          "is_type": false,
+          "line": 9
+        }
+      ],
+      "exports": [
+        {
+          "name": "default",
+          "line": 46,
+          "kind": "default"
+        },
+        {
+          "name": "ChatPanel3",
+          "line": 46,
+          "kind": "named"
+        }
+      ],
+      "depth": 0,
+      "imported_by": [],
+      "broken_imports": []
+    },
+    "/workspaces/cuttingcorners/frontend/lib/supabase.ts": {
+      "imports": [
+        {
+          "raw": "import { createClient } from '@supabase/supabase-js';",
+          "path": "@supabase/supabase-js",
+          "resolved": null,
+          "names": [
+            {
+              "original": "createClient",
+              "alias": "createClient"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": false,
+          "line": 1
+        }
+      ],
+      "exports": [
+        {
+          "name": "supabase",
+          "line": 4,
+          "kind": "named"
+        },
+        {
+          "name": "createServiceClient",
+          "line": 19,
+          "kind": "named"
+        }
+      ],
+      "depth": 1,
+      "imported_by": [
+        "/workspaces/cuttingcorners/frontend/components/account/mobile/panels/3ChatPanel.tsx"
+      ],
+      "broken_imports": []
+    },
+    "/workspaces/cuttingcorners/frontend/lib/utils.ts": {
+      "imports": [
+        {
+          "raw": "import { clsx, type ClassValue } from 'clsx';",
+          "path": "clsx",
+          "resolved": null,
+          "names": [
+            {
+              "original": "clsx",
+              "alias": "clsx"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": true,
+          "line": 1
+        },
+        {
+          "raw": "import { twMerge } from 'tailwind-merge';",
+          "path": "tailwind-merge",
+          "resolved": null,
+          "names": [
+            {
+              "original": "twMerge",
+              "alias": "twMerge"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": false,
+          "line": 2
+        }
+      ],
+      "exports": [
+        {
+          "name": "cn",
+          "line": 4,
+          "kind": "named"
+        },
+        {
+          "name": "formatMoney",
+          "line": 12,
+          "kind": "named"
+        },
+        {
+          "name": "fmtDate",
+          "line": 25,
+          "kind": "named"
+        },
+        {
+          "name": "fmtTime",
+          "line": 38,
+          "kind": "named"
+        },
+        {
+          "name": "relativeTime",
+          "line": 51,
+          "kind": "named"
+        }
+      ],
+      "depth": 1,
+      "imported_by": [
+        "/workspaces/cuttingcorners/frontend/components/account/mobile/panels/3ChatPanel.tsx"
+      ],
+      "broken_imports": []
+    },
+    "/workspaces/cuttingcorners/frontend/components/account/shared/hooks/useSwipeDownToClose.ts": {
+      "imports": [
+        {
+          "raw": "import { useRef } from 'react';",
+          "path": "react",
+          "resolved": null,
+          "names": [
+            {
+              "original": "useRef",
+              "alias": "useRef"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": false,
+          "line": 1
+        }
+      ],
+      "exports": [
+        {
+          "name": "useSwipeDownToClose",
+          "line": 8,
+          "kind": "named"
+        }
+      ],
+      "depth": 1,
+      "imported_by": [
+        "/workspaces/cuttingcorners/frontend/components/account/mobile/panels/3ChatPanel.tsx"
+      ],
+      "broken_imports": []
+    },
+    "/workspaces/cuttingcorners/frontend/components/account/mobile/ui/FirstTimeTips.tsx": {
+      "imports": [
+        {
+          "raw": "import { useState, useEffect } from 'react';",
+          "path": "react",
+          "resolved": null,
+          "names": [
+            {
+              "original": "useState",
+              "alias": "useState"
+            },
+            {
+              "original": "useEffect",
+              "alias": "useEffect"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": false,
+          "line": 1
+        }
+      ],
+      "exports": [
+        {
+          "name": "default",
+          "line": 10,
+          "kind": "default"
+        },
+        {
+          "name": "FirstTimeTips",
+          "line": 10,
+          "kind": "named"
+        }
+      ],
+      "depth": 1,
+      "imported_by": [
+        "/workspaces/cuttingcorners/frontend/components/account/mobile/panels/3ChatPanel.tsx"
+      ],
+      "broken_imports": []
+    },
+    "/workspaces/cuttingcorners/frontend/components/account/shared/hooks/useChat.ts": {
+      "imports": [
+        {
+          "raw": "import { useState, useRef } from 'react';",
+          "path": "react",
+          "resolved": null,
+          "names": [
+            {
+              "original": "useState",
+              "alias": "useState"
+            },
+            {
+              "original": "useRef",
+              "alias": "useRef"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": false,
+          "line": 22
+        },
+        {
+          "raw": "import { supabase } from '../../../../lib/supabase';",
+          "path": "../../../../lib/supabase",
+          "resolved": "/workspaces/cuttingcorners/frontend/lib/supabase.ts",
+          "names": [
+            {
+              "original": "supabase",
+              "alias": "supabase"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": false,
+          "line": 23
+        }
+      ],
+      "exports": [
+        {
+          "name": "PendingUpload",
+          "line": 30,
+          "kind": "named"
+        },
+        {
+          "name": "useChat",
+          "line": 59,
+          "kind": "named"
+        }
+      ],
+      "depth": 1,
+      "imported_by": [
+        "/workspaces/cuttingcorners/frontend/components/account/mobile/panels/3ChatPanel.tsx"
+      ],
+      "broken_imports": []
+    },
+    "/workspaces/cuttingcorners/frontend/components/account/mobile/modals/ChatImageModal.tsx": {
+      "imports": [
+        {
+          "raw": "import { useEffect, useRef, useState } from 'react';",
+          "path": "react",
+          "resolved": null,
+          "names": [
+            {
+              "original": "useEffect",
+              "alias": "useEffect"
+            },
+            {
+              "original": "useRef",
+              "alias": "useRef"
+            },
+            {
+              "original": "useState",
+              "alias": "useState"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": false,
+          "line": 16
+        },
+        {
+          "raw": "import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch';",
+          "path": "react-zoom-pan-pinch",
+          "resolved": null,
+          "names": [
+            {
+              "original": "TransformWrapper",
+              "alias": "TransformWrapper"
+            },
+            {
+              "original": "TransformComponent",
+              "alias": "TransformComponent"
+            }
+          ],
+          "default": null,
+          "namespace": null,
+          "is_type": false,
+          "line": 17
+        }
+      ],
+      "exports": [
+        {
+          "name": "default",
+          "line": 25,
+          "kind": "default"
+        },
+        {
+          "name": "ChatImageModal",
+          "line": 25,
+          "kind": "named"
+        }
+      ],
+      "depth": 1,
+      "imported_by": [
+        "/workspaces/cuttingcorners/frontend/components/account/mobile/panels/3ChatPanel.tsx"
+      ],
+      "broken_imports": []
+    }
+  },
+  "cycles": [
+    [
+      "/workspaces/cuttingcorners/frontend/components/account/shared/hooks/useChat.ts",
+      "/workspaces/cuttingcorners/frontend/lib/supabase.ts"
+    ]
+  ],
+  "broken": [],
+  "order": [
+    "/workspaces/cuttingcorners/frontend/components/account/mobile/panels/3ChatPanel.tsx",
+    "/workspaces/cuttingcorners/frontend/lib/supabase.ts",
+    "/workspaces/cuttingcorners/frontend/lib/utils.ts",
+    "/workspaces/cuttingcorners/frontend/components/account/shared/hooks/useSwipeDownToClose.ts",
+    "/workspaces/cuttingcorners/frontend/components/account/mobile/ui/FirstTimeTips.tsx",
+    "/workspaces/cuttingcorners/frontend/components/account/shared/hooks/useChat.ts",
+    "/workspaces/cuttingcorners/frontend/components/account/mobile/modals/ChatImageModal.tsx"
+  ],
+  "generated": "2026-05-11 04:52:45.368194"
+}
