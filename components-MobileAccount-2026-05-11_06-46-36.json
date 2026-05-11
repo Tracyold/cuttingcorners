@@ -1,0 +1,16 @@
+{
+  "file": "frontend/components/account/mobile/MobileAccount.tsx",
+  "line_count": 525,
+  "candidates": [
+    {
+      "lines": "244\u2013526",
+      "start": 244,
+      "end": 526,
+      "kind": "section",
+      "name": "MobileShell",
+      "reason": "<div> block spanning 282 lines \u2014 large enough to be its own named section component",
+      "snippet": "<div className=\"mobile-shell\">"
+    }
+  ],
+  "generated": "2026-05-11 06:46:36.531265"
+}

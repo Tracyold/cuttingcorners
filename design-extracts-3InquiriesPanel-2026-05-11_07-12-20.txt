@@ -1,0 +1,156 @@
+DESIGN COMPONENT EXTRACTS
+Source:     frontend/components/account/mobile/panels/3InquiriesPanel.tsx
+Generated:  2026-05-11 07:12:20.223975
+Candidates: 4
+==================================================================
+
+[1] <ErrorBanner />
+    Lines:   144–149
+    Kind:    ErrorBanner       — dismissible error/warning notification strip
+    Reason:  error/warning banner with dismiss (6 lines) — extract as <ErrorBanner message={} onDismiss={} />
+    Design:  (no design tokens found)
+
+    ── Extracted Code ────────────────────────────────────────────────
+
+        const { error } = await supabase.from('account_inquiries').update({ is_archived: true }).eq('account_inquiry_id', id);
+        if (error) {
+          setLocalInquiries(list => list.map(i => i.account_inquiry_id === id ? { ...i, is_archived: prevArchived } : i));
+          setArchiveError('Could not archive this inquiry. Please try again.');
+          return;
+        }
+
+    ── Suggested Component Shell ──────────────────────────────────────
+
+    // components/design/ErrorBanner.tsx
+    import React from 'react'
+
+    type ErrorBannerProps = {
+      children?: React.ReactNode
+      className?: string
+      // TODO: add props for each hardcoded value above
+    }
+
+    export function ErrorBanner({ children, className }: ErrorBannerProps) {
+      return (
+        // paste extracted code here
+        // replace hardcoded values with props
+      )
+    }
+
+──────────────────────────────────────────────────────────────────
+
+[2] <ButtonGroup />
+    Lines:   163–172
+    Kind:    ButtonGroup       — cluster of related action buttons
+    Reason:  3 buttons within 10 lines — extract as <ButtonGroup> or split into action components
+    Design:  classes: panel-close sr-tab-bar sr-tab active archive
+
+    ── Extracted Code ────────────────────────────────────────────────
+
+              <button className="panel-close" onClick={onClose}>✕</button>
+            </div>
+    
+            <div className="sr-tab-bar">
+              <button className={`sr-tab${activeTab === 'active' ? ' active' : ''}`} onClick={() => setActiveTab('active')}>
+                Active{activeList.length > 0 ? ` · ${activeList.length}` : ''}
+              </button>
+              <button className={`sr-tab${activeTab === 'archive' ? ' active' : ''}`} onClick={() => setActiveTab('archive')}>
+                Archive{archivedList.length > 0 ? ` · ${archivedList.length}` : ''}
+              </button>
+
+    ── Suggested Component Shell ──────────────────────────────────────
+
+    // components/design/ButtonGroup.tsx
+    import React from 'react'
+
+    type ButtonGroupProps = {
+      children?: React.ReactNode
+      className?: string
+      // TODO: add props for each hardcoded value above
+    }
+
+    export function ButtonGroup({ children, className }: ButtonGroupProps) {
+      return (
+        // paste extracted code here
+        // replace hardcoded values with props
+      )
+    }
+
+──────────────────────────────────────────────────────────────────
+
+[3] <EmptyState />
+    Lines:   182–186
+    Kind:    EmptyState        — no-content message with optional illustration
+    Reason:  empty/no-content state (5 lines) — extract as <EmptyState message='...' />
+    Design:  classes: sr-empty
+
+    ── Extracted Code ────────────────────────────────────────────────
+
+              {shownList.length === 0 ? (
+                <div className="sr-empty">
+                  {activeTab === 'active'
+                    ? <>No product inquiries yet.<br />Inquiries are submitted from product pages in the shop.</>
+                    : <>Nothing archived yet.</>
+
+    ── Suggested Component Shell ──────────────────────────────────────
+
+    // components/design/EmptyState.tsx
+    import React from 'react'
+
+    type EmptyStateProps = {
+      children?: React.ReactNode
+      className?: string
+      // TODO: add props for each hardcoded value above
+    }
+
+    export function EmptyState({ children, className }: EmptyStateProps) {
+      return (
+        // paste extracted code here
+        // replace hardcoded values with props
+      )
+    }
+
+──────────────────────────────────────────────────────────────────
+
+[4] <ShownListItem />
+    Lines:   190–203
+    Kind:    ListItem          — repeated item body inside a .map() render
+    Reason:  'shownList.map(inq => ...)' body is 14 lines — extract item as <ShownListItem />
+    Design:  (no design tokens found)
+
+    ── Extracted Code ────────────────────────────────────────────────
+
+                shownList.map(inq =>
+                  activeTab === 'active' ? (
+                    <SwipeableInquiry
+                      key={inq.account_inquiry_id}
+                      inq={inq}
+                      onArchive={handleArchive}
+                      onTap={() => setSelectedInq(inq)}
+                    />
+                  ) : (
+                    <ArchivedInquiry
+                      key={inq.account_inquiry_id}
+                      inq={inq}
+                      onTap={() => setSelectedInq(inq)}
+                    />
+
+    ── Suggested Component Shell ──────────────────────────────────────
+
+    // components/design/ShownListItem.tsx
+    import React from 'react'
+
+    type ShownListItemProps = {
+      children?: React.ReactNode
+      className?: string
+      // TODO: add props for each hardcoded value above
+    }
+
+    export function ShownListItem({ children, className }: ShownListItemProps) {
+      return (
+        // paste extracted code here
+        // replace hardcoded values with props
+      )
+    }
+
+──────────────────────────────────────────────────────────────────

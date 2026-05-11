@@ -1,0 +1,25 @@
+{
+  "file": "frontend/components/account/mobile/panels/3ChatPanel.tsx",
+  "line_count": 293,
+  "candidates": [
+    {
+      "lines": "47\u201352",
+      "start": 47,
+      "end": 52,
+      "kind": "empty_state",
+      "name": "LoadingState",
+      "reason": "Loading fallback UI spanning 5 lines \u2014 extract as <LoadingState />",
+      "snippet": "open, messages, chatInput, chatSending, chatUploading,"
+    },
+    {
+      "lines": "72\u2013291",
+      "start": 72,
+      "end": 291,
+      "kind": "section",
+      "name": "DivSection",
+      "reason": "<div> block spanning 219 lines \u2014 large enough to be its own named section component",
+      "snippet": "<div ref={elementRef} className={`slide-panel${open ? ' open' : ''}`}>"
+    }
+  ],
+  "generated": "2026-05-11 06:49:10.013026"
+}

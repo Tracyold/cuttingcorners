@@ -1,0 +1,34 @@
+{
+  "file": "frontend/components/account/mobile/panels/3InquiriesPanel.tsx",
+  "line_count": 222,
+  "candidates": [
+    {
+      "lines": "60\u201372",
+      "start": 60,
+      "end": 72,
+      "kind": "conditional",
+      "name": "ReplyView",
+      "reason": "Conditional render spans 12 lines \u2014 extract each branch as its own component",
+      "snippet": "{inq.reply && ("
+    },
+    {
+      "lines": "159\u2013188",
+      "start": 159,
+      "end": 188,
+      "kind": "section",
+      "name": "DivSection",
+      "reason": "<div> block spanning 29 lines \u2014 large enough to be its own named section component",
+      "snippet": "<div ref={elementRef} className={`slide-panel${open ? ' open' : ''}`}>"
+    },
+    {
+      "lines": "190\u2013205",
+      "start": 190,
+      "end": 205,
+      "kind": "list_item",
+      "name": "ShownListItem",
+      "reason": "'shownList.map(inq => ...)' renders 15 lines \u2014 extract the item body as <ShownListItem />",
+      "snippet": "shownList.map(inq =>"
+    }
+  ],
+  "generated": "2026-05-11 06:49:45.949605"
+}

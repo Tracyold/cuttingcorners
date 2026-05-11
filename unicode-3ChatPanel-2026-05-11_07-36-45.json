@@ -1,0 +1,236 @@
+[
+  {
+    "file": "/workspaces/cuttingcorners/frontend/components/account/mobile/panels/3ChatPanel.tsx",
+    "line": 56,
+    "col": 6,
+    "codepoint": "U+2500",
+    "category": "So",
+    "severity": "LOW",
+    "description": "BOX DRAWINGS LIGHT HORIZONTAL \u2014 other symbol (U+2500, category So)"
+  },
+  {
+    "file": "/workspaces/cuttingcorners/frontend/components/account/mobile/panels/3ChatPanel.tsx",
+    "line": 56,
+    "col": 7,
+    "codepoint": "U+2500",
+    "category": "So",
+    "severity": "LOW",
+    "description": "BOX DRAWINGS LIGHT HORIZONTAL \u2014 other symbol (U+2500, category So)"
+  },
+  {
+    "file": "/workspaces/cuttingcorners/frontend/components/account/mobile/panels/3ChatPanel.tsx",
+    "line": 56,
+    "col": 27,
+    "codepoint": "U+2500",
+    "category": "So",
+    "severity": "LOW",
+    "description": "BOX DRAWINGS LIGHT HORIZONTAL \u2014 other symbol (U+2500, category So)"
+  },
+  {
+    "file": "/workspaces/cuttingcorners/frontend/components/account/mobile/panels/3ChatPanel.tsx",
+    "line": 56,
+    "col": 28,
+    "codepoint": "U+2500",
+    "category": "So",
+    "severity": "LOW",
+    "description": "BOX DRAWINGS LIGHT HORIZONTAL \u2014 other symbol (U+2500, category So)"
+  },
+  {
+    "file": "/workspaces/cuttingcorners/frontend/components/account/mobile/panels/3ChatPanel.tsx",
+    "line": 77,
+    "col": 59,
+    "codepoint": "U+2715",
+    "category": "So",
+    "severity": "LOW",
+    "description": "MULTIPLICATION X \u2014 other symbol (U+2715, category So)"
+  },
+  {
+    "file": "/workspaces/cuttingcorners/frontend/components/account/mobile/panels/3ChatPanel.tsx",
+    "line": 121,
+    "col": 23,
+    "codepoint": "U+1F4C4",
+    "category": "So",
+    "severity": "LOW",
+    "description": "PAGE FACING UP \u2014 other symbol (U+1F4C4, category So)"
+  },
+  {
+    "file": "/workspaces/cuttingcorners/frontend/components/account/mobile/panels/3ChatPanel.tsx",
+    "line": 139,
+    "col": 13,
+    "codepoint": "U+2500",
+    "category": "So",
+    "severity": "LOW",
+    "description": "BOX DRAWINGS LIGHT HORIZONTAL \u2014 other symbol (U+2500, category So)"
+  },
+  {
+    "file": "/workspaces/cuttingcorners/frontend/components/account/mobile/panels/3ChatPanel.tsx",
+    "line": 139,
+    "col": 14,
+    "codepoint": "U+2500",
+    "category": "So",
+    "severity": "LOW",
+    "description": "BOX DRAWINGS LIGHT HORIZONTAL \u2014 other symbol (U+2500, category So)"
+  },
+  {
+    "file": "/workspaces/cuttingcorners/frontend/components/account/mobile/panels/3ChatPanel.tsx",
+    "line": 139,
+    "col": 32,
+    "codepoint": "U+2500",
+    "category": "So",
+    "severity": "LOW",
+    "description": "BOX DRAWINGS LIGHT HORIZONTAL \u2014 other symbol (U+2500, category So)"
+  },
+  {
+    "file": "/workspaces/cuttingcorners/frontend/components/account/mobile/panels/3ChatPanel.tsx",
+    "line": 139,
+    "col": 33,
+    "codepoint": "U+2500",
+    "category": "So",
+    "severity": "LOW",
+    "description": "BOX DRAWINGS LIGHT HORIZONTAL \u2014 other symbol (U+2500, category So)"
+  },
+  {
+    "file": "/workspaces/cuttingcorners/frontend/components/account/mobile/panels/3ChatPanel.tsx",
+    "line": 164,
+    "col": 21,
+    "codepoint": "U+1F4C4",
+    "category": "So",
+    "severity": "LOW",
+    "description": "PAGE FACING UP \u2014 other symbol (U+1F4C4, category So)"
+  },
+  {
+    "file": "/workspaces/cuttingcorners/frontend/components/account/mobile/panels/3ChatPanel.tsx",
+    "line": 164,
+    "col": 73,
+    "codepoint": "U+2026",
+    "category": "Po",
+    "severity": "HIGH",
+    "description": "HORIZONTAL ELLIPSIS \u2014 homoglyph: looks like ASCII punctuation but isn't"
+  },
+  {
+    "file": "/workspaces/cuttingcorners/frontend/components/account/mobile/panels/3ChatPanel.tsx",
+    "line": 209,
+    "col": 33,
+    "codepoint": "U+2026",
+    "category": "Po",
+    "severity": "HIGH",
+    "description": "HORIZONTAL ELLIPSIS \u2014 homoglyph: looks like ASCII punctuation but isn't"
+  },
+  {
+    "file": "/workspaces/cuttingcorners/frontend/components/account/mobile/panels/3ChatPanel.tsx",
+    "line": 222,
+    "col": 11,
+    "codepoint": "U+2500",
+    "category": "So",
+    "severity": "LOW",
+    "description": "BOX DRAWINGS LIGHT HORIZONTAL \u2014 other symbol (U+2500, category So)"
+  },
+  {
+    "file": "/workspaces/cuttingcorners/frontend/components/account/mobile/panels/3ChatPanel.tsx",
+    "line": 222,
+    "col": 12,
+    "codepoint": "U+2500",
+    "category": "So",
+    "severity": "LOW",
+    "description": "BOX DRAWINGS LIGHT HORIZONTAL \u2014 other symbol (U+2500, category So)"
+  },
+  {
+    "file": "/workspaces/cuttingcorners/frontend/components/account/mobile/panels/3ChatPanel.tsx",
+    "line": 222,
+    "col": 27,
+    "codepoint": "U+2500",
+    "category": "So",
+    "severity": "LOW",
+    "description": "BOX DRAWINGS LIGHT HORIZONTAL \u2014 other symbol (U+2500, category So)"
+  },
+  {
+    "file": "/workspaces/cuttingcorners/frontend/components/account/mobile/panels/3ChatPanel.tsx",
+    "line": 222,
+    "col": 28,
+    "codepoint": "U+2500",
+    "category": "So",
+    "severity": "LOW",
+    "description": "BOX DRAWINGS LIGHT HORIZONTAL \u2014 other symbol (U+2500, category So)"
+  },
+  {
+    "file": "/workspaces/cuttingcorners/frontend/components/account/mobile/panels/3ChatPanel.tsx",
+    "line": 247,
+    "col": 12,
+    "codepoint": "U+2715",
+    "category": "So",
+    "severity": "LOW",
+    "description": "MULTIPLICATION X \u2014 other symbol (U+2715, category So)"
+  },
+  {
+    "file": "/workspaces/cuttingcorners/frontend/components/account/mobile/panels/3ChatPanel.tsx",
+    "line": 265,
+    "col": 29,
+    "codepoint": "U+2026",
+    "category": "Po",
+    "severity": "HIGH",
+    "description": "HORIZONTAL ELLIPSIS \u2014 homoglyph: looks like ASCII punctuation but isn't"
+  },
+  {
+    "file": "/workspaces/cuttingcorners/frontend/components/account/mobile/panels/3ChatPanel.tsx",
+    "line": 281,
+    "col": 27,
+    "codepoint": "U+2026",
+    "category": "Po",
+    "severity": "HIGH",
+    "description": "HORIZONTAL ELLIPSIS \u2014 homoglyph: looks like ASCII punctuation but isn't"
+  },
+  {
+    "file": "/workspaces/cuttingcorners/frontend/components/account/mobile/panels/3ChatPanel.tsx",
+    "line": 285,
+    "col": 11,
+    "codepoint": "U+2500",
+    "category": "So",
+    "severity": "LOW",
+    "description": "BOX DRAWINGS LIGHT HORIZONTAL \u2014 other symbol (U+2500, category So)"
+  },
+  {
+    "file": "/workspaces/cuttingcorners/frontend/components/account/mobile/panels/3ChatPanel.tsx",
+    "line": 285,
+    "col": 12,
+    "codepoint": "U+2500",
+    "category": "So",
+    "severity": "LOW",
+    "description": "BOX DRAWINGS LIGHT HORIZONTAL \u2014 other symbol (U+2500, category So)"
+  },
+  {
+    "file": "/workspaces/cuttingcorners/frontend/components/account/mobile/panels/3ChatPanel.tsx",
+    "line": 285,
+    "col": 26,
+    "codepoint": "U+2500",
+    "category": "So",
+    "severity": "LOW",
+    "description": "BOX DRAWINGS LIGHT HORIZONTAL \u2014 other symbol (U+2500, category So)"
+  },
+  {
+    "file": "/workspaces/cuttingcorners/frontend/components/account/mobile/panels/3ChatPanel.tsx",
+    "line": 285,
+    "col": 27,
+    "codepoint": "U+2500",
+    "category": "So",
+    "severity": "LOW",
+    "description": "BOX DRAWINGS LIGHT HORIZONTAL \u2014 other symbol (U+2500, category So)"
+  },
+  {
+    "file": "/workspaces/cuttingcorners/frontend/components/account/mobile/panels/3ChatPanel.tsx",
+    "line": 285,
+    "col": 67,
+    "codepoint": "U+2500",
+    "category": "So",
+    "severity": "LOW",
+    "description": "BOX DRAWINGS LIGHT HORIZONTAL \u2014 other symbol (U+2500, category So)"
+  },
+  {
+    "file": "/workspaces/cuttingcorners/frontend/components/account/mobile/panels/3ChatPanel.tsx",
+    "line": 285,
+    "col": 68,
+    "codepoint": "U+2500",
+    "category": "So",
+    "severity": "LOW",
+    "description": "BOX DRAWINGS LIGHT HORIZONTAL \u2014 other symbol (U+2500, category So)"
+  }
+]

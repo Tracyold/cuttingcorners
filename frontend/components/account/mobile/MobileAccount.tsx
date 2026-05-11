@@ -270,7 +270,7 @@ export default function MobileAccount(props: MobileAccountProps) {
         <div className="welcome">
           <div className="welcome-name">{greeting}, {firstName}.</div>
           <div className="welcome-meta">
-            {dateLabel}&nbsp;·&nbsp;
+            {dateLabel}&nbsp;•&nbsp;
             {updateCount > 0 ? (
               <span>{updateCount} update{updateCount !== 1 ? 's' : ''}</span>
             ) : (

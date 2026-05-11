@@ -1,0 +1,14 @@
+{
+  "frontend/pages/index.tsx": [
+    {
+      "redundant_import": "frontend/components/home/homeData.ts",
+      "already_provided_by": [
+        "frontend/components/home/DesktopServicesGrid.tsx",
+        "frontend/components/home/MobileServicesCarousel.tsx"
+      ],
+      "line": 4,
+      "raw": "import { services } from '../components/home/homeData';",
+      "warning": "  names not re-exported by provider: services \u2014 keep or refactor"
+    }
+  ]
+}
