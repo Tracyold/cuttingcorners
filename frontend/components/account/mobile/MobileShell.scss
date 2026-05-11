@@ -1,5 +1,5 @@
-@use '../../../../src/css/shared' as *;
-@use '../../../src/css/shared' as *;
+@use '../../../../styles/shared.scss' as *;
+@use '../../../src/css/shared.scss' as *;
 @import '../desktop/DesktopShell.scss';
 @import '../desktop/DesktopAccount.scss';
 /* ═══════════════════════════════════════════════════════════════

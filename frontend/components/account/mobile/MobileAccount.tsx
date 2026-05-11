@@ -289,7 +289,7 @@ export default function MobileAccount(props: MobileAccountProps) {
           >
             {`Signed in ${new Date().toLocaleDateString('en-US', {
               weekday: 'short', month: 'short', day: 'numeric', year: 'numeric',
-            })} · ${new Date().toLocaleTimeString('en-US', {
+            })} * ${new Date().toLocaleTimeString('en-US', {
               hour: 'numeric', minute: '2-digit', hour12: true,
             })}`}
           </div>
@@ -364,7 +364,7 @@ export default function MobileAccount(props: MobileAccountProps) {
       </div>{/* end feed */}
 
       {/* ── Tab bar ── */}
-      {/* Fixed at bottom -- Menu · Chat · Invoices · Theme */}
+      {/* Fixed at bottom -- Menu,Chat,Invoices,Theme */}
       <TabBar3
         onMenuOpen={() => setMenuOpen(true)}
         onChatOpen={() => openPanel('chat')}

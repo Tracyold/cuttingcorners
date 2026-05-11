@@ -1,0 +1,10 @@
+[
+  {
+    "file": "/workspaces/cuttingcorners/frontend/components/account/mobile/MobileAccount.tsx",
+    "line": 292,
+    "col": 17,
+    "codepoint": "U+00B7",
+    "severity": "MEDIUM",
+    "description": "MIDDLE DOT \u2014 looks like period"
+  }
+]
